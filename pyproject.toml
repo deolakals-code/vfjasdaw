@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "toramre"
+version = "0.1.0"
+description = "Toram Online client-data reverse toolkit (offline static analysis only)"
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+export = ["UnityPy", "Pillow"]
+
+[project.scripts]
+toramre = "toramre.cli:main"
+
+[tool.setuptools]
+packages = ["toramre", "toramre.assets", "toramre.balance", "toramre.brain", "toramre.core", "toramre.data", "toramre.net", "toramre.viewer", "toramre.watch", "toramre.ui"]
+
+[tool.setuptools.package-data]
+"toramre.ui" = ["template.html"]
+"toramre.brain" = ["kb/*.json", "kb/schemas/*.json"]
+"toramre.balance" = ["snapshots/*.json"]
+"toramre.viewer" = ["web/*"]

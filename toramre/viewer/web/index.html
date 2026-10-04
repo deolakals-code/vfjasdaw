@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>toramre</title>
+<link rel="stylesheet" href="app.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="#/">toramre</a>
+    <div class="tag">Toram client-data lab · offline</div>
+    <nav id="nav" aria-label="Sections">
+      <a href="#/" data-t="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Overview</a>
+      <a href="#/search" data-t="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Search</a>
+      <a href="#/skills" data-t="skills"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.5 6 6.5.5-5 4.3 1.6 6.4L12 17l-5.6 3.2L8 13.8 3 9.5 9.5 9z"/></svg>Skills</a>
+      <a href="#/balance" data-t="balance"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0z"/><path d="M19 7l-3 7a3 3 0 0 0 6 0z"/></svg>Balance</a>
+      <a href="#/compare" data-t="compare"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="16"/><rect x="14" y="4" width="7" height="16"/></svg>Compare</a>
+      <a href="#/calc" data-t="calc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg>Calculator</a>
+      <a href="#/fetch" data-t="fetch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>Fetch</a>
+      <a href="#/layouts" data-t="layouts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h6"/></svg>Table layouts</a>
+      <a href="#/doctor" data-t="doctor"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Doctor</a>
+    </nav>
+    <div class="scope"><span>Scope: public CDN only</span><span>Anti-cheat files never read</span></div>
+  </aside>
+  <div class="col">
+    <header class="top">
+      <form id="searchform" role="search" class="search">
+        <label for="q" class="sr">Search</label>
+        <input id="q" type="search" placeholder="Search skills, items, monsters, recipes (name or id)" autocomplete="off">
+      </form>
+      <label class="lang"><span class="sr">Language</span>
+        <select id="lang"><option value="th">ไทย</option><option value="us">English</option><option value="jp">日本語</option><option value="kr">한국어</option><option value="cnt">繁體中文</option><option value="idn">Indonesia</option></select>
+      </label>
+    </header>
+    <main id="view" tabindex="-1"></main>
+    <footer id="foot"></footer>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

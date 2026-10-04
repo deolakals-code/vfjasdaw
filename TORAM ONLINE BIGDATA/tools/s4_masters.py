@@ -2,11 +2,11 @@
 Header forms tried: count (u16/u32) at offset 0/1/4; accepted when (len-header) % count == 0. Variable-width tables are listed
 in _framing.json as 'variable' (they need a per-table parser; see NOTES.md / tools for the solved ones)."""
 import csv, json, os, struct
-ROOT = r"D:\toram reverse data\TORAM ONLINE BIGDATA"
-man = json.load(open(ROOT + r"\data\decoded_manifest.json"))
+from common import ROOT
+man = json.load(open(os.path.join(ROOT, "data", "decoded_manifest.json")))
 key = max((k for k in man if k.startswith("BynaryData/")), key=lambda k: os.path.getmtime(man[k]["src"]))
 src = os.path.join(ROOT, "data", "decoded", *key.split("/"))
-out = ROOT + r"\readable\masters"
+out = os.path.join(ROOT, "readable", "masters")
 os.makedirs(out, exist_ok=True)
 info = {"version": key.split("/")[1], "tables": {}}
 for fn in sorted(os.listdir(src)):
@@ -36,7 +36,7 @@ for fn in sorted(os.listdir(src)):
     else:
         ent["framing"] = "variable"
     info["tables"][name] = ent
-json.dump(info, open(out + r"\_framing.json", "w"), indent=1)
+json.dump(info, open(os.path.join(out, "_framing.json"), "w"), indent=1)
 fixed = [k for k, v in info["tables"].items() if "record_bytes" in v]
 print(info["version"], len(info["tables"]), "tables; fixed-width:", len(fixed), fixed)
 print("variable:", [k for k in info["tables"] if k not in fixed])

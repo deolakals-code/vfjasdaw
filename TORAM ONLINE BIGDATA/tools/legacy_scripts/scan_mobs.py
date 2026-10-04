@@ -6,6 +6,7 @@ import numpy as np
 import UnityPy
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.dirname(HERE))
 from cache import bundles
 from export_items import latest_assets
 from export_quests import parse_plain
@@ -13,14 +14,7 @@ from export_quests import parse_plain
 UUIDS = np.array(sorted(parse_plain(latest_assets("GameScene_th")["Enemy_th"])), dtype=np.uint32)
 
 
-def fast_decode(buf, h):
-    a = np.frombuffer(buf, np.uint8)
-    n = len(a) - len(a) % 4
-    key = np.frombuffer(h.to_bytes(4, "little") * (n // 4 + 1), np.uint8)[:n]
-    out = a.copy()
-    prev = np.zeros(n, np.uint8); prev[4:] = a[:n - 4]
-    out[:n] = a[:n] ^ prev ^ key
-    return out.tobytes()
+from common import fast_decode  # noqa: E402
 
 
 def records(b):

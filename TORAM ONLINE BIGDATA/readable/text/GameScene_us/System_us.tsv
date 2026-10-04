@@ -1141,10 +1141,7 @@ UIMobaLobbyProfileStable	0	0	Stable\n{0}%
 UIMobaLobbyProfileConditionMes	0	0	Profile cannot be registered because\nthe conditions are not met.
 UIMobaLobbyProfileSaveMes	0	0	Your profile has been saved.
 UIMobaLobbyProfileNameTitle	0	0	Your Fighter's Name
-UIMobaLobbyProfileNameMes	0	0	"Your name in the battle can be changed.
-[ffff64]*You can have the same name as other players'.[ffffff]
-
-[ffff64]*Your account may be restricted if an inappropriate name is used.[ffffff]"
+UIMobaLobbyProfileNameMes	0	0	Your name in the battle can be changed.\n[ffff64]*You can have the same name as other players'.[ffffff]\n\n[ffff64]*Your account may be restricted if an inappropriate name is used.[ffffff]
 UIMobaLobbyProfileErrorMes	0	0	Failed to save profile due to\na configuration problem.
 UIMobaLobbyMatchingOnevsOneBattle	0	0	1v1 Mode
 UIMobaLobbyMatchingFourvsFourBattle	0	0	4v4 Mode
@@ -1399,8 +1396,7 @@ UIMobaDuelAbilityShortMes41	0	0	Removes all buffs and debuffs on you in\nthe fin
 UIMobaDuelAbilityShortMes42	0	0	Fully restores HP and MP in the final phase when\nthere are only 2 players left.
 UIMobaDuelAbilityShortMes43	0	0	Instead of being left on the ground, discarded\nsupply equipment will disappear and 25% HP and MP\nwill be restored.
 UIMobaDuelAbilityShortMes44	0	0	Ailment resistance can no longer block skills that\ncause knock back.
-UIMobaDuelAbilitySelect	0	0	"You can equip up to 3 kinds of duel abilities.
-The total cost of the abilities equipped cannot exceed 7. "
+UIMobaDuelAbilitySelect	0	0	You can equip up to 3 kinds of duel abilities.\nThe total cost of the abilities equipped cannot exceed 7. 
 UIMobaDuelAbilityTotalCost	0	0	Total Cost: {0}/{1}
 UIMobaDuelAbilityEquip	0	0	Equip
 UIMobaDuelAbilityNoEquip	0	0	No Equipment
@@ -1431,57 +1427,13 @@ UIMobaBattleMenuHelpCasualTitle4	0	0	Boss Monster
 UIMobaBattleMenuHelpCasualTitle5	0	0	Moving to the Center
 UIMobaBattleMenuHelpCasualTitle6	0	0	1st Place Showdown
 UIMobaBattleMenuHelpCasualTitle7	0	0	Crystal Tower
-UIMobaBattleMenuHelpCasualText1	0	0	"Up to 32 players will fight in a battle royale with their [ffff64]current character's abilities.[ffffff]
-
-
-The field is divided into 3x3 area and when the battle starts, all players will be positioned randomly in the same area. [ffff64]*Central area is not included.[ffffff]"
-UIMobaBattleMenuHelpCasualText2	0	0	"Participants start from Lv1 and as they get close to Lv100 (max), their original character's abilities will return.
-Defeat monsters and reach a higher level than other players!
-
-
-[ffff64]If you get knocked out at this stage, you will enter a ghost state and can still revive in about 10 seconds.[ffffff]
-When in ghost state, you will be invisible to other players.
-Your HP and MP when you revive depends on how long you remain in ghost state.
-
-
-[ff6464]You don't get EXP from defeating a player.[ffffff]
-But, you may randomly steal 1 piece of supply equipment if the player owns any."
-UIMobaBattleMenuHelpCasualText3	0	0	"3 types of treasure chests (bronze, silver, and gold) will be placed on the field 2 minutes after the battle begins.
-
-Supply equipment can be obtained from the chest. Up to 2 pieces of supply equipment can be equipped.
-[ffff64]*The item will be discarded on the spot if there is no space for it.[ffffff]
-
-
-Certain gold supply equipment can be obtained from the boss monster in each area.
-[ff6464]However, only the player who finishes it off will get the reward. Be careful not to let other players steal your reward![ffffff]"
-UIMobaBattleMenuHelpCasualText4	0	0	"A boss monster will appear in each area 3 minutes after the battle starts.
-
-Get certain gold supply equipment by beating it.
-[ff6464]However, only the player who finishes it off will get the reward. Be careful not to let other players steal your reward![ffffff]
-
-
-▼Obtainable Supply Equipment
-　・Protect Armor III [aaaaaa](Physical Resistant UP)[ffffff]
-  ・Magic Cape III [aaaaaa](Magic Resistant UP)[ffffff]
-　・Protect Hat III [aaaaaa](AntiStun)[ffffff]"
-UIMobaBattleMenuHelpCasualText5	0	0	"When the time for leveling is up, a damage area will start to form from the outer perimeter to the central area.
-
-
-Monsters that have been killed will not respawn at this stage.
-Watch out for other players and earn as many EXP as you can while [ffff64]aiming for the central area![ffffff]
-
-
-[ff6464]If you are in ghost state and don't revive before this phase ends, you will lose and your ranking will be determined.[ffffff]"
-UIMobaBattleMenuHelpCasualText6	0	0	"The battle to decide the best player takes place when the whole field except the central area has become a damage area.
-[ff6464]*The power of the damage area is also greatly increased at this stage.[ffffff]
-
-
-Your ranking will be determined as soon as you get knocked out at this stage.[ffff64]*If you are in ghost state, you will enter the Spectator mode.[ffffff]"
-UIMobaBattleMenuHelpCasualText7	0	0	"If there is no winner in the final phase (Time's Up),[ffff64]the player who deals the most damage to the crystal tower in the central area will become the winner.[ffffff]
-
-
-The damage dealt will be reset if the player gets knocked out.
-[ff6464]*Dealing a lot of damage is pointless if you don't survive.[ffffff]"
+UIMobaBattleMenuHelpCasualText1	0	0	Up to 32 players will fight in a battle royale with their [ffff64]current character's abilities.[ffffff]\n\n\nThe field is divided into 3x3 area and when the battle starts, all players will be positioned randomly in the same area. [ffff64]*Central area is not included.[ffffff]
+UIMobaBattleMenuHelpCasualText2	0	0	Participants start from Lv1 and as they get close to Lv100 (max), their original character's abilities will return.\nDefeat monsters and reach a higher level than other players!\n\n\n[ffff64]If you get knocked out at this stage, you will enter a ghost state and can still revive in about 10 seconds.[ffffff]\nWhen in ghost state, you will be invisible to other players.\nYour HP and MP when you revive depends on how long you remain in ghost state.\n\n\n[ff6464]You don't get EXP from defeating a player.[ffffff]\nBut, you may randomly steal 1 piece of supply equipment if the player owns any.
+UIMobaBattleMenuHelpCasualText3	0	0	3 types of treasure chests (bronze, silver, and gold) will be placed on the field 2 minutes after the battle begins.\n\nSupply equipment can be obtained from the chest. Up to 2 pieces of supply equipment can be equipped.\n[ffff64]*The item will be discarded on the spot if there is no space for it.[ffffff]\n\n\nCertain gold supply equipment can be obtained from the boss monster in each area.\n[ff6464]However, only the player who finishes it off will get the reward. Be careful not to let other players steal your reward![ffffff]
+UIMobaBattleMenuHelpCasualText4	0	0	A boss monster will appear in each area 3 minutes after the battle starts.\n\nGet certain gold supply equipment by beating it.\n[ff6464]However, only the player who finishes it off will get the reward. Be careful not to let other players steal your reward![ffffff]\n\n\n▼Obtainable Supply Equipment\n　・Protect Armor III [aaaaaa](Physical Resistant UP)[ffffff]\n  ・Magic Cape III [aaaaaa](Magic Resistant UP)[ffffff]\n　・Protect Hat III [aaaaaa](AntiStun)[ffffff]
+UIMobaBattleMenuHelpCasualText5	0	0	When the time for leveling is up, a damage area will start to form from the outer perimeter to the central area.\n\n\nMonsters that have been killed will not respawn at this stage.\nWatch out for other players and earn as many EXP as you can while [ffff64]aiming for the central area![ffffff]\n\n\n[ff6464]If you are in ghost state and don't revive before this phase ends, you will lose and your ranking will be determined.[ffffff]
+UIMobaBattleMenuHelpCasualText6	0	0	The battle to decide the best player takes place when the whole field except the central area has become a damage area.\n[ff6464]*The power of the damage area is also greatly increased at this stage.[ffffff]\n\n\nYour ranking will be determined as soon as you get knocked out at this stage.[ffff64]*If you are in ghost state, you will enter the Spectator mode.[ffffff]
+UIMobaBattleMenuHelpCasualText7	0	0	If there is no winner in the final phase (Time's Up),[ffff64]the player who deals the most damage to the crystal tower in the central area will become the winner.[ffffff]\n\n\nThe damage dealt will be reset if the player gets knocked out.\n[ff6464]*Dealing a lot of damage is pointless if you don't survive.[ffffff]
 UIMobaBattleMenuHelpSkillButton	0	0	Certain Skill Changes & Restrictions
 UIMobaBattleMenuHelpSkillCantUse	0	0	[Unavailable Skills on PvP Battle Mode]
 UIMobaBattleMenuHelpSkillCantUseNon	0	0	None
@@ -1494,15 +1446,12 @@ UIMobaTelopGameSet	0	0	Game Set
 LogOutPanelEnterMobaSever	0	0	To Arena
 MobaMainFieldMobAraOut	0	0	This is an area with no monsters.
 UIMobaBattleMenuHelpAbilityButton	0	0	Ability Restrictions
-UIMobaBattleMenuHelpAbilityTitle1	0	0	"Avatar Abilities
-(Fairy Sewing Tool etc.)"
+UIMobaBattleMenuHelpAbilityTitle1	0	0	Avatar Abilities\n(Fairy Sewing Tool etc.)
 UIMobaBattleMenuHelpAbilityTitle2	0	0	Food and Item Effect
 UIMobaBattleMenuHelpAbilityTitle3	0	0	Action Speed
 UIMobaBattleMenuHelpAbilityMes1	0	0	The effect of the ability granted to an avatar will not work on PvP Battle mode.
 UIMobaBattleMenuHelpAbilityMes2	0	0	Food and item buff effects will not work on PvP Battle mode.
-UIMobaBattleMenuHelpAbilityMes3	0	0	"The maximum action speed on PvP Battle mode is 100%.
-
-Only the combo effect ""Swift"" or certain skills that speed up action can break this limit."
+UIMobaBattleMenuHelpAbilityMes3	0	0	"The maximum action speed on PvP Battle mode is 100%.\n\nOnly the combo effect ""Swift"" or certain skills that speed up action can break this limit."
 UIMobaGhostWarpButton	0	0	Teleport
 UIMobaVsModeTelop	0	0	Battle Finished!!
 UIMobaRoundCount	0	0	Round {0}
@@ -1512,21 +1461,8 @@ UIMobaVsModeUnsuccessMes	0	0	You will exit the field as the battle has ended.
 UIMobaBattleMenuHelpVsMode	0	0	PvP Battle Mode (1v1, 4v4)
 UIMobaBattleMenuHelpVsModelTitle1	0	0	1v1 Mode
 UIMobaBattleMenuHelpVsModelTitle2	0	0	4v4 Mode
-UIMobaBattleMenuHelpVsModelText1	0	0	"The players will fight in a 1v1 battle with their [ffff64]current character's abilities[ffffff] in a B03 (Best of 3) format.
-
-Each player will start with a Lv50 (50% ability) character. 
-
-There is a 3-minute time limit for each battle. 
-The battle is deemed a DRAW if no player is knocked out."
-UIMobaBattleMenuHelpVsModelText2	0	0	"The players will fight in a 4v4 battle with their [ffff64]current character's abilities[ffffff] in a B03 format.
-
-Each player will start with a Lv50 (50% ability) character. 
-
-There is a 3-minute time limit for each battle. 
-The battle is deemed a DRAW if both teams have the same number of players alive when the time is up.
-
-Players can form a party to join the battle. 
-Random players will be added to your team through matching when there are not enough members. "
+UIMobaBattleMenuHelpVsModelText1	0	0	The players will fight in a 1v1 battle with their [ffff64]current character's abilities[ffffff] in a B03 (Best of 3) format.\n\nEach player will start with a Lv50 (50% ability) character. \n\nThere is a 3-minute time limit for each battle. \nThe battle is deemed a DRAW if no player is knocked out.
+UIMobaBattleMenuHelpVsModelText2	0	0	The players will fight in a 4v4 battle with their [ffff64]current character's abilities[ffffff] in a B03 format.\n\nEach player will start with a Lv50 (50% ability) character. \n\nThere is a 3-minute time limit for each battle. \nThe battle is deemed a DRAW if both teams have the same number of players alive when the time is up.\n\nPlayers can form a party to join the battle. \nRandom players will be added to your team through matching when there are not enough members. 
 UIMobaVsModeWin	0	0	Winner: {0} 
 UIMobaVsModeDraw	0	0	DRAW!!
 UIMobaVsModePartyWin	0	0	Winning Party: {0}!!
@@ -2355,8 +2291,7 @@ MyHomeFarmerMes	0	0	You will enter the garden.
 MyHomeCultivation	0	0	Harvest Crops
 MyHomeCultivationMes	0	0	You can harvest crops.
 UIMyHomePartitionEditWarningTitle	0	0	Edit In Progress
-UIMyHomePartitionEditWarningMessage	0	0	"There are data being edited.
-Delete the data?"
+UIMyHomePartitionEditWarningMessage	0	0	There are data being edited.\nDelete the data?
 MyHomePartitionPanelEnter	0	0	OK
 MyHomePartitionTypeButton0	0	0	Entry
 MyHomePartitionTypeButton1	0	0	In/Out
@@ -3283,8 +3218,7 @@ DefenceBattleReady	0	0	[ffff88]I'm ready!!
 DefenceBattleNoTrialPoint	0	0	[A0A0A0]Not enough gems...
 DefenceBattleReadyMessage	0	0	Begins if you are ready.
 DefenceBattleReadyWait	0	0	Please wait...
-DefenceOrbRecoveryMessage	0	0	"Use Orb x1 and
-[ffff5f]restore 1 gem[ffffff]."
+DefenceOrbRecoveryMessage	0	0	Use Orb x1 and\n[ffff5f]restore 1 gem[ffffff].
 DefenceOrbRecovery	0	0	Orb x1
 DefenceChallengerRank	0	0	Challenger Rank
 DefenceRankRookie	0	0	Rookie
@@ -3324,8 +3258,7 @@ DefenceResultNoDamageCrystal	0	0	- Intact crystals.
 DefencePresentWindowClose	0	0	Close
 DefencePresentGetItem	0	0	Get Reward
 DefencePresentNotEnrty	0	0	No Challenge Dungeon records of the last week.
-DefencePresentNote	0	0	"*Results are added up on Sundays at 5:00 AM (JST).
-*The Reward disappears on the date and time above."
+DefencePresentNote	0	0	*Results are added up on Sundays at 5:00 AM (JST).\n*The Reward disappears on the date and time above.
 DefencePresentLastRanking	0	0	[ffffff]Last Week Challenge Dungeon Result: [00ff00]Rank {0}[ffffff].
 DefencePresentRankDown	0	0	Demoted to {0}...
 DefencePresentRankUp	0	0	Promoted to {0}!!
@@ -3428,22 +3361,10 @@ InputNameB	0	0	Register the character name
 NextButton	0	0	Next
 BackButton	0	0	Back
 Page1T	0	0	Please create the character.
-selectWeaponMessage0	0	0	"[64ffff][Difficulty: Easy][ffffff]
-ATK increases by STR (strength).
-You can equip a shield with
-a one-handed sword."
-selectWeaponMessage1	0	0	"[Difficulty: Normal]
-ATK increases by DEX (dexterity).
-You can attack enemies from
-a distance. Arrows raise ATK."
-selectWeaponMessage2	0	0	"[ff6464][Difficulty: Hard][ffffff]
-ATK is based on INT (intelligence).
-Magic will [ff6464]fail if you take damage[ffffff]
-while casting the magic."
-selectWeaponMessage3	0	0	"[64ffff][Difficulty: Easy][ffffff]
-ATK increases by AGI (agility).
-You can learn useful skills.
-Well-balanced but ATK is low."
+selectWeaponMessage0	0	0	[64ffff][Difficulty: Easy][ffffff]\nATK increases by STR (strength).\nYou can equip a shield with\na one-handed sword.
+selectWeaponMessage1	0	0	[Difficulty: Normal]\nATK increases by DEX (dexterity).\nYou can attack enemies from\na distance. Arrows raise ATK.
+selectWeaponMessage2	0	0	[ff6464][Difficulty: Hard][ffffff]\nATK is based on INT (intelligence).\nMagic will [ff6464]fail if you take damage[ffffff]\nwhile casting the magic.
+selectWeaponMessage3	0	0	[64ffff][Difficulty: Easy][ffffff]\nATK increases by AGI (agility).\nYou can learn useful skills.\nWell-balanced but ATK is low.
 selectWeaponMessage4	0	0	[ff6464][Difficulty: Hard][ffffff]\nATK is based on STR (strength).\nYou can use strong mid-distance\nattack but cooldown time is long.
 selectWeaponMessage5	0	0	[Difficulty: Normal]\nATK is based on DEX.\nAttack at high speed but low damage.\nAvailable as Sub-Weapon of Bow.
 Page2T	0	0	Please select the weapon.\nYou can change it in the game.
@@ -3482,11 +3403,7 @@ InheritingButton	0	0	Preparing... (Finishes in {0}sec.)
 InheritingAlpha	0	0	Transfer Data in Alpha Test
 CharacterCreateKeybordOptionButton	0	0	Can't enter letters?
 CharacterCreateKeybordOptionPopTitle	0	0	Please try it if you can't enter letters.
-CharacterCreateKeybordOptionPopText	0	0	"You may not be able to enter letters properly
-depending on your keyboard or device.
-
-If you cannot enter letters, please try
-[FFFFA0]switching on[ffffff] the settings below."
+CharacterCreateKeybordOptionPopText	0	0	You may not be able to enter letters properly\ndepending on your keyboard or device.\n\nIf you cannot enter letters, please try\n[FFFFA0]switching on[ffffff] the settings below.
 CharacterCreateKeybordOptionPopOptionText	0	0	Full Screen for Chat Entry Screen
 CharacterCreateKeybordOptionPopOptionOn	0	0	ON
 CharacterCreateKeybordOptionPopOptionOff	0	0	OFF
@@ -3652,43 +3569,20 @@ amall	0	0	Close
 DetailsClose	0	0	Close
 DetailsOpen	0	0	Open
 StatusSetting	0	0	Settings
-ItemPanelPropertyATK	0	0	"[{0}] ATK: {1}　({2}%)
-{3} {4} 
-{5} {6} 
-{7} {8} {9} {10} {11} {12} {13} {14} {15}
-{16}
-{17}"
-ItemPanelPropertyDEF	0	0	"[{0}] DEF: {1}
-{2} {3} {4}
-{5} {6} {7} {8} {9} {10} {11} {12} {13} {14} 
-{15}
-{16}"
+ItemPanelPropertyATK	0	0	[{0}] ATK: {1}　({2}%)\n{3} {4} \n{5} {6} \n{7} {8} {9} {10} {11} {12} {13} {14} {15}\n{16}\n{17}
+ItemPanelPropertyDEF	0	0	[{0}] DEF: {1}\n{2} {3} {4}\n{5} {6} {7} {8} {9} {10} {11} {12} {13} {14} \n{15}\n{16}
 ItemPanelPropertyGuardEquip	0	0	[99FF99]Equipment for Guard[ffffff]\n
 ItemPanelPropertyAvoidEquip	0	0	[CC99FF]Equipment for Evasion[ffffff]\n
 ItemPanelPropertyMainAvoidEquip	0	0	[CC99FF](MAIN) Equipment for Evasion[ffffff]\n
 ItemPanelPropertyDualSwordAvoidEquip	0	0	[CC99FF](Dual Swords) for Evasion[ffffff]\n
-ItemPanelPropertyMaxCrista31	0	0	"[Normal Crysta]
-For any equipment slots
-Max Stack: ({0})"
-ItemPanelPropertyMaxCrista32	0	0	"[Weapon Crysta]
-Only for weapon slots
-Max Stack: ({0})"
-ItemPanelPropertyMaxCrista33	0	0	"[Armor Crysta]
-Only for body armor slots
-Max Stack: ({0})"
-ItemPanelPropertyMaxCrista34	0	0	"[Option Crysta]
-Only for additional gear slots
-Max Stack: ({0})"
-ItemPanelPropertyMaxCrista35	0	0	"[Accessory Crysta]
-Only for special gear slots
-Max Stack: ({0})"
-ItemPanelPropertyMaxCrista36	0	0	"[Advanced Crysta]
-You can overwrite it on
-certain crystas.
-Max Stack: ({0})"
+ItemPanelPropertyMaxCrista31	0	0	[Normal Crysta]\nFor any equipment slots\nMax Stack: ({0})
+ItemPanelPropertyMaxCrista32	0	0	[Weapon Crysta]\nOnly for weapon slots\nMax Stack: ({0})
+ItemPanelPropertyMaxCrista33	0	0	[Armor Crysta]\nOnly for body armor slots\nMax Stack: ({0})
+ItemPanelPropertyMaxCrista34	0	0	[Option Crysta]\nOnly for additional gear slots\nMax Stack: ({0})
+ItemPanelPropertyMaxCrista35	0	0	[Accessory Crysta]\nOnly for special gear slots\nMax Stack: ({0})
+ItemPanelPropertyMaxCrista36	0	0	[Advanced Crysta]\nYou can overwrite it on\ncertain crystas.\nMax Stack: ({0})
 Element	0	0	{0} Element
-AlphaTestNoUse	0	0	"Not available yet.
-Please wait for the update."
+AlphaTestNoUse	0	0	Not available yet.\nPlease wait for the update.
 Coin	0	0	Orb
 CoinShard	0	0	Orb Shard
 UseItem	0	0	Use
@@ -3717,29 +3611,15 @@ DeadPanelSaveRespawnLabel	0	0	To Town
 DeadPanelPushRespawnLabel	0	0	Struggle!!
 DeadPanelPushRespawnText	0	0	Try to revive by yourself.
 DeadPanelNowRespawnWindowLabel	0	0	Revive immediately?
-DeadPanelNowRespawnWindowTextCoin	0	0	"Use ""Orb"" x{0}[FFFFFF]
-
-Owned: {1}
-
-[FFFF99]HP and MP will be fully restored.
-You will be invincible for a limited time."
-DeadPanelNowRespawnWindowTextItem	0	0	"Use ""Revive Droplet"" x1
-
-Owned: {0}
-
-[FFFF99]HP and MP will be fully restored.
-You will be invincible for a limited time."
+DeadPanelNowRespawnWindowTextCoin	0	0	"Use ""Orb"" x{0}[FFFFFF]\n\nOwned: {1}\n\n[FFFF99]HP and MP will be fully restored.\nYou will be invincible for a limited time."
+DeadPanelNowRespawnWindowTextItem	0	0	"Use ""Revive Droplet"" x1\n\nOwned: {0}\n\n[FFFF99]HP and MP will be fully restored.\nYou will be invincible for a limited time."
 DeadPanelNowRespawnWindowButton	0	0	Revive Now
 DeadPanelNowRespawnWindowButton2	0	0	You don't have enough coins.
 DeadPanelSaveRespawnWindowLabel	0	0	Do you want to go back to town?
-DeadPanelSaveRespawnWindowText	0	0	"You will go back to the last town you visited.
-
-You can revive here in {0} sec.
-Are you sure you want to go back?"
+DeadPanelSaveRespawnWindowText	0	0	You will go back to the last town you visited.\n\nYou can revive here in {0} sec.\nAre you sure you want to go back?
 DeadPanelSaveRespawnWindowButton	0	0	Go back to town
 Exit	0	0	Leave
-DeadPanelAllDeadLabel	0	0	"The party was defeated.
-You cannot fight anymore."
+DeadPanelAllDeadLabel	0	0	The party was defeated.\nYou cannot fight anymore.
 DeadPanelAllDeadText	0	0	[888888]Revive or a member has to join to resume.
 DeadPanelSoroAllDeadLabel	0	0	You've run out of strength...\nYou can no longer continue fighting.
 DeadPanelSoroAllDeadText	0	0	[888888]You can resume the fight if you can use an item to revive.
@@ -3752,9 +3632,7 @@ MapPanelNowMap	0	0	Current Map
 MapPanelNowMapSmallLabel	0	0	 
 MapPanelChangeMap	0	0	Move Now
 MapPanelCoinWarpWindowLabel	0	0	Move to the selected map.
-MapPanelWarpWindowTextCoin	0	0	"Use ""Orb"" x{0}
-
-Owned: {1}"
+MapPanelWarpWindowTextCoin	0	0	"Use ""Orb"" x{0}\n\nOwned: {1}"
 MapPanelWarpWindowTextItem	0	0	\n\nConsume Teleport Ticket x1.\n\nOwned: {0}
 MapPanelWarpWindowButton	0	0	Teleport with Orb x{0}
 MapPanelWarpWindowButton2	0	0	You don't have enough coins.
@@ -3945,53 +3823,29 @@ EquipPanelEnter1	0	0	Remove Equipment
 EquipPanelNext	0	0	Next
 EquipPanelEquipLoc	0	0	Unavailable
 EquipPanelNonSlotCrista	0	0	[aaaaaa]No Slot
-EquipPanelCristaSlotCheck	0	0	"You cannot edit Crysta because
-the gear doesn't have a slot.
-
-Slotted gears can be obtained from
-monster drops and production."
-EquipPanelCristaSlotApertaText	0	0	"You can add a slot
-with ""{0}"".
-(Owned: {1})"
+EquipPanelCristaSlotCheck	0	0	You cannot edit Crysta because\nthe gear doesn't have a slot.\n\nSlotted gears can be obtained from\nmonster drops and production.
+EquipPanelCristaSlotApertaText	0	0	"You can add a slot\nwith ""{0}"".\n(Owned: {1})"
 EquipPanelNonCrista	0	0	No Crysta
 EquipPanelCristaSlotApertaLabel	0	0	Add Slot
 PopUpCristaCustomWindowTitle	0	0	Edit Crysta
 PopUpCristaCustomWindowMessage	0	0	Please select what to do.
 PopUpCristaCustomWindowButton0	0	0	[ffff77]Break
-PopUpCristaCustomWindowButton1	0	0	"[ffff77]Remove
-[ffffff]Success Rate: 80%"
-PopUpCristaCustomWindowButton2	0	0	"[ffff77]Use ""Extraction Crysta""
-{0}Success Rate: 100%
-(Owned: {1})"
-PopUpCristaCustomWindowButton3	0	0	"[ffff77]Use ""Orb"" x{2}
-{0}Success Rate: 100%
-(Owned: {1})"
-PopUpCristaCustomWindowButton4	0	0	"[ffff77]Use ""Orb"" x{2}
-{0}Success Rate: 100%
-(Create Orb)"
+PopUpCristaCustomWindowButton1	0	0	[ffff77]Remove\n[ffffff]Success Rate: 80%
+PopUpCristaCustomWindowButton2	0	0	"[ffff77]Use ""Extraction Crysta""\n{0}Success Rate: 100%\n(Owned: {1})"
+PopUpCristaCustomWindowButton3	0	0	"[ffff77]Use ""Orb"" x{2}\n{0}Success Rate: 100%\n(Owned: {1})"
+PopUpCristaCustomWindowButton4	0	0	"[ffff77]Use ""Orb"" x{2}\n{0}Success Rate: 100%\n(Create Orb)"
 PopUpCristaUnLocWindowSlot	0	0	[ffff77]Slot {0} -> {1}
-PopUpCristaUnLocWindowMessage	0	0	"Use {0} and
-add a slot?
-
-(Owned: {1})"
+PopUpCristaUnLocWindowMessage	0	0	Use {0} and\nadd a slot?\n\n(Owned: {1})
 PopUpCristaUnLocWindowButton	0	0	Add Slot
 PopUpCristaUnLocWindowTitle	0	0	Add Slot
 EquipPanelEnter2	0	0	Attach Crysta
 PopUpCristaCustomWindowButtonBagAll	0	0	[ff0000]Your bag is full.
 PopUpCristaCustomWindowButtonSpecific	0	0	[ffff77]Remove Crysta[ffffff]\nSuccess Rate: 100%\n[64ffff]Risk-free
-EquipPanelNoUseCristaSlot	0	0	"[ffff64]Shields, Daggers and Arrows[ffffff]
-are not slottable.
-
-You can equip [ffff64]Knuckles, Magic Devices and
-One-Hand Sword(Dual Sword Mastery Required)[ffffff].
-as the sub-weapon but [ff6464]Crystas don't work[ffffff]."
-EquipPanelBattleChangeErrLabel	0	0	"You cannot change the\n
-equipment during combat."
-EquipPanelCristaMessage	0	0	"\n\n
-{1} Crysta will be attached to {0}."
+EquipPanelNoUseCristaSlot	0	0	[ffff64]Shields, Daggers and Arrows[ffffff]\nare not slottable.\n\nYou can equip [ffff64]Knuckles, Magic Devices and\nOne-Hand Sword(Dual Sword Mastery Required)[ffffff].\nas the sub-weapon but [ff6464]Crystas don't work[ffffff].
+EquipPanelBattleChangeErrLabel	0	0	You cannot change the\n\nequipment during combat.
+EquipPanelCristaMessage	0	0	\n\n\n{1} Crysta will be attached to {0}.
 EquipPanelCristaTitle	0	0	Attach Crysta
-EquipPanelCristaSelectedMessage	0	0	"Please select the equipment
-to edit Crysta."
+EquipPanelCristaSelectedMessage	0	0	Please select the equipment\nto edit Crysta.
 EquipPanelEquipNoWeapon	0	0	No Main Weapon
 EquipPanelEquipNoSubWeapon	0	0	No Sub-Weapon
 EquipPanelEquipNoBody	0	0	No Body Armor
@@ -4155,20 +4009,16 @@ StatusPanelDefenderLabel	0	0	Tank 1st
 StatusPanelSupporterLabel	0	0	Supporter 1st
 StatusPanelBreakerLabel	0	0	Assister 1st
 StatusPanelCareCountLabel	0	0	First-Aid
-StatusPanelWeaponCreate	0	0	"Blacksmith
-Proficiency"
-StatusPanelMedicineCreate	0	0	"Synthesis
-Proficiency"
+StatusPanelWeaponCreate	0	0	Blacksmith\nProficiency
+StatusPanelMedicineCreate	0	0	Synthesis\nProficiency
 MaterialLevel	0	0	Material Lv{0}
 StatusPanelCreateMax	0	0	(Max)
 StatusPanelMaterialMaxPointLabel	0	0	Current Limit: {0} pts
 StatusPanelMaterialMaxPointAddParamLabel	0	0	Character Slot Bonus ([ffff88]+{0}[ffffff])
 StatusPanelMaterialMaxPointAddCourse1OnLabel	0	0	[Bag Expansion] ([ffff88]2x Limit[ffffff])
 StatusPanelMaterialMaxPointAddCourse1OffLabel	0	0	[aaaaaa][Bag Expansion] (2x Limit)
-StatusPanelWeaponCreateWarning	0	0	"The limit of Blacksmith Proficiency Lv is lowered.
-The level will become Lv{0} when you use EX Skills."
-StatusPanelMedicineCreateWarning	0	0	"The limit of Alchemy Proficiency Lv is lowered.
-The level will become Lv{0} when you use EX Skills."
+StatusPanelWeaponCreateWarning	0	0	The limit of Blacksmith Proficiency Lv is lowered.\nThe level will become Lv{0} when you use EX Skills.
+StatusPanelMedicineCreateWarning	0	0	The limit of Alchemy Proficiency Lv is lowered.\nThe level will become Lv{0} when you use EX Skills.
 HaveSupina	0	0	Spina: {0}S
 StatusPanelPersonalLabel	0	0	You can select a Personal Stat.
 StatusPanelPersonalText	0	0	[ff0000]Cannot be changed once it is selected.
@@ -4184,27 +4034,11 @@ StatusPanelPersonalTextMEN	0	0	Resistance against status ailments will increase.
 StatusPanelPersonalLabelTEC	0	0	Technique
 StatusPanelPersonalTextTEC	0	0	Success rate for production will increase.
 StatusPanelStatusRestPopUpLabel	0	0	Reset Stats
-StatusPanelStatusRestPopUpText	0	0	"Use ""Reset Book"" x1
-
-Owned: {0}
-
-[FFFF99]Resets Stats."
-StatusPanelStatusRestPopUpOrbText	0	0	"Use ""Orb"" x{0}
-
-Owned: {1}
-
-[FFFF99]Resets Stats."
+StatusPanelStatusRestPopUpText	0	0	"Use ""Reset Book"" x1\n\nOwned: {0}\n\n[FFFF99]Resets Stats."
+StatusPanelStatusRestPopUpOrbText	0	0	"Use ""Orb"" x{0}\n\nOwned: {1}\n\n[FFFF99]Resets Stats."
 StatusPanelPrimaryRestPopUpLabel	0	0	Reset Personal Stat
-StatusPanelPrimaryRestPopUpText	0	0	"Use  ""Mirror of Reflection"" x1
-
-Owned: {0}
-
-[FFFF99] Resets Personal Stat."
-StatusPanelPrimaryRestPopUpOrbText	0	0	"Use ""Orb"" x{0}
-
-Owned: {1}
-
-[FFFF99] Resets Personal Stat."
+StatusPanelPrimaryRestPopUpText	0	0	"Use  ""Mirror of Reflection"" x1\n\nOwned: {0}\n\n[FFFF99] Resets Personal Stat."
+StatusPanelPrimaryRestPopUpOrbText	0	0	"Use ""Orb"" x{0}\n\nOwned: {1}\n\n[FFFF99] Resets Personal Stat."
 StatusPanelRestPopUpText	0	0	Please select which to reset.
 StatusPanelConnectionWait	0	0	Connecting... Please wait...
 StatusPanelConnectionReset	0	0	Connection has been reset.
@@ -4279,11 +4113,7 @@ ParameterPanelDeleteEqualErrLabel	0	0	Error!
 ParameterPanelDeleteEqualErrText	0	0	You cannot delete the current character.
 ParametarPanelCreateSlotText	0	0	You can create a character with new appearance.\n\n[ff6464]*You will be logged out while you are creating the character.\n*Please note that you cannot check the chat.\n*You cannot change the character name here.
 ParametarPanelCreateSlotButton	0	0	Create
-ParameterPanelAddSlotTextCoin	0	0	"Use ""Orb"" x{0}
-
-Owned: {1}
-
-Buy a new Character Slot."
+ParameterPanelAddSlotTextCoin	0	0	"Use ""Orb"" x{0}\n\nOwned: {1}\n\nBuy a new Character Slot."
 ParameterPanelAddSlotWindowLabel	0	0	Buy New Character Slot
 ParameterPanelAddSlotWindowButton	0	0	Buy
 ParameterPanelAddSlotMaxText	0	0	\n\nYou have the maximum number of slots.\nYou cannot buy any more slots.
@@ -4300,12 +4130,7 @@ ParameterPanelUnRegisterMes	0	0	Available by switching your character.
 ParameterPanelCanNotNowMap	0	0	Unable to call the partner in the current map.
 ParameterPanelAbnormalStatusMes	0	0	There was a problem with the partner data.\nFailed to summon.
 ParameterPanelTutorialTitle	0	0	Partner System is available!
-ParameterPanelTutorialMessage	0	0	"A new character has been created!
-[ffff64]You can call your another character[ffffff]
-[ffff64]as a party member.[ffffff]
-
-You can call a character in
-[64ffff]Switch Character[ffffff] screen."
+ParameterPanelTutorialMessage	0	0	A new character has been created!\n[ffff64]You can call your another character[ffffff]\n[ffff64]as a party member.[ffffff]\n\nYou can call a character in\n[64ffff]Switch Character[ffffff] screen.
 PartnerUnregisterd	0	0	Partner Not Registered
 PartnerNeverChangeAttention	0	0	Available by switching your character.
 PartnerActionSetting	0	0	Action Settings
@@ -4330,8 +4155,7 @@ ParameterCreatePanelMissionStart2Lebal	0	0	*Go back to Sofya City if you select 
 ParameterCreatePanelMissionClearLebal	0	0	Change status to the latest
 ParameterCreatePanelMissionResultLebal	0	0	[ffff88]Completed!
 TrophyCompleteListLabel	0	0	Unreceived Emblems
-TrophyCompleteListText	0	0	"You can get emblems according to
-your gameplay."
+TrophyCompleteListText	0	0	You can get emblems according to\nyour gameplay.
 TrophyListLabel	0	0	Emblem List
 TrophyListText	0	0	You can confirm the achievements.
 TrophyListLabel0	0	0	Other
@@ -4405,8 +4229,7 @@ ComboPanelStartText	0	0	You cannot set special effects on\nthe first skill of th
 ComboPanelSelectClear	0	0	Remove
 ComboPanelComboPoint	0	0	CP Left
 ComboPanelAddComboBuffer	0	0	[ffffff]You can set a special effect by using 1 CP.
-ComboPanelNewSkillMessage	0	0	"Please select the next skill of
-{0}."
+ComboPanelNewSkillMessage	0	0	Please select the next skill of\n{0}.
 ComboPanelStartSkillMessage	0	0	Please select the first skill.
 ComboPanelCpCheck	0	0	[ff0000]Cannot add.\nNot enough CP.
 ComboPanelSelectDelete	0	0	Delete Combo
@@ -4436,531 +4259,7 @@ EquipPanelAbilityPopWindowBuyButton	0	0	[ffff64]Buy with Orb x1
 EquipPanelAbilityHaveItemNum	0	0	(Owned: {0})
 EquipPanelAbilityNoAbility	0	0	Empty
 EquipPanelAbilityRepair	0	0	Enchant
-EquipPanelAbilityListMain	0	0	"▼Success Rates
-1st Slot: 100%
-2nd Slot: 50%
-3rd Slot: 25%
-[ff6464]*Stats will be added to the 3rd slot 
-only when 2nd slot is filled.[ffffff]
-[ff6464]*The same stats will not be
-put in the slots.[ffffff]
-[ff6464]*The possibility rates to
-put strong stats are low.[ffffff]
-
-
-▼Stats List
-STR +1
-STR +2
-STR +3
-STR +4
-STR +5
-STR +6
-STR +7
-STR +8
-STR +9
-[ffff64]STR +10[ffffff]
-INT +1
-INT +2
-INT +3
-INT +4
-INT +5
-INT +6
-INT +7
-INT +8
-INT +9
-[ffff64]INT +10[ffffff]
-VIT +1
-VIT +2
-VIT +3
-VIT +4
-VIT +5
-VIT +6
-VIT +7
-VIT +8
-VIT +9
-[ffff64]VIT +10[ffffff]
-AGI +1
-AGI +2
-AGI +3
-AGI +4
-AGI +5
-AGI +6
-AGI +7
-AGI +8
-AGI +9
-[ffff64]AGI +10[ffffff]
-DEX +1
-DEX +2
-DEX +3
-DEX +4
-DEX +5
-DEX +6
-DEX +7
-DEX +8
-DEX +9
-[ffff64]DEX +10[ffffff]
-STR +1%
-STR +2%
-[ffff64]STR +3%[ffffff]
-INT +1%
-INT +2%
-[ffff64]INT +3%[ffffff]
-VIT +1%
-VIT +2%
-[ffff64]VIT +3%[ffffff]
-AGI +1%
-AGI +2%
-[ffff64]AGI +3%[ffffff]
-DEX +1%
-DEX +2%
-[ffff64]DEX +3%[ffffff]
-MaxHP +100
-MaxHP +200
-MaxHP +300
-MaxHP +400
-MaxHP +500
-MaxHP +600
-MaxHP +700
-MaxHP +800
-MaxHP +900
-[ffff64]MaxHP +1000[ffffff]
-MaxHP +5%
-MaxHP +10%
-[ffff64]MaxHP +15%[ffffff]
-MaxMP +10
-MaxMP +20
-MaxMP +30
-MaxMP +40
-MaxMP +50
-MaxMP +60
-MaxMP +70
-MaxMP +80
-MaxMP +90
-[ffff64]MaxMP +100[ffffff]
-Weapon ATK +3
-Weapon ATK +6
-Weapon ATK +9
-Weapon ATK +12
-Weapon ATK +15
-Weapon ATK +18
-Weapon ATK +21
-Weapon ATK +24
-Weapon ATK +27
-[ffff64]Weapon ATK +30[ffffff]
-Weapon ATK +1%
-Weapon ATK +2%
-[ffff64]Weapon ATK +3%[ffffff]
-ATK +3
-ATK +6
-ATK +9
-ATK +12
-ATK +15
-ATK +18
-ATK +21
-ATK +24
-ATK +27
-[ffff64]ATK +30[ffffff]
-ATK +1%
-ATK +2%
-[ffff64]ATK +3%[ffffff]
-MATK +3
-MATK +6
-MATK +9
-MATK +12
-MATK +15
-MATK +18
-MATK +21
-MATK +24
-MATK +27
-[ffff64]MATK +30[ffffff]
-MATK +1%
-MATK +2%
-[ffff64]MATK +3%[ffffff]
-Stability +1%
-Stability +2%
-[ffff64]Stability +3%[ffffff]
-Accuracy +3
-Accuracy +6
-Accuracy +9
-Accuracy +12
-Accuracy +15
-Accuracy +18
-Accuracy +21
-Accuracy +24
-Accuracy +27
-[ffff64]Accuracy +30[ffffff]
-Accuracy +1%
-Accuracy +2%
-[ffff64]Accuracy +3%[ffffff]
-Dodge +3
-Dodge +6
-Dodge +9
-Dodge +12
-Dodge +15
-Dodge +18
-Dodge +21
-Dodge +24
-Dodge +27
-[ffff64]Dodge +30[ffffff]
-Dodge +1%
-Dodge +2%
-[ffff64]Dodge +3%[ffffff]
-DEF +10
-DEF +20
-DEF +30
-DEF +40
-DEF +50
-DEF +60
-DEF +70
-DEF +80
-DEF +90
-[ffff64]DEF +100[ffffff]
-DEF +1%
-DEF +2%
-DEF +3%
-DEF +4%
-[ffff64]DEF +5%[ffffff]
-MDEF +10
-MDEF +20
-MDEF +30
-MDEF +40
-MDEF +50
-MDEF +60
-MDEF +70
-MDEF +80
-MDEF +90
-[ffff64]MDEF +100[ffffff]
-MDEF +1%
-MDEF +2%
-MDEF +3%
-MDEF +4%
-[ffff64]MDEF +5%[ffffff]
-ASPD +10
-ASPD +20
-ASPD +30
-ASPD +40
-ASPD +50
-ASPD +60
-ASPD +70
-ASPD +80
-ASPD +90
-[ffff64]ASPD +100[ffffff]
-ASPD +1%
-ASPD +2%
-ASPD +3%
-ASPD +4%
-ASPD +5%
-ASPD +6%
-ASPD +7%
-ASPD +8%
-ASPD +9%
-[ffff64]ASPD +10%[ffffff]
-CSPD +10
-CSPD +20
-CSPD +30
-CSPD +40
-CSPD +50
-CSPD +60
-CSPD +70
-CSPD +80
-CSPD +90
-[ffff64]CSPD +100[ffffff]
-CSPD +1%
-CSPD +2%
-CSPD +3%
-CSPD +4%
-CSPD +5%
-CSPD +6%
-CSPD +7%
-CSPD +8%
-CSPD +9%
-[ffff64]CSPD +10%[ffffff]
-Natural HP Regen +10
-Natural HP Regen +20
-Natural HP Regen +30
-Natural HP Regen +40
-Natural HP Regen +50
-Natural HP Regen +60
-Natural HP Regen +70
-Natural HP Regen +80
-Natural HP Regen +90
-[ffff64]Natural HP Regen +100[ffffff]
-Natural HP Regen +5%
-Natural HP Regen +10%
-Natural HP Regen +15%
-Natural HP Regen +20%
-[ffff64]Natural HP Regen +25%[ffffff]
-Natural MP Regen +1
-Natural MP Regen +2
-Natural MP Regen +3
-Natural MP Regen +4
-Natural MP Regen +5
-Natural MP Regen +6
-Natural MP Regen +7
-Natural MP Regen +8
-Natural MP Regen +9
-[ffff64]Natural MP Regen +10[ffffff]
-Natural MP Regen +5%
-Natural MP Regen +10%
-Natural MP Regen +15%
-Natural MP Regen +20%
-[ffff64]Natural MP Regen +25%[ffffff]
-Attack MP Recovery +1
-Attack MP Recovery +2
-Attack MP Recovery +3
-Attack MP Recovery +4
-Attack MP Recovery +5
-Attack MP Recovery +6
-Attack MP Recovery +7
-Attack MP Recovery +8
-Attack MP Recovery +9
-[ffff64]Attack MP Recovery +10[ffffff]
-Critical Rate +1
-Critical Rate +2
-Critical Rate +3
-Critical Rate +4
-[ffff64]Critical Rate +5[ffffff]
-Critical Rate +1%
-Critical Rate +2%
-[ffff64]Critical Rate +3%[ffffff]
-Critical Damage +1
-Critical Damage +2
-Critical Damage +3
-Critical Damage +4
-[ffff64]Critical Damage +5[ffffff]
-Critical Damage +1%
-Critical Damage +2%
-[ffff64]Critical Damage +3%[ffffff]
-Ailment Resistance +1%
-Ailment Resistance +2%
-Ailment Resistance +3%
-Ailment Resistance +4%
-Ailment Resistance +5%
-Ailment Resistance +6%
-Ailment Resistance +7%
-Ailment Resistance +8%
-Ailment Resistance +9%
-[ffff64]Ailment Resistance +10%[ffffff]
-Guard Recharge +1%
-Guard Recharge +2%
-[ffff64]Guard Recharge +3%[ffffff]
-Guard Power +1%
-Guard Power +2%
-[ffff64]Guard Power +3%[ffffff]
-Evasion Recharge +1%
-Evasion Recharge +2%
-[ffff64]Evasion Recharge +3%[ffffff]
-Physical Resistance +1%
-Physical Resistance +2%
-Physical Resistance +3%
-Physical Resistance +4%
-Physical Resistance +5%
-Physical Resistance +6%
-Physical Resistance +7%
-Physical Resistance +8%
-Physical Resistance +9%
-[ffff64]Physical Resistance +10%[ffffff]
-Magic Resistance +1%
-Magic Resistance +2%
-Magic Resistance +3%
-Magic Resistance +4%
-Magic Resistance +5%
-Magic Resistance +6%
-Magic Resistance +7%
-Magic Resistance +8%
-Magic Resistance +9%
-[ffff64]Magic Resistance +10%[ffffff]
-Physical Pierce +1%
-Physical Pierce +2%
-Physical Pierce +3%
-Physical Pierce +4%
-Physical Pierce +5%
-Physical Pierce +6%
-Physical Pierce +7%
-Physical Pierce +8%
-Physical Pierce +9%
-[ffff64]Physical Pierce +10%[ffffff]
-Magic Pierce +1%
-Magic Pierce +2%
-Magic Pierce +3%
-Magic Pierce +4%
-Magic Pierce +5%
-Magic Pierce +6%
-Magic Pierce +7%
-Magic Pierce +8%
-Magic Pierce +9%
-[ffff64]Magic Pierce +10%[ffffff]
-+1% damage to Fire
-+2% damage to Fire
-[ffff64]+3% damage to Fire[ffffff]
-+1% damage to Water
-+2% damage to Water
-[ffff64]+3% damage to Water[ffffff]
-+1% damage to Wind
-+2% damage to Wind
-[ffff64]+3% damage to Wind[ffffff]
-+1% damage to Earth
-+2% damage to Earth
-[ffff64]+3% damage to Earth[ffffff]
-+1% damage to Light
-+2% damage to Light
-[ffff64]+3% damage to Light[ffffff]
-+1% damage to Dark
-+2% damage to Dark
-[ffff64]+3% damage to Dark[ffffff]
-+1% damage to Neutral
-+2% damage to Neutral
-[ffff64]+3% damage to Neutral[ffffff]
-Aggro +1%
-Aggro +2%
-Aggro +3%
-Aggro +4%
-Aggro +5%
-Aggro +6%
-Aggro +7%
-Aggro +8%
-Aggro +9%
-[ffff64]Aggro +10%[ffffff]
-Aggro -1%
-Aggro -2%
-Aggro -3%
-Aggro -4%
-Aggro -5%
-Aggro -6%
-Aggro -7%
-Aggro -8%
-Aggro -9%
-[ffff64]Aggro -10%[ffffff]
-Fire Resistance +1%
-Fire Resistance +2%
-Fire Resistance +3%
-Fire Resistance +4%
-Fire Resistance +5%
-Fire Resistance +6%
-Fire Resistance +7%
-Fire Resistance +8%
-Fire Resistance +9%
-[ffff64]Fire Resistance +10%[ffffff]
-Water Resistance +1%
-Water Resistance +2%
-Water Resistance +3%
-Water Resistance +4%
-Water Resistance +5%
-Water Resistance +6%
-Water Resistance +7%
-Water Resistance +8%
-Water Resistance +9%
-[ffff64]Water Resistance +10%[ffffff]
-Wind Resistance +1%
-Wind Resistance +2%
-Wind Resistance +3%
-Wind Resistance +4%
-Wind Resistance +5%
-Wind Resistance +6%
-Wind Resistance +7%
-Wind Resistance +8%
-Wind Resistance +9%
-[ffff64]Wind Resistance +10%[ffffff]
-Earth Resistance +1%
-Earth Resistance +2%
-Earth Resistance +3%
-Earth Resistance +4%
-Earth Resistance +5%
-Earth Resistance +6%
-Earth Resistance +7%
-Earth Resistance +8%
-Earth Resistance +9%
-[ffff64]Earth Resistance +10%[ffffff]
-Light Resistance +1%
-Light Resistance +2%
-Light Resistance +3%
-Light Resistance +4%
-Light Resistance +5%
-Light Resistance +6%
-Light Resistance +7%
-Light Resistance +8%
-Light Resistance +9%
-[ffff64]Light Resistance +10%[ffffff]
-Dark Resistance +1%
-Dark Resistance +2%
-Dark Resistance +3%
-Dark Resistance +4%
-Dark Resistance +5%
-Dark Resistance +6%
-Dark Resistance +7%
-Dark Resistance +8%
-Dark Resistance +9%
-[ffff64]Dark Resistance +10%[ffffff]
-Neutral Resistance +1%
-Neutral Resistance +2%
-Neutral Resistance +3%
-Neutral Resistance +4%
-Neutral Resistance +5%
-Neutral Resistance +6%
-Neutral Resistance +7%
-Neutral Resistance +8%
-Neutral Resistance +9%
-[ffff64]Neutral Resistance +10%[ffffff]
-Short Range Damage +1%
-Short Range Damage +2%
-[ffff64]Short Range Damage +3%[ffffff]
-Long Range Damage +1%
-Long Range Damage +2%
-[ffff64]Long Range Damage +3%[ffffff]
-Anticipate +1%
-Anticipate +2%
-[ffff64]Anticipate +3%[ffffff]
-Guard Break +1%
-Guard Break +2%
-[ffff64]Guard Break +3%[ffffff]
-Additional Melee 10%
-Additional Melee 20%
-Additional Melee 30%
-Additional Melee 40%
-[ffff64]Additional Melee 50%[ffffff]
-Additional Magic 10%
-Additional Magic 20%
-Additional Magic 30%
-Additional Magic 40%
-[ffff64]Additional Magic 50%[ffffff]
-Reflect 5%
-Reflect 10%
-[ffff64]Reflect 15%[ffffff]
-Physical Barrier +100
-Physical Barrier +200
-Physical Barrier +300
-Physical Barrier +400
-Physical Barrier +500
-Physical Barrier +600
-Physical Barrier +700
-Physical Barrier +800
-Physical Barrier +900
-[ffff64]Physical Barrier +1000[ffffff]
-Magic Barrier +100
-Magic Barrier +200
-Magic Barrier +300
-Magic Barrier +400
-Magic Barrier +500
-Magic Barrier +600
-Magic Barrier +700
-Magic Barrier +800
-Magic Barrier +900
-[ffff64]Magic Barrier +1000[ffffff]
-Fractional Barrier +1%
-Fractional Barrier +2%
-Fractional Barrier +3%
-Fractional Barrier +4%
-Fractional Barrier +5%
-Fractional Barrier +6%
-Fractional Barrier +7%
-Fractional Barrier +8%
-Fractional Barrier +9%
-[ffff64]Fractional Barrier +10%[ffffff]
-Barrier Cooldown +3%
-Barrier Cooldown +6%
-Barrier Cooldown +9%
-Barrier Cooldown +12%
-[ffff64]Barrier Cooldown +15%[ffffff]"
+EquipPanelAbilityListMain	0	0	▼Success Rates\n1st Slot: 100%\n2nd Slot: 50%\n3rd Slot: 25%\n[ff6464]*Stats will be added to the 3rd slot \nonly when 2nd slot is filled.[ffffff]\n[ff6464]*The same stats will not be\nput in the slots.[ffffff]\n[ff6464]*The possibility rates to\nput strong stats are low.[ffffff]\n\n\n▼Stats List\nSTR +1\nSTR +2\nSTR +3\nSTR +4\nSTR +5\nSTR +6\nSTR +7\nSTR +8\nSTR +9\n[ffff64]STR +10[ffffff]\nINT +1\nINT +2\nINT +3\nINT +4\nINT +5\nINT +6\nINT +7\nINT +8\nINT +9\n[ffff64]INT +10[ffffff]\nVIT +1\nVIT +2\nVIT +3\nVIT +4\nVIT +5\nVIT +6\nVIT +7\nVIT +8\nVIT +9\n[ffff64]VIT +10[ffffff]\nAGI +1\nAGI +2\nAGI +3\nAGI +4\nAGI +5\nAGI +6\nAGI +7\nAGI +8\nAGI +9\n[ffff64]AGI +10[ffffff]\nDEX +1\nDEX +2\nDEX +3\nDEX +4\nDEX +5\nDEX +6\nDEX +7\nDEX +8\nDEX +9\n[ffff64]DEX +10[ffffff]\nSTR +1%\nSTR +2%\n[ffff64]STR +3%[ffffff]\nINT +1%\nINT +2%\n[ffff64]INT +3%[ffffff]\nVIT +1%\nVIT +2%\n[ffff64]VIT +3%[ffffff]\nAGI +1%\nAGI +2%\n[ffff64]AGI +3%[ffffff]\nDEX +1%\nDEX +2%\n[ffff64]DEX +3%[ffffff]\nMaxHP +100\nMaxHP +200\nMaxHP +300\nMaxHP +400\nMaxHP +500\nMaxHP +600\nMaxHP +700\nMaxHP +800\nMaxHP +900\n[ffff64]MaxHP +1000[ffffff]\nMaxHP +5%\nMaxHP +10%\n[ffff64]MaxHP +15%[ffffff]\nMaxMP +10\nMaxMP +20\nMaxMP +30\nMaxMP +40\nMaxMP +50\nMaxMP +60\nMaxMP +70\nMaxMP +80\nMaxMP +90\n[ffff64]MaxMP +100[ffffff]\nWeapon ATK +3\nWeapon ATK +6\nWeapon ATK +9\nWeapon ATK +12\nWeapon ATK +15\nWeapon ATK +18\nWeapon ATK +21\nWeapon ATK +24\nWeapon ATK +27\n[ffff64]Weapon ATK +30[ffffff]\nWeapon ATK +1%\nWeapon ATK +2%\n[ffff64]Weapon ATK +3%[ffffff]\nATK +3\nATK +6\nATK +9\nATK +12\nATK +15\nATK +18\nATK +21\nATK +24\nATK +27\n[ffff64]ATK +30[ffffff]\nATK +1%\nATK +2%\n[ffff64]ATK +3%[ffffff]\nMATK +3\nMATK +6\nMATK +9\nMATK +12\nMATK +15\nMATK +18\nMATK +21\nMATK +24\nMATK +27\n[ffff64]MATK +30[ffffff]\nMATK +1%\nMATK +2%\n[ffff64]MATK +3%[ffffff]\nStability +1%\nStability +2%\n[ffff64]Stability +3%[ffffff]\nAccuracy +3\nAccuracy +6\nAccuracy +9\nAccuracy +12\nAccuracy +15\nAccuracy +18\nAccuracy +21\nAccuracy +24\nAccuracy +27\n[ffff64]Accuracy +30[ffffff]\nAccuracy +1%\nAccuracy +2%\n[ffff64]Accuracy +3%[ffffff]\nDodge +3\nDodge +6\nDodge +9\nDodge +12\nDodge +15\nDodge +18\nDodge +21\nDodge +24\nDodge +27\n[ffff64]Dodge +30[ffffff]\nDodge +1%\nDodge +2%\n[ffff64]Dodge +3%[ffffff]\nDEF +10\nDEF +20\nDEF +30\nDEF +40\nDEF +50\nDEF +60\nDEF +70\nDEF +80\nDEF +90\n[ffff64]DEF +100[ffffff]\nDEF +1%\nDEF +2%\nDEF +3%\nDEF +4%\n[ffff64]DEF +5%[ffffff]\nMDEF +10\nMDEF +20\nMDEF +30\nMDEF +40\nMDEF +50\nMDEF +60\nMDEF +70\nMDEF +80\nMDEF +90\n[ffff64]MDEF +100[ffffff]\nMDEF +1%\nMDEF +2%\nMDEF +3%\nMDEF +4%\n[ffff64]MDEF +5%[ffffff]\nASPD +10\nASPD +20\nASPD +30\nASPD +40\nASPD +50\nASPD +60\nASPD +70\nASPD +80\nASPD +90\n[ffff64]ASPD +100[ffffff]\nASPD +1%\nASPD +2%\nASPD +3%\nASPD +4%\nASPD +5%\nASPD +6%\nASPD +7%\nASPD +8%\nASPD +9%\n[ffff64]ASPD +10%[ffffff]\nCSPD +10\nCSPD +20\nCSPD +30\nCSPD +40\nCSPD +50\nCSPD +60\nCSPD +70\nCSPD +80\nCSPD +90\n[ffff64]CSPD +100[ffffff]\nCSPD +1%\nCSPD +2%\nCSPD +3%\nCSPD +4%\nCSPD +5%\nCSPD +6%\nCSPD +7%\nCSPD +8%\nCSPD +9%\n[ffff64]CSPD +10%[ffffff]\nNatural HP Regen +10\nNatural HP Regen +20\nNatural HP Regen +30\nNatural HP Regen +40\nNatural HP Regen +50\nNatural HP Regen +60\nNatural HP Regen +70\nNatural HP Regen +80\nNatural HP Regen +90\n[ffff64]Natural HP Regen +100[ffffff]\nNatural HP Regen +5%\nNatural HP Regen +10%\nNatural HP Regen +15%\nNatural HP Regen +20%\n[ffff64]Natural HP Regen +25%[ffffff]\nNatural MP Regen +1\nNatural MP Regen +2\nNatural MP Regen +3\nNatural MP Regen +4\nNatural MP Regen +5\nNatural MP Regen +6\nNatural MP Regen +7\nNatural MP Regen +8\nNatural MP Regen +9\n[ffff64]Natural MP Regen +10[ffffff]\nNatural MP Regen +5%\nNatural MP Regen +10%\nNatural MP Regen +15%\nNatural MP Regen +20%\n[ffff64]Natural MP Regen +25%[ffffff]\nAttack MP Recovery +1\nAttack MP Recovery +2\nAttack MP Recovery +3\nAttack MP Recovery +4\nAttack MP Recovery +5\nAttack MP Recovery +6\nAttack MP Recovery +7\nAttack MP Recovery +8\nAttack MP Recovery +9\n[ffff64]Attack MP Recovery +10[ffffff]\nCritical Rate +1\nCritical Rate +2\nCritical Rate +3\nCritical Rate +4\n[ffff64]Critical Rate +5[ffffff]\nCritical Rate +1%\nCritical Rate +2%\n[ffff64]Critical Rate +3%[ffffff]\nCritical Damage +1\nCritical Damage +2\nCritical Damage +3\nCritical Damage +4\n[ffff64]Critical Damage +5[ffffff]\nCritical Damage +1%\nCritical Damage +2%\n[ffff64]Critical Damage +3%[ffffff]\nAilment Resistance +1%\nAilment Resistance +2%\nAilment Resistance +3%\nAilment Resistance +4%\nAilment Resistance +5%\nAilment Resistance +6%\nAilment Resistance +7%\nAilment Resistance +8%\nAilment Resistance +9%\n[ffff64]Ailment Resistance +10%[ffffff]\nGuard Recharge +1%\nGuard Recharge +2%\n[ffff64]Guard Recharge +3%[ffffff]\nGuard Power +1%\nGuard Power +2%\n[ffff64]Guard Power +3%[ffffff]\nEvasion Recharge +1%\nEvasion Recharge +2%\n[ffff64]Evasion Recharge +3%[ffffff]\nPhysical Resistance +1%\nPhysical Resistance +2%\nPhysical Resistance +3%\nPhysical Resistance +4%\nPhysical Resistance +5%\nPhysical Resistance +6%\nPhysical Resistance +7%\nPhysical Resistance +8%\nPhysical Resistance +9%\n[ffff64]Physical Resistance +10%[ffffff]\nMagic Resistance +1%\nMagic Resistance +2%\nMagic Resistance +3%\nMagic Resistance +4%\nMagic Resistance +5%\nMagic Resistance +6%\nMagic Resistance +7%\nMagic Resistance +8%\nMagic Resistance +9%\n[ffff64]Magic Resistance +10%[ffffff]\nPhysical Pierce +1%\nPhysical Pierce +2%\nPhysical Pierce +3%\nPhysical Pierce +4%\nPhysical Pierce +5%\nPhysical Pierce +6%\nPhysical Pierce +7%\nPhysical Pierce +8%\nPhysical Pierce +9%\n[ffff64]Physical Pierce +10%[ffffff]\nMagic Pierce +1%\nMagic Pierce +2%\nMagic Pierce +3%\nMagic Pierce +4%\nMagic Pierce +5%\nMagic Pierce +6%\nMagic Pierce +7%\nMagic Pierce +8%\nMagic Pierce +9%\n[ffff64]Magic Pierce +10%[ffffff]\n+1% damage to Fire\n+2% damage to Fire\n[ffff64]+3% damage to Fire[ffffff]\n+1% damage to Water\n+2% damage to Water\n[ffff64]+3% damage to Water[ffffff]\n+1% damage to Wind\n+2% damage to Wind\n[ffff64]+3% damage to Wind[ffffff]\n+1% damage to Earth\n+2% damage to Earth\n[ffff64]+3% damage to Earth[ffffff]\n+1% damage to Light\n+2% damage to Light\n[ffff64]+3% damage to Light[ffffff]\n+1% damage to Dark\n+2% damage to Dark\n[ffff64]+3% damage to Dark[ffffff]\n+1% damage to Neutral\n+2% damage to Neutral\n[ffff64]+3% damage to Neutral[ffffff]\nAggro +1%\nAggro +2%\nAggro +3%\nAggro +4%\nAggro +5%\nAggro +6%\nAggro +7%\nAggro +8%\nAggro +9%\n[ffff64]Aggro +10%[ffffff]\nAggro -1%\nAggro -2%\nAggro -3%\nAggro -4%\nAggro -5%\nAggro -6%\nAggro -7%\nAggro -8%\nAggro -9%\n[ffff64]Aggro -10%[ffffff]\nFire Resistance +1%\nFire Resistance +2%\nFire Resistance +3%\nFire Resistance +4%\nFire Resistance +5%\nFire Resistance +6%\nFire Resistance +7%\nFire Resistance +8%\nFire Resistance +9%\n[ffff64]Fire Resistance +10%[ffffff]\nWater Resistance +1%\nWater Resistance +2%\nWater Resistance +3%\nWater Resistance +4%\nWater Resistance +5%\nWater Resistance +6%\nWater Resistance +7%\nWater Resistance +8%\nWater Resistance +9%\n[ffff64]Water Resistance +10%[ffffff]\nWind Resistance +1%\nWind Resistance +2%\nWind Resistance +3%\nWind Resistance +4%\nWind Resistance +5%\nWind Resistance +6%\nWind Resistance +7%\nWind Resistance +8%\nWind Resistance +9%\n[ffff64]Wind Resistance +10%[ffffff]\nEarth Resistance +1%\nEarth Resistance +2%\nEarth Resistance +3%\nEarth Resistance +4%\nEarth Resistance +5%\nEarth Resistance +6%\nEarth Resistance +7%\nEarth Resistance +8%\nEarth Resistance +9%\n[ffff64]Earth Resistance +10%[ffffff]\nLight Resistance +1%\nLight Resistance +2%\nLight Resistance +3%\nLight Resistance +4%\nLight Resistance +5%\nLight Resistance +6%\nLight Resistance +7%\nLight Resistance +8%\nLight Resistance +9%\n[ffff64]Light Resistance +10%[ffffff]\nDark Resistance +1%\nDark Resistance +2%\nDark Resistance +3%\nDark Resistance +4%\nDark Resistance +5%\nDark Resistance +6%\nDark Resistance +7%\nDark Resistance +8%\nDark Resistance +9%\n[ffff64]Dark Resistance +10%[ffffff]\nNeutral Resistance +1%\nNeutral Resistance +2%\nNeutral Resistance +3%\nNeutral Resistance +4%\nNeutral Resistance +5%\nNeutral Resistance +6%\nNeutral Resistance +7%\nNeutral Resistance +8%\nNeutral Resistance +9%\n[ffff64]Neutral Resistance +10%[ffffff]\nShort Range Damage +1%\nShort Range Damage +2%\n[ffff64]Short Range Damage +3%[ffffff]\nLong Range Damage +1%\nLong Range Damage +2%\n[ffff64]Long Range Damage +3%[ffffff]\nAnticipate +1%\nAnticipate +2%\n[ffff64]Anticipate +3%[ffffff]\nGuard Break +1%\nGuard Break +2%\n[ffff64]Guard Break +3%[ffffff]\nAdditional Melee 10%\nAdditional Melee 20%\nAdditional Melee 30%\nAdditional Melee 40%\n[ffff64]Additional Melee 50%[ffffff]\nAdditional Magic 10%\nAdditional Magic 20%\nAdditional Magic 30%\nAdditional Magic 40%\n[ffff64]Additional Magic 50%[ffffff]\nReflect 5%\nReflect 10%\n[ffff64]Reflect 15%[ffffff]\nPhysical Barrier +100\nPhysical Barrier +200\nPhysical Barrier +300\nPhysical Barrier +400\nPhysical Barrier +500\nPhysical Barrier +600\nPhysical Barrier +700\nPhysical Barrier +800\nPhysical Barrier +900\n[ffff64]Physical Barrier +1000[ffffff]\nMagic Barrier +100\nMagic Barrier +200\nMagic Barrier +300\nMagic Barrier +400\nMagic Barrier +500\nMagic Barrier +600\nMagic Barrier +700\nMagic Barrier +800\nMagic Barrier +900\n[ffff64]Magic Barrier +1000[ffffff]\nFractional Barrier +1%\nFractional Barrier +2%\nFractional Barrier +3%\nFractional Barrier +4%\nFractional Barrier +5%\nFractional Barrier +6%\nFractional Barrier +7%\nFractional Barrier +8%\nFractional Barrier +9%\n[ffff64]Fractional Barrier +10%[ffffff]\nBarrier Cooldown +3%\nBarrier Cooldown +6%\nBarrier Cooldown +9%\nBarrier Cooldown +12%\n[ffff64]Barrier Cooldown +15%[ffffff]
 EquipPanelAbilityPopWindowNewExpText	0	0	\n\nStats will be added to the 1st slot 100% of the time.\n[ffff64]If it succeeds in the 2nd slot, there will be\na chance to add stats to the 3rd slot at random.[ffffff]\nPlease confirm the stats in the list.
 SelectSkillPopWindowDetailMessage	0	0	Grants the following effect(s) for [ffff64]{0}[ffffff].
 SelectSkillPopWindowLevelUpMessage	0	0	You can level up skills\nto the indicated level.
@@ -5096,1045 +4395,10 @@ SkillFreeSystemLockErrMessage	0	0	Free Reset Period has ended.
 SkillTreePanelFreeResetMessage	0	0	You can reset [ffff64]{0}[ffffff] time(s) for free.
 ParameterPanelNgwordErrLabel	0	0	Unavailable letters are included.
 ParameterPanelNgwordErrText	0	0	The character name is unavailable\nbecause of the unavailable letters.
-EquipPanelAbilityTopLabel	0	0	"▼Success Rates
-1st Slot: 100%
-2nd Slot: 50%
-3rd Slot: 25%
-[ff6464]*Stats will be added to the 3rd slot 
-only when 2nd slot is filled.[ffffff]
-[ff6464]*The same stats will not be
-put in the slots.[ffffff]
-[ff6464]*The possibility rates to
-put strong stats are low.[ffffff]
-
-
-▼Stats List"
-EquipPanelAbilityListLabel	0	0	"STR +1
-STR +2
-STR +3
-STR +4
-STR +5
-STR +6
-STR +7
-STR +8
-STR +9
-[ffff64]STR +10[ffffff]
-INT +1
-INT +2
-INT +3
-INT +4
-INT +5
-INT +6
-INT +7
-INT +8
-INT +9
-[ffff64]INT +10[ffffff]
-VIT +1
-VIT +2
-VIT +3
-VIT +4
-VIT +5
-VIT +6
-VIT +7
-VIT +8
-VIT +9
-[ffff64]VIT +10[ffffff]
-AGI +1
-AGI +2
-AGI +3
-AGI +4
-AGI +5
-AGI +6
-AGI +7
-AGI +8
-AGI +9
-[ffff64]AGI +10[ffffff]
-DEX +1
-DEX +2
-DEX +3
-DEX +4
-DEX +5
-DEX +6
-DEX +7
-DEX +8
-DEX +9
-[ffff64]DEX +10[ffffff]
-STR +1%
-STR +2%
-[ffff64]STR +3%[ffffff]
-INT +1%
-INT +2%
-[ffff64]INT +3%[ffffff]
-VIT +1%
-VIT +2%
-[ffff64]VIT +3%[ffffff]
-AGI +1%
-AGI +2%
-[ffff64]AGI +3%[ffffff]
-DEX +1%
-DEX +2%
-[ffff64]DEX +3%[ffffff]
-MaxHP +100
-MaxHP +200
-MaxHP +300
-MaxHP +400
-MaxHP +500
-MaxHP +600
-MaxHP +700
-MaxHP +800
-MaxHP +900
-[ffff64]MaxHP +1000[ffffff]
-MaxHP +5%
-MaxHP +10%
-[ffff64]MaxHP +15%[ffffff]
-MaxMP +10
-MaxMP +20
-MaxMP +30
-MaxMP +40
-MaxMP +50
-MaxMP +60
-MaxMP +70
-MaxMP +80
-MaxMP +90
-[ffff64]MaxMP +100[ffffff]
-Weapon ATK +3
-Weapon ATK +6
-Weapon ATK +9
-Weapon ATK +12
-Weapon ATK +15
-Weapon ATK +18
-Weapon ATK +21
-Weapon ATK +24
-Weapon ATK +27
-[ffff64]Weapon ATK +30[ffffff]
-Weapon ATK +1%
-Weapon ATK +2%
-[ffff64]Weapon ATK +3%[ffffff]
-ATK +3
-ATK +6
-ATK +9
-ATK +12
-ATK +15
-ATK +18
-ATK +21
-ATK +24
-ATK +27
-[ffff64]ATK +30[ffffff]
-ATK +1%
-ATK +2%
-[ffff64]ATK +3%[ffffff]
-MATK +3
-MATK +6
-MATK +9
-MATK +12
-MATK +15
-MATK +18
-MATK +21
-MATK +24
-MATK +27
-[ffff64]MATK +30[ffffff]
-MATK +1%
-MATK +2%
-[ffff64]MATK +3%[ffffff]
-Stability +1%
-Stability +2%
-[ffff64]Stability +3%[ffffff]
-Accuracy +3
-Accuracy +6
-Accuracy +9
-Accuracy +12
-Accuracy +15
-Accuracy +18
-Accuracy +21
-Accuracy +24
-Accuracy +27
-[ffff64]Accuracy +30[ffffff]
-Accuracy +1%
-Accuracy +2%
-[ffff64]Accuracy +3%[ffffff]
-Dodge +3
-Dodge +6
-Dodge +9
-Dodge +12
-Dodge +15
-Dodge +18
-Dodge +21
-Dodge +24
-Dodge +27
-[ffff64]Dodge +30[ffffff]
-Dodge +1%
-Dodge +2%
-[ffff64]Dodge +3%[ffffff]
-DEF +10
-DEF +20
-DEF +30
-DEF +40
-DEF +50
-DEF +60
-DEF +70
-DEF +80
-DEF +90
-[ffff64]DEF +100[ffffff]
-DEF +1%
-DEF +2%
-DEF +3%
-DEF +4%
-[ffff64]DEF +5%[ffffff]
-MDEF +10
-MDEF +20
-MDEF +30
-MDEF +40
-MDEF +50
-MDEF +60
-MDEF +70
-MDEF +80
-MDEF +90
-[ffff64]MDEF +100[ffffff]
-MDEF +1%
-MDEF +2%
-MDEF +3%
-MDEF +4%
-[ffff64]MDEF +5%[ffffff]
-ASPD +10
-ASPD +20
-ASPD +30
-ASPD +40
-ASPD +50
-ASPD +60
-ASPD +70
-ASPD +80
-ASPD +90
-[ffff64]ASPD +100[ffffff]
-ASPD +1%
-ASPD +2%
-ASPD +3%
-ASPD +4%
-ASPD +5%
-ASPD +6%
-ASPD +7%
-ASPD +8%
-ASPD +9%
-[ffff64]ASPD +10%[ffffff]
-CSPD +10
-CSPD +20
-CSPD +30
-CSPD +40
-CSPD +50
-CSPD +60
-CSPD +70
-CSPD +80
-CSPD +90
-[ffff64]CSPD +100[ffffff]
-CSPD +1%
-CSPD +2%
-CSPD +3%
-CSPD +4%
-CSPD +5%
-CSPD +6%
-CSPD +7%
-CSPD +8%
-CSPD +9%
-[ffff64]CSPD +10%[ffffff]
-Natural HP Regen +10
-Natural HP Regen +20
-Natural HP Regen +30
-Natural HP Regen +40
-Natural HP Regen +50
-Natural HP Regen +60
-Natural HP Regen +70
-Natural HP Regen +80
-Natural HP Regen +90
-[ffff64]Natural HP Regen +100[ffffff]
-Natural HP Regen +5%
-Natural HP Regen +10%
-Natural HP Regen +15%
-Natural HP Regen +20%
-[ffff64]Natural HP Regen +25%[ffffff]
-Natural MP Regen +1
-Natural MP Regen +2
-Natural MP Regen +3
-Natural MP Regen +4
-Natural MP Regen +5
-Natural MP Regen +6
-Natural MP Regen +7
-Natural MP Regen +8
-Natural MP Regen +9
-[ffff64]Natural MP Regen +10[ffffff]
-Natural MP Regen +5%
-Natural MP Regen +10%
-Natural MP Regen +15%
-Natural MP Regen +20%
-[ffff64]Natural MP Regen +25%[ffffff]
-Attack MP Recovery +1
-Attack MP Recovery +2
-Attack MP Recovery +3
-Attack MP Recovery +4
-Attack MP Recovery +5
-Attack MP Recovery +6
-Attack MP Recovery +7
-Attack MP Recovery +8
-Attack MP Recovery +9
-[ffff64]Attack MP Recovery +10[ffffff]
-Critical Rate +1
-Critical Rate +2
-Critical Rate +3
-Critical Rate +4
-[ffff64]Critical Rate +5[ffffff]
-Critical Rate +1%
-Critical Rate +2%
-[ffff64]Critical Rate +3%[ffffff]
-Critical Damage +1
-Critical Damage +2
-Critical Damage +3
-Critical Damage +4
-[ffff64]Critical Damage +5[ffffff]
-Critical Damage +1%
-Critical Damage +2%
-[ffff64]Critical Damage +3%[ffffff]
-Ailment Resistance +1%
-Ailment Resistance +2%
-Ailment Resistance +3%
-Ailment Resistance +4%
-Ailment Resistance +5%
-Ailment Resistance +6%
-Ailment Resistance +7%
-Ailment Resistance +8%
-Ailment Resistance +9%
-[ffff64]Ailment Resistance +10%[ffffff]
-Guard Rate +1%
-Guard Rate +2%
-[ffff64]Guard Rate +3%[ffffff]
-Guard Power +1%
-Guard Power +2%
-[ffff64]Guard Power +3%[ffffff]
-Evasion Rate +1%
-Evasion Rate +2%
-[ffff64]Evasion Rate +3%[ffffff]
-Physical Resistance +1%
-Physical Resistance +2%
-Physical Resistance +3%
-Physical Resistance +4%
-Physical Resistance +5%
-Physical Resistance +6%
-Physical Resistance +7%
-Physical Resistance +8%
-Physical Resistance +9%
-[ffff64]Physical Resistance +10%[ffffff]
-Magic Resistance +1%
-Magic Resistance +2%
-Magic Resistance +3%
-Magic Resistance +4%
-Magic Resistance +5%
-Magic Resistance +6%
-Magic Resistance +7%
-Magic Resistance +8%
-Magic Resistance +9%
-[ffff64]Magic Resistance +10%[ffffff]
-Physical Pierce +1%
-Physical Pierce +2%
-Physical Pierce +3%
-Physical Pierce +4%
-Physical Pierce +5%
-Physical Pierce +6%
-Physical Pierce +7%
-Physical Pierce +8%
-Physical Pierce +9%
-[ffff64]Physical Pierce +10%[ffffff]
-Magic Pierce +1%
-Magic Pierce +2%
-Magic Pierce +3%
-Magic Pierce +4%
-Magic Pierce +5%
-Magic Pierce +6%
-Magic Pierce +7%
-Magic Pierce +8%
-Magic Pierce +9%
-[ffff64]Magic Pierce +10%[ffffff]
-+1% damage to Fire
-+2% damage to Fire
-[ffff64]+3% damage to Fire[ffffff]
-+1% damage to Water
-+2% damage to Water
-[ffff64]+3% damage to Water[ffffff]
-+1% damage to Wind
-+2% damage to Wind
-[ffff64]+3% damage to Wind[ffffff]
-+1% damage to Earth
-+2% damage to Earth
-[ffff64]+3% damage to Earth[ffffff]
-+1% damage to Light
-+2% damage to Light
-[ffff64]+3% damage to Light[ffffff]
-+1% damage to Dark
-+2% damage to Dark
-[ffff64]+3% damage to Dark[ffffff]
-+1% damage to Neutral
-+2% damage to Neutral
-[ffff64]+3% damage to Neutral[ffffff]
-Aggro +1%
-Aggro +2%
-Aggro +3%
-Aggro +4%
-Aggro +5%
-Aggro +6%
-Aggro +7%
-Aggro +8%
-Aggro +9%
-[ffff64]Aggro +10%[ffffff]
-Aggro -1%
-Aggro -2%
-Aggro -3%
-Aggro -4%
-Aggro -5%
-Aggro -6%
-Aggro -7%
-Aggro -8%
-Aggro -9%
-[ffff64]Aggro -10%[ffffff]
-Fire Resistance +1%
-Fire Resistance +2%
-Fire Resistance +3%
-Fire Resistance +4%
-Fire Resistance +5%
-Fire Resistance +6%
-Fire Resistance +7%
-Fire Resistance +8%
-Fire Resistance +9%
-[ffff64]Fire Resistance +10%[ffffff]
-Water Resistance +1%
-Water Resistance +2%
-Water Resistance +3%
-Water Resistance +4%
-Water Resistance +5%
-Water Resistance +6%
-Water Resistance +7%
-Water Resistance +8%
-Water Resistance +9%
-[ffff64]Water Resistance +10%[ffffff]
-Wind Resistance +1%
-Wind Resistance +2%
-Wind Resistance +3%
-Wind Resistance +4%
-Wind Resistance +5%
-Wind Resistance +6%
-Wind Resistance +7%
-Wind Resistance +8%
-Wind Resistance +9%
-[ffff64]Wind Resistance +10%[ffffff]
-Earth Resistance +1%
-Earth Resistance +2%
-Earth Resistance +3%
-Earth Resistance +4%
-Earth Resistance +5%
-Earth Resistance +6%
-Earth Resistance +7%
-Earth Resistance +8%
-Earth Resistance +9%
-[ffff64]Earth Resistance +10%[ffffff]
-Light Resistance +1%
-Light Resistance +2%
-Light Resistance +3%
-Light Resistance +4%
-Light Resistance +5%
-Light Resistance +6%
-Light Resistance +7%
-Light Resistance +8%
-Light Resistance +9%
-[ffff64]Light Resistance +10%[ffffff]
-Dark Resistance +1%
-Dark Resistance +2%
-Dark Resistance +3%
-Dark Resistance +4%
-Dark Resistance +5%
-Dark Resistance +6%
-Dark Resistance +7%
-Dark Resistance +8%
-Dark Resistance +9%
-[ffff64]Dark Resistance +10%[ffffff]
-Neutral Resistance +1%
-Neutral Resistance +2%
-Neutral Resistance +3%
-Neutral Resistance +4%
-Neutral Resistance +5%
-Neutral Resistance +6%
-Neutral Resistance +7%
-Neutral Resistance +8%
-Neutral Resistance +9%
-[ffff64]Neutral Resistance +10%[ffffff]
-Short Range Damage +1%
-Short Range Damage +2%
-[ffff64]Short Range Damage +3%[ffffff]
-Long Range Damage +1%
-Long Range Damage +2%
-[ffff64]Long Range Damage +3%[ffffff]
-Anticipate +1%
-Anticipate +2%
-[ffff64]Anticipate +3%[ffffff]
-Guard Break +1%
-Guard Break +2%
-[ffff64]Guard Break +3%[ffffff]
-Additional Melee 10%
-Additional Melee 20%
-Additional Melee 30%
-Additional Melee 40%
-[ffff64]Additional Melee 50%[ffffff]
-Additional Magic 10%
-Additional Magic 20%
-Additional Magic 30%
-Additional Magic 40%
-[ffff64]Additional Magic 50%[ffffff]
-Reflect 5%
-Reflect 10%
-[ffff64]Reflect 15%[ffffff]
-Physical Barrier +100
-Physical Barrier +200
-Physical Barrier +300
-Physical Barrier +400
-Physical Barrier +500
-Physical Barrier +600
-Physical Barrier +700
-Physical Barrier +800
-Physical Barrier +900
-[ffff64]Physical Barrier +1000[ffffff]
-Magic Barrier +100
-Magic Barrier +200
-Magic Barrier +300
-Magic Barrier +400
-Magic Barrier +500
-Magic Barrier +600
-Magic Barrier +700
-Magic Barrier +800
-Magic Barrier +900
-[ffff64]Magic Barrier +1000[ffffff]
-Fractional Barrier +1%
-Fractional Barrier +2%
-Fractional Barrier +3%
-Fractional Barrier +4%
-Fractional Barrier +5%
-Fractional Barrier +6%
-Fractional Barrier +7%
-Fractional Barrier +8%
-Fractional Barrier +9%
-[ffff64]Fractional Barrier +10%[ffffff]
-Barrier Cooldown +3%
-Barrier Cooldown +6%
-Barrier Cooldown +9%
-Barrier Cooldown +12%
-[ffff64]Barrier Cooldown +15%[ffffff]"
-EquipPanelAbilityRateLabel	0	0	"0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%"
-EquipPanelAbilityLastLabel	0	0	"[ff6464]*The win rates of second or later slots can be higher than those displayed as they cannot be the same ability with the first one.[ffffff]
-[ff6464]*Win rates have four places of decimals, so rounded off to the three decimal places. Therefore, even if they are added up, the sum may not become 100%.[ffffff]"""
+EquipPanelAbilityTopLabel	0	0	▼Success Rates\n1st Slot: 100%\n2nd Slot: 50%\n3rd Slot: 25%\n[ff6464]*Stats will be added to the 3rd slot \nonly when 2nd slot is filled.[ffffff]\n[ff6464]*The same stats will not be\nput in the slots.[ffffff]\n[ff6464]*The possibility rates to\nput strong stats are low.[ffffff]\n\n\n▼Stats List
+EquipPanelAbilityListLabel	0	0	STR +1\nSTR +2\nSTR +3\nSTR +4\nSTR +5\nSTR +6\nSTR +7\nSTR +8\nSTR +9\n[ffff64]STR +10[ffffff]\nINT +1\nINT +2\nINT +3\nINT +4\nINT +5\nINT +6\nINT +7\nINT +8\nINT +9\n[ffff64]INT +10[ffffff]\nVIT +1\nVIT +2\nVIT +3\nVIT +4\nVIT +5\nVIT +6\nVIT +7\nVIT +8\nVIT +9\n[ffff64]VIT +10[ffffff]\nAGI +1\nAGI +2\nAGI +3\nAGI +4\nAGI +5\nAGI +6\nAGI +7\nAGI +8\nAGI +9\n[ffff64]AGI +10[ffffff]\nDEX +1\nDEX +2\nDEX +3\nDEX +4\nDEX +5\nDEX +6\nDEX +7\nDEX +8\nDEX +9\n[ffff64]DEX +10[ffffff]\nSTR +1%\nSTR +2%\n[ffff64]STR +3%[ffffff]\nINT +1%\nINT +2%\n[ffff64]INT +3%[ffffff]\nVIT +1%\nVIT +2%\n[ffff64]VIT +3%[ffffff]\nAGI +1%\nAGI +2%\n[ffff64]AGI +3%[ffffff]\nDEX +1%\nDEX +2%\n[ffff64]DEX +3%[ffffff]\nMaxHP +100\nMaxHP +200\nMaxHP +300\nMaxHP +400\nMaxHP +500\nMaxHP +600\nMaxHP +700\nMaxHP +800\nMaxHP +900\n[ffff64]MaxHP +1000[ffffff]\nMaxHP +5%\nMaxHP +10%\n[ffff64]MaxHP +15%[ffffff]\nMaxMP +10\nMaxMP +20\nMaxMP +30\nMaxMP +40\nMaxMP +50\nMaxMP +60\nMaxMP +70\nMaxMP +80\nMaxMP +90\n[ffff64]MaxMP +100[ffffff]\nWeapon ATK +3\nWeapon ATK +6\nWeapon ATK +9\nWeapon ATK +12\nWeapon ATK +15\nWeapon ATK +18\nWeapon ATK +21\nWeapon ATK +24\nWeapon ATK +27\n[ffff64]Weapon ATK +30[ffffff]\nWeapon ATK +1%\nWeapon ATK +2%\n[ffff64]Weapon ATK +3%[ffffff]\nATK +3\nATK +6\nATK +9\nATK +12\nATK +15\nATK +18\nATK +21\nATK +24\nATK +27\n[ffff64]ATK +30[ffffff]\nATK +1%\nATK +2%\n[ffff64]ATK +3%[ffffff]\nMATK +3\nMATK +6\nMATK +9\nMATK +12\nMATK +15\nMATK +18\nMATK +21\nMATK +24\nMATK +27\n[ffff64]MATK +30[ffffff]\nMATK +1%\nMATK +2%\n[ffff64]MATK +3%[ffffff]\nStability +1%\nStability +2%\n[ffff64]Stability +3%[ffffff]\nAccuracy +3\nAccuracy +6\nAccuracy +9\nAccuracy +12\nAccuracy +15\nAccuracy +18\nAccuracy +21\nAccuracy +24\nAccuracy +27\n[ffff64]Accuracy +30[ffffff]\nAccuracy +1%\nAccuracy +2%\n[ffff64]Accuracy +3%[ffffff]\nDodge +3\nDodge +6\nDodge +9\nDodge +12\nDodge +15\nDodge +18\nDodge +21\nDodge +24\nDodge +27\n[ffff64]Dodge +30[ffffff]\nDodge +1%\nDodge +2%\n[ffff64]Dodge +3%[ffffff]\nDEF +10\nDEF +20\nDEF +30\nDEF +40\nDEF +50\nDEF +60\nDEF +70\nDEF +80\nDEF +90\n[ffff64]DEF +100[ffffff]\nDEF +1%\nDEF +2%\nDEF +3%\nDEF +4%\n[ffff64]DEF +5%[ffffff]\nMDEF +10\nMDEF +20\nMDEF +30\nMDEF +40\nMDEF +50\nMDEF +60\nMDEF +70\nMDEF +80\nMDEF +90\n[ffff64]MDEF +100[ffffff]\nMDEF +1%\nMDEF +2%\nMDEF +3%\nMDEF +4%\n[ffff64]MDEF +5%[ffffff]\nASPD +10\nASPD +20\nASPD +30\nASPD +40\nASPD +50\nASPD +60\nASPD +70\nASPD +80\nASPD +90\n[ffff64]ASPD +100[ffffff]\nASPD +1%\nASPD +2%\nASPD +3%\nASPD +4%\nASPD +5%\nASPD +6%\nASPD +7%\nASPD +8%\nASPD +9%\n[ffff64]ASPD +10%[ffffff]\nCSPD +10\nCSPD +20\nCSPD +30\nCSPD +40\nCSPD +50\nCSPD +60\nCSPD +70\nCSPD +80\nCSPD +90\n[ffff64]CSPD +100[ffffff]\nCSPD +1%\nCSPD +2%\nCSPD +3%\nCSPD +4%\nCSPD +5%\nCSPD +6%\nCSPD +7%\nCSPD +8%\nCSPD +9%\n[ffff64]CSPD +10%[ffffff]\nNatural HP Regen +10\nNatural HP Regen +20\nNatural HP Regen +30\nNatural HP Regen +40\nNatural HP Regen +50\nNatural HP Regen +60\nNatural HP Regen +70\nNatural HP Regen +80\nNatural HP Regen +90\n[ffff64]Natural HP Regen +100[ffffff]\nNatural HP Regen +5%\nNatural HP Regen +10%\nNatural HP Regen +15%\nNatural HP Regen +20%\n[ffff64]Natural HP Regen +25%[ffffff]\nNatural MP Regen +1\nNatural MP Regen +2\nNatural MP Regen +3\nNatural MP Regen +4\nNatural MP Regen +5\nNatural MP Regen +6\nNatural MP Regen +7\nNatural MP Regen +8\nNatural MP Regen +9\n[ffff64]Natural MP Regen +10[ffffff]\nNatural MP Regen +5%\nNatural MP Regen +10%\nNatural MP Regen +15%\nNatural MP Regen +20%\n[ffff64]Natural MP Regen +25%[ffffff]\nAttack MP Recovery +1\nAttack MP Recovery +2\nAttack MP Recovery +3\nAttack MP Recovery +4\nAttack MP Recovery +5\nAttack MP Recovery +6\nAttack MP Recovery +7\nAttack MP Recovery +8\nAttack MP Recovery +9\n[ffff64]Attack MP Recovery +10[ffffff]\nCritical Rate +1\nCritical Rate +2\nCritical Rate +3\nCritical Rate +4\n[ffff64]Critical Rate +5[ffffff]\nCritical Rate +1%\nCritical Rate +2%\n[ffff64]Critical Rate +3%[ffffff]\nCritical Damage +1\nCritical Damage +2\nCritical Damage +3\nCritical Damage +4\n[ffff64]Critical Damage +5[ffffff]\nCritical Damage +1%\nCritical Damage +2%\n[ffff64]Critical Damage +3%[ffffff]\nAilment Resistance +1%\nAilment Resistance +2%\nAilment Resistance +3%\nAilment Resistance +4%\nAilment Resistance +5%\nAilment Resistance +6%\nAilment Resistance +7%\nAilment Resistance +8%\nAilment Resistance +9%\n[ffff64]Ailment Resistance +10%[ffffff]\nGuard Rate +1%\nGuard Rate +2%\n[ffff64]Guard Rate +3%[ffffff]\nGuard Power +1%\nGuard Power +2%\n[ffff64]Guard Power +3%[ffffff]\nEvasion Rate +1%\nEvasion Rate +2%\n[ffff64]Evasion Rate +3%[ffffff]\nPhysical Resistance +1%\nPhysical Resistance +2%\nPhysical Resistance +3%\nPhysical Resistance +4%\nPhysical Resistance +5%\nPhysical Resistance +6%\nPhysical Resistance +7%\nPhysical Resistance +8%\nPhysical Resistance +9%\n[ffff64]Physical Resistance +10%[ffffff]\nMagic Resistance +1%\nMagic Resistance +2%\nMagic Resistance +3%\nMagic Resistance +4%\nMagic Resistance +5%\nMagic Resistance +6%\nMagic Resistance +7%\nMagic Resistance +8%\nMagic Resistance +9%\n[ffff64]Magic Resistance +10%[ffffff]\nPhysical Pierce +1%\nPhysical Pierce +2%\nPhysical Pierce +3%\nPhysical Pierce +4%\nPhysical Pierce +5%\nPhysical Pierce +6%\nPhysical Pierce +7%\nPhysical Pierce +8%\nPhysical Pierce +9%\n[ffff64]Physical Pierce +10%[ffffff]\nMagic Pierce +1%\nMagic Pierce +2%\nMagic Pierce +3%\nMagic Pierce +4%\nMagic Pierce +5%\nMagic Pierce +6%\nMagic Pierce +7%\nMagic Pierce +8%\nMagic Pierce +9%\n[ffff64]Magic Pierce +10%[ffffff]\n+1% damage to Fire\n+2% damage to Fire\n[ffff64]+3% damage to Fire[ffffff]\n+1% damage to Water\n+2% damage to Water\n[ffff64]+3% damage to Water[ffffff]\n+1% damage to Wind\n+2% damage to Wind\n[ffff64]+3% damage to Wind[ffffff]\n+1% damage to Earth\n+2% damage to Earth\n[ffff64]+3% damage to Earth[ffffff]\n+1% damage to Light\n+2% damage to Light\n[ffff64]+3% damage to Light[ffffff]\n+1% damage to Dark\n+2% damage to Dark\n[ffff64]+3% damage to Dark[ffffff]\n+1% damage to Neutral\n+2% damage to Neutral\n[ffff64]+3% damage to Neutral[ffffff]\nAggro +1%\nAggro +2%\nAggro +3%\nAggro +4%\nAggro +5%\nAggro +6%\nAggro +7%\nAggro +8%\nAggro +9%\n[ffff64]Aggro +10%[ffffff]\nAggro -1%\nAggro -2%\nAggro -3%\nAggro -4%\nAggro -5%\nAggro -6%\nAggro -7%\nAggro -8%\nAggro -9%\n[ffff64]Aggro -10%[ffffff]\nFire Resistance +1%\nFire Resistance +2%\nFire Resistance +3%\nFire Resistance +4%\nFire Resistance +5%\nFire Resistance +6%\nFire Resistance +7%\nFire Resistance +8%\nFire Resistance +9%\n[ffff64]Fire Resistance +10%[ffffff]\nWater Resistance +1%\nWater Resistance +2%\nWater Resistance +3%\nWater Resistance +4%\nWater Resistance +5%\nWater Resistance +6%\nWater Resistance +7%\nWater Resistance +8%\nWater Resistance +9%\n[ffff64]Water Resistance +10%[ffffff]\nWind Resistance +1%\nWind Resistance +2%\nWind Resistance +3%\nWind Resistance +4%\nWind Resistance +5%\nWind Resistance +6%\nWind Resistance +7%\nWind Resistance +8%\nWind Resistance +9%\n[ffff64]Wind Resistance +10%[ffffff]\nEarth Resistance +1%\nEarth Resistance +2%\nEarth Resistance +3%\nEarth Resistance +4%\nEarth Resistance +5%\nEarth Resistance +6%\nEarth Resistance +7%\nEarth Resistance +8%\nEarth Resistance +9%\n[ffff64]Earth Resistance +10%[ffffff]\nLight Resistance +1%\nLight Resistance +2%\nLight Resistance +3%\nLight Resistance +4%\nLight Resistance +5%\nLight Resistance +6%\nLight Resistance +7%\nLight Resistance +8%\nLight Resistance +9%\n[ffff64]Light Resistance +10%[ffffff]\nDark Resistance +1%\nDark Resistance +2%\nDark Resistance +3%\nDark Resistance +4%\nDark Resistance +5%\nDark Resistance +6%\nDark Resistance +7%\nDark Resistance +8%\nDark Resistance +9%\n[ffff64]Dark Resistance +10%[ffffff]\nNeutral Resistance +1%\nNeutral Resistance +2%\nNeutral Resistance +3%\nNeutral Resistance +4%\nNeutral Resistance +5%\nNeutral Resistance +6%\nNeutral Resistance +7%\nNeutral Resistance +8%\nNeutral Resistance +9%\n[ffff64]Neutral Resistance +10%[ffffff]\nShort Range Damage +1%\nShort Range Damage +2%\n[ffff64]Short Range Damage +3%[ffffff]\nLong Range Damage +1%\nLong Range Damage +2%\n[ffff64]Long Range Damage +3%[ffffff]\nAnticipate +1%\nAnticipate +2%\n[ffff64]Anticipate +3%[ffffff]\nGuard Break +1%\nGuard Break +2%\n[ffff64]Guard Break +3%[ffffff]\nAdditional Melee 10%\nAdditional Melee 20%\nAdditional Melee 30%\nAdditional Melee 40%\n[ffff64]Additional Melee 50%[ffffff]\nAdditional Magic 10%\nAdditional Magic 20%\nAdditional Magic 30%\nAdditional Magic 40%\n[ffff64]Additional Magic 50%[ffffff]\nReflect 5%\nReflect 10%\n[ffff64]Reflect 15%[ffffff]\nPhysical Barrier +100\nPhysical Barrier +200\nPhysical Barrier +300\nPhysical Barrier +400\nPhysical Barrier +500\nPhysical Barrier +600\nPhysical Barrier +700\nPhysical Barrier +800\nPhysical Barrier +900\n[ffff64]Physical Barrier +1000[ffffff]\nMagic Barrier +100\nMagic Barrier +200\nMagic Barrier +300\nMagic Barrier +400\nMagic Barrier +500\nMagic Barrier +600\nMagic Barrier +700\nMagic Barrier +800\nMagic Barrier +900\n[ffff64]Magic Barrier +1000[ffffff]\nFractional Barrier +1%\nFractional Barrier +2%\nFractional Barrier +3%\nFractional Barrier +4%\nFractional Barrier +5%\nFractional Barrier +6%\nFractional Barrier +7%\nFractional Barrier +8%\nFractional Barrier +9%\n[ffff64]Fractional Barrier +10%[ffffff]\nBarrier Cooldown +3%\nBarrier Cooldown +6%\nBarrier Cooldown +9%\nBarrier Cooldown +12%\n[ffff64]Barrier Cooldown +15%[ffffff]
+EquipPanelAbilityRateLabel	0	0	0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%
+EquipPanelAbilityLastLabel	0	0	"[ff6464]*The win rates of second or later slots can be higher than those displayed as they cannot be the same ability with the first one.[ffffff]\n[ff6464]*Win rates have four places of decimals, so rounded off to the three decimal places. Therefore, even if they are added up, the sum may not become 100%.[ffffff]"""
 EquipPanelEnchantExExp	0	0	"Use [ffff64]""{0}""[ffffff] to\nextract stats from avatars!\nUp to 10 stats can be saved.\nSaved stats will be consumed by\nre-alloting them."
 EquipPanelEnchantRegrant	0	0	Re-Allot
 EquipPanelEnchantExtract	0	0	Extract
@@ -6305,25 +4569,18 @@ RegistletPanelGemPowderNum	0	0	Gem Dust
 RegistletPanelHaveGemCartNum	0	0	Gem Case Owned
 RegistletPanelEquipButton	0	0	[ffff64]+Equip Gem Case
 RegistletPanelAddSlotButton	0	0	Add slot using {0} Gem Dust
-RegistletPanelGemCartGetMes	0	0	"Let's get more powerful with the
-Gem Case from Stoodie's Experiment!"
+RegistletPanelGemCartGetMes	0	0	Let's get more powerful with the\nGem Case from Stoodie's Experiment!
 RegistletPanelEditButton	0	0	Edit Gem Case
 RegistletPanelEditButtonMes	0	0	Combine to enhance or turn into Gem Dust
-RegistletPanelEditMes	0	0	"Combine the same or different 
-Gem Case to [ffff64]enhance[ffffff].
-[ffff64]Break[ffffff] it down if not needed."
-RegistletPanelNoHaveMes	0	0	"No Gem Case owned.
-
-Play [ffff64]Stoodie's Experiment[ffffff] in 
-El Scaro to get some!"
+RegistletPanelEditMes	0	0	Combine the same or different \nGem Case to [ffff64]enhance[ffffff].\n[ffff64]Break[ffffff] it down if not needed.
+RegistletPanelNoHaveMes	0	0	No Gem Case owned.\n\nPlay [ffff64]Stoodie's Experiment[ffffff] in \nEl Scaro to get some!
 RegistletPanelReinforceButton	0	0	ENH
 RegistletPanelReinforceButtonMax	0	0	[ffff64]MAX[ffffff]
 RegistletPanelDetailButton	0	0	DET
 RegistletPanelBreakButton	0	0	BREAK
 RegistletPanelAlreadyEquipButton	0	0	[ffff64]Equipped[ffffff]
 RegistletPanelReinforceMes	0	0	[ffff64]Enhance this Gem Case.[ffffff]
-RegistletPanelReinforceNoMaterialMes	0	0	"No Gem Case owned to be
-used as material."
+RegistletPanelReinforceNoMaterialMes	0	0	No Gem Case owned to be\nused as material.
 RegistletPanelReinforceResultTitle	0	0	Prediction Result
 RegistletPanelReinforceNeedGemPowderNum	0	0	Required Gem Dust
 RegistletPanelReinforceDoButton	0	0	Enhance Now
@@ -6339,8 +4596,7 @@ RegistletPanelBreakDoButton	0	0	Break Down
 RegistletPanelBreakWait	0	0	Turning this Gem Case into Gem Dust...
 RegistletPanelBreakCancel	0	0	Cancel
 RegistletPanelBreakComplete	0	0	Obtained Gem Dust!
-RegistletPanelEquipNoGemCart	0	0	"No Gem Case
-can be equipped."
+RegistletPanelEquipNoGemCart	0	0	No Gem Case\ncan be equipped.
 RegistletPanelEquipThisEquip	0	0	Equip
 RegistletPanelEquipThisChange	0	0	Change
 RegistletPanelEquipRemove	0	0	Unequip
@@ -6608,11 +4864,7 @@ QuestPanelItemMes	0	0	Collect {0} (x{1}).
 QuestPanelKeyMes	0	0	"Rare Item ""{0}"""
 QuestPanelEnemySubdue	0	0	Achieved!
 QuestPanelHock	0	0	Owned
-QuestPanelDestroyLabel	0	0	"""{0}""
-
-The quest will be abandoned.
-OK?
-[888888]*You can accept the quest again."
+QuestPanelDestroyLabel	0	0	"""{0}""\n\nThe quest will be abandoned.\nOK?\n[888888]*You can accept the quest again."
 QuestPanelDestroyMissionLabel2	0	0	\nIf you abandon this mission,\nthe progress become that you completed\n[FFFF88]{0}[ffffff] and unable to return.
 QuestPanelDestroyButton	0	0	Abandon
 QuestPopUpConnectLabel	0	0	Waiting for connection.
@@ -6621,8 +4873,7 @@ QuestPopUpConnectfumbleText	0	0	Failed to connect. Try again?
 QuestPoPUpLabel	0	0	Quest Reward
 QuestReceivedReWard	0	0	[AA5555]You have received the reward.
 QuestPanelDestroyMissionLabel	0	0	You cannot abandon Story Mission.
-JournalPopUpText	0	0	"{0}: ""{1}""
-{2}: {3}/{4} Achieved!"
+JournalPopUpText	0	0	"{0}: ""{1}""\n{2}: {3}/{4} Achieved!"
 Mission	0	0	Story Mission
 Quest	0	0	Quest
 JournalPopUpMobText	0	0	{1}: {0}
@@ -6845,10 +5096,7 @@ EmotionPanelDisp	0	0	Show
 EmotionPanelFavorite	0	0	Favorite
 EmotionPanelDetail	0	0	Detailed
 EmotionPanelSimple	0	0	Simple
-EmotionPanelDescription	0	0	"[ffff64]Favorite[ffffff] the emotions to use
-them from the Emotion Bar.
-
-Tap the emotions to favorite."
+EmotionPanelDescription	0	0	[ffff64]Favorite[ffffff] the emotions to use\nthem from the Emotion Bar.\n\nTap the emotions to favorite.
 EmotionPanelSettingComplete	0	0	Complete
 EmotionPanelIconType0	0	0	A
 EmotionPanelIconType1	0	0	B
@@ -7491,17 +5739,9 @@ SkillComboTypeNoneText	0	0	No Settings
 SkillComboTypeStartText	0	0	First Skill
 SkillComboTypeRengekiText	0	0	Lowers MP Cost according to combo count.\nEach hitting streak during the same combo\nlowers the damage.
 SkillComboTypeThirdEyeText	0	0	Unless the target has a special status, at\nleast a Graze is guaranteed. The hit chance\ndepends on combo count. The combo is canceled\nif the target is still resistant to the given\nstatus ailment.
-SkillComboTypeFillingText	0	0	"Activates the skill without using MP but
-the damage will greatly be lowered.
-The damage of the following skills
-will also be lowered. If MP is still left,
-the MP cost of the last skill will increase."
-SkillComboTypeQuickText	0	0	"The movement for the skill gets faster.
-(Invalid for some skills.)"
-SkillComboTypeHardHitText	0	0	"The damage of the skill increases and
-the damage of the next skill decreases.
-If there is no skill next, the MP cost of
-this skill increases."
+SkillComboTypeFillingText	0	0	Activates the skill without using MP but\nthe damage will greatly be lowered.\nThe damage of the following skills\nwill also be lowered. If MP is still left,\nthe MP cost of the last skill will increase.
+SkillComboTypeQuickText	0	0	The movement for the skill gets faster.\n(Invalid for some skills.)
+SkillComboTypeHardHitText	0	0	The damage of the skill increases and\nthe damage of the next skill decreases.\nIf there is no skill next, the MP cost of\nthis skill increases.
 SkillComboTypeTenacityText	0	0	Uses HP to activate the skill even if there\nisn't enough MP.
 SkillComboTypeInvincibleText	0	0	The chance to become invincible depends on\ncombo count. If there are multiple invincible\neffects during the same combo, only the first\none may be activated.
 SkillComboTypeBloodSuckingText	0	0	Restores HP from inflicted damage according to\ncombo count. After using Bloodsucker, for 10\nseconds, HP will be used to raise skill power.
@@ -8414,16 +6654,13 @@ OptionScreenShotTypeSelectEx1	0	0	B
 OptionScreenShotTypeSelectEx2	0	0	A
 OptionScreenShotTypeLabel	0	0	Screenshot Settings
 OptionScreenShotTypeMes	0	0	Change the screenshot settings.
-ShortCutOptionPanelScreenShotPopUpMes	0	0	"Please note that you may not be
-able to take a screenshot properly
-depending on your device."
+ShortCutOptionPanelScreenShotPopUpMes	0	0	Please note that you may not be\nable to take a screenshot properly\ndepending on your device.
 ShortCutOptionPanelScreenShotPopUpTitle	0	0	Notification
 OptionPanelAccountRebootTitle	0	0	Changed the account settings.
 OptionPanelAccountRebootMessage	0	0	\n\n\nPlease restart Toram Online to\nreflect the changes.
 NameChangePanelTitle	0	0	You can change your character name with [ffff64]Orb x{0}[ffffff].
 NameChangePanelTitleWraing1	0	0	[ff0000]*The required Orbs will increase for 30 days after the change.
-NameChangePanelTitleWraing3	0	0	"[ff0000]*The required Orbs will increase for 30 days after the change.
-*{0} days have past since you changed the character name."
+NameChangePanelTitleWraing3	0	0	[ff0000]*The required Orbs will increase for 30 days after the change.\n*{0} days have past since you changed the character name.
 NameChangePanelTitleWraing2	0	0	[ffff64]*Note*\nYou cannot use the names that are already used.\nYou may not be able to change the name depending on\nthe character's condition.
 NameChangePanelButton	0	0	Confirm Name
 NameChangePanelWait	0	0	[ffff64]Changing the character name...\nIt will be completed when the progress bar is filled.
@@ -9027,9 +7264,7 @@ UserTargetPanelTradeMes2	0	0	\nFailed to trade with {0}.\n\nIt was canceled or\n
 UserTargetPanelTradeMes3	0	0	\nThe request was canceled because\nthe player was trading with another player.
 UserTargetPaneTradelButton2	0	0	Close
 UserTargetPanelPartyLabel	0	0	Invite to Party
-UserTargetPanelPartyMes	0	0	"Do you want to invite {0} to the party?
-
-If the player doesn't respond within\na certain time, it will be canceled."
+UserTargetPanelPartyMes	0	0	Do you want to invite {0} to the party?\n\nIf the player doesn't respond within\na certain time, it will be canceled.
 UserTargetPanelPartyButton	0	0	Invite
 UserTargetPanelPartyText	0	0	Let's go on an adventure together!!
 UserTargetPanelPartyError	0	0	\nThe party members reached the limit or\nthe player is already in the party.
@@ -9037,28 +7272,15 @@ UserTargetPanelPartyAuthorityError	0	0	You have no right.
 UserTargetPanelPartyAlreadyOtherPartyError	0	0	\nAlready in another party.
 UserTargetPanelPartyNotStateReceive	0	0	\nThe character may not be online or\ncannot receive invitations.
 UserTargetPanelGuildLabel	0	0	Invite to Guild
-UserTargetPanelGuildMes	0	0	"Do you want to invite {0} to the guild?
-
-If the player doesn't respond within\na certain time, it will be canceled."
+UserTargetPanelGuildMes	0	0	Do you want to invite {0} to the guild?\n\nIf the player doesn't respond within\na certain time, it will be canceled.
 UserTargetPanelGuildText	0	0	Why don't you join our guild?
-UserTargetPanelFriendMes	0	0	"Sending a friend request to {0}.
-
-The player will be added as a friend when
-the request is approved.
-The maximum number of the friends is 300.
-You cannot send the request if you or
-the player has 300 friends."
-UserTargetPanelFriendLimitMes	0	0	"Sending a friend request to {0}.
-
-The player will be added as a friend when the request is approved.
-You can have up to {1} friends.
-You cannot add a player as a friend if you or the player has reached the friend limit."
+UserTargetPanelFriendMes	0	0	Sending a friend request to {0}.\n\nThe player will be added as a friend when\nthe request is approved.\nThe maximum number of the friends is 300.\nYou cannot send the request if you or\nthe player has 300 friends.
+UserTargetPanelFriendLimitMes	0	0	Sending a friend request to {0}.\n\nThe player will be added as a friend when the request is approved.\nYou can have up to {1} friends.\nYou cannot add a player as a friend if you or the player has reached the friend limit.
 UserTargetPanelFriendText	0	0	Let's be friends!
 UserTargetPanelFriendSuccess	0	0	The friend request has been sent to {0}.
 UserTargetPanelFriendError	0	0	The player cannot receive the friend request.
 UserTargetPanelFriendAlreadyExist	0	0	The number of your friends reached the limit or\nthe player already is your friend.
-UserTargetPanelReportMes	0	0	"Report [{0}] for
-cheating or harassment?"
+UserTargetPanelReportMes	0	0	Report [{0}] for\ncheating or harassment?
 UserTargetPanelLabel3	0	0	Cheer
 UserTargetPanelMes3	0	0	{0} time(s) left
 UserTargetPanelLabel4	0	0	Trade
@@ -9152,8 +7374,7 @@ ChannelCommon	0	0	Medium
 ChannelCongestion	0	0	Heavy
 ChannelOver	0	0	Full
 ChannelNum	0	0	Channel
-WorldAdmissionDuring	0	0	"Current
-World"
+WorldAdmissionDuring	0	0	Current\nWorld
 WorldFullHouse	0	0	Full
 WorldMaintenance	0	0	[ff7777]Under\nMaintenance
 WorldClosed	0	0	[ff7777]Unavailable
@@ -9185,8 +7406,7 @@ NewsPanelGuildNewsMes	0	0	Guild News has been updated.
 NewsPanelShopSellout	0	0	Stall (Sold Out)
 NewsPanelShopSelloutMes	0	0	All the products in the stall have been sold out.
 NewsPanelBagMax	0	0	Your bag is full.
-NewsPanelBagMaxMes	0	0	"Your bag is full.
-At this rate, monsters won't drop anything."
+NewsPanelBagMaxMes	0	0	Your bag is full.\nAt this rate, monsters won't drop anything.
 NewsPanelTrophy	0	0	You've got Emblem.
 NewsPanelTrophyMes	0	0	You can receive the reward\nfrom the emblems.
 NewsPanelTrade	0	0	Trade Requests
@@ -9194,8 +7414,7 @@ NewsPanelTradeMes	0	0	You have trade request(s).
 NewsPanelAsobimoAccount	0	0	Transfer Registration
 NewsPanelAsobimoAccountMes	0	0	Log in via ASOBIMO Account and get the emblem!!
 NewsPanelScenarioItemWarrantIn	0	0	You missed loot.
-NewsPanelScenarioItemWarrantInMes	0	0	"Loot is in the temporary bag.
-The loot in the temporary bag is invalid."
+NewsPanelScenarioItemWarrantInMes	0	0	Loot is in the temporary bag.\nThe loot in the temporary bag is invalid.
 NewsPanelStampReward	0	0	You can get stamp reward.
 NewsPanelStampRewardMes	0	0	You can get stamp reward.
 NewsPanelBeginnerItem	0	0	Beginner Items on Sale!
@@ -9204,15 +7423,10 @@ NewsPanelQuestionnairePage	0	0	[ffff64]Answer Survey
 NewsPanelQuestionnairePageMes	0	0	[ffff64]Answer Survey
 StampNextReward	0	0	NEXT >>>
 StampRewardReceived	0	0	GET
-StampMessage	0	0	"You've got the stamp for today!
-If you consecutively log in for 5 days,
-you will get the rewards on the card!"
-StampMessageOneMore	0	0	"You've got the stamp for today!
-You've collected all the stamps for this month!"
+StampMessage	0	0	You've got the stamp for today!\nIf you consecutively log in for 5 days,\nyou will get the rewards on the card!
+StampMessageOneMore	0	0	You've got the stamp for today!\nYou've collected all the stamps for this month!
 StampMessageCarryOver	0	0	The stamp card has been updated.\nThe stamps last month will be taken over.
-StampMessageReceive	0	0	"Tap the icons and get the rewards!
-The prizes will disappear when
-the next stamp card is completed!!"
+StampMessageReceive	0	0	Tap the icons and get the rewards!\nThe prizes will disappear when\nthe next stamp card is completed!!
 StampGetTicketMessage	0	0	You received Orb Shard.
 StampReward	0	0	Stamp Reward
 StampRewardType1	0	0	EXP
@@ -9381,26 +7595,13 @@ SyntheticItemType21	0	0	Additional
 SyntheticItemType22	0	0	Special
 SyntheticItemType-1	0	0	Show All
 SyntheticMedicineBagAnyFullMessage	0	0	\nYour bag is almost full.\nYou may be unable to synthesize items.
-LibraryPanelWeaponSkill	0	0	"[ffff77][Learn Skills: Weapon]
-[ffffff]The essential skills for each weapon.
-Recommended to concentrate on 1 weapon!"
-LibraryPanelBattleSkill	0	0	"[ffff77][Learn Skills: Combat]
-[ffffff]You can learn the skills for combat.
-Recommended to concentrate on 1 weapon skill!"
-LibraryPanelStrongSkill	0	0	"[ffff77][Learn Skills: Buff]
-[ffffff]The skills to fight with advantage!
-Improve your shields and body armors!!"
-LibraryPanelBufSkill	0	0	"[ffff77][Learn Skills: Assist]
-[ffffff]They are useful on your adventure.
-Let's learn them if you have the skill points to spare!"
-LibraryPanelLifeSkill	0	0	"[ffff77][Learn Skills: Others]
-[ffffff]You can learn the skills for
-the stall and production.
-Not necessary in the beginning!"
-LibraryPanelMessage	0	0	"The number of {0}'s skills: {1}
-[ff0000]The more skills you learn, the more it costs to learn a new skill!"
-LibraryPanelUnlearned	0	0	"You can learn
-from Lv{0}."
+LibraryPanelWeaponSkill	0	0	[ffff77][Learn Skills: Weapon]\n[ffffff]The essential skills for each weapon.\nRecommended to concentrate on 1 weapon!
+LibraryPanelBattleSkill	0	0	[ffff77][Learn Skills: Combat]\n[ffffff]You can learn the skills for combat.\nRecommended to concentrate on 1 weapon skill!
+LibraryPanelStrongSkill	0	0	[ffff77][Learn Skills: Buff]\n[ffffff]The skills to fight with advantage!\nImprove your shields and body armors!!
+LibraryPanelBufSkill	0	0	[ffff77][Learn Skills: Assist]\n[ffffff]They are useful on your adventure.\nLet's learn them if you have the skill points to spare!
+LibraryPanelLifeSkill	0	0	[ffff77][Learn Skills: Others]\n[ffffff]You can learn the skills for\nthe stall and production.\nNot necessary in the beginning!
+LibraryPanelMessage	0	0	The number of {0}'s skills: {1}\n[ff0000]The more skills you learn, the more it costs to learn a new skill!
+LibraryPanelUnlearned	0	0	You can learn\nfrom Lv{0}.
 LibraryPanelPopWindowLabel	0	0	Learn [{0} Lv{1}].
 LibraryPanelPopWindowText	0	0	You will learn the skill available for [{0}].
 LibraryPanelPopWindowSellingPrice	0	0	Price: {0}S
@@ -9562,8 +7763,7 @@ MiniMailNGMailMes	0	0	\n\nProhibited word(s) found.
 MiniMailNoMemberMes	0	0	Mail Recipient,\n\n\n\nis not your friend or your guild member.\n\n[ffff64]Do not send your password or any other important information.[ffffff]\n[ffff64]Toram Operation Team will never ask you about it.[ffffff]
 MiniMailReplyNameChangeMes	0	0	\n\nUnable to reply to this mail as\nthe name of the sender has changed.
 GuildMenuMember	0	0	Guild Member Info
-GuildMenuMemberText	0	0	"You can confirm the guild members.
-Trade and Party requests available."
+GuildMenuMemberText	0	0	You can confirm the guild members.\nTrade and Party requests available.
 GuildMenuAnnounce	0	0	View Guild Notice
 GuildMenuAnnounceText	0	0	View Guild Notice
 GuildMenuBarRoom	0	0	Go to Guild Bar
@@ -10468,13 +8668,9 @@ PartyPanelPartyStyle4	0	0	Bosses
 PartyPanelPartyStyle5	0	0	Monsters
 PartyPanelPartyStyle6	0	0	Rare
 PartyPanelPartyCollectionWindowLabel	0	0	Look for Party
-PartyPanelPartyCollectionWindowText	0	0	"Write down your profile and
-wait for [ffff77]party invitation.
-[ffffff]When you receive the invitation,
-please check it from Menu > News."
+PartyPanelPartyCollectionWindowText	0	0	Write down your profile and\nwait for [ffff77]party invitation.\n[ffffff]When you receive the invitation,\nplease check it from Menu > News.
 PartyPanelPartySearchWindowLabel	0	0	Party Search
-PartyPanelPartySearchWindowText	0	0	"[ffff77] You can search the players that are looking for a party.
-[ffffff] Please note that the party can be already full when you send the request."
+PartyPanelPartySearchWindowText	0	0	[ffff77] You can search the players that are looking for a party.\n[ffffff] Please note that the party can be already full when you send the request.
 PartyPanelPartySearchWindowLevel	0	0	Average Level
 PartyPanelPartySearchWindowStyle	0	0	Party Style
 PartyPanelMemberSearchWindowLabel	0	0	Member Search
@@ -10482,8 +8678,7 @@ PartyPanelMemberSearchWindowText	0	0	You can [ffff77]invite the players who are 
 PartyPanelMemberSearchWindowLevel	0	0	Level
 PartyPanelMemberSearchWindowOK	0	0	Search
 PartyPanelMemberCollectionWindowLabel	0	0	Looking for Members
-PartyPanelMemberCollectionWindowText	0	0	"The players that are looking for a party can [ffff77]freely participate in it.
-Please note that you cannot decline the requests."
+PartyPanelMemberCollectionWindowText	0	0	The players that are looking for a party can [ffff77]freely participate in it.\nPlease note that you cannot decline the requests.
 NewsPanelParty	0	0	Party Invitation {0}
 NewsPanelPartyMes	0	0	You have {0} party invitation(s).
 SystemPartyMessageInvitation	0	0	[FF0000]Invite to Party: {0} has been invited to the party.
@@ -10668,28 +8863,15 @@ SmithStrengthSupport	0	0	Refine Support Item
 SmithReconstructionTitle	0	0	Remodel Armor ({0})
 SmithReconstructionSelectItemGuide	0	0	This will be remodeled.
 SmithReconstructionLightTitle	0	0	Improve Dodge
-SmithReconstructionLightExplanation	0	0	"- Dodge rate increases!
-
-- Attack speed increases!
-
-[ff7777]- Physical defense decreases!
-
-- Magic defense decreases!"
+SmithReconstructionLightExplanation	0	0	- Dodge rate increases!\n\n- Attack speed increases!\n\n[ff7777]- Physical defense decreases!\n\n- Magic defense decreases!
 SmithReconstructionLightButton	0	0	Light
 SmithReconstructionWeightTitle	0	0	Improve Defense
-SmithReconstructionWeightExplanation	0	0	"- Physical defense increases!
-
-- Magic defense increases!
-
-[ff7777]- Dodge rate decreases!
-
-- Attack speed decreases!"
+SmithReconstructionWeightExplanation	0	0	- Physical defense increases!\n\n- Magic defense increases!\n\n[ff7777]- Dodge rate decreases!\n\n- Attack speed decreases!
 SmithReconstructionWeightButton	0	0	Heavy
 SmithReconstructionCheckWindowTitle	0	0	Armor Remodeling
 SmithReconstructionCheckWindowTypeGuideLight	0	0	The weight will become [ffff77]light[ffffff].
 SmithReconstructionCheckWindowTypeGuideWeight	0	0	The weight will become [ffff77]heavy[ffffff].
-SmithReconstructionCheckWindowWarning	0	0	"[ff7777]You cannot take it back
-after remodeling!"
+SmithReconstructionCheckWindowWarning	0	0	[ff7777]You cannot take it back\nafter remodeling!
 SmithReconstructionCheckWindowSpinaGuide	0	0	It costs {0}S.
 SmithReconstructionCompleteWindowTitle	0	0	Armor remodeling completed!
 SmithReconstructionCompleteWindowTypeGuideWeight	0	0	The following armor became heavy!
@@ -10700,10 +8882,7 @@ PopUpWindowComplete	0	0	Complete
 SmithReconstructionCompleteWindowLabel2	0	0	Physical defense increases.
 SmithReconstructionCompleteWindowLabel3	0	0	Magic defense increases.
 SmithReconstructionMissWindowTitle	0	0	It cannot be remodeled...
-SmithReconstructionMissWindowLabel	0	0	"The equipped armor has already been
-remodeled or is not remodelable.
-
-You can only remodel the equipped armor."
+SmithReconstructionMissWindowLabel	0	0	The equipped armor has already been\nremodeled or is not remodelable.\n\nYou can only remodel the equipped armor.
 SmithGrantTitle	0	0	Customize Equipment ({0})
 SmithGrantInfoWindowTitle	0	0	Recipe for Customization
 SmithGrantInfoWindowList1Potential	0	0	Potential {0}
@@ -10716,12 +8895,7 @@ SmithGrantInfoWindowList2StartButton	0	0	Start!
 SmithGrantInfoWindowList3ConsumptionPontentialMessageLabel	0	0	[ffff77]Remaining [ffffff]/ Potential [808080]（Cost)
 SmithGrantInfoWindowSetWeaponEmpty	0	0	Item not equipped.
 PopUpWindowDecision	0	0	OK
-SmithGrantWarningWindowMessage	0	0	"The potential is not enough,
-so some abilities may not be
-attached!
-
-In worst cases, the attached
-abilities may disappear..."
+SmithGrantWarningWindowMessage	0	0	The potential is not enough,\nso some abilities may not be\nattached!\n\nIn worst cases, the attached\nabilities may disappear...
 SmithGrantWarningWindowTitle	0	0	It may fail!
 SmithGrantWarningWindowStrikeRate	0	0	[ff7777]Success Rate: {0}%
 SmithGrantInfoWindowCheckPotentialMessageLabel	0	0	-- Potential --
@@ -10735,8 +8909,7 @@ SmithProcessingPointLack	0	0	The materials are not enough.
 SmithManufactureCost	0	0	You paid a {0} fee!
 SmithManufactureSlot	0	0	Slot: {0}
 SmithManufacturePotential	0	0	Potential: {0}
-SmithManufactureExp	0	0	"Blacksmith Proficiency increased
-by {0}%."
+SmithManufactureExp	0	0	Blacksmith Proficiency increased\nby {0}%.
 SynthesizeExp	0	0	Synthesis Proficiency has increased by {0}%.
 SmithManufactureExpZero	0	0	[FF7777]Failed to acquire Blacksmith Proficiency.
 SynthesizeExpZero	0	0	[FF7777]Failed to acquire Synthesis Proficiency.
@@ -10826,8 +8999,7 @@ SmithBonusPropertiesCategory8	0	0	Enhance Critical
 SmithBonusPropertiesCategory9	0	0	Enhance Elements
 SmithBonusPropertiesCategory10	0	0	Special Enhancement
 SmithBonusPropertiesCategory11	0	0	Awaken Elements
-SmithItemNotFound	0	0	"Not enough items to refine.
-(Tap ""Back"" button on the top left.)"
+SmithItemNotFound	0	0	"Not enough items to refine.\n(Tap ""Back"" button on the top left.)"
 NotUse	0	0	Don't Use
 SmithManufactureSelectCategory	0	0	[ffff77]Select the creation category.
 SmithGrantEmptySlot	0	0	[ffff77]You can set the abilities.
@@ -10971,38 +9143,13 @@ RecreateExitMessage	0	0	Cancel creation and return?
 RecreateExitTitle	0	0	OK
 RecreateRecipeTypeBody	0	0	Body
 EquipAdviceLabel	0	0	Let's change the equipment!
-EquipAdviceText	0	0	"It's useless keeping your weapons and armors in the bag.
-[ffff64]You need to equip weapons and armors to use them[ffffff].
-
-You can get equipment from monsters and
-create it at Blacksmiths'.
-
-Let's equip weapons and armors you like!
-
-▼Check Equipment Now!"
+EquipAdviceText	0	0	It's useless keeping your weapons and armors in the bag.\n[ffff64]You need to equip weapons and armors to use them[ffffff].\n\nYou can get equipment from monsters and\ncreate it at Blacksmiths'.\n\nLet's equip weapons and armors you like!\n\n▼Check Equipment Now!
 StatusAdviceLabel	0	0	Build your character!
-StatusAdviceText	0	0	"Let's build up your character with these points!
-
-You will be required to use [ffff64][Reset Book][ffffff], so
-please consider before distributing the points.
-
-
-
-▼Build Character Now!"
+StatusAdviceText	0	0	Let's build up your character with these points!\n\nYou will be required to use [ffff64][Reset Book][ffffff], so\nplease consider before distributing the points.\n\n\n\n▼Build Character Now!
 SkillAdviceLabel	0	0	Let's learn skills!
-SkillAdviceText	0	0	"When you level up, you will get [ffffcc][Skill Points][ffffff].
-You can learn new skills and level up the skills
-by distributing the skill points.
-
-[ffffcc][Book of Oblivion][ffffff] is required to take back
-the points, so please consider before distributing.
-
-▼Learn Skills Now!"
+SkillAdviceText	0	0	When you level up, you will get [ffffcc][Skill Points][ffffff].\nYou can learn new skills and level up the skills\nby distributing the skill points.\n\n[ffffcc][Book of Oblivion][ffffff] is required to take back\nthe points, so please consider before distributing.\n\n▼Learn Skills Now!
 QuestAdviceLabel	0	0	Report the quests!
-QuestAdviceText	0	0	"You have completed quest(s).
-You can receive the reward by reporting them.
-
-▼Confirm Quests Completed!"
+QuestAdviceText	0	0	You have completed quest(s).\nYou can receive the reward by reporting them.\n\n▼Confirm Quests Completed!
 FrendAdviceLabel	0	0	Let's make friends!
 FrendAdviceText	0	0	Go on an adventure with your friends!
 PartyAdviceLabel	0	0	Form a party and cooperate!
@@ -11010,160 +9157,49 @@ PartyAdviceText	0	0	Let's go defeat powerful bosses with party members!
 GuildAdviceLabel	0	0	"What is ""Guild""?"
 GuildAdviceText	0	0	Let's make a community with other players!
 CrowdedAdviceLabel	0	0	There are too many players...
-CrowdedAdviceText	0	0	"If the channel you are in is too crowded,
-you might want to switch the channel.
-
-The channels will be added automatically
-when they get crowded.
-[ffff64]If you can't see your friend in the same map,
-the player can be in the different channel.[ffffff]
-
-▼Switch Channel Now!"
+CrowdedAdviceText	0	0	If the channel you are in is too crowded,\nyou might want to switch the channel.\n\nThe channels will be added automatically\nwhen they get crowded.\n[ffff64]If you can't see your friend in the same map,\nthe player can be in the different channel.[ffffff]\n\n▼Switch Channel Now!
 GuildBarLabel	0	0	"Let's go to ""Guild Bar""!"
 GuildBarText	0	0	Someone can be in the guild bar!
 MyRoomLabel	0	0	Let's go to your room!
 MyRoomText	0	0	You need to go back to your room and take a rest　sometimes!
 SaveDataLabel	0	0	How to Save Your Data
-SaveDataText	0	0	"The game data are automatically saved.
-Please ""Log Out"" of the game to prevent
-data corruption when you close the app.
-
-
-If you delete the app, change or lose the device,
-you may not be able to restore the data.
-You can continue to play the game after you
-change the device by using [ffff64][Account Settings][ffffff]."
+SaveDataText	0	0	"The game data are automatically saved.\nPlease ""Log Out"" of the game to prevent\ndata corruption when you close the app.\n\n\nIf you delete the app, change or lose the device,\nyou may not be able to restore the data.\nYou can continue to play the game after you\nchange the device by using [ffff64][Account Settings][ffffff]."
 EmotionAdviceLabel	0	0	Let's sit down!
-EmotionAdviceText	0	0	"When you use [ffff64][Sit][ffffff] from Emotion,
-the recovery speed of HP and MP will be doubled!
-[64ffff]*[Seiza] has the same effect[ffffff].
-
-Take a rest when you are exhausted!
-
-▼Let's Sit Down Now!"
+EmotionAdviceText	0	0	When you use [ffff64][Sit][ffffff] from Emotion,\nthe recovery speed of HP and MP will be doubled!\n[64ffff]*[Seiza] has the same effect[ffffff].\n\nTake a rest when you are exhausted!\n\n▼Let's Sit Down Now!
 AutoItemAdviceLabel	0	0	Let's set Auto-Item!
-AutoItemAdviceText	0	0	"If you set a recovery items on Auto-Item,
-it will be automatically used when your
-HP becomes low.
-[ffff64]You can set HP Recovery Items such as Revita[ffffff].
-
-When your HP becomes less than 25% of max,
-the item will be used by default.
-You can set the timing as you wish.
-
-▼Set Up Now!"
+AutoItemAdviceText	0	0	If you set a recovery items on Auto-Item,\nit will be automatically used when your\nHP becomes low.\n[ffff64]You can set HP Recovery Items such as Revita[ffffff].\n\nWhen your HP becomes less than 25% of max,\nthe item will be used by default.\nYou can set the timing as you wish.\n\n▼Set Up Now!
 TargetAdviceLabel	0	0	Target the furthest enemy!
-TargetAdviceText	0	0	"If you are using a bow or bowgun,
-you might want to change the settings
-to target the furthest enemy.
-
-This settings can be useful when
-you use magic.
-
-▼Change Settings Now!"
+TargetAdviceText	0	0	If you are using a bow or bowgun,\nyou might want to change the settings\nto target the furthest enemy.\n\nThis settings can be useful when\nyou use magic.\n\n▼Change Settings Now!
 ControlAdviceLabel	0	0	Let's adjust controls!
-ControlAdviceText	0	0	"You can set shortcut buttons, change
-camera controls and sensitivity from
-System Settings.
-
-You can stop camera rotation while
-targeting, and preferentially target
-the furthest enemy.
-
-
-▼Change Settings Now!"
+ControlAdviceText	0	0	You can set shortcut buttons, change\ncamera controls and sensitivity from\nSystem Settings.\n\nYou can stop camera rotation while\ntargeting, and preferentially target\nthe furthest enemy.\n\n\n▼Change Settings Now!
 CameraAdviceLabel	0	0	Stop Autofocus
-CameraAdviceText	0	0	"When you target an object, the camera
-will automatically focus on it, however,
-you can stop this action from [ffff64][Autofocus][ffffff]
-in System Settings.
-
-Please switch off Autofocus if the camera
-action is annoying.
-
-▼Switch Off Now!"
-CameraAdviceNewText	0	0	"When you target an object, the camera
-will automatically focus on it, however,
-you can stop this action from\n[ffff64][Point the camera when targeting.][ffffff]
-in System Settings.
-
-Please switch off Autofocus if the camera
-action is annoying.
-
-▼Switch Off Now!"
+CameraAdviceText	0	0	When you target an object, the camera\nwill automatically focus on it, however,\nyou can stop this action from [ffff64][Autofocus][ffffff]\nin System Settings.\n\nPlease switch off Autofocus if the camera\naction is annoying.\n\n▼Switch Off Now!
+CameraAdviceNewText	0	0	When you target an object, the camera\nwill automatically focus on it, however,\nyou can stop this action from\n[ffff64][Point the camera when targeting.][ffffff]\nin System Settings.\n\nPlease switch off Autofocus if the camera\naction is annoying.\n\n▼Switch Off Now!
 GraphicAdviceLabel	0	0	Let's hide other players!
-GraphicAdviceText	0	0	"If you feel the game performance is low
-because too many players are around you,
-you can [ffff64]hide other players[ffffff] and improve
-the game performance.
-
-If you are in a party, you may be able to
-play the game comfortably by switching
-off all the settings.
-
-▼Try It Now!"
+GraphicAdviceText	0	0	If you feel the game performance is low\nbecause too many players are around you,\nyou can [ffff64]hide other players[ffffff] and improve\nthe game performance.\n\nIf you are in a party, you may be able to\nplay the game comfortably by switching\noff all the settings.\n\n▼Try It Now!
 ComboAdviceLabel	0	0	Get Combo!
-ComboAdviceText	0	0	"If you obtain Combo,
-you can use a lot of skills more easily.
-
-There are special abilities for Combo:
--Reduce MP Cost.
--Increase damage dealt.
--Quickly activate skills.
-and more!
-
-▼How to Obtain Combo
-  [ffff64]Learn 5 types of skills to obtain Combo.[ffffff]"
+ComboAdviceText	0	0	If you obtain Combo,\nyou can use a lot of skills more easily.\n\nThere are special abilities for Combo:\n-Reduce MP Cost.\n-Increase damage dealt.\n-Quickly activate skills.\nand more!\n\n▼How to Obtain Combo\n  [ffff64]Learn 5 types of skills to obtain Combo.[ffffff]
 PartnerAdviceLabel	0	0	Let's Call Help!
-PartnerAdviceText	0	0	"[ffff64]You can call your another character[ffffff]
-[ffff64]as a party member.[ffffff]
-
-You can call a character in
-the Switch Character screen.
-
-▼Accompany Now"
+PartnerAdviceText	0	0	[ffff64]You can call your another character[ffffff]\n[ffff64]as a party member.[ffffff]\n\nYou can call a character in\nthe Switch Character screen.\n\n▼Accompany Now
 HouseAddPartitionLabel	0	0	Blocking the stray monsters!
 HouseAddPartitionAdviceLabel	0	0	Blocking the stray monsters!
-HouseAddPartitionAdviceText	0	0	"[ffff64]The periphery is set as inside the room![ffffff]
-
-Stray monsters will not be able to
-visit your land with the current condition.
-
-If you want to make stray monsters your pets,
-please make at least 1 square at the periphery."
+HouseAddPartitionAdviceText	0	0	[ffff64]The periphery is set as inside the room![ffffff]\n\nStray monsters will not be able to\nvisit your land with the current condition.\n\nIf you want to make stray monsters your pets,\nplease make at least 1 square at the periphery.
 HouseAddPartitionItem	0	0	Partition Settings
 HouseSetGardenItemLabel	0	0	Let's decorate the garden!
 HouseSetGardenItemAdviceLabel	0	0	Let's decorate the garden!
-HouseSetGardenItemAdviceText	0	0	"Are you satisfied with your garden?
-[ffff64]Let's put some decorations at your garden![ffffff]
-
-[ffff64]The required materials for decorations will be
-reduced from the second time you make.[ffffff]"
+HouseSetGardenItemAdviceText	0	0	Are you satisfied with your garden?\n[ffff64]Let's put some decorations at your garden![ffffff]\n\n[ffff64]The required materials for decorations will be\nreduced from the second time you make.[ffffff]
 HouseSetGardenItem	0	0	Manage Garden
 HouseSetRoomItemLabel	0	0	Let's put furniture!
 HouseSetRoomItemAdviceLabel	0	0	Let's put furniture!
-HouseSetRoomItemAdviceText	0	0	"Isn't your room too simple?
-[ffff64]Let's make furniture and put it in your room![ffffff]
-
-[ffff64]The required materials for furniture will be[ffffff]
-reduced from the second time you make."
+HouseSetRoomItemAdviceText	0	0	Isn't your room too simple?\n[ffff64]Let's make furniture and put it in your room![ffffff]\n\n[ffff64]The required materials for furniture will be[ffffff]\nreduced from the second time you make.
 HouseSetRoomItem	0	0	Manage Furniture
 HouseCreateRoomLabel	0	0	Let's build a house!
 HouseCreateRoomAdviceLabel	0	0	Let's build a house!
-HouseCreateRoomAdviceText	0	0	"There is only a garden on your land!
-Let's change [ffff64]settings for inside and outside
-the room[ffffff] with Partition Settings!
-
-Don't forget to put a door on your house!"
+HouseCreateRoomAdviceText	0	0	There is only a garden on your land!\nLet's change [ffff64]settings for inside and outside\nthe room[ffffff] with Partition Settings!\n\nDon't forget to put a door on your house!
 HouseCreateRoom	0	0	Partition Settings
 HouseCreateHouseLabel	0	0	Let's remodel your house!
 HouseCreateHouseAdviceLabel	0	0	Let's remodel your house!
-HouseCreateHouseAdviceText	0	0	"Would you like to remodel your house?
-Of course, you can change the wallpaper and floor!
-
-Compared to furniture, more materials are needed.
-However, you can change any number of times once
-you create them."
+HouseCreateHouseAdviceText	0	0	Would you like to remodel your house?\nOf course, you can change the wallpaper and floor!\n\nCompared to furniture, more materials are needed.\nHowever, you can change any number of times once\nyou create them.
 HouseCreateHouse	0	0	Remodel House
 StylistSeletStylist	0	0	{0}の変更
 StylistUseItemStorage	0	0	ー　アイテムの消費　－
@@ -11172,16 +9208,14 @@ StylistUseItemStorageShop	0	0	店負担
 StylistSeletStylistParts	0	0	ー　{0}を選択してください　－
 StylistUseItemList	0	0	消費予定アイテム
 StylistName	0	0	スタイリスト名
-StylistPossibleNum	0	0	"ヘアメイク可能回数
-　あと　{0}回　　来店数　{1}/{2}"
+StylistPossibleNum	0	0	ヘアメイク可能回数\n　あと　{0}回　　来店数　{1}/{2}
 StylistEnter	0	0	内容決定!!
 StylistNeedItem	0	0	必要アイテム
 StylistNeedItemNum	0	0	[000000]{0}個持っています
 StylistNeedItemCoin	0	0	[000000]{0}を１つ使って利用できます
 StylistNeedCoin	0	0	ご利用スピナ
 StylistCanNotItem	0	0	利用できません
-StylistCanNotItemMessage	0	0	"[ff0000]スタイリストが必要なアイテムを
-所持していないか,売り切れました"
+StylistCanNotItemMessage	0	0	[ff0000]スタイリストが必要なアイテムを\n所持していないか,売り切れました
 StylistHair	0	0	前髪
 StylistHead	0	0	後ろ髪
 StylistHairTail	0	0	尻尾髪
@@ -11199,20 +9233,17 @@ WarehouseButtonName	0	0	[Item Storage {0}:{1}]
 WarehouseButtonNameLock	0	0	Not Released
 WarehouseButtonNameDefault	0	0	Message
 WarehouseButtonMessageDefault	0	0	Tap to use the storage.
-WarehouseButtonMessageLock	0	0	"You don't have the right to use the storage.
-You can unlock it by tapping."
+WarehouseButtonMessageLock	0	0	You don't have the right to use the storage.\nYou can unlock it by tapping.
 WarehouseButtonSlot	0	0	Capacity {0}/{1}
 WarehouseInputNameLabel	0	0	- Storage Name
 WarehouseInputNameText	0	0	Please enter the name of the storage.
 WarehouseInputMessageLabel	0	0	- Storage Description
 WarehouseInputButton	0	0	Update
 WarehouseSelectedPickUp	0	0	Withdraw
-WarehouseSelectedPickUpMax	0	0	"Withdraw
-Your bag is full!"
+WarehouseSelectedPickUpMax	0	0	Withdraw\nYour bag is full!
 WarehouseSelectedCustom	0	0	Edit
 WarehouseSelectedPutIn	0	0	Deposit
-WarehouseSelectedPutInMax	0	0	"Deposit
-The storage is full."
+WarehouseSelectedPutInMax	0	0	Deposit\nThe storage is full.
 WarrantyItemBagErrLabel	0	0	Notice
 WarrantyItemBagErrText	0	0	Your bag is full.
 ItemPanelPopUpUseLabel	0	0	Use Items
@@ -11238,14 +9269,9 @@ ItemPanelChangePanel	0	0	Change
 ItemPanelLock	0	0	Lock
 ItemPanelUnLock	0	0	Unlock
 ItemPanelPopUpLockLabel	0	0	Lock Items
-ItemPanelPopUpLockMessage	0	0	"{0} will be locked.
-You cannot delete,
-process and trade it
-until it is unlocked."
+ItemPanelPopUpLockMessage	0	0	{0} will be locked.\nYou cannot delete,\nprocess and trade it\nuntil it is unlocked.
 ItemPanelPopUpUnLockLabel	0	0	Unlock Items
-ItemPanelPopUpUnLockMessage	0	0	"{0} will be unlocked.
-You can delete, process
-and trade it."
+ItemPanelPopUpUnLockMessage	0	0	{0} will be unlocked.\nYou can delete, process\nand trade it.
 ItemPanelPopUpDeleteButton	0	0	Discard
 ItemPanelPopUpDeleteRefineLabel	0	0	[ff3333]The refinement value of the item is {0}.
 ItemPanelPopUpDeleteCristaLabel	0	0	[ff3333]{0} is equipped.
@@ -11253,31 +9279,18 @@ ItemPanelPopUpDeleteEquipLabel	0	0	[C8C800]{0} [ffffff] will be discarded.
 ItemPanelPopUpDeleteItemLabel	0	0	[C8C800]{0} [ffffff] x{1} will be discarded.
 ItemPanelPopUpDeleteTextLabel	0	0	You cannot take back the discarded items!
 ItemPanelPopUpDeleteCristaSlotLabel	0	0	[ff3333]The item has Slot: {0}.
-ItemPanelBattleChangeErrLabel	0	0	"You are in combat.\n
-Failed to change the equipment."
+ItemPanelBattleChangeErrLabel	0	0	You are in combat.\n\nFailed to change the equipment.
 ItemPanelPopUpUnEquipLabel	0	0	Unequip
 ItemPanelPopUpUnEquipText	0	0	Will you unequip {0}?
 BuyNewItemSlot	0	0	Buy New Item Slots
 BuyNewItemSlotText	0	0	You purchased new item slot(s).
 BuyNewItemSlotTextErr	0	0	Failed to purchase new item slot(s).
-BuyNewItemBagSlotText	0	0	"Use ""Orb"" x{0}
-
-Owned: {1}
-
-[FFFF99]You can add a new item slot."
-BuyNewItemStorageSlotText	0	0	"Use ""Orb"" x{0}
-
-Owned: {1}
-
-[FFFF99]You can add 5 new item slots."
+BuyNewItemBagSlotText	0	0	"Use ""Orb"" x{0}\n\nOwned: {1}\n\n[FFFF99]You can add a new item slot."
+BuyNewItemStorageSlotText	0	0	"Use ""Orb"" x{0}\n\nOwned: {1}\n\n[FFFF99]You can add 5 new item slots."
 BuyNewStorageText	0	0	Purchased New Storage
 BuyNewStorageTextErr	0	0	Failed to purchase a new storage.
 StoragePanelNewBuyPopUpTitle	0	0	Purchase New Storage
-StoragePanelNewBuyPopUp	0	0	"Use ""Orb"" x{0}
-
-Owned: {1}
-
-[FFFF99]Buying a new storage with 10 item slots."
+StoragePanelNewBuyPopUp	0	0	"Use ""Orb"" x{0}\n\nOwned: {1}\n\n[FFFF99]Buying a new storage with 10 item slots."
 StorageEditOverPopUpTitle	0	0	Name Too Long
 StorageEditOverPopUpText	0	0	The number of the letters\nexceeded the limit.
 ItemPanelPopUpDeleteEquipMessage	0	0	You cannot discard equipped items.
@@ -11285,9 +9298,7 @@ ItemPanelPopUpDeleteIndefeasibleMessage	0	0	You cannot discard {0}.
 ItemPanelPopUpDeleteLockMessage	0	0	{0} is locked.\nYou cannot discard locked items.
 BagPanelAddSlotMaxText	0	0	\n\nYou have the maximum number of slots.\nYou cannot buy any more slots.
 BagPanelAddSlotWindowButtonErr	0	0	[ff0000]You cannot buy any more slots.
-EquipPanelRecycleGoldOverMessage	0	0	"*You can carry up to 2.1 billion Spinas.
- If you win Spinas by recycling,
- the exceeded Spinas will be lost!"
+EquipPanelRecycleGoldOverMessage	0	0	*You can carry up to 2.1 billion Spinas.\n If you win Spinas by recycling,\n the exceeded Spinas will be lost!
 ItemPanelNextButton	0	0	Next
 MapPanelRestItemAddBuyOrbNum	0	0	Create Orb
 ItemBagPanelOrbAddSlot	0	0	Add Inventory Slot
@@ -11352,13 +9363,7 @@ UIItemScrollListNonFilterNumLabel0	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterNumLabel1	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterNumLabel2	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterMessageLabel	0	0	[ffff00]Only rare items will be kept in the temporary bag when your inventory is full.\nMonsters won't drop items while there are items in the temporary bag.
-BuyNewItemBagSlotNumText	0	0	"Use Orb x{0}
-
-Owned: {1}
-
-[FFFF99]You can add 1 new slot.
-
-{2} → {3}"
+BuyNewItemBagSlotNumText	0	0	Use Orb x{0}\n\nOwned: {1}\n\n[FFFF99]You can add 1 new slot.\n\n{2} → {3}
 ItemBagPanelFavoriteItem	0	0	Favorites
 ItemBagPanelAutoDeleteOption	0	0	[aaaaaa]AUTO\nSettings
 ItemBagPanelDisplayOption	0	0	View All Category
@@ -11394,11 +9399,7 @@ OrbServiceErrorText	0	0	\nFailed to purchase the service.\n\nCheck your Internet
 OrbShopConnectErrorTitle	0	0	Connection Failure
 OrbShopConnectErrorText	0	0	Failed to connect.\n\nPlease check your connection.\nPlease contact us if the problem still persists.
 OrbBuyPanelCreateOrbLabel	0	0	Create Orb
-OrbBuyPanelCreateOrbText	0	0	"Use ""Orb Shard"" x100
-
-Owned: {0}
-
-You can create ""Orb"" x1."
+OrbBuyPanelCreateOrbText	0	0	"Use ""Orb Shard"" x100\n\nOwned: {0}\n\nYou can create ""Orb"" x1."
 OrbBuyPanelCreateOrbSuccessText	0	0	"You have created ""Orb"" x1."
 OrbGachaItemNameText	0	0	{0} x{1}
 OrbLuckBagInfoText	0	0	{0} Types
@@ -11409,11 +9410,7 @@ OrbShopPanelBuyCopyText	0	0	Purchasing this digital item serves as a license.\nB
 OrbBuyPanelBuyCopyText	0	0	Purchasing this digital item serves as a license.\nBy proceeding with your purchase,\nyou agree to the terms of use.
 OrbBuyPanelCreateTicketLabel	0	0	Exchange Ticket Pieces
 OrbBuyPanelCreateTicketButton	0	0	Exchange
-OrbBuyPanelCreateTicketText	0	0	"You will use Ticket Piece x100.
-
-Owned: x{0}
-
-You can exchange them for Avatar Ticket x1."
+OrbBuyPanelCreateTicketText	0	0	You will use Ticket Piece x100.\n\nOwned: x{0}\n\nYou can exchange them for Avatar Ticket x1.
 OrbBuyPanelCreateTicketSuccessText	0	0	You got Avatar Ticket x1.
 OrbBuyPanelCreateTicketButton	0	0	Exchange
 OrbBuyPanelCreateTicketErrText	0	0	Failed to exchange them for\nAvatar Ticket x1.
@@ -11513,18 +9510,8 @@ OrbShopPanelBuyCourseEntryText	0	0	Purchased
 OrbShopPanelGachaStackNum	0	0	Open x{0}
 OrbShopPanelGachaStackNumSide	0	0	Open\nx{0}
 OrbShopPanelGachaOrbNum	0	0	Orb x{0}
-OrbShopPanelGachaListMessage	0	0	"*The number of ★ shows the rarity of
- the items. The winning rates get lower
- as the number of ★ increases.
- Also, the winning rates will differ from
- item to item even if the items have 
- same number of ★."
-OrbShopPanelGachaListMessageV2	0	0	"*The number of ★ shows the rarity of
- the items. The winning rates get lower
- as the number of ★ increases.
- Also, the winning rates will differ from
- item to item even if the items have 
- same number of ★."
+OrbShopPanelGachaListMessage	0	0	*The number of ★ shows the rarity of\n the items. The winning rates get lower\n as the number of ★ increases.\n Also, the winning rates will differ from\n item to item even if the items have \n same number of ★.
+OrbShopPanelGachaListMessageV2	0	0	*The number of ★ shows the rarity of\n the items. The winning rates get lower\n as the number of ★ increases.\n Also, the winning rates will differ from\n item to item even if the items have \n same number of ★.
 OrbShopPanelGachaItemViewInfoPercent	0	0	{0:F4}
 OrbShopPanelGachaItemViewInfoPercent2	0	0	  xxx.xxx%
 AvatarEquipRecycleErr	0	0	Recycling Unavailable
@@ -11535,49 +9522,7 @@ EquipPanelPopUpAvatarRecycleText	0	0	[C8C800]{0} [ffffff]will be recycled.
 EquipPanelPopUpAvatarRecycleMessage	0	0	The recycled item will be lost!
 EquipPanelAvatarRecycleButton	0	0	Recycle
 EquipPanelAvatarRecycleItemCheckText	0	0	You may get one item from the following items.
-EquipPanelAvatarRecycleItemCheckText2	0	0	"              - EXP
-              - Spina: 1,000S
-              - Spina: 2,000S
-              - Spina: 3,000S
-              - Spina: 4,000S
-              - Spina: 5,000S
-              - Spina: 6,000S
-              - Spina: 7,000S
-              - Spina: 8,000S
-              - Spina: 9,000S
-              - Spina: 10,000S
-              - Fine Iron x10
-              - Fine Damascus x5
-              - Fine Mithril x3
-              - Fine Orihalcum x1
-              - Tattered Catalog x3
-              - Tattered Catalog x6
-              - Tattered Catalog x9
-              - Light Shard x10
-              - Light Shard x30
-              - Light Shard x50
-              - Colored Shard x10
-              - Colored Shard x30
-              - Colored Shard x50
-              - [ffff64]Insurance Ticket (100%)[ffffff] x1
-              - [ffff64]Refinement Ticket (200%)[ffffff] x1
-              - [ffff64]Refinement Ticket (300%)[ffffff] x1
-              - [ffff64]Smith's Hammer[ffffff] x1
-              - [ffff64]Infinity Gem[ffffff] x1
-              - [ffff64]Resurrection Gem[ffffff] x1
-              - [ffff64]Rare Drop Gem[ffffff] x1
-              - [ffff64]Super Rare Drop Gem[ffffff] x1
-              - [ffff64]Legendary Gem[ffffff] x1
-              - [ffff64]Ultimate Gem[ffffff] x1
-
-*The amount of EXP depends on
- the level of the current character.
-
-*The item will not be recycled into EXP
- if the current character reaches Level Cap.
-
-*The item will not be recycled into Spina
- if you have 2,100,000,000 Spinas."
+EquipPanelAvatarRecycleItemCheckText2	0	0	              - EXP\n              - Spina: 1,000S\n              - Spina: 2,000S\n              - Spina: 3,000S\n              - Spina: 4,000S\n              - Spina: 5,000S\n              - Spina: 6,000S\n              - Spina: 7,000S\n              - Spina: 8,000S\n              - Spina: 9,000S\n              - Spina: 10,000S\n              - Fine Iron x10\n              - Fine Damascus x5\n              - Fine Mithril x3\n              - Fine Orihalcum x1\n              - Tattered Catalog x3\n              - Tattered Catalog x6\n              - Tattered Catalog x9\n              - Light Shard x10\n              - Light Shard x30\n              - Light Shard x50\n              - Colored Shard x10\n              - Colored Shard x30\n              - Colored Shard x50\n              - [ffff64]Insurance Ticket (100%)[ffffff] x1\n              - [ffff64]Refinement Ticket (200%)[ffffff] x1\n              - [ffff64]Refinement Ticket (300%)[ffffff] x1\n              - [ffff64]Smith's Hammer[ffffff] x1\n              - [ffff64]Infinity Gem[ffffff] x1\n              - [ffff64]Resurrection Gem[ffffff] x1\n              - [ffff64]Rare Drop Gem[ffffff] x1\n              - [ffff64]Super Rare Drop Gem[ffffff] x1\n              - [ffff64]Legendary Gem[ffffff] x1\n              - [ffff64]Ultimate Gem[ffffff] x1\n\n*The amount of EXP depends on\n the level of the current character.\n\n*The item will not be recycled into EXP\n if the current character reaches Level Cap.\n\n*The item will not be recycled into Spina\n if you have 2,100,000,000 Spinas.
 EquipPanelAvatarRecycleWaitText	0	0	Preparing for recycling.\nPlease wait...
 EquipPanelAvatarRecycleCancel	0	0	Recycling has been canceled.
 EquipPanelAvatarRecycleErr	0	0	Failed to recycle.
@@ -11617,42 +9562,15 @@ ReportTypeDefactMessage	0	0	Please report in-game bugs.
 ReportTypeFraudButton	0	0	Abuse Report
 ReportTypeFraudMessage	0	0	Introduction for abuse report.
 ReportFradProcedureTitle	0	0	How to Report
-ReportFradProcedureMessage	0	0	"If you find an abusive player in the game, please report with the following steps.
-
-*If you can see the player on the screen:
-1. Tap the player.
-2. Tap [Next].
-3. Tap [Report].
-4. Follow the instructions.
-
-*If you report from the chat log:
-1. Drag the chat log to the top of the screen.
-2. Tap the character's name.
-3. Tap [Next].
-4. Tap [Report].
-5. Follow the instructions.
-
-*If you report a mail:
-1. Open the mail you want to report.
-2. Tap [Confirm].
-3. Tap the name of the sender.
-4. Tap [Report].
-5. Follow the guide on the screen to report.
-
-*Regarding the abusive actions out side of the game:
-We are unable to take measures against the abusive actions taken out side of the game such as website.
-Please contact the operators of the websites where you find the abusive actions."
+ReportFradProcedureMessage	0	0	If you find an abusive player in the game, please report with the following steps.\n\n*If you can see the player on the screen:\n1. Tap the player.\n2. Tap [Next].\n3. Tap [Report].\n4. Follow the instructions.\n\n*If you report from the chat log:\n1. Drag the chat log to the top of the screen.\n2. Tap the character's name.\n3. Tap [Next].\n4. Tap [Report].\n5. Follow the instructions.\n\n*If you report a mail:\n1. Open the mail you want to report.\n2. Tap [Confirm].\n3. Tap the name of the sender.\n4. Tap [Report].\n5. Follow the guide on the screen to report.\n\n*Regarding the abusive actions out side of the game:\nWe are unable to take measures against the abusive actions taken out side of the game such as website.\nPlease contact the operators of the websites where you find the abusive actions.
 ReportTypeOtherButton	0	0	Other
 ReportTypeOtherMessage	0	0	Not applicable above
 ReportMailAdress	0	0	- E-mail address - e.g.) toramonline@gmail.com
 ReportCharacterName	0	0	- Your character name -
 ReportTargetCharacterName	0	0	- The character name you are reporting -
-ReportDay	0	0	"- Date and time -
-( MM/DD/YYYY hh:mm Japanese Standard Time )"
+ReportDay	0	0	- Date and time -\n( MM/DD/YYYY hh:mm Japanese Standard Time )
 ReportPrice	0	0	- Purchase amount / tickets -
-ReportPurchaseNumber	0	0	"- Google Play order number -
-Format (17 digit divided into 4 blocks)
-GPA.****-****-****-*****"
+ReportPurchaseNumber	0	0	- Google Play order number -\nFormat (17 digit divided into 4 blocks)\nGPA.****-****-****-*****
 ReportPhoneModel	0	0	- Device model number -
 ReportOS	0	0	-  OS version -
 ReportIOS	0	0	-  iOS version -
@@ -11662,8 +9580,7 @@ ReportProvider	0	0	- Mobile carrier / Wi-Fi service provider (ISP) -
 ReportWorld	0	0	- World -
 ReportMap	0	0	- Map name -
 ReportErrorMessage	0	0	- Error message -
-ReportPurchaseDay	0	0	"- Date and time of purchase -
-( MM/DD/YYYY hh:mm Japanese Standard Time )"
+ReportPurchaseDay	0	0	- Date and time of purchase -\n( MM/DD/YYYY hh:mm Japanese Standard Time )
 ReportCharacterID	0	0	- Character name (Character ID) -
 ReportFreeMessage	0	0	- Contents - (details)
 ReportSendButton	0	0	Submit
@@ -11684,10 +9601,7 @@ ReportTypeUserDeleteButton	0	0	Request to Delete Account
 OrbGachaItemListAvatarButton	0	0	Try-On
 DailyDartsGameStartLabel	0	0	Play Bonus Game
 DailyDartsGameStartPopUpTitle	0	0	Play Darts
-DailyDartsGameStartPopUpText	0	0	"You can throw up to 3 times per day.
-
-[ff0000]*You may not be able to get the prizes
-if you are disconnected during the game."
+DailyDartsGameStartPopUpText	0	0	You can throw up to 3 times per day.\n\n[ff0000]*You may not be able to get the prizes\nif you are disconnected during the game.
 DailyDartsGameHitOutPopUpText	0	0	The dart didn't hit the board.\nYou cannot receive the prize.
 DailyDartsGameHitPopUpButton1	0	0	Try Again ({0} times left)
 DailyDartsGameHitPopUpButton2	0	0	Get This Prize
@@ -11772,26 +9686,15 @@ OrbBuyPanelBonusNum	0	0	+{0}
 OrbBuyPanelNew	0	0	New!
 OrbHistoryNonList	0	0	No purchase history.
 OrbBuyRefreshTitle	0	0	Complete Transaction
-OrbBuyRefreshMainMes	0	0	"If transactions such as purchasing Orbs or
-30-Day Tickets are pending due to an error,
-you can complete the transaction here."
+OrbBuyRefreshMainMes	0	0	If transactions such as purchasing Orbs or\n30-Day Tickets are pending due to an error,\nyou can complete the transaction here.
 OrbBuyRefreshButton	0	0	Complete Transaction
 OrbBuyRefreshCheckMes	0	0	Confirming the pending transaction...
 OrbBuyRefreshButtonCancel	0	0	Cancel
 OrbBuyRefreshSuccessMes	0	0	The suspended transaction has been completed.
-OrbBuyRefreshNothingMes	0	0	"The transaction may have been completed already.
-Please restart the device and confirm the number of Orbs owned."
+OrbBuyRefreshNothingMes	0	0	The transaction may have been completed already.\nPlease restart the device and confirm the number of Orbs owned.
 OrbBuyRefreshButtonOk	0	0	OK
-OrbBuyRefreshSuccessMes2	0	0	"There is a pending transaction.
-Please wait for 1 hour to reflect purchase in the account.
-
-If it is not reflected after 1 hour,
-please contact us from Menu > Orb Shop > Contact Us."
-OrbBuyRefreshNothingMes2	0	0	"The transaction may have been completed already.
-Please reboot the device and confirm it.
-
-If the Orbs or 30-Day Tickets are not reflected,
-please contact us from Menu > Orb Shop > Contact Us."
+OrbBuyRefreshSuccessMes2	0	0	There is a pending transaction.\nPlease wait for 1 hour to reflect purchase in the account.\n\nIf it is not reflected after 1 hour,\nplease contact us from Menu > Orb Shop > Contact Us.
+OrbBuyRefreshNothingMes2	0	0	The transaction may have been completed already.\nPlease reboot the device and confirm it.\n\nIf the Orbs or 30-Day Tickets are not reflected,\nplease contact us from Menu > Orb Shop > Contact Us.
 OrbBuyRefreshInquiry	0	0	Inquiry
 AccountManagerCheckIdErrTitle	0	0	Failed to update account information.
 AccountManagerCheckIdErrMessage	0	0	\n\n\nFailed to update account information.\nToram Online app will restart.
@@ -11803,11 +9706,7 @@ OrbItemUsePanelSkillCompensationPopUpMessage	0	0	[ffff64]Currently, you can rese
 OrbItemUsePanelStatusCompensationPopUpMessage	0	0	[ffff64]Stats Reset is currently available for free.\nPlease refer to the news for the details.[ffffff]
 OrbItemUsePanelEntryErrPopUpText	0	0	You can't use this item because you've purchased it.
 OrbBuyContactTitle	0	0	Orb Purchase
-OrbBuyContactMes	0	0	"If the Orbs or the 30-Day Tickets have not been reflected,
-please try the steps below.
-
-[ffc900]Tap ""Menu"" > ""Orb Shop"" > ""Add Orbs"" > 
-""Complete Transaction""[ffffff]"
+OrbBuyContactMes	0	0	"If the Orbs or the 30-Day Tickets have not been reflected,\nplease try the steps below.\n\n[ffc900]Tap ""Menu"" > ""Orb Shop"" > ""Add Orbs"" > \n""Complete Transaction""[ffffff]"
 OrbBuyContactToRefreshButton	0	0	"Try ""Complete Transaction""."
 OrbBuyContactToFormButton	0	0	Go to Contact Us
 ReportTypePrisonButton	0	0	Fraudulent Act
@@ -11992,8 +9891,7 @@ DungeonEnterPanelAreaLevelPopUpUserLabel	0	0	Resume from B[ffff88]{0}[ffffff]
 DungeonEnterPanelAreaLevelPopUpUserText	0	0	Resume from the floor you reached.
 DungeonEnterPanelAreaLevelPopUpUserErr	0	0	You haven't entered the maze.
 DungeonEnterPanelRecoverylPopUpTitle	0	0	Replenish with {0}
-DungeonEnterPanelRecoverylPopUpText	0	0	"You can fill up the magic
-energy by using {0} x1."
+DungeonEnterPanelRecoverylPopUpText	0	0	You can fill up the magic\nenergy by using {0} x1.
 DungeonEnterTitleMasoPoint	0	0	Mana Points
 DungeonEnterCoinHave	0	0	{0}
 DungeonEnterCoinItemHave	0	0	Owned: {0}
@@ -12001,8 +9899,7 @@ DungeonEnterManaMaxCoinItem	0	0	Mana Potion
 DungeonEnterMasoText	0	0	Charge {0}%\n[ffff88]Mana Cost: {1} Points
 DungeonEnterMasoPoint	0	0	Mana Left: [ff0000]{0} Points
 DungeonDeadPopUpTitle	0	0	Leave Maze
-DungeonDeadPopUpText	0	0	"You will leave Maze.
-You cannot enter the maze again. OK?"
+DungeonDeadPopUpText	0	0	You will leave Maze.\nYou cannot enter the maze again. OK?
 DungeonEnterPanelLeaderSelect	0	0	The leader will select the floor.
 DungeonEnterPanelReadyTextWait	0	0	Not all the players are ready.
 DungeonEnterPanelSubLabel	0	0	No invitations from guild members.
@@ -12014,8 +9911,7 @@ DungeonEnterPanelEnterLockLabel	0	0	Currently, you cannot enter the maze.
 DungeonEnterPanelTimeOutLabel	0	0	Currently, you cannot fill up the magic energy.
 DungeonDeadWindowLabel	0	0	You cannot revive in the maze.
 DungeonEnterPopUpTitle	0	0	Final Check
-DungeonEnterPopUpMessage	0	0	"Are you sure you want to start from B{0}?
-The device will consume {1} magic energy."
+DungeonEnterPopUpMessage	0	0	Are you sure you want to start from B{0}?\nThe device will consume {1} magic energy.
 DungeonEnterMagicPower	0	0	Energy
 DungeonEnterPanelEnterNPCErrLabel	0	0	Unable to enter the maze\nwith a mercenary or partner.
 DungeonEnterPanelEnterNPCErrLabelEx	0	0	Unable to enter the maze\nwith a mercenary, partner or pet.
@@ -12048,25 +9944,14 @@ BossTrophyBreaker	0	0	Breaker
 BossTrophysBreaker	0	0	 
 BossTrophyAssister	0	0	Assister
 BossTrophysAssister	0	0	 
-BossMenuBossStatus	0	0	"Boss Info
-
-HP: {0}
-EXP: {1}
-{2}
-{3}
-
-Drop Info
-
-{4} types of items
-{5} parts breakable"
+BossMenuBossStatus	0	0	Boss Info\n\nHP: {0}\nEXP: {1}\n{2}\n{3}\n\nDrop Info\n\n{4} types of items\n{5} parts breakable
 BossMenuBossPartsCount	0	0	{0}
 BossMenuBossPartsNot	0	0	None
 BossMenuBattleLevel	0	0	Recommended Lv: {0}
 BossMenuBossBattle	0	0	BOSS BATTLE
 BossMenuBossReady	0	0	Boss battle begins if you are ready.
 BossResultNoUser	0	0	No Players
-BossMenuGemErr	0	0	"You don't have any
-Support Items available."
+BossMenuGemErr	0	0	You don't have any\nSupport Items available.
 BossMenuDifficulty	0	0	Difficulty
 BossMenuDifficultyEasyMode	0	0	Easy
 BossMenuDifficultyNormalMode	0	0	Normal
@@ -12075,18 +9960,7 @@ BossMenuDifficultyLunaticMode	0	0	Nightmare
 BossMenuDifficultyUltimateMode	0	0	Ultimate
 BossMenuNoUseItem	0	0	[64ffff]Unavailable with this difficulty.
 BossMenuNoRecommendLevel	0	0	Not enough level.
-BossMenuBossDifficultyStatus	0	0	"Boss Info
-
-HP: {0}
-EXP: {1}
-{2}
-{3}
-
-Drop Info
-
-{4} types of items
-{5}
-{6} parts breakable"
+BossMenuBossDifficultyStatus	0	0	Boss Info\n\nHP: {0}\nEXP: {1}\n{2}\n{3}\n\nDrop Info\n\n{4} types of items\n{5}\n{6} parts breakable
 BossMenuNoRareItem	0	0	[64ffff]Rare Items will not drop on Easy mode.[ffffff]
 BossMenuColorWeapon	0	0	[ffff64]+ Colored Weapon[ffffff]
 BossMenuCantChangeLevel	0	0	[ff6464]Unable to change difficulty for this boss.
@@ -12375,12 +10249,8 @@ UIPCKeyconfigPopWarningLabel	0	0	[aaaa00]{0}\nThe key is already used for the co
 UIPCKeyconfigPopErrLabel	0	0	[aa0000]You can't use or change to this key.
 UIPCKeyconfigPopKeyMouseRightButtonErrLabel	0	0	[aa0000]Unable to change because the key has already been used.
 UIPCKeyconfigPopKeyMouseRightButtonChangeErrLabel	0	0	[aa0000]Unable to change because the key has already been used.
-PCSteamReportPurchaseNumber	0	0	"- Steam Order Number -
-Ex: (1-21 digit number)
-*********************"
-PCAsobimoReportPurchaseNumber	0	0	"- Stripe Payment Order Number -
-Ex: (8-digit alphanumeric characters)
-****-****"
+PCSteamReportPurchaseNumber	0	0	- Steam Order Number -\nEx: (1-21 digit number)\n*********************
+PCAsobimoReportPurchaseNumber	0	0	- Stripe Payment Order Number -\nEx: (8-digit alphanumeric characters)\n****-****
 PCAsobimoReportTypeOrbButton	0	0	Orb Purchase
 PCAsobimoReportTypeOrbMessage	0	0	Inquiries about Orb.
 PCSteamReportTypeOrbButton	0	0	Orb Purchase
@@ -12447,12 +10317,7 @@ UIPCKeyconfigCommandTopLabel	0	0	Command
 UIPCKeyconfigMainKeyLabel	0	0	Execute Key
 UIPCKeyconfigSubKeyLabel	0	0	Sub-Key
 UIPCMenuPanelChangePanelButton	0	0	Change Page
-EmotionPanelPCDescription	0	0	"[ffff64]Favorite[ffffff] the emotions to use
-them from the Emotion Wheel.
-[6495ed]*Long press the scroll wheel[ffffff]
-
-Tap the emotions to favorite.
-[6495ed]*Max 10 emotions"
+EmotionPanelPCDescription	0	0	[ffff64]Favorite[ffffff] the emotions to use\nthem from the Emotion Wheel.\n[6495ed]*Long press the scroll wheel[ffffff]\n\nTap the emotions to favorite.\n[6495ed]*Max 10 emotions
 UIPCOrbBuyPanelErrMessage	0	0	Orb Purchase is currently not\navailable as it is being prepared.
 PCAsobimoOrbShopPanelBuyWait	0	0	In Preparation
 PCTargetPanelSort0	0	0	Event Priority

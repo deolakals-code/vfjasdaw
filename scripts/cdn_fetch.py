@@ -1,39 +1,19 @@
-"""Download bundles listed in the CDN version table into a Unity-cache-shaped folder, so cache.py can read them as
-one more root: <root>/<bundle name>/<24 zeros + version LE hex>/__data. Only public asset files; no login, no game server.
-Usage: python cdn_fetch.py <regex on bundle key> [channel=A]"""
-import os, re, sys, urllib.request
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE)
-from revision import parse
+"""Old entry point, now a thin wrapper over `toramre fetch` (parallel, resumable, MD5-verified, manifest).
+Usage unchanged: python cdn_fetch.py <regex on bundle key> [channel=A]
+Destination: env TORAM_CDN_CACHE, else D:\\toram_re\\cdn_cache when it exists (the old place cache.py reads), else <repo>/cdn_cache."""
+import os
+import sys
 
-BASE = "https://toram-jp.akamaized.net/resources/android/release{}/"
-ROOT = r"D:\toram_re\cdn_cache"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, REPO)
+from toramre.cli import main  # noqa: E402
 
-
-def fetch(url):
-    with urllib.request.urlopen(url, timeout=60) as r:
-        return r.read()
-
-
-def main(pattern, ch="A"):
-    base = BASE.format(ch)
-    table = parse(fetch(base + "RevisionInfoBinary.bytes"))
-    todo = [k for k in sorted(table) if re.search(pattern, k)]
-    got = skip = 0
-    for key in todo:
-        ver = table[key][0] & 0xffffffff
-        d = os.path.join(ROOT, key.rsplit("/", 1)[-1], "0" * 24 + ver.to_bytes(4, "little").hex())
-        path = os.path.join(d, "__data")
-        if os.path.exists(path):
-            skip += 1
-            continue
-        b = fetch(base + key + ".unity3d")
-        assert b[:7] == b"UnityFS", key
-        os.makedirs(d, exist_ok=True)
-        open(path, "wb").write(b)
-        got += 1
-    print(f"{len(todo)} matched, {got} downloaded, {skip} already present -> {ROOT}")
-
+OLD_ROOT = r"D:\toram_re\cdn_cache"
 
 if __name__ == "__main__":
-    main(*sys.argv[1:])
+    pattern = sys.argv[1] if len(sys.argv) > 1 else "."
+    ch = sys.argv[2] if len(sys.argv) > 2 else "A"
+    dest = os.environ.get("TORAM_CDN_CACHE") or (OLD_ROOT if os.path.isdir(OLD_ROOT) else os.path.join(REPO, "cdn_cache"))
+    if main(["fetch", "catalog"]) != 0:
+        sys.exit(1)
+    sys.exit(main(["fetch", "get", "--match", pattern, "--channel", ch, "--dest", dest]))

@@ -2,12 +2,12 @@
 History bundles (BynaryData, GameScene_*) keep every cached version; the rest keep the newest.
 XOR key = last 8 hex chars of the version dir name. Nested UnityFS payloads are unpacked up to 2 levels."""
 import glob, hashlib, json, os, re, sys, UnityPy
-ROOT = r"D:\toram reverse data"
-sys.path.insert(0, ROOT + r"\scripts")
-import cache
-from decode import decode
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(1, os.path.join(os.path.dirname(os.path.abspath(__file__)), "legacy_scripts"))
+from common import ROOT, decode
+import cache  # tools/legacy_scripts/cache.py; TORAM_CACHE overrides the bundle roots
 
-OUT = ROOT + r"\TORAM ONLINE BIGDATA\data\decoded"
+OUT = os.path.join(ROOT, "data", "decoded")
 MODEL = re.compile(r"^(cos|MobMotion|Field|BGM|body|Motion|NpcMotion|acce|arms|options|Npc|Mob|Item|E|SE|Servant|Avatar|Farm|P|Fish|FishMotion|Window|Door|InsideWall|OutsideWall|Roof|Floor|Myroom)_?\d+|^(Head|Hair|HairT|Face|Stamp|BackGround|Texture|CreateBGM|CreateField|ProtoType|NpcBone|ItemTex|SpecialPack_\w+|FontAtlas_\w+|Banner_\w+|WorldMapObject|Cooking)$")
 HIST = re.compile(r"^(BynaryData|GameScene_\w+)$")
 

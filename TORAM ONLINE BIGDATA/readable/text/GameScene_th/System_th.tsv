@@ -1141,11 +1141,7 @@ UIMobaLobbyProfileStable	0	0	Stable\n{0}%
 UIMobaLobbyProfileConditionMes	0	0	ไม่สามารถลงทะเบียนโปรไฟล์ได้\nเนื่องจากไม่ตรงตามเงื่อนไขการเข้าร่วม
 UIMobaLobbyProfileSaveMes	0	0	บันทึกโปรไฟล์แล้ว
 UIMobaLobbyProfileNameTitle	0	0	ชื่อในการต่อสู้
-UIMobaLobbyProfileNameMes	0	0	"สามารถเปลี่ยนชื่อที่แสดงระหว่างการต่อสู้ได้
-[ffff64]*มีโอกาสที่ชื่อจะไปซ้ำกับคนอื่น[ffffff]
-
-[ff6464]*มีโอกาสถูกจำกัดการใช้งาน
-หากตั้งชื่อที่ละเมิดข้อตกลง"
+UIMobaLobbyProfileNameMes	0	0	สามารถเปลี่ยนชื่อที่แสดงระหว่างการต่อสู้ได้\n[ffff64]*มีโอกาสที่ชื่อจะไปซ้ำกับคนอื่น[ffffff]\n\n[ff6464]*มีโอกาสถูกจำกัดการใช้งาน\nหากตั้งชื่อที่ละเมิดข้อตกลง
 UIMobaLobbyProfileErrorMes	0	0	บันทึกโปรไฟล์ไม่สำเร็จ\nเนื่องจากมีปัญหาในการตั้งค่า
 UIMobaLobbyMatchingOnevsOneBattle	0	0	1v1 โหมด
 UIMobaLobbyMatchingFourvsFourBattle	0	0	4v4 โหมด
@@ -1400,8 +1396,7 @@ UIMobaDuelAbilityShortMes41	0	0	ในเฟสสุดท้ายลบบั
 UIMobaDuelAbilityShortMes42	0	0	ในเฟสสุดท้ายถ้าเหลือแค่ 2 คน จะฟื้นฟู HP และ MP จนเต็มทั้งหมด
 UIMobaDuelAbilityShortMes43	0	0	เมื่อทิ้งอุปกรณ์เสริมจะไม่ตกถึงพื้นและหายไป พร้อมทั้งฟื้นฟู HP และ MP 25% 
 UIMobaDuelAbilityShortMes44	0	0	เป็นสกิลที่ทำให้ติดผลักกระเด็นได้ แต่จะป้องกันด้วยต้านภาวะผิดปกติไม่ได้อีก
-UIMobaDuelAbilitySelect	0	0	"สามารถติดตั้ง Duel Abilities ได้สูงสุด 3 ประเภท
-และไม่สามารถนำมาใช้ร่วมกันโดยมีคอสต์รวมเกิน 7 ได้"
+UIMobaDuelAbilitySelect	0	0	สามารถติดตั้ง Duel Abilities ได้สูงสุด 3 ประเภท\nและไม่สามารถนำมาใช้ร่วมกันโดยมีคอสต์รวมเกิน 7 ได้
 UIMobaDuelAbilityTotalCost	0	0	คอสต์รวม {0}/{1}
 UIMobaDuelAbilityEquip	0	0	ติดตั้งอันนี้
 UIMobaDuelAbilityNoEquip	0	0	ไม่ได้ติดตั้ง
@@ -1432,75 +1427,13 @@ UIMobaBattleMenuHelpCasualTitle4	0	0	บอสมอนสเตอร์
 UIMobaBattleMenuHelpCasualTitle5	0	0	ไปตรงกลาง
 UIMobaBattleMenuHelpCasualTitle6	0	0	สู้เพื่อเป็นที่ 1
 UIMobaBattleMenuHelpCasualTitle7	0	0	คริสตัลทาวเวอร์
-UIMobaBattleMenuHelpCasualText1	0	0	"ใช้[ffff64]ความสามารถของคาแรคเตอร์ในปัจจุบัน[ffffff]ของผู้เข้าร่วมสูงสุด 32 คน
-ในการแข่งแบบแบทเทิลรอยัล
-
-
-ฟิลด์จะแบ่งแอเรียออกเป็น 3×3
-เมื่อเริ่มการแข่งขันทุกคนจะถูกสุ่มตำแหน่งให้อยู่ในแอเรียเดียวกัน
-[ffff64]*ไม่รวมพื้นที่ตรงกลาง[ffffff]"
-UIMobaBattleMenuHelpCasualText2	0	0	"ผู้เข้าร่วมจะเริ่มต้นจาก Lv1 และกลับสู่ความสามารถ
-คาแรคเตอร์เดิมเมื่อเข้าใกล้ Lv100 (สูงสุด)
-จัดการมอนสเตอร์ เพื่ออัพเลเวลให้สูงกว่าผู้เล่นคนอื่น
-
-
-[ffff64]ถึงแม้จะตายไปในการต่อสู้ แต่จะกลายเป็นร่างวิญญาณและสามารถคืนชีพได้หลังจากผ่านไปประมาณ 10 วินาที[ffffff]
-ผู้เล่นอื่นจะมองไม่เห็นเมื่ออยู่ในร่างวิญญาณ
-HP และ MP จะฟื้นฟูได้มากขึ้นตามระยะเวลาที่อยู่ในร่างวิญญาณ
-
-
-[ff6464]EXP ที่ได้รับเมื่อจัดการกับผู้เล่นคือ 0[ffffff]
-แต่ถ้ามีอุปกรณ์เสริมอยู่จะสามารถสุ่มขโมยมาได้ 1 ชิ้น"
-UIMobaBattleMenuHelpCasualText3	0	0	"หลังจากเริ่มการต่อสู้ 2 นาที
-กล่องสมบัติ 3 แบบ
-บรอนซ์, ซิลเวอร์, โกลด์จะปรากฏขึ้นในฟิลด์
-
-คุณสามารถรับอุปกรณ์เสริมได้จากกล่องสมบัติ
-และติดตั้งอุปกรณ์เสริมได้ไม่เกิน 2 ชิ้น
-[ffff64]*จะติดตั้งให้เลยถ้าไม่มีสล็อตหรือทิ้ง[ffffff]
-
-
-นอกจากนี้คุณจะได้รับกล่องทองพิเศษจากการ
-จัดการบอสมอนสเตอร์ที่ปรากฏตัวออกมาในแต่ละแอเรีย
-[ff6464]แต่คนที่จะได้รับรางวัลคือผู้เล่นที่เป็นคนสังหารเท่านั้น
-โปรดระวังการฉวยโอกาส[ffffff]"
-UIMobaBattleMenuHelpCasualText4	0	0	"หลังจากเริ่มการต่อสู้ 3 นาที
-บอสมอนสเตอร์ 1 ตัวจะปรากฏขึ้นในแต่ละแอเรีย
-
-คุณจะได้รับกล่องโกลด์พิเศษ
-ที่มีอุปกรณ์เสริมจากการกำจัดมัน
-[ff6464]แต่คนที่จะได้รับรางวัลคือผู้เล่นที่เป็นคนสังหารเท่านั้น
-โปรดระวังการฉวยโอกาส[ffffff]
-
-
-▼อุปกรณ์เสริมที่จะได้รับ
--เกราะป้องกันⅢ[aaaaaa](เพิ่มความต้านทานกายภาพ)[ffffff]
--เสื้อคลุมเวทⅢ[aaaaaa](เพิ่มต้านทานเวทมนตร์)[ffffff]
--หมวกปกป้องⅢ[aaaaaa](ลบล้างหมดสติ)[ffffff]"
-UIMobaBattleMenuHelpCasualText5	0	0	"หลังจากเวลาอัพเลเวลสิ้นสุดลง
-แอเรียสร้างความเสียหายจะเริ่มสร้างจากรอบนอกไปตรงกลาง
-
-
-ในตอนนั้นมอนสเตอร์จะไม่เกิดใหม่เมื่อถูกกำจัด
-[ffff64]มุ่งเป้าไปที่แอเรียกลาง[ffffff]พร้อมเก็บ EXP สุดท้าย
-
-
-[ff6464]โปรดระวังว่าถ้าอยู่ในร่างวิญญาณแล้วไม่คืนชีพก่อนเฟสนี้สิ้นสุดลง
-คุณจะแพ้และถูกจัดอันดับไปเลย[ffffff]"
-UIMobaBattleMenuHelpCasualText6	0	0	"เมื่อแอเรียทั้งหมดยกเว้นแอเรียกลางกลายเป็นดาเมจแอเรีย
-การต่อสู้เพื่อตัดสินที่หนึ่งจะเริ่มต้นขึ้น
-[ff6464]*ในตอนนั้นพลังของดาเมจแอเรียก็จะเพิ่มมากขึ้นด้วยเช่นกัน[ffffff]
-
-
-ถ้าตายไปในตอนนั้นจะถูกจัดอันดับไปเลย
-[ffff64]*ถ้าเป็นร่างวิญญาณจะกลายเป็นโหมดดูการต่อสู้[ffffff]"
-UIMobaBattleMenuHelpCasualText7	0	0	"ถ้าตัดสินกันไม่ได้ในเฟสสุดท้าย (หมดเวลา)
-[ffff64]ผู้เล่นที่สร้างความเสียหายให้กับคริสตัลทาวเวอร์
-ในแอเรียได้มากที่สุดจะเป็นผู้ชนะ[ffffff]
-
-
-จำนวนความเสียหายของผู้เล่นที่ตายจะถูกรีเซ็ต
-[ff6464]*ถึงจะทำความเสียหายได้มากแต่ถ้าไม่มีชีวิตรอดก็ไร้ความหมาย[ffffff]"
+UIMobaBattleMenuHelpCasualText1	0	0	ใช้[ffff64]ความสามารถของคาแรคเตอร์ในปัจจุบัน[ffffff]ของผู้เข้าร่วมสูงสุด 32 คน\nในการแข่งแบบแบทเทิลรอยัล\n\n\nฟิลด์จะแบ่งแอเรียออกเป็น 3×3\nเมื่อเริ่มการแข่งขันทุกคนจะถูกสุ่มตำแหน่งให้อยู่ในแอเรียเดียวกัน\n[ffff64]*ไม่รวมพื้นที่ตรงกลาง[ffffff]
+UIMobaBattleMenuHelpCasualText2	0	0	ผู้เข้าร่วมจะเริ่มต้นจาก Lv1 และกลับสู่ความสามารถ\nคาแรคเตอร์เดิมเมื่อเข้าใกล้ Lv100 (สูงสุด)\nจัดการมอนสเตอร์ เพื่ออัพเลเวลให้สูงกว่าผู้เล่นคนอื่น\n\n\n[ffff64]ถึงแม้จะตายไปในการต่อสู้ แต่จะกลายเป็นร่างวิญญาณและสามารถคืนชีพได้หลังจากผ่านไปประมาณ 10 วินาที[ffffff]\nผู้เล่นอื่นจะมองไม่เห็นเมื่ออยู่ในร่างวิญญาณ\nHP และ MP จะฟื้นฟูได้มากขึ้นตามระยะเวลาที่อยู่ในร่างวิญญาณ\n\n\n[ff6464]EXP ที่ได้รับเมื่อจัดการกับผู้เล่นคือ 0[ffffff]\nแต่ถ้ามีอุปกรณ์เสริมอยู่จะสามารถสุ่มขโมยมาได้ 1 ชิ้น
+UIMobaBattleMenuHelpCasualText3	0	0	หลังจากเริ่มการต่อสู้ 2 นาที\nกล่องสมบัติ 3 แบบ\nบรอนซ์, ซิลเวอร์, โกลด์จะปรากฏขึ้นในฟิลด์\n\nคุณสามารถรับอุปกรณ์เสริมได้จากกล่องสมบัติ\nและติดตั้งอุปกรณ์เสริมได้ไม่เกิน 2 ชิ้น\n[ffff64]*จะติดตั้งให้เลยถ้าไม่มีสล็อตหรือทิ้ง[ffffff]\n\n\nนอกจากนี้คุณจะได้รับกล่องทองพิเศษจากการ\nจัดการบอสมอนสเตอร์ที่ปรากฏตัวออกมาในแต่ละแอเรีย\n[ff6464]แต่คนที่จะได้รับรางวัลคือผู้เล่นที่เป็นคนสังหารเท่านั้น\nโปรดระวังการฉวยโอกาส[ffffff]
+UIMobaBattleMenuHelpCasualText4	0	0	หลังจากเริ่มการต่อสู้ 3 นาที\nบอสมอนสเตอร์ 1 ตัวจะปรากฏขึ้นในแต่ละแอเรีย\n\nคุณจะได้รับกล่องโกลด์พิเศษ\nที่มีอุปกรณ์เสริมจากการกำจัดมัน\n[ff6464]แต่คนที่จะได้รับรางวัลคือผู้เล่นที่เป็นคนสังหารเท่านั้น\nโปรดระวังการฉวยโอกาส[ffffff]\n\n\n▼อุปกรณ์เสริมที่จะได้รับ\n-เกราะป้องกันⅢ[aaaaaa](เพิ่มความต้านทานกายภาพ)[ffffff]\n-เสื้อคลุมเวทⅢ[aaaaaa](เพิ่มต้านทานเวทมนตร์)[ffffff]\n-หมวกปกป้องⅢ[aaaaaa](ลบล้างหมดสติ)[ffffff]
+UIMobaBattleMenuHelpCasualText5	0	0	หลังจากเวลาอัพเลเวลสิ้นสุดลง\nแอเรียสร้างความเสียหายจะเริ่มสร้างจากรอบนอกไปตรงกลาง\n\n\nในตอนนั้นมอนสเตอร์จะไม่เกิดใหม่เมื่อถูกกำจัด\n[ffff64]มุ่งเป้าไปที่แอเรียกลาง[ffffff]พร้อมเก็บ EXP สุดท้าย\n\n\n[ff6464]โปรดระวังว่าถ้าอยู่ในร่างวิญญาณแล้วไม่คืนชีพก่อนเฟสนี้สิ้นสุดลง\nคุณจะแพ้และถูกจัดอันดับไปเลย[ffffff]
+UIMobaBattleMenuHelpCasualText6	0	0	เมื่อแอเรียทั้งหมดยกเว้นแอเรียกลางกลายเป็นดาเมจแอเรีย\nการต่อสู้เพื่อตัดสินที่หนึ่งจะเริ่มต้นขึ้น\n[ff6464]*ในตอนนั้นพลังของดาเมจแอเรียก็จะเพิ่มมากขึ้นด้วยเช่นกัน[ffffff]\n\n\nถ้าตายไปในตอนนั้นจะถูกจัดอันดับไปเลย\n[ffff64]*ถ้าเป็นร่างวิญญาณจะกลายเป็นโหมดดูการต่อสู้[ffffff]
+UIMobaBattleMenuHelpCasualText7	0	0	ถ้าตัดสินกันไม่ได้ในเฟสสุดท้าย (หมดเวลา)\n[ffff64]ผู้เล่นที่สร้างความเสียหายให้กับคริสตัลทาวเวอร์\nในแอเรียได้มากที่สุดจะเป็นผู้ชนะ[ffffff]\n\n\nจำนวนความเสียหายของผู้เล่นที่ตายจะถูกรีเซ็ต\n[ff6464]*ถึงจะทำความเสียหายได้มากแต่ถ้าไม่มีชีวิตรอดก็ไร้ความหมาย[ffffff]
 UIMobaBattleMenuHelpSkillButton	0	0	มีการเปลี่ยนแปลงและจำกัดผลของสกิลบางส่วน
 UIMobaBattleMenuHelpSkillCantUse	0	0	[สกิลที่ใช้ไม่ได้ในโหมดการต่อสู้]
 UIMobaBattleMenuHelpSkillCantUseNon	0	0	ไม่มี
@@ -1513,17 +1446,12 @@ UIMobaTelopGameSet	0	0	Game Set
 LogOutPanelEnterMobaSever	0	0	ไปสนามต่อสู้
 MobaMainFieldMobAraOut	0	0	แอเรียที่ไม่มีมอนสเตอร์
 UIMobaBattleMenuHelpAbilityButton	0	0	เกี่ยวกับการจำกัดความสามารถ
-UIMobaBattleMenuHelpAbilityTitle1	0	0	"เกี่ยวกับความสามารถอวาตาร์
-(เช่น อุปกรณ์ตัดเย็บเทพธิดา)"
+UIMobaBattleMenuHelpAbilityTitle1	0	0	เกี่ยวกับความสามารถอวาตาร์\n(เช่น อุปกรณ์ตัดเย็บเทพธิดา)
 UIMobaBattleMenuHelpAbilityTitle2	0	0	เกี่ยวกับผลของไอเท็มและอาหาร
 UIMobaBattleMenuHelpAbilityTitle3	0	0	เกี่ยวกับความเร็วการเคลื่อนที่
 UIMobaBattleMenuHelpAbilityMes1	0	0	ในโหมดการต่อสู้ผลความสามารถที่ติดมากับอวาตาร์จะใช้ไม่ได้
-UIMobaBattleMenuHelpAbilityMes2	0	0	"ในโหมดการต่อสู้
-บัฟที่ได้รับจากอาหารและไอเท็มจะไม่มีผล"
-UIMobaBattleMenuHelpAbilityMes3	0	0	"ในโหมดการต่อสู้ความเร็วการเคลื่อนที่จะถูกจำกัดอยู่ที่ 100%
-
-มีแค่ผลของสกิลเร่งความเร็วบางส่วน เช่น ""เพิ่มความเร็ว""
-เท่านั้นที่จะทำให้เกินขีดจำกัดนี้ได้"
+UIMobaBattleMenuHelpAbilityMes2	0	0	ในโหมดการต่อสู้\nบัฟที่ได้รับจากอาหารและไอเท็มจะไม่มีผล
+UIMobaBattleMenuHelpAbilityMes3	0	0	"ในโหมดการต่อสู้ความเร็วการเคลื่อนที่จะถูกจำกัดอยู่ที่ 100%\n\nมีแค่ผลของสกิลเร่งความเร็วบางส่วน เช่น ""เพิ่มความเร็ว""\nเท่านั้นที่จะทำให้เกินขีดจำกัดนี้ได้"
 UIMobaGhostWarpButton	0	0	วาร์ป
 UIMobaVsModeTelop	0	0	สิ้นสุดการต่อสู้!!
 UIMobaRoundCount	0	0	รอบที่ {0}
@@ -1533,23 +1461,8 @@ UIMobaVsModeUnsuccessMes	0	0	ออกจากฟิลด์เพราะก
 UIMobaBattleMenuHelpVsMode	0	0	โหมดต่อสู้ PvP (1v1, 4v4)
 UIMobaBattleMenuHelpVsModelTitle1	0	0	1v1 โหมด
 UIMobaBattleMenuHelpVsModelTitle2	0	0	4v4 โหมด
-UIMobaBattleMenuHelpVsModelText1	0	0	"ผู้เข้าร่วมจะเอาชนะการต่อสู้ตัวต่อตัวได้โดยการเอาชนะ 2 แมทช์
-จากการแข่ง 3 แมทช์โดยใช้[ffff64]ความสามารถของคาแรคเตอร์ในปัจจุบัน[ffffff]
-
-คาแรคเตอร์จะถูกตั้งค่าไว้ที่เลเวล 50 (ความสามารถ 50%) โดยอัตโนมัติ
-
-มีการจำกัดเวลา 3 นาทีต่อแมทช์
-และจะนับว่าเป็น DRAW หากเสมอกัน"
-UIMobaBattleMenuHelpVsModelText2	0	0	"ผู้เข้าร่วมจะเอาชนะการต่อสู้ 4 ต่อ 4 ได้โดยการเอาชนะ 2 แมทช์
-จากการแข่ง 3 แมทช์โดยใช้[ffff64]ความสามารถของคาแรคเตอร์ในปัจจุบัน[ffffff]
-
-คาแรคเตอร์จะถูกตั้งค่าไว้ที่เลเวล 50 (ความสามารถ 50%) โดยอัตโนมัติ
-
-มีการจำกัดเวลา 3 นาทีต่อแมทช์
-และจะนับว่าเป็น DRAW หากเสมอกัน
-
-สามารถตั้งปาร์ตี้เพื่อเข้าร่วมได้
-ส่วนสมาชิกที่ขาดไประบบจะถูกเติมให้โดยอัตโนมัติ"
+UIMobaBattleMenuHelpVsModelText1	0	0	ผู้เข้าร่วมจะเอาชนะการต่อสู้ตัวต่อตัวได้โดยการเอาชนะ 2 แมทช์\nจากการแข่ง 3 แมทช์โดยใช้[ffff64]ความสามารถของคาแรคเตอร์ในปัจจุบัน[ffffff]\n\nคาแรคเตอร์จะถูกตั้งค่าไว้ที่เลเวล 50 (ความสามารถ 50%) โดยอัตโนมัติ\n\nมีการจำกัดเวลา 3 นาทีต่อแมทช์\nและจะนับว่าเป็น DRAW หากเสมอกัน
+UIMobaBattleMenuHelpVsModelText2	0	0	ผู้เข้าร่วมจะเอาชนะการต่อสู้ 4 ต่อ 4 ได้โดยการเอาชนะ 2 แมทช์\nจากการแข่ง 3 แมทช์โดยใช้[ffff64]ความสามารถของคาแรคเตอร์ในปัจจุบัน[ffffff]\n\nคาแรคเตอร์จะถูกตั้งค่าไว้ที่เลเวล 50 (ความสามารถ 50%) โดยอัตโนมัติ\n\nมีการจำกัดเวลา 3 นาทีต่อแมทช์\nและจะนับว่าเป็น DRAW หากเสมอกัน\n\nสามารถตั้งปาร์ตี้เพื่อเข้าร่วมได้\nส่วนสมาชิกที่ขาดไประบบจะถูกเติมให้โดยอัตโนมัติ
 UIMobaVsModeWin	0	0	ผู้ชนะ {0} !!
 UIMobaVsModeDraw	0	0	DRAW!!
 UIMobaVsModePartyWin	0	0	ผู้ชนะ {0} ปาร์ตี้!!
@@ -2101,8 +2014,7 @@ SnowballLobbyMatchingMes	0	0	กำลังค้นหาคู่ต่อส
 SnowballLobbyMatchingFailureTitle	0	0	การจับคู่ล้มเหลว
 SnowballLobbyMatchingFailureMes	0	0	ไม่พบคู่ต่อสู้\n\nโปรดลองใหม่อีกครั้งในภายหลัง
 SnowballInfoTitle	0	0	มาเล่นปาหิมะกันเถอะ!
-SnowballInfoMes1	0	0	"ถึงเวลาเล่นเกมปาหิมะกันแล้ว!!\nปาบอลหิมะใส่คู่ต่อสู้ให้ได้มากที่สุดเพื่อคว้าชัยชนะ
-\n\nไม่ว่าจะฉายเดี่ยวหรือเป็นปาร์ตี้ก็สามารถเข้าร่วมได้!\n\n\n[ffff64]▼เงื่อนไขการเอาชนะ[ffffff]\nทำให้ HP ของคู่ต่อสู้เหลือ 0 ภายในเวลา 3 นาที\nหลังจาก 3 นาทีพยายามเหลือ HP ให้มากกว่าคู่ต่อสู้\n\n\n[ffff64]▼เคล็ดลับ[ffffff]\n HP ของทีมใช้รวมกัน"
+SnowballInfoMes1	0	0	ถึงเวลาเล่นเกมปาหิมะกันแล้ว!!\nปาบอลหิมะใส่คู่ต่อสู้ให้ได้มากที่สุดเพื่อคว้าชัยชนะ\n\n\nไม่ว่าจะฉายเดี่ยวหรือเป็นปาร์ตี้ก็สามารถเข้าร่วมได้!\n\n\n[ffff64]▼เงื่อนไขการเอาชนะ[ffffff]\nทำให้ HP ของคู่ต่อสู้เหลือ 0 ภายในเวลา 3 นาที\nหลังจาก 3 นาทีพยายามเหลือ HP ให้มากกว่าคู่ต่อสู้\n\n\n[ffff64]▼เคล็ดลับ[ffffff]\n HP ของทีมใช้รวมกัน
 SnowballActionThrow	0	0	Throw
 SnowballActionMake	0	0	Make
 SnowballActionDodge	0	0	Dodge
@@ -2379,8 +2291,7 @@ MyHomeFarmerMes	0	0	เข้าสวน
 MyHomeCultivation	0	0	เก็บเกี่ยวพืชผล
 MyHomeCultivationMes	0	0	สามารถเก็บเกี่ยวพืชผลได้
 UIMyHomePartitionEditWarningTitle	0	0	มีข้อมูลที่กำลังแก้ไขอยู่
-UIMyHomePartitionEditWarningMessage	0	0	"มีข้อมูลที่กำลังแก้ไขอยู่
-จะลบข้อมูลหรือไม่?"
+UIMyHomePartitionEditWarningMessage	0	0	มีข้อมูลที่กำลังแก้ไขอยู่\nจะลบข้อมูลหรือไม่?
 MyHomePartitionPanelEnter	0	0	ยืนยัน
 MyHomePartitionTypeButton0	0	0	ทางเข้า
 MyHomePartitionTypeButton1	0	0	ด้านใน/ด้านนอก
@@ -3347,8 +3258,7 @@ DefenceResultNoDamageCrystal	0	0	-มีคริสตัลที่ไม่�
 DefencePresentWindowClose	0	0	ปิด
 DefencePresentGetItem	0	0	รับรางวัล
 DefencePresentNotEnrty	0	0	ไม่ได้เข้าร่วมชาเลนจ์ดันเจี้ยนในสัปดาห์ก่อน
-DefencePresentNote	0	0	"*จะประกาศผลทุกวันอาทิตย์เวลา 5:00 น. (JST) 
-*รางวัลจะหายไปถ้าไม่รับภายในการประกาศผลครั้งต่อไป"
+DefencePresentNote	0	0	*จะประกาศผลทุกวันอาทิตย์เวลา 5:00 น. (JST) \n*รางวัลจะหายไปถ้าไม่รับภายในการประกาศผลครั้งต่อไป
 DefencePresentLastRanking	0	0	[ffffff]ผลชาเลนจ์ดันเจี้ยนสัปดาห์ก่อน:[00ff00]ที่ {0}[ffffff]
 DefencePresentRankDown	0	0	ตกมา {0} อันดับ...
 DefencePresentRankUp	0	0	ขึ้นมา {0} อันดับ...
@@ -3451,22 +3361,10 @@ InputNameB	0	0	ลงทะเบียนชื่อคาแรคเตอ�
 NextButton	0	0	ถัดไป
 BackButton	0	0	กลับ
 Page1T	0	0	โปรดสร้างคาแรคเตอร์
-selectWeaponMessage0	0	0	"[64ffff][ระดับความยาก: Easy][ffffff]
-เพิ่มพลังโจมตีด้วย STR (ความเข้มแข็ง)
-สามารถใช้โล่ได้ ถ้าใช้ดาบมือเดียว
-ถ้าอยากเพิ่มพลังโจมตีจะใช้ดาบสองมือก็ได้"
-selectWeaponMessage1	0	0	"[ระดับความยาก: Normal]
-เพิ่มพลังโจมตีด้วย DEX (ความแม่น)
-สามารถโจมตีได้ในระยะไกล
-ลูกธนูจะช่วยทำให้พลังโจมตีเพิ่มขึ้น"
-selectWeaponMessage2	0	0	"[ff6464][ระดับความยาก: Hard][ffffff]
-เพิ่มพลังโจมตีด้วย INT (ความฉลาด)
-[ff6464]การร่ายเวทจะล้มเหลว[ffffff]ถ้าโดนโจมตี
-การระวังรอบตัวเป็นสิ่งสำคัญ"
-selectWeaponMessage3	0	0	"[64ffff][ระดับความยาก: Easy][ffffff]
-เพิ่มพลังโจมตีด้วย AGI (ความเร็ว)
-มีสกิลที่เป็นประโยชน์มากมาย
-สามารถรุกและรับได้ง่ายแต่มีพลังโจมตีต่ำ"
+selectWeaponMessage0	0	0	[64ffff][ระดับความยาก: Easy][ffffff]\nเพิ่มพลังโจมตีด้วย STR (ความเข้มแข็ง)\nสามารถใช้โล่ได้ ถ้าใช้ดาบมือเดียว\nถ้าอยากเพิ่มพลังโจมตีจะใช้ดาบสองมือก็ได้
+selectWeaponMessage1	0	0	[ระดับความยาก: Normal]\nเพิ่มพลังโจมตีด้วย DEX (ความแม่น)\nสามารถโจมตีได้ในระยะไกล\nลูกธนูจะช่วยทำให้พลังโจมตีเพิ่มขึ้น
+selectWeaponMessage2	0	0	[ff6464][ระดับความยาก: Hard][ffffff]\nเพิ่มพลังโจมตีด้วย INT (ความฉลาด)\n[ff6464]การร่ายเวทจะล้มเหลว[ffffff]ถ้าโดนโจมตี\nการระวังรอบตัวเป็นสิ่งสำคัญ
+selectWeaponMessage3	0	0	[64ffff][ระดับความยาก: Easy][ffffff]\nเพิ่มพลังโจมตีด้วย AGI (ความเร็ว)\nมีสกิลที่เป็นประโยชน์มากมาย\nสามารถรุกและรับได้ง่ายแต่มีพลังโจมตีต่ำ
 selectWeaponMessage4	0	0	[ff6464][ระดับความยาก: ยาก][ffffff]\nSTR จะทำให้พลังโจมตีเพิ่มขึ้นเป็นจำนวนมาก\nสามารถโจมตีระยะกลางได้รุนแรง\nแต่ใช้เวลาคูลดาวน์นาน ทำให้ใช้ได้ยาก
 selectWeaponMessage5	0	0	[ระดับความยาก: Normal]\nพลังโจมตีขึ้นอยู่กับ DEX (ความแม่น)\nสามารถโจมตีได้อย่างรวดเร็วแต่พลังโจมตีต่ำ\nสามารถใช้ธนูเป็นอาวุธเสริม
 Page2T	0	0	โปรดเลือกอาวุธที่ชอบ\nสามารถเปลี่ยนได้ในเกม
@@ -3500,19 +3398,12 @@ ChangeOverMoveStartButtonV4	0	0	ถ่ายโอนข้อมูลคาแ
 ChangeOverMoveStartGoogleSignin	0	0	คาแรคเตอร์ที่ถูกสร้างขึ้นมาก่อนเดือนธันวาคมปี 2017\nจะถ่ายโอนข้อมูลด้วยการยืนยันบัญชีผู้ใช้ Google
 ChangeOverMoveStartButtonGoogleSignin	0	0	ถ่ายโอนข้อมูลผ่านบัญชีผู้ใช้ Google
 ChangeNewAccountButton	0	0	สร้างใหม่
-InheritingMessage	0	0	"ยืนยันข้อมูลการเล่นแบบ alpha\n
-ขอบคุณสำหรับความร่วมมือทดลองเล่น\n\n
-[FFFF77]แบบ alpha{0}\n\n
-[FFFFFF]จะดึงข้อมูลบางส่วนของคาแรคเตอร์ด้านบนไปใช้ต่อ"
+InheritingMessage	0	0	ยืนยันข้อมูลการเล่นแบบ alpha\n\nขอบคุณสำหรับความร่วมมือทดลองเล่น\n\n\n[FFFF77]แบบ alpha{0}\n\n\n[FFFFFF]จะดึงข้อมูลบางส่วนของคาแรคเตอร์ด้านบนไปใช้ต่อ
 InheritingButton	0	0	กำลังเตรียมการ...(อีก {0} วินาที)
 InheritingAlpha	0	0	ถ่ายโอนข้อมูลใน Alpha
 CharacterCreateKeybordOptionButton	0	0	หากกรอกไม่ได้
 CharacterCreateKeybordOptionPopTitle	0	0	โปรดลองในกรณีที่กรอกชื่อไม่ได้
-CharacterCreateKeybordOptionPopText	0	0	"อาจเป็นเพราะคีย์บอร์ดของคุณหรืออุปกรณ์
-ไม่สามารถใส่ตัวอักษรได้อย่างถูกต้อง
-
-ถ้ากรอกตัวอักษรไม่ได้ โปรดลองตั้งค่า
-[FFFFA0]ON[ffffff]ที่ด้านล่าง"
+CharacterCreateKeybordOptionPopText	0	0	อาจเป็นเพราะคีย์บอร์ดของคุณหรืออุปกรณ์\nไม่สามารถใส่ตัวอักษรได้อย่างถูกต้อง\n\nถ้ากรอกตัวอักษรไม่ได้ โปรดลองตั้งค่า\n[FFFFA0]ON[ffffff]ที่ด้านล่าง
 CharacterCreateKeybordOptionPopOptionText	0	0	หน้าเต็มของหน้าจอสนทนา
 CharacterCreateKeybordOptionPopOptionOn	0	0	ON
 CharacterCreateKeybordOptionPopOptionOff	0	0	OFF
@@ -3678,42 +3569,20 @@ amall	0	0	ปิด
 DetailsClose	0	0	ปิด
 DetailsOpen	0	0	เปิด
 StatusSetting	0	0	ตั้งค่า
-ItemPanelPropertyATK	0	0	"[{0}] ATK ： {1}　({2}%)
-{3} {4} 
-{5} {6} 
-{7} {8} {9} {10} {11} {12} {13} {14} {15}
-{16}
-{17}"
-ItemPanelPropertyDEF	0	0	"[{0}] DEF ： {1}
-{2} {3} {4}
-{5} {6} {7} {8} {9} {10} {11} {12} {13} {14} 
-{15}
-{16}"
+ItemPanelPropertyATK	0	0	[{0}] ATK ： {1}　({2}%)\n{3} {4} \n{5} {6} \n{7} {8} {9} {10} {11} {12} {13} {14} {15}\n{16}\n{17}
+ItemPanelPropertyDEF	0	0	[{0}] DEF ： {1}\n{2} {3} {4}\n{5} {6} {7} {8} {9} {10} {11} {12} {13} {14} \n{15}\n{16}
 ItemPanelPropertyGuardEquip	0	0	[99FF99]อุปกรณ์ที่ Guard ได้[ffffff]\n
 ItemPanelPropertyAvoidEquip	0	0	[CC99FF]อุปกรณ์ที่ Avoid ได้[ffffff]\n
 ItemPanelPropertyMainAvoidEquip	0	0	[CC99FF]อุปกรณ์ที่ Avoid(MAIN) ได้[ffffff]\n
 ItemPanelPropertyDualSwordAvoidEquip	0	0	[CC99FF]อุปกรณ์ที่ Avoid(ดาบคู่) ได้[ffffff]\n
-ItemPanelPropertyMaxCrista31	0	0	"[คริสตาธรรมดา]
-ติดได้ในสล็อตอุปกรณ์ทั้งหมด
-จำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})"
-ItemPanelPropertyMaxCrista32	0	0	"[คริสตาอาวุธ]
-ติดได้ในสล็อตอาวุธ
-จำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})"
-ItemPanelPropertyMaxCrista33	0	0	"[คริสตาเกราะ]
-ติดได้ในสล็อตของเกราะ
-จำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})"
-ItemPanelPropertyMaxCrista34	0	0	"[คริสตาเสริม]
-ติดได้ในสล็อตอุปกรณ์เสริม
-จำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})"
-ItemPanelPropertyMaxCrista35	0	0	"[คริสตาเครื่องประดับ]
-ติดได้ในสล็อตอุปกรณ์พิเศษ
-จำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})"
-ItemPanelPropertyMaxCrista36	0	0	"[คริสตาขั้นสูง]
-สามารถบันทึกทับเฉพาะคริสตาที่กำหนดเท่านั้น
-จำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})"
+ItemPanelPropertyMaxCrista31	0	0	[คริสตาธรรมดา]\nติดได้ในสล็อตอุปกรณ์ทั้งหมด\nจำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})
+ItemPanelPropertyMaxCrista32	0	0	[คริสตาอาวุธ]\nติดได้ในสล็อตอาวุธ\nจำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})
+ItemPanelPropertyMaxCrista33	0	0	[คริสตาเกราะ]\nติดได้ในสล็อตของเกราะ\nจำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})
+ItemPanelPropertyMaxCrista34	0	0	[คริสตาเสริม]\nติดได้ในสล็อตอุปกรณ์เสริม\nจำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})
+ItemPanelPropertyMaxCrista35	0	0	[คริสตาเครื่องประดับ]\nติดได้ในสล็อตอุปกรณ์พิเศษ\nจำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})
+ItemPanelPropertyMaxCrista36	0	0	[คริสตาขั้นสูง]\nสามารถบันทึกทับเฉพาะคริสตาที่กำหนดเท่านั้น\nจำนวนที่ใส่ได้สูงสุดใน 1 ช่อง: ({0})
 Element	0	0	ธาตุ{0}
-AlphaTestNoUse	0	0	"ยังไม่สามารถเรียนได้
-โปรดรอการอัพเดท"
+AlphaTestNoUse	0	0	ยังไม่สามารถเรียนได้\nโปรดรอการอัพเดท
 Coin	0	0	ออร์บ
 CoinShard	0	0	เศษออร์บ
 UseItem	0	0	ใช้
@@ -3742,29 +3611,15 @@ DeadPanelSaveRespawnLabel	0	0	กลับเมือง
 DeadPanelPushRespawnLabel	0	0	พยายามเข้านะ!!
 DeadPanelPushRespawnText	0	0	ลองคืนชีพด้วยตัวเอง
 DeadPanelNowRespawnWindowLabel	0	0	จะคืนชีพทันทีหรือไม่?
-DeadPanelNowRespawnWindowTextCoin	0	0	"ใช้ออร์บ {0} ชิ้น[FFFFFF]
-
-จำนวนที่มี: {1}
-
-[FFFF99]ฟื้นฟู HP/MP ทั้งหมด
-อยู่ในภาวะคงกระพันชั่วขณะ"
-DeadPanelNowRespawnWindowTextItem	0	0	"ใช้หยาดแห่งชีวิต 1 ชิ้น[FFFFFF]
-
-จำนวนที่มี: {0}
-
-[FFFF99]ฟื้นฟู HP/MP ทั้งหมด
-อยู่ในภาวะคงกระพันชั่วขณะ"
+DeadPanelNowRespawnWindowTextCoin	0	0	ใช้ออร์บ {0} ชิ้น[FFFFFF]\n\nจำนวนที่มี: {1}\n\n[FFFF99]ฟื้นฟู HP/MP ทั้งหมด\nอยู่ในภาวะคงกระพันชั่วขณะ
+DeadPanelNowRespawnWindowTextItem	0	0	ใช้หยาดแห่งชีวิต 1 ชิ้น[FFFFFF]\n\nจำนวนที่มี: {0}\n\n[FFFF99]ฟื้นฟู HP/MP ทั้งหมด\nอยู่ในภาวะคงกระพันชั่วขณะ
 DeadPanelNowRespawnWindowButton	0	0	คืนชีพ
 DeadPanelNowRespawnWindowButton2	0	0	มีเหรียญไม่พอ
 DeadPanelSaveRespawnWindowLabel	0	0	กลับเมืองหรือไม่?
-DeadPanelSaveRespawnWindowText	0	0	"จะกลับเมืองสุดท้ายที่ไปมา
-
-สามารถคืนชีพที่นี่ในอีก {0} วินาที
-แน่ใจหรือไม่ว่าจะกลับ?"
+DeadPanelSaveRespawnWindowText	0	0	จะกลับเมืองสุดท้ายที่ไปมา\n\nสามารถคืนชีพที่นี่ในอีก {0} วินาที\nแน่ใจหรือไม่ว่าจะกลับ?
 DeadPanelSaveRespawnWindowButton	0	0	กลับเมือง
 Exit	0	0	ออก
-DeadPanelAllDeadLabel	0	0	"ปาร์ตี้ทั้งหมดถูกกำจัดแล้ว...
-ไม่สามารถสู้ต่อไปได้"
+DeadPanelAllDeadLabel	0	0	ปาร์ตี้ทั้งหมดถูกกำจัดแล้ว...\nไม่สามารถสู้ต่อไปได้
 DeadPanelAllDeadText	0	0	[888888]ชุบชีวิตหรือเพิ่มสมาชิกจะเริ่มใหม่ได้
 DeadPanelSoroAllDeadLabel	0	0	หมดแรงแล้ว\nไม่สามารถสู้ต่อไปได้
 DeadPanelSoroAllDeadText	0	0	[888888]ถ้าใช้ไอเท็มฟื้นฟูจะสามารถเล่นต่อได้
@@ -3777,9 +3632,7 @@ MapPanelNowMap	0	0	แผนที่ปัจจุบัน
 MapPanelNowMapSmallLabel	0	0	 
 MapPanelChangeMap	0	0	เคลื่อนย้ายทันที
 MapPanelCoinWarpWindowLabel	0	0	เคลื่อนย้ายไปแผนที่ที่เลือก
-MapPanelWarpWindowTextCoin	0	0	"ใช้ออร์บ {0} ชิ้น
-
-จำนวนที่มี: {1}"
+MapPanelWarpWindowTextCoin	0	0	ใช้ออร์บ {0} ชิ้น\n\nจำนวนที่มี: {1}
 MapPanelWarpWindowTextItem	0	0	\n\nใช้ตั๋ววาร์ป 1 ใบ\n\nจำนวนที่มี: {0}
 MapPanelWarpWindowButton	0	0	วาร์ปด้วยออร์บ x{0}
 MapPanelWarpWindowButton2	0	0	มีเหรียญไม่พอ
@@ -3970,50 +3823,29 @@ EquipPanelEnter1	0	0	ถอดอุปกรณ์
 EquipPanelNext	0	0	ถัดไป
 EquipPanelEquipLoc	0	0	ติดตั้งไม่ได้
 EquipPanelNonSlotCrista	0	0	[aaaaaa]ไม่มีสล็อต
-EquipPanelCristaSlotCheck	0	0	"อุปกรณ์นี้ไม่มีสล็อต
-แก้ไขคริสตาไม่ได้
-
-สล็อตจะได้มาเมื่อดรอปจาก
-มอนสเตอร์หรือจากการผลิต"
-EquipPanelCristaSlotApertaText	0	0	"สามารถเพิ่มสล็อต
-ด้วย ""{0}""
-(จำนวนที่มี: {1})"
+EquipPanelCristaSlotCheck	0	0	อุปกรณ์นี้ไม่มีสล็อต\nแก้ไขคริสตาไม่ได้\n\nสล็อตจะได้มาเมื่อดรอปจาก\nมอนสเตอร์หรือจากการผลิต
+EquipPanelCristaSlotApertaText	0	0	"สามารถเพิ่มสล็อต\nด้วย ""{0}""\n(จำนวนที่มี: {1})"
 EquipPanelNonCrista	0	0	ไม่มีคริสตา
 EquipPanelCristaSlotApertaLabel	0	0	เพิ่มสล็อต
 PopUpCristaCustomWindowTitle	0	0	แก้ไขคริสตา
 PopUpCristaCustomWindowMessage	0	0	โปรดเลือกว่าจะทำอะไร?
 PopUpCristaCustomWindowButton0	0	0	[ffff77]ทำลาย
-PopUpCristaCustomWindowButton1	0	0	"[ffff77]ถอด
-[ffffff]อัตราสำเร็จ: 80%"
-PopUpCristaCustomWindowButton2	0	0	"[ffff77]ใช้คริสตาสำหรับถอด
-{0}อัตราสำเร็จ: 100%
-(จำนวนที่มี： {1} ชิ้น)"
-PopUpCristaCustomWindowButton3	0	0	"[ffff77]ใช้ออร์บ {2} ชิ้น
-{0}อัตราสำเร็จ: 100%
-(จำนวนที่มี： {1} ชิ้น)"
-PopUpCristaCustomWindowButton4	0	0	"[ffff77]ใช้ออร์บ {2} ชิ้น
-{0}อัตราสำเร็จ: 100%
-(สร้างออร์บ)"
+PopUpCristaCustomWindowButton1	0	0	[ffff77]ถอด\n[ffffff]อัตราสำเร็จ: 80%
+PopUpCristaCustomWindowButton2	0	0	[ffff77]ใช้คริสตาสำหรับถอด\n{0}อัตราสำเร็จ: 100%\n(จำนวนที่มี： {1} ชิ้น)
+PopUpCristaCustomWindowButton3	0	0	[ffff77]ใช้ออร์บ {2} ชิ้น\n{0}อัตราสำเร็จ: 100%\n(จำนวนที่มี： {1} ชิ้น)
+PopUpCristaCustomWindowButton4	0	0	[ffff77]ใช้ออร์บ {2} ชิ้น\n{0}อัตราสำเร็จ: 100%\n(สร้างออร์บ)
 PopUpCristaUnLocWindowSlot	0	0	[ffff77]สล็อต　{0}　->　{1}
-PopUpCristaUnLocWindowMessage	0	0	"ใช้{0}
-เพิ่มสล็อตหรือไม่?
-
-(จำนวนที่มี: {1} ชิ้น)"
+PopUpCristaUnLocWindowMessage	0	0	ใช้{0}\nเพิ่มสล็อตหรือไม่?\n\n(จำนวนที่มี: {1} ชิ้น)
 PopUpCristaUnLocWindowButton	0	0	เพิ่มสล็อต
 PopUpCristaUnLocWindowTitle	0	0	เพิ่มสล็อต
 EquipPanelEnter2	0	0	ติดตั้งคริสตา
 PopUpCristaCustomWindowButtonBagAll	0	0	[ff0000]กระเป๋าเต็ม
 PopUpCristaCustomWindowButtonSpecific	0	0	[ffff77]ถอดคริสตา[ffffff]\nอัตราความสำเร็จ: 100%\n[64ffff]ยกเว้นเพราะการปรับเปลี่ยน
-EquipPanelNoUseCristaSlot	0	0	"[ffff64]โล่, ดาบสั้น, ธนู[ffffff]ไม่สามารถเพิ่มสล็อตได้
-
-สามารถเพิ่มสล็อตให้กับ[ffff64]สนับมือ, อุปกรณ์เวท, ดาบคู่
-ได้ แต่[ff6464]ผลของคริสตาจะไม่ทำงาน[ffffff]"
-EquipPanelBattleChangeErrLabel	0	0	"ไม่สามารถเปลี่ยนอุปกรณ์
-ระหว่างการต่อสู้ได้"
+EquipPanelNoUseCristaSlot	0	0	[ffff64]โล่, ดาบสั้น, ธนู[ffffff]ไม่สามารถเพิ่มสล็อตได้\n\nสามารถเพิ่มสล็อตให้กับ[ffff64]สนับมือ, อุปกรณ์เวท, ดาบคู่\nได้ แต่[ff6464]ผลของคริสตาจะไม่ทำงาน[ffffff]
+EquipPanelBattleChangeErrLabel	0	0	ไม่สามารถเปลี่ยนอุปกรณ์\nระหว่างการต่อสู้ได้
 EquipPanelCristaMessage	0	0	\n\nคริสตา{1}จะถูกติดที่{0}
 EquipPanelCristaTitle	0	0	ติดคริสตา
-EquipPanelCristaSelectedMessage	0	0	"เลือกอุปกรณ์
-ที่จะแก้ไขคริสตา"
+EquipPanelCristaSelectedMessage	0	0	เลือกอุปกรณ์\nที่จะแก้ไขคริสตา
 EquipPanelEquipNoWeapon	0	0	ไม่มีอาวุธหลัก
 EquipPanelEquipNoSubWeapon	0	0	ไม่มีอาวุธเสริม
 EquipPanelEquipNoBody	0	0	ไม่มีชุดเกราะ
@@ -4177,20 +4009,16 @@ StatusPanelDefenderLabel	0	0	ผู้ป้องกันอันดับ 1
 StatusPanelSupporterLabel	0	0	ผู้สนับสนุนอันดับ 1
 StatusPanelBreakerLabel	0	0	แอสซิสเตอร์อันดับ 1
 StatusPanelCareCountLabel	0	0	ปฐมพยาบาล
-StatusPanelWeaponCreate	0	0	"ความชำนาญ
-การตีเหล็ก"
-StatusPanelMedicineCreate	0	0	"ความชำนาญ
-การผสม"
+StatusPanelWeaponCreate	0	0	ความชำนาญ\nการตีเหล็ก
+StatusPanelMedicineCreate	0	0	ความชำนาญ\nการผสม
 MaterialLevel	0	0	วัตถุดิบ Lv{0}
 StatusPanelCreateMax	0	0	(Max)
 StatusPanelMaterialMaxPointLabel	0	0	ค่าสูงสุดในปัจจุบัน: {0}pt
 StatusPanelMaterialMaxPointAddParamLabel	0	0	โบนัสสล็อตคาแรคเตอร์ ([ffff88]+{0}[ffffff])
 StatusPanelMaterialMaxPointAddCourse1OnLabel	0	0	[คอร์สขยายกระเป๋า] ([ffff88]สูงสุด 2 เท่า[ffffff])
 StatusPanelMaterialMaxPointAddCourse1OffLabel	0	0	[aaaaaa][คอร์สขยายกระเป๋า] (สูงสุด 2 เท่า)
-StatusPanelWeaponCreateWarning	0	0	"เพราะเลเวลสูงสุดของความชำนาญการตีเหล็กลดลง
-เลเวลจะเป็น Lv{0} เมื่อใช้ EX สกิล"
-StatusPanelMedicineCreateWarning	0	0	"เพราะเลเวลสูงสุดของความชำนาญการผสมลดลง
-เลเวลจะเป็น Lv{0} เมื่อใช้ EX สกิล"
+StatusPanelWeaponCreateWarning	0	0	เพราะเลเวลสูงสุดของความชำนาญการตีเหล็กลดลง\nเลเวลจะเป็น Lv{0} เมื่อใช้ EX สกิล
+StatusPanelMedicineCreateWarning	0	0	เพราะเลเวลสูงสุดของความชำนาญการผสมลดลง\nเลเวลจะเป็น Lv{0} เมื่อใช้ EX สกิล
 HaveSupina	0	0	สปินา: {0}s
 StatusPanelPersonalLabel	0	0	เลือกสเตตัสส่วนบุคคล
 StatusPanelPersonalText	0	0	[ff0000]ถ้าเลือกไปครั้งหนึ่งแล้วจะเปลี่ยนไม่ได้อีก
@@ -4206,26 +4034,11 @@ StatusPanelPersonalTextMEN	0	0	เพิ่มความต้านทาน�
 StatusPanelPersonalLabelTEC	0	0	เทคนิค
 StatusPanelPersonalTextTEC	0	0	เพิ่มอัตราความสำเร็จในการผลิต
 StatusPanelStatusRestPopUpLabel	0	0	รีเซ็ตสเตตัส
-StatusPanelStatusRestPopUpText	0	0	"ใช้หนังสือรีเซ็ต 1 ชิ้น
-
-จำนวนที่มี: {0}
-
-[FFFF99]รีเซ็ตสเตตัส"
-StatusPanelStatusRestPopUpOrbText	0	0	"ใช้ออร์บ {0} ชิ้น
-
-จำนวนที่มี: {1}
-
-[FFFF99]รีเซ็ตสเตตัส"
+StatusPanelStatusRestPopUpText	0	0	ใช้หนังสือรีเซ็ต 1 ชิ้น\n\nจำนวนที่มี: {0}\n\n[FFFF99]รีเซ็ตสเตตัส
+StatusPanelStatusRestPopUpOrbText	0	0	ใช้ออร์บ {0} ชิ้น\n\nจำนวนที่มี: {1}\n\n[FFFF99]รีเซ็ตสเตตัส
 StatusPanelPrimaryRestPopUpLabel	0	0	รีเซ็ตสเตตัสส่วนบุคคล
-StatusPanelPrimaryRestPopUpText	0	0	"ใช้กระจกแห่งการทบทวน 1 ชิ้น
-
-จำนวนที่มี: {0}
-
-[FFFF99]รีเซ็ตสเตตัสส่วนบุคคล"
-StatusPanelPrimaryRestPopUpOrbText	0	0	"ใช้ออร์บ {0} ชิ้น
-จำนวนที่มี: {1}
-
-[FFFF99]รีเซ็ตสเตตัสส่วนบุคคล"
+StatusPanelPrimaryRestPopUpText	0	0	ใช้กระจกแห่งการทบทวน 1 ชิ้น\n\nจำนวนที่มี: {0}\n\n[FFFF99]รีเซ็ตสเตตัสส่วนบุคคล
+StatusPanelPrimaryRestPopUpOrbText	0	0	ใช้ออร์บ {0} ชิ้น\nจำนวนที่มี: {1}\n\n[FFFF99]รีเซ็ตสเตตัสส่วนบุคคล
 StatusPanelRestPopUpText	0	0	โปรดเลือกหัวข้อที่ต้องการรีเซ็ต
 StatusPanelConnectionWait	0	0	กำลังเชื่อมต่อกรุณารอสักครู่
 StatusPanelConnectionReset	0	0	รีเซ็ตแล้ว
@@ -4238,10 +4051,8 @@ UIStatusPanelPropertyMessage2	0	0	ยิ่งมี DEF สูงก็จะ�
 UIStatusPanelPropertyMessage3	0	0	ยิ่งมี MDEF สูงก็จะยิ่ง[ffff88]ลดความเสียหายจากเวทของศัตรู[ffffff]ได้มากขึ้น
 UIStatusPanelPropertyMessage4	0	0	ยิ่งมี HIT สูงก็จะยิ่ง[ffff88]เพิ่มอัตราความแม่น[ffffff]ได้มากขึ้น
 UIStatusPanelPropertyMessage5	0	0	ยิ่งมี FLEE สูงก็จะยิ่ง[ffff88]เพิ่มอัตราหลบหลีกการโจมตีของ[ffffff]ได้มากขึ้น
-UIStatusPanelPropertyMessage6	0	0	"ยิ่งมี ASPD สูงก็จะยิ่ง[ffff88]ลดเวลาเตรียมตัวในการโจมตีครั้งต่อไป[ffffff]ได้มากขึ้น
-ความเร็วในการโจมตีจะเพิ่มขึ้นเมื่อ ASPD ถึงค่าที่กำหนด"
-UIStatusPanelPropertyMessage7	0	0	"ยิ่งมี CSPD สูงก็จะยิ่ง[ffff88]ลดเวลาร่ายเวทและเวลาชาร์ตพลัง[ffffff]ได้มากขึ้น
-ไม่มีผลต่อบางสกิล"
+UIStatusPanelPropertyMessage6	0	0	ยิ่งมี ASPD สูงก็จะยิ่ง[ffff88]ลดเวลาเตรียมตัวในการโจมตีครั้งต่อไป[ffffff]ได้มากขึ้น\nความเร็วในการโจมตีจะเพิ่มขึ้นเมื่อ ASPD ถึงค่าที่กำหนด
+UIStatusPanelPropertyMessage7	0	0	ยิ่งมี CSPD สูงก็จะยิ่ง[ffff88]ลดเวลาร่ายเวทและเวลาชาร์ตพลัง[ffffff]ได้มากขึ้น\nไม่มีผลต่อบางสกิล
 UIStatusPanelBuild	0	0	[ffff88]สามารถแบ่งสเตตัสพ้อยท์ได้!!
 UIStatuslCreaterPanelButton	0	0	การผลิต
 UIStatusBuildPanelButton	0	0	เพิ่มสเตตัส
@@ -4249,26 +4060,16 @@ UIStatusGameRecordButton	0	0	ผลการเล่น
 UIStatusPlayerStatusButton	0	0	ตรวจสอบสเตตัส
 UIStatusEquipText	0	0	แนะนำการเพิ่มสเตตัสสำหรับ{0} 
 UIStatusBulidEquipMessage8	0	0	อัพ [ffff88]DEX[ffffff] เพื่อเพิ่มพลังโจมตีกับอัตราความแม่น\n[ffff88]STR[ffffff] จะช่วยเพิ่มพลังโจมตีเล็กน้อย\nอัพ [ffff88]VIT[ffffff] เพื่อเพิ่มพลังชีวิต หรืออัพ [ffff88]AGI[ffffff] เพื่อทำให้โจมตีได้เร็วขึ้น
-UIStatusBulidEquipMessage9	0	0	"
-ถ้าเพิ่ม[ffff88]STR[ffffff]พลังโจมตีจะเพิ่มขึ้น\nถ้าเพิ่ม[ffff88]AGI[ffffff]อัตราหลบหลีกและความเร็วการโจมตีจะเพิ่มขึ้น\nและพลังโจมตีก็จะเพิ่มขึ้นเล็กน้อย อัตราความแม่นของอาวุธต่ำ\nจึงต้องปรับให้เหมาะสมด้วยการใช้อุปกรณ์อื่นช่วยเหลือ"
-UIStatusBulidEquipMessage10	0	0	"
-อัพ [ffff88]STR[ffffff] หรือ [ffff88]DEX[ffffff] เพื่อเพิ่มพลังโจมตี\n[ffff88]DEX[ffffff] จะทำให้อัตราความแม่นเพิ่มขึ้น\nอัพ [ffff88]VIT[ffffff] เพื่อเพิ่ม HP และอัพ [ffff88]AGI[ffffff] เพื่อทำให้โจมตีได้เร็วขึ้น"
-UIStatusBulidEquipMessage11	0	0	"
-อัพ [ffff88]STR[ffffff] เพื่อเพิ่มพลังโจมตี และ [ffff88]DEX[ffffff] จะทำให้อัตราความแม่นเพิ่มขึ้นเล็กน้อย\nเพราะถือโล่ไม่ได้ การอัพ [ffff88]VIT[ffffff] จะช่วยเพิ่ม HP ทำให้ทนต่อการโจมตีได้มากขึ้น"
-UIStatusBulidEquipMessage12	0	0	"
-อัพ [ffff88]DEX[ffffff] เพื่อเพิ่มพลังโจมตีและอัตราความแม่น\n[ffff88]STR[ffffff] จะช่วยทำให้พลังโจมตีเพิ่มขึ้นเล็กน้อย\nพลังโจมตีและความเสถียรของลูกธนูจะมีผลกับธนู"
-UIStatusBulidEquipMessage13	0	0	"
-อัพ [ffff88]DEX[ffffff] เพื่อเพิ่มพลังโจมตีและอัตราความแม่น\nลูกธนูมีผลต่อโบว์กันน้อยกว่าธนู ดังนั้นแม้จะถือโล่หรือดาบสั้นเพิ่ม\nก็ยังแสดงประสิทธิภาพได้อย่างพอเพียง"
-UIStatusBulidEquipMessage14	0	0	"
-อัพ [ffff88]INT[ffffff] เพื่อเพิ่มพลังโจมตีเวทมนตร์\nการอัพ [ffff88]DEX[ffffff] จะทำให้ร่ายเวทได้เร็วขึ้น\nถ้าใช้ไม้เท้าที่มีธาตุ เวทที่ใช้อาจเปลี่ยนไป"
-UIStatusBulidEquipMessage15	0	0	"
-อัพ [ffff88]INT[ffffff] เพื่อเพิ่มพลังโจมตีเวทมนตร์\nการอัพ [ffff88]AGI[ffffff] จะช่วยเพิ่มพลังโจมตีธรรมดา\nมีระยะโจมตีที่ไกลกว่าเมื่อเทียบกับไม้เท้า ทำให้คาดหวังกับการฟื้นฟู MP ได้มากกว่า"
-UIStatusBulidEquipMessage16	0	0	"
-อัพ [ffff88]AGI[ffffff] เพื่อเพิ่มพลังโจมตีกับอัตราหลบหลีกและความเร็วการโจมตี\nอ้พ [ffff88]DEX[ffffff] เพื่อเพิ่มอัตราความแม่น และเพิ่มพลังโจมตีได้เล็กน้อย"
-UIStatusBulidEquipMessageHand	0	0	"
-ไม่ได้ติดตั้งอาวุธ การออกไปสู้ในสภาพนี้นับว่าอันตรายมาก\nเพิ่มพลังโจมตีได้ด้วยการอัพ [ffff88]STR[ffffff] และอัพ [ffff88]DEX[ffffff] เพื่อเพิ่มความแม่น\nการอัพ [ffff88]AGI[ffffff] ก็จะทำให้โจมตีได้เร็วขึ้น"
-UIStatusBulidEquipMessageTwinSword	0	0	"
-อัพ [ffff64]DEX[ffffff] เพื่อเพิ่มพลังโจมตีและอัตราความแม่น\n[ffff64]STR[ffffff] กับ [ffff64]AGI[ffffff] จะช่วยให้พลังโจมตีเพิ่มขึ้นได้เล็กน้อย\nอัพ [ffff64]AGI[ffffff] จะช่วยเพิ่มพลังโจมตีให้อาวุธเสริม\n[ffff64]STR[ffffff] ก็จะช่วยให้เพิ่มพลังโจมตีได้เล็กน้อยเช่นกัน"
+UIStatusBulidEquipMessage9	0	0	\nถ้าเพิ่ม[ffff88]STR[ffffff]พลังโจมตีจะเพิ่มขึ้น\nถ้าเพิ่ม[ffff88]AGI[ffffff]อัตราหลบหลีกและความเร็วการโจมตีจะเพิ่มขึ้น\nและพลังโจมตีก็จะเพิ่มขึ้นเล็กน้อย อัตราความแม่นของอาวุธต่ำ\nจึงต้องปรับให้เหมาะสมด้วยการใช้อุปกรณ์อื่นช่วยเหลือ
+UIStatusBulidEquipMessage10	0	0	\nอัพ [ffff88]STR[ffffff] หรือ [ffff88]DEX[ffffff] เพื่อเพิ่มพลังโจมตี\n[ffff88]DEX[ffffff] จะทำให้อัตราความแม่นเพิ่มขึ้น\nอัพ [ffff88]VIT[ffffff] เพื่อเพิ่ม HP และอัพ [ffff88]AGI[ffffff] เพื่อทำให้โจมตีได้เร็วขึ้น
+UIStatusBulidEquipMessage11	0	0	\nอัพ [ffff88]STR[ffffff] เพื่อเพิ่มพลังโจมตี และ [ffff88]DEX[ffffff] จะทำให้อัตราความแม่นเพิ่มขึ้นเล็กน้อย\nเพราะถือโล่ไม่ได้ การอัพ [ffff88]VIT[ffffff] จะช่วยเพิ่ม HP ทำให้ทนต่อการโจมตีได้มากขึ้น
+UIStatusBulidEquipMessage12	0	0	\nอัพ [ffff88]DEX[ffffff] เพื่อเพิ่มพลังโจมตีและอัตราความแม่น\n[ffff88]STR[ffffff] จะช่วยทำให้พลังโจมตีเพิ่มขึ้นเล็กน้อย\nพลังโจมตีและความเสถียรของลูกธนูจะมีผลกับธนู
+UIStatusBulidEquipMessage13	0	0	\nอัพ [ffff88]DEX[ffffff] เพื่อเพิ่มพลังโจมตีและอัตราความแม่น\nลูกธนูมีผลต่อโบว์กันน้อยกว่าธนู ดังนั้นแม้จะถือโล่หรือดาบสั้นเพิ่ม\nก็ยังแสดงประสิทธิภาพได้อย่างพอเพียง
+UIStatusBulidEquipMessage14	0	0	\nอัพ [ffff88]INT[ffffff] เพื่อเพิ่มพลังโจมตีเวทมนตร์\nการอัพ [ffff88]DEX[ffffff] จะทำให้ร่ายเวทได้เร็วขึ้น\nถ้าใช้ไม้เท้าที่มีธาตุ เวทที่ใช้อาจเปลี่ยนไป
+UIStatusBulidEquipMessage15	0	0	\nอัพ [ffff88]INT[ffffff] เพื่อเพิ่มพลังโจมตีเวทมนตร์\nการอัพ [ffff88]AGI[ffffff] จะช่วยเพิ่มพลังโจมตีธรรมดา\nมีระยะโจมตีที่ไกลกว่าเมื่อเทียบกับไม้เท้า ทำให้คาดหวังกับการฟื้นฟู MP ได้มากกว่า
+UIStatusBulidEquipMessage16	0	0	\nอัพ [ffff88]AGI[ffffff] เพื่อเพิ่มพลังโจมตีกับอัตราหลบหลีกและความเร็วการโจมตี\nอ้พ [ffff88]DEX[ffffff] เพื่อเพิ่มอัตราความแม่น และเพิ่มพลังโจมตีได้เล็กน้อย
+UIStatusBulidEquipMessageHand	0	0	\nไม่ได้ติดตั้งอาวุธ การออกไปสู้ในสภาพนี้นับว่าอันตรายมาก\nเพิ่มพลังโจมตีได้ด้วยการอัพ [ffff88]STR[ffffff] และอัพ [ffff88]DEX[ffffff] เพื่อเพิ่มความแม่น\nการอัพ [ffff88]AGI[ffffff] ก็จะทำให้โจมตีได้เร็วขึ้น
+UIStatusBulidEquipMessageTwinSword	0	0	\nอัพ [ffff64]DEX[ffffff] เพื่อเพิ่มพลังโจมตีและอัตราความแม่น\n[ffff64]STR[ffffff] กับ [ffff64]AGI[ffffff] จะช่วยให้พลังโจมตีเพิ่มขึ้นได้เล็กน้อย\nอัพ [ffff64]AGI[ffffff] จะช่วยเพิ่มพลังโจมตีให้อาวุธเสริม\n[ffff64]STR[ffffff] ก็จะช่วยให้เพิ่มพลังโจมตีได้เล็กน้อยเช่นกัน
 StatusPanelRestItemBuyOrbNum	0	0	สร้างออร์บ
 StatusPanelCompensationResetLabel1	0	0	[FFFF99]รีเซ็ตสเตตัส
 StatusPanelCompensationResetLabel2	0	0	[ffff64]ตอนนี้คุณสามารถรีเซ็ตสเตตัสได้ฟรี\nโปรดตรวจสอบรายละเอียดที่ประกาศ[ffffff]
@@ -4290,8 +4091,7 @@ ParameterPanelBuyMes	0	0	สามารถซื้อสล็อตคาแ�
 ParameterPanelCharButton	0	0	Lv{0}  {1}
 ParameterPanelCharButtonMes	0	0	เปลี่ยนสเตตัส, สกิล, รูปร่าง
 ParameterPanelDeleteLabel	0	0	ต้องการลบคาแรคเตอร์ด้านล่างใช่หรือไม่?
-ParameterPanelDeleteText	0	0	"ปุ่ม[ffff64]ลบ[ffffff]จะปรากฏเมื่อ
-พิมพ์ ""[ffff64]Delete[ffffff]"""
+ParameterPanelDeleteText	0	0	"ปุ่ม[ffff64]ลบ[ffffff]จะปรากฏเมื่อ\nพิมพ์ ""[ffff64]Delete[ffffff]"""
 ParameterPanelDeleteKey	0	0	ลบ
 ParameterPanelDeleteOKButton	0	0	ตกลง
 ParametarPanelChangeSlotLabel	0	0	เปลี่ยนคาแรคเตอร์
@@ -4313,11 +4113,7 @@ ParameterPanelDeleteEqualErrLabel	0	0	เกิดข้อผิดพลาด
 ParameterPanelDeleteEqualErrText	0	0	ไม่สามารถลบคาแรคเตอร์ที่ใช้อยู่ในปัจจุบันได้
 ParametarPanelCreateSlotText	0	0	สามารถสร้างคาแรคเตอร์ใหม่ได้\n\n[ff6464]*ขณะสร้างจะอยู่ในสถานะล็อกเอาท์\n*โปรดระวังว่าจะไม่สามารถดูบทสนทนาระหว่างนี้ได้\n*ไม่สามารถเปลี่ยนชื่อคาแรคเตอร์ได้ที่นี่
 ParametarPanelCreateSlotButton	0	0	สร้างใหม่
-ParameterPanelAddSlotTextCoin	0	0	"ใช้ออร์บ {0} ชิ้น
-
-จำนวนที่มี: {1}
-
-[FFFF99]ซื้อสล็อตคาแรคเตอร์ใหม่"
+ParameterPanelAddSlotTextCoin	0	0	ใช้ออร์บ {0} ชิ้น\n\nจำนวนที่มี: {1}\n\n[FFFF99]ซื้อสล็อตคาแรคเตอร์ใหม่
 ParameterPanelAddSlotWindowLabel	0	0	ซื้อสล็อตคาแรคเตอร์ใหม่
 ParameterPanelAddSlotWindowButton	0	0	ซื้อ
 ParameterPanelAddSlotMaxText	0	0	\n\nสล็อตที่มีถึงจำนวนสูงสุดแล้ว\nไม่สามารถซื้อเพิ่มได้อีก
@@ -4334,12 +4130,7 @@ ParameterPanelUnRegisterMes	0	0	สามารถใช้พาร์ทเน
 ParameterPanelCanNotNowMap	0	0	ไม่สามารถเรียกพาร์ทเนอร์ที่แผนที่นี้ได้
 ParameterPanelAbnormalStatusMes	0	0	เนื่องจากข้อมูลของพาร์ทเนอร์มีปัญหา\nเลยเรียกออกมาไม่สำเร็จ
 ParameterPanelTutorialTitle	0	0	ไม่สามารถใช้ระบบพาร์ทเนอร์ได้!
-ParameterPanelTutorialMessage	0	0	"สร้างคาแรคเตอร์ตัวใหม่สำเร็จแล้ว!
-[ffff64]คุณสามารถเรียกคาแรคเตอร์ตัวอื่นของคุณ[ffffff]
-[ffff64]มาเป็นสมาชิกในปาร์ตี้ได้[ffffff]
-
-ตั้งค่าให้ติดตามได้ที่หน้าจอ
-[64ffff]เปลี่ยนคาแรคเตอร์[ffffff]"
+ParameterPanelTutorialMessage	0	0	สร้างคาแรคเตอร์ตัวใหม่สำเร็จแล้ว!\n[ffff64]คุณสามารถเรียกคาแรคเตอร์ตัวอื่นของคุณ[ffffff]\n[ffff64]มาเป็นสมาชิกในปาร์ตี้ได้[ffffff]\n\nตั้งค่าให้ติดตามได้ที่หน้าจอ\n[64ffff]เปลี่ยนคาแรคเตอร์[ffffff]
 PartnerUnregisterd	0	0	ไม่ได้ลงทะเบียนพาร์ทเนอร์
 PartnerNeverChangeAttention	0	0	สามารถใช้ได้เมื่อเปลี่ยนคาแรกเตอร์
 PartnerActionSetting	0	0	การตั้งค่าแอคชั่น
@@ -4438,8 +4229,7 @@ ComboPanelStartText	0	0	ไม่สามารถตั้งค่าผล�
 ComboPanelSelectClear	0	0	เอาออก
 ComboPanelComboPoint	0	0	คอมโบพ้อยท์ที่เหลืออยู่
 ComboPanelAddComboBuffer	0	0	[ffffff]สามารถตั้งค่าผลลัพธ์พิเศษโดยการใช้ 1 CP
-ComboPanelNewSkillMessage	0	0	"โปรดเลือกสกิล
-ต่อจาก{0}"
+ComboPanelNewSkillMessage	0	0	โปรดเลือกสกิล\nต่อจาก{0}
 ComboPanelStartSkillMessage	0	0	โปรดเลือกสกิลแรก
 ComboPanelCpCheck	0	0	[ff0000]เพิ่มไม่ได้\nเพราะไม่มี CP
 ComboPanelSelectDelete	0	0	ลบคอมโบ
@@ -4469,529 +4259,7 @@ EquipPanelAbilityPopWindowBuyButton	0	0	[ffff64]ซื้อด้วยออ�
 EquipPanelAbilityHaveItemNum	0	0	(จำนวนที่มี: {0} ชิ้น)  
 EquipPanelAbilityNoAbility	0	0	ไม่มี
 EquipPanelAbilityRepair	0	0	เพิ่ม
-EquipPanelAbilityListMain	0	0	"▼อัตราสำเร็จ
-สล็อตที่ 1: 100%
-สล็อตที่ 2: 50%
-สล็อตที่ 3: 25%
-[ff6464]*สล็อตที่ 3 จะมีโอกาสถูกเพิ่มได้ก็ต่อเมื่อ
-สเตตัสของสล็อตที่ 2 ถูกเพิ่มไปแล้ว[ffffff]
-[ff6464]*สเตตัสที่เหมือนกันจะไม่ถูกเพิ่ม[ffffff]
-[ff6464]*ยิ่งเป็นสเตตัสที่แข็งแกร่งมากขึ้นเท่าไหร่ก็จะยิ่งถูกเพิ่มได้ยากยิ่งขึ้น[ffffff]
-
-
-▼รายการสเตตัส
-STR+1
-STR+2
-STR+3
-STR+4
-STR+5
-STR+6
-STR+7
-STR+8
-STR+9
-[ffff64]STR+10[ffffff]
-INT+1
-INT+2
-INT+3
-INT+4
-INT+5
-INT+6
-INT+7
-INT+8
-INT+9
-[ffff64]INT+10[ffffff]
-VIT+1
-VIT+2
-VIT+3
-VIT+4
-VIT+5
-VIT+6
-VIT+7
-VIT+8
-VIT+9
-[ffff64]VIT+10[ffffff]
-AGI+1
-AGI+2
-AGI+3
-AGI+4
-AGI+5
-AGI+6
-AGI+7
-AGI+8
-AGI+9
-[ffff64]AGI+10[ffffff]
-DEX+1
-DEX+2
-DEX+3
-DEX+4
-DEX+5
-DEX+6
-DEX+7
-DEX+8
-DEX+9
-[ffff64]DEX+10[ffffff]
-STR+1%
-STR+2%
-[ffff64]STR+3%[ffffff]
-INT+1%
-INT+2%
-[ffff64]INT+3%[ffffff]
-VIT+1%
-VIT+2%
-[ffff64]VIT+3%[ffffff]
-AGI+1%
-AGI+2%
-[ffff64]AGI+3%[ffffff]
-DEX+1%
-DEX+2%
-[ffff64]DEX+3%[ffffff]
-HP สูงสุด+100
-HP สูงสุด+200
-HP สูงสุด+300
-HP สูงสุด+400
-HP สูงสุด+500
-HP สูงสุด+600
-HP สูงสุด+700
-HP สูงสุด+800
-HP สูงสุด+900
-[ffff64]HP สูงสุด+1000[ffffff]
-HP สูงสุด+5%
-HP สูงสุด+10%
-[ffff64]HP สูงสุด+15%[ffffff]
-MP สูงสุด+10
-MP สูงสุด+20
-MP สูงสุด+30
-MP สูงสุด+40
-MP สูงสุด+50
-MP สูงสุด+60
-MP สูงสุด+70
-MP สูงสุด+80
-MP สูงสุด+90
-[ffff64]MP สูงสุด+100[ffffff]
-ATK อาวุธ+3
-ATK อาวุธ+6
-ATK อาวุธ+9
-ATK อาวุธ+12
-ATK อาวุธ+15
-ATK อาวุธ+18
-ATK อาวุธ+21
-ATK อาวุธ+24
-ATK อาวุธ+27
-[ffff64]ATK อาวุธ+30[ffffff]
-ATK อาวุธ+1%
-ATK อาวุธ+2%
-[ffff64]ATK อาวุธ+3%[ffffff]
-ATK+3
-ATK+6
-ATK+9
-ATK+12
-ATK+15
-ATK+18
-ATK+21
-ATK+24
-ATK+27
-[ffff64]ATK+30[ffffff]
-ATK+1%
-ATK+2%
-[ffff64]ATK+3%[ffffff]
-MATK+3
-MATK+6
-MATK+9
-MATK+12
-MATK+15
-MATK+18
-MATK+21
-MATK+24
-MATK+27
-[ffff64]MATK+30[ffffff]
-MATK+1%
-MATK+2%
-[ffff64]MATK+3%[ffffff]
-ความเสถียร+1%
-ความเสถียร+2%
-[ffff64]ความเสถียร+3%[ffffff]
-ความแม่น+3
-ความแม่น+6
-ความแม่น+9
-ความแม่น+12
-ความแม่น+15
-ความแม่น+18
-ความแม่น+21
-ความแม่น+24
-ความแม่น+27
-[ffff64]ความแม่น+30[ffffff]
-ความแม่น+1%
-ความแม่น+2%
-[ffff64]ความแม่น+3%[ffffff]
-หลบหลีก+3
-หลบหลีก+6
-หลบหลีก+9
-หลบหลีก+12
-หลบหลีก+15
-หลบหลีก+18
-หลบหลีก+21
-หลบหลีก+24
-หลบหลีก+27
-[ffff64]หลบหลีก+30[ffffff]
-หลบหลีก+1%
-หลบหลีก+2%
-[ffff64]หลบหลีก+3%[ffffff]
-DEF+10
-DEF+20
-DEF+30
-DEF+40
-DEF+50
-DEF+60
-DEF+70
-DEF+80
-DEF+90
-[ffff64]DEF+100[ffffff]
-DEF+1%
-DEF+2%
-DEF+3%
-DEF+4%
-[ffff64]DEF+5%[ffffff]
-MDEF+10
-MDEF+20
-MDEF+30
-MDEF+40
-MDEF+50
-MDEF+60
-MDEF+70
-MDEF+80
-MDEF+90
-[ffff64]MDEF+100[ffffff]
-MDEF+1%
-MDEF+2%
-MDEF+3%
-MDEF+4%
-[ffff64]MDEF+5%[ffffff]
-ASPD+10
-ASPD+20
-ASPD+30
-ASPD+40
-ASPD+50
-ASPD+60
-ASPD+70
-ASPD+80
-ASPD+90
-[ffff64]ASPD+100[ffffff]
-ASPD+1%
-ASPD+2%
-ASPD+3%
-ASPD+4%
-ASPD+5%
-ASPD+6%
-ASPD+7%
-ASPD+8%
-ASPD+9%
-[ffff64]ASPD+10%[ffffff]
-CSPD+10
-CSPD+20
-CSPD+30
-CSPD+40
-CSPD+50
-CSPD+60
-CSPD+70
-CSPD+80
-CSPD+90
-[ffff64]CSPD+100[ffffff]
-CSPD+1%
-CSPD+2%
-CSPD+3%
-CSPD+4%
-CSPD+5%
-CSPD+6%
-CSPD+7%
-CSPD+8%
-CSPD+9%
-[ffff64]CSPD+10%[ffffff]
-ฟื้นฟู HP อัตโนมัติ+10
-ฟื้นฟู HP อัตโนมัติ+20
-ฟื้นฟู HP อัตโนมัติ+30
-ฟื้นฟู HP อัตโนมัติ+40
-ฟื้นฟู HP อัตโนมัติ+50
-ฟื้นฟู HP อัตโนมัติ+60
-ฟื้นฟู HP อัตโนมัติ+70
-ฟื้นฟู HP อัตโนมัติ+80
-ฟื้นฟู HP อัตโนมัติ+90
-[ffff64]ฟื้นฟู HP อัตโนมัติ+100[ffffff]
-ฟื้นฟู HP อัตโนมัติ+5%
-ฟื้นฟู HP อัตโนมัติ+10%
-ฟื้นฟู HP อัตโนมัติ+15%
-ฟื้นฟู HP อัตโนมัติ+20%
-[ffff64]ฟื้นฟู HP อัตโนมัติ+25%[ffffff]
-ฟื้นฟู MP อัตโนมัติ+1
-ฟื้นฟู MP อัตโนมัติ+2
-ฟื้นฟู MP อัตโนมัติ+3
-ฟื้นฟู MP อัตโนมัติ+4
-ฟื้นฟู MP อัตโนมัติ+5
-ฟื้นฟู MP อัตโนมัติ+6
-ฟื้นฟู MP อัตโนมัติ+7
-ฟื้นฟู MP อัตโนมัติ+8
-ฟื้นฟู MP อัตโนมัติ+9
-[ffff64]ฟื้นฟู MP อัตโนมัติ+10[ffffff]
-ฟื้นฟู MP อัตโนมัติ+5%
-ฟื้นฟู MP อัตโนมัติ+10%
-ฟื้นฟู MP อัตโนมัติ+15%
-ฟื้นฟู MP อัตโนมัติ+20%
-[ffff64]ฟื้นฟู MP อัตโนมัติ+25%[ffffff]
-ฟื้นฟู MP โจมตี+1
-ฟื้นฟู MP โจมตี+2
-ฟื้นฟู MP โจมตี+3
-ฟื้นฟู MP โจมตี+4
-ฟื้นฟู MP โจมตี+5
-ฟื้นฟู MP โจมตี+6
-ฟื้นฟู MP โจมตี+7
-ฟื้นฟู MP โจมตี+8
-ฟื้นฟู MP โจมตี+9
-[ffff64]ฟื้นฟู MP โจมตี+10[ffffff]
-อัตราคริติคอล+1
-อัตราคริติคอล+2
-อัตราคริติคอล+3
-อัตราคริติคอล+4
-[ffff64]อัตราคริติคอล+5[ffffff]
-อัตราคริติคอล+1%
-อัตราคริติคอล+2%
-[ffff64]อัตราคริติคอล+3%[ffffff]
-ความเสียหายคริติคอล+1
-ความเสียหายคริติคอล+2
-ความเสียหายคริติคอล+3
-ความเสียหายคริติคอล+4
-[ffff64]ความเสียหายคริติคอล+5[ffffff]
-ความเสียหายคริติคอล+1%
-ความเสียหายคริติคอล+2%
-[ffff64]ความเสียหายคริติคอล+3%[ffffff]
-ต้านภาวะผิดปกติ+1%
-ต้านภาวะผิดปกติ+2%
-ต้านภาวะผิดปกติ+3%
-ต้านภาวะผิดปกติ+4%
-ต้านภาวะผิดปกติ+5%
-ต้านภาวะผิดปกติ+6%
-ต้านภาวะผิดปกติ+7%
-ต้านภาวะผิดปกติ+8%
-ต้านภาวะผิดปกติ+9%
-[ffff64]ต้านภาวะผิดปกติ+10%[ffffff]
-การฟื้นฟู Guard+1%
-การฟื้นฟู Guard+2%
-[ffff64]การฟื้นฟู Guard+3%[ffffff]
-พลัง Guard+1%
-พลัง Guard+2%
-[ffff64]พลัง Guard+3%[ffffff]
-การฟื้นฟู Avoid+1%
-การฟื้นฟู Avoid+2%
-[ffff64]การฟื้นฟู Avoid+3%[ffffff]
-ต้านทานอาวุธ+1%
-ต้านทานอาวุธ+2%
-ต้านทานอาวุธ+3%
-ต้านทานอาวุธ+4%
-ต้านทานอาวุธ+5%
-ต้านทานอาวุธ+6%
-ต้านทานอาวุธ+7%
-ต้านทานอาวุธ+8%
-ต้านทานอาวุธ+9%
-[ffff64]ต้านทานอาวุธ+10%[ffffff]
-ต้านทานเวท+1%
-ต้านทานเวท+2%
-ต้านทานเวท+3%
-ต้านทานเวท+4%
-ต้านทานเวท+5%
-ต้านทานเวท+6%
-ต้านทานเวท+7%
-ต้านทานเวท+8%
-ต้านทานเวท+9%
-[ffff64]ต้านทานเวท+10%[ffffff]
-อาวุธเจาะเข้า+1%
-อาวุธเจาะเข้า+2%
-อาวุธเจาะเข้า+3%
-อาวุธเจาะเข้า+4%
-อาวุธเจาะเข้า+5%
-อาวุธเจาะเข้า+6%
-อาวุธเจาะเข้า+7%
-อาวุธเจาะเข้า+8%
-อาวุธเจาะเข้า+9%
-[ffff64]อาวุธเจาะเข้า+10%[ffffff]
-เวทเจาะเข้า+1%
-เวทเจาะเข้า+2%
-เวทเจาะเข้า+3%
-เวทเจาะเข้า+4%
-เวทเจาะเข้า+5%
-เวทเจาะเข้า+6%
-เวทเจาะเข้า+7%
-เวทเจาะเข้า+8%
-เวทเจาะเข้า+9%
-[ffff64]เวทเจาะเข้า+10%[ffffff]
-เพิ่มความเสียหายแก่ธาตุไฟ+1%
-เพิ่มความเสียหายแก่ธาตุไฟ+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุไฟ+3%[ffffff]
-เพิ่มความเสียหายแก่ธาตุน้ำ+1%
-เพิ่มความเสียหายแก่ธาตุน้ำ+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุน้ำ+3%[ffffff]
-เพิ่มความเสียหายแก่ธาตุลม+1%
-เพิ่มความเสียหายแก่ธาตุลม+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุลม+3%[ffffff]
-เพิ่มความเสียหายแก่ธาตุดิน+1%
-เพิ่มความเสียหายแก่ธาตุดิน+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุดิน+3%[ffffff]
-เพิ่มความเสียหายแก่ธาตุแสง+1%
-เพิ่มความเสียหายแก่ธาตุแสง+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุแสง+3%[ffffff]
-เพิ่มความเสียหายแก่ธาตุมืด+1%
-เพิ่มความเสียหายแก่ธาตุมืด+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุมืด+3%[ffffff]
-โจมตีไร้ธาตุ+1%
-โจมตีไร้ธาตุ+2%
-[ffff64]โจมตีไร้ธาตุ+3%[ffffff]
-เฮท+1%
-เฮท+2%
-เฮท+3%
-เฮท+4%
-เฮท+5%
-เฮท+6%
-เฮท+7%
-เฮท+8%
-เฮท+9%
-[ffff64]เฮท+10%[ffffff]
-เฮท-1%
-เฮท-2%
-เฮท-3%
-เฮท-4%
-เฮท-5%
-เฮท-6%
-เฮท-7%
-เฮท-8%
-เฮท-9%
-[ffff64]เฮท-10%[ffffff]
-ต้านธาตุไฟ+1%
-ต้านธาตุไฟ+2%
-ต้านธาตุไฟ+3%
-ต้านธาตุไฟ+4%
-ต้านธาตุไฟ+5%
-ต้านธาตุไฟ+6%
-ต้านธาตุไฟ+7%
-ต้านธาตุไฟ+8%
-ต้านธาตุไฟ+9%
-[ffff64]ต้านธาตุไฟ+10%[ffffff]
-ต้านธาตุน้ำ+1%
-ต้านธาตุน้ำ+2%
-ต้านธาตุน้ำ+3%
-ต้านธาตุน้ำ+4%
-ต้านธาตุน้ำ+5%
-ต้านธาตุน้ำ+6%
-ต้านธาตุน้ำ+7%
-ต้านธาตุน้ำ+8%
-ต้านธาตุน้ำ+9%
-[ffff64]ต้านธาตุน้ำ+10%[ffffff]
-ต้านธาตุลม+1%
-ต้านธาตุลม+2%
-ต้านธาตุลม+3%
-ต้านธาตุลม+4%
-ต้านธาตุลม+5%
-ต้านธาตุลม+6%
-ต้านธาตุลม+7%
-ต้านธาตุลม+8%
-ต้านธาตุลม+9%
-[ffff64]ต้านธาตุลม+10%[ffffff]
-ต้านธาตุดิน+1%
-ต้านธาตุดิน+2%
-ต้านธาตุดิน+3%
-ต้านธาตุดิน+4%
-ต้านธาตุดิน+5%
-ต้านธาตุดิน+6%
-ต้านธาตุดิน+7%
-ต้านธาตุดิน+8%
-ต้านธาตุดิน+9%
-[ffff64]ต้านธาตุดิน+10%[ffffff]
-ต้านธาตุแสง+1%
-ต้านธาตุแสง+2%
-ต้านธาตุแสง+3%
-ต้านธาตุแสง+4%
-ต้านธาตุแสง+5%
-ต้านธาตุแสง+6%
-ต้านธาตุแสง+7%
-ต้านธาตุแสง+8%
-ต้านธาตุแสง+9%
-[ffff64]ต้านธาตุแสง+10%[ffffff]
-ต้านธาตุมืด+1%
-ต้านธาตุมืด+2%
-ต้านธาตุมืด+3%
-ต้านธาตุมืด+4%
-ต้านธาตุมืด+5%
-ต้านธาตุมืด+6%
-ต้านธาตุมืด+7%
-ต้านธาตุมืด+8%
-ต้านธาตุมืด+9%
-[ffff64]ต้านธาตุมืด+10%[ffffff]
-ต้านไร้ธาตุ+1%
-ต้านไร้ธาตุ+2%
-ต้านไร้ธาตุ+3%
-ต้านไร้ธาตุ+4%
-ต้านไร้ธาตุ+5%
-ต้านไร้ธาตุ+6%
-ต้านไร้ธาตุ+7%
-ต้านไร้ธาตุ+8%
-ต้านไร้ธาตุ+9%
-[ffff64]ต้านไร้ธาตุ+10%[ffffff]
-พลังการโจมตีระยะใกล้+1%
-พลังการโจมตีระยะใกล้+2%
-[ffff64]พลังการโจมตีระยะใกล้+3%[ffffff]
-พลังการโจมตีระยะไกล+1%
-พลังการโจมตีระยะไกล+2%
-[ffff64]พลังการโจมตีระยะไกล+3%[ffffff]
-คาดการณ์+1%
-คาดการณ์+2%
-[ffff64]คาดการณ์+3%[ffffff]
-ทำลายการป้องกัน+1%
-ทำลายการป้องกัน+2%
-[ffff64]ทำลายการป้องกัน+3%[ffffff]
-เพิ่มการโจมตีด้วยอาวุธ 10%
-เพิ่มการโจมตีด้วยอาวุธ 20%
-เพิ่มการโจมตีด้วยอาวุธ 30%
-เพิ่มการโจมตีด้วยอาวุธ 40%
-[ffff64]เพิ่มการโจมตีด้วยอาวุธ 50%[ffffff]
-เพิ่มการโจมตีด้วยเวทมนตร์ 10%
-เพิ่มการโจมตีด้วยเวทมนตร์ 20%
-เพิ่มการโจมตีด้วยเวทมนตร์ 30%
-เพิ่มการโจมตีด้วยเวทมนตร์ 40%
-[ffff64]เพิ่มการโจมตีด้วยเวทมนตร์ 50%[ffffff]
-สะท้อนความเสียหาย 5%
-สะท้อนความเสียหาย 10%
-[ffff64]สะท้อนความเสียหาย 15%[ffffff]
-บาเรียอาวุธ+100
-บาเรียอาวุธ+200
-บาเรียอาวุธ+300
-บาเรียอาวุธ+400
-บาเรียอาวุธ+500
-บาเรียอาวุธ+600
-บาเรียอาวุธ+700
-บาเรียอาวุธ+800
-บาเรียอาวุธ+900
-[ffff64]บาเรียอาวุธ+1000[ffffff]
-บาเรียเวทมนตร์+100
-บาเรียเวทมนตร์+200
-บาเรียเวทมนตร์+300
-บาเรียเวทมนตร์+400
-บาเรียเวทมนตร์+500
-บาเรียเวทมนตร์+600
-บาเรียเวทมนตร์+700
-บาเรียเวทมนตร์+800
-บาเรียเวทมนตร์+900
-[ffff64]บาเรียเวทมนตร์+1000[ffffff]
-บาเรียอัตราส่วน+1%
-บาเรียอัตราส่วน+2%
-บาเรียอัตราส่วน+3%
-บาเรียอัตราส่วน+4%
-บาเรียอัตราส่วน+5%
-บาเรียอัตราส่วน+6%
-บาเรียอัตราส่วน+7%
-บาเรียอัตราส่วน+8%
-บาเรียอัตราส่วน+9%
-[ffff64]บาเรียอัตราส่วน+10%[ffffff]
-ความเร็วบาเรีย+3%
-ความเร็วบาเรีย+6%
-ความเร็วบาเรีย+9%
-ความเร็วบาเรีย+12%
-[ffff64]ความเร็วบาเรีย+15%[ffffff]"
+EquipPanelAbilityListMain	0	0	▼อัตราสำเร็จ\nสล็อตที่ 1: 100%\nสล็อตที่ 2: 50%\nสล็อตที่ 3: 25%\n[ff6464]*สล็อตที่ 3 จะมีโอกาสถูกเพิ่มได้ก็ต่อเมื่อ\nสเตตัสของสล็อตที่ 2 ถูกเพิ่มไปแล้ว[ffffff]\n[ff6464]*สเตตัสที่เหมือนกันจะไม่ถูกเพิ่ม[ffffff]\n[ff6464]*ยิ่งเป็นสเตตัสที่แข็งแกร่งมากขึ้นเท่าไหร่ก็จะยิ่งถูกเพิ่มได้ยากยิ่งขึ้น[ffffff]\n\n\n▼รายการสเตตัส\nSTR+1\nSTR+2\nSTR+3\nSTR+4\nSTR+5\nSTR+6\nSTR+7\nSTR+8\nSTR+9\n[ffff64]STR+10[ffffff]\nINT+1\nINT+2\nINT+3\nINT+4\nINT+5\nINT+6\nINT+7\nINT+8\nINT+9\n[ffff64]INT+10[ffffff]\nVIT+1\nVIT+2\nVIT+3\nVIT+4\nVIT+5\nVIT+6\nVIT+7\nVIT+8\nVIT+9\n[ffff64]VIT+10[ffffff]\nAGI+1\nAGI+2\nAGI+3\nAGI+4\nAGI+5\nAGI+6\nAGI+7\nAGI+8\nAGI+9\n[ffff64]AGI+10[ffffff]\nDEX+1\nDEX+2\nDEX+3\nDEX+4\nDEX+5\nDEX+6\nDEX+7\nDEX+8\nDEX+9\n[ffff64]DEX+10[ffffff]\nSTR+1%\nSTR+2%\n[ffff64]STR+3%[ffffff]\nINT+1%\nINT+2%\n[ffff64]INT+3%[ffffff]\nVIT+1%\nVIT+2%\n[ffff64]VIT+3%[ffffff]\nAGI+1%\nAGI+2%\n[ffff64]AGI+3%[ffffff]\nDEX+1%\nDEX+2%\n[ffff64]DEX+3%[ffffff]\nHP สูงสุด+100\nHP สูงสุด+200\nHP สูงสุด+300\nHP สูงสุด+400\nHP สูงสุด+500\nHP สูงสุด+600\nHP สูงสุด+700\nHP สูงสุด+800\nHP สูงสุด+900\n[ffff64]HP สูงสุด+1000[ffffff]\nHP สูงสุด+5%\nHP สูงสุด+10%\n[ffff64]HP สูงสุด+15%[ffffff]\nMP สูงสุด+10\nMP สูงสุด+20\nMP สูงสุด+30\nMP สูงสุด+40\nMP สูงสุด+50\nMP สูงสุด+60\nMP สูงสุด+70\nMP สูงสุด+80\nMP สูงสุด+90\n[ffff64]MP สูงสุด+100[ffffff]\nATK อาวุธ+3\nATK อาวุธ+6\nATK อาวุธ+9\nATK อาวุธ+12\nATK อาวุธ+15\nATK อาวุธ+18\nATK อาวุธ+21\nATK อาวุธ+24\nATK อาวุธ+27\n[ffff64]ATK อาวุธ+30[ffffff]\nATK อาวุธ+1%\nATK อาวุธ+2%\n[ffff64]ATK อาวุธ+3%[ffffff]\nATK+3\nATK+6\nATK+9\nATK+12\nATK+15\nATK+18\nATK+21\nATK+24\nATK+27\n[ffff64]ATK+30[ffffff]\nATK+1%\nATK+2%\n[ffff64]ATK+3%[ffffff]\nMATK+3\nMATK+6\nMATK+9\nMATK+12\nMATK+15\nMATK+18\nMATK+21\nMATK+24\nMATK+27\n[ffff64]MATK+30[ffffff]\nMATK+1%\nMATK+2%\n[ffff64]MATK+3%[ffffff]\nความเสถียร+1%\nความเสถียร+2%\n[ffff64]ความเสถียร+3%[ffffff]\nความแม่น+3\nความแม่น+6\nความแม่น+9\nความแม่น+12\nความแม่น+15\nความแม่น+18\nความแม่น+21\nความแม่น+24\nความแม่น+27\n[ffff64]ความแม่น+30[ffffff]\nความแม่น+1%\nความแม่น+2%\n[ffff64]ความแม่น+3%[ffffff]\nหลบหลีก+3\nหลบหลีก+6\nหลบหลีก+9\nหลบหลีก+12\nหลบหลีก+15\nหลบหลีก+18\nหลบหลีก+21\nหลบหลีก+24\nหลบหลีก+27\n[ffff64]หลบหลีก+30[ffffff]\nหลบหลีก+1%\nหลบหลีก+2%\n[ffff64]หลบหลีก+3%[ffffff]\nDEF+10\nDEF+20\nDEF+30\nDEF+40\nDEF+50\nDEF+60\nDEF+70\nDEF+80\nDEF+90\n[ffff64]DEF+100[ffffff]\nDEF+1%\nDEF+2%\nDEF+3%\nDEF+4%\n[ffff64]DEF+5%[ffffff]\nMDEF+10\nMDEF+20\nMDEF+30\nMDEF+40\nMDEF+50\nMDEF+60\nMDEF+70\nMDEF+80\nMDEF+90\n[ffff64]MDEF+100[ffffff]\nMDEF+1%\nMDEF+2%\nMDEF+3%\nMDEF+4%\n[ffff64]MDEF+5%[ffffff]\nASPD+10\nASPD+20\nASPD+30\nASPD+40\nASPD+50\nASPD+60\nASPD+70\nASPD+80\nASPD+90\n[ffff64]ASPD+100[ffffff]\nASPD+1%\nASPD+2%\nASPD+3%\nASPD+4%\nASPD+5%\nASPD+6%\nASPD+7%\nASPD+8%\nASPD+9%\n[ffff64]ASPD+10%[ffffff]\nCSPD+10\nCSPD+20\nCSPD+30\nCSPD+40\nCSPD+50\nCSPD+60\nCSPD+70\nCSPD+80\nCSPD+90\n[ffff64]CSPD+100[ffffff]\nCSPD+1%\nCSPD+2%\nCSPD+3%\nCSPD+4%\nCSPD+5%\nCSPD+6%\nCSPD+7%\nCSPD+8%\nCSPD+9%\n[ffff64]CSPD+10%[ffffff]\nฟื้นฟู HP อัตโนมัติ+10\nฟื้นฟู HP อัตโนมัติ+20\nฟื้นฟู HP อัตโนมัติ+30\nฟื้นฟู HP อัตโนมัติ+40\nฟื้นฟู HP อัตโนมัติ+50\nฟื้นฟู HP อัตโนมัติ+60\nฟื้นฟู HP อัตโนมัติ+70\nฟื้นฟู HP อัตโนมัติ+80\nฟื้นฟู HP อัตโนมัติ+90\n[ffff64]ฟื้นฟู HP อัตโนมัติ+100[ffffff]\nฟื้นฟู HP อัตโนมัติ+5%\nฟื้นฟู HP อัตโนมัติ+10%\nฟื้นฟู HP อัตโนมัติ+15%\nฟื้นฟู HP อัตโนมัติ+20%\n[ffff64]ฟื้นฟู HP อัตโนมัติ+25%[ffffff]\nฟื้นฟู MP อัตโนมัติ+1\nฟื้นฟู MP อัตโนมัติ+2\nฟื้นฟู MP อัตโนมัติ+3\nฟื้นฟู MP อัตโนมัติ+4\nฟื้นฟู MP อัตโนมัติ+5\nฟื้นฟู MP อัตโนมัติ+6\nฟื้นฟู MP อัตโนมัติ+7\nฟื้นฟู MP อัตโนมัติ+8\nฟื้นฟู MP อัตโนมัติ+9\n[ffff64]ฟื้นฟู MP อัตโนมัติ+10[ffffff]\nฟื้นฟู MP อัตโนมัติ+5%\nฟื้นฟู MP อัตโนมัติ+10%\nฟื้นฟู MP อัตโนมัติ+15%\nฟื้นฟู MP อัตโนมัติ+20%\n[ffff64]ฟื้นฟู MP อัตโนมัติ+25%[ffffff]\nฟื้นฟู MP โจมตี+1\nฟื้นฟู MP โจมตี+2\nฟื้นฟู MP โจมตี+3\nฟื้นฟู MP โจมตี+4\nฟื้นฟู MP โจมตี+5\nฟื้นฟู MP โจมตี+6\nฟื้นฟู MP โจมตี+7\nฟื้นฟู MP โจมตี+8\nฟื้นฟู MP โจมตี+9\n[ffff64]ฟื้นฟู MP โจมตี+10[ffffff]\nอัตราคริติคอล+1\nอัตราคริติคอล+2\nอัตราคริติคอล+3\nอัตราคริติคอล+4\n[ffff64]อัตราคริติคอล+5[ffffff]\nอัตราคริติคอล+1%\nอัตราคริติคอล+2%\n[ffff64]อัตราคริติคอล+3%[ffffff]\nความเสียหายคริติคอล+1\nความเสียหายคริติคอล+2\nความเสียหายคริติคอล+3\nความเสียหายคริติคอล+4\n[ffff64]ความเสียหายคริติคอล+5[ffffff]\nความเสียหายคริติคอล+1%\nความเสียหายคริติคอล+2%\n[ffff64]ความเสียหายคริติคอล+3%[ffffff]\nต้านภาวะผิดปกติ+1%\nต้านภาวะผิดปกติ+2%\nต้านภาวะผิดปกติ+3%\nต้านภาวะผิดปกติ+4%\nต้านภาวะผิดปกติ+5%\nต้านภาวะผิดปกติ+6%\nต้านภาวะผิดปกติ+7%\nต้านภาวะผิดปกติ+8%\nต้านภาวะผิดปกติ+9%\n[ffff64]ต้านภาวะผิดปกติ+10%[ffffff]\nการฟื้นฟู Guard+1%\nการฟื้นฟู Guard+2%\n[ffff64]การฟื้นฟู Guard+3%[ffffff]\nพลัง Guard+1%\nพลัง Guard+2%\n[ffff64]พลัง Guard+3%[ffffff]\nการฟื้นฟู Avoid+1%\nการฟื้นฟู Avoid+2%\n[ffff64]การฟื้นฟู Avoid+3%[ffffff]\nต้านทานอาวุธ+1%\nต้านทานอาวุธ+2%\nต้านทานอาวุธ+3%\nต้านทานอาวุธ+4%\nต้านทานอาวุธ+5%\nต้านทานอาวุธ+6%\nต้านทานอาวุธ+7%\nต้านทานอาวุธ+8%\nต้านทานอาวุธ+9%\n[ffff64]ต้านทานอาวุธ+10%[ffffff]\nต้านทานเวท+1%\nต้านทานเวท+2%\nต้านทานเวท+3%\nต้านทานเวท+4%\nต้านทานเวท+5%\nต้านทานเวท+6%\nต้านทานเวท+7%\nต้านทานเวท+8%\nต้านทานเวท+9%\n[ffff64]ต้านทานเวท+10%[ffffff]\nอาวุธเจาะเข้า+1%\nอาวุธเจาะเข้า+2%\nอาวุธเจาะเข้า+3%\nอาวุธเจาะเข้า+4%\nอาวุธเจาะเข้า+5%\nอาวุธเจาะเข้า+6%\nอาวุธเจาะเข้า+7%\nอาวุธเจาะเข้า+8%\nอาวุธเจาะเข้า+9%\n[ffff64]อาวุธเจาะเข้า+10%[ffffff]\nเวทเจาะเข้า+1%\nเวทเจาะเข้า+2%\nเวทเจาะเข้า+3%\nเวทเจาะเข้า+4%\nเวทเจาะเข้า+5%\nเวทเจาะเข้า+6%\nเวทเจาะเข้า+7%\nเวทเจาะเข้า+8%\nเวทเจาะเข้า+9%\n[ffff64]เวทเจาะเข้า+10%[ffffff]\nเพิ่มความเสียหายแก่ธาตุไฟ+1%\nเพิ่มความเสียหายแก่ธาตุไฟ+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุไฟ+3%[ffffff]\nเพิ่มความเสียหายแก่ธาตุน้ำ+1%\nเพิ่มความเสียหายแก่ธาตุน้ำ+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุน้ำ+3%[ffffff]\nเพิ่มความเสียหายแก่ธาตุลม+1%\nเพิ่มความเสียหายแก่ธาตุลม+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุลม+3%[ffffff]\nเพิ่มความเสียหายแก่ธาตุดิน+1%\nเพิ่มความเสียหายแก่ธาตุดิน+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุดิน+3%[ffffff]\nเพิ่มความเสียหายแก่ธาตุแสง+1%\nเพิ่มความเสียหายแก่ธาตุแสง+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุแสง+3%[ffffff]\nเพิ่มความเสียหายแก่ธาตุมืด+1%\nเพิ่มความเสียหายแก่ธาตุมืด+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุมืด+3%[ffffff]\nโจมตีไร้ธาตุ+1%\nโจมตีไร้ธาตุ+2%\n[ffff64]โจมตีไร้ธาตุ+3%[ffffff]\nเฮท+1%\nเฮท+2%\nเฮท+3%\nเฮท+4%\nเฮท+5%\nเฮท+6%\nเฮท+7%\nเฮท+8%\nเฮท+9%\n[ffff64]เฮท+10%[ffffff]\nเฮท-1%\nเฮท-2%\nเฮท-3%\nเฮท-4%\nเฮท-5%\nเฮท-6%\nเฮท-7%\nเฮท-8%\nเฮท-9%\n[ffff64]เฮท-10%[ffffff]\nต้านธาตุไฟ+1%\nต้านธาตุไฟ+2%\nต้านธาตุไฟ+3%\nต้านธาตุไฟ+4%\nต้านธาตุไฟ+5%\nต้านธาตุไฟ+6%\nต้านธาตุไฟ+7%\nต้านธาตุไฟ+8%\nต้านธาตุไฟ+9%\n[ffff64]ต้านธาตุไฟ+10%[ffffff]\nต้านธาตุน้ำ+1%\nต้านธาตุน้ำ+2%\nต้านธาตุน้ำ+3%\nต้านธาตุน้ำ+4%\nต้านธาตุน้ำ+5%\nต้านธาตุน้ำ+6%\nต้านธาตุน้ำ+7%\nต้านธาตุน้ำ+8%\nต้านธาตุน้ำ+9%\n[ffff64]ต้านธาตุน้ำ+10%[ffffff]\nต้านธาตุลม+1%\nต้านธาตุลม+2%\nต้านธาตุลม+3%\nต้านธาตุลม+4%\nต้านธาตุลม+5%\nต้านธาตุลม+6%\nต้านธาตุลม+7%\nต้านธาตุลม+8%\nต้านธาตุลม+9%\n[ffff64]ต้านธาตุลม+10%[ffffff]\nต้านธาตุดิน+1%\nต้านธาตุดิน+2%\nต้านธาตุดิน+3%\nต้านธาตุดิน+4%\nต้านธาตุดิน+5%\nต้านธาตุดิน+6%\nต้านธาตุดิน+7%\nต้านธาตุดิน+8%\nต้านธาตุดิน+9%\n[ffff64]ต้านธาตุดิน+10%[ffffff]\nต้านธาตุแสง+1%\nต้านธาตุแสง+2%\nต้านธาตุแสง+3%\nต้านธาตุแสง+4%\nต้านธาตุแสง+5%\nต้านธาตุแสง+6%\nต้านธาตุแสง+7%\nต้านธาตุแสง+8%\nต้านธาตุแสง+9%\n[ffff64]ต้านธาตุแสง+10%[ffffff]\nต้านธาตุมืด+1%\nต้านธาตุมืด+2%\nต้านธาตุมืด+3%\nต้านธาตุมืด+4%\nต้านธาตุมืด+5%\nต้านธาตุมืด+6%\nต้านธาตุมืด+7%\nต้านธาตุมืด+8%\nต้านธาตุมืด+9%\n[ffff64]ต้านธาตุมืด+10%[ffffff]\nต้านไร้ธาตุ+1%\nต้านไร้ธาตุ+2%\nต้านไร้ธาตุ+3%\nต้านไร้ธาตุ+4%\nต้านไร้ธาตุ+5%\nต้านไร้ธาตุ+6%\nต้านไร้ธาตุ+7%\nต้านไร้ธาตุ+8%\nต้านไร้ธาตุ+9%\n[ffff64]ต้านไร้ธาตุ+10%[ffffff]\nพลังการโจมตีระยะใกล้+1%\nพลังการโจมตีระยะใกล้+2%\n[ffff64]พลังการโจมตีระยะใกล้+3%[ffffff]\nพลังการโจมตีระยะไกล+1%\nพลังการโจมตีระยะไกล+2%\n[ffff64]พลังการโจมตีระยะไกล+3%[ffffff]\nคาดการณ์+1%\nคาดการณ์+2%\n[ffff64]คาดการณ์+3%[ffffff]\nทำลายการป้องกัน+1%\nทำลายการป้องกัน+2%\n[ffff64]ทำลายการป้องกัน+3%[ffffff]\nเพิ่มการโจมตีด้วยอาวุธ 10%\nเพิ่มการโจมตีด้วยอาวุธ 20%\nเพิ่มการโจมตีด้วยอาวุธ 30%\nเพิ่มการโจมตีด้วยอาวุธ 40%\n[ffff64]เพิ่มการโจมตีด้วยอาวุธ 50%[ffffff]\nเพิ่มการโจมตีด้วยเวทมนตร์ 10%\nเพิ่มการโจมตีด้วยเวทมนตร์ 20%\nเพิ่มการโจมตีด้วยเวทมนตร์ 30%\nเพิ่มการโจมตีด้วยเวทมนตร์ 40%\n[ffff64]เพิ่มการโจมตีด้วยเวทมนตร์ 50%[ffffff]\nสะท้อนความเสียหาย 5%\nสะท้อนความเสียหาย 10%\n[ffff64]สะท้อนความเสียหาย 15%[ffffff]\nบาเรียอาวุธ+100\nบาเรียอาวุธ+200\nบาเรียอาวุธ+300\nบาเรียอาวุธ+400\nบาเรียอาวุธ+500\nบาเรียอาวุธ+600\nบาเรียอาวุธ+700\nบาเรียอาวุธ+800\nบาเรียอาวุธ+900\n[ffff64]บาเรียอาวุธ+1000[ffffff]\nบาเรียเวทมนตร์+100\nบาเรียเวทมนตร์+200\nบาเรียเวทมนตร์+300\nบาเรียเวทมนตร์+400\nบาเรียเวทมนตร์+500\nบาเรียเวทมนตร์+600\nบาเรียเวทมนตร์+700\nบาเรียเวทมนตร์+800\nบาเรียเวทมนตร์+900\n[ffff64]บาเรียเวทมนตร์+1000[ffffff]\nบาเรียอัตราส่วน+1%\nบาเรียอัตราส่วน+2%\nบาเรียอัตราส่วน+3%\nบาเรียอัตราส่วน+4%\nบาเรียอัตราส่วน+5%\nบาเรียอัตราส่วน+6%\nบาเรียอัตราส่วน+7%\nบาเรียอัตราส่วน+8%\nบาเรียอัตราส่วน+9%\n[ffff64]บาเรียอัตราส่วน+10%[ffffff]\nความเร็วบาเรีย+3%\nความเร็วบาเรีย+6%\nความเร็วบาเรีย+9%\nความเร็วบาเรีย+12%\n[ffff64]ความเร็วบาเรีย+15%[ffffff]
 EquipPanelAbilityPopWindowNewExpText	0	0	\n\nสล็อตที่ 1 จะเพิ่มสำเร็จแน่นอน [ffff64]ถ้าสล็อตที่ 2 ถูกเพิ่มสำเร็จ จะมีโอกาสเพิ่มสล็อตที่ 3 โดยการสุ่ม[ffffff]\nตรวจสอบสเตตัสได้จากในรายการ
 SelectSkillPopWindowDetailMessage	0	0	ถ้าใช้[ffff64]{0}[ffffff]จะได้รับผลดังต่อไปนี้
 SelectSkillPopWindowLevelUpMessage	0	0	สามารถเพิ่มเลเวลสกิล\nได้จนถึงที่กำหนด
@@ -5127,1043 +4395,10 @@ SkillFreeSystemLockErrMessage	0	0	หมดช่วงเวลาที่ร�
 SkillTreePanelFreeResetMessage	0	0	สามารถรีเซ็ตฟรีได้อีก [ffff64]{0}[ffffff] ครั้ง
 ParameterPanelNgwordErrLabel	0	0	มีตัวอักษรที่ไม่สามารถใช้ได้รวมอยู่ด้วย
 ParameterPanelNgwordErrText	0	0	มีตัวอักษรที่ไม่สามารถใช้ได้รวมอยู่ด้วย\nไม่สามารถใช้ชื่อนี้ได้
-EquipPanelAbilityTopLabel	0	0	"▼อัตราสำเร็จ
-สล็อตที่ 1: 100%
-สล็อตที่ 2: 50%
-สล็อตที่ 3: 25%
-[ff6464]*สล็อตที่ 3 จะมีโอกาสถูกเพิ่มได้ก็ต่อเมื่อ
-สเตตัสของสล็อตที่ 2 ถูกเพิ่มไปแล้ว[ffffff]
-[ff6464]*สเตตัสที่เหมือนกันจะไม่ถูกเพิ่ม[ffffff]
-[ff6464]*ยิ่งเป็นสเตตัสที่แข็งแกร่งมากขึ้นเท่าไหร่ก็จะยิ่งถูกเพิ่มได้ยากยิ่งขึ้น[ffffff]
-
-
-▼รายการสเตตัส"
-EquipPanelAbilityListLabel	0	0	"STR+1
-STR+2
-STR+3
-STR+4
-STR+5
-STR+6
-STR+7
-STR+8
-STR+9
-[ffff64]STR+10[ffffff]
-INT+1
-INT+2
-INT+3
-INT+4
-INT+5
-INT+6
-INT+7
-INT+8
-INT+9
-[ffff64]INT+10[ffffff]
-VIT+1
-VIT+2
-VIT+3
-VIT+4
-VIT+5
-VIT+6
-VIT+7
-VIT+8
-VIT+9
-[ffff64]VIT+10[ffffff]
-AGI+1
-AGI+2
-AGI+3
-AGI+4
-AGI+5
-AGI+6
-AGI+7
-AGI+8
-AGI+9
-[ffff64]AGI+10[ffffff]
-DEX+1
-DEX+2
-DEX+3
-DEX+4
-DEX+5
-DEX+6
-DEX+7
-DEX+8
-DEX+9
-[ffff64]DEX+10[ffffff]
-STR+1%
-STR+2%
-[ffff64]STR+3%[ffffff]
-INT+1%
-INT+2%
-[ffff64]INT+3%[ffffff]
-VIT+1%
-VIT+2%
-[ffff64]VIT+3%[ffffff]
-AGI+1%
-AGI+2%
-[ffff64]AGI+3%[ffffff]
-DEX+1%
-DEX+2%
-[ffff64]DEX+3%[ffffff]
-HP สูงสุด+100
-HP สูงสุด+200
-HP สูงสุด+300
-HP สูงสุด+400
-HP สูงสุด+500
-HP สูงสุด+600
-HP สูงสุด+700
-HP สูงสุด+800
-HP สูงสุด+900
-[ffff64]HP สูงสุด+1000[ffffff]
-HP สูงสุด+5%
-HP สูงสุด+10%
-[ffff64]HP สูงสุด+15%[ffffff]
-MP สูงสุด+10
-MP สูงสุด+20
-MP สูงสุด+30
-MP สูงสุด+40
-MP สูงสุด+50
-MP สูงสุด+60
-MP สูงสุด+70
-MP สูงสุด+80
-MP สูงสุด+90
-[ffff64]MP สูงสุด+100[ffffff]
-ATK อาวุธ+3
-ATK อาวุธ+6
-ATK อาวุธ+9
-ATK อาวุธ+12
-ATK อาวุธ+15
-ATK อาวุธ+18
-ATK อาวุธ+21
-ATK อาวุธ+24
-ATK อาวุธ+27
-[ffff64]ATK อาวุธ+30[ffffff]
-ATK อาวุธ+1%
-ATK อาวุธ+2%
-[ffff64]ATK อาวุธ+3%[ffffff]
-ATK+3
-ATK+6
-ATK+9
-ATK+12
-ATK+15
-ATK+18
-ATK+21
-ATK+24
-ATK+27
-[ffff64]ATK+30[ffffff]
-ATK+1%
-ATK+2%
-[ffff64]ATK+3%[ffffff]
-MATK+3
-MATK+6
-MATK+9
-MATK+12
-MATK+15
-MATK+18
-MATK+21
-MATK+24
-MATK+27
-[ffff64]MATK+30[ffffff]
-MATK+1%
-MATK+2%
-[ffff64]MATK+3%[ffffff]
-ความเสถียร+1%
-ความเสถียร+2%
-[ffff64]ความเสถียร+3%[ffffff]
-ความแม่น+3
-ความแม่น+6
-ความแม่น+9
-ความแม่น+12
-ความแม่น+15
-ความแม่น+18
-ความแม่น+21
-ความแม่น+24
-ความแม่น+27
-[ffff64]ความแม่น+30[ffffff]
-ความแม่น+1%
-ความแม่น+2%
-[ffff64]ความแม่น+3%[ffffff]
-หลบหลีก+3
-หลบหลีก+6
-หลบหลีก+9
-หลบหลีก+12
-หลบหลีก+15
-หลบหลีก+18
-หลบหลีก+21
-หลบหลีก+24
-หลบหลีก+27
-[ffff64]หลบหลีก+30[ffffff]
-หลบหลีก+1%
-หลบหลีก+2%
-[ffff64]หลบหลีก+3%[ffffff]
-DEF+10
-DEF+20
-DEF+30
-DEF+40
-DEF+50
-DEF+60
-DEF+70
-DEF+80
-DEF+90
-[ffff64]DEF+100[ffffff]
-DEF+1%
-DEF+2%
-DEF+3%
-DEF+4%
-[ffff64]DEF+5%[ffffff]
-MDEF+10
-MDEF+20
-MDEF+30
-MDEF+40
-MDEF+50
-MDEF+60
-MDEF+70
-MDEF+80
-MDEF+90
-[ffff64]MDEF+100[ffffff]
-MDEF+1%
-MDEF+2%
-MDEF+3%
-MDEF+4%
-[ffff64]MDEF+5%[ffffff]
-ASPD+10
-ASPD+20
-ASPD+30
-ASPD+40
-ASPD+50
-ASPD+60
-ASPD+70
-ASPD+80
-ASPD+90
-[ffff64]ASPD+100[ffffff]
-ASPD+1%
-ASPD+2%
-ASPD+3%
-ASPD+4%
-ASPD+5%
-ASPD+6%
-ASPD+7%
-ASPD+8%
-ASPD+9%
-[ffff64]ASPD+10%[ffffff]
-CSPD+10
-CSPD+20
-CSPD+30
-CSPD+40
-CSPD+50
-CSPD+60
-CSPD+70
-CSPD+80
-CSPD+90
-[ffff64]CSPD+100[ffffff]
-CSPD+1%
-CSPD+2%
-CSPD+3%
-CSPD+4%
-CSPD+5%
-CSPD+6%
-CSPD+7%
-CSPD+8%
-CSPD+9%
-[ffff64]CSPD+10%[ffffff]
-ฟื้นฟู HP อัตโนมัติ+10
-ฟื้นฟู HP อัตโนมัติ+20
-ฟื้นฟู HP อัตโนมัติ+30
-ฟื้นฟู HP อัตโนมัติ+40
-ฟื้นฟู HP อัตโนมัติ+50
-ฟื้นฟู HP อัตโนมัติ+60
-ฟื้นฟู HP อัตโนมัติ+70
-ฟื้นฟู HP อัตโนมัติ+80
-ฟื้นฟู HP อัตโนมัติ+90
-[ffff64]ฟื้นฟู HP อัตโนมัติ+100[ffffff]
-ฟื้นฟู HP อัตโนมัติ+5%
-ฟื้นฟู HP อัตโนมัติ+10%
-ฟื้นฟู HP อัตโนมัติ+15%
-ฟื้นฟู HP อัตโนมัติ+20%
-[ffff64]ฟื้นฟู HP อัตโนมัติ+25%[ffffff]
-ฟื้นฟู MP อัตโนมัติ+1
-ฟื้นฟู MP อัตโนมัติ+2
-ฟื้นฟู MP อัตโนมัติ+3
-ฟื้นฟู MP อัตโนมัติ+4
-ฟื้นฟู MP อัตโนมัติ+5
-ฟื้นฟู MP อัตโนมัติ+6
-ฟื้นฟู MP อัตโนมัติ+7
-ฟื้นฟู MP อัตโนมัติ+8
-ฟื้นฟู MP อัตโนมัติ+9
-[ffff64]ฟื้นฟู MP อัตโนมัติ+10[ffffff]
-ฟื้นฟู MP อัตโนมัติ+5%
-ฟื้นฟู MP อัตโนมัติ+10%
-ฟื้นฟู MP อัตโนมัติ+15%
-ฟื้นฟู MP อัตโนมัติ+20%
-[ffff64]ฟื้นฟู MP อัตโนมัติ+25%[ffffff]
-ฟื้นฟู MP โจมตี+1
-ฟื้นฟู MP โจมตี+2
-ฟื้นฟู MP โจมตี+3
-ฟื้นฟู MP โจมตี+4
-ฟื้นฟู MP โจมตี+5
-ฟื้นฟู MP โจมตี+6
-ฟื้นฟู MP โจมตี+7
-ฟื้นฟู MP โจมตี+8
-ฟื้นฟู MP โจมตี+9
-[ffff64]ฟื้นฟู MP โจมตี+10[ffffff]
-อัตราคริติคอล+1
-อัตราคริติคอล+2
-อัตราคริติคอล+3
-อัตราคริติคอล+4
-[ffff64]อัตราคริติคอล+5[ffffff]
-อัตราคริติคอล+1%
-อัตราคริติคอล+2%
-[ffff64]อัตราคริติคอล+3%[ffffff]
-ความเสียหายคริติคอล+1
-ความเสียหายคริติคอล+2
-ความเสียหายคริติคอล+3
-ความเสียหายคริติคอล+4
-[ffff64]ความเสียหายคริติคอล+5[ffffff]
-ความเสียหายคริติคอล+1%
-ความเสียหายคริติคอล+2%
-[ffff64]ความเสียหายคริติคอล+3%[ffffff]
-ต้านภาวะผิดปกติ+1%
-ต้านภาวะผิดปกติ+2%
-ต้านภาวะผิดปกติ+3%
-ต้านภาวะผิดปกติ+4%
-ต้านภาวะผิดปกติ+5%
-ต้านภาวะผิดปกติ+6%
-ต้านภาวะผิดปกติ+7%
-ต้านภาวะผิดปกติ+8%
-ต้านภาวะผิดปกติ+9%
-[ffff64]ต้านภาวะผิดปกติ+10%[ffffff]
-อัตรา Guard+1%
-อัตรา Guard+2%
-[ffff64]อัตรา Guard+3%[ffffff]
-พลัง Guard+1%
-พลัง Guard+2%
-[ffff64]พลัง Guard+3%[ffffff]
-อัตรา Avoid+1%
-อัตรา Avoid+2%
-[ffff64]อัตรา Avoid+3%[ffffff]
-ต้านทานอาวุธ+1%
-ต้านทานอาวุธ+2%
-ต้านทานอาวุธ+3%
-ต้านทานอาวุธ+4%
-ต้านทานอาวุธ+5%
-ต้านทานอาวุธ+6%
-ต้านทานอาวุธ+7%
-ต้านทานอาวุธ+8%
-ต้านทานอาวุธ+9%
-[ffff64]ต้านทานอาวุธ+10%[ffffff]
-ต้านทานเวท+1%
-ต้านทานเวท+2%
-ต้านทานเวท+3%
-ต้านทานเวท+4%
-ต้านทานเวท+5%
-ต้านทานเวท+6%
-ต้านทานเวท+7%
-ต้านทานเวท+8%
-ต้านทานเวท+9%
-[ffff64]ต้านทานเวท+10%[ffffff]
-อาวุธเจาะเข้า+1%
-อาวุธเจาะเข้า+2%
-อาวุธเจาะเข้า+3%
-อาวุธเจาะเข้า+4%
-อาวุธเจาะเข้า+5%
-อาวุธเจาะเข้า+6%
-อาวุธเจาะเข้า+7%
-อาวุธเจาะเข้า+8%
-อาวุธเจาะเข้า+9%
-[ffff64]อาวุธเจาะเข้า+10%[ffffff]
-เวทเจาะเข้า+1%
-เวทเจาะเข้า+2%
-เวทเจาะเข้า+3%
-เวทเจาะเข้า+4%
-เวทเจาะเข้า+5%
-เวทเจาะเข้า+6%
-เวทเจาะเข้า+7%
-เวทเจาะเข้า+8%
-เวทเจาะเข้า+9%
-[ffff64]เวทเจาะเข้า+10%[ffffff]
-เพิ่มความเสียหายแก่ธาตุไฟ+1%
-เพิ่มความเสียหายแก่ธาตุไฟ+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุไฟ+3%[ffffff]
-เพิ่มความเสียหายแก่ธาตุน้ำ+1%
-เพิ่มความเสียหายแก่ธาตุน้ำ+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุน้ำ+3%[ffffff]
-เพิ่มความเสียหายแก่ธาตุลม+1%
-เพิ่มความเสียหายแก่ธาตุลม+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุลม+3%[ffffff]
-เพิ่มความเสียหายแก่ธาตุดิน+1%
-เพิ่มความเสียหายแก่ธาตุดิน+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุดิน+3%[ffffff]
-เพิ่มความเสียหายแก่ธาตุแสง+1%
-เพิ่มความเสียหายแก่ธาตุแสง+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุแสง+3%[ffffff]
-เพิ่มความเสียหายแก่ธาตุมืด+1%
-เพิ่มความเสียหายแก่ธาตุมืด+2%
-[ffff64]เพิ่มความเสียหายแก่ธาตุมืด+3%[ffffff]
-โจมตีไร้ธาตุ+1%
-โจมตีไร้ธาตุ+2%
-[ffff64]โจมตีไร้ธาตุ+3%[ffffff]
-เฮท+1%
-เฮท+2%
-เฮท+3%
-เฮท+4%
-เฮท+5%
-เฮท+6%
-เฮท+7%
-เฮท+8%
-เฮท+9%
-[ffff64]เฮท+10%[ffffff]
-เฮท-1%
-เฮท-2%
-เฮท-3%
-เฮท-4%
-เฮท-5%
-เฮท-6%
-เฮท-7%
-เฮท-8%
-เฮท-9%
-[ffff64]เฮท-10%[ffffff]
-ต้านธาตุไฟ+1%
-ต้านธาตุไฟ+2%
-ต้านธาตุไฟ+3%
-ต้านธาตุไฟ+4%
-ต้านธาตุไฟ+5%
-ต้านธาตุไฟ+6%
-ต้านธาตุไฟ+7%
-ต้านธาตุไฟ+8%
-ต้านธาตุไฟ+9%
-[ffff64]ต้านธาตุไฟ+10%[ffffff]
-ต้านธาตุน้ำ+1%
-ต้านธาตุน้ำ+2%
-ต้านธาตุน้ำ+3%
-ต้านธาตุน้ำ+4%
-ต้านธาตุน้ำ+5%
-ต้านธาตุน้ำ+6%
-ต้านธาตุน้ำ+7%
-ต้านธาตุน้ำ+8%
-ต้านธาตุน้ำ+9%
-[ffff64]ต้านธาตุน้ำ+10%[ffffff]
-ต้านธาตุลม+1%
-ต้านธาตุลม+2%
-ต้านธาตุลม+3%
-ต้านธาตุลม+4%
-ต้านธาตุลม+5%
-ต้านธาตุลม+6%
-ต้านธาตุลม+7%
-ต้านธาตุลม+8%
-ต้านธาตุลม+9%
-[ffff64]ต้านธาตุลม+10%[ffffff]
-ต้านธาตุดิน+1%
-ต้านธาตุดิน+2%
-ต้านธาตุดิน+3%
-ต้านธาตุดิน+4%
-ต้านธาตุดิน+5%
-ต้านธาตุดิน+6%
-ต้านธาตุดิน+7%
-ต้านธาตุดิน+8%
-ต้านธาตุดิน+9%
-[ffff64]ต้านธาตุดิน+10%[ffffff]
-ต้านธาตุแสง+1%
-ต้านธาตุแสง+2%
-ต้านธาตุแสง+3%
-ต้านธาตุแสง+4%
-ต้านธาตุแสง+5%
-ต้านธาตุแสง+6%
-ต้านธาตุแสง+7%
-ต้านธาตุแสง+8%
-ต้านธาตุแสง+9%
-[ffff64]ต้านธาตุแสง+10%[ffffff]
-ต้านธาตุมืด+1%
-ต้านธาตุมืด+2%
-ต้านธาตุมืด+3%
-ต้านธาตุมืด+4%
-ต้านธาตุมืด+5%
-ต้านธาตุมืด+6%
-ต้านธาตุมืด+7%
-ต้านธาตุมืด+8%
-ต้านธาตุมืด+9%
-[ffff64]ต้านธาตุมืด+10%[ffffff]
-ต้านไร้ธาตุ+1%
-ต้านไร้ธาตุ+2%
-ต้านไร้ธาตุ+3%
-ต้านไร้ธาตุ+4%
-ต้านไร้ธาตุ+5%
-ต้านไร้ธาตุ+6%
-ต้านไร้ธาตุ+7%
-ต้านไร้ธาตุ+8%
-ต้านไร้ธาตุ+9%
-[ffff64]ต้านไร้ธาตุ+10%[ffffff]
-พลังการโจมตีระยะใกล้+1%
-พลังการโจมตีระยะใกล้+2%
-[ffff64]พลังการโจมตีระยะใกล้+3%[ffffff]
-พลังการโจมตีระยะไกล+1%
-พลังการโจมตีระยะไกล+2%
-[ffff64]พลังการโจมตีระยะไกล+3%[ffffff]
-คาดการณ์+1%
-คาดการณ์+2%
-[ffff64]คาดการณ์+3%[ffffff]
-ทำลายการป้องกัน+1%
-ทำลายการป้องกัน+2%
-[ffff64]ทำลายการป้องกัน+3%[ffffff]
-เพิ่มการโจมตีด้วยอาวุธ 10%
-เพิ่มการโจมตีด้วยอาวุธ 20%
-เพิ่มการโจมตีด้วยอาวุธ 30%
-เพิ่มการโจมตีด้วยอาวุธ 40%
-[ffff64]เพิ่มการโจมตีด้วยอาวุธ 50%[ffffff]
-เพิ่มการโจมตีด้วยเวทมนตร์ 10%
-เพิ่มการโจมตีด้วยเวทมนตร์ 20%
-เพิ่มการโจมตีด้วยเวทมนตร์ 30%
-เพิ่มการโจมตีด้วยเวทมนตร์ 40%
-[ffff64]เพิ่มการโจมตีด้วยเวทมนตร์ 50%[ffffff]
-สะท้อนความเสียหาย 5%
-สะท้อนความเสียหาย 10%
-[ffff64]สะท้อนความเสียหาย 15%[ffffff]
-บาเรียอาวุธ+100
-บาเรียอาวุธ+200
-บาเรียอาวุธ+300
-บาเรียอาวุธ+400
-บาเรียอาวุธ+500
-บาเรียอาวุธ+600
-บาเรียอาวุธ+700
-บาเรียอาวุธ+800
-บาเรียอาวุธ+900
-[ffff64]บาเรียอาวุธ+1000[ffffff]
-บาเรียเวทมนตร์+100
-บาเรียเวทมนตร์+200
-บาเรียเวทมนตร์+300
-บาเรียเวทมนตร์+400
-บาเรียเวทมนตร์+500
-บาเรียเวทมนตร์+600
-บาเรียเวทมนตร์+700
-บาเรียเวทมนตร์+800
-บาเรียเวทมนตร์+900
-[ffff64]บาเรียเวทมนตร์+1000[ffffff]
-บาเรียอัตราส่วน+1%
-บาเรียอัตราส่วน+2%
-บาเรียอัตราส่วน+3%
-บาเรียอัตราส่วน+4%
-บาเรียอัตราส่วน+5%
-บาเรียอัตราส่วน+6%
-บาเรียอัตราส่วน+7%
-บาเรียอัตราส่วน+8%
-บาเรียอัตราส่วน+9%
-[ffff64]บาเรียอัตราส่วน+10%[ffffff]
-ความเร็วบาเรีย+3%
-ความเร็วบาเรีย+6%
-ความเร็วบาเรีย+9%
-ความเร็วบาเรีย+12%
-[ffff64]ความเร็วบาเรีย+15%[ffffff]"
-EquipPanelAbilityRateLabel	0	0	"0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%"
-EquipPanelAbilityLastLabel	0	0	"[ff6464]*เนื่องจากจะไม่มีการสุ่มสเตตัสเดียวกันซ้ำออกมา ดังนั้นอัตราการสุ่มออกของสล็อตที่สองเป็นต้นไปจะสูงกว่าอัตราที่แสดง[ffffff]
-[ff6464]*อัตราการสุ่มออกมีทศนิยมเกิน 4 หลัก ดังนั้นจึงถูกปัดเศษให้แสดงผลแค่ 3 หลัก ด้วยเหตุนี้ถึงแม้ว่าจะรวมอัตราการได้รับทั้งหมดแล้วก็อาจจะรวมกันได้ไม่ถึง 100%[ffffff]"
+EquipPanelAbilityTopLabel	0	0	▼อัตราสำเร็จ\nสล็อตที่ 1: 100%\nสล็อตที่ 2: 50%\nสล็อตที่ 3: 25%\n[ff6464]*สล็อตที่ 3 จะมีโอกาสถูกเพิ่มได้ก็ต่อเมื่อ\nสเตตัสของสล็อตที่ 2 ถูกเพิ่มไปแล้ว[ffffff]\n[ff6464]*สเตตัสที่เหมือนกันจะไม่ถูกเพิ่ม[ffffff]\n[ff6464]*ยิ่งเป็นสเตตัสที่แข็งแกร่งมากขึ้นเท่าไหร่ก็จะยิ่งถูกเพิ่มได้ยากยิ่งขึ้น[ffffff]\n\n\n▼รายการสเตตัส
+EquipPanelAbilityListLabel	0	0	STR+1\nSTR+2\nSTR+3\nSTR+4\nSTR+5\nSTR+6\nSTR+7\nSTR+8\nSTR+9\n[ffff64]STR+10[ffffff]\nINT+1\nINT+2\nINT+3\nINT+4\nINT+5\nINT+6\nINT+7\nINT+8\nINT+9\n[ffff64]INT+10[ffffff]\nVIT+1\nVIT+2\nVIT+3\nVIT+4\nVIT+5\nVIT+6\nVIT+7\nVIT+8\nVIT+9\n[ffff64]VIT+10[ffffff]\nAGI+1\nAGI+2\nAGI+3\nAGI+4\nAGI+5\nAGI+6\nAGI+7\nAGI+8\nAGI+9\n[ffff64]AGI+10[ffffff]\nDEX+1\nDEX+2\nDEX+3\nDEX+4\nDEX+5\nDEX+6\nDEX+7\nDEX+8\nDEX+9\n[ffff64]DEX+10[ffffff]\nSTR+1%\nSTR+2%\n[ffff64]STR+3%[ffffff]\nINT+1%\nINT+2%\n[ffff64]INT+3%[ffffff]\nVIT+1%\nVIT+2%\n[ffff64]VIT+3%[ffffff]\nAGI+1%\nAGI+2%\n[ffff64]AGI+3%[ffffff]\nDEX+1%\nDEX+2%\n[ffff64]DEX+3%[ffffff]\nHP สูงสุด+100\nHP สูงสุด+200\nHP สูงสุด+300\nHP สูงสุด+400\nHP สูงสุด+500\nHP สูงสุด+600\nHP สูงสุด+700\nHP สูงสุด+800\nHP สูงสุด+900\n[ffff64]HP สูงสุด+1000[ffffff]\nHP สูงสุด+5%\nHP สูงสุด+10%\n[ffff64]HP สูงสุด+15%[ffffff]\nMP สูงสุด+10\nMP สูงสุด+20\nMP สูงสุด+30\nMP สูงสุด+40\nMP สูงสุด+50\nMP สูงสุด+60\nMP สูงสุด+70\nMP สูงสุด+80\nMP สูงสุด+90\n[ffff64]MP สูงสุด+100[ffffff]\nATK อาวุธ+3\nATK อาวุธ+6\nATK อาวุธ+9\nATK อาวุธ+12\nATK อาวุธ+15\nATK อาวุธ+18\nATK อาวุธ+21\nATK อาวุธ+24\nATK อาวุธ+27\n[ffff64]ATK อาวุธ+30[ffffff]\nATK อาวุธ+1%\nATK อาวุธ+2%\n[ffff64]ATK อาวุธ+3%[ffffff]\nATK+3\nATK+6\nATK+9\nATK+12\nATK+15\nATK+18\nATK+21\nATK+24\nATK+27\n[ffff64]ATK+30[ffffff]\nATK+1%\nATK+2%\n[ffff64]ATK+3%[ffffff]\nMATK+3\nMATK+6\nMATK+9\nMATK+12\nMATK+15\nMATK+18\nMATK+21\nMATK+24\nMATK+27\n[ffff64]MATK+30[ffffff]\nMATK+1%\nMATK+2%\n[ffff64]MATK+3%[ffffff]\nความเสถียร+1%\nความเสถียร+2%\n[ffff64]ความเสถียร+3%[ffffff]\nความแม่น+3\nความแม่น+6\nความแม่น+9\nความแม่น+12\nความแม่น+15\nความแม่น+18\nความแม่น+21\nความแม่น+24\nความแม่น+27\n[ffff64]ความแม่น+30[ffffff]\nความแม่น+1%\nความแม่น+2%\n[ffff64]ความแม่น+3%[ffffff]\nหลบหลีก+3\nหลบหลีก+6\nหลบหลีก+9\nหลบหลีก+12\nหลบหลีก+15\nหลบหลีก+18\nหลบหลีก+21\nหลบหลีก+24\nหลบหลีก+27\n[ffff64]หลบหลีก+30[ffffff]\nหลบหลีก+1%\nหลบหลีก+2%\n[ffff64]หลบหลีก+3%[ffffff]\nDEF+10\nDEF+20\nDEF+30\nDEF+40\nDEF+50\nDEF+60\nDEF+70\nDEF+80\nDEF+90\n[ffff64]DEF+100[ffffff]\nDEF+1%\nDEF+2%\nDEF+3%\nDEF+4%\n[ffff64]DEF+5%[ffffff]\nMDEF+10\nMDEF+20\nMDEF+30\nMDEF+40\nMDEF+50\nMDEF+60\nMDEF+70\nMDEF+80\nMDEF+90\n[ffff64]MDEF+100[ffffff]\nMDEF+1%\nMDEF+2%\nMDEF+3%\nMDEF+4%\n[ffff64]MDEF+5%[ffffff]\nASPD+10\nASPD+20\nASPD+30\nASPD+40\nASPD+50\nASPD+60\nASPD+70\nASPD+80\nASPD+90\n[ffff64]ASPD+100[ffffff]\nASPD+1%\nASPD+2%\nASPD+3%\nASPD+4%\nASPD+5%\nASPD+6%\nASPD+7%\nASPD+8%\nASPD+9%\n[ffff64]ASPD+10%[ffffff]\nCSPD+10\nCSPD+20\nCSPD+30\nCSPD+40\nCSPD+50\nCSPD+60\nCSPD+70\nCSPD+80\nCSPD+90\n[ffff64]CSPD+100[ffffff]\nCSPD+1%\nCSPD+2%\nCSPD+3%\nCSPD+4%\nCSPD+5%\nCSPD+6%\nCSPD+7%\nCSPD+8%\nCSPD+9%\n[ffff64]CSPD+10%[ffffff]\nฟื้นฟู HP อัตโนมัติ+10\nฟื้นฟู HP อัตโนมัติ+20\nฟื้นฟู HP อัตโนมัติ+30\nฟื้นฟู HP อัตโนมัติ+40\nฟื้นฟู HP อัตโนมัติ+50\nฟื้นฟู HP อัตโนมัติ+60\nฟื้นฟู HP อัตโนมัติ+70\nฟื้นฟู HP อัตโนมัติ+80\nฟื้นฟู HP อัตโนมัติ+90\n[ffff64]ฟื้นฟู HP อัตโนมัติ+100[ffffff]\nฟื้นฟู HP อัตโนมัติ+5%\nฟื้นฟู HP อัตโนมัติ+10%\nฟื้นฟู HP อัตโนมัติ+15%\nฟื้นฟู HP อัตโนมัติ+20%\n[ffff64]ฟื้นฟู HP อัตโนมัติ+25%[ffffff]\nฟื้นฟู MP อัตโนมัติ+1\nฟื้นฟู MP อัตโนมัติ+2\nฟื้นฟู MP อัตโนมัติ+3\nฟื้นฟู MP อัตโนมัติ+4\nฟื้นฟู MP อัตโนมัติ+5\nฟื้นฟู MP อัตโนมัติ+6\nฟื้นฟู MP อัตโนมัติ+7\nฟื้นฟู MP อัตโนมัติ+8\nฟื้นฟู MP อัตโนมัติ+9\n[ffff64]ฟื้นฟู MP อัตโนมัติ+10[ffffff]\nฟื้นฟู MP อัตโนมัติ+5%\nฟื้นฟู MP อัตโนมัติ+10%\nฟื้นฟู MP อัตโนมัติ+15%\nฟื้นฟู MP อัตโนมัติ+20%\n[ffff64]ฟื้นฟู MP อัตโนมัติ+25%[ffffff]\nฟื้นฟู MP โจมตี+1\nฟื้นฟู MP โจมตี+2\nฟื้นฟู MP โจมตี+3\nฟื้นฟู MP โจมตี+4\nฟื้นฟู MP โจมตี+5\nฟื้นฟู MP โจมตี+6\nฟื้นฟู MP โจมตี+7\nฟื้นฟู MP โจมตี+8\nฟื้นฟู MP โจมตี+9\n[ffff64]ฟื้นฟู MP โจมตี+10[ffffff]\nอัตราคริติคอล+1\nอัตราคริติคอล+2\nอัตราคริติคอล+3\nอัตราคริติคอล+4\n[ffff64]อัตราคริติคอล+5[ffffff]\nอัตราคริติคอล+1%\nอัตราคริติคอล+2%\n[ffff64]อัตราคริติคอล+3%[ffffff]\nความเสียหายคริติคอล+1\nความเสียหายคริติคอล+2\nความเสียหายคริติคอล+3\nความเสียหายคริติคอล+4\n[ffff64]ความเสียหายคริติคอล+5[ffffff]\nความเสียหายคริติคอล+1%\nความเสียหายคริติคอล+2%\n[ffff64]ความเสียหายคริติคอล+3%[ffffff]\nต้านภาวะผิดปกติ+1%\nต้านภาวะผิดปกติ+2%\nต้านภาวะผิดปกติ+3%\nต้านภาวะผิดปกติ+4%\nต้านภาวะผิดปกติ+5%\nต้านภาวะผิดปกติ+6%\nต้านภาวะผิดปกติ+7%\nต้านภาวะผิดปกติ+8%\nต้านภาวะผิดปกติ+9%\n[ffff64]ต้านภาวะผิดปกติ+10%[ffffff]\nอัตรา Guard+1%\nอัตรา Guard+2%\n[ffff64]อัตรา Guard+3%[ffffff]\nพลัง Guard+1%\nพลัง Guard+2%\n[ffff64]พลัง Guard+3%[ffffff]\nอัตรา Avoid+1%\nอัตรา Avoid+2%\n[ffff64]อัตรา Avoid+3%[ffffff]\nต้านทานอาวุธ+1%\nต้านทานอาวุธ+2%\nต้านทานอาวุธ+3%\nต้านทานอาวุธ+4%\nต้านทานอาวุธ+5%\nต้านทานอาวุธ+6%\nต้านทานอาวุธ+7%\nต้านทานอาวุธ+8%\nต้านทานอาวุธ+9%\n[ffff64]ต้านทานอาวุธ+10%[ffffff]\nต้านทานเวท+1%\nต้านทานเวท+2%\nต้านทานเวท+3%\nต้านทานเวท+4%\nต้านทานเวท+5%\nต้านทานเวท+6%\nต้านทานเวท+7%\nต้านทานเวท+8%\nต้านทานเวท+9%\n[ffff64]ต้านทานเวท+10%[ffffff]\nอาวุธเจาะเข้า+1%\nอาวุธเจาะเข้า+2%\nอาวุธเจาะเข้า+3%\nอาวุธเจาะเข้า+4%\nอาวุธเจาะเข้า+5%\nอาวุธเจาะเข้า+6%\nอาวุธเจาะเข้า+7%\nอาวุธเจาะเข้า+8%\nอาวุธเจาะเข้า+9%\n[ffff64]อาวุธเจาะเข้า+10%[ffffff]\nเวทเจาะเข้า+1%\nเวทเจาะเข้า+2%\nเวทเจาะเข้า+3%\nเวทเจาะเข้า+4%\nเวทเจาะเข้า+5%\nเวทเจาะเข้า+6%\nเวทเจาะเข้า+7%\nเวทเจาะเข้า+8%\nเวทเจาะเข้า+9%\n[ffff64]เวทเจาะเข้า+10%[ffffff]\nเพิ่มความเสียหายแก่ธาตุไฟ+1%\nเพิ่มความเสียหายแก่ธาตุไฟ+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุไฟ+3%[ffffff]\nเพิ่มความเสียหายแก่ธาตุน้ำ+1%\nเพิ่มความเสียหายแก่ธาตุน้ำ+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุน้ำ+3%[ffffff]\nเพิ่มความเสียหายแก่ธาตุลม+1%\nเพิ่มความเสียหายแก่ธาตุลม+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุลม+3%[ffffff]\nเพิ่มความเสียหายแก่ธาตุดิน+1%\nเพิ่มความเสียหายแก่ธาตุดิน+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุดิน+3%[ffffff]\nเพิ่มความเสียหายแก่ธาตุแสง+1%\nเพิ่มความเสียหายแก่ธาตุแสง+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุแสง+3%[ffffff]\nเพิ่มความเสียหายแก่ธาตุมืด+1%\nเพิ่มความเสียหายแก่ธาตุมืด+2%\n[ffff64]เพิ่มความเสียหายแก่ธาตุมืด+3%[ffffff]\nโจมตีไร้ธาตุ+1%\nโจมตีไร้ธาตุ+2%\n[ffff64]โจมตีไร้ธาตุ+3%[ffffff]\nเฮท+1%\nเฮท+2%\nเฮท+3%\nเฮท+4%\nเฮท+5%\nเฮท+6%\nเฮท+7%\nเฮท+8%\nเฮท+9%\n[ffff64]เฮท+10%[ffffff]\nเฮท-1%\nเฮท-2%\nเฮท-3%\nเฮท-4%\nเฮท-5%\nเฮท-6%\nเฮท-7%\nเฮท-8%\nเฮท-9%\n[ffff64]เฮท-10%[ffffff]\nต้านธาตุไฟ+1%\nต้านธาตุไฟ+2%\nต้านธาตุไฟ+3%\nต้านธาตุไฟ+4%\nต้านธาตุไฟ+5%\nต้านธาตุไฟ+6%\nต้านธาตุไฟ+7%\nต้านธาตุไฟ+8%\nต้านธาตุไฟ+9%\n[ffff64]ต้านธาตุไฟ+10%[ffffff]\nต้านธาตุน้ำ+1%\nต้านธาตุน้ำ+2%\nต้านธาตุน้ำ+3%\nต้านธาตุน้ำ+4%\nต้านธาตุน้ำ+5%\nต้านธาตุน้ำ+6%\nต้านธาตุน้ำ+7%\nต้านธาตุน้ำ+8%\nต้านธาตุน้ำ+9%\n[ffff64]ต้านธาตุน้ำ+10%[ffffff]\nต้านธาตุลม+1%\nต้านธาตุลม+2%\nต้านธาตุลม+3%\nต้านธาตุลม+4%\nต้านธาตุลม+5%\nต้านธาตุลม+6%\nต้านธาตุลม+7%\nต้านธาตุลม+8%\nต้านธาตุลม+9%\n[ffff64]ต้านธาตุลม+10%[ffffff]\nต้านธาตุดิน+1%\nต้านธาตุดิน+2%\nต้านธาตุดิน+3%\nต้านธาตุดิน+4%\nต้านธาตุดิน+5%\nต้านธาตุดิน+6%\nต้านธาตุดิน+7%\nต้านธาตุดิน+8%\nต้านธาตุดิน+9%\n[ffff64]ต้านธาตุดิน+10%[ffffff]\nต้านธาตุแสง+1%\nต้านธาตุแสง+2%\nต้านธาตุแสง+3%\nต้านธาตุแสง+4%\nต้านธาตุแสง+5%\nต้านธาตุแสง+6%\nต้านธาตุแสง+7%\nต้านธาตุแสง+8%\nต้านธาตุแสง+9%\n[ffff64]ต้านธาตุแสง+10%[ffffff]\nต้านธาตุมืด+1%\nต้านธาตุมืด+2%\nต้านธาตุมืด+3%\nต้านธาตุมืด+4%\nต้านธาตุมืด+5%\nต้านธาตุมืด+6%\nต้านธาตุมืด+7%\nต้านธาตุมืด+8%\nต้านธาตุมืด+9%\n[ffff64]ต้านธาตุมืด+10%[ffffff]\nต้านไร้ธาตุ+1%\nต้านไร้ธาตุ+2%\nต้านไร้ธาตุ+3%\nต้านไร้ธาตุ+4%\nต้านไร้ธาตุ+5%\nต้านไร้ธาตุ+6%\nต้านไร้ธาตุ+7%\nต้านไร้ธาตุ+8%\nต้านไร้ธาตุ+9%\n[ffff64]ต้านไร้ธาตุ+10%[ffffff]\nพลังการโจมตีระยะใกล้+1%\nพลังการโจมตีระยะใกล้+2%\n[ffff64]พลังการโจมตีระยะใกล้+3%[ffffff]\nพลังการโจมตีระยะไกล+1%\nพลังการโจมตีระยะไกล+2%\n[ffff64]พลังการโจมตีระยะไกล+3%[ffffff]\nคาดการณ์+1%\nคาดการณ์+2%\n[ffff64]คาดการณ์+3%[ffffff]\nทำลายการป้องกัน+1%\nทำลายการป้องกัน+2%\n[ffff64]ทำลายการป้องกัน+3%[ffffff]\nเพิ่มการโจมตีด้วยอาวุธ 10%\nเพิ่มการโจมตีด้วยอาวุธ 20%\nเพิ่มการโจมตีด้วยอาวุธ 30%\nเพิ่มการโจมตีด้วยอาวุธ 40%\n[ffff64]เพิ่มการโจมตีด้วยอาวุธ 50%[ffffff]\nเพิ่มการโจมตีด้วยเวทมนตร์ 10%\nเพิ่มการโจมตีด้วยเวทมนตร์ 20%\nเพิ่มการโจมตีด้วยเวทมนตร์ 30%\nเพิ่มการโจมตีด้วยเวทมนตร์ 40%\n[ffff64]เพิ่มการโจมตีด้วยเวทมนตร์ 50%[ffffff]\nสะท้อนความเสียหาย 5%\nสะท้อนความเสียหาย 10%\n[ffff64]สะท้อนความเสียหาย 15%[ffffff]\nบาเรียอาวุธ+100\nบาเรียอาวุธ+200\nบาเรียอาวุธ+300\nบาเรียอาวุธ+400\nบาเรียอาวุธ+500\nบาเรียอาวุธ+600\nบาเรียอาวุธ+700\nบาเรียอาวุธ+800\nบาเรียอาวุธ+900\n[ffff64]บาเรียอาวุธ+1000[ffffff]\nบาเรียเวทมนตร์+100\nบาเรียเวทมนตร์+200\nบาเรียเวทมนตร์+300\nบาเรียเวทมนตร์+400\nบาเรียเวทมนตร์+500\nบาเรียเวทมนตร์+600\nบาเรียเวทมนตร์+700\nบาเรียเวทมนตร์+800\nบาเรียเวทมนตร์+900\n[ffff64]บาเรียเวทมนตร์+1000[ffffff]\nบาเรียอัตราส่วน+1%\nบาเรียอัตราส่วน+2%\nบาเรียอัตราส่วน+3%\nบาเรียอัตราส่วน+4%\nบาเรียอัตราส่วน+5%\nบาเรียอัตราส่วน+6%\nบาเรียอัตราส่วน+7%\nบาเรียอัตราส่วน+8%\nบาเรียอัตราส่วน+9%\n[ffff64]บาเรียอัตราส่วน+10%[ffffff]\nความเร็วบาเรีย+3%\nความเร็วบาเรีย+6%\nความเร็วบาเรีย+9%\nความเร็วบาเรีย+12%\n[ffff64]ความเร็วบาเรีย+15%[ffffff]
+EquipPanelAbilityRateLabel	0	0	0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%
+EquipPanelAbilityLastLabel	0	0	[ff6464]*เนื่องจากจะไม่มีการสุ่มสเตตัสเดียวกันซ้ำออกมา ดังนั้นอัตราการสุ่มออกของสล็อตที่สองเป็นต้นไปจะสูงกว่าอัตราที่แสดง[ffffff]\n[ff6464]*อัตราการสุ่มออกมีทศนิยมเกิน 4 หลัก ดังนั้นจึงถูกปัดเศษให้แสดงผลแค่ 3 หลัก ด้วยเหตุนี้ถึงแม้ว่าจะรวมอัตราการได้รับทั้งหมดแล้วก็อาจจะรวมกันได้ไม่ถึง 100%[ffffff]
 EquipPanelEnchantExExp	0	0	"ใช้ [ffff64]""{0}""[ffffff] เพื่อ\nถอดสเตตัสจากอวาตาร์\nสามารถเก็บสเตตัสที่ถอดไว้ได้สูงสุด 10 สล็อต\nไอเท็มที่บันทึกไว้สามารถนำไปติดใหม่ได้"
 EquipPanelEnchantRegrant	0	0	ติดใหม่
 EquipPanelEnchantExtract	0	0	ถอดสเตตัส
@@ -6334,25 +4569,18 @@ RegistletPanelGemPowderNum	0	0	ผงอัญมณี
 RegistletPanelHaveGemCartNum	0	0	เจมคาร์ทที่มีอยู่
 RegistletPanelEquipButton	0	0	[ffff64]+ติดตั้งเจมคาร์ท
 RegistletPanelAddSlotButton	0	0	ใช้ผง{0}เพื่อเพิ่มช่อง
-RegistletPanelGemCartGetMes	0	0	"มาเพิ่มความแข็งแกร่งให้ตัวเองด้วยการติดตั้ง
-เจมคาร์ทที่หาได้ในการทดลองของสตูดี้!"
+RegistletPanelGemCartGetMes	0	0	มาเพิ่มความแข็งแกร่งให้ตัวเองด้วยการติดตั้ง\nเจมคาร์ทที่หาได้ในการทดลองของสตูดี้!
 RegistletPanelEditButton	0	0	แก้ไขเจมคาร์ท
 RegistletPanelEditButtonMes	0	0	ผสมเพื่ออัพเกรดและบดให้เป็นผงได้
-RegistletPanelEditMes	0	0	"สามารถ[ffff64]อัพเกรด[ffffff]ด้วยการผสมเจมคาร์ท
-ที่เหมือนหรือแตกต่างกันได้
-ถ้าไม่ใช้แล้วก็สามารถ[ffff64]แยก[ffffff]ได้เช่นกัน"
-RegistletPanelNoHaveMes	0	0	"ไม่มีเจมคาร์ท
-
-ลองไปชาแลนจ์ที่เอส คาโรได้
-[ffff64]ไปหาได้ที่การทดลองของสตูดี้[ffffff]"
+RegistletPanelEditMes	0	0	สามารถ[ffff64]อัพเกรด[ffffff]ด้วยการผสมเจมคาร์ท\nที่เหมือนหรือแตกต่างกันได้\nถ้าไม่ใช้แล้วก็สามารถ[ffff64]แยก[ffffff]ได้เช่นกัน
+RegistletPanelNoHaveMes	0	0	ไม่มีเจมคาร์ท\n\nลองไปชาแลนจ์ที่เอส คาโรได้\n[ffff64]ไปหาได้ที่การทดลองของสตูดี้[ffffff]
 RegistletPanelReinforceButton	0	0	อัพเกรด
 RegistletPanelReinforceButtonMax	0	0	[ffff64]MAX[ffffff]
 RegistletPanelDetailButton	0	0	รายละเอียด
 RegistletPanelBreakButton	0	0	แยก
 RegistletPanelAlreadyEquipButton	0	0	[ffff64]ติดตั้งอยู่[ffffff]
 RegistletPanelReinforceMes	0	0	[ffff64]อัพเกรดเจมคาร์ทอันนี้[ffffff]
-RegistletPanelReinforceNoMaterialMes	0	0	"ไม่มีวัตถุดิบที่จะทำ
-เจมคาร์ทได้"
+RegistletPanelReinforceNoMaterialMes	0	0	ไม่มีวัตถุดิบที่จะทำ\nเจมคาร์ทได้
 RegistletPanelReinforceResultTitle	0	0	คาดเดาผลลัพธ์
 RegistletPanelReinforceNeedGemPowderNum	0	0	ผงอัญมณีที่จำเป็น
 RegistletPanelReinforceDoButton	0	0	อัพเกรดอันนี้
@@ -6368,8 +4596,7 @@ RegistletPanelBreakDoButton	0	0	แยก
 RegistletPanelBreakWait	0	0	กำลังแยกเจมคาร์ทอันนี้ให้เป็นผง
 RegistletPanelBreakCancel	0	0	ยกเลิก
 RegistletPanelBreakComplete	0	0	ได้รับผงอัญมณีแล้ว!
-RegistletPanelEquipNoGemCart	0	0	"ไม่มี
-เจมคาร์ทที่ติดตั้งได้"
+RegistletPanelEquipNoGemCart	0	0	ไม่มี\nเจมคาร์ทที่ติดตั้งได้
 RegistletPanelEquipThisEquip	0	0	ติดตั้งเจมคาร์ทอันนี้
 RegistletPanelEquipThisChange	0	0	เปลี่ยนเจมคาร์ทอันนี้
 RegistletPanelEquipRemove	0	0	ถอดออก
@@ -6637,10 +4864,7 @@ QuestPanelItemMes	0	0	รวบรวม{0} ({1} ชิ้น)
 QuestPanelKeyMes	0	0	"ไอเท็มหายาก ""{0}"""
 QuestPanelEnemySubdue	0	0	ทำสำเร็จ!
 QuestPanelHock	0	0	มีอยู่แล้ว
-QuestPanelDestroyLabel	0	0	"""{0}""
-
-จะทิ้งเควสต์นี้ตกลงหรือไม่?
-[888888]*สามารถรับเควสต์ใหม่ได้อีกครั้ง"
+QuestPanelDestroyLabel	0	0	"""{0}""\n\nจะทิ้งเควสต์นี้ตกลงหรือไม่?\n[888888]*สามารถรับเควสต์ใหม่ได้อีกครั้ง"
 QuestPanelDestroyMissionLabel2	0	0	\nถ้าคุณทิ้งภารกิจนี้\nสถานะของภารกิจจะถือว่าเคลียร์สำเร็จ\n[FFFF88]{0}[ffffff]จะไม่สามารถย้อนกลับมาได้อีก
 QuestPanelDestroyButton	0	0	ทิ้งเควสต์
 QuestPopUpConnectLabel	0	0	รอการเชื่อมต่อ
@@ -6649,8 +4873,7 @@ QuestPopUpConnectfumbleText	0	0	การเชื่อมต่อล้มเ
 QuestPoPUpLabel	0	0	รางวัลเควสต์
 QuestReceivedReWard	0	0	[AA5555]รับรางวัลนี้ไปแล้ว
 QuestPanelDestroyMissionLabel	0	0	ไม่สามารถทิ้งภารกิจเนื้อเรื่องได้
-JournalPopUpText	0	0	"{0}: ""{1}""
- {2}: {3}/{4} สำเร็จแล้ว!"
+JournalPopUpText	0	0	"{0}: ""{1}""\n {2}: {3}/{4} สำเร็จแล้ว!"
 Mission	0	0	ภารกิจ
 Quest	0	0	เควสต์
 JournalPopUpMobText	0	0	{1}: {0} 
@@ -6873,12 +5096,7 @@ EmotionPanelDisp	0	0	แสดง
 EmotionPanelFavorite	0	0	รายการโปรด
 EmotionPanelDetail	0	0	รายละเอียด
 EmotionPanelSimple	0	0	เบื้องต้น
-EmotionPanelDescription	0	0	"ถ้าตั้งเป็น[ffff64]รายการโปรด[ffffff]
-จะเลือกใช้ได้จากแถบอีโมชั่น
-
-
-แตะอีโมชั่นที่ต้องการตั้ง
-เป็นรายการโปรด"
+EmotionPanelDescription	0	0	ถ้าตั้งเป็น[ffff64]รายการโปรด[ffffff]\nจะเลือกใช้ได้จากแถบอีโมชั่น\n\n\nแตะอีโมชั่นที่ต้องการตั้ง\nเป็นรายการโปรด
 EmotionPanelSettingComplete	0	0	ตั้งค่าสำเร็จ
 EmotionPanelIconType0	0	0	A
 EmotionPanelIconType1	0	0	B
@@ -7521,17 +5739,9 @@ SkillComboTypeNoneText	0	0	ไม่ได้ตั้งค่า
 SkillComboTypeStartText	0	0	ใช้เป็นสกิลแรก
 SkillComboTypeRengekiText	0	0	การใช้ MP จะลดลงตามจำนวนคอมโบ\nทุกครั้งที่ใช้การโจมตีต่อเนื่องระหว่างคอมโบเดียวกัน\nพลังจะลดลง
 SkillComboTypeThirdEyeText	0	0	ยกเว้นสถานะพิเศษ อย่างน้อยที่สุดจะ Graze ฮิต\nและอัตราจะการเกิดจะขึ้นอยู่กับจำนวนคอมโบ เมื่อติดภาวะผิดปกติ\nถ้ามีเวลาต้านทานเหลืออยู่คอมโบจะหยุดชะงัก  
-SkillComboTypeFillingText	0	0	"ใช้สกิลโดยไม่ใช้ MP แต่พลังโจมตีจะต่ำมาก
-และพลังโจมตีของสกิลหลังจากนั้น
-ก็จะต่ำลงอย่างต่อเนื่อง
-ถ้ายังมี MP เหลืออยู่ MP ที่ใช้
-ในสกิลสุดท้ายจะเพิ่มขึ้น"
-SkillComboTypeQuickText	0	0	"เพิ่มความเร็วในการใช้สกิล
-(มีผลต่อบางสกิลเท่านั้น)"
-SkillComboTypeHardHitText	0	0	"เพิ่มพลังโจมตีให้สกิลนี้
-และพลังโจมตีของคอมโบที่ตั้งค่าไว้
-ต่อจากนี้จะลดลง ถ้าไม่ได้ตั้งค่า
-คอมโบต่อไป MP ที่ใช้กับสกิลนี้จะเพิ่มขึ้น"
+SkillComboTypeFillingText	0	0	ใช้สกิลโดยไม่ใช้ MP แต่พลังโจมตีจะต่ำมาก\nและพลังโจมตีของสกิลหลังจากนั้น\nก็จะต่ำลงอย่างต่อเนื่อง\nถ้ายังมี MP เหลืออยู่ MP ที่ใช้\nในสกิลสุดท้ายจะเพิ่มขึ้น
+SkillComboTypeQuickText	0	0	เพิ่มความเร็วในการใช้สกิล\n(มีผลต่อบางสกิลเท่านั้น)
+SkillComboTypeHardHitText	0	0	เพิ่มพลังโจมตีให้สกิลนี้\nและพลังโจมตีของคอมโบที่ตั้งค่าไว้\nต่อจากนี้จะลดลง ถ้าไม่ได้ตั้งค่า\nคอมโบต่อไป MP ที่ใช้กับสกิลนี้จะเพิ่มขึ้น
 SkillComboTypeTenacityText	0	0	ถึง MP ไม่พอก็จะใช้ HP เพื่อใช้สกิลแทน
 SkillComboTypeInvincibleText	0	0	มีโอกาสติดคงกระพันตามจำนวนคอมโบ\nถ้ามีคงกระพันหลายอันในหนึ่งคอมโบ\nมีแค่อันแรกเท่านั้นที่มีโอกาสเปิดใช้
 SkillComboTypeBloodSuckingText	0	0	ฟื้นฟู HP จากความเสียหายตามจำนวนคอมโบ\nหลังจากใช้ดูดเลือด จะเปลี่ยนเป็นใช้ HP เป็นเวลา 10 วินาที\nเพื่อเพิ่มพลังสกิล
@@ -7745,8 +5955,8 @@ SystemMessageViewModeLock	0	0	ไม่สามารถใช้ได้ใ�
 SystemMessageNewWaveNotUseItem	0	0	เป็นไอเท็มที่ใช้ไม่ได้ในอีเว้นท์โคลาโบ
 SystemMessageTreasureHuntNotUseItem	0	0	เป็นไอเท็มที่ใช้ไม่ได้ในการทดลองของสตูดี้
 SystemMessageBemmoKeyWordReceiveName	0	0	System
-SystemMessageBemmoKeyWordReceive	0	0	"ของขวัญจากคีย์เวิร์ดจะถูกส่งให้ในภายหลัง!	"
-SystemMessageBemmoKeyWordCourseReceive	0	0	"ของขวัญจากคีย์เวิร์ดจะถูกส่งให้ในภายหลัง!	 *ขยายเวลารับคีย์เวิร์ดออกไป เพราะได้รับผลจากคอร์ส"
+SystemMessageBemmoKeyWordReceive	0	0	ของขวัญจากคีย์เวิร์ดจะถูกส่งให้ในภายหลัง!\t
+SystemMessageBemmoKeyWordCourseReceive	0	0	ของขวัญจากคีย์เวิร์ดจะถูกส่งให้ในภายหลัง!\t *ขยายเวลารับคีย์เวิร์ดออกไป เพราะได้รับผลจากคอร์ส
 SystemMessageBemmoKeyWordAlreadyAcceptedReceive	0	0	ได้รับคีย์เวิร์ดแล้ว ของขวัญจะจัดส่งไปที่แอคเคาท์ของคุณในภายหลัง!
 SystemMessageBemmoKeyWordCourseDisableReceive	0	0	*เลยเวลาที่รับคีย์เวิร์ดแล้ว เนื่องจากไม่ได้สมัครคอร์ส
 SystemMessageAbnormalItemDisabled	0	0	ห้ามไม่ให้ใช้ไอเท็ม
@@ -8444,16 +6654,13 @@ OptionScreenShotTypeSelectEx1	0	0	B
 OptionScreenShotTypeSelectEx2	0	0	A
 OptionScreenShotTypeLabel	0	0	ประเภทสกรีนช็อต
 OptionScreenShotTypeMes	0	0	เปลี่ยนการตั้งค่าสกรีนช็อต
-ShortCutOptionPanelScreenShotPopUpMes	0	0	"โปรดระวังว่ามีอุปกรณ์บางรุ่น
-ที่อาจไม่สามารถถ่ายสกรีนช็อต
-ได้อย่างถูกต้อง"
+ShortCutOptionPanelScreenShotPopUpMes	0	0	โปรดระวังว่ามีอุปกรณ์บางรุ่น\nที่อาจไม่สามารถถ่ายสกรีนช็อต\nได้อย่างถูกต้อง
 ShortCutOptionPanelScreenShotPopUpTitle	0	0	ประกาศ
 OptionPanelAccountRebootTitle	0	0	เปลี่ยนการตั้งค่าบัญชีแล้ว
 OptionPanelAccountRebootMessage	0	0	\n\n\nโปรดรีสตาร์ทแอปพลิเคชัน\nเพื่อแสดงผลการตั้งค่าที่เปลี่ยนไป
 NameChangePanelTitle	0	0	สามารถเปลี่ยนชื่อคาแรคเตอร์ได้ด้วย[ffff64]ออร์บ {0} ชิ้น[ffffff]
 NameChangePanelTitleWraing1	0	0	[ff0000]*จำนวนออร์บที่ใช้จะเพิ่มขึ้นหากต้องการเปลี่ยนอีกภายใน 30 วัน
-NameChangePanelTitleWraing3	0	0	"[ff0000]*จำนวนออร์บที่ใช้จะเพิ่มขึ้นหากต้องการเปลี่ยนอีกครั้งภายใน 30 วัน
-*ผ่านไป {0} วันแล้วหลังจากเปลี่ยนชื่อครั้งก่อน"
+NameChangePanelTitleWraing3	0	0	[ff0000]*จำนวนออร์บที่ใช้จะเพิ่มขึ้นหากต้องการเปลี่ยนอีกครั้งภายใน 30 วัน\n*ผ่านไป {0} วันแล้วหลังจากเปลี่ยนชื่อครั้งก่อน
 NameChangePanelTitleWraing2	0	0	[ffff64]*ข้อควรระวัง*\nไม่สามารถเปลี่ยนเป็นชื่อที่กำลังใช้อยู่ได้\nอาจเปลี่ยนไม่ได้ในบางกรณี\nขึ้นอยู่กับสถานะของคาแรคเตอร์
 NameChangePanelButton	0	0	ยืนยันชื่อ
 NameChangePanelWait	0	0	[ffff64]กำลังเปลี่ยนชื่อ\nจะเปลี่ยนเสร็จเมื่อเกจเต็ม
@@ -9057,10 +7264,7 @@ UserTargetPanelTradeMes2	0	0	\nไม่สามารถเทรดกับ{
 UserTargetPanelTradeMes3	0	0	\nคำขอถูกยกเลิก\nเนื่องจากอีกฝ่ายอยู่ระหว่างการเทรด
 UserTargetPaneTradelButton2	0	0	ปิด
 UserTargetPanelPartyLabel	0	0	เชิญเข้าปาร์ตี้
-UserTargetPanelPartyMes	0	0	"เชิญ{0}เข้าปาร์ตี้หรือไม่?
-
-ถ้าไม่ได้รับการตอบรับในเวลาที่กำหนด
-จะถูกยกเลิกโดยอัตโนมัติ"
+UserTargetPanelPartyMes	0	0	เชิญ{0}เข้าปาร์ตี้หรือไม่?\n\nถ้าไม่ได้รับการตอบรับในเวลาที่กำหนด\nจะถูกยกเลิกโดยอัตโนมัติ
 UserTargetPanelPartyButton	0	0	เชิญเข้าปาร์ตี้
 UserTargetPanelPartyText	0	0	ไปผจญภัยด้วยกันสิ!
 UserTargetPanelPartyError	0	0	\nสมาชิกเต็มหรือ\nเป็นผู้เล่นที่อยู่ในปาร์ตี้อยู่แล้ว
@@ -9068,29 +7272,15 @@ UserTargetPanelPartyAuthorityError	0	0	ไม่มีสิทธิ์
 UserTargetPanelPartyAlreadyOtherPartyError	0	0	\nอยู่ในปาร์ตี้อื่นแล้ว
 UserTargetPanelPartyNotStateReceive	0	0	\nเป้าหมายไม่ได้ล็อกอิน\nจึงไม่สามารถตอบรับคำเชิญได้
 UserTargetPanelGuildLabel	0	0	เชิญเข้ากิลด์
-UserTargetPanelGuildMes	0	0	"เชิญ{0}เข้ากิลด์หรือไม่?
-
-ถ้าไม่ได้รับการตอบรับในเวลาที่กำหนด
-จะถูกยกเลิกโดยอัตโนมัติ"
+UserTargetPanelGuildMes	0	0	เชิญ{0}เข้ากิลด์หรือไม่?\n\nถ้าไม่ได้รับการตอบรับในเวลาที่กำหนด\nจะถูกยกเลิกโดยอัตโนมัติ
 UserTargetPanelGuildText	0	0	จะลองเข้ากิลด์หรือไม่?
-UserTargetPanelFriendMes	0	0	"ขอเป็นเพื่อนกับ{0}
-
-จะเป็นเพื่อนกันต่อเมื่ออีกฝ่ายยอมรับคำขอ
-สามารถลงทะเบียนเพื่อนได้สูงสุด 300 คน
-ถ้าฝ่ายใดฝ่ายหนึ่งมีเพื่อนถึง 300 คนแล้ว
-จะไม่สามารถเป็นเพื่อนกันได้"
-UserTargetPanelFriendLimitMes	0	0	"ขอเป็นเพื่อนกับ{0}
-
-จะเป็นเพื่อนกันต่อเมื่ออีกฝ่ายยอมรับคำขอ
-สามารถลงทะเบียนเพื่อนได้สูงสุด {1} คน
-ถ้าฝ่ายใดฝ่ายหนึ่งมีเพื่อนถึงจำนวนสูงสุดแล้ว
-จะไม่สามารถเป็นเพื่อนกันได้"
+UserTargetPanelFriendMes	0	0	ขอเป็นเพื่อนกับ{0}\n\nจะเป็นเพื่อนกันต่อเมื่ออีกฝ่ายยอมรับคำขอ\nสามารถลงทะเบียนเพื่อนได้สูงสุด 300 คน\nถ้าฝ่ายใดฝ่ายหนึ่งมีเพื่อนถึง 300 คนแล้ว\nจะไม่สามารถเป็นเพื่อนกันได้
+UserTargetPanelFriendLimitMes	0	0	ขอเป็นเพื่อนกับ{0}\n\nจะเป็นเพื่อนกันต่อเมื่ออีกฝ่ายยอมรับคำขอ\nสามารถลงทะเบียนเพื่อนได้สูงสุด {1} คน\nถ้าฝ่ายใดฝ่ายหนึ่งมีเพื่อนถึงจำนวนสูงสุดแล้ว\nจะไม่สามารถเป็นเพื่อนกันได้
 UserTargetPanelFriendText	0	0	เรามาเป็นเพื่อนกันมั้ย?
 UserTargetPanelFriendSuccess	0	0	ส่งคำขอเป็นเพื่อนให้{0}แล้ว
 UserTargetPanelFriendError	0	0	อีกฝ่ายยังไม่ได้ยอมรับคำขอเป็นเพื่อน
 UserTargetPanelFriendAlreadyExist	0	0	มีเพื่อนถึงจำนวนที่กำหนด\nหรือเป็นเพื่อนกันอยู่แล้ว
-UserTargetPanelReportMes	0	0	"จะรายงานว่า [{0}]
-โกงหรือก่อความรำคาญใช่หรือไม่?"
+UserTargetPanelReportMes	0	0	จะรายงานว่า [{0}]\nโกงหรือก่อความรำคาญใช่หรือไม่?
 UserTargetPanelLabel3	0	0	ให้กำลังใจ
 UserTargetPanelMes3	0	0	เหลืออีก {0} ครั้ง
 UserTargetPanelLabel4	0	0	เทรด
@@ -9177,16 +7367,14 @@ ChannelType8	0	0	เวิลด์\nเกาหลี (KR)
 ChannelType11	0	0	ไทย (TH)\nเวิลด์
 ChannelType12	0	0	อินโดนีเซีย (ID)
 ChannelAdmission	0	0	เข้า
-ChannelAdmissionDuring	0	0	"ชาแนลที่อยู่
-ในปัจจุบัน"
+ChannelAdmissionDuring	0	0	ชาแนลที่อยู่\nในปัจจุบัน
 ChannelFullHouse	0	0	เต็ม
 ChannelComfortable	0	0	เบาบาง
 ChannelCommon	0	0	ธรรมดา
 ChannelCongestion	0	0	หนาแน่น
 ChannelOver	0	0	เต็ม
 ChannelNum	0	0	ชาแนล {0}
-WorldAdmissionDuring	0	0	"เวิลด์ที่อยู่
-ในปัจจุบัน"
+WorldAdmissionDuring	0	0	เวิลด์ที่อยู่\nในปัจจุบัน
 WorldFullHouse	0	0	เต็ม
 WorldMaintenance	0	0	[FF7777]กำลัง\nปรับปรุงระบบ
 WorldClosed	0	0	[FF7777]ไม่สามารถใช้งานได้
@@ -9218,18 +7406,15 @@ NewsPanelGuildNewsMes	0	0	อัพเดทประกาศกิลด์แ
 NewsPanelShopSellout	0	0	แผงขายของ (ขายหมด)
 NewsPanelShopSelloutMes	0	0	ของในแผงถูกขายออกไปหมดแล้ว
 NewsPanelBagMax	0	0	กระเป๋าเต็ม
-NewsPanelBagMaxMes	0	0	"กระเป๋าเต็ม
-ไม่สามารถดรอปของได้"
+NewsPanelBagMaxMes	0	0	กระเป๋าเต็ม\nไม่สามารถดรอปของได้
 NewsPanelTrophy	0	0	มีเหรียญตราที่ทำสำเร็จ
-NewsPanelTrophyMes	0	0	"สามารถรับรางวัล
-จากเหรียญตราได้"
+NewsPanelTrophyMes	0	0	สามารถรับรางวัล\nจากเหรียญตราได้
 NewsPanelTrade	0	0	ขอเทรด
 NewsPanelTradeMes	0	0	ได้รับคำขอเทรด
 NewsPanelAsobimoAccount	0	0	ลงทะเบียนการถ่ายโอน
 NewsPanelAsobimoAccountMes	0	0	ล็อกอินด้วยบัญชีผู้ใช้ ASOBIMO เพื่อรับเหรียญตรา!!
 NewsPanelScenarioItemWarrantIn	0	0	มีของล้ำค่าล้นออกมา
-NewsPanelScenarioItemWarrantInMes	0	0	"มีของล้ำค่าอยู่ในกระเป๋าสำรอง
-ของที่อยู่ในกระเป๋าสำรองจะนำมาใช้ไม่ได้"
+NewsPanelScenarioItemWarrantInMes	0	0	มีของล้ำค่าอยู่ในกระเป๋าสำรอง\nของที่อยู่ในกระเป๋าสำรองจะนำมาใช้ไม่ได้
 NewsPanelStampReward	0	0	สามารถรับรางวัลจากแสตมป์ได้
 NewsPanelStampRewardMes	0	0	สามารถรับรางวัลจากแสตมป์ได้
 NewsPanelBeginnerItem	0	0	มีไอเท็มสำหรับมือใหม่จำหน่ายอยู่
@@ -9410,25 +7595,13 @@ SyntheticItemType21	0	0	อุปกรณ์เสริม
 SyntheticItemType22	0	0	อุปกรณ์พิเศษ
 SyntheticItemType-1	0	0	แสดงทั้งหมด
 SyntheticMedicineBagAnyFullMessage	0	0	\nกระเป๋าเต็มของคุณเกือบจะเต็มแล้ว\nอาจทำให้ไม่สามารถผสมไอเท็มได้
-LibraryPanelWeaponSkill	0	0	"[ffff77][เรียนสกิล: อาวุธ]
-[ffffff]สกิลจำเป็นสำหรับอาวุธ
-แนะนำให้เน้นไปที่อาวุธชนิดเดียว"
-LibraryPanelBattleSkill	0	0	"[ffff77][เรียนสกิล: ต่อสู้]
-[ffffff]เรียนสกิลเพื่อการต่อสู้
-แนะนำให้เน้นไปที่อาวุธชนิดเดียว"
-LibraryPanelStrongSkill	0	0	"[ffff77][เรียนสกิล: เสริม]
-[ffffff]สกิลเพิ่มความแข็งแกร่ง
-ช่วยเพิ่มความแข็งแกร่งให้โล่และชุดเกราะ"
-LibraryPanelBufSkill	0	0	"[ffff77][เรียนสกิล: สนับสนุน]
-[ffffff]สกิลที่มีประโยชน์ต่อการผจญภัย
-ลองเรียนดูเมื่อมีสกิลพ้อยท์เหลือ"
-LibraryPanelLifeSkill	0	0	"[ffff77][เรียนสกิล: อื่นๆ]
-[ffffff]เรียนรู้เพื่อตั้งแผงขายของและการผลิต
-ยังไม่จำเป็นต้องเรียนในช่วงแรก"
-LibraryPanelMessage	0	0	"จำนวนของสกิล{0}: {1}
-[ff0000]ยิ่งเรียนสกิลมากขึ้นก็ต้องเสียค่าเรียนมากขึ้น"
-LibraryPanelUnlearned	0	0	"สามารถเรียนได้จาก
-Lv{0}"
+LibraryPanelWeaponSkill	0	0	[ffff77][เรียนสกิล: อาวุธ]\n[ffffff]สกิลจำเป็นสำหรับอาวุธ\nแนะนำให้เน้นไปที่อาวุธชนิดเดียว
+LibraryPanelBattleSkill	0	0	[ffff77][เรียนสกิล: ต่อสู้]\n[ffffff]เรียนสกิลเพื่อการต่อสู้\nแนะนำให้เน้นไปที่อาวุธชนิดเดียว
+LibraryPanelStrongSkill	0	0	[ffff77][เรียนสกิล: เสริม]\n[ffffff]สกิลเพิ่มความแข็งแกร่ง\nช่วยเพิ่มความแข็งแกร่งให้โล่และชุดเกราะ
+LibraryPanelBufSkill	0	0	[ffff77][เรียนสกิล: สนับสนุน]\n[ffffff]สกิลที่มีประโยชน์ต่อการผจญภัย\nลองเรียนดูเมื่อมีสกิลพ้อยท์เหลือ
+LibraryPanelLifeSkill	0	0	[ffff77][เรียนสกิล: อื่นๆ]\n[ffffff]เรียนรู้เพื่อตั้งแผงขายของและการผลิต\nยังไม่จำเป็นต้องเรียนในช่วงแรก
+LibraryPanelMessage	0	0	จำนวนของสกิล{0}: {1}\n[ff0000]ยิ่งเรียนสกิลมากขึ้นก็ต้องเสียค่าเรียนมากขึ้น
+LibraryPanelUnlearned	0	0	สามารถเรียนได้จาก\nLv{0}
 LibraryPanelPopWindowLabel	0	0	จะเรียน{0} Lv{1}
 LibraryPanelPopWindowText	0	0	จะเรียนสกิลที่ใช้สำหรับ[{0}]
 LibraryPanelPopWindowSellingPrice	0	0	ค่าเรียน: {0}S
@@ -10450,7 +8623,7 @@ FriendPanelStateOnline	0	0	ออนไลน์
 FriendInviteWindowTitle	0	0	ขอเป็นเพื่อน
 FriendInviteBlockMes	0	0	\nต้องการบล็อค{0}\nและปฏิเสธคำเชิญหรือไม่?
 FriendPanelState11	0	0	เพิ่มสล็อตเพื่อน
-FriendAddSlotMes	0	0	"เพิ่มจำนวนเพื่อนสูงสุด {1} สล็อต\nโดยใช้ออร์บ[ffff64]เสียเงินเท่านั้น[ffffff]\n\n\n{2} สล็อต→ [ffff64]{3} สล็อต[ffffff]	 "
+FriendAddSlotMes	0	0	เพิ่มจำนวนเพื่อนสูงสุด {1} สล็อต\nโดยใช้ออร์บ[ffff64]เสียเงินเท่านั้น[ffffff]\n\n\n{2} สล็อต→ [ffff64]{3} สล็อต[ffffff]\t 
 FriendAddSlotMaxMes	0	0	สามารถเพิ่มได้สูงสุด {0} สล็อต
 FriendAddSlotBuyButton	0	0	[ffff64]ซื้อด้วย {0} ออร์บ
 FriendAddSlotBuyDelay	0	0	กำลังเพิ่มสล็อตเพื่อน...
@@ -10495,24 +8668,17 @@ PartyPanelPartyStyle4	0	0	สู้บอส
 PartyPanelPartyStyle5	0	0	กำจัดมอนสเตอร์
 PartyPanelPartyStyle6	0	0	หาไอเท็มหายาก
 PartyPanelPartyCollectionWindowLabel	0	0	รับสมัครปาร์ตี้
-PartyPanelPartyCollectionWindowText	0	0	"เขียนแนะนำตัวเอง แล้วรอ
-[ffff77]คำเชิญเข้าปาร์ตี้
-[ffff77]เมื่อได้รับคำเชิญ
-[ffff77]โปรดตรวจสอบจากเมนู ""ประกาศ"""
+PartyPanelPartyCollectionWindowText	0	0	"เขียนแนะนำตัวเอง แล้วรอ\n[ffff77]คำเชิญเข้าปาร์ตี้\n[ffff77]เมื่อได้รับคำเชิญ\n[ffff77]โปรดตรวจสอบจากเมนู ""ประกาศ"""
 PartyPanelPartySearchWindowLabel	0	0	หาปาร์ตี้
-PartyPanelPartySearchWindowText	0	0	"[ffff77]หาปาร์ตี้ที่รับสมัครสมาชิกอยู่
-[ffffff]โปรดระวังว่าจะรับสมาชิกตามลำดับก่อนหลัง
-ดังนั้นมีโอกาสที่ปาร์ตี้จะเต็มได้"
+PartyPanelPartySearchWindowText	0	0	[ffff77]หาปาร์ตี้ที่รับสมัครสมาชิกอยู่\n[ffffff]โปรดระวังว่าจะรับสมาชิกตามลำดับก่อนหลัง\nดังนั้นมีโอกาสที่ปาร์ตี้จะเต็มได้
 PartyPanelPartySearchWindowLevel	0	0	เลเวลเฉลี่ยของปาร์ตี้
 PartyPanelPartySearchWindowStyle	0	0	รูปแบบปาร์ตี้
 PartyPanelMemberSearchWindowLabel	0	0	ค้นหาสมาชิก
-PartyPanelMemberSearchWindowText	0	0	"สามารถ[ffff77]เชิญผู้เล่นที่ค้นหาปาร์ตี้อยู่
-มาเข้าร่วมปาร์ตี้ได้[ffffff]"
+PartyPanelMemberSearchWindowText	0	0	สามารถ[ffff77]เชิญผู้เล่นที่ค้นหาปาร์ตี้อยู่\nมาเข้าร่วมปาร์ตี้ได้[ffffff]
 PartyPanelMemberSearchWindowLevel	0	0	เลเวลที่หา
 PartyPanelMemberSearchWindowOK	0	0	หา
 PartyPanelMemberCollectionWindowLabel	0	0	หาสมาชิก
-PartyPanelMemberCollectionWindowText	0	0	"คนที่ค้นหาปาร์ตี้อยู่[ffff77]สามารถเข้าร่วมได้อย่างอิสระ
-โปรดระวังว่าเมื่อใช้จะไม่สามารถปฏิเสธคำขอเข้าร่วมได้"
+PartyPanelMemberCollectionWindowText	0	0	คนที่ค้นหาปาร์ตี้อยู่[ffff77]สามารถเข้าร่วมได้อย่างอิสระ\nโปรดระวังว่าเมื่อใช้จะไม่สามารถปฏิเสธคำขอเข้าร่วมได้
 NewsPanelParty	0	0	{0} คำเชิญเข้าปาร์ตี้ 
 NewsPanelPartyMes	0	0	มี{0}คำเชิญเข้าปาร์ตี้
 SystemPartyMessageInvitation	0	0	[FF0000]คำเชิญเข้าปาร์ตี้: เชิญ{0}เข้าปาร์ตี้แล้ว
@@ -10697,22 +8863,10 @@ SmithStrengthSupport	0	0	เลือกอุปกรณ์สนับสน�
 SmithReconstructionTitle	0	0	ปรับแต่งชุดเกราะ ({0})
 SmithReconstructionSelectItemGuide	0	0	จะปรับแต่งชุดเกราะด้านล่าง
 SmithReconstructionLightTitle	0	0	เพิ่มประสิทธิภาพการหลบหลีก
-SmithReconstructionLightExplanation	0	0	"-อัตราหลบหลีกเพิ่มขึ้น
-
--ความเร็วการโจมตีเพิ่มขึ้น
-
-[ff7777]-ป้องกันทางกายภาพลดลง
-
--ป้องกันเวทลดลง"
+SmithReconstructionLightExplanation	0	0	-อัตราหลบหลีกเพิ่มขึ้น\n\n-ความเร็วการโจมตีเพิ่มขึ้น\n\n[ff7777]-ป้องกันทางกายภาพลดลง\n\n-ป้องกันเวทลดลง
 SmithReconstructionLightButton	0	0	ทำให้เบา
 SmithReconstructionWeightTitle	0	0	ประสิทธิภาพการป้องกันเพิ่มขึ้น
-SmithReconstructionWeightExplanation	0	0	"-ป้องกันทางกายภาพเพิ่มขึ้น
-
--ป้องกันเวทเพิ่มขึ้น
-
-[ff7777]-อัตราหลบหลีกลดลง
-
--ความเร็วการโจมตีลดลง"
+SmithReconstructionWeightExplanation	0	0	-ป้องกันทางกายภาพเพิ่มขึ้น\n\n-ป้องกันเวทเพิ่มขึ้น\n\n[ff7777]-อัตราหลบหลีกลดลง\n\n-ความเร็วการโจมตีลดลง
 SmithReconstructionWeightButton	0	0	ทำให้หนัก
 SmithReconstructionCheckWindowTitle	0	0	เริ่มปรับแต่งชุดเกราะ
 SmithReconstructionCheckWindowTypeGuideLight	0	0	"น้ำหนักจะ""[ffff77]เบาลง[ffffff]"""
@@ -10728,10 +8882,7 @@ PopUpWindowComplete	0	0	สำเร็จ
 SmithReconstructionCompleteWindowLabel2	0	0	ป้องกันทางกายภาพเพิ่มขึ้น
 SmithReconstructionCompleteWindowLabel3	0	0	ป้องกันเวทเพิ่มขึ้น
 SmithReconstructionMissWindowTitle	0	0	ปรับแต่งไม่ได้...
-SmithReconstructionMissWindowLabel	0	0	"เกราะที่ใส่อยู่เคยปรับแต่งไปแล้ว
-หรือเป็นเกราะที่ไม่สามารถปรับแต่งได้
-
-ปรับแต่งได้เฉพาะอุปกรณ์ที่สวมใส่อยู่เท่านั้น"
+SmithReconstructionMissWindowLabel	0	0	เกราะที่ใส่อยู่เคยปรับแต่งไปแล้ว\nหรือเป็นเกราะที่ไม่สามารถปรับแต่งได้\n\nปรับแต่งได้เฉพาะอุปกรณ์ที่สวมใส่อยู่เท่านั้น
 SmithGrantTitle	0	0	อัพเกรดอุปกรณ์ ({0})
 SmithGrantInfoWindowTitle	0	0	สูตรการอัพเกรด
 SmithGrantInfoWindowList1Potential	0	0	ศักยภาพ {0}
@@ -10744,18 +8895,14 @@ SmithGrantInfoWindowList2StartButton	0	0	เริ่มอัพเกรด
 SmithGrantInfoWindowList3ConsumptionPontentialMessageLabel	0	0	[ffff77]คงเหลือ[ffffff]/ ศักยภาพ (ใช้)
 SmithGrantInfoWindowSetWeaponEmpty	0	0	ไม่ได้ใส่อุปกรณ์
 PopUpWindowDecision	0	0	ตกลง
-SmithGrantWarningWindowMessage	0	0	"เนื่องจากเป็นการอัพเกรดที่ศักยภาพไม่เพียงพอ
-บางความสามารถอาจติดตั้งไม่ได้
-
-และมีโอกาสที่ความสามารถที่ติดแล้วจะหายไป"
+SmithGrantWarningWindowMessage	0	0	เนื่องจากเป็นการอัพเกรดที่ศักยภาพไม่เพียงพอ\nบางความสามารถอาจติดตั้งไม่ได้\n\nและมีโอกาสที่ความสามารถที่ติดแล้วจะหายไป
 SmithGrantWarningWindowTitle	0	0	มีโอกาสล้มเหลว
 SmithGrantWarningWindowStrikeRate	0	0	[ff7777]อัตราสำเร็จ: {0}%
 SmithGrantInfoWindowCheckPotentialMessageLabel	0	0	--ศักยภาพ--
 SmithGrantInfoWindowCheckConsumptionMessageLabel	0	0	--ส่วนผสมที่ใช้--
 SmithGrantInfoWindowPropertyTypeLabel	0	0	จะติด[ffff77]{0}[ffffff]
 SmithGrantCompleteWindowTitle	0	0	อัพเกรดเสร็จแล้ว!
-SmithGrantCompleteWindowMessage	0	0	"กลายเป็น [ffff77]{0}
-[ffffff] แล้ว"
+SmithGrantCompleteWindowMessage	0	0	กลายเป็น [ffff77]{0}\n[ffffff] แล้ว
 SmithGrantCompleteWindowResultSuccess	0	0	[ffff77]อัพเกรดสำเร็จ!
 SmithGrantCompleteWindowResultFailure	0	0	[ffff77]อัพเกรดล้มเหลว...
 SmithProcessingPointLack	0	0	จำนวนไม่พอ
@@ -10852,8 +8999,7 @@ SmithBonusPropertiesCategory8	0	0	เพิ่มคริติคอล
 SmithBonusPropertiesCategory9	0	0	เพิ่มธาตุ
 SmithBonusPropertiesCategory10	0	0	เพิ่มพิเศษ
 SmithBonusPropertiesCategory11	0	0	ปลุกธาตุ
-SmithItemNotFound	0	0	"มีไอเท็มที่จำเป็นสำหรับการถลุงไม่ครบ
-(แตะ ""กลับ"" ที่มุมซ้ายบน)"
+SmithItemNotFound	0	0	"มีไอเท็มที่จำเป็นสำหรับการถลุงไม่ครบ\n(แตะ ""กลับ"" ที่มุมซ้ายบน)"
 NotUse	0	0	ไม่ใช้
 SmithManufactureSelectCategory	0	0	[ffff77]เลือกหมวดหมู่ที่จะสร้าง
 SmithGrantEmptySlot	0	0	[ffff77]สามารถตั้งค่าความสามารถ
@@ -10997,46 +9143,13 @@ RecreateExitMessage	0	0	จะยกเลิกการสร้างแล�
 RecreateExitTitle	0	0	ยืนยัน
 RecreateRecipeTypeBody	0	0	ร่างกาย
 EquipAdviceLabel	0	0	ลองเปลี่ยนอุปกรณ์
-EquipAdviceText	0	0	"การเก็บอาวุธหรืออุปกรณ์ป้องกันไว้ในกระเป๋า
-มันไม่ทำให้เกิดประโยชน์หรอกนะ	
-[ffff64]ต้องเอาไปใส่มันถึงจะแสดงผล	
-	
-อุปกรณ์ใหม่ๆ จะดรอปได้จากมอนสเตอร์	
-หรือสร้างได้ที่ร้านตีเหล็ก	
-	
-เลือกใส่อุปกรณ์ที่ชอบดูสิ	
-	
-	
-▼ไปลองกันเดี๋ยวนี้เลย"
+EquipAdviceText	0	0	การเก็บอาวุธหรืออุปกรณ์ป้องกันไว้ในกระเป๋า\nมันไม่ทำให้เกิดประโยชน์หรอกนะ\t\n[ffff64]ต้องเอาไปใส่มันถึงจะแสดงผล\t\n\t\nอุปกรณ์ใหม่ๆ จะดรอปได้จากมอนสเตอร์\t\nหรือสร้างได้ที่ร้านตีเหล็ก\t\n\t\nเลือกใส่อุปกรณ์ที่ชอบดูสิ\t\n\t\n\t\n▼ไปลองกันเดี๋ยวนี้เลย
 StatusAdviceLabel	0	0	เพิ่มความแข็งแกร่ง
-StatusAdviceText	0	0	"ใช้พ้อยท์เพื่อเพิ่มความแข็งแกร่ง
-ให้คาแรคเตอร์กันเถอะ!
-
-ควรคิดให้ดีก่อนแบ่งพ้อยท์ เพราะถ้าจะ
-รีเซ็ตต้องใช้[ffff64]หนังสือรีเซ็ต[ffffff]นะ
-
-
-
-▼ไปเพิ่มความแข็งแกร่งกันเลย!"
+StatusAdviceText	0	0	ใช้พ้อยท์เพื่อเพิ่มความแข็งแกร่ง\nให้คาแรคเตอร์กันเถอะ!\n\nควรคิดให้ดีก่อนแบ่งพ้อยท์ เพราะถ้าจะ\nรีเซ็ตต้องใช้[ffff64]หนังสือรีเซ็ต[ffffff]นะ\n\n\n\n▼ไปเพิ่มความแข็งแกร่งกันเลย!
 SkillAdviceLabel	0	0	เรียนสกิลกันเถอะ
-SkillAdviceText	0	0	"ถ้าเลเวลเพิ่มขึ้นแล้วจะได้ [ffffcc][สกิลพ้อยท์][ffffff]ล่ะ		
-สามารถใช้พ้อยท์นี้เพื่อการเรียนรู้สกิล		
-หรือเพิ่มความแข็งแกร่งให้สกิลได้นะ		
-		
-ควรคิดให้ดีก่อนแบ่งพ้อยท์เพราะถ้าจะ		
-รีเซ็ตต้องใช้[ffff64]หนังสือแห่งความหลงลืม[ffffff]		
-		
-		
-		
-▼ไปลองเรียนสกิลกันเลย!"
+SkillAdviceText	0	0	ถ้าเลเวลเพิ่มขึ้นแล้วจะได้ [ffffcc][สกิลพ้อยท์][ffffff]ล่ะ\t\t\nสามารถใช้พ้อยท์นี้เพื่อการเรียนรู้สกิล\t\t\nหรือเพิ่มความแข็งแกร่งให้สกิลได้นะ\t\t\n\t\t\nควรคิดให้ดีก่อนแบ่งพ้อยท์เพราะถ้าจะ\t\t\nรีเซ็ตต้องใช้[ffff64]หนังสือแห่งความหลงลืม[ffffff]\t\t\n\t\t\n\t\t\n\t\t\n▼ไปลองเรียนสกิลกันเลย!
 QuestAdviceLabel	0	0	รายงานเควสต์
-QuestAdviceText	0	0	"มีเควสต์ที่ทำเสร็จแล้วอยู่
-ไปรายงานเควสต์แล้วรับรางวัลได้นะ
-
-
-
-
-▼ตรวจสอบเควสต์ที่ทำเสร็จแล้ว"
+QuestAdviceText	0	0	มีเควสต์ที่ทำเสร็จแล้วอยู่\nไปรายงานเควสต์แล้วรับรางวัลได้นะ\n\n\n\n\n▼ตรวจสอบเควสต์ที่ทำเสร็จแล้ว
 FrendAdviceLabel	0	0	เพิ่มเพื่อนกันเถอะ!
 FrendAdviceText	0	0	ออกไปผจญภัยกับเพื่อนของคุณ
 PartyAdviceLabel	0	0	ตั้งปาร์ตี้!
@@ -11044,166 +9157,49 @@ PartyAdviceText	0	0	ตั้งปาร์ตี้แล้วไปจัด
 GuildAdviceLabel	0	0	รู้จักกิลด์มั้ย?
 GuildAdviceText	0	0	เข้าร่วมเพื่อสร้างมิตรภาพกับผู้เล่นคนอื่น!
 CrowdedAdviceLabel	0	0	คนเยอะเกินไป?
-CrowdedAdviceText	0	0	"ถ้ารู้สึกว่ารอบๆ ตัวแออัดเกินไป
-อาจจะดีกว่าถ้าลองเปลี่ยนชาแนลเพื่อหนีความหนาแน่น
-
-
-ถ้ามีความหนาแน่นมากจำนวนชาแนลจะเพิ่มขึ้นอัตโนมัติ
-[ffff64]หรือในกรณีที่หาเพื่อนไม่เจอในแผนที่เดียวกัน
-เค้าอาจจะอยู่ที่ชาแนลอื่น[ffffff]ก็ได้นะ
-
-
-▼ลองเปลี่ยนชาแนล"
+CrowdedAdviceText	0	0	ถ้ารู้สึกว่ารอบๆ ตัวแออัดเกินไป\nอาจจะดีกว่าถ้าลองเปลี่ยนชาแนลเพื่อหนีความหนาแน่น\n\n\nถ้ามีความหนาแน่นมากจำนวนชาแนลจะเพิ่มขึ้นอัตโนมัติ\n[ffff64]หรือในกรณีที่หาเพื่อนไม่เจอในแผนที่เดียวกัน\nเค้าอาจจะอยู่ที่ชาแนลอื่น[ffffff]ก็ได้นะ\n\n\n▼ลองเปลี่ยนชาแนล
 GuildBarLabel	0	0	ไปกิลด์บาร์กันเถอะ
 GuildBarText	0	0	อาจจะมีใครบางคนอยู่ที่กิลด์บาร์ก็ได้นะ
 MyRoomLabel	0	0	ลองไปห้องของตัวเองดูสิ
-MyRoomText	0	0	"ถ้าไม่กลับไปพักในห้องบ้าง
-ร่างกายจะไม่ไหวเอานะ"
+MyRoomText	0	0	ถ้าไม่กลับไปพักในห้องบ้าง\nร่างกายจะไม่ไหวเอานะ
 SaveDataLabel	0	0	ต้องเซฟมั้ย?
-SaveDataText	0	0	"ข้อมูลเกมจะถูกบันทึกอัตโนมัติ
-เพื่อป้องกันข้อมูลเสียหายควร
-ล็อกเอาท์ ""ออกจากระบบ"" ทุกครั้ง
-
-
-แต่หากมีการลบแอป, เปลี่ยนเครื่อง หรือทำเครื่องสูญหาย
-อาจมีบางกรณีที่ไม่สามารถกู้ข้อมูลคืนมาได้
-สามารถเล่นต่อจากข้อมูลเดิมได้
-เมื่อเปลี่ยนเครื่องจากการ[ffff64]ตั้งค่าบัญชี[ffffff]"
+SaveDataText	0	0	"ข้อมูลเกมจะถูกบันทึกอัตโนมัติ\nเพื่อป้องกันข้อมูลเสียหายควร\nล็อกเอาท์ ""ออกจากระบบ"" ทุกครั้ง\n\n\nแต่หากมีการลบแอป, เปลี่ยนเครื่อง หรือทำเครื่องสูญหาย\nอาจมีบางกรณีที่ไม่สามารถกู้ข้อมูลคืนมาได้\nสามารถเล่นต่อจากข้อมูลเดิมได้\nเมื่อเปลี่ยนเครื่องจากการ[ffff64]ตั้งค่าบัญชี[ffffff]"
 EmotionAdviceLabel	0	0	ลองนั่งดูมั้ย
-EmotionAdviceText	0	0	"เมื่อใช้อีโมชั่น[ffff64][นั่ง][ffffff]
-HP และ MP จะเพิ่มเร็วขึ้นเป็น 2 เท่า
-[64ffff]*การ[นั่งคุกเข่า]จะให้ผลลัพธ์เช่นเดียวกัน[ffffff]
-
-ลองใช้ตอนที่จะพักดูสิ
-
-
-
-
-▼ลองนั่งคุกเข่า"
+EmotionAdviceText	0	0	เมื่อใช้อีโมชั่น[ffff64][นั่ง][ffffff]\nHP และ MP จะเพิ่มเร็วขึ้นเป็น 2 เท่า\n[64ffff]*การ[นั่งคุกเข่า]จะให้ผลลัพธ์เช่นเดียวกัน[ffffff]\n\nลองใช้ตอนที่จะพักดูสิ\n\n\n\n\n▼ลองนั่งคุกเข่า
 AutoItemAdviceLabel	0	0	ตั้งค่าไอเท็มเติมพลัง!
-AutoItemAdviceText	0	0	"ถ้าต้้งค่าไอเท็มเติมพลังแล้ว เมื่อพลังลดลง
-ไอเท็มจะถูกใช้โดยอัตโนมัติ[ffff64]สามารถตั้งค่าโดยใช้
-ไอเท็มฟื้นฟูพลัง HP อย่างพวกรีไวต้าได้[ffffff]
-
-ถ้าตั้งเป็นค่ามารตฐานไอเท็มจะถูกใช้
-โดยอัตโนมัติเมื่อ HP เหลือน้อยกว่า 25%
-สามารถเปลี่ยนเป็นค่าที่ต้องการได้
-
-
-▼ลองตั้งค่าดู"
+AutoItemAdviceText	0	0	ถ้าต้้งค่าไอเท็มเติมพลังแล้ว เมื่อพลังลดลง\nไอเท็มจะถูกใช้โดยอัตโนมัติ[ffff64]สามารถตั้งค่าโดยใช้\nไอเท็มฟื้นฟูพลัง HP อย่างพวกรีไวต้าได้[ffffff]\n\nถ้าตั้งเป็นค่ามารตฐานไอเท็มจะถูกใช้\nโดยอัตโนมัติเมื่อ HP เหลือน้อยกว่า 25%\nสามารถเปลี่ยนเป็นค่าที่ต้องการได้\n\n\n▼ลองตั้งค่าดู
 TargetAdviceLabel	0	0	เลือกโจมตีศัตรูที่อยู่ไกลก่อนได้
-TargetAdviceText	0	0	"ใช้ธนูหรือโบว์กันอยู่หรือเปล่า?
-ถ้า[ffff64]ตั้งค่าเลือกโจมตีศัตรูที่อยู่ไกลก่อน[ffffff]
-จะต่อสู้ได้ง่ายขึ้นนะ!
-
-
-ถ้าโจมตีด้วยเวทการตั้งค่าโจมตีตัวที่อยู่ไกลก่อน
-ก็น่าจะมีประโยชน์เหมือนกัน
-
-
-▼ลองตั้งค่าดู"
+TargetAdviceText	0	0	ใช้ธนูหรือโบว์กันอยู่หรือเปล่า?\nถ้า[ffff64]ตั้งค่าเลือกโจมตีศัตรูที่อยู่ไกลก่อน[ffffff]\nจะต่อสู้ได้ง่ายขึ้นนะ!\n\n\nถ้าโจมตีด้วยเวทการตั้งค่าโจมตีตัวที่อยู่ไกลก่อน\nก็น่าจะมีประโยชน์เหมือนกัน\n\n\n▼ลองตั้งค่าดู
 ControlAdviceLabel	0	0	ลองปรับการควบคุม
-ControlAdviceText	0	0	"เปลี่ยนการตั้งค่าปุ่มช็อตคัท, การควบคุมกล้อง 
-และระดับความไวได้ที่ตั้งค่าระบบ
-
-สามารถหยุดการหมุนของกล้องเมื่อล็อคเป้าหมาย
-หรือเลือกจัดการเป้าหมายที่อยู่ไกลก่อนได้
-
-ลองหารูปแบบการควบคุมที่เหมาะกับตัวเองดูนะ
-
-
-▼ลองเปลี่ยนการตั้งค่า"
+ControlAdviceText	0	0	เปลี่ยนการตั้งค่าปุ่มช็อตคัท, การควบคุมกล้อง \nและระดับความไวได้ที่ตั้งค่าระบบ\n\nสามารถหยุดการหมุนของกล้องเมื่อล็อคเป้าหมาย\nหรือเลือกจัดการเป้าหมายที่อยู่ไกลก่อนได้\n\nลองหารูปแบบการควบคุมที่เหมาะกับตัวเองดูนะ\n\n\n▼ลองเปลี่ยนการตั้งค่า
 CameraAdviceLabel	0	0	ปิดการหมุนกล้องอัตโนมัติ
-CameraAdviceText	0	0	"เมื่อล็อคเป้าหมายกล้องจะหมุนไปหาศัตรูโดยอัตโนมัติ
-สามารถยกเลิกได้โดยการปิด
-[ffff64][ออโต้โฟกัส][ffffff]ในตั้งค่าระบบ
-
-
-ถ้าคิดว่าการเคลื่อนไหวของกล้องอัตโนมัติ
-ทำให้เล่นยากลองเปลี่ยนการตั้งค่าดูนะ
-
-
-▼ลองเปลี่ยนการตั้งค่า"
-CameraAdviceNewText	0	0	"เมื่อล็อคเป้าหมายกล้องจะหมุนไปหาศัตรูโดยอัตโนมัติ
-สามารถยกเลิกได้โดยการปิด
-[ffff64][หันกล้องไปหาเป้าหมาย][ffffff]ในตั้งค่าระบบ
-
-
-ถ้าคิดว่าการเคลื่อนไหวของกล้องอัตโนมัติ
-ทำให้เล่นยากลองเปลี่ยนการตั้งค่าดูนะ
-
-
-▼ลองเปลี่ยนการตั้งค่า"
+CameraAdviceText	0	0	เมื่อล็อคเป้าหมายกล้องจะหมุนไปหาศัตรูโดยอัตโนมัติ\nสามารถยกเลิกได้โดยการปิด\n[ffff64][ออโต้โฟกัส][ffffff]ในตั้งค่าระบบ\n\n\nถ้าคิดว่าการเคลื่อนไหวของกล้องอัตโนมัติ\nทำให้เล่นยากลองเปลี่ยนการตั้งค่าดูนะ\n\n\n▼ลองเปลี่ยนการตั้งค่า
+CameraAdviceNewText	0	0	เมื่อล็อคเป้าหมายกล้องจะหมุนไปหาศัตรูโดยอัตโนมัติ\nสามารถยกเลิกได้โดยการปิด\n[ffff64][หันกล้องไปหาเป้าหมาย][ffffff]ในตั้งค่าระบบ\n\n\nถ้าคิดว่าการเคลื่อนไหวของกล้องอัตโนมัติ\nทำให้เล่นยากลองเปลี่ยนการตั้งค่าดูนะ\n\n\n▼ลองเปลี่ยนการตั้งค่า
 GraphicAdviceLabel	0	0	ซ่อนผู้เล่นคนอื่นเพื่อทำให้เล่นได้ลื่นขึ้น!
-GraphicAdviceText	0	0	"เคยรู้สึกมั้ยว่ายิ่งคนเยอะยิ่งเคลื่อนไหวช้า?	
-การ[ffff64]ซ่อนผู้เล่นอื่น[ffffff]อาจช่วยคุณได้
-	
-	
-ถ้าอยู่ในปาร์ตี้ การตั้งค่า OFF ทั้งหมดอาจทำให้เล่นได้สบายขึ้น	
-	
-	
-▼ลองเปลี่ยนการตั้งค่า"
+GraphicAdviceText	0	0	เคยรู้สึกมั้ยว่ายิ่งคนเยอะยิ่งเคลื่อนไหวช้า?\t\nการ[ffff64]ซ่อนผู้เล่นอื่น[ffffff]อาจช่วยคุณได้\n\t\n\t\nถ้าอยู่ในปาร์ตี้ การตั้งค่า OFF ทั้งหมดอาจทำให้เล่นได้สบายขึ้น\t\n\t\n\t\n▼ลองเปลี่ยนการตั้งค่า
 ComboAdviceLabel	0	0	มาใช้คอมโบกันเถอะ!
-ComboAdviceText	0	0	"ถ้าใช้คอมโบได้แล้ว
-จะทำให้สามารถใช้สกิลได้หลากหลายและง่ายขึ้น
-
-ความสามารถพิเศษของคอมโบ
--ลด MP ที่ใช้
--เพิ่มค่าความเสียหาย
--ใช้สกิลได้สกิลได้เร็วขึ้น และอื่นๆ อีกมากมาย
-
-▼วิธีการใช้คอมโบ
-[ffff64]ถ้าเรียนสกิลครบ 5 ประเภทแล้วจะสามารถใช้คอมโบได้[ffffff]"
+ComboAdviceText	0	0	ถ้าใช้คอมโบได้แล้ว\nจะทำให้สามารถใช้สกิลได้หลากหลายและง่ายขึ้น\n\nความสามารถพิเศษของคอมโบ\n-ลด MP ที่ใช้\n-เพิ่มค่าความเสียหาย\n-ใช้สกิลได้สกิลได้เร็วขึ้น และอื่นๆ อีกมากมาย\n\n▼วิธีการใช้คอมโบ\n[ffff64]ถ้าเรียนสกิลครบ 5 ประเภทแล้วจะสามารถใช้คอมโบได้[ffffff]
 PartnerAdviceLabel	0	0	เรียกพาร์ทเนอร์!
-PartnerAdviceText	0	0	"[ffff64]สามารถเรียกคาแรคเตอร์ตัวอื่นของคุณ[ffffff]
-[ffff64]มาเป็นสมาชิกปาร์ตี้ได้[ffffff]
-
-
-ตั้งค่าให้ติดตามได้ที่หน้าจอเปลี่ยนคาแรคเตอร์
-
-
-
-▼ให้ติดตาม"
+PartnerAdviceText	0	0	[ffff64]สามารถเรียกคาแรคเตอร์ตัวอื่นของคุณ[ffffff]\n[ffff64]มาเป็นสมาชิกปาร์ตี้ได้[ffffff]\n\n\nตั้งค่าให้ติดตามได้ที่หน้าจอเปลี่ยนคาแรคเตอร์\n\n\n\n▼ให้ติดตาม
 HouseAddPartitionLabel	0	0	ห้ามไม่ให้มอนสเตอร์จรจัดเข้ามา!
 HouseAddPartitionAdviceLabel	0	0	ห้ามไม่ให้มอนสเตอร์จรจัดเข้ามา!
-HouseAddPartitionAdviceText	0	0	" [ffff64]สร้างห้องบนพื้นที่ทั้งหมด![ffffff]
-
-การตั้งค่านี้จะทำให้ไม่มี
-มอนสเตอร์จรจัดเข้ามาในที่ดินของคุณ
-
-ถ้าคุณอยากทำให้มอนสเตอร์จรจัดมาเป็นสัตว์เลี้ยง
-โปรดเหลือพื้นที่ให้เป็นสวนอย่างน้อย 1 ช่อง"
+HouseAddPartitionAdviceText	0	0	 [ffff64]สร้างห้องบนพื้นที่ทั้งหมด![ffffff]\n\nการตั้งค่านี้จะทำให้ไม่มี\nมอนสเตอร์จรจัดเข้ามาในที่ดินของคุณ\n\nถ้าคุณอยากทำให้มอนสเตอร์จรจัดมาเป็นสัตว์เลี้ยง\nโปรดเหลือพื้นที่ให้เป็นสวนอย่างน้อย 1 ช่อง
 HouseAddPartitionItem	0	0	 ตั้งค่าพาทิชั่น
 HouseSetGardenItemLabel	0	0	มาตกแต่งสวนกันเถอะ!
 HouseSetGardenItemAdviceLabel	0	0	มาตกแต่งสวนกันเถอะ!
-HouseSetGardenItemAdviceText	0	0	"สวนดูขาดชีวิตชีวาไปหน่อยนะว่ามั้ย?
-[ffff64]ลองตกแต่งสวนให้มีบรรยากาศสดชื่นดูบ้างสิ[ffffff]
-
-[ffff64]วัตถุดิบที่ใช้สำหรับสร้างของตกแต่ง[ffffff]
-จะลดลงตั้งแต่การสร้างครั้งที่สอง"
+HouseSetGardenItemAdviceText	0	0	สวนดูขาดชีวิตชีวาไปหน่อยนะว่ามั้ย?\n[ffff64]ลองตกแต่งสวนให้มีบรรยากาศสดชื่นดูบ้างสิ[ffffff]\n\n[ffff64]วัตถุดิบที่ใช้สำหรับสร้างของตกแต่ง[ffffff]\nจะลดลงตั้งแต่การสร้างครั้งที่สอง
 HouseSetGardenItem	0	0	 จัดการสวน
 HouseSetRoomItemLabel	0	0	ลองวางของตกแต่งดูสิ!
 HouseSetRoomItemAdviceLabel	0	0	ลองวางของตกแต่งดูสิ!
-HouseSetRoomItemAdviceText	0	0	" ในห้องดูโล่งๆ เนอะ?
-[ffff64]ลองสร้างของตกแต่งเอามาวางดูมั้ย[ffffff]
-
-[ffff64]การสร้างครั้งแรกจะต้องใช้วัตถุดิบเยอะหน่อย[ffffff]
-แต่จะลดลงตั้งแต่การสร้างครั้งที่สองนะ"
+HouseSetRoomItemAdviceText	0	0	 ในห้องดูโล่งๆ เนอะ?\n[ffff64]ลองสร้างของตกแต่งเอามาวางดูมั้ย[ffffff]\n\n[ffff64]การสร้างครั้งแรกจะต้องใช้วัตถุดิบเยอะหน่อย[ffffff]\nแต่จะลดลงตั้งแต่การสร้างครั้งที่สองนะ
 HouseSetRoomItem	0	0	จัดการของตกแต่ง  
 HouseCreateRoomLabel	0	0	มาสร้างบ้านกันเถอะ!
 HouseCreateRoomAdviceLabel	0	0	มาสร้างบ้านกันเถอะ!
-HouseCreateRoomAdviceText	0	0	" ที่ดินยังมีแต่สวนอยู่เลย
-มาแบ่งด้านในกับด้านนอกด้วยการตั้งค่าพาทิชั่นดูสิ
-
-ถ้าตั้งค่าเสร็จแล้วอย่าลืมใส่ประตูด้วยนะ!"
+HouseCreateRoomAdviceText	0	0	 ที่ดินยังมีแต่สวนอยู่เลย\nมาแบ่งด้านในกับด้านนอกด้วยการตั้งค่าพาทิชั่นดูสิ\n\nถ้าตั้งค่าเสร็จแล้วอย่าลืมใส่ประตูด้วยนะ!
 HouseCreateRoom	0	0	 ตั้งค่าพาทิชั่น
 HouseCreateHouseLabel	0	0	มาเปลี่ยนหน้าตาบ้านกันเถอะ!
 HouseCreateHouseAdviceLabel	0	0	มาเปลี่ยนหน้าตาบ้านกันเถอะ!
-HouseCreateHouseAdviceText	0	0	" อยากลองเปลี่ยนหน้าตาบ้านดูมั้ย?
-จะเปลี่ยนวอลเปเปอร์หรือพื้นก็ทำได้นะ!
-
-ถ้าเทียบกับของตกแต่งแล้วอาจจะต้องใช้วัตถุดิบมากหน่อย
-แต่ถ้าสร้างครั้งหนึ่งแล้วจะเปลี่ยนไปมากี่ครั้งก็ได้"
+HouseCreateHouseAdviceText	0	0	 อยากลองเปลี่ยนหน้าตาบ้านดูมั้ย?\nจะเปลี่ยนวอลเปเปอร์หรือพื้นก็ทำได้นะ!\n\nถ้าเทียบกับของตกแต่งแล้วอาจจะต้องใช้วัตถุดิบมากหน่อย\nแต่ถ้าสร้างครั้งหนึ่งแล้วจะเปลี่ยนไปมากี่ครั้งก็ได้
 HouseCreateHouse	0	0	 ตกแต่งบ้าน
 StylistSeletStylist	0	0	{0}の変更
 StylistUseItemStorage	0	0	ー　アイテムの消費　－
@@ -11212,16 +9208,14 @@ StylistUseItemStorageShop	0	0	店負担
 StylistSeletStylistParts	0	0	ー　{0}を選択してください　－
 StylistUseItemList	0	0	消費予定アイテム
 StylistName	0	0	スタイリスト名
-StylistPossibleNum	0	0	"ヘアメイク可能回数
-　あと　{0}回　　来店数　{1}/{2}"
+StylistPossibleNum	0	0	ヘアメイク可能回数\n　あと　{0}回　　来店数　{1}/{2}
 StylistEnter	0	0	内容決定!!
 StylistNeedItem	0	0	必要アイテム
 StylistNeedItemNum	0	0	[000000]{0}個持っています
 StylistNeedItemCoin	0	0	[000000]{0}を１つ使って利用できます
 StylistNeedCoin	0	0	ご利用スピナ
 StylistCanNotItem	0	0	利用できません
-StylistCanNotItemMessage	0	0	"[ff0000]スタイリストが必要なアイテムを
-所持していないか,売り切れました"
+StylistCanNotItemMessage	0	0	[ff0000]スタイリストが必要なアイテムを\n所持していないか,売り切れました
 StylistHair	0	0	前髪
 StylistHead	0	0	後ろ髪
 StylistHairTail	0	0	尻尾髪
@@ -11239,20 +9233,17 @@ WarehouseButtonName	0	0	[โกดังไอเท็ม {0}:{1}]
 WarehouseButtonNameLock	0	0	ยังไม่ได้ปลดล็อค
 WarehouseButtonNameDefault	0	0	ข้อความ
 WarehouseButtonMessageDefault	0	0	แตะเพื่อใช้โกดัง
-WarehouseButtonMessageLock	0	0	"ไม่มีสิทธิ์ในการใช้
-แตะเพื่อปลดล็อค"
+WarehouseButtonMessageLock	0	0	ไม่มีสิทธิ์ในการใช้\nแตะเพื่อปลดล็อค
 WarehouseButtonSlot	0	0	ความจุ {0}/{1}
 WarehouseInputNameLabel	0	0	-ชื่อโกดัง
 WarehouseInputNameText	0	0	กรุณาใส่ชื่อโกดัง
 WarehouseInputMessageLabel	0	0	-รายละเอียดโกดัง
 WarehouseInputButton	0	0	อัพเดท
 WarehouseSelectedPickUp	0	0	เอาออก
-WarehouseSelectedPickUpMax	0	0	"ฝาก
-กระเป๋าเต็ม"
+WarehouseSelectedPickUpMax	0	0	ฝาก\nกระเป๋าเต็ม
 WarehouseSelectedCustom	0	0	แก้ไข
 WarehouseSelectedPutIn	0	0	ฝาก
-WarehouseSelectedPutInMax	0	0	"ฝาก
-โกดังเต็ม"
+WarehouseSelectedPutInMax	0	0	ฝาก\nโกดังเต็ม
 WarrantyItemBagErrLabel	0	0	คำเตือน
 WarrantyItemBagErrText	0	0	กระเป๋าเต็ม
 ItemPanelPopUpUseLabel	0	0	ใช้ไอเท็ม
@@ -11278,13 +9269,9 @@ ItemPanelChangePanel	0	0	เปลี่ยน
 ItemPanelLock	0	0	ล็อค
 ItemPanelUnLock	0	0	ปลดล็อค
 ItemPanelPopUpLockLabel	0	0	ล็อคไอเท็ม
-ItemPanelPopUpLockMessage	0	0	"ล็อค{0}
-จะไม่สามารถทิ้ง, แปรรูป หรือขายได้
-จนกว่าจะปลดล็อค"
+ItemPanelPopUpLockMessage	0	0	ล็อค{0}\nจะไม่สามารถทิ้ง, แปรรูป หรือขายได้\nจนกว่าจะปลดล็อค
 ItemPanelPopUpUnLockLabel	0	0	ปลดล็อคไอเท็ม
-ItemPanelPopUpUnLockMessage	0	0	"ปลดล็อค{0}
-สามารถทิ้ง, แปรรูป หรือขายได้
-ได้แปรรูปวัตถุดิบ"
+ItemPanelPopUpUnLockMessage	0	0	ปลดล็อค{0}\nสามารถทิ้ง, แปรรูป หรือขายได้\nได้แปรรูปวัตถุดิบ
 ItemPanelPopUpDeleteButton	0	0	ทิ้ง
 ItemPanelPopUpDeleteRefineLabel	0	0	[ff3333]ไอเท็มมีค่าการถลุง {0}
 ItemPanelPopUpDeleteCristaLabel	0	0	[ff3333]สวมใส่{0}อยู่
@@ -11298,23 +9285,12 @@ ItemPanelPopUpUnEquipText	0	0	ถอดอุปกรณ์{0}หรือไ�
 BuyNewItemSlot	0	0	ซื้อสล็อตใหม่
 BuyNewItemSlotText	0	0	ซื้อสล็อตใหม่แล้ว
 BuyNewItemSlotTextErr	0	0	การซื้อสล็อตใหม่ล้มเหลว
-BuyNewItemBagSlotText	0	0	"ใช้ออร์บ {0} ชิ้น
-
-จำนวนที่มี: {1}
-
-[FFFF99]สามารถเพิ่มสล็อตใหม่ 1 สล็อต"
-BuyNewItemStorageSlotText	0	0	"ใช้ออร์บ {0} ชิ้น
-
-จำนวนที่มี: {1}
-
-[FFFF99]เพิ่มสล็อตใหม่ได้ 5 สล็อต"
+BuyNewItemBagSlotText	0	0	ใช้ออร์บ {0} ชิ้น\n\nจำนวนที่มี: {1}\n\n[FFFF99]สามารถเพิ่มสล็อตใหม่ 1 สล็อต
+BuyNewItemStorageSlotText	0	0	ใช้ออร์บ {0} ชิ้น\n\nจำนวนที่มี: {1}\n\n[FFFF99]เพิ่มสล็อตใหม่ได้ 5 สล็อต
 BuyNewStorageText	0	0	ซื้อโกดังใหม่แล้ว
 BuyNewStorageTextErr	0	0	การซื้อโกดังใหม่ล้มเหลว
 StoragePanelNewBuyPopUpTitle	0	0	ซื้อโกดังใหม่
-StoragePanelNewBuyPopUp	0	0	"ใช้ออร์บ {0} ชิ้น
-จำนวนที่มี: {1}
-
-[FFFF99]ซื้อโกดังใหม่ (10 สล็อต)"
+StoragePanelNewBuyPopUp	0	0	ใช้ออร์บ {0} ชิ้น\nจำนวนที่มี: {1}\n\n[FFFF99]ซื้อโกดังใหม่ (10 สล็อต)
 StorageEditOverPopUpTitle	0	0	ชื่อยาวเกินไป
 StorageEditOverPopUpText	0	0	ตัวอักษรเกิน\nจำนวนที่กำหนด
 ItemPanelPopUpDeleteEquipMessage	0	0	ไม่สามารถทิ้งไอเท็มที่ใส่อยู่ได้
@@ -11322,9 +9298,7 @@ ItemPanelPopUpDeleteIndefeasibleMessage	0	0	ไม่สามารถทิ้
 ItemPanelPopUpDeleteLockMessage	0	0	ไม่สามารถทิ้ง{0}ได้\nเพราะถูกล็อคอยู่
 BagPanelAddSlotMaxText	0	0	\n\nมีจำนวนสล็อตสูงสุดแล้ว\nไม่สามารถซื้อเพิ่มได้อีก
 BagPanelAddSlotWindowButtonErr	0	0	[ff0000]ซื้อสล็อตเพิ่มไม่ได้แล้ว
-EquipPanelRecycleGoldOverMessage	0	0	"สามารถมีสปินาได้ถึง 2 พัน 1 ร้อยล้านเท่านั้น
-ถ้าได้รับสปินาจากการปาเป้า
-จำนวนที่เกินจะหายไป!"
+EquipPanelRecycleGoldOverMessage	0	0	สามารถมีสปินาได้ถึง 2 พัน 1 ร้อยล้านเท่านั้น\nถ้าได้รับสปินาจากการปาเป้า\nจำนวนที่เกินจะหายไป!
 ItemPanelNextButton	0	0	หน้าถัดไป
 MapPanelRestItemAddBuyOrbNum	0	0	สร้างออร์บ
 ItemBagPanelOrbAddSlot	0	0	เพิ่มสล็อตกระเป๋า
@@ -11389,13 +9363,7 @@ UIItemScrollListNonFilterNumLabel0	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterNumLabel1	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterNumLabel2	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterMessageLabel	0	0	[ffff00]ในกรณีที่กระเป๋าเกินขีดจำกัดจะมีเฉพาะไอเท็มหายากเท่านั้นที่\nจะถูกเก็บไว้ในกระเป๋าสำรองชั่วคราวและถ้ากระเป๋าสำรอง\nเปิดใช้งานอยู่จะไม่มีการดรอปไอเท็มใหม่เกิดขึ้น
-BuyNewItemBagSlotNumText	0	0	"ใช้ออร์บ {0} ลูก
-
-จำนวนที่มี: {1}
-
-[FFFF99]สามารถเพิ่มสล็อตใหม่ 1 สล็อต
-
-{2} → {3}"
+BuyNewItemBagSlotNumText	0	0	ใช้ออร์บ {0} ลูก\n\nจำนวนที่มี: {1}\n\n[FFFF99]สามารถเพิ่มสล็อตใหม่ 1 สล็อต\n\n{2} → {3}
 ItemBagPanelFavoriteItem	0	0	รายการโปรด
 ItemBagPanelAutoDeleteOption	0	0	[aaaaaa]AUTO\nตั้งค่า
 ItemBagPanelDisplayOption	0	0	แสดงกระเป๋าแบบรวม
@@ -11431,11 +9399,7 @@ OrbServiceErrorText	0	0	\nการซื้อบริการล้มเห
 OrbShopConnectErrorTitle	0	0	เกิดข้อผิดพลาดทางการสื่อสาร
 OrbShopConnectErrorText	0	0	ไม่สามารถสื่อสารได้\n\nโปรดตรวจสอบสถานะการสื่อสาร\nในกรณีที่ยังแก้ปัญหาไม่ได้กรุณาติดต่อสอบถาม  
 OrbBuyPanelCreateOrbLabel	0	0	สร้างออร์บ
-OrbBuyPanelCreateOrbText	0	0	"ใช้เศษออร์บ 100 ชิ้น
-
-จำนวนที่มี: {0}
-
-สร้างออร์บ 1 ชิ้น"
+OrbBuyPanelCreateOrbText	0	0	ใช้เศษออร์บ 100 ชิ้น\n\nจำนวนที่มี: {0}\n\nสร้างออร์บ 1 ชิ้น
 OrbBuyPanelCreateOrbSuccessText	0	0	สร้างออร์บ 1 ชิ้น
 OrbGachaItemNameText	0	0	{0} x{1} ชิ้น
 OrbLuckBagInfoText	0	0	ประเภท {0}
@@ -11446,11 +9410,7 @@ OrbShopPanelBuyCopyText	0	0	การซื้อไอเท็มดิจิ�
 OrbBuyPanelBuyCopyText	0	0	การซื้อไอเท็มดิจิทัลนี้ถือเป็นการให้ไลเซนส์ซึ่งเป็นสิทธิ์ในการใช้งาน\nหากทำการซื้อต่อ จะถือว่าคุณได้ยอมรับข้อกำหนดและเงื่อนไขแล้ว\n
 OrbBuyPanelCreateTicketLabel	0	0	แลกตั๋ว
 OrbBuyPanelCreateTicketButton	0	0	แลกตั๋วอวาตาร์
-OrbBuyPanelCreateTicketText	0	0	"ใช้เศษตั๋ว 100 ชิ้น
-
-จำนวนที่มี: {0}
-
-แลกตั๋ว 1 ใบ"
+OrbBuyPanelCreateTicketText	0	0	ใช้เศษตั๋ว 100 ชิ้น\n\nจำนวนที่มี: {0}\n\nแลกตั๋ว 1 ใบ
 OrbBuyPanelCreateTicketSuccessText	0	0	ได้ตั๋วอาวาตาร์ 1 ใบ
 OrbBuyPanelCreateTicketButton	0	0	แลก
 OrbBuyPanelCreateTicketErrText	0	0	ไม่สามารถแลกตั๋วอาวาตาร์ได้
@@ -11562,47 +9522,7 @@ EquipPanelPopUpAvatarRecycleText	0	0	จะรีไซเคิล[C8C800]{0}[f
 EquipPanelPopUpAvatarRecycleMessage	0	0	ไอเท็มที่รีไซเคิลจะไม่สามารถนำกลับมาได้
 EquipPanelAvatarRecycleButton	0	0	รีไซเคิล
 EquipPanelAvatarRecycleItemCheckText	0	0	จะแลกเปลี่ยนกับไอเท็มด้านล่างตกลงหรือไม่?
-EquipPanelAvatarRecycleItemCheckText2	0	0	"              - EXP
-              - สปินา 1,000s
-              - สปินา 2,000s
-              - สปินา 3,000s
-              - สปินา 4,000s
-              - สปินา 5,000s
-              - สปินา 6,000s
-              - สปินา 7,000s
-              - สปินา 8,000s
-              - สปินา 9,000s
-              - สปินา 10,000s
-              - เหล็กบริสุทธิ์ x10
-              - ดามัสกัสบริสุทธิ์ x5
-              - มิธริลบริสุทธิ์ x3
-              - โอริคัลคุมบริสุทธิ์ x1
-              - แคตตาล็อคขาดรุ่งริ่ง x3
-              - แคตตาล็อคขาดรุ่งริ่ง x6
-              - แคตตาล็อคขาดรุ่งริ่ง x9
-              - เศษแสง x10
-              - เศษแสง x30
-              - เศษแสง x50
-              - เศษสี x10
-              - เศษสี x30
-              - เศษสี x50
-              - [ffff64]ตั๋วรับประกัน(100%)[ffffff] x1
-              - [ffff64]ตั๋วถลุงอุปกรณ์ (2 เท่า)[ffffff] x1
-              - [ffff64]ตั๋วถลุงอุปกรณ์ (3 เท่า))[ffffff] x1
-              - [ffff64]ค้อนช่างตีเหล็ก[ffffff] x1
-              - [ffff64]อัญมณีไร้ขอบเขต[ffffff] x1
-              - [ffff64]อัญมณีชุบชีวิต[ffffff] x1
-              - [ffff64]อัญมณีแรร์ดรอป[ffffff] x1
-              - [ffff64]อัญมณีซุปเปอร์แรร์ดรอป[ffffff] x1
-              - [ffff64]อัญมณีในตำนาน[ffffff] x1
-              - [ffff64]อัญมณีชั้นสูง[ffffff] x1
-
-*จำนวน EXP ที่ได้รับจะเปลี่ยนตามเลเวล 
-ของคาแรคเตอร์ในปัจจุบัน
-*ไอเท็มจะไม่รีไซเคิลเป็น EXP ไม่ได้เมื่อ
-คาแรคเตอร์ที่ใช้อยู่ปัจจุบันมีเลเวลสูงสุดแล้ว
-*ไอเท็มจะไม่รีไซเคิลเป็นสปินาเมื่อคุณ
-มีถึง  2,100,000,000s แล้ว"
+EquipPanelAvatarRecycleItemCheckText2	0	0	              - EXP\n              - สปินา 1,000s\n              - สปินา 2,000s\n              - สปินา 3,000s\n              - สปินา 4,000s\n              - สปินา 5,000s\n              - สปินา 6,000s\n              - สปินา 7,000s\n              - สปินา 8,000s\n              - สปินา 9,000s\n              - สปินา 10,000s\n              - เหล็กบริสุทธิ์ x10\n              - ดามัสกัสบริสุทธิ์ x5\n              - มิธริลบริสุทธิ์ x3\n              - โอริคัลคุมบริสุทธิ์ x1\n              - แคตตาล็อคขาดรุ่งริ่ง x3\n              - แคตตาล็อคขาดรุ่งริ่ง x6\n              - แคตตาล็อคขาดรุ่งริ่ง x9\n              - เศษแสง x10\n              - เศษแสง x30\n              - เศษแสง x50\n              - เศษสี x10\n              - เศษสี x30\n              - เศษสี x50\n              - [ffff64]ตั๋วรับประกัน(100%)[ffffff] x1\n              - [ffff64]ตั๋วถลุงอุปกรณ์ (2 เท่า)[ffffff] x1\n              - [ffff64]ตั๋วถลุงอุปกรณ์ (3 เท่า))[ffffff] x1\n              - [ffff64]ค้อนช่างตีเหล็ก[ffffff] x1\n              - [ffff64]อัญมณีไร้ขอบเขต[ffffff] x1\n              - [ffff64]อัญมณีชุบชีวิต[ffffff] x1\n              - [ffff64]อัญมณีแรร์ดรอป[ffffff] x1\n              - [ffff64]อัญมณีซุปเปอร์แรร์ดรอป[ffffff] x1\n              - [ffff64]อัญมณีในตำนาน[ffffff] x1\n              - [ffff64]อัญมณีชั้นสูง[ffffff] x1\n\n*จำนวน EXP ที่ได้รับจะเปลี่ยนตามเลเวล \nของคาแรคเตอร์ในปัจจุบัน\n*ไอเท็มจะไม่รีไซเคิลเป็น EXP ไม่ได้เมื่อ\nคาแรคเตอร์ที่ใช้อยู่ปัจจุบันมีเลเวลสูงสุดแล้ว\n*ไอเท็มจะไม่รีไซเคิลเป็นสปินาเมื่อคุณ\nมีถึง  2,100,000,000s แล้ว
 EquipPanelAvatarRecycleWaitText	0	0	กำลังรีไซเคิล\nกรุณารอสักครู่
 EquipPanelAvatarRecycleCancel	0	0	ยกเลิกแล้ว
 EquipPanelAvatarRecycleErr	0	0	การรีไซเคิลล้มเหลว
@@ -11642,42 +9562,15 @@ ReportTypeDefactMessage	0	0	Please report in-game bugs.
 ReportTypeFraudButton	0	0	Abuse Report
 ReportTypeFraudMessage	0	0	Introduction for abuse report.
 ReportFradProcedureTitle	0	0	How to Report
-ReportFradProcedureMessage	0	0	"If you find an abusive player in the game, please report with the following steps.
-
-*If you can see the player on the screen:
-1. Tap the player.
-2. Tap [Next].
-3. Tap [Report].
-4. Follow the instructions.
-
-*If you report from the chat log:
-1. Drag the chat log to the top of the screen.
-2. Tap the character's name.
-3. Tap [Next].
-4. Tap [Report].
-5. Follow the instructions.
-
-*If you report a mail:
-1. Open the mail you want to report.
-2. Tap [Confirm].
-3. Tap the name of the sender.
-4. Tap [Report].
-5. Follow the guide on the screen to report.
-
-*Regarding the abusive actions out side of the game:
-We are unable to take measures against the abusive actions taken out side of the game such as website.
-Please contact the operators of the websites where you find the abusive actions."
+ReportFradProcedureMessage	0	0	If you find an abusive player in the game, please report with the following steps.\n\n*If you can see the player on the screen:\n1. Tap the player.\n2. Tap [Next].\n3. Tap [Report].\n4. Follow the instructions.\n\n*If you report from the chat log:\n1. Drag the chat log to the top of the screen.\n2. Tap the character's name.\n3. Tap [Next].\n4. Tap [Report].\n5. Follow the instructions.\n\n*If you report a mail:\n1. Open the mail you want to report.\n2. Tap [Confirm].\n3. Tap the name of the sender.\n4. Tap [Report].\n5. Follow the guide on the screen to report.\n\n*Regarding the abusive actions out side of the game:\nWe are unable to take measures against the abusive actions taken out side of the game such as website.\nPlease contact the operators of the websites where you find the abusive actions.
 ReportTypeOtherButton	0	0	Other
 ReportTypeOtherMessage	0	0	Not applicable above
 ReportMailAdress	0	0	- E-mail address - e.g.) toramonline@gmail.com
 ReportCharacterName	0	0	- Your character name -
 ReportTargetCharacterName	0	0	- The character name you are reporting -
-ReportDay	0	0	"- Date and time -
-( MM/DD/YYYY hh:mm Japanese Standard Time )"
+ReportDay	0	0	- Date and time -\n( MM/DD/YYYY hh:mm Japanese Standard Time )
 ReportPrice	0	0	- Purchase amount / tickets -
-ReportPurchaseNumber	0	0	"- Google Play order number -
-Format (17 digit divided into 4 blocks)
-GPA.****-****-****-*****"
+ReportPurchaseNumber	0	0	- Google Play order number -\nFormat (17 digit divided into 4 blocks)\nGPA.****-****-****-*****
 ReportPhoneModel	0	0	- Device model number -
 ReportOS	0	0	-  OS version -
 ReportIOS	0	0	-  iOS version -
@@ -11687,8 +9580,7 @@ ReportProvider	0	0	- Mobile carrier / Wi-Fi service provider (ISP) -
 ReportWorld	0	0	- World -
 ReportMap	0	0	- Map name -
 ReportErrorMessage	0	0	- Error message -
-ReportPurchaseDay	0	0	"- Date and time of purchase -
-( MM/DD/YYYY hh:mm Japanese Standard Time )"
+ReportPurchaseDay	0	0	- Date and time of purchase -\n( MM/DD/YYYY hh:mm Japanese Standard Time )
 ReportCharacterID	0	0	- Character name (Character ID) -
 ReportFreeMessage	0	0	- Contents - (details)
 ReportSendButton	0	0	Submit
@@ -11709,10 +9601,7 @@ ReportTypeUserDeleteButton	0	0	ขอให้ลบบัญชี
 OrbGachaItemListAvatarButton	0	0	ลองดู
 DailyDartsGameStartLabel	0	0	เล่นเกมโบนัส
 DailyDartsGameStartPopUpTitle	0	0	เริ่มปาเป้า
-DailyDartsGameStartPopUpText	0	0	"1 วันปาได้ 3 ครั้ง
-
-[ff0000]*มีโอกาสไม่ได้รับรางวัลหากหลุดจาก
-การเชื่อมต่ออินเทอร์เน็ตระหว่างเล่นเกม"
+DailyDartsGameStartPopUpText	0	0	1 วันปาได้ 3 ครั้ง\n\n[ff0000]*มีโอกาสไม่ได้รับรางวัลหากหลุดจาก\nการเชื่อมต่ออินเทอร์เน็ตระหว่างเล่นเกม
 DailyDartsGameHitOutPopUpText	0	0	ปาไม่โดน\nไม่ได้รับรางวัล
 DailyDartsGameHitPopUpButton1	0	0	ปาใหม่ (เหลืออีก {0} ครั้ง)
 DailyDartsGameHitPopUpButton2	0	0	จะรับรางวัลนี้
@@ -11797,25 +9686,15 @@ OrbBuyPanelBonusNum	0	0	+{0} ชิ้น
 OrbBuyPanelNew	0	0	New!
 OrbHistoryNonList	0	0	ไม่มีประวัติการซื้อ
 OrbBuyRefreshTitle	0	0	การทำธุรกรรมเสร็จสมบูรณ์
-OrbBuyRefreshMainMes	0	0	"ถ้าการทำธุรกรรม เช่น การซื้อออร์บหรือตั๋ว 30 วัน
-เกิดข้อผิดพลาดทำให้หยุดชะงักกลางคัน
-คุณสามารถทำธุรกรรมที่ค้างอยู่ให้สำเร็จได้ที่นี่"
+OrbBuyRefreshMainMes	0	0	ถ้าการทำธุรกรรม เช่น การซื้อออร์บหรือตั๋ว 30 วัน\nเกิดข้อผิดพลาดทำให้หยุดชะงักกลางคัน\nคุณสามารถทำธุรกรรมที่ค้างอยู่ให้สำเร็จได้ที่นี่
 OrbBuyRefreshButton	0	0	การทำธุรกรรมเสร็จสมบูรณ์
 OrbBuyRefreshCheckMes	0	0	กำลังตรวจสอบการทำธุรกรรมที่ค้างอยู่...
 OrbBuyRefreshButtonCancel	0	0	ยกเลิก
 OrbBuyRefreshSuccessMes	0	0	ธุรกรรมที่ทำค้างอยู่ทำเสร็จสมบูรณ์แล้ว
 OrbBuyRefreshNothingMes	0	0	การทำธุรกรรมของท่านอาจเสร็จสมบูรณ์แล้ว กรุณารีสตาร์ทเครื่องแล้วตรวจสอบจำนวนออร์บใหม่อีกครั้ง
 OrbBuyRefreshButtonOk	0	0	OK
-OrbBuyRefreshSuccessMes2	0	0	"มีการทำธุรกรรมที่ยังทำไม่สำเร็จ
-กรุณารอประมาณ 1 ชั่วโมงเพื่อให้การประมวลผลแสดงในบัญชี
-
-หลังจากเลย 1 ชั่วโมงไปแล้วหากยังไม่แสดงในบัญชี
-กรุณาติดต่อสอบถามทาง เมนู > ร้านค้าออร์บ > ติดต่อสอบถาม"
-OrbBuyRefreshNothingMes2	0	0	"การทำธุรกรรมของท่านอาจเสร็จสมบูรณ์แล้ว
-กรุณารีสตาร์ทเครื่องแล้วตรวจสอบใหม่อีกครั้ง
-
-หากออร์บหรือตั๋ว 30 วันยังไม่เข้าบัญชี
-กรุณาติดต่อสอบถามทาง เมนู > ร้านค้าออร์บ > ติดต่อสอบถาม"
+OrbBuyRefreshSuccessMes2	0	0	มีการทำธุรกรรมที่ยังทำไม่สำเร็จ\nกรุณารอประมาณ 1 ชั่วโมงเพื่อให้การประมวลผลแสดงในบัญชี\n\nหลังจากเลย 1 ชั่วโมงไปแล้วหากยังไม่แสดงในบัญชี\nกรุณาติดต่อสอบถามทาง เมนู > ร้านค้าออร์บ > ติดต่อสอบถาม
+OrbBuyRefreshNothingMes2	0	0	การทำธุรกรรมของท่านอาจเสร็จสมบูรณ์แล้ว\nกรุณารีสตาร์ทเครื่องแล้วตรวจสอบใหม่อีกครั้ง\n\nหากออร์บหรือตั๋ว 30 วันยังไม่เข้าบัญชี\nกรุณาติดต่อสอบถามทาง เมนู > ร้านค้าออร์บ > ติดต่อสอบถาม
 OrbBuyRefreshInquiry	0	0	ติดต่อสอบถาม
 AccountManagerCheckIdErrTitle	0	0	การอัปเดตข้อมูลบัญชีล้มเหลว
 AccountManagerCheckIdErrMessage	0	0	\n\n\nการอัปเดตข้อมูลบัญชีล้มเหลว\nจะรีสตาร์ทโทรัมออนไลน์
@@ -11827,10 +9706,7 @@ OrbItemUsePanelSkillCompensationPopUpMessage	0	0	[ffff64]ในตอนนี�
 OrbItemUsePanelStatusCompensationPopUpMessage	0	0	[ffff64]ในตอนนี้สามารถรีเซ็ตสเตตัสได้ฟรี\nดูรายละเอียดได้ที่ประกาศ[ffffff]
 OrbItemUsePanelEntryErrPopUpText	0	0	ไอเท็มนี้ไม่สามารถใช้ได้เพราะเพิ่มเข้าไปแล้ว
 OrbBuyContactTitle	0	0	เรื่องออร์บ
-OrbBuyContactMes	0	0	"ในกรณีที่ซื้อออร์บหรือคอร์สรายเดือน
-อาจแก้ไขปัญหาได้ด้วยวิธีการดังต่อไปนี้
-
-[ffc900]เลือก [เมนู -> ร้านค้าออร์บ -> เพิ่มออร์บ -> การทำธุรกรรมเสร็จสมบูรณ์] ให้แตะที่ [การทำธุรกรรมเสร็จสมบูรณ์][ffffff]"
+OrbBuyContactMes	0	0	ในกรณีที่ซื้อออร์บหรือคอร์สรายเดือน\nอาจแก้ไขปัญหาได้ด้วยวิธีการดังต่อไปนี้\n\n[ffc900]เลือก [เมนู -> ร้านค้าออร์บ -> เพิ่มออร์บ -> การทำธุรกรรมเสร็จสมบูรณ์] ให้แตะที่ [การทำธุรกรรมเสร็จสมบูรณ์][ffffff]
 OrbBuyContactToRefreshButton	0	0	ลอง[ffffff]การทำธุรกรรมเสร็จสมบูรณ์] 
 OrbBuyContactToFormButton	0	0	ไปยังแบบฟอร์มติดต่อสอบถาม
 ReportTypePrisonButton	0	0	การกระทำผิด
@@ -11896,7 +9772,7 @@ SpecialStorageMaterial_Lv1_Drug	0	0	ยา
 SpecialStorageMaterial_Lv1_Magic	0	0	มานา
 SpecialStorageMainSpinaLabel	0	0	ฝาก / ถอน สปินา
 SpecialStorageMainMaterialLabel	0	0	ฝาก / ถอน พ้อยท์วัตถุดิบ
-SpecialStorageMainExpLabel	0	0	"ฝาก / ถอน 	EXP โพขั่น"
+SpecialStorageMainExpLabel	0	0	ฝาก / ถอน \tEXP โพขั่น
 SpecialStorageWindowTitle	0	0	ที่เก็บพิเศษ
 SpecialStorageWindowAsobimoTitle	0	0	ส่งไปที่มาร์เก็ต
 SpecialStorageDepositPanelWarningText	0	0	[ff0000]มีค่าใช้จ่ายในการถอน![ffffff]
@@ -12015,8 +9891,7 @@ DungeonEnterPanelAreaLevelPopUpUserLabel	0	0	เริ่มจากใต้�
 DungeonEnterPanelAreaLevelPopUpUserText	0	0	เริ่มจากชั้นสุดท้ายที่เคยไปถึง
 DungeonEnterPanelAreaLevelPopUpUserErr	0	0	ยังไม่เคยเข้าเขาวงกต
 DungeonEnterPanelRecoverylPopUpTitle	0	0	ใช้{0}เพื่อฟื้นฟู
-DungeonEnterPanelRecoverylPopUpText	0	0	"ใช้{0} 1 ชิ้น
-เพื่อฟื้นฟูพลังเวทเคลื่อยย้ายทั้งหมด"
+DungeonEnterPanelRecoverylPopUpText	0	0	ใช้{0} 1 ชิ้น\nเพื่อฟื้นฟูพลังเวทเคลื่อยย้ายทั้งหมด
 DungeonEnterTitleMasoPoint	0	0	มานา pt
 DungeonEnterCoinHave	0	0	{0}
 DungeonEnterCoinItemHave	0	0	มีอยู่ {0} ชิ้น
@@ -12024,12 +9899,10 @@ DungeonEnterManaMaxCoinItem	0	0	โพชั่นเวท
 DungeonEnterMasoText	0	0	ฟื้นฟู {0}%\n[ffff88]ใช้: {1} pt
 DungeonEnterMasoPoint	0	0	เหลือมานา: [ff0000]{0}pt
 DungeonDeadPopUpTitle	0	0	ออกจากเขาวงกต
-DungeonDeadPopUpText	0	0	"ออกจากเขาวงกต
-จะกลับเข้ามาไม่ได้อีก ตกลงหรือไม่?"
+DungeonDeadPopUpText	0	0	ออกจากเขาวงกต\nจะกลับเข้ามาไม่ได้อีก ตกลงหรือไม่?
 DungeonEnterPanelLeaderSelect	0	0	หัวหน้าจะเป็นผู้เลือกชั้น
 DungeonEnterPanelReadyTextWait	0	0	มีผู้เล่นที่ยังเตรียมตัวไม่เสร็จ
-DungeonEnterPanelSubLabel	0	0	"ไม่มีการรับสมัครสมาชิกกิลด์
-เข้าเขาวงกต"
+DungeonEnterPanelSubLabel	0	0	ไม่มีการรับสมัครสมาชิกกิลด์\nเข้าเขาวงกต
 DungeonEnterPanelSubText	0	0	เปิดเมนูเพื่อเชิญ (เฉพาะหัวหน้าเท่านั้น)
 DungeonEventGetKeyMessage	0	0	ได้กุญแจแล้ว!
 DungeonEventAcitveTrap	0	0	เหยียบ {0} แล้ว!
@@ -12038,8 +9911,7 @@ DungeonEnterPanelEnterLockLabel	0	0	ไม่สามารถเข้าเ�
 DungeonEnterPanelTimeOutLabel	0	0	ไม่สามารถเข้าฟื้นฟูพลังเวทได้ในขณะนี้
 DungeonDeadWindowLabel	0	0	ไม่สามารถคืนชีพได้ในเขาวงกต
 DungeonEnterPopUpTitle	0	0	ยืนยันครั้งสุดท้าย
-DungeonEnterPopUpMessage	0	0	"เข้าเขาวงกตชั้น {0} ด้วยพลังเวท {1}
-ตกลงหรือไม่?"
+DungeonEnterPopUpMessage	0	0	เข้าเขาวงกตชั้น {0} ด้วยพลังเวท {1}\nตกลงหรือไม่?
 DungeonEnterMagicPower	0	0	พลังเวท
 DungeonEnterPanelEnterNPCErrLabel	0	0	พาทหารรับจ้างหรือพาร์ทเนอร์\nเข้าไปในเขาวงกตด้วยไม่ได้
 DungeonEnterPanelEnterNPCErrLabelEx	0	0	พาทหารรับจ้าง, พาร์ทเนอร์ หรือสัตว์เลี้ยง\nเข้าไปในเขาวงกตด้วยไม่ได้
@@ -12072,25 +9944,14 @@ BossTrophyBreaker	0	0	Breaker
 BossTrophysBreaker	0	0	ผู้ทำลาย
 BossTrophyAssister	0	0	Assister
 BossTrophysAssister	0	0	แอสซิสเตอร์
-BossMenuBossStatus	0	0	"ข้อมูลบอส
-
-HP: {0}
-EXP: {1}
-{2}
-{3}
-
-ข้อมูลดรอป
-
-ทั้งหมด {4} ประเภท
-ส่วนที่ทำลายได้ {5} "
+BossMenuBossStatus	0	0	ข้อมูลบอส\n\nHP: {0}\nEXP: {1}\n{2}\n{3}\n\nข้อมูลดรอป\n\nทั้งหมด {4} ประเภท\nส่วนที่ทำลายได้ {5} 
 BossMenuBossPartsCount	0	0	{0} ตำแหน่ง
 BossMenuBossPartsNot	0	0	ไม่มี
 BossMenuBattleLevel	0	0	เลเวลที่เหมาะสม: {0}
 BossMenuBossBattle	0	0	BOSS BATTLE
 BossMenuBossReady	0	0	จะเริ่มการต่อสู้เมื่อคุณพร้อม
 BossResultNoUser	0	0	ไม่มีผู้เล่น
-BossMenuGemErr	0	0	"ไม่มีไอเท็มสนับสนุน
-ที่สามารถใช้ได้"
+BossMenuGemErr	0	0	ไม่มีไอเท็มสนับสนุน\nที่สามารถใช้ได้
 BossMenuDifficulty	0	0	ระดับความยาก
 BossMenuDifficultyEasyMode	0	0	Easy
 BossMenuDifficultyNormalMode	0	0	Normal
@@ -12099,18 +9960,7 @@ BossMenuDifficultyLunaticMode	0	0	Nightmare
 BossMenuDifficultyUltimateMode	0	0	Ultimate
 BossMenuNoUseItem	0	0	[64ffff]ยังเลือกในระดับความยากนี้ไม่ได้
 BossMenuNoRecommendLevel	0	0	ยังไม่ถึงเลเวลที่เหมาะสม
-BossMenuBossDifficultyStatus	0	0	"ข้อมูลบอส
-
-HP: {0}
-EXP: {1}
-{2}
-{3}
-
-ข้อมูลดรอป
-
-ไอเท็มทั้งหมด {4} ชนิด
-{5}
-ส่วนที่ทำลายได้ {6}"
+BossMenuBossDifficultyStatus	0	0	ข้อมูลบอส\n\nHP: {0}\nEXP: {1}\n{2}\n{3}\n\nข้อมูลดรอป\n\nไอเท็มทั้งหมด {4} ชนิด\n{5}\nส่วนที่ทำลายได้ {6}
 BossMenuNoRareItem	0	0	[64ffff]ไอเท็มหายากจะไม่ดรอปในโหมด EASY[ffffff]
 BossMenuColorWeapon	0	0	[ffff64]+ อาวุธย้อมสี[ffffff]
 BossMenuCantChangeLevel	0	0	[ff6464]การต่อสู้กับบอสครั้งนี้เปลี่ยนระดับความยากไม่ได้
@@ -12399,12 +10249,8 @@ UIPCKeyconfigPopWarningLabel	0	0	[aaaa00]{0}\nคำสั่งด้านบ�
 UIPCKeyconfigPopErrLabel	0	0	[aa0000]เปลี่ยนไม่ได้ หรือเป็นคีย์ที่ใช้ไม่ได้
 UIPCKeyconfigPopKeyMouseRightButtonErrLabel	0	0	เปลี่ยนไม่ได้เพราะ[aa0000]เป็นคีย์ที่ใช้ไปแล้ว
 UIPCKeyconfigPopKeyMouseRightButtonChangeErrLabel	0	0	เปลี่ยนไม่ได้เพราะ[aa0000]เป็นคีย์ที่ใช้ไปแล้ว
-PCSteamReportPurchaseNumber	0	0	"- Steam Order Number -
-Ex: (1-21 digit number)
-*********************"
-PCAsobimoReportPurchaseNumber	0	0	"- Stripe Payment Order Number -
-Ex: (8-digit alphanumeric characters)
-****-****"
+PCSteamReportPurchaseNumber	0	0	- Steam Order Number -\nEx: (1-21 digit number)\n*********************
+PCAsobimoReportPurchaseNumber	0	0	- Stripe Payment Order Number -\nEx: (8-digit alphanumeric characters)\n****-****
 PCAsobimoReportTypeOrbButton	0	0	ซื้อออร์บ
 PCAsobimoReportTypeOrbMessage	0	0	สอบถามเรื่องการซื้อออร์บ
 PCSteamReportTypeOrbButton	0	0	ซื้อออร์บ
@@ -12471,13 +10317,7 @@ UIPCKeyconfigCommandTopLabel	0	0	ชื่อคำสั่ง
 UIPCKeyconfigMainKeyLabel	0	0	คีย์หลัก
 UIPCKeyconfigSubKeyLabel	0	0	คีย์รอง
 UIPCMenuPanelChangePanelButton	0	0	เปลี่ยน
-EmotionPanelPCDescription	0	0	"ถ้าตั้งเป็น[ffff64]รายการโปรด[ffffff]
-จะเลือกใช้ได้จากอีโมชั่นริง
-[6495ed]*กดสกอร์เม้าส์ค้าง[ffffff]
-
-แท็บอีโมชั่นที่ต้องการตั้ง
-เป็นรายการโปรด
-[6495ed]*สูงสุด 10 อัน"
+EmotionPanelPCDescription	0	0	ถ้าตั้งเป็น[ffff64]รายการโปรด[ffffff]\nจะเลือกใช้ได้จากอีโมชั่นริง\n[6495ed]*กดสกอร์เม้าส์ค้าง[ffffff]\n\nแท็บอีโมชั่นที่ต้องการตั้ง\nเป็นรายการโปรด\n[6495ed]*สูงสุด 10 อัน
 UIPCOrbBuyPanelErrMessage	0	0	ฟังก์ชันซื้อออร์บยังอยู่ระหว่างเตรียมการ\nจึงยังใช้ไม่ได้ในปัจจุบัน
 PCAsobimoOrbShopPanelBuyWait	0	0	อยู่ระหว่างเตรียมการ
 PCTargetPanelSort0	0	0	อีเว้นท์ขึ้นก่อน

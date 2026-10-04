@@ -1,0 +1,47 @@
+{
+ "schema": {
+  "header": {
+   "prefix": 4,
+   "count": "u16"
+  },
+  "record": [
+   {
+    "t": "i16"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "i32"
+   }
+  ],
+  "names": [
+   "Id",
+   "levelCap",
+   "enhancePowder"
+  ],
+  "owner": "GemCartMasterData"
+ },
+ "strategy": "anchor-fit",
+ "confidence": "strong",
+ "stats": {
+  "records": 159,
+  "null_rate": 0.0,
+  "switch_cases": 0,
+  "counted": true
+ },
+ "describe": "prefix 4, count u16 x [i16, i16, i32]",
+ "evidence": {
+  "rule": "exact-EOF on every distinct version",
+  "versions": [
+   "48a4ce31"
+  ],
+  "label": "Code: GemCartMasterData.CreateGemCartData {i16 Id, i16 LevelCap, i32 EnhancePowder} (registlet/REGISTLET.md) + exact-EOF"
+ },
+ "alternatives": [
+  "records until EOF x [u8, u8]",
+  "records until EOF x [i16, u8]"
+ ],
+ "table": "RegistletMaster",
+ "learned": "2026-10-04"
+}
