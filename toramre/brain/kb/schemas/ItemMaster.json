@@ -1,0 +1,99 @@
+{
+ "schema": {
+  "header": {
+   "prefix": 0,
+   "count": "u32"
+  },
+  "record": [
+   {
+    "t": "i32"
+   },
+   {
+    "t": "i32"
+   },
+   {
+    "t": "i32"
+   },
+   {
+    "t": "i32"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "i32"
+   },
+   {
+    "t": "i32"
+   }
+  ],
+  "names": [
+   "Id",
+   "SortId",
+   "TypeId",
+   "Price",
+   "MaterialLv",
+   "MaterialId",
+   "Process",
+   "Stack",
+   "Function",
+   "Stable",
+   "Range",
+   "SlotMax",
+   "Potential",
+   "Model",
+   "Flag"
+  ],
+  "owner": "ItemDBData"
+ },
+ "strategy": "code-seed",
+ "confidence": "strong",
+ "stats": {
+  "records": 11718,
+  "null_rate": 0.0,
+  "switch_cases": 0,
+  "counted": true
+ },
+ "describe": "count u32 x [i32, i32, i32, i32, u8, u8, i16, i16, i16, u8, u8, u8, i16, i32, i32]",
+ "evidence": {
+  "rule": "exact-EOF on every distinct version",
+  "versions": [
+   "0b170732",
+   "15893d32",
+   "48a4ce31",
+   "49dc2132",
+   "6f8b1932",
+   "8a85e231",
+   "d96dea31",
+   "dad0fc31"
+  ],
+  "label": "Code: ItemDBData.CreateItemData (items/README.md) + exact-EOF"
+ },
+ "alternatives": [],
+ "table": "ItemMaster",
+ "learned": "2026-10-04"
+}

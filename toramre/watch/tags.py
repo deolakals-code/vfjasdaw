@@ -10,6 +10,9 @@ SEVERITY = {
     "CHANGED": 2,         # table content or row changed
     "TEXT_CHANGED": 1,    # localized text only
     "STALE_DOC": 1,       # a doc or export cites a changed item
+    "BUFF": 2,            # a value changed in the player's favour (toramre/balance/polarity.py)
+    "NERF": 2,            # ... against the player
+    "MIXED": 2,           # both directions in one entry
 }
 NAMES = {3: "high", 2: "medium", 1: "low"}
 

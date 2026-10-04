@@ -14,7 +14,13 @@
    {
     "t": "i32"
    }
-  ]
+  ],
+  "names": [
+   "Id",
+   "levelCap",
+   "enhancePowder"
+  ],
+  "owner": "GemCartMasterData"
  },
  "strategy": "anchor-fit",
  "confidence": "strong",
@@ -30,7 +36,7 @@
   "versions": [
    "48a4ce31"
   ],
-  "label": "Code-checked layout; field types Inferred"
+  "label": "Code: GemCartMasterData.CreateGemCartData {i16 Id, i16 LevelCap, i32 EnhancePowder} (registlet/REGISTLET.md) + exact-EOF"
  },
  "alternatives": [
   "records until EOF x [u8, u8]",

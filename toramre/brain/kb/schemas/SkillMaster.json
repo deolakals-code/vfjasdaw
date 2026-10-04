@@ -1,0 +1,97 @@
+{
+ "schema": {
+  "header": {
+   "prefix": 4,
+   "count": "u32"
+  },
+  "record": [
+   {
+    "t": "i16"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "u32"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "i16"
+   }
+  ],
+  "names": [
+   "SkillUid",
+   "SkillId",
+   "SkillTreeLv",
+   "PremiseId",
+   "SkillTreeType",
+   "Level",
+   "EqLimit",
+   "SkillType",
+   "AssistFlag",
+   "PremisePosId",
+   "ConnectPosId",
+   "TreePosX",
+   "TreePosY",
+   "SkillFlag",
+   "EventId",
+   "SortId"
+  ],
+  "owner": "SkillMasterData"
+ },
+ "strategy": "code-seed",
+ "confidence": "strong",
+ "stats": {
+  "records": 631,
+  "null_rate": 0.0,
+  "switch_cases": 0,
+  "counted": true
+ },
+ "describe": "prefix 4, count u32 x [i16, i16, u8, i16, u8, i16, u32, u8, u8, u8, u8, u8, u8, u8, u8, i16]",
+ "evidence": {
+  "rule": "exact-EOF on every distinct version",
+  "versions": [
+   "48a4ce31",
+   "49dc2132"
+  ],
+  "label": "Code: SkillMasterData fields + CreateSkillData layout (NOTES 2026-10-03) + exact-EOF"
+ },
+ "alternatives": [],
+ "table": "SkillMaster",
+ "learned": "2026-10-04"
+}

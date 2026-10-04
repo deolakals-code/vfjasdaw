@@ -16,6 +16,9 @@ def cmd_watch(a):
     base = os.path.join(paths.STATE, "extra_baseline.json")
     if os.path.exists(base):
         events += diff.diff_extra(json.load(open(base)), snap["extra"])
+    if not a.no_balance:
+        from toramre.balance import api as balance_api
+        events += balance_api.events(since=a.since)
     cdn = os.path.join(paths.STATE, "cdn_changes.json")
     if os.path.exists(cdn):
         from toramre.watch.tags import Event
@@ -241,6 +244,45 @@ def cmd_fetch(a):
     return 0
 
 
+def cmd_balance(a):
+    from toramre.balance import api, diff as bdiff, snapshot
+    if a.action == "snapshot":
+        dv = versions.list_versions("BynaryData")
+        label = a.label or (dv[-1] if dv else "current")
+        build = a.build or config.get("balance", "build", "unknown")
+        p = snapshot.save(snapshot.take(label, build=build, data_version=dv[-1] if dv else None))
+        s = snapshot.load(label)
+        print(f"snapshot {label} (build {build}): {len(s['rate'])} skills with multipliers, {len(s['buff'])} with buff tables -> {p}")
+        return 0
+    if a.action == "list":
+        for l in snapshot.labels():
+            s = snapshot.load(l)
+            print(f"{l:12} build {s['build']:10} {s['taken']}  {len(s['rate'])} rates, {len(s['buff'])} buffs")
+        if not snapshot.labels():
+            print("no snapshots yet: `toramre balance snapshot` stores the multipliers of the currently decoded build")
+        return 0
+    if a.action == "diff":
+        if len(a.args) != 2:
+            print("usage: toramre balance diff OLD NEW (snapshot labels)", file=sys.stderr)
+            return 2
+        entries = api.snapshot_entries(a.args[0], a.args[1])
+    else:
+        kinds = tuple(a.kind.split(",")) if a.kind else ("skill", "item", "recipe", "registlet")
+        entries = api.all_entries(kinds=kinds)
+    if a.verdict:
+        want = {x.upper() for x in a.verdict.split(",")}
+        entries = [e for e in entries if e["verdict"] in want]
+    entries.sort(key=lambda e: (V_key(e["to"]), e["kind"], e["id"]), reverse=True)
+    for e in entries[:a.limit]:
+        print(f"{e['from']}->{e['to']}  {e['verdict']:8} [{e['source']}] {api.describe(e)}")
+    print(f"{len(entries)} entries" + (f" (showing {a.limit})" if len(entries) > a.limit else ""))
+    return 0
+
+
+def V_key(v):
+    return versions.version_number(v) if len(v) == 8 and all(c in "0123456789abcdef" for c in v) else -1
+
+
 def cmd_doctor(a):
     from toramre import doctor
     return doctor.report(online=a.online)
@@ -253,6 +295,7 @@ def main(argv=None):
     w.add_argument("--since", help="only pairs whose newer version is this version or later (8 hex chars)")
     w.add_argument("--out", help="report directory (default: state/)")
     w.add_argument("--fail-on", choices=["low", "medium", "high"], default="high", help="exit 1 when an event of this level exists")
+    w.add_argument("--no-balance", action="store_true", help="leave out the BUFF / NERF / MIXED entries")
     w.add_argument("--notify", action="store_true", help="send a summary to the webhook in toramre.toml [notify]")
     w.set_defaults(fn=cmd_watch)
     u = sub.add_parser("ui", help="build the dashboard (one self-contained HTML page)")
@@ -267,6 +310,15 @@ def main(argv=None):
                         formatter_class=argparse.RawDescriptionHelpFormatter)
     st.add_argument("names", nargs="*", metavar="STAGE", help="stages to run (default: all)")
     st.set_defaults(fn=cmd_stage)
+    bl = sub.add_parser("balance", help="what got stronger or weaker between versions (BUFF / NERF / MIXED)")
+    bl.add_argument("action", choices=["changes", "snapshot", "list", "diff"])
+    bl.add_argument("args", nargs="*", help="diff: OLD NEW snapshot labels")
+    bl.add_argument("--kind", help="skill,item,recipe,registlet (changes)")
+    bl.add_argument("--verdict", help="BUFF,NERF,MIXED,NEUTRAL,ADDED,REMOVED")
+    bl.add_argument("--label", help="snapshot label (default: newest data version)")
+    bl.add_argument("--build", help="snapshot: build id of libil2cpp.so the values were decoded from (or [balance] build)")
+    bl.add_argument("--limit", type=int, default=40)
+    bl.set_defaults(fn=cmd_balance)
     dr = sub.add_parser("doctor", help="check what this machine can run and what is missing")
     dr.add_argument("--online", action="store_true", help="also check that the CDN answers")
     dr.set_defaults(fn=cmd_doctor)
