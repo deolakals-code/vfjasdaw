@@ -36,7 +36,7 @@ for fn in sorted(os.listdir(src)):
     else:
         ent["framing"] = "variable"
     info["tables"][name] = ent
-json.dump(info, open(out + r"\_framing.json", "w"), indent=1)
+json.dump(info, open(os.path.join(out, "_framing.json"), "w"), indent=1)
 fixed = [k for k, v in info["tables"].items() if "record_bytes" in v]
 print(info["version"], len(info["tables"]), "tables; fixed-width:", len(fixed), fixed)
 print("variable:", [k for k in info["tables"] if k not in fixed])

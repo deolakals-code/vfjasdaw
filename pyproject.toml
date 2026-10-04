@@ -12,4 +12,7 @@ requires-python = ">=3.9"
 toramre = "toramre.cli:main"
 
 [tool.setuptools]
-packages = ["toramre", "toramre.core", "toramre.watch"]
+packages = ["toramre", "toramre.core", "toramre.data", "toramre.watch", "toramre.ui"]
+
+[tool.setuptools.package-data]
+"toramre.ui" = ["template.html"]

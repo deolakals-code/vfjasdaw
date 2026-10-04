@@ -1,0 +1,263 @@
+<title>Toram Data Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: operator console. Summary strip on top, three views (alerts, change matrix, versions) under one tab bar. */
+:root {
+  --bg: #eef1f4; --surface: #ffffff; --sunk: #e4e9ee; --ink: #16202a; --muted: #5a6875; --line: #d3dae1;
+  --accent: #1d6a86; --accent-soft: #d6e9f0;
+  --high: #b9410f; --high-soft: #f8e1d6; --med: #9a6a12; --med-soft: #f5ead2; --low: #3f7356; --low-soft: #dcefe3;
+  --cell-same: #dde3e9; --cell-changed: #1d6a86; --cell-new: #3f7356;
+  --f-display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e141a; --surface: #151d25; --sunk: #1b252f; --ink: #e2e8ed; --muted: #92a0ac; --line: #263240;
+  --accent: #62b4d1; --accent-soft: #17323d;
+  --high: #f07a4b; --high-soft: #3a2018; --med: #e2b457; --med-soft: #352a14; --low: #80c39a; --low-soft: #1a3024;
+  --cell-same: #24303b; --cell-changed: #62b4d1; --cell-new: #80c39a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0e141a; --surface: #151d25; --sunk: #1b252f; --ink: #e2e8ed; --muted: #92a0ac; --line: #263240;
+  --accent: #62b4d1; --accent-soft: #17323d;
+  --high: #f07a4b; --high-soft: #3a2018; --med: #e2b457; --med-soft: #352a14; --low: #80c39a; --low-soft: #1a3024;
+  --cell-same: #24303b; --cell-changed: #62b4d1; --cell-new: #80c39a; color-scheme: dark }
+
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+body { background: var(--bg); color: var(--ink); font: 14px/1.5 var(--f-body); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 48px; display: grid; gap: 18px }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; margin: 0; text-wrap: balance; letter-spacing: .01em }
+h1 { font-size: 1.55rem } h2 { font-size: 1.1rem }
+.mono { font-family: var(--f-mono); font-size: .86em }
+.muted { color: var(--muted) }
+.label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600 }
+
+header.top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 8px 24px }
+header.top .meta { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); font-size: .85rem }
+
+.strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r); overflow: hidden }
+.stat { background: var(--surface); padding: 12px 16px; display: grid; gap: 2px }
+.stat b { font: 600 1.6rem/1.1 var(--f-display); font-variant-numeric: tabular-nums }
+.stat.high b { color: var(--high) } .stat.medium b { color: var(--med) } .stat.low b { color: var(--low) }
+
+nav.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto }
+nav.tabs button { font: 600 .9rem var(--f-display); letter-spacing: .03em; background: none; border: 0; color: var(--muted);
+  padding: 10px 14px; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap }
+nav.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent) }
+button:focus-visible, select:focus-visible, input:focus-visible, .cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.chip { font: 500 .8rem var(--f-body); border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  border-radius: 999px; padding: 4px 11px; cursor: pointer; display: inline-flex; gap: 6px; align-items: center }
+.chip[aria-pressed="false"] { opacity: .45 }
+.chip .dot { width: 8px; height: 8px; border-radius: 50% }
+select, input[type="search"] { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 5px 9px; min-width: 0 }
+input[type="search"] { flex: 1 1 200px }
+
+.group { display: grid; gap: 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden }
+.group > .gh { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; padding: 9px 14px; background: var(--sunk);
+  border-bottom: 1px solid var(--line) }
+.group > .gh h3 { font-size: .95rem }
+.ev { display: grid; grid-template-columns: 4px 128px minmax(0, 1fr); align-items: start; border-top: 1px solid var(--line) }
+.gh + .ev { border-top: 0 }
+.ev .stripe { align-self: stretch }
+.ev.high .stripe { background: var(--high) } .ev.medium .stripe { background: var(--med) } .ev.low .stripe { background: var(--low) }
+.ev .tag { margin: 9px 12px; justify-self: start }
+.ev .body { padding: 8px 14px 9px 0; min-width: 0; display: grid; gap: 2px }
+.ev .what { font-weight: 600; overflow-wrap: anywhere }
+.ev .detail { color: var(--muted); font-size: .86rem; overflow-wrap: anywhere }
+.pill { font: 600 .68rem var(--f-mono); letter-spacing: .04em; padding: 2px 7px; border-radius: 4px; white-space: nowrap }
+.pill.high { background: var(--high-soft); color: var(--high) } .pill.medium { background: var(--med-soft); color: var(--med) }
+.pill.low { background: var(--low-soft); color: var(--low) }
+.list { display: grid; gap: 14px }
+.empty { padding: 28px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--r) }
+
+.matrix-box { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface) }
+table.matrix { border-collapse: separate; border-spacing: 3px; padding: 8px; font-variant-numeric: tabular-nums }
+table.matrix th { font: 500 .7rem var(--f-mono); color: var(--muted); font-weight: 500 }
+table.matrix thead th { height: 74px; vertical-align: bottom; padding: 0 }
+table.matrix thead th span { display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap }
+table.matrix tbody th { text-align: right; padding-right: 8px; white-space: nowrap; font-size: .76rem; color: var(--ink) }
+.cell { width: 18px; height: 18px; border-radius: 3px; display: block; border: 0; padding: 0; cursor: default; background: transparent }
+.cell.same, .cell.first { background: var(--cell-same) }
+.cell.changed { background: var(--cell-changed); cursor: pointer }
+.cell.new { background: transparent; box-shadow: inset 0 0 0 2px var(--cell-new); cursor: pointer }
+.cell.absent { background: transparent; box-shadow: inset 0 0 0 1px var(--line) }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .8rem; color: var(--muted); align-items: center }
+.legend .cell { display: inline-block; vertical-align: middle; margin-right: 5px; width: 13px; height: 13px }
+
+table.vers { width: 100%; border-collapse: collapse; background: var(--surface); font-variant-numeric: tabular-nums }
+table.vers th, table.vers td { text-align: left; padding: 7px 12px; border-bottom: 1px solid var(--line); white-space: nowrap }
+table.vers th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted) }
+.bar { display: inline-block; height: 8px; background: var(--accent); border-radius: 2px; vertical-align: middle; margin-right: 6px }
+.panel-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between }
+footer { color: var(--muted); font-size: .8rem }
+@media (max-width: 560px) {
+  .strip .stat.low { grid-column: 1 / -1 }
+  .ev { grid-template-columns: 4px minmax(0, 1fr) } .ev .tag { grid-column: 2; margin: 9px 12px 0 } .ev .body { grid-column: 2; padding-left: 12px }
+}
+@media (prefers-reduced-motion: no-preference) { .cell.changed:hover, .cell.new:hover { transform: scale(1.18); transition: transform .12s } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="label">toramre · offline client-data watch</div>
+      <h1>Toram Data Watch</h1>
+    </div>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <section class="strip" id="strip" aria-label="Summary"></section>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-alerts" aria-controls="view-alerts" aria-selected="true">Alerts</button>
+    <button role="tab" id="tab-matrix" aria-controls="view-matrix" aria-selected="false">Change matrix</button>
+    <button role="tab" id="tab-versions" aria-controls="view-versions" aria-selected="false">Versions</button>
+  </nav>
+
+  <section id="view-alerts" role="tabpanel" aria-labelledby="tab-alerts" class="list">
+    <div class="filters">
+      <span id="sev-chips" class="filters"></span>
+      <select id="f-tag" aria-label="Tag"></select>
+      <select id="f-bundle" aria-label="Bundle"></select>
+      <input type="search" id="f-q" placeholder="Search table, id or version" aria-label="Search">
+    </div>
+    <div id="alerts" class="list"></div>
+  </section>
+
+  <section id="view-matrix" role="tabpanel" aria-labelledby="tab-matrix" class="list" hidden>
+    <div class="panel-head">
+      <div class="legend">
+        <span><i class="cell same"></i>unchanged</span><span><i class="cell changed"></i>changed</span>
+        <span><i class="cell new"></i>new table</span><span><i class="cell absent"></i>absent</span>
+        <span class="muted">Click a coloured cell to see its alert.</span>
+      </div>
+      <select id="m-bundle" aria-label="Bundle"></select>
+    </div>
+    <div class="matrix-box"><table class="matrix" id="matrix"></table></div>
+  </section>
+
+  <section id="view-versions" role="tabpanel" aria-labelledby="tab-versions" class="list" hidden>
+    <div class="panel-head"><h2>Kept versions</h2><select id="v-bundle" aria-label="Bundle"></select></div>
+    <div class="matrix-box"><table class="vers" id="vers"></table></div>
+    <p class="muted" style="margin:0">Order follows <span class="mono">readable/masters/_history.csv</span> for BynaryData. The 8-hex version number is not a release order across CDN channels.</p>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+const DATA = /*__TORAMRE_DATA__*/null;
+const SEV = ["high", "medium", "low"];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const state = { sev: new Set(SEV), tag: "", bundle: "", q: "" };
+const store = { get(k) { try { return localStorage.getItem(k) } catch (e) { return null } }, set(k, v) { try { localStorage.setItem(k, v) } catch (e) {} } };
+
+function init() {
+  const b = DATA.bundles, ev = DATA.events;
+  const main = b.BynaryData || Object.values(b)[0];
+  const last = main ? main.versions[main.versions.length - 1] : null;
+  $("meta").innerHTML = (last ? `<span>Newest data <b class="mono">${esc(last.v)}</b>${last.date ? " · " + esc(last.date) : ""}</span>` : "") +
+    `<span>Report built ${esc(DATA.generated)}</span>`;
+  const count = (s) => ev.filter((e) => e.severity === s).length;
+  $("strip").innerHTML =
+    `<div class="stat"><span class="label">Bundles watched</span><b>${Object.keys(b).length}</b></div>` +
+    `<div class="stat"><span class="label">Master versions</span><b>${main ? main.versions.length : 0}</b></div>` +
+    SEV.map((s) => `<div class="stat ${s}"><span class="label">${s} alerts</span><b>${count(s)}</b></div>`).join("");
+
+  $("sev-chips").innerHTML = SEV.map((s) => `<button class="chip" aria-pressed="true" data-sev="${s}"><i class="dot" style="background:var(--${s === "medium" ? "med" : s})"></i>${s}</button>`).join("");
+  $("sev-chips").addEventListener("click", (e) => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    const s = c.dataset.sev; state.sev.has(s) ? state.sev.delete(s) : state.sev.add(s);
+    c.setAttribute("aria-pressed", state.sev.has(s)); renderAlerts();
+  });
+  const tags = [...new Set(ev.map((e) => e.tag))].sort();
+  $("f-tag").innerHTML = `<option value="">All tags</option>` + tags.map((t) => `<option>${esc(t)}</option>`).join("");
+  const opts = Object.keys(b).map((k) => `<option>${esc(k)}</option>`).join("");
+  $("f-bundle").innerHTML = `<option value="">All bundles</option>` + opts;
+  $("m-bundle").innerHTML = opts; $("v-bundle").innerHTML = opts;
+  $("f-tag").onchange = (e) => { state.tag = e.target.value; renderAlerts() };
+  $("f-bundle").onchange = (e) => { state.bundle = e.target.value; renderAlerts() };
+  $("f-q").oninput = (e) => { state.q = e.target.value.trim().toLowerCase(); renderAlerts() };
+  $("m-bundle").onchange = () => renderMatrix();
+  $("v-bundle").onchange = () => renderVersions();
+
+  document.querySelectorAll("nav.tabs button").forEach((t) => t.addEventListener("click", () => show(t.id.slice(4))));
+  $("foot").textContent = DATA.extra && DATA.extra.so_sha256 ? `libil2cpp.so ${DATA.extra.so_sha256.slice(0, 16)}` :
+    "No libil2cpp.so fingerprint in this report: BINARY_CHANGED and UNIT_CHANGED need the IL2CPP side.";
+  renderAlerts(); renderMatrix(); renderVersions();
+  const start = (location.hash || "").slice(1) || store.get("toramre.tab") || "alerts";
+  show(["alerts", "matrix", "versions"].includes(start) ? start : "alerts");
+}
+
+function show(name) {
+  ["alerts", "matrix", "versions"].forEach((n) => {
+    $("view-" + n).hidden = n !== name; $("tab-" + n).setAttribute("aria-selected", n === name);
+  });
+  store.set("toramre.tab", name);
+}
+
+function renderAlerts() {
+  const order = {};
+  Object.values(DATA.bundles).forEach((b) => b.versions.forEach((v, i) => { order[v.v] = Math.max(order[v.v] || 0, i) }));
+  const dates = {}; Object.values(DATA.bundles).forEach((b) => b.versions.forEach((v) => { if (v.date) dates[v.v] = v.date }));
+  const list = DATA.events.filter((e) => state.sev.has(e.severity) && (!state.tag || e.tag === state.tag) &&
+    (!state.bundle || e.bundle === state.bundle) &&
+    (!state.q || [e.item, e.bundle, e.detail, e.from_ver, e.to_ver].join(" ").toLowerCase().includes(state.q)));
+  if (!list.length) { $("alerts").innerHTML = `<div class="empty">No alerts match these filters. Turn a severity back on or clear the search.</div>`; return }
+  const groups = new Map();
+  list.forEach((e) => { const k = e.bundle + "|" + e.from_ver + "|" + e.to_ver; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(e) });
+  const rank = { high: 0, medium: 1, low: 2 };
+  const keys = [...groups.keys()].sort((a, b) => {
+    const [, , ta] = a.split("|"), [, , tb] = b.split("|");
+    return (dates[tb] || "").localeCompare(dates[ta] || "") || (order[tb] || 0) - (order[ta] || 0) || a.localeCompare(b);
+  });
+  $("alerts").innerHTML = keys.map((k) => {
+    const [bundle, from, to] = k.split("|");
+    const evs = groups.get(k).sort((a, b) => rank[a.severity] - rank[b.severity] || a.item.localeCompare(b.item));
+    return `<div class="group"><div class="gh"><h3>${esc(bundle)}</h3><span class="mono">${esc(from)} → ${esc(to)}</span>` +
+      `<span class="muted">${dates[to] ? esc(dates[to]) + " · " : ""}${evs.length} alert${evs.length > 1 ? "s" : ""}</span></div>` +
+      evs.map((e) => `<div class="ev ${e.severity}"><span class="stripe"></span><span class="tag pill ${e.severity}">${esc(e.tag)}</span>` +
+        `<div class="body"><span class="what">${esc(e.item)}</span><span class="detail">${esc(e.detail)}</span></div></div>`).join("") + `</div>`;
+  }).join("");
+}
+
+function renderMatrix() {
+  const name = $("m-bundle").value, b = DATA.bundles[name];
+  if (!b) { $("matrix").innerHTML = ""; return }
+  const head = `<thead><tr><th></th>` + b.versions.map((v) => `<th title="${esc(v.date)}"><span>${esc(v.v)}</span></th>`).join("") + `</tr></thead>`;
+  const rows = b.tables.map((t) => `<tr><th>${esc(t)}</th>` + b.cells[t].map(([st, bytes], i) => {
+    const v = b.versions[i].v, tip = `${t} @ ${v}: ${st}${st !== "absent" ? ", " + bytes.toLocaleString() + " bytes" : ""}`;
+    const click = st === "changed" || st === "new";
+    return `<td><${click ? "button" : "i"} class="cell ${st}" title="${esc(tip)}" aria-label="${esc(tip)}"${click ? ` data-t="${esc(t)}" data-v="${esc(v)}"` : ""}></${click ? "button" : "i"}></td>`;
+  }).join("") + `</tr>`).join("");
+  $("matrix").innerHTML = head + `<tbody>${rows}</tbody>`;
+  $("matrix").onclick = (e) => {
+    const c = e.target.closest("button.cell"); if (!c) return;
+    state.bundle = name; state.tag = ""; state.q = c.dataset.t.toLowerCase(); state.sev = new Set(SEV);
+    $("f-bundle").value = name; $("f-tag").value = ""; $("f-q").value = c.dataset.t;
+    document.querySelectorAll("#sev-chips .chip").forEach((x) => x.setAttribute("aria-pressed", "true"));
+    renderAlerts(); show("alerts");
+  };
+}
+
+function renderVersions() {
+  const name = $("v-bundle").value, b = DATA.bundles[name];
+  if (!b) { $("vers").innerHTML = ""; return }
+  const changed = b.versions.map((_, i) => b.tables.filter((t) => ["changed", "new"].includes(b.cells[t][i][0])).length);
+  const max = Math.max(1, ...changed);
+  $("vers").innerHTML = `<thead><tr><th>#</th><th>Version</th><th>Cached</th><th>Tables changed vs previous</th></tr></thead><tbody>` +
+    b.versions.map((v, i) => `<tr><td class="muted">${i + 1}</td><td class="mono">${esc(v.v)}</td><td>${esc(v.date || "–")}</td>` +
+      `<td>${i ? `<span class="bar" style="width:${Math.round(changed[i] / max * 120)}px"></span>${changed[i]}` : `<span class="muted">first kept version</span>`}</td></tr>`).reverse().join("") + `</tbody>`;
+}
+
+if (DATA) init();
+else document.querySelector(".wrap").insertAdjacentHTML("beforeend", `<div class="empty">No report data embedded. Run <span class="mono">python -m toramre ui</span> to build this page.</div>`);
+</script>

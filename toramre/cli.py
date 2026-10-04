@@ -3,7 +3,8 @@ import argparse
 import os
 import sys
 
-from toramre.core import paths
+from toramre.core import paths, versions
+from toramre.data import stages
 from toramre.watch import diff, report, snapshot
 
 
@@ -23,6 +24,36 @@ def cmd_watch(a):
     return 1 if report.exceeds(events, a.fail_on) else 0
 
 
+def cmd_ui(a):
+    from toramre.ui import build
+    out = a.out or os.path.join(paths.STATE, "dashboard.html")
+    build.write(out, standalone=not a.fragment)
+    print("dashboard ->", out)
+    if a.serve:
+        import functools
+        import http.server
+        d, f = os.path.split(os.path.abspath(out))
+        h = functools.partial(http.server.SimpleHTTPRequestHandler, directory=d)
+        print(f"serving http://127.0.0.1:{a.serve}/{f}  (Ctrl+C to stop)")
+        http.server.ThreadingHTTPServer(("127.0.0.1", a.serve), h).serve_forever()
+    return 0
+
+
+def cmd_versions(a):
+    for b in versions.history_bundles():
+        vs = versions.list_versions(b)
+        print(f"{b:16} {len(vs):3} versions, newest {vs[-1] if vs else '-'}")
+    return 0
+
+
+def cmd_stage(a):
+    bad = [n for n in a.names if n not in stages.STAGES]
+    if bad:
+        print(f"unknown stage {', '.join(bad)}; choose from {', '.join(stages.ORDER)}", file=sys.stderr)
+        return 2
+    return stages.run_all(a.names)
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="toramre", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -31,6 +62,18 @@ def main(argv=None):
     w.add_argument("--out", help="report directory (default: state/)")
     w.add_argument("--fail-on", choices=["low", "medium", "high"], default="high", help="exit 1 when an event of this level exists")
     w.set_defaults(fn=cmd_watch)
+    u = sub.add_parser("ui", help="build the dashboard (one self-contained HTML page)")
+    u.add_argument("--out", help="output file (default: state/dashboard.html)")
+    u.add_argument("--serve", type=int, nargs="?", const=8765, help="also serve it on 127.0.0.1:PORT")
+    u.add_argument("--fragment", action="store_true", help="body only, no <html> wrapper (for embedding)")
+    u.set_defaults(fn=cmd_ui)
+    v = sub.add_parser("versions", help="list kept versions per bundle, oldest to newest")
+    v.set_defaults(fn=cmd_versions)
+    st = sub.add_parser("stage", help="run BIGDATA build stages in order: " + ", ".join(stages.ORDER),
+                        description="\n".join(f"{n:8} {stages.STAGES[n][1]}" for n in stages.ORDER),
+                        formatter_class=argparse.RawDescriptionHelpFormatter)
+    st.add_argument("names", nargs="*", metavar="STAGE", help="stages to run (default: all)")
+    st.set_defaults(fn=cmd_stage)
     a = p.parse_args(argv)
     return a.fn(a)
 
