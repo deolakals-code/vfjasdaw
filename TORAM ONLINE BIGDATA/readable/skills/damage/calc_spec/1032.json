@@ -1,0 +1,197 @@
+{
+ "version": 1,
+ "uid": 1032,
+ "name_th": "ไฮแฟมิเรีย",
+ "name_en": "HighFamilia",
+ "tree": "WizardSkill",
+ "category": "Special",
+ "max_level": 205,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "HighFamiliaAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1032,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod",
+  "Magictool"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0.1, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0.1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "HighFamiliaBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase status",
+     "fields": {
+      "status": [
+       {
+        "formula": "status",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "matkUpRate": [
+       {
+        "formula": "int((Lv * 2.5))",
+        "when": "always",
+        "by_level": [
+         2,
+         5,
+         7,
+         10,
+         12,
+         15,
+         17,
+         20,
+         22,
+         25
+        ]
+       }
+      ],
+      "magicPursuitAttackRate": [
+       {
+        "formula": "(Lv + (Lv << 2))",
+        "when": "always",
+        "by_level": [
+         5,
+         10,
+         15,
+         20,
+         25,
+         30,
+         35,
+         40,
+         45,
+         50
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "magicPursuitAttackRate",
+     "simplified": "magicPursuitAttackRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MatkUp",
+     "bonus_id": 55,
+     "formula": "((matkUpRate * status.Lv) // 100)",
+     "simplified": "matkUpRate × status.Lv // 100",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MaxMpUp",
+     "bonus_id": 64,
+     "formula": "maxMp",
+     "simplified": "maxMp",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "BufferEnd"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "BlizzardAction.IsFailure",
+  "BlizzardAction.OnInitialize",
+  "CrystalLaserAction.IsFailure",
+  "FamiliaActionManager.UpdateHighFamilia",
+  "LightningAction.IsFailure",
+  "LightningAction.calcPlayerToMobDamage",
+  "ManaCrystalAction.IsFailure",
+  "MeteorStrikeAction.IsFailure",
+  "MeteorStrikeAction.OnInitialize",
+  "PlayerBattleManager.PursuitAttack",
+  "StoneSkinAction.IsFailure"
+ ],
+ "variables": [
+  "IPlayerStatusCalculator.get_Lv",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "SkillBufferId.MatkUp",
+  "SkillBufferId.MaxMpUp",
+  "SkillBufferId.Value",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

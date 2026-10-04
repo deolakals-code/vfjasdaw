@@ -1,0 +1,414 @@
+{
+ "version": 1,
+ "uid": 15,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "CronosDrivePursuitAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 15,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "IsMagicAttack",
+   "formula": "0",
+   "simplified": "0",
+   "when": "IsInstanceOf(actarAction, PlayerActionManagerBase) ne 1 AND hasGemCart(409) OR IsInstanceOf(actarAction, PlayerActionManagerBase) eq 1 AND hasGemCart(409)",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + 40) + (status.Int // 5))",
+   "simplified": "Lv + status.Int // 5 + 40",
+   "when": "IsInstanceOf(actarAction, PlayerActionManagerBase) ne 1 AND hasGemCart(409) OR !hasGemCart(409) AND IsMagicAttack ne 0",
+   "vars": [
+    "status.Int"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 25) + 250)",
+   "simplified": "25 × Lv + 250",
+   "when": "always",
+   "by_level": [
+    275,
+    300,
+    325,
+    350,
+    375,
+    400,
+    425,
+    450,
+    475,
+    500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + 40) + (status.Str // 5))",
+   "simplified": "Lv + status.Str // 5 + 40",
+   "when": "IsInstanceOf(actarAction, PlayerActionManagerBase) eq 1 AND hasGemCart(409) OR !hasGemCart(409) AND IsMagicAttack eq 0",
+   "vars": [
+    "status.Str"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "leftTime",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "MobaMode ne 0"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam & 239)",
+   "simplified": "SkillParam & 239",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetActionManager",
+   "formula": "UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target)",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "damageIntarval",
+   "simplified": "damageIntarval",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "leftTime",
+   "formula": "(int((Lv eq 0 ? 0 : ((Lv - 1) * 0.5))) + 5)",
+   "simplified": "int(Lv = 0 ? 0 : 0.5 × Lv - 0.5) + 5",
+   "when": "Lv ne 10",
+   "by_level": [
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(int((Lv eq 0 ? 0 : ((Lv - 1) * 0.5))) + 5)",
+   "simplified": "int(Lv = 0 ? 0 : 0.5 × Lv - 0.5) + 5",
+   "when": "Lv ne 10",
+   "by_level": [
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int(((int((Lv eq 0 ? 0 : ((Lv - 1) * 0.5))) + 5) / damageIntarval))",
+   "simplified": "int((int(Lv = 0 ? 0 : 0.5 × Lv - 0.5) + 5) / damageIntarval)",
+   "when": "Lv ne 10"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "leftTime",
+   "formula": "Lv",
+   "simplified": "Lv",
+   "when": "Lv eq 10",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "Lv",
+   "simplified": "Lv",
+   "when": "Lv eq 10",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int((Lv / damageIntarval))",
+   "simplified": "int(Lv / damageIntarval)",
+   "when": "Lv eq 10"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) eq 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "PlayerAttackBase.GetWeaponElementType",
+    "TryGetBuff.buff",
+    "target.AvoidProbability",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "TryGetBuff.buff",
+    "target.AvoidProbability",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "SetParameter",
+   "kind": "set",
+   "name": "baseHitReaction",
+   "formula": "hitReaction",
+   "simplified": "hitReaction",
+   "when": "always"
+  },
+  {
+   "method": "SetParameter",
+   "kind": "set",
+   "name": "damageIntarval",
+   "formula": "intarval",
+   "simplified": "intarval",
+   "when": "always"
+  },
+  {
+   "method": "SetParameter",
+   "kind": "set",
+   "name": "isGuard",
+   "formula": "(SkillCalcTemplate.CheckStepResult(hitReaction, CalcStep.GuardCheck) & 1)",
+   "simplified": "SkillCalcTemplate.CheckStepResult(hitReaction, CalcStep.GuardCheck) & 1",
+   "when": "always",
+   "vars": [
+    "CalcStep.GuardCheck",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND isGuard ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability le 99",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "System.Math.Max",
+    "TryGetBuff.buff",
+    "target.AvoidProbability",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND isGuard ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability le 99",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "TryGetBuff.buff",
+    "target.AvoidProbability",
+    "target.ExpDefSkill",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99",
+   "op": "SetRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "TryGetBuff.buff",
+    "target.AvoidProbability",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99",
+   "op": "SetConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "TryGetBuff.buff",
+    "target.AvoidProbability",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack ne 0 AND isGuard ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability le 99",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "TryGetBuff.buff",
+    "target.AvoidProbability",
+    "target.ExpDefMagic",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND IsMagicAttack eq 0 AND isGuard ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability le 99",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "target.AvoidProbability",
+    "target.GuardProbability"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "CalcStep.GuardCheck",
+  "IMobStatusCalculator.get_AvoidProbability",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "IMobStatusCalculator.get_GuardProbability",
+  "IPlayerStatusCalculator.get_Int",
+  "IPlayerStatusCalculator.get_Str",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_IsDeadOrLocalDead",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "PlayerAttackBase.GetWeaponElementType",
+  "SkillCalcTemplate.CheckStepResult",
+  "System.Math.Max",
+  "TryGetBuff.buff",
+  "UnityEngine.GameObject.GetComponent",
+  "status.Int",
+  "status.Str",
+  "target.AvoidProbability",
+  "target.ExpDefMagic",
+  "target.ExpDefSkill",
+  "target.GuardProbability"
+ ],
+ "residual": []
+}

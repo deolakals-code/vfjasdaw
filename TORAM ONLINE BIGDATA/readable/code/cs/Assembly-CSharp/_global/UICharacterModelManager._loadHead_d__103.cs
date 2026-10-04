@@ -1,0 +1,41 @@
+// Assembly: Assembly-CSharp.dll
+// Namespace: 
+[CompilerGenerated]
+private sealed class UICharacterModelManager.<loadHead>d__103 : IEnumerator<object>, IEnumerator, IDisposable // TypeDefIndex: 8900
+{
+	// Fields
+	private int <>1__state; // 0x10
+	private object <>2__current; // 0x18
+	public int modelId; // 0x20
+	public UICharacterModelManager <>4__this; // 0x28
+	public int loadHeadId; // 0x30
+
+	// Properties
+	private object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+	private object System.Collections.IEnumerator.Current { get; }
+
+	// Methods
+
+	[DebuggerHidden]
+	// RVA: 0x1E4F2FC Offset: 0x1E4B2FC VA: 0x1E4F2FC
+	public void .ctor(int <>1__state) { }
+
+	[DebuggerHidden]
+	// RVA: 0x1E4F324 Offset: 0x1E4B324 VA: 0x1E4F324 Slot: 5
+	private void System.IDisposable.Dispose() { }
+
+	// RVA: 0x1E4F328 Offset: 0x1E4B328 VA: 0x1E4F328 Slot: 6
+	private bool MoveNext() { }
+
+	[DebuggerHidden]
+	// RVA: 0x1E4F4B8 Offset: 0x1E4B4B8 VA: 0x1E4F4B8 Slot: 4
+	private object System.Collections.Generic.IEnumerator<System.Object>.get_Current() { }
+
+	[DebuggerHidden]
+	// RVA: 0x1E4F4C0 Offset: 0x1E4B4C0 VA: 0x1E4F4C0 Slot: 8
+	private void System.Collections.IEnumerator.Reset() { }
+
+	[DebuggerHidden]
+	// RVA: 0x1E4F4F8 Offset: 0x1E4B4F8 VA: 0x1E4F4F8 Slot: 7
+	private object System.Collections.IEnumerator.get_Current() { }
+}

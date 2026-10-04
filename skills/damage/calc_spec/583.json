@@ -1,0 +1,46 @@
+{
+ "version": 1,
+ "uid": 583,
+ "name_th": "เสริมความเร็ว",
+ "name_en": "SpeedPerformanceImprovement",
+ "tree": "GolemSkill",
+ "category": "Mastery",
+ "max_level": 250,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "SpeedPerformanceImprovement",
+ "proration": null,
+ "eq_limit": [
+  "Bowgun",
+  "Rod"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "SpeedPerformanceImprovement",
+  "bonuses": {
+   "Aspd": {
+    "id": 6,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

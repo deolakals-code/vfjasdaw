@@ -1,0 +1,219 @@
+{
+ "version": 1,
+ "uid": 1153,
+ "name_th": "กำปั้นผดุงคุณธรรม",
+ "name_en": "ForefistPunch",
+ "tree": "CrusherSkill",
+ "category": "Attack",
+ "max_level": 50,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "ForefistPunchAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1153,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv + (Lv << 2)) << 2) + 200)",
+   "simplified": "20 × Lv + 200",
+   "when": "always",
+   "by_level": [
+    220,
+    240,
+    260,
+    280,
+    300,
+    320,
+    340,
+    360,
+    380,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1158], SkillBufferId.Value))",
+   "simplified": "(skillRate + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1158], SkillBufferId.Value))",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Value",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate * 0.01)",
+   "simplified": "0.01 × skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1153, Lv)",
+   "simplified": "AddSelfBuffer(1153, Lv)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass25_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1153)",
+   "simplified": "RemoveSelfBuffer(1153)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ForefistPunchBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "25",
+     "simplified": "25",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "GetWeaponType.item",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Value",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

@@ -1,0 +1,238 @@
+{
+ "version": 1,
+ "uid": 863,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "HolyGracePursuitAttackAction",
+ "proration": {
+  "slot": "Normal",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 863,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "5",
+   "simplified": "5",
+   "when": "always",
+   "by_level": 5
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 50) + baseINT)",
+   "simplified": "50 × Lv + baseINT",
+   "when": "(mainWeaponType & 0xfffffffe) eq 14"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "(status.Dex + (((Lv * 300) hi 1500 ? (Lv * 300) : 1500) - 1200))",
+   "simplified": "status.Dex + (300 × Lv > 1500 ? 300 × Lv : 1500) - 1200",
+   "when": "(mainWeaponType & 0xfffffffe) eq 14",
+   "vars": [
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "magicResistBreaker",
+   "formula": "(((Lv + (Lv << 2)) << 2) lo 100 ? ((Lv + (Lv << 2)) << 2) : 100)",
+   "simplified": "20 × Lv < 100 ? 20 × Lv : 100",
+   "when": "always",
+   "by_level": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(24)",
+   "simplified": "MathUtil.DisplayMeterToDistance(24)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(Lv * 50)",
+   "simplified": "50 × Lv",
+   "when": "(mainWeaponType & 0xfffffffe) ne 14",
+   "by_level": [
+    50,
+    100,
+    150,
+    200,
+    250,
+    300,
+    350,
+    400,
+    450,
+    500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "(((Lv * 300) hi 1500 ? (Lv * 300) : 1500) - 1200)",
+   "simplified": "(300 × Lv > 1500 ? 300 × Lv : 1500) - 1200",
+   "when": "(mainWeaponType & 0xfffffffe) ne 14",
+   "by_level": [
+    300,
+    300,
+    300,
+    300,
+    300,
+    600,
+    900,
+    1200,
+    1500,
+    1800
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Matk",
+   "simplified": "status.Matk",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefNormal / 100)",
+   "simplified": "target.ExpDefNormal / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefNormal"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IMobStatusCalculator.get_ExpDefNormal",
+  "IPlayerStatusCalculator.get_Dex",
+  "IPlayerStatusCalculator.get_Matk",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerPrimaryStatus.int",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "status.Dex",
+  "status.Matk",
+  "target.ExpDefNormal"
+ ],
+ "residual": []
+}

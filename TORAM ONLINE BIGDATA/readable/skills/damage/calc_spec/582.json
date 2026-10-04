@@ -1,0 +1,62 @@
+{
+ "version": 1,
+ "uid": 582,
+ "name_th": "เสริมพลังป้องกัน",
+ "name_en": "ShieldPerformanceImprovement",
+ "tree": "GolemSkill",
+ "category": "Mastery",
+ "max_level": 250,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "ShieldPerformanceImprovement",
+ "proration": null,
+ "eq_limit": [
+  "Bowgun",
+  "Rod"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "ShieldPerformanceImprovement",
+  "bonuses": {
+   "MobAttackLastDamageRate": {
+    "id": 42,
+    "expr": "(Lv << 1)",
+    "by_level": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14,
+     16,
+     18,
+     20
+    ]
+   },
+   "Value": {
+    "id": 28,
+    "expr": "(Lv << 1)",
+    "by_level": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14,
+     16,
+     18,
+     20
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

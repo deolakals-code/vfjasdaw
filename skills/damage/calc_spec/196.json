@@ -1,0 +1,68 @@
+{
+ "version": 1,
+ "uid": 196,
+ "name_th": "พักอย่างปลอดภัย",
+ "name_en": "SafetyRest",
+ "tree": "SurvivalSkill",
+ "category": "Mastery",
+ "max_level": 1,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "SafetyRest",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "SafetyRest",
+  "bonuses": {
+   "Percent": {
+    "id": 27,
+    "expr": "((Lv + (Lv << 2)) << 1)",
+    "by_level": [
+     10,
+     20,
+     30,
+     40,
+     50,
+     60,
+     70,
+     80,
+     90,
+     100
+    ]
+   },
+   "Value": {
+    "id": 28,
+    "expr": "((Lv + (Lv << 2)) << 1)",
+    "by_level": [
+     10,
+     20,
+     30,
+     40,
+     50,
+     60,
+     70,
+     80,
+     90,
+     100
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

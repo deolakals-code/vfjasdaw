@@ -1,0 +1,135 @@
+{
+ "version": 1,
+ "uid": 631,
+ "name_th": "ลมกระโชกแรง",
+ "name_en": "IchijhinnokazeAratame",
+ "tree": "MononofuSkill",
+ "category": "Mastery",
+ "max_level": 240,
+ "roles": [
+  "buff (self)",
+  "passive mastery",
+  "modifies normal-attack behaviour",
+  "boosts normal-attack damage"
+ ],
+ "class": "IchijhinnokazeAratame",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "ShukuchiBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "400",
+     "simplified": "400",
+     "when": [
+      "BuffEffectActive ne 0",
+      "unannouncedDestination ne 0"
+     ]
+    },
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "(Lv + (Lv << 2))",
+     "simplified": "5 × Lv",
+     "when": [
+      "BuffEffectActive ne 0",
+      "unannouncedDestination eq 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "((Lv * Lv) >> 1)",
+     "simplified": "Lv × Lv ÷ 2",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "unannouncedDestination": [
+     {
+      "method": "ValidUnannouncedDestination",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "InvalidUnannouncedDestination",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "InvalidUnannouncedDestination",
+    "ValidUnannouncedDestination"
+   ],
+   "attached_via": "caller:IchijhinnokazeAratame$$InvokeShukuchi",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "IchijhinnokazeAratame",
+  "bonuses": {}
+ },
+ "hooks": [
+  "IchijhinnokazeAratame.InvokeShukuchi"
+ ],
+ "variables": [
+  "SkillBufferId.NormalAttackRate",
+  "SkillBufferId.Value"
+ ],
+ "residual": []
+}

@@ -1,0 +1,10 @@
+// Assembly: Newtonsoft.Json.dll
+// Namespace: Newtonsoft.Json
+public enum MetadataPropertyHandling // TypeDefIndex: 15866
+{
+	// Fields
+	public int value__; // 0x0
+	public const MetadataPropertyHandling Default = 0;
+	public const MetadataPropertyHandling ReadAhead = 1;
+	public const MetadataPropertyHandling Ignore = 2;
+}

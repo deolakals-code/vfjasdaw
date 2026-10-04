@@ -1,0 +1,250 @@
+{
+ "version": 1,
+ "uid": 577,
+ "name_th": "อัญเชิญโกเล็ม",
+ "name_en": "CallGolem",
+ "tree": "GolemSkill",
+ "category": "Object",
+ "max_level": 1,
+ "roles": [
+  "buff (self)",
+  "placed object / trap / summon"
+ ],
+ "class": "CallGolemAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 577,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bowgun",
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "CallGolemBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "GolemBonus": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "damageCut": [
+       {
+        "formula": "(10 + ExSkillCallGolem.GetPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv, PointType.Shield))",
+        "when": "TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577) ne 0",
+        "by_level": null
+       },
+       {
+        "formula": "ExSkillCallGolem.GetPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv, PointType.Shield)",
+        "when": "TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577) ne 0",
+        "by_level": null
+       },
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((10 + ((((ExSkillCallGolem.CalcSurplusPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv) & 255) << 2) + ExSkillCallGolem.CalcSurplusPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv)) << 1)) + ([TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577)+0x10] eq 1 ? SkillMasteryBase.GetMasteryParam(MasteryId.LimitTimeUp) : (SkillMasteryBase.GetMasteryParam(MasteryId.LimitTimeUp) * 0.5)))",
+        "when": "TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577) ne 0",
+        "by_level": null
+       },
+       {
+        "formula": "(10 + ((((ExSkillCallGolem.CalcSurplusPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv) & 255) << 2) + ExSkillCallGolem.CalcSurplusPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv)) << 1))",
+        "when": "TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577) ne 0",
+        "by_level": null
+       },
+       {
+        "formula": "10",
+        "when": "TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577) eq 0",
+        "by_level": 10
+       },
+       {
+        "formula": "((10 + (((Lv << 2) + lv) << 1)) + (golemType eq 1 ? SkillMasteryBase.GetMasteryParam(MasteryId.LimitTimeUp) : (SkillMasteryBase.GetMasteryParam(MasteryId.LimitTimeUp) * 0.5)))",
+        "when": "always",
+        "by_level": null
+       },
+       {
+        "formula": "(10 + (((Lv << 2) + lv) << 1))",
+        "when": "always",
+        "by_level": 20
+       }
+      ],
+      "aspdRate": [
+       {
+        "formula": "((((ExSkillCallGolem.GetPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv, PointType.Speed) & 255) << 4) - ExSkillCallGolem.GetPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv, PointType.Speed)) + 0xffffffe7)",
+        "when": "TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577) ne 0",
+        "by_level": null
+       },
+       {
+        "formula": "(((ExSkillCallGolem.GetPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv, PointType.Speed) & 255) << 4) - ExSkillCallGolem.GetPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv, PointType.Speed))",
+        "when": "TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577) ne 0",
+        "by_level": null
+       },
+       {
+        "formula": "((((ExSkillCallGolem.GetPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv, PointType.Speed) & 255) << 4) - ExSkillCallGolem.GetPoint(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577), lv, PointType.Speed)) + 25)",
+        "when": "TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577) ne 0",
+        "by_level": null
+       },
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "golemType": [
+       {
+        "formula": "[TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577)+0x10]",
+        "when": "TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 577) ne 0",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "damageCut",
+     "simplified": "damageCut",
+     "when": []
+    },
+    {
+     "id": "AspdRate",
+     "bonus_id": 36,
+     "formula": "aspdRate",
+     "simplified": "aspdRate",
+     "when": [
+      "GolemBonus ne 0"
+     ]
+    },
+    {
+     "id": "AspdRate",
+     "bonus_id": 36,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "GolemBonus eq 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "golemType",
+     "simplified": "golemType",
+     "when": []
+    }
+   ],
+   "state": {
+    "GolemBonus": [
+     {
+      "method": "set_GolemBonus",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "BufferEnd",
+    "GetDamageResistRate",
+    "get_GolemBonus",
+    "set_GolemBonus"
+   ],
+   "attached_via": "name",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "CallGolemAction.EnchantEnd",
+  "CallGolemActionManager.BattleReservation",
+  "CallGolemActionManager.CalcMoveSpeed",
+  "CallGolemBuf.GetDamageResistRate",
+  "CallGolemNormalAttackAction.OnInitialize",
+  "GameManager.PlayerSkillUpdate",
+  "GameManager.ReceiveSummons",
+  "MainPlayer.PlayerDead",
+  "MobaPlayerSecondaryStatus.get_AtkMpRecovery",
+  "PlayerSecondaryStatus.get_AtkMpRecovery"
+ ],
+ "variables": [
+  "ExSkillCallGolem.CalcSurplusPoint",
+  "ExSkillCallGolem.GetPoint",
+  "MasteryId.LimitTimeUp",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_ExSkillManager",
+  "SkillBufferId.AspdRate",
+  "SkillBufferId.MobLastDamageRateBuf",
+  "SkillBufferId.Value",
+  "SkillMasteryBase.GetMasteryParam",
+  "TryGetExSkillData.out2",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

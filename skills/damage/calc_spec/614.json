@@ -1,0 +1,364 @@
+{
+ "version": 1,
+ "uid": 614,
+ "name_th": "ทริปเปิ้ลทรัสต์",
+ "name_en": "ThreeStageThrust",
+ "tree": "MononofuSkill",
+ "category": "Attack",
+ "max_level": 30,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "ThreeStageThrustAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 614,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "hasGemCart(214)",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 20) + 150) + (status.Agi // 5))",
+   "simplified": "20 × Lv + status.Agi // 5 + 150",
+   "when": "always",
+   "vars": [
+    "status.Agi"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 2)",
+   "simplified": "SkillParam | 2",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "!hasGemCart(214)",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamage"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "(PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamageRate"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "ThreeStageThrustBuf..ctor",
+   "formula": ".ctor(Lv, status.Lv)",
+   "simplified": ".ctor(Lv, status.Lv)",
+   "when": "IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "status.Lv"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ThreeStageThrustBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ThreeStageThrustBuf, Id)",
+   "when": "IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ThreeStageThrustBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int playerLv",
+     "fields": {
+      "temporaryCount": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "constantDamage": [
+       {
+        "formula": "(playerLv // (11 - lv))",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "SkillConstantDamage",
+     "bonus_id": 84,
+     "formula": "constantDamage",
+     "simplified": "constantDamage",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "SkillConstantDamage",
+     "bonus_id": 84,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "ThreeStageThrustBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "1"
+    }
+   },
+   "attached_via": "caller2:ThreeStageThrustBuf$$.ctor<-ThreeStageThrustAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerActionManager.ReceiveAttack"
+ ],
+ "variables": [
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Agi",
+  "IPlayerStatusCalculator.get_Lv",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerStatusBase.GetEquipElement",
+  "SkillBufferId.Count",
+  "SkillBufferId.SkillConstantDamage",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Object.op_Inequality",
+  "status.Agi",
+  "status.Lv"
+ ],
+ "residual": []
+}

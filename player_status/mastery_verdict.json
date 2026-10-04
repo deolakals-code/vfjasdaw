@@ -1,0 +1,1391 @@
+{
+ "40": {
+  "class": "BladeMasterMastery",
+  "name": "ซอร์ดเทคนิก",
+  "maxLv": 30,
+  "paramIds": [
+   8
+  ],
+  "readers": [
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "72": {
+  "class": "LongRangeMastary",
+  "name": "ลองเรนจ์",
+  "maxLv": 30,
+  "paramIds": [
+   8
+  ],
+  "readers": [
+   "PhantomRaveAction$$CalcPhantomRaveLastDamageRate",
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "75": {
+  "class": "QuickDraw",
+  "name": "ควิกดรอ",
+  "maxLv": 70,
+  "paramIds": [
+   0
+  ],
+  "readers": [],
+  "buffLookups": [],
+  "verdict": "c"
+ },
+ "86": {
+  "class": "ElementReach",
+  "name": "เอเลเมนท์สตาร์ทเตอร์",
+  "maxLv": 240,
+  "paramIds": [],
+  "readers": [
+   "BCollaboBossActionManager$$Damaged",
+   "EnemyMobActionManagerBase$$Damaged",
+   "GameManager$$PlayerSkillUpdate",
+   "GameManager$$ReceiveSkillLevelUp",
+   "GuildRaidBossMobActionManager$$Damaged",
+   "MobaPlayerActionManager$$Damaged",
+   "PlayerActionManager$$Damaged",
+   "PlayerAttackBase$$InitializeElement",
+   "PlayerAttackBase$$TemplateAssignment",
+   "PlayerStatusBase$$SetEquip",
+   "ScoreAttackBossActionManager$$Damaged",
+   "WideSpreadAction$$OnInitialize"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "104": {
+  "class": "ChainCast",
+  "name": "เชนแคสต์",
+  "maxLv": 30,
+  "paramIds": [],
+  "readers": [
+   "BCollaboBossActionManager$$Damaged",
+   "EnemyMobActionManagerBase$$Damaged",
+   "GuildRaidBossMobActionManager$$Damaged",
+   "MagicArrowAction$$ActionSkillEvent",
+   "PlayerAttackBase$$ActionStartMagicSkill",
+   "ScoreAttackBossActionManager$$Damaged"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "107": {
+  "class": "PowerWave",
+  "name": "พาวเวอร์เวฟ",
+  "maxLv": 70,
+  "paramIds": [],
+  "readers": [
+   "AutoDeviceAttackAction$$ActionPreparation",
+   "GemCartBuffer.PowerWaveChangeBuff$$OnGetValue",
+   "MergeMaterial$$CreateMergeMaterial",
+   "NormalAttackAction$$OnInitialize",
+   "UIRegistletMainManager$$GetDescriptionValueText"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "115": {
+  "class": "RapidCharge",
+  "name": "แรพพิดชาร์จ",
+  "maxLv": 240,
+  "paramIds": [
+   28
+  ],
+  "readers": [
+   "ChargingAction$$CalcChargingCastTime",
+   "MindimageSenjuSupportAction$$InitializeCharging",
+   "ReceiveSupportResult$$OnActionPlayerSupport"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "144": {
+  "class": "MindimageSenju",
+  "name": "แอบสแตรกต์อาร์ม",
+  "maxLv": 240,
+  "paramIds": [],
+  "readers": [
+   "AvoidActionManager$$CheckMindimageSenju",
+   "MindimageSenjuAttackAction.<>c__DisplayClass82_0$$<ActionStart>b__0",
+   "MindimageSenjuSkillBase$$CheckInheritance",
+   "MindimageSenjuSupportAction.<>c__DisplayClass57_0$$<ActionStart>b__0",
+   "MobaPlayerBattleManager$$StartMindimageSenju",
+   "PlayerBattleManager$$StartMindimageSenju"
+  ],
+  "buffLookups": [
+   "AvoidActionManager$$CheckMindimageSenju",
+   "MindimageSenjuSkillBase$$CheckInheritance"
+  ],
+  "verdict": "a"
+ },
+ "165": {
+  "class": "PhysicalGuard",
+  "name": "ฟิซิคัลการ์ด",
+  "maxLv": 180,
+  "paramIds": [
+   0
+  ],
+  "readers": [
+   "MobAttackBase$$SetAbnormalEffect"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "166": {
+  "class": "MirageStep",
+  "name": "มิราจอีวาชั่น",
+  "maxLv": 180,
+  "paramIds": [
+   0
+  ],
+  "readers": [
+   "AvoidActionManager$$AvoidMove",
+   "AvoidActionManager$$AvoidStart",
+   "AvoidActionManager$$CheckActivateMirageStep"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "193": {
+  "class": "ActDead",
+  "name": "แกล้งตาย",
+  "maxLv": 1,
+  "paramIds": [],
+  "readers": [],
+  "buffLookups": [],
+  "verdict": "c"
+ },
+ "199": {
+  "class": "LeewayBattle",
+  "name": "เร่ง HP ต่อเนื่อง",
+  "maxLv": 20,
+  "paramIds": [
+   28
+  ],
+  "readers": [
+   "PlayerSecondaryStatus$$CalcHpRecovery"
+  ],
+  "buffLookups": [],
+  "verdict": "b",
+  "detailsReaders": [
+   "PlayerSecondaryStatus$$CalcHpRecovery"
+  ],
+  "probe": {},
+  "gate": {
+   "PlayerSecondaryStatus$$CalcHpRecovery": [
+    "HealingSong",
+    "LifeRecovery",
+    "isBattle"
+   ]
+  }
+ },
+ "201": {
+  "class": "CoolBattlePlan",
+  "name": "เร่ง MP ต่อเนื่อง",
+  "maxLv": 20,
+  "paramIds": [
+   28
+  ],
+  "readers": [
+   "PlayerSecondaryStatus$$CalcMpRecovery"
+  ],
+  "buffLookups": [],
+  "verdict": "b",
+  "detailsReaders": [
+   "PlayerSecondaryStatus$$CalcMpRecovery"
+  ],
+  "probe": {},
+  "gate": {
+   "PlayerSecondaryStatus$$CalcMpRecovery": [
+    "HealingSong",
+    "HighCycle",
+    "ManaRecharge",
+    "isBattle"
+   ]
+  }
+ },
+ "225": {
+  "class": "FirstAidMastary",
+  "name": "ปฐมพยาบาล",
+  "maxLv": 10,
+  "paramIds": [],
+  "readers": [],
+  "buffLookups": [],
+  "verdict": "c"
+ },
+ "262": {
+  "class": "GuardStrike",
+  "name": "การ์ดสไตร์ค",
+  "maxLv": 110,
+  "paramIds": [
+   34
+  ],
+  "readers": [
+   "MobaPlayerBattleManager$$GuardStrikeAction",
+   "PlayerBattleManager$$GuardStrikeAction"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "289": {
+  "class": "KnifeMastery",
+  "name": "",
+  "maxLv": 10,
+  "paramIds": [
+   26
+  ],
+  "readers": [],
+  "buffLookups": [],
+  "verdict": "c"
+ },
+ "293": {
+  "class": "DoubleThrow",
+  "name": "ดับเบิ้ลสแทบ",
+  "maxLv": 50,
+  "paramIds": [
+   0
+  ],
+  "readers": [
+   "AvoidActionManager$$DoubleThrowAvoid",
+   "PlayerAttackBase$$CalcDoubleThrowLastDamageRate"
+  ],
+  "buffLookups": [
+   "AvoidActionManager$$DoubleThrowAvoid",
+   "PlayerBattleManager$$OnSkillActionDamaged"
+  ],
+  "verdict": "a"
+ },
+ "294": {
+  "class": "ThreateningThorwArts",
+  "name": "อเมซซิ่งโธร์ว",
+  "maxLv": 110,
+  "paramIds": [
+   0
+  ],
+  "readers": [
+   "CrazyDaggerAction$$ActionPreparation",
+   "CrazyDaggerAction$$calcPlayerToMobDamage",
+   "GatlingKnifeAction$$calcPlayerToMobDamage",
+   "KnifeCombatAction$$calcPlayerToMobDamage",
+   "NormalAttackAction$$attachSecondArmDamage",
+   "PoisonDaggerAction$$calcPlayerToMobDamage",
+   "SpikeDartAction$$calcPlayerToMobDamage",
+   "ThrowingAction$$calcPlayerToMobDamage"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "296": {
+  "class": "SecondArm",
+  "name": "แซคเคิลอาร์ม",
+  "maxLv": 5,
+  "paramIds": [
+   0,
+   26
+  ],
+  "readers": [
+   "NormalAttackAction$$CheckSecondArm",
+   "NormalAttackAction$$attachSecondArmDamage",
+   "NormalAttackAction$$calcPlayerToMobDamage"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "297": {
+  "class": "IntenseKnife",
+  "name": "อินเทนซีฟไนฟ์",
+  "maxLv": 20,
+  "paramIds": [
+   0,
+   26
+  ],
+  "readers": [
+   "NormalAttackAction$$CheckSecondArm",
+   "NormalAttackAction$$attachSecondArmDamage",
+   "NormalAttackAction$$calcPlayerToMobDamage"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "298": {
+  "class": "MailBreaker",
+  "name": "เมลเบรคเกอร์",
+  "maxLv": 110,
+  "paramIds": [
+   0,
+   27
+  ],
+  "readers": [
+   "NormalAttackAction$$CalcDef",
+   "NormalAttackAction$$attachSecondArmDamage"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "450": {
+  "class": "CaptureTechnicI",
+  "name": "เทคนิคจับสัตว์ I",
+  "maxLv": 30,
+  "paramIds": [
+   32,
+   33
+  ],
+  "readers": [
+   "CaptureTarget$$.ctor",
+   "CaptureTargetFactory$$CheckCaptureType"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "451": {
+  "class": "GoodTame",
+  "name": "จับอย่างเชี่ยวชาญ",
+  "maxLv": 30,
+  "paramIds": [],
+  "readers": [],
+  "buffLookups": [],
+  "verdict": "c"
+ },
+ "453": {
+  "class": "CaptureTechnicII",
+  "name": "เทคนิคจับสัตว์ II",
+  "maxLv": 90,
+  "paramIds": [],
+  "readers": [
+   "CaptureTarget$$.ctor",
+   "CaptureTargetFactory$$CheckCaptureType"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "454": {
+  "class": "CarefulCapture",
+  "name": "จับอย่างละม่อม",
+  "maxLv": 90,
+  "paramIds": [],
+  "readers": [],
+  "buffLookups": [],
+  "verdict": "c"
+ },
+ "484": {
+  "class": "HeavyBlow",
+  "name": "เต็มแรง",
+  "maxLv": 20,
+  "paramIds": [
+   0,
+   8
+  ],
+  "readers": [
+   "PhantomRaveAction$$CalcPhantomRaveLastDamageRate",
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "485": {
+  "class": "Concentration",
+  "name": "สมาธิ",
+  "maxLv": 20,
+  "paramIds": [
+   0,
+   8
+  ],
+  "readers": [
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "488": {
+  "class": "DesperateResistance",
+  "name": "ต่อต้านเต็มกำลัง",
+  "maxLv": 60,
+  "paramIds": [
+   25
+  ],
+  "readers": [
+   "AutoMemberActionManager$$Damaged",
+   "DesperateResistance$$DamageReduction",
+   "MercenaryActionManager$$Damaged",
+   "MobaPlayerActionManager$$Damaged",
+   "PetMemberActionManager$$Damaged",
+   "PlayerActionManager$$Damaged"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "493": {
+  "class": "ThePursuitOfPursuit",
+  "name": "แก่นแท้แห่งการโจมตี",
+  "maxLv": 180,
+  "paramIds": [
+   27
+  ],
+  "readers": [
+   "MagicPursuit$$Calc",
+   "PhysicalPursuit$$Calc",
+   "PlayerBattleManager$$PursuitAttack"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "495": {
+  "class": "SuperGrip",
+  "name": "ซุปเปอร์กริป",
+  "maxLv": 180,
+  "paramIds": [
+   27
+  ],
+  "readers": [
+   "MobaPlayerActionManager$$ApparentDeath",
+   "PlayerActionManager$$ApparentDeath"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "515": {
+  "class": "Parry",
+  "name": "แพรี่",
+  "maxLv": 35,
+  "paramIds": [
+   0,
+   25
+  ],
+  "readers": [
+   "MobAttackBase$$CalcLastDamage"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "524": {
+  "class": "KnightHeal",
+  "name": "ไนท์ฮีล",
+  "maxLv": 205,
+  "paramIds": [
+   27
+  ],
+  "readers": [
+   "KnightHeal$$Damaged",
+   "KnightStanceAction$$ActionHit",
+   "MobaPlayerActionManager$$Damaged",
+   "PlayerActionManager$$DamagedKnightHeal"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "525": {
+  "class": "AfterShield",
+  "name": "อาฟเตอร์ชีลด์",
+  "maxLv": 285,
+  "paramIds": [
+   49
+  ],
+  "readers": [
+   "AfterShield$$CheckActive",
+   "AfterShield$$GetNormalResist",
+   "P_DeffenceAction$$ActionPreparation",
+   "PlayerActionManager$$Damaged",
+   "PlayerStatusBase$$GetBonusValueWithBuf"
+  ],
+  "buffLookups": [
+   "MobAttackBase$$CalcLastDamage"
+  ],
+  "verdict": "b",
+  "detailsReaders": [
+   "AfterShield$$GetNormalResist",
+   "PlayerStatusBase$$GetBonusValueWithBuf"
+  ],
+  "probe": {},
+  "gate": {
+   "AfterShield$$GetNormalResist": null,
+   "PlayerStatusBase$$GetBonusValueWithBuf": []
+  }
+ },
+ "560": {
+  "class": "HuntersKnowledge",
+  "name": "ความรู้ของนักล่า",
+  "maxLv": 285,
+  "paramIds": [
+   22,
+   26
+  ],
+  "readers": [
+   "MultipleHuntAction$$InitializeChasseGarde",
+   "MultipleHuntAction$$InitializeHighRainSnipe",
+   "MultipleHuntAction$$InitializeSharpSnipe",
+   "MultipleHuntAction$$InitializeWolfAssault"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "578": {
+  "class": "LancerTypeImproved",
+  "name": "แลนเซอร์พลัส",
+  "maxLv": 200,
+  "paramIds": [
+   22,
+   40
+  ],
+  "readers": [
+   "CallGolemNormalAttackAction$$InitBusterAttack",
+   "CallGolemNormalAttackAction$$InitLancerAttack",
+   "CallGolemNormalAttackAction$$InitShieldAttack"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "579": {
+  "class": "ShieldTypeImproved",
+  "name": "ชีลด์พลัส",
+  "maxLv": 200,
+  "paramIds": [
+   28,
+   33
+  ],
+  "readers": [
+   "CallGolemBuf$$.ctor",
+   "CallGolemBuf$$GetDamageResistRate"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "580": {
+  "class": "BusterTypeImproved",
+  "name": "บัสเตอร์พลัส",
+  "maxLv": 200,
+  "paramIds": [
+   22,
+   40
+  ],
+  "readers": [
+   "CallGolemNormalAttackAction$$InitBusterAttack",
+   "CallGolemNormalAttackAction$$InitLancerAttack",
+   "CallGolemNormalAttackAction$$InitShieldAttack"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "581": {
+  "class": "AttackPerformanceImprovement",
+  "name": "เสริมพลังโจมตี",
+  "maxLv": 250,
+  "paramIds": [
+   20,
+   28
+  ],
+  "readers": [
+   "CallGolemAction$$EnchantEnd",
+   "CallGolemNormalAttackAction$$OnInitialize"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "582": {
+  "class": "ShieldPerformanceImprovement",
+  "name": "เสริมพลังป้องกัน",
+  "maxLv": 250,
+  "paramIds": [
+   28,
+   42
+  ],
+  "readers": [
+   "CallGolemBuf$$GetDamageResistRate"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "583": {
+  "class": "SpeedPerformanceImprovement",
+  "name": "เสริมความเร็ว",
+  "maxLv": 250,
+  "paramIds": [
+   6
+  ],
+  "readers": [
+   "CallGolemNormalAttackAction$$OnInitialize"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "613": {
+  "class": "WeaponInBothHands",
+  "name": "ทูแฮนด์",
+  "maxLv": 10,
+  "paramIds": [
+   1,
+   3,
+   21,
+   22,
+   36
+  ],
+  "readers": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk",
+   "MobaPlayerSecondaryStatus$$GetCrtConstant",
+   "MobaPlayerSecondaryStatus$$get_Hit",
+   "MobaPlayerSecondaryStatus$$get_Stable",
+   "NormalAttackAction$$CalcBaseDamage",
+   "PlayerAttackBase$$calcBaseDamage",
+   "PlayerSecondaryStatus$$GetCrtConstant",
+   "PlayerSecondaryStatus$$get_Hit",
+   "PlayerSecondaryStatus$$get_Stable",
+   "RapidAquaVortexAction$$calcBaseDamage",
+   "ThunderStyleAction$$calcBaseDamage",
+   "WindStyleAction$$calcBaseDamage"
+  ],
+  "buffLookups": [],
+  "verdict": "b",
+  "detailsReaders": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk",
+   "PlayerSecondaryStatus$$GetCrtConstant",
+   "PlayerSecondaryStatus$$get_Hit",
+   "PlayerSecondaryStatus$$get_Stable"
+  ],
+  "probe": {
+   "EqAtk": {
+    "main": 0,
+    "sub": 23,
+    "armour": 0,
+    "withOtherMasteries": true
+   },
+   "Stable": {
+    "main": 0,
+    "sub": 23,
+    "armour": 0,
+    "withOtherMasteries": true
+   },
+   "Atk": {
+    "main": 0,
+    "sub": 23,
+    "armour": 0,
+    "withOtherMasteries": true
+   },
+   "Hit": {
+    "main": 0,
+    "sub": 23,
+    "armour": 0,
+    "withOtherMasteries": true
+   },
+   "Critical": {
+    "main": 0,
+    "sub": 23,
+    "armour": 0,
+    "withOtherMasteries": true
+   },
+   "CriticalMagic": {
+    "main": 0,
+    "sub": 23,
+    "armour": 0,
+    "withOtherMasteries": true
+   },
+   "Matk": {
+    "main": 14,
+    "sub": 23,
+    "armour": 0,
+    "withOtherMasteries": true
+   }
+  },
+  "gate": {
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk": [
+    "Destroyer",
+    "Ichijhinnokaze",
+    "Inflexibility",
+    "Kakei"
+   ],
+   "PlayerSecondaryStatus$$GetCrtConstant": [
+    "ArkSaber",
+    "AshuraAura",
+    "Camouflage",
+    "Detection",
+    "KnifeCombat",
+    "Stabilis"
+   ],
+   "PlayerSecondaryStatus$$get_Hit": [],
+   "PlayerSecondaryStatus$$get_Stable": [
+    "46",
+    "56",
+    "82"
+   ]
+  }
+ },
+ "619": {
+  "class": "Shukuchi",
+  "name": "ชูคุจิ",
+  "maxLv": 70,
+  "paramIds": [],
+  "readers": [
+   "CloningTechniqueAction$$ActionStart",
+   "IchijhinnokazeAratame$$InvokeShukuchi",
+   "IchijhinnokazeAttackAction$$ActionPreparation",
+   "MobaPlayerBattleManager.<ShukuchiMoveWait>d__93$$MoveNext",
+   "PlayerAttackBase$$ActionStart",
+   "PlayerBattleManager.<ShukuchiMoveWait>d__54$$MoveNext",
+   "ShukuchiAction$$CanActivated"
+  ],
+  "buffLookups": [
+   "IchijhinnokazeAratame$$InvokeShukuchi",
+   "IchijhinnokazeBuf$$Updata",
+   "MobaPlayerBattleManager$$AbnormalFear",
+   "MobaPlayerBattleManager$$OnBattleEnd",
+   "NormalAttackAction$$ActionPreparation",
+   "NormalAttackAction$$calcPlayerToMobDamage",
+   "PlayerBattleManager$$AbnormalFear",
+   "PlayerBattleManager$$OnBattleEnd",
+   "PlayerSecondaryStatus$$get_AtkMpRecovery"
+  ],
+  "verdict": "a"
+ },
+ "626": {
+  "class": "UnannouncedDestination",
+  "name": "นุคิอุจิเซ็นโนเซ็น",
+  "maxLv": 240,
+  "paramIds": [],
+  "readers": [
+   "IchijhinnokazeAttackAction$$CheckSetunakenran",
+   "MobaPlayerActionManager$$OnEnterField",
+   "NormalAttackAction$$ActionPreparation",
+   "NormalAttackAction$$calcPlayerToMobDamage",
+   "PlayerActionManager$$OnEnterField",
+   "PlayerAttackBase$$RemoveUnannouncedDestinationBuf",
+   "ShukuchiAction$$OnInitialize"
+  ],
+  "buffLookups": [
+   "IchijhinnokazeAttackAction$$CheckSetunakenran",
+   "NormalAttackAction$$ActionPreparation",
+   "ShukuchiAction$$OnInitialize",
+   "WaveBladeAction$$ActionPreparation"
+  ],
+  "verdict": "a"
+ },
+ "627": {
+  "class": "Inflexibility",
+  "name": "ดอนท์เลส",
+  "maxLv": 240,
+  "paramIds": [],
+  "readers": [],
+  "buffLookups": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk",
+   "HeavenlyStarBuf$$IllusionarySceneReset",
+   "MobaPlayerSecondaryStatus$$GetMotionSpeed",
+   "PlayerAttackBase$$CalcCostMp",
+   "PlayerSecondaryStatus$$GetCalcMotionSpeed",
+   "SwordMove$$AddBuf"
+  ],
+  "verdict": "c"
+ },
+ "628": {
+  "class": "Mizukaze",
+  "name": "ลมมงคล",
+  "maxLv": 30,
+  "paramIds": [
+   27
+  ],
+  "readers": [
+   "GameManager$$ReceiveSkillLevelUp",
+   "Mizukaze$$CheckActive",
+   "PlayerActionManager$$Damaged",
+   "PlayerBattleManager$$OnSkillActionDamaged",
+   "PlayerBattleManager$$OnSkillActionRangeDamaged"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "631": {
+  "class": "IchijhinnokazeAratame",
+  "name": "ลมกระโชกแรง",
+  "maxLv": 240,
+  "paramIds": [],
+  "readers": [
+   "IchijhinnokazeAratame$$GetArahaeBonus",
+   "IchijhinnokazeAratame$$GetHibariBonus",
+   "IchijhinnokazeAratame$$GetIbukiBonus",
+   "IchijhinnokazeAratame$$GetKariwatashiBonus",
+   "IchijhinnokazeAratame$$GetNagiBonus",
+   "IchijhinnokazeAratame$$GetNormalAttackSkillRateBonus",
+   "IchijhinnokazeAttackAction$$InitializeArahae",
+   "IchijhinnokazeAttackAction$$InitializeHibari",
+   "IchijhinnokazeAttackAction$$InitializeIbuki",
+   "IchijhinnokazeAttackAction$$InitializeKariwatashi",
+   "IchijhinnokazeAttackAction$$InitializeNagi",
+   "NormalAttackAction$$calcPlayerToMobDamage"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "657": {
+  "class": "ArkSaber",
+  "name": "อาร์คเซเบอร์",
+  "maxLv": 250,
+  "paramIds": [],
+  "readers": [
+   "ArkSaberAction$$ConverterArkSaberSkillId",
+   "MobaPlayerActionManager$$SupportReserve",
+   "NormalAttackAction$$calcPlayerToMobDamage",
+   "PlayerAttackBase$$TemplateAssignment",
+   "UIActiveBaseShortcutButton$$SkillButton",
+   "UIGLShortcutButton$$LabelUpdate",
+   "UIShortcutListButton$$OnSkillCostCheck",
+   "UIShortcutListButton$$SetSkillButton"
+  ],
+  "buffLookups": [
+   "MobAttackBase$$CalcLastDamage",
+   "MobaPlayerSecondaryStatus$$GetCrtConstant",
+   "PlayerAttackBase$$CalcCostMp",
+   "PlayerAttackBase$$RemoveAfterSkillBuf",
+   "PlayerDataManager$$OnSkillBuffEnd",
+   "PlayerSecondaryStatus$$GetCrtConstant",
+   "SaberAuraAction$$ActionHit",
+   "UIShortcutListButton$$OnSkillCostCheck"
+  ],
+  "verdict": "a"
+ },
+ "706": {
+  "class": "RushAidMastery",
+  "name": "เอ็กเพรสเอด",
+  "maxLv": 90,
+  "paramIds": [
+   25,
+   28
+  ],
+  "readers": [
+   "PlayerBattleManager$$checkAssistMove"
+  ],
+  "buffLookups": [
+   "MobAttackBase$$CalcLastDamage",
+   "PlayerActionManager$$Damaged",
+   "PlayerActionManager$$get_MoveSpeed",
+   "PlayerBattleManager.<>c__DisplayClass53_0$$<checkAssistMove>b__0"
+  ],
+  "verdict": "a"
+ },
+ "719": {
+  "class": "EnhanceSprite",
+  "name": "สไปรท์อัพเกรด",
+  "maxLv": 300,
+  "paramIds": [],
+  "readers": [
+   "AstralLanceBuf$$.ctor",
+   "AutoDeviceAction$$ActionHit",
+   "CounterForceBuf$$.ctor",
+   "StabilisAction$$ActionHit"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "720": {
+  "class": "Retake",
+  "name": "รีเทค",
+  "maxLv": 300,
+  "paramIds": [],
+  "readers": [],
+  "buffLookups": [
+   "PlayerActionManager$$Damaged"
+  ],
+  "verdict": "c"
+ },
+ "777": {
+  "class": "SoundVeil",
+  "name": "ซาวนด์เวล",
+  "maxLv": 120,
+  "paramIds": [],
+  "readers": [
+   "MobAttackBase$$CalcLastDamage",
+   "SoundVeil$$GetReduceDamageRateValue"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "778": {
+  "class": "BattleNotes",
+  "name": "แบทเทิลโน้ต",
+  "maxLv": 120,
+  "paramIds": [
+   27
+  ],
+  "readers": [
+   "BattleNotes$$CheckAttack",
+   "BattleNotesAttackAction$$ActionPreparation",
+   "PlayerActionManager$$Update",
+   "PlayerBattleManager$$StartBattleNotesAttack"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "837": {
+  "class": "BlessStrengthen",
+  "name": "เอนเชนส์เบลส",
+  "maxLv": 125,
+  "paramIds": [],
+  "readers": [
+   "BlessAction$$OnInitialize"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "845": {
+  "class": "AspisSeoul",
+  "name": "แอสพิสโซล",
+  "maxLv": 285,
+  "paramIds": [],
+  "readers": [
+   "MobAttackBase$$CalcLastDamage",
+   "ReceiveSupportResult$$OnEventPlayerSupport"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "846": {
+  "class": "SacredTeachings",
+  "name": "คำสอนศักดิ์สิทธิ์",
+  "maxLv": 285,
+  "paramIds": [],
+  "readers": [
+   "ReceiveSupportResult$$OnActionPlayerSupport",
+   "ReceiveSupportResult$$OnEventPlayerSupport"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "871": {
+  "class": "EnchantedSpell",
+  "name": "เอนชานท์สเปล",
+  "maxLv": 180,
+  "paramIds": [],
+  "readers": [
+   "PlayerAttackBase$$CheckEnchantedSpellMpLessInvoke",
+   "ReceiveSupportResult$$OnEventPlayerSupport",
+   "UIMagicBladeExSkillManager.<<Initialized>g__LoadExSkillData|33_0>d$$MoveNext"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "877": {
+  "class": "DrainRecall",
+  "name": "เดรนรีคอล",
+  "maxLv": 120,
+  "paramIds": [],
+  "readers": [
+   "DrainBarrierAction.<>c__DisplayClass21_0$$<ActionStart>b__0",
+   "DrainBarrierAction.<>c__DisplayClass21_0$$<ActionStart>b__1"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "930": {
+  "class": "PetHpUp",
+  "name": "HP อัพ",
+  "maxLv": 1,
+  "paramIds": [
+   12,
+   13
+  ],
+  "readers": [
+   "PetStatus$$get_MaxHp"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "932": {
+  "class": "PetHide",
+  "name": "ซ่อนตัว",
+  "maxLv": 1,
+  "paramIds": [
+   35
+  ],
+  "readers": [
+   "PetMemberActionManager$$DamageTransfer"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "950": {
+  "class": "PetProtect",
+  "name": "ปกป้อง",
+  "maxLv": 1,
+  "paramIds": [
+   35
+  ],
+  "readers": [
+   "PlayerActionManager$$DamageTransfer"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "952": {
+  "class": "PetMpUp",
+  "name": "MP อัพ",
+  "maxLv": 1,
+  "paramIds": [
+   14
+  ],
+  "readers": [
+   "PetStatus$$get_MaxMp"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "978": {
+  "class": "GodSpearHandlingMastary",
+  "name": "ออลไมทีวีลด์",
+  "maxLv": 240,
+  "paramIds": [
+   8
+  ],
+  "readers": [
+   "GodSpearHandling1Action$$IsFailure",
+   "GodSpearHandling2Action$$IsFailure",
+   "GodSpearHandling3Action$$IsFailure",
+   "HandlingerOfGodspeedBuf$$DamageFunction",
+   "HandlingerOfGodspeedBuf$$GetGodSpearHandlingParam",
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate",
+   "ShortcutManager$$LoadShortcut",
+   "ShortcutManager$$ShortcutChatPanelOpen",
+   "ShortcutManager$$ShortcutChatTargetOpen",
+   "ShortcutManager$$ShortcutPanelOpen",
+   "SkillManager$$GetAvailableSkill",
+   "SkillManager$$updateAvailableSkill",
+   "UIActiveBaseShortcutButton$$SkillButton",
+   "UIComboPanelManager$$IsComboNG",
+   "UIComboWindow$$Initialize",
+   "UIComboWindow$$OnPushSkillTree",
+   "UIComboWindow$$OnSwitchSkillList",
+   "UIComboWindow$$SetSkillTreeButton",
+   "UIShortcutCustomManager$$SetLowerShortcutLabel",
+   "UIShortcutCustomSkill$$SetSkillDataList"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "979": {
+  "class": "TornadoLanceMastary",
+  "name": "ทอร์นาโดแลนซ์",
+  "maxLv": 240,
+  "paramIds": [],
+  "readers": [
+   "BCollaboBossActionManager$$Damaged",
+   "EnemyMobActionManagerBase$$Damaged",
+   "GuildRaidBossMobActionManager$$Damaged",
+   "ReceiveBattleResult$$AttackMobaMob",
+   "ScoreAttackBossActionManager$$Damaged"
+  ],
+  "buffLookups": [
+   "MagicPursuit$$Calc",
+   "MobAttackBase$$CalcHit",
+   "MobEventScriptAttack$$CalcHit",
+   "MobaPlayerSecondaryStatus$$get_CriticalDmg",
+   "PhysicalPursuit$$Calc",
+   "PlayerAttackBase$$CalcStable",
+   "PlayerAttackBase$$ChackCorrectHit",
+   "PlayerSecondaryStatus$$CalcCriticalDmg",
+   "PlayerSecondaryStatus$$get_CurrectHit"
+  ],
+  "verdict": "a"
+ },
+ "998": {
+  "class": "Abandonment",
+  "name": "ละทิ้ง",
+  "maxLv": 125,
+  "paramIds": [
+   8,
+   20
+  ],
+  "readers": [
+   "AssassinStubAction$$calcPlayerToMobDamage",
+   "MobAttackBase$$CalcHit",
+   "MobEventScriptAttack$$CalcHit"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "999": {
+  "class": "Seekerius",
+  "name": "ซิคาเรียส",
+  "maxLv": 205,
+  "paramIds": [
+   8
+  ],
+  "readers": [
+   "AssassinStubAction$$<ActionPreparation>b__28_0",
+   "AssassinStubAction$$calcPlayerToMobDamage",
+   "MobAttackBase$$CalcLastDamage"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1002": {
+  "class": "CorrosivePoison",
+  "name": "พิษกัดกร่อน",
+  "maxLv": 35,
+  "paramIds": [],
+  "readers": [
+   "EnemyMobActionManagerBase$$DamagedAddAbnormal"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1005": {
+  "class": "AssassinationSecrets",
+  "name": "เคล็ดลับลอบสังหาร",
+  "maxLv": 285,
+  "paramIds": [],
+  "readers": [
+   "AssassinStubAction$$ActionPreparation",
+   "FuneVinteAction$$ActionPreparation"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1007": {
+  "class": "PoisonMixer",
+  "name": "นักปรุงยาพิษ",
+  "maxLv": 285,
+  "paramIds": [],
+  "readers": [
+   "DeathReceptionAction$$ActionPreparation",
+   "DragonicChargeAction$$calcPlayerToMobDamage",
+   "NormalAttackAction$$calcPlayerToMobDamage",
+   "PoisonDaggerAction$$calcPlayerToMobDamage",
+   "PoisonMixer$$CheckActive"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1036": {
+  "class": "MagicalGuidance",
+  "name": "ซอร์ดเซอรีไกด์",
+  "maxLv": 205,
+  "paramIds": [
+   28,
+   38
+  ],
+  "readers": [
+   "OverLimitBuf$$GetParam"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1037": {
+  "class": "CatsDropItem",
+  "name": "ของที่แมวทำหล่น",
+  "maxLv": 285,
+  "paramIds": [
+   27
+  ],
+  "readers": [
+   "PlayerBattleManager$$StartCatsDropItem"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1038": {
+  "class": "MagicResearch",
+  "name": "การวิจัยเวทมนตร์",
+  "maxLv": 285,
+  "paramIds": [
+   26,
+   28,
+   38
+  ],
+  "readers": [
+   "FamiliaBlizzardAction$$OnInitialize",
+   "FamiliaLightningAction$$OnInitialize",
+   "FamiliaMeteorStrikeAction$$OnInitialize",
+   "FamiliaStoneSkinAction$$OnInitialize",
+   "ImperialRayAction$$OnInitialize",
+   "ImperialRayPursuitAction$$OnInitialize"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1089": {
+  "class": "BarehandMastery",
+  "name": "ความชำนาญการสู้มือเปล่า",
+  "maxLv": 1,
+  "paramIds": [
+   1
+  ],
+  "readers": [
+   "EarthShatteringAction$$ActionSkillEvent",
+   "EquipItemData.HundCalculator$$calcEqAtkBonus",
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk",
+   "FuriousEffortsAction$$ActionStart",
+   "GameManager$$CheckChangeBarehandQigong",
+   "HealQigongAction$$ActionStart",
+   "HealQigongBuf$$CheckCutDamageByQigong",
+   "HealQigongBuf$$DamageFunction",
+   "MobaPlayerActionManager$$ReceiveDamaged",
+   "ReceiveSupportResult$$OnActionPlayerSupport",
+   "Revival$$OnActionMobDamage",
+   "StormAndUrgeAction$$ActionStart"
+  ],
+  "buffLookups": [
+   "Revival$$CheckRevival",
+   "Revival$$OnActionMobDamage"
+  ],
+  "verdict": "b",
+  "detailsReaders": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk"
+  ],
+  "probe": {},
+  "gate": {
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk": [
+    "Destroyer",
+    "Ichijhinnokaze",
+    "Inflexibility",
+    "Kakei"
+   ]
+  }
+ },
+ "1094": {
+  "class": "CollectQigongExtreme",
+  "name": "ชาร์จพลังชี่กงอัลติมา",
+  "maxLv": 100,
+  "paramIds": [
+   27,
+   28
+  ],
+  "readers": [
+   "GameManager$$CheckChangeBarehandQigong",
+   "PlayerSecondaryStatus$$get_AtkMpRecovery"
+  ],
+  "buffLookups": [],
+  "verdict": "b",
+  "detailsReaders": [
+   "PlayerSecondaryStatus$$get_AtkMpRecovery"
+  ],
+  "probe": {},
+  "gate": {
+   "PlayerSecondaryStatus$$get_AtkMpRecovery": [
+    "CallGolem",
+    "CollectQigong",
+    "GlaiveTigger",
+    "Rampage",
+    "Shukuchi"
+   ]
+  }
+ },
+ "1095": {
+  "class": "FuriousEffortsExtreme",
+  "name": "ซีซ่าแสลชเชอร์อัลติมา",
+  "maxLv": 100,
+  "paramIds": [
+   26
+  ],
+  "readers": [
+   "BCollaboBossActionManager$$Damaged",
+   "EnemyMobActionManagerBase$$Damaged",
+   "FuriousEffortsBuf$$.ctor",
+   "FuriousEffortsExtreme$$Damaged",
+   "GuildRaidBossMobActionManager$$Damaged",
+   "MobaPlayerActionManager$$ReceiveAttack",
+   "PlayerAttackBase$$ActionPreparation",
+   "ScoreAttackBossActionManager$$Damaged"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1096": {
+  "class": "StormAndUrgeExtreme",
+  "name": "วายุโหมคลื่นกระหน่ำอัลติมา",
+  "maxLv": 100,
+  "paramIds": [],
+  "readers": [
+   "PhysicalPursuit$$Calc",
+   "PlayerAttackBase$$RemoveAfterSkillBuf",
+   "StormAndUrgeAction$$ActionSkillEvent"
+  ],
+  "buffLookups": [
+   "PlayerAttackBase$$CalcCostMp"
+  ],
+  "verdict": "a"
+ },
+ "1097": {
+  "class": "CollisionOfFightingSpirit",
+  "name": "การปะทะของจิตวิญญาณ",
+  "maxLv": 100,
+  "paramIds": [
+   8,
+   27
+  ],
+  "readers": [
+   "HealQigongBuf$$.ctor",
+   "HealQigongBuf$$CheckCollisionOfFightingSpirit",
+   "MobAttackBase$$CalcLastDamage"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1099": {
+  "class": "Revival",
+  "name": "ฟื้นคืนชีพ",
+  "maxLv": 250,
+  "paramIds": [
+   27,
+   28
+  ],
+  "readers": [
+   "PhotonListener$$OnActionMobAttack",
+   "PlayerActionManager$$Damaged",
+   "Revival$$OnActionMobDamage"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1124": {
+  "class": "GoodQualityShovel",
+  "name": "พลั่วชั้นดี",
+  "maxLv": 1,
+  "paramIds": [
+   28
+  ],
+  "readers": [
+   "GlaiveTiggerAction$$ActionStart",
+   "GlaiveTiggerAction.<>c__DisplayClass24_0$$<ActionStart>b__0"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ },
+ "1128": {
+  "class": "Harvest",
+  "name": "ฮาร์เวสต์",
+  "maxLv": 205,
+  "paramIds": [],
+  "readers": [],
+  "buffLookups": [],
+  "verdict": "c"
+ },
+ "1132": {
+  "class": "MatchPump",
+  "name": "แผนตลบหลัง",
+  "maxLv": 260,
+  "paramIds": [],
+  "readers": [],
+  "buffLookups": [],
+  "verdict": "c"
+ },
+ "1161": {
+  "class": "GodRigidBodyMastery",
+  "name": "ร่างแกร่งดุจเทพ",
+  "maxLv": 250,
+  "paramIds": [
+   25,
+   28
+  ],
+  "readers": [
+   "GodHandAction$$OnInitialize",
+   "GodHandBuf$$DeathExemption",
+   "GodHandBuf$$GetParam",
+   "GodHandBuf$$Initalize",
+   "GodHandBuf$$get_IsGodRigidBodyMastery",
+   "GoliathTakeShotAction$$EnemyDamage",
+   "PlayerActionManager$$Damaged"
+  ],
+  "buffLookups": [],
+  "verdict": "a"
+ }
+}

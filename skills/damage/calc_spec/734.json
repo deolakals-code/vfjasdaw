@@ -1,0 +1,165 @@
+{
+ "version": 1,
+ "uid": 734,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "AstralLanceAttackAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "Magic",
+  "action_id": 734,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 50) + 250)",
+   "simplified": "50 × Lv + 250",
+   "when": "always",
+   "by_level": [
+    300,
+    350,
+    400,
+    450,
+    500,
+    550,
+    600,
+    650,
+    700,
+    750
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "500",
+   "simplified": "500",
+   "when": "always",
+   "by_level": 500
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "magicResist",
+   "formula": "((((baseAGI * 0x66666667) >> 32) >> 2) + ((Lv * Lv) >> 1))",
+   "simplified": "baseAGI ÷ 10 + Lv × Lv ÷ 2",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerPrimaryStatus.agi",
+  "PlayerStatusBase.GetEquipElement",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

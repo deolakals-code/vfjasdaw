@@ -1,0 +1,285 @@
+{
+ "version": 1,
+ "uid": 559,
+ "name_th": "แคมฟลาจ",
+ "name_en": "Camouflage",
+ "tree": "HunterSkill",
+ "category": "Buffer",
+ "max_level": 285,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "CamouflageAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 559,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(?mvn & 1)",
+   "simplified": "?mvn & 1",
+   "when": "always",
+   "residual": [
+    "?mvn"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "CamouflageBuf..ctor",
+   "formula": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "SkillIndividualFlag eq 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new CamouflageBuf, Id)",
+   "simplified": "AddSelfBuffer(new, CamouflageBuf, Id)",
+   "when": "SkillIndividualFlag eq 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "CamouflageBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase status",
+     "fields": {
+      "playerStatus": [
+       {
+        "formula": "status",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AtkUp",
+     "bonus_id": 54,
+     "formula": "(int(((status.Lv / 20) * Lv)) << 1)",
+     "simplified": "2 × int(status.Lv / 20 × Lv)",
+     "when": [
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 12",
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 13"
+     ]
+    },
+    {
+     "id": "AtkUp",
+     "bonus_id": 54,
+     "formula": "int(((status.Lv / 20) * Lv))",
+     "simplified": "int(status.Lv / 20 × Lv)",
+     "when": [
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 12",
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 13"
+     ]
+    },
+    {
+     "id": "AtkUp",
+     "bonus_id": 54,
+     "formula": "(int(((status.Lv / 20) * Lv)) << 1)",
+     "simplified": "2 × int(status.Lv / 20 × Lv)",
+     "when": [
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 12"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "(criticalUp // (EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 13 ? 2 : 1))",
+     "simplified": "criticalUp // (EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) = 13 ? 2 : 1)",
+     "when": []
+    }
+   ],
+   "state": {
+    "IsEndChangeHate": [
+     {
+      "method": "set_IsEndChangeHate",
+      "formula": "(value & 1)",
+      "when": "always"
+     },
+     {
+      "method": "ChangeHateManaged",
+      "formula": "1",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "ChangeHateManaged",
+    "get_IsEndChangeHate",
+    "set_IsEndChangeHate"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "CamouflageBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:CamouflageBuf$$.ctor<-CamouflageAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "CamouflageMastery",
+  "bonuses": {
+   "Crt": {
+    "id": 22,
+    "expr": "(Lv << 1)",
+    "by_level": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14,
+     16,
+     18,
+     20
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "MobaPlayerSecondaryStatus.GetCrtConstant",
+  "PlayerSecondaryStatus.GetCrtConstant"
+ ],
+ "variables": [
+  "EquipItemData.get_WeaponItemType",
+  "IPlayerStatusCalculator.get_Lv",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.AtkUp",
+  "SkillBufferId.CrtUp",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": [
+  {
+   "where": "ActionPreparation:SkillIndividualFlag",
+   "tokens": [
+    "?mvn"
+   ]
+  }
+ ]
+}

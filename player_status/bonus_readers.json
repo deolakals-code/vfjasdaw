@@ -1,0 +1,37 @@
+{
+ "bDamageLimit": [
+  "EnemyMobActionManagerBase$$GemDamageLimit -> GetBonusValue(w1)"
+ ],
+ "bElement": [],
+ "bItemDelay": [
+  "MainPlayer$$CalcItemDelay -> GetParam(w1)",
+  "MainPlayer$$CalcItemDelay -> IsEquipBuff(w1)",
+  "MobaPlayer$$CalcItemDelay -> GetParam(w1)",
+  "MobaPlayer$$CalcItemDelay -> IsEquipBuff(w1)"
+ ],
+ "bHelpMaster": [
+  "PlayerBattleManager$$OnSkillActionStart -> GetParam(w1)",
+  "PlayerBattleManager$$OnSkillActionStart -> IsVilidEquipBuff(w1)"
+ ],
+ "bGemDustDropRate": [],
+ "bMagicBarrier": [
+  "MobAttackPlayerSelfDestruct$$calcMobToPlayerDamage -> CalcBuff(w1)",
+  "MobAttackPlayerSelfDestruct$$calcMobToPlayerDamage -> IsEquipBuff(w1)"
+ ],
+ "bPhysicalBarrier": [],
+ "bRateBarrier": [],
+ "bGemDropFixing": [],
+ "bGemPlayerDown": [
+  "PlayerAttackBase$$CalcGemLastDamageRate -> GetBonusMultiPercentValue(w1)"
+ ],
+ "bGemMonsterUp": [
+  "MobAttackBase$$CalcLastDamage -> GetBonusValue(w1)"
+ ],
+ "bExpRate": [
+  "PlayerSecondaryStatus$$GetExpBonus -> GetBonusValue(w1)",
+  "UIPlayerStatusDetailPanel$$CalcPetExpValue -> GetBonusValue(w1)"
+ ],
+ "bDropRate": [
+  "PlayerSecondaryStatus$$GetDropBonus -> GetBonusValue(w1)"
+ ]
+}

@@ -1,0 +1,437 @@
+{
+ "version": 1,
+ "uid": 140,
+ "name_th": "เชอริออต",
+ "name_en": "Chariot",
+ "tree": "MarshallSkill",
+ "category": "Attack",
+ "max_level": 150,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "ChariotAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 140,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "min(((Lv + 990) + (baseAGI + 250)), 1760)",
+   "simplified": "min(Lv + baseAGI + 1240, 1760)",
+   "when": "(mainWeapon==Knuckle & 1) ne 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND mainWeapon == Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "(mainWeapon==Knuckle & 1) ne 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND mainWeapon == Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv * 20) + 50) + 250)",
+   "simplified": "20 × Lv + 300",
+   "when": "(mainWeapon==Knuckle & 1) ne 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND mainWeapon == Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle",
+   "by_level": [
+    320,
+    340,
+    360,
+    380,
+    400,
+    420,
+    440,
+    460,
+    480,
+    500
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "((11 - (int((Lv * 0.5)) << 1)) + -1)",
+   "simplified": "10 - 2 × int(0.5 × Lv)",
+   "when": "(mainWeapon==Knuckle & 1) ne 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND mainWeapon == Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle",
+   "by_level": [
+    10,
+    8,
+    8,
+    6,
+    6,
+    4,
+    4,
+    2,
+    2,
+    0
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(mainWeapon==Knuckle & 1) ne 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND mainWeapon == Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle",
+   "by_level": 1,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(mainWeapon==Knuckle & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon == Knuckle",
+   "by_level": 1,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "min((Lv + 990), 1760)",
+   "simplified": "min(Lv + 990, 1760)",
+   "when": "(mainWeapon==Knuckle & 1) eq 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) eq 0 AND mainWeapon == Knuckle OR (mainWeapon==Knuckle & 1) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle",
+   "by_level": [
+    991,
+    992,
+    993,
+    994,
+    995,
+    996,
+    997,
+    998,
+    999,
+    1000
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "(mainWeapon==Knuckle & 1) eq 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) eq 0 AND mainWeapon == Knuckle OR (mainWeapon==Knuckle & 1) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 20) + 50)",
+   "simplified": "20 × Lv + 50",
+   "when": "(mainWeapon==Knuckle & 1) eq 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) eq 0 AND mainWeapon == Knuckle OR (mainWeapon==Knuckle & 1) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle",
+   "by_level": [
+    70,
+    90,
+    110,
+    130,
+    150,
+    170,
+    190,
+    210,
+    230,
+    250
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "(11 - (int((Lv * 0.5)) << 1))",
+   "simplified": "11 - 2 × int(0.5 × Lv)",
+   "when": "(mainWeapon==Knuckle & 1) eq 0 AND mainWeapon != Knuckle OR (mainWeapon==Knuckle & 1) eq 0 AND mainWeapon == Knuckle OR (mainWeapon==Knuckle & 1) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND mainWeapon != Knuckle",
+   "by_level": [
+    11,
+    9,
+    9,
+    7,
+    7,
+    5,
+    5,
+    3,
+    3,
+    1
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDirection",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDirection.y",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDirection.z",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "Attacked",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "int((MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent))",
+   "simplified": "int(MobActionManagerBase.get_IsBoss(mobAction) ? 0.5 × abnormalPercent : abnormalPercent)",
+   "when": "IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int(((MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction) & 1) ne 0 OR IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int((!MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction)",
+   "vars": [
+    "AbnormalType.Fear",
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsInheritance eq 0 OR IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int(((MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction) & 1) ne 0 OR IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int((!MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction)",
+   "vars": [
+    "AbnormalType.Fear",
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "IsInheritance eq 0 OR IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int(((MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction) & 1) ne 0 OR IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int((!MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction)",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalType.Fear",
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "IsInheritance eq 0 OR IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int(((MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction) & 1) ne 0 OR IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int((!MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction)",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalType.Fear",
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(13, int((MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction)",
+   "simplified": "checkAbnormalPercent(13, int(MobActionManagerBase.get_IsBoss(mobAction) ? 0.5 × abnormalPercent : abnormalPercent), playerAction)",
+   "when": "IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int(((MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction) & 1) ne 0 OR IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int((!MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction)",
+   "vars": [
+    "AbnormalType.Fear",
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(13)",
+   "simplified": "SetAbnormalType(13)",
+   "when": "IsInheritance eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, int(((MobActionManagerBase.get_IsBoss(mobAction) ? (abnormalPercent * 0.5) : abnormalPercent)), playerAction) & 1) ne 0",
+   "vars": [
+    "AbnormalType.Fear",
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Fear",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_IsBoss",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.agi",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "TryGetBuf.buf",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Transform.get_forward"
+ ],
+ "residual": []
+}

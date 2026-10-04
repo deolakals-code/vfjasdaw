@@ -1,0 +1,40 @@
+{
+ "version": 1,
+ "uid": 520,
+ "name_th": "ไนท์วีล",
+ "name_en": "KnightWill",
+ "tree": "KnightSkill",
+ "category": "Mastery",
+ "max_level": 205,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "KnightWill",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "KnightWill",
+  "bonuses": {}
+ },
+ "hooks": [
+  "CallGolemNormalAttackAction.ActionPreparation",
+  "HuntingOneNormalAttackAction.ActionPreparation",
+  "PlayerAttackBase.ActionPreparation",
+  "WarCryAction.ActionPreparation"
+ ],
+ "variables": [],
+ "residual": []
+}

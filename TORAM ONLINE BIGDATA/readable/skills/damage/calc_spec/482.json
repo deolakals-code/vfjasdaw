@@ -1,0 +1,52 @@
+{
+ "version": 1,
+ "uid": 482,
+ "name_th": "เพิ่มพลังเวท",
+ "name_en": "MatkUp",
+ "tree": "BattleSkill",
+ "category": "Mastery",
+ "max_level": 20,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "MatkUp",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "MatkUp",
+  "bonuses": {
+   "MatkRate": {
+    "id": 5,
+    "expr": "int((Lv * 2.5))",
+    "by_level": [
+     2,
+     5,
+     7,
+     10,
+     12,
+     15,
+     17,
+     20,
+     22,
+     25
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

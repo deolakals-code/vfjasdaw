@@ -1,0 +1,249 @@
+{
+ "version": 1,
+ "uid": 513,
+ "name_th": "แอสเซาต์แอคแทค",
+ "name_en": "AssaultAttack",
+ "tree": "KnightSkill",
+ "category": "Attack",
+ "max_level": 15,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "AssaultAttackAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 513,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(6)",
+   "simplified": "MathUtil.DisplayMeterToDistance(6)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "subWeapon == Shield",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "slowRate",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((((Lv + (Lv << 2)) << 1) + 25) + 25) + gemCart(1002[4]))",
+   "simplified": "10 × Lv + gemCart(1002, [4]) + 50",
+   "when": "subWeapon == Shield"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "knockbackRate",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "subWeapon != Shield",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv + (Lv << 2)) << 1) + 25) + gemCart(1002[4]))",
+   "simplified": "10 × Lv + gemCart(1002, [4]) + 25",
+   "when": "subWeapon != Shield"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + KnightWill.GetParam(PlayerStatusBase.get_SkillManager().SkillMasteryList[520], BonusType.AssaultAttackSkillRate, (WeaponType eq 17 ? 1 : 0)))",
+   "simplified": "(skillRate + KnightWill.GetParam(PlayerStatusBase.get_SkillManager().SkillMasteryList[520], BonusType.AssaultAttackSkillRate, (WeaponType eq 17 ? 1 : 0)))",
+   "when": "(+0x109 & 2) ne 0 AND Lv eq 10 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusType.AssaultAttackSkillRate",
+    "KnightWill.GetParam",
+    "PlayerStatusBase.get_SkillManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(11, slowRate, playerAction)",
+   "simplified": "checkAbnormalPercent(11, slowRate, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowRate, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, knockbackRate, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, knockbackRate, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowRate, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowRate, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, knockbackRate, playerAction)",
+   "vars": [
+    "AbnormalType.KnockBack",
+    "AbnormalType.Slow",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(11)",
+   "simplified": "SetAbnormalType(11)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowRate, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, knockbackRate, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, knockbackRate, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowRate, playerAction)",
+   "vars": [
+    "AbnormalType.KnockBack",
+    "AbnormalType.Slow",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(4, knockbackRate, playerAction)",
+   "simplified": "checkAbnormalPercent(4, knockbackRate, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowRate, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, knockbackRate, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, knockbackRate, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowRate, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowRate, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, knockbackRate, playerAction)",
+   "vars": [
+    "AbnormalType.KnockBack",
+    "AbnormalType.Slow",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.KnockBack",
+  "AbnormalType.Slow",
+  "BonusType.AssaultAttackSkillRate",
+  "KnightWill.GetParam",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillManager",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

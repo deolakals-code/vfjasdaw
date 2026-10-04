@@ -1,0 +1,820 @@
+{
+ "version": 1,
+ "uid": 76,
+ "name_th": "ครอสสเฟียร์",
+ "name_en": "CrossFire",
+ "tree": "ShootSkill",
+ "category": "Attack",
+ "max_level": 150,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "CrossFireAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 76,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "width",
+   "formula": "(MathUtil.DisplayMeterToDistance(1) + MathUtil.DisplayMeterToDistance(1))",
+   "simplified": "2 × MathUtil.DisplayMeterToDistance(1)",
+   "when": "mainWeapon != Bowgun AND mainWeapon == Bow OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon != Bowgun AND mainWeapon == Bow OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) eq 0 AND mainWeapon != Bowgun AND mainWeapon == Bow",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "subSkillRate",
+   "formula": "200",
+   "simplified": "200",
+   "when": "mainWeapon != Bowgun AND mainWeapon == Bow OR mainWeapon != Bow AND mainWeapon != Bowgun OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon != Bowgun AND mainWeapon == Bow",
+   "by_level": 200,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "length",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "decoyFixAddDamage",
+   "formula": "((Lv << 1) + 60)",
+   "simplified": "2 × Lv + 60",
+   "when": "always",
+   "by_level": [
+    62,
+    64,
+    66,
+    68,
+    70,
+    72,
+    74,
+    76,
+    78,
+    80
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mainSkillRate",
+   "formula": "(((Lv * 50) + 400) + ((baseDEX // 5) + 50))",
+   "simplified": "50 × Lv + baseDEX // 5 + 450",
+   "when": "mainWeapon != Bowgun AND mainWeapon == Bow OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon != Bowgun AND mainWeapon == Bow OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) eq 0 AND mainWeapon != Bowgun AND mainWeapon == Bow",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mainFixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) << 1) + 300)",
+   "simplified": "10 × Lv + 300",
+   "when": "always",
+   "by_level": [
+    310,
+    320,
+    330,
+    340,
+    350,
+    360,
+    370,
+    380,
+    390,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "subFixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) << 1) + 300)",
+   "simplified": "10 × Lv + 300",
+   "when": "always",
+   "by_level": [
+    310,
+    320,
+    330,
+    340,
+    350,
+    360,
+    370,
+    380,
+    390,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "decoySkillRate",
+   "formula": "(((Lv + (Lv << 2)) << 1) + 80)",
+   "simplified": "10 × Lv + 80",
+   "when": "always",
+   "by_level": [
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "maxChargeLevel",
+   "formula": "(int((Lv * 0.3)) + 2)",
+   "simplified": "int(0.3 × Lv) + 2",
+   "when": "always",
+   "by_level": [
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "(hasBuff(ReceiveWaterElementDmgRate) ? 0 : 400)",
+   "simplified": "hasBuff(ReceiveWaterElementDmgRate) ? 0 : 400",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "SkillBufferDataBase.GetParam(50)",
+   "simplified": "SkillBufferDataBase.GetParam(50)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon == Bowgun OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon != Bowgun AND mainWeapon == Bow OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon != Bow AND mainWeapon != Bowgun",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "chargeLevel",
+   "formula": "SkillBufferDataBase.GetParam(50)",
+   "simplified": "SkillBufferDataBase.GetParam(50)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon == Bowgun OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon != Bowgun AND mainWeapon == Bow OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon != Bow AND mainWeapon != Bowgun",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "width",
+   "formula": "MathUtil.DisplayMeterToDistance(1)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1)",
+   "when": "mainWeapon == Bowgun OR mainWeapon != Bow AND mainWeapon != Bowgun OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon == Bowgun",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mainSkillRate",
+   "formula": "((Lv * 50) + 400)",
+   "simplified": "50 × Lv + 400",
+   "when": "mainWeapon == Bowgun OR mainWeapon != Bow AND mainWeapon != Bowgun OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon == Bowgun",
+   "by_level": [
+    450,
+    500,
+    550,
+    600,
+    650,
+    700,
+    750,
+    800,
+    850,
+    900
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "subSkillRate",
+   "formula": "300",
+   "simplified": "300",
+   "when": "mainWeapon == Bowgun OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon == Bowgun OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) eq 0 AND mainWeapon == Bowgun",
+   "by_level": 300,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "subResist",
+   "formula": "((baseDEX // 10) + subResist)",
+   "simplified": "baseDEX // 10 + subResist",
+   "when": "mainWeapon == Bowgun OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) ne 0 AND mainWeapon == Bowgun OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 76) eq 0 AND mainWeapon == Bowgun",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "otherTargetPos",
+   "formula": "castTime",
+   "simplified": "castTime",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "chargeLevel",
+   "formula": "SkillIndividualFlag",
+   "simplified": "SkillIndividualFlag",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "chargeLevel",
+   "formula": "(chargeLevel + 1)",
+   "simplified": "chargeLevel + 1",
+   "when": "!CountBufferBase.get_Peak() AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND chargeLevel lt maxChargeLevel OR !CountBufferBase.get_Peak() AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND chargeLevel lt maxChargeLevel OR !CountBufferBase.get_Peak() AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND chargeLevel lt maxChargeLevel",
+   "vars": [
+    "CountBufferBase.get_Peak",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(chargeLevel + 1)",
+   "simplified": "chargeLevel + 1",
+   "when": "!CountBufferBase.get_Peak() AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND chargeLevel lt maxChargeLevel OR !CountBufferBase.get_Peak() AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND chargeLevel lt maxChargeLevel OR !CountBufferBase.get_Peak() AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND chargeLevel lt maxChargeLevel",
+   "vars": [
+    "CountBufferBase.get_Peak",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainForward",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR IsInstanceOf(actarAction, MercenaryActionManager) eq 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainForward.y",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR IsInstanceOf(actarAction, MercenaryActionManager) eq 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainForward.z",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR IsInstanceOf(actarAction, MercenaryActionManager) eq 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainAttackPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainAttackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainAttackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "decoyPos",
+   "formula": "SkillActionManager.GetPlaceSkillPos(actarAction.battleManager.skillActManager, SkillId.DecoyShooter).x",
+   "simplified": "SkillActionManager.GetPlaceSkillPos(actarAction.battleManager.skillActManager, SkillId.DecoyShooter).x",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR IsInstanceOf(actarAction, MercenaryActionManager) eq 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "SkillActionManager.GetPlaceSkillPos",
+    "SkillId.DecoyShooter",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "decoyPos.y",
+   "formula": "SkillActionManager.GetPlaceSkillPos(actarAction.battleManager.skillActManager, SkillId.DecoyShooter).y",
+   "simplified": "SkillActionManager.GetPlaceSkillPos(actarAction.battleManager.skillActManager, SkillId.DecoyShooter).y",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR IsInstanceOf(actarAction, MercenaryActionManager) eq 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "SkillActionManager.GetPlaceSkillPos",
+    "SkillId.DecoyShooter",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "decoyPos.z",
+   "formula": "SkillActionManager.GetPlaceSkillPos(actarAction.battleManager.skillActManager, SkillId.DecoyShooter).z",
+   "simplified": "SkillActionManager.GetPlaceSkillPos(actarAction.battleManager.skillActManager, SkillId.DecoyShooter).z",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR IsInstanceOf(actarAction, MercenaryActionManager) eq 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "SkillActionManager.GetPlaceSkillPos",
+    "SkillId.DecoyShooter",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "chargeLevel",
+   "simplified": "chargeLevel",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "isRangeBonus",
+   "formula": "0",
+   "simplified": "0",
+   "when": "type eq 1 AND type ne 2 OR type eq 0 AND type ne 1 AND type ne 2 OR type ne 0 AND type ne 1 AND type ne 2",
+   "by_level": 0
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "type eq 1 AND type ne 2 OR type eq 0 AND type ne 1 AND type ne 2 OR type ne 0 AND type ne 1 AND type ne 2"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((mainSkillRate * chargeLevel) / 100)",
+   "simplified": "mainSkillRate × chargeLevel / 100",
+   "when": "type eq 0 AND type ne 1 AND type ne 2",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "mainFixAddDamage",
+   "simplified": "mainFixAddDamage",
+   "when": "type eq 0 AND type ne 1 AND type ne 2",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "type eq 1 AND type ne 2 OR type eq 0 AND type ne 1 AND type ne 2 OR type ne 0 AND type ne 1 AND type ne 2",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "type eq 1 AND type ne 2 OR type eq 0 AND type ne 1 AND type ne 2 OR type ne 0 AND type ne 1 AND type ne 2",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "type ne 0 AND type ne 1 AND type ne 2",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "type ne 0 AND type ne 1 AND type ne 2",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(subSkillRate / 100)",
+   "simplified": "subSkillRate / 100",
+   "when": "type eq 1 AND type ne 2",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "subFixAddDamage",
+   "simplified": "subFixAddDamage",
+   "when": "type eq 1 AND type ne 2",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(76)",
+   "simplified": "RemoveSelfBuffer(76)",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) OR !UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "CrossFireBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int archetypeType",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 9 OR (archetypeType & 255) eq 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) OR (archetypeType & 255) ne 0 AND (archetypeType & 255) ne 9",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "(int((Lv * 0.3)) + 2)",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 9 OR (archetypeType & 255) eq 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) OR (archetypeType & 255) ne 0 AND (archetypeType & 255) ne 9",
+        "by_level": [
+         2,
+         2,
+         2,
+         3,
+         3,
+         3,
+         4,
+         4,
+         4,
+         5
+        ]
+       }
+      ],
+      "maxChargeLevel": [
+       {
+        "formula": "(int((Lv * 0.3)) + 2)",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 9 OR (archetypeType & 255) eq 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) OR (archetypeType & 255) ne 0 AND (archetypeType & 255) ne 9",
+        "by_level": [
+         2,
+         2,
+         2,
+         3,
+         3,
+         3,
+         4,
+         4,
+         4,
+         5
+        ]
+       }
+      ],
+      "chargeTime": [
+       {
+        "formula": "((chargeLevel * chargeLevel) + 1)",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 9 OR (archetypeType & 255) eq 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) OR (archetypeType & 255) ne 0 AND (archetypeType & 255) ne 9",
+        "by_level": null
+       }
+      ],
+      "archetypeType": [
+       {
+        "formula": "archetypeType",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 9 OR (archetypeType & 255) eq 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) OR (archetypeType & 255) ne 0 AND (archetypeType & 255) ne 9",
+        "by_level": null
+       }
+      ],
+      "player": [
+       {
+        "formula": "PlayerDataManager.GetPlayerDataManager()",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 9 OR (archetypeType & 255) eq 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) OR !UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 0 AND (archetypeType & 255) ne 9",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "chargeLevel",
+     "simplified": "chargeLevel",
+     "when": []
+    }
+   ],
+   "state": {
+    "chargeTime": [
+     {
+      "method": "Updata",
+      "formula": "(chargeTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(chargeTime - UnityEngine.Time.get_deltaTime()) hi 0 AND chargeLevel lt maxChargeLevel AND isDamage eq 0 OR (chargeTime - UnityEngine.Time.get_deltaTime()) ls 0 AND chargeLevel lt maxChargeLevel AND isDamage eq 0"
+     },
+     {
+      "method": "NextChargeLevel",
+      "formula": "((System.Math.Min((chargeLevel + 1), maxChargeLevel) * System.Math.Min((chargeLevel + 1), maxChargeLevel)) + 1)",
+      "when": "chargeLevel lt maxChargeLevel"
+     }
+    ],
+    "Max": [
+     {
+      "method": "OnDamage",
+      "formula": "chargeLevel",
+      "when": "chargeLevel ne 0 AND isDamage eq 0 OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 94) ne 0 AND chargeLevel ne 0 AND isDamage eq 0 OR archetypeType ne 0 AND archetypeType ne 9 AND chargeLevel eq 0 AND isDamage eq 0"
+     }
+    ],
+    "isDamage": [
+     {
+      "method": "OnDamage",
+      "formula": "1",
+      "when": "chargeLevel ne 0 AND isDamage eq 0 OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 94) ne 0 AND chargeLevel ne 0 AND isDamage eq 0 OR archetypeType ne 0 AND archetypeType ne 9 AND chargeLevel eq 0 AND isDamage eq 0"
+     }
+    ],
+    "comboType": [
+     {
+      "method": "SetComboParam",
+      "formula": "type",
+      "when": "always"
+     }
+    ],
+    "comboRate": [
+     {
+      "method": "SetComboParam",
+      "formula": "rate",
+      "when": "always"
+     }
+    ],
+    "chargeLevel": [
+     {
+      "method": "NextChargeLevel",
+      "formula": "System.Math.Min((chargeLevel + 1), maxChargeLevel)",
+      "when": "chargeLevel lt maxChargeLevel"
+     }
+    ],
+    "Count": [
+     {
+      "method": "NextChargeLevel",
+      "formula": "System.Math.Min((chargeLevel + 1), maxChargeLevel)",
+      "when": "chargeLevel lt maxChargeLevel"
+     }
+    ]
+   },
+   "hooks": [
+    "ChargeAura",
+    "GetComboParam",
+    "NextChargeLevel",
+    "OnDamage",
+    "SetComboParam",
+    "get_IsPlayer"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "CrossFireAction.OnInitialize",
+  "MobaPlayerActionManager.GetSkillTargetType",
+  "PlayerActionManager.GetSkillTargetType"
+ ],
+ "variables": [
+  "CountBufferBase.get_Peak",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillActionManager.GetPlaceSkillPos",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Value",
+  "SkillId.DecoyShooter",
+  "System.Math.Min",
+  "TryGetBuf.buf",
+  "TryGetBuf.out2",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_forward",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

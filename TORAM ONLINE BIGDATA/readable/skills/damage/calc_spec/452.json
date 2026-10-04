@@ -1,0 +1,159 @@
+{
+ "version": 1,
+ "uid": 452,
+ "name_th": "เพ็ทฮีล",
+ "name_en": "PetHeal",
+ "tree": "TamerSkill",
+ "category": "Buffer",
+ "max_level": 30,
+ "roles": [
+  "heal / recovery"
+ ],
+ "class": "PetHealAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 452,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "hpRecovery",
+   "formula": "(Lv * 100)",
+   "simplified": "100 × Lv",
+   "when": "always",
+   "by_level": [
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900,
+    1000
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "((7 - frintp((Lv / 3))) / 1.5)",
+   "simplified": "(7 - frintp(Lv / 3)) / 1.5",
+   "when": "(mainWeapon==Bow & 1) eq 0 AND (mainWeapon==Rod & 1) ne 0 OR (mainWeapon==Bow & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0 AND WeaponType eq 14"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "hpHealRate",
+   "formula": "((int((Lv * 2.5)) + 15) / 100)",
+   "simplified": "(int(2.5 × Lv) + 15) / 100",
+   "when": "(mainWeapon==Bow & 1) ne 0 OR (mainWeapon==Bow & 1) eq 0 AND (mainWeapon==Rod & 1) ne 0 OR (mainWeapon==Bow & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0 AND WeaponType eq 14",
+   "by_level": [
+    0.17,
+    0.2,
+    0.22,
+    0.25,
+    0.27,
+    0.3,
+    0.32,
+    0.35,
+    0.37,
+    0.4
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "((7 - frintp((Lv / 3))) * 0.5)",
+   "simplified": "3.5 - 0.5 × frintp(Lv / 3)",
+   "when": "(mainWeapon==Bow & 1) ne 0 OR (mainWeapon==Bow & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0 AND WeaponType eq 12 AND WeaponType ne 14"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "(7 - frintp((Lv / 3)))",
+   "simplified": "7 - frintp(Lv / 3)",
+   "when": "(mainWeapon==Bow & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0 AND WeaponType ne 12 AND WeaponType ne 14"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "hpHealRate",
+   "formula": "(int((Lv * 2.5)) / 100)",
+   "simplified": "int(2.5 × Lv) / 100",
+   "when": "(mainWeapon==Bow & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0 AND WeaponType ne 12 AND WeaponType ne 14",
+   "by_level": [
+    0.02,
+    0.05,
+    0.07,
+    0.1,
+    0.12,
+    0.15,
+    0.17,
+    0.2,
+    0.22,
+    0.25
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "hpRecovery",
+   "formula": "(int((hpHealRate * status.MaxHp)) + hpRecovery)",
+   "simplified": "int(hpHealRate × status.MaxHp) + hpRecovery",
+   "when": "UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<PetMemberActionManager>(target), 0)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "status.MaxHp"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IPlayerStatusCalculator.get_MaxHp",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality",
+  "status.MaxHp"
+ ],
+ "residual": []
+}

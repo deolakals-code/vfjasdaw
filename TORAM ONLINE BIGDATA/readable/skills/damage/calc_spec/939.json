@@ -1,0 +1,79 @@
+{
+ "version": 1,
+ "uid": 939,
+ "name_th": "เซอร์เคิลฮีล",
+ "name_en": "KreisHeel",
+ "tree": "PetSkill",
+ "category": "Heal",
+ "max_level": 1,
+ "roles": [
+  "heal / recovery"
+ ],
+ "class": "KreisHeel",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 939,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

@@ -1,0 +1,52 @@
+{
+ "version": 1,
+ "uid": 201,
+ "name_th": "เร่ง MP ต่อเนื่อง",
+ "name_en": "CoolBattlePlan",
+ "tree": "SurvivalSkill",
+ "category": "Mastery",
+ "max_level": 20,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "CoolBattlePlan",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "CoolBattlePlan",
+  "bonuses": {
+   "Value": {
+    "id": 28,
+    "expr": "(Lv + (Lv << 2))",
+    "by_level": [
+     5,
+     10,
+     15,
+     20,
+     25,
+     30,
+     35,
+     40,
+     45,
+     50
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

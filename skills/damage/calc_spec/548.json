@@ -1,0 +1,432 @@
+{
+ "version": 1,
+ "uid": 548,
+ "name_th": "แซทเทิลไลท์แอร์โรว์",
+ "name_en": "SatelliteArrow",
+ "tree": "HunterSkill",
+ "category": "Object",
+ "max_level": 205,
+ "roles": [
+  "attack (deals damage)",
+  "placed object / trap / summon"
+ ],
+ "class": "SatelliteArrowAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 548,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(16)",
+   "simplified": "MathUtil.DisplayMeterToDistance(16)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "resist",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "always",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "((Lv + 3) >> 2)",
+   "simplified": "(Lv + 3) ÷ 4",
+   "when": "always",
+   "by_level": [
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv * 50) + 500) + status.Dex) / 100)",
+   "simplified": "(50 × Lv + status.Dex + 500) / 100",
+   "when": "(0 | (subWeapon == Arrow ? 1 : 0)) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) OR ((subWeapon != Null ? 1 : 0) | (subWeapon == Arrow ? 1 : 0)) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) ne 0 OR (0 | (subWeapon == Arrow ? 1 : 0)) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "((Lv + 3) >> 2)",
+   "simplified": "(Lv + 3) ÷ 4",
+   "when": "always",
+   "by_level": [
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 50) + 500) / 100)",
+   "simplified": "(50 × Lv + 500) / 100",
+   "when": "(0 | (subWeapon == Arrow ? 1 : 0)) eq 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) OR ((subWeapon != Null ? 1 : 0) | (subWeapon == Arrow ? 1 : 0)) eq 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) ne 0 OR (0 | (subWeapon == Arrow ? 1 : 0)) eq 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) eq 0",
+   "by_level": [
+    5.5,
+    6.0,
+    6.5,
+    7.0,
+    7.5,
+    8.0,
+    8.5,
+    9.0,
+    9.5,
+    10.0
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillManager"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "targetPos",
+   "formula": "castTime",
+   "simplified": "castTime",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetObj",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int((((FocusDebuff.get_IntervalAcceleration(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 15)) / -1000) + 1) * 100))",
+   "simplified": "int(100 × FocusDebuff.get_IntervalAcceleration(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 15)) / -1000 + 100)",
+   "when": "TryGetBuff.buff(MobActionManagerBase.get_BuffManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 15) ne 0 AND WeaponType eq 13 AND damageCount lt 2 OR 2 ge damageCount AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 15) ne 0 AND WeaponType eq 13 AND damageCount ge 2 OR 2 lt damageCount AND 3 ge damageCount AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 15) ne 0 AND WeaponType eq 13 AND damageCount ge 2",
+   "vars": [
+    "FocusDebuff.get_IntervalAcceleration",
+    "MobActionManagerBase.get_BuffManager",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int((((FocusDebuff.get_ImpactAcceleration(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 15)) / -10) + 3) * 100))",
+   "simplified": "int(100 × FocusDebuff.get_ImpactAcceleration(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 15)) / -10 + 300)",
+   "when": "TryGetBuff.buff(MobActionManagerBase.get_BuffManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 15) ne 0 AND WeaponType ne 13",
+   "vars": [
+    "FocusDebuff.get_ImpactAcceleration",
+    "MobActionManagerBase.get_BuffManager",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "SetTargetMobOthers",
+   "kind": "set",
+   "name": "targetObj",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "targetPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).x",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 100 AND param ne 101 OR IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param ne 100 AND param ne 101 OR IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 100 AND param ne 101",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "targetPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).y",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 100 AND param ne 101 OR IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param ne 100 AND param ne 101 OR IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 100 AND param ne 101",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "targetPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).z",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 100 AND param ne 101 OR IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param ne 100 AND param ne 101 OR IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 100 AND param ne 101",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "targetPos",
+   "formula": "targetPos",
+   "simplified": "targetPos",
+   "when": "!UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND param ne 100 AND param ne 101 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND param eq 100 AND param ne 101",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "targetPos.y",
+   "formula": "targetPos.y",
+   "simplified": "targetPos.y",
+   "when": "!UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND param ne 100 AND param ne 101 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND param eq 100 AND param ne 101",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "targetPos.z",
+   "formula": "targetPos.z",
+   "simplified": "targetPos.z",
+   "when": "!UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND param ne 100 AND param ne 101 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND param eq 100 AND param ne 101",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "FocusDebuff.get_ImpactAcceleration",
+  "FocusDebuff.get_IntervalAcceleration",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "IPlayerStatusCalculator.get_Dex",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillManager",
+  "System.Collections.Generic.Dictionary.ContainsKeyPlayerStatusBase.get_SkillManager",
+  "TryGetBuff.buff",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "status.Dex",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

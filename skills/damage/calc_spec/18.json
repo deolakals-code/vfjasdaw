@@ -1,0 +1,169 @@
+{
+ "version": 1,
+ "uid": 18,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "MagicEgelAttackAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "Magic",
+  "action_id": 18,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(50 + status.Int)",
+   "simplified": "status.Int + 50",
+   "when": "mainWeapon == Magictool OR mainWeapon != Magictool AND mainWeapon == Rod",
+   "vars": [
+    "status.Int"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "knockBack",
+   "formula": "(int((Lv * 0.3)) + 1)",
+   "simplified": "int(0.3 × Lv) + 1",
+   "when": "always",
+   "by_level": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "50",
+   "simplified": "50",
+   "when": "mainWeapon != Magictool AND mainWeapon != Rod",
+   "by_level": 50
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Matk",
+   "simplified": "status.Matk",
+   "when": "always",
+   "vars": [
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(4, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(4, 100, playerAction)",
+   "when": "!MobActionManagerBase.CheckMultiFlag(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, 100, playerAction) OR !MobActionManagerBase.CheckMultiFlag(mobAction) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, 100, playerAction)",
+   "vars": [
+    "AbnormalType.KnockBack",
+    "MobActionManagerBase.CheckMultiFlag",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.KnockBack",
+  "IPlayerStatusCalculator.get_Int",
+  "IPlayerStatusCalculator.get_Matk",
+  "MobActionManagerBase.CheckMultiFlag",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "status.Int",
+  "status.Matk"
+ ],
+ "residual": []
+}

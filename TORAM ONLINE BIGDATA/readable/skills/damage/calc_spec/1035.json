@@ -1,0 +1,156 @@
+{
+ "version": 1,
+ "uid": 1035,
+ "name_th": "โอเวอร์ลิมิต",
+ "name_en": "OverLimit",
+ "tree": "WizardSkill",
+ "category": "Buffer",
+ "max_level": 125,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "OverLimitAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1035,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "OverLimitBuf..ctor",
+   "formula": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new OverLimitBuf)",
+   "simplified": "AddSelfBuffer(new, OverLimitBuf)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "OverLimitBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase status",
+     "fields": {
+      "playerStatus": [
+       {
+        "formula": "status",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "CspdUp",
+     "bonus_id": 32,
+     "formula": "(SkillMasteryBase.GetMasteryParam(MasteryId.Cspd) - 1000)",
+     "simplified": "SkillMasteryBase.GetMasteryParam(MasteryId.Cspd) - 1000",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CspdUp",
+     "bonus_id": 32,
+     "formula": "0xfffffc18",
+     "simplified": "0xfffffc18",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "(SkillMasteryBase.GetMasteryParam(MasteryId.Value) + Lv)",
+     "simplified": "SkillMasteryBase.GetMasteryParam(MasteryId.Value) + Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "Lv",
+     "simplified": "Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "MasteryId.Cspd",
+  "MasteryId.Value",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "SkillBufferId.CspdUp",
+  "SkillBufferId.Value",
+  "SkillMasteryBase.GetMasteryParam",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

@@ -1,0 +1,159 @@
+{
+ "version": 1,
+ "uid": 1030,
+ "name_th": "สโตนสกิล",
+ "name_en": "StoneSkin",
+ "tree": "WizardSkill",
+ "category": "Support",
+ "max_level": 125,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "StoneSkinAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1030,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod",
+  "Magictool"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "StoneSkinBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, float time, int mVit",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "time",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "barrier": [
+       {
+        "formula": "(((Lv * 200) + (mVit << 1)) + 500)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "0",
+       "(((Lv * 200) + (mVit << 1)) + 500)"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "barrier",
+     "simplified": "barrier",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ],
+    "barrier": [
+     {
+      "method": "DamageCut",
+      "formula": "0",
+      "when": "barrier lt (damage - 1) AND damage ge 2"
+     },
+     {
+      "method": "DamageCut",
+      "formula": "(barrier - (damage - 1))",
+      "when": "barrier ge (damage - 1) AND damage ge 2"
+     }
+    ],
+    "Count": [
+     {
+      "method": "DamageCut",
+      "formula": "Max",
+      "when": "barrier lt (damage - 1) AND damage ge 2"
+     },
+     {
+      "method": "DamageCut",
+      "formula": "System.Math.Min(Max, (Count + (damage - 1)))",
+      "when": "barrier ge (damage - 1) AND damage ge 2"
+     }
+    ]
+   },
+   "hooks": [
+    "CalcCutDamageValue",
+    "DamageCut",
+    "get_BufEffectTakeId"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "SkillBufferId.Value",
+  "System.Math.Min",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

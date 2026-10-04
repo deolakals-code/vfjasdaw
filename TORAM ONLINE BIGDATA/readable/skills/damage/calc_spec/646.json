@@ -1,0 +1,401 @@
+{
+ "version": 1,
+ "uid": 646,
+ "name_th": "สปินนิ่งสแลช",
+ "name_en": "AirSlide",
+ "tree": "DualSword",
+ "category": "Object",
+ "max_level": 50,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment",
+  "placed object / trap / summon"
+ ],
+ "class": "AirSlideAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 646,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "3",
+   "simplified": "3",
+   "when": "always",
+   "by_level": 3
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv + Lv) + 30) + gemCart(210[4])) / 100)",
+   "simplified": "(2 × Lv + gemCart(210, [4]) + 30) / 100",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRateFirst",
+   "formula": "(((int((Lv * 2.5)) + 125) + gemCart(210[4])) / 100)",
+   "simplified": "(int(2.5 × Lv) + gemCart(210, [4]) + 125) / 100",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "always",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isEquipCompressionGemCart",
+   "formula": "(GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 210) ne 0 ? 1 : 0)",
+   "simplified": "GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 210) ≠ 0 ? 1 : 0",
+   "when": "always",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerStatusBase.get_GemCartBuffManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "4",
+   "simplified": "4",
+   "when": "always",
+   "by_level": 4
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "4",
+   "simplified": "4",
+   "when": "always",
+   "by_level": 4
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int(((gemCart(210[2]) * 0.01) * 100))",
+   "simplified": "int(gemCart(210, [2]))",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "blindPercent",
+   "formula": "(int((Lv * 2.5)) + 15)",
+   "simplified": "int(2.5 × Lv) + 15",
+   "when": "always",
+   "by_level": [
+    17,
+    20,
+    22,
+    25,
+    27,
+    30,
+    32,
+    35,
+    37,
+    40
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "4",
+   "simplified": "4",
+   "when": "always",
+   "by_level": 4
+  },
+  {
+   "method": "calcFirstDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcAnyDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "actionCount",
+   "formula": "(actionCount + 1)",
+   "simplified": "actionCount + 1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcFirstDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcFirstDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRateFirst",
+   "simplified": "skillRateFirst",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcFirstDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcFirstDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  },
+  {
+   "method": "calcAnyDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcAnyDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcAnyDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcFirstDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  },
+  {
+   "method": "calcFirstDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(4, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(4, 100, playerAction)",
+   "when": "MobActionManagerBase.get_IsPlayerManaged(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, 100, playerAction) AND isEquipCompressionGemCart eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, 100, playerAction) AND MobActionManagerBase.get_IsPlayerManaged(mobAction) AND isEquipCompressionGemCart eq 0",
+   "vars": [
+    "AbnormalType.KnockBack",
+    "MobActionManagerBase.get_IsPlayerManaged",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcAnyDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  },
+  {
+   "method": "calcAnyDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(7, blindPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(7, blindPercent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcAnyDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(7)",
+   "simplified": "SetAbnormalType(7)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Blindness, blindPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Blindness",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "AirSlicerAction.OnInitialize"
+ ],
+ "variables": [
+  "AbnormalType.Blindness",
+  "AbnormalType.KnockBack",
+  "GemCartBufferManager.GetGemCartBuffer",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "MobActionManagerBase.get_IsPlayerManaged",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

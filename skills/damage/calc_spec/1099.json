@@ -1,0 +1,225 @@
+{
+ "version": 1,
+ "uid": 1099,
+ "name_th": "ฟื้นคืนชีพ",
+ "name_en": "Revival",
+ "tree": "BareHandSkill",
+ "category": "Mastery",
+ "max_level": 250,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "Revival",
+ "proration": null,
+ "eq_limit": [
+  "Hand"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "RevivalBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "900",
+        "when": "always",
+        "by_level": 900
+       }
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "attached_via": "caller2:HealQigongBuf$$.ctor<-Revival$$OnActionMobDamage",
+   "kind": "counter"
+  }
+ ],
+ "passives": {
+  "class": "Revival",
+  "bonuses": {
+   "Value": {
+    "id": 28,
+    "expr": "(Lv hi 5 ? 1 : 0)",
+    "by_level": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "Percent": {
+    "id": 27,
+    "expr": "(Lv * Lv)",
+    "by_level": [
+     1,
+     4,
+     9,
+     16,
+     25,
+     36,
+     49,
+     64,
+     81,
+     100
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "Revival.CheckRevival"
+ ],
+ "variables": [
+  "SkillBufferId.Count",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

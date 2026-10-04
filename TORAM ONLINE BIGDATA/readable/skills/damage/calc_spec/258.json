@@ -1,0 +1,188 @@
+{
+ "version": 1,
+ "uid": 258,
+ "name_th": "ชีลด์บาช",
+ "name_en": "ShieldBash",
+ "tree": "ShieldSkill",
+ "category": "Attack",
+ "max_level": 20,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "ShieldBashAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 258,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Shield"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(3)",
+   "simplified": "MathUtil.DisplayMeterToDistance(3)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(int((Lv * 1.5)) / 100)",
+   "simplified": "int(1.5 × Lv) / 100",
+   "when": "always",
+   "by_level": [
+    0.01,
+    0.03,
+    0.04,
+    0.06,
+    0.07,
+    0.09,
+    0.1,
+    0.12,
+    0.13,
+    0.15
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "always",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "stunPercent",
+   "formula": "(int((Lv * 2.5)) + 75)",
+   "simplified": "int(2.5 × Lv) + 75",
+   "when": "always",
+   "by_level": [
+    77,
+    80,
+    82,
+    85,
+    87,
+    90,
+    92,
+    95,
+    97,
+    100
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(3, stunPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(3, stunPercent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(3)",
+   "simplified": "SetAbnormalType(3)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Stun",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Stun",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.checkAbnormalPercent"
+ ],
+ "residual": []
+}

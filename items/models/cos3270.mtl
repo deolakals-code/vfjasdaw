@@ -1,0 +1,18 @@
+newmtl m0
+# kind opaque
+# dye 0000ff 5a5a5a ffbe7d
+map_Kd cos3270_0.png
+newmtl m1
+# kind skin
+newmtl m2
+# kind opaque
+# dye 0000ff 5a5a5a ffbc7d
+map_Kd cos3270_1.png
+newmtl m3
+# kind add
+# dye 0000ff 5a5a5a ffbc7d
+map_Kd cos3270_0.png
+newmtl m4
+# kind add
+# dye 0000ff 5a5a5a ffbc7d
+map_Kd cos3270_1.png

@@ -1,0 +1,411 @@
+{
+ "version": 1,
+ "uid": 547,
+ "name_th": "เมจิคแอร์โรว์",
+ "name_en": "ForceArrow",
+ "tree": "HunterSkill",
+ "category": "Buffer",
+ "max_level": 125,
+ "roles": [
+  "buff (self)",
+  "boosts normal-attack damage"
+ ],
+ "class": "ForceArrow",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 547,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "ForceArrowBuf..ctor",
+   "formula": ".ctor(Lv, (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 0 ? (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0) : 1), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 0 ? (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0) : 1), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ForceArrowBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ForceArrowBuf, Id)",
+   "when": "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND UnityEngine.Object.op_Inequality(actarAction) OR (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "ForceArrowBuf..ctor",
+   "formula": ".ctor(Lv, (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND UnityEngine.Object.op_Inequality(actarAction) OR (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ForceArrowBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int arrow, PlayerStatusBase status",
+     "fields": {
+      "playerStatus": [
+       {
+        "formula": "status",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "eqAtkRate": [
+       {
+        "formula": "int((Lv * 0.5))",
+        "when": "always",
+        "by_level": [
+         0,
+         1,
+         1,
+         2,
+         2,
+         3,
+         3,
+         4,
+         4,
+         5
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "(((arrow gt 0 ? 1 : 0) << 1) + lv)"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "EqAtkUpRate",
+     "bonus_id": 8,
+     "formula": "eqAtkRate",
+     "simplified": "eqAtkRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557)",
+      "EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 13"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "(int((Lv * 0.5)) + ((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0) | (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 0 ? 1 : 0)))",
+     "simplified": "(int((Lv * 0.5)) + ((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0) | (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 0 ? 1 : 0)))",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557)",
+      "EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 13"
+     ]
+    },
+    {
+     "id": "NormalAttackConstantDamage",
+     "bonus_id": 56,
+     "formula": "(status.Lv + int((status.Matk * 0.1)))",
+     "simplified": "status.Lv + int(0.1 × status.Matk)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557)",
+      "EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 13",
+      "((!EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0) | (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 0 ? 1 : 0))"
+     ]
+    },
+    {
+     "id": "NormalAttackConstantDamage",
+     "bonus_id": 56,
+     "formula": "(status.Lv + status.Matk)",
+     "simplified": "status.Lv + status.Matk",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557)",
+      "EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 13",
+      "((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0) | (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 0 ? 1 : 0))"
+     ]
+    },
+    {
+     "id": "EqAtkUpRate",
+     "bonus_id": 8,
+     "formula": "eqAtkRate",
+     "simplified": "eqAtkRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557)",
+      "EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 13"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "(int((Lv * 0.5)) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0))",
+     "simplified": "(int((Lv * 0.5)) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0))",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557)",
+      "EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 13"
+     ]
+    },
+    {
+     "id": "NormalAttackConstantDamage",
+     "bonus_id": 56,
+     "formula": "(status.Lv + int((status.Matk * 0.1)))",
+     "simplified": "status.Lv + int(0.1 × status.Matk)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557)",
+      "EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 13",
+      "(!EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0)"
+     ]
+    },
+    {
+     "id": "NormalAttackConstantDamage",
+     "bonus_id": 56,
+     "formula": "(status.Lv + status.Matk)",
+     "simplified": "status.Lv + status.Matk",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557)",
+      "EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 13",
+      "(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0)"
+     ]
+    },
+    {
+     "id": "EqAtkUpRate",
+     "bonus_id": 8,
+     "formula": "eqAtkRate",
+     "simplified": "eqAtkRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557)"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "(int((Lv * 0.5)) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0))",
+     "simplified": "(int((Lv * 0.5)) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0))",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557)"
+     ]
+    },
+    {
+     "id": "NormalAttackConstantDamage",
+     "bonus_id": 56,
+     "formula": "(status.Lv + int((status.Matk * 0.1)))",
+     "simplified": "status.Lv + int(0.1 × status.Matk)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557)",
+      "(!EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0)"
+     ]
+    },
+    {
+     "id": "NormalAttackConstantDamage",
+     "bonus_id": 56,
+     "formula": "(status.Lv + status.Matk)",
+     "simplified": "status.Lv + status.Matk",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type & 0xfffffffe) eq 12",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557)",
+      "(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 19 ? 1 : 0)"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "ForceArrowBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "(((arrow gt 0 ? 1 : 0) << 1) + lv)"
+    }
+   },
+   "attached_via": "caller2:ForceArrowBuf$$.ctor<-ForceArrow$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "EquipItemData.get_SubWeapon",
+  "EquipItemData.get_Weapon",
+  "IPlayerStatusCalculator.get_Lv",
+  "IPlayerStatusCalculator.get_Matk",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.Count",
+  "SkillBufferId.EqAtkUpRate",
+  "SkillBufferId.NormalAttackConstantDamage",
+  "System.Collections.Generic.Dictionary.ContainsKeyPlayerStatusBase.get_SkillManager",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

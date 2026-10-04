@@ -1,0 +1,61 @@
+{
+ "version": 1,
+ "uid": 1094,
+ "name_th": "ชาร์จพลังชี่กงอัลติมา",
+ "name_en": "CollectQigongExtreme",
+ "tree": "BareHandSkill",
+ "category": "Mastery",
+ "max_level": 100,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "CollectQigongExtreme",
+ "proration": null,
+ "eq_limit": [
+  "Hand"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "CollectQigongExtreme",
+  "bonuses": {
+   "Percent": {
+    "id": 27,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   },
+   "Value": {
+    "id": 28,
+    "expr": "int((Lv * 0.5))",
+    "by_level": [
+     0,
+     1,
+     1,
+     2,
+     2,
+     3,
+     3,
+     4,
+     4,
+     5
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

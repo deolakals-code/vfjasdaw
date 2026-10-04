@@ -1,0 +1,490 @@
+{
+ "version": 1,
+ "uid": 1129,
+ "name_th": "เดนเจอร์เชค",
+ "name_en": "DengerShake",
+ "tree": "NecromancerSkill",
+ "category": "Attack",
+ "max_level": 260,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "DengerShakeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1129,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[0]",
+   "formula": "(((baseSTR lt 0 ? (baseSTR + 1) : baseSTR) >> 1) + 750)",
+   "simplified": "baseSTR ÷ 2 + 750",
+   "when": "skillRate.Length ls 1 AND skillRate.Length ne 0 OR skillRate.Length hi 1 AND skillRate.Length ls 2 AND skillRate.Length ne 0 OR skillRate.Length eq 3 AND skillRate.Length hi 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[1]",
+   "formula": "(((Lv * 25) + status.Str) + 750)",
+   "simplified": "25 × Lv + status.Str + 750",
+   "when": "skillRate.Length hi 1 AND skillRate.Length ls 2 AND skillRate.Length ne 0 OR skillRate.Length eq 3 AND skillRate.Length hi 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 OR mainWeapon == Rod AND skillRate.Length hi 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 3",
+   "vars": [
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[2]",
+   "formula": "((Lv * 25) + 500)",
+   "simplified": "25 × Lv + 500",
+   "when": "skillRate.Length eq 3 AND skillRate.Length hi 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 OR mainWeapon == Rod AND skillRate.Length hi 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 3 OR mainWeapon != Rod AND skillRate.Length hi 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 3",
+   "by_level": [
+    525,
+    550,
+    575,
+    600,
+    625,
+    650,
+    675,
+    700,
+    725,
+    750
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[3]",
+   "formula": "((Lv * 25) + 250)",
+   "simplified": "25 × Lv + 250",
+   "when": "mainWeapon == Rod AND skillRate.Length hi 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 3 OR mainWeapon != Rod AND skillRate.Length hi 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 3",
+   "by_level": [
+    275,
+    300,
+    325,
+    350,
+    375,
+    400,
+    425,
+    450,
+    475,
+    500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "mainWeapon == Rod AND skillRate.Length hi 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 3 OR mainWeapon != Rod AND skillRate.Length hi 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 3",
+   "by_level": 100
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "target",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "IsSkillGuard",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isFirst",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "IsSkillGuard",
+   "formula": "0",
+   "simplified": "0",
+   "when": "IsOtherPlayer ne 0 AND param eq 100 AND param ne 101 OR IsOtherPlayer eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND param eq 100 AND param ne 101 OR !PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND !UnityEngine.Object.op_Equality(actarAction) AND IsOtherPlayer eq 0 AND param eq 100 AND param ne 101",
+   "by_level": 0,
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.EnoughMp",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) gt 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) gt 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) le 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND param eq 100 AND param ne 101",
+   "by_level": 1,
+   "vars": [
+    "InputManager.get_LeftInputKey",
+    "InputManager.get_LeftInputValue",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.EnoughMp",
+    "UnityEngine.Camera.get_main",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position",
+    "UnityEngine.Transform.get_right"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "2",
+   "simplified": "2",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) gt 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) gt 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) le 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND param eq 100 AND param ne 101",
+   "by_level": 2,
+   "vars": [
+    "InputManager.get_LeftInputKey",
+    "InputManager.get_LeftInputValue",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.EnoughMp",
+    "UnityEngine.Camera.get_main",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position",
+    "UnityEngine.Transform.get_right"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "IsDamageInvalid",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) gt 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) gt 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) le 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND param eq 100 AND param ne 101",
+   "by_level": 1,
+   "vars": [
+    "InputManager.get_LeftInputKey",
+    "InputManager.get_LeftInputValue",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.EnoughMp",
+    "UnityEngine.Camera.get_main",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position",
+    "UnityEngine.Transform.get_right"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "3",
+   "simplified": "3",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) gt 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) gt 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Equality(actarAction) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND fsqrt(((((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).z))) + (((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x)) * ((InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).x * UnityEngine.Transform.get_right(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x) + (InputManager.get_LeftInputValue(Singleton<InputManager>.get_Instance()).y * UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(UnityEngine.Camera.get_main())).x))))) le 1e-05 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND param eq 100 AND param ne 101",
+   "by_level": 3,
+   "vars": [
+    "InputManager.get_LeftInputKey",
+    "InputManager.get_LeftInputValue",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.EnoughMp",
+    "UnityEngine.Camera.get_main",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position",
+    "UnityEngine.Transform.get_right"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND !UnityEngine.Object.op_Equality(actarAction) AND IsOtherPlayer eq 0 AND PlayerStatusBase.EnoughMp(PlayerActionManagerBase.get_PlayerStatus(), 100) AND param eq 100 AND param ne 101",
+   "by_level": 0,
+   "vars": [
+    "InputManager.get_LeftInputKey",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.EnoughMp",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ApplyDamageCut",
+   "kind": "set",
+   "name": "IsDamageInvalid",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[0] / 100)",
+   "simplified": "(skillRate[0] / 100)",
+   "when": "isFirst ne 0 AND skillRate.Length ne 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "isFirst ne 0 AND skillRate.Length ne 0 OR attackDir eq 1 AND attackDir lo skillRate.Length AND isFirst eq 0 OR attackDir lo skillRate.Length AND attackDir ne 1 AND isFirst eq 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "isFirst ne 0 AND skillRate.Length ne 0 OR attackDir eq 1 AND attackDir lo skillRate.Length AND isFirst eq 0 OR attackDir lo skillRate.Length AND attackDir ne 1 AND isFirst eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[attackDir] / 100)",
+   "simplified": "(skillRate[attackDir] / 100)",
+   "when": "attackDir eq 1 AND attackDir lo skillRate.Length AND isFirst eq 0 OR attackDir lo skillRate.Length AND attackDir ne 1 AND isFirst eq 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "isFirst ne 0 AND skillRate.Length ne 0 OR attackDir eq 1 AND attackDir lo skillRate.Length AND isFirst eq 0 OR attackDir lo skillRate.Length AND attackDir ne 1 AND isFirst eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": ".<>c__DisplayClass35_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "DengerShakeBuf..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass35_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new DengerShakeBuf, [<>c__DisplayClass35_0.<>4__this+0x10])",
+   "simplified": "AddSelfBuffer(new, DengerShakeBuf, [<>c__DisplayClass35_0.<>4__this+0x10])",
+   "when": "always",
+   "residual": [
+    "+0x10]"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "DengerShakeBuf",
+   "ctors": [
+    {
+     "sig": "",
+     "fields": {},
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "0",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MotionSpeed",
+     "bonus_id": 0,
+     "formula": "50",
+     "simplified": "50",
+     "when": []
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "DengerShakeBuf": {
+     "lv": "0",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:DengerShakeBuf$$.ctor<-DengerShakeAction.<>c__DisplayClass35_0$$<ActionStart>b__0",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PlayerAttackBase.RemoveAfterSkillBuf"
+ ],
+ "variables": [
+  "GetWeaponType.item",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "IPlayerStatusCalculator.get_Str",
+  "InputManager.get_LeftInputKey",
+  "InputManager.get_LeftInputValue",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.EnoughMp",
+  "Singleton.get_Instance",
+  "SkillBufferId.MotionSpeed",
+  "UnityEngine.Camera.get_main",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Transform.get_forward",
+  "UnityEngine.Transform.get_position",
+  "UnityEngine.Transform.get_right",
+  "status.Str",
+  "target.ExpDefSkill"
+ ],
+ "residual": [
+  {
+   "where": ".<>c__DisplayClass35_0::<ActionStart>b__0:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "+0x10]"
+   ]
+  }
+ ]
+}

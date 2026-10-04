@@ -1,0 +1,360 @@
+{
+ "version": 1,
+ "uid": 134,
+ "name_th": "เชลเบรค",
+ "name_en": "ShellBreak",
+ "tree": "MarshallSkill",
+ "category": "Attack",
+ "max_level": 30,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "ShellBreakAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 134,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(ExistWeaponType.item(actarAction, 16))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(ExistWeaponType.item(actarAction, 16))",
+   "when": "always",
+   "vars": [
+    "ExistWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv + (Lv << 2)) + 100) + 50)",
+   "simplified": "5 × Lv + 150",
+   "when": "always",
+   "by_level": [
+    155,
+    160,
+    165,
+    170,
+    175,
+    180,
+    185,
+    190,
+    195,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) << 1) + 200)",
+   "simplified": "10 × Lv + 200",
+   "when": "always",
+   "by_level": [
+    210,
+    220,
+    230,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "breakPercent",
+   "formula": "(SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1159), SkillBufferId.Value) + (gemCart(208[2]) + ((int(((Lv * 0.5) + Lv)) + 10) + 25)))",
+   "simplified": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1159), SkillBufferId.Value) + gemCart(208, [2]) + int(1.5 × Lv) + 35",
+   "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1159) ne 0",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Value",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "disDefParcent",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "always",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "breakPercent",
+   "formula": "(gemCart(208[2]) + ((int(((Lv * 0.5) + Lv)) + 10) + 25))",
+   "simplified": "gemCart(208, [2]) + int(1.5 × Lv) + 35",
+   "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1159) eq 0",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "breakPercent",
+   "formula": "(SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1159), SkillBufferId.Value) + (gemCart(208[2]) + (int(((Lv * 0.5) + Lv)) + 10)))",
+   "simplified": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1159), SkillBufferId.Value) + gemCart(208, [2]) + int(1.5 × Lv) + 10",
+   "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1159) ne 0",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Value",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "breakPercent",
+   "formula": "(gemCart(208[2]) + (int(((Lv * 0.5) + Lv)) + 10))",
+   "simplified": "gemCart(208, [2]) + int(1.5 × Lv) + 10",
+   "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1159) eq 0",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + (Lv << 2)) + 100)",
+   "simplified": "5 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    105,
+    110,
+    115,
+    120,
+    125,
+    130,
+    135,
+    140,
+    145,
+    150
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) << 1) + 50)",
+   "simplified": "10 × Lv + 50",
+   "when": "always",
+   "by_level": [
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "(((IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)) - target.Level) << 1) gt -101 ? min(((IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)) - target.Level) << 1), 500) : -100)",
+   "simplified": "A > -101 ? min(A, 500) : -100",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "2 × IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)) - 2 × target.Level"
+    ]
+   ],
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "IMobStatusCalculator.CalcDef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "target.Level"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((((IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)) - target.Level) << 1) gt -101 ? min(((IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)) - target.Level) << 1), 500) : -100) / 100)",
+   "simplified": "(A > -101 ? min(A, 500) : -100) / 100",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "2 × IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)) - 2 × target.Level"
+    ]
+   ],
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "IMobStatusCalculator.CalcDef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "target.Level"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(10, breakPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(10, breakPercent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(10)",
+   "simplified": "SetAbnormalType(10)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Breaking",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Breaking",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "ExistWeaponType.item",
+  "IMobStatusCalculator.CalcDef",
+  "IMobStatusCalculator.get_Level",
+  "MobActionManagerBase.get_MobBattleStatus",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Value",
+  "TryGetBuf.buf",
+  "target.Level"
+ ],
+ "residual": []
+}

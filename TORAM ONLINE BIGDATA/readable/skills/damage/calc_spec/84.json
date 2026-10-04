@@ -1,0 +1,286 @@
+{
+ "version": 1,
+ "uid": 84,
+ "name_th": "แวนควิชเชอร์",
+ "name_en": "Conquester",
+ "tree": "ShootSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "ConquesterAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 84,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 100) + 500) + baseINT)",
+   "simplified": "100 × Lv + baseINT + 500",
+   "when": "subWeapon == Magictool"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "1200",
+   "simplified": "1200",
+   "when": "always",
+   "by_level": 1200
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(((Lv * 0.1) + 0.5))",
+   "simplified": "MathUtil.DisplayMeterToDistance(0.1 × Lv + 0.5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 100) + 500) + baseDEX)",
+   "simplified": "100 × Lv + baseDEX + 500",
+   "when": "subWeapon != Magictool AND subWeapon == ShortSword OR subWeapon != Magictool AND subWeapon != ShortSword"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "0",
+   "simplified": "0",
+   "when": "subWeapon != Magictool AND subWeapon == ShortSword",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isPowerUp",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) ge 5 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) ge 5 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) ge 5 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "by_level": 1,
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + skillRate)",
+   "simplified": "2 × skillRate",
+   "when": "!PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) ge 5 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) ge 5 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) ge 5 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isIgnition",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) ge 5 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "by_level": 1,
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "split",
+   "formula": "(System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance(actarAction)), new System.Func<MobActionManagerBase, bool>) gt 1 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance(actarAction)), new System.Func<MobActionManagerBase, bool>) : 1)",
+   "simplified": "(System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance(actarAction)), new System.Func<MobActionManagerBase, bool>) gt 1 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance(actarAction)), new System.Func<MobActionManagerBase, bool>) : 1)",
+   "when": "isRange ne 0 AND param eq 100 AND param ne 101",
+   "vars": [
+    "MobManager.get_TargetableMobList"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "AbnormalStateManager.RemoveAbnormalState",
+   "formula": "RemoveAbnormalState(8)",
+   "simplified": "RemoveAbnormalState(8)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) ge 5 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "MobActionManagerBase.get_PlayerMeterDistance(mobAction) lt 4 AND isIgnition ne 0 OR MobActionManagerBase.get_PlayerMeterDistance(mobAction) lt 4 AND isIgnition eq 0 OR MobActionManagerBase.get_PlayerMeterDistance(mobAction) ge 4 AND MobActionManagerBase.get_PlayerMeterDistance(mobAction) lt 5 AND isIgnition ne 0",
+   "vars": [
+    "MobActionManagerBase.get_PlayerMeterDistance"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Ignition",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_PlayerMeterDistance",
+  "MobManager.get_TargetableMobList",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.IsBlank",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.int",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "System.Linq.Enumerable.Count",
+  "TargetableListManagerBase.get_Instance",
+  "TryGetBuf.out2",
+  "TwinStormBuf.GetParam",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

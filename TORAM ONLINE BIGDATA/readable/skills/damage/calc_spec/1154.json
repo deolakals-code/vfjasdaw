@@ -1,0 +1,101 @@
+{
+ "version": 1,
+ "uid": 1154,
+ "name_th": "วิธีการหายใจ",
+ "name_en": "BreathingMethod",
+ "tree": "CrusherSkill",
+ "category": "Buffer",
+ "max_level": 50,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "BreathingMethodAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1154,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "(mp - 100)",
+   "simplified": "mp - 100",
+   "when": "hasGemCart(1037)"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "SkillUtil.CalcCastTime(0, PlayerStatusBase.get_BattleStatus())",
+   "simplified": "SkillUtil.CalcCastTime(0, PlayerStatusBase.get_BattleStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_BattleStatus",
+    "SkillUtil.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1154, Lv)",
+   "simplified": "AddSelfBuffer(1154, Lv)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "GazerShootAction.ActionHit",
+  "GeoImpactAction.ActionPreparation",
+  "PlayerAttackBase.CalcCostMp",
+  "PlayerAttackBase.RemoveAfterSkillBuf"
+ ],
+ "variables": [
+  "PlayerStatusBase.get_BattleStatus",
+  "SkillUtil.CalcCastTime",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

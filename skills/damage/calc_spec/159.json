@@ -1,0 +1,1766 @@
+{
+ "version": 1,
+ "uid": 159,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment",
+  "changes attack pattern (motion / combo chain; heuristic)"
+ ],
+ "class": "MindimageSenjuAttackAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "custom_check + class check",
+  "attack_type": "dynamic",
+  "action_id": 159,
+  "is_exp_def_fluctuate": "conditional",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "[baseSkill+0x30]",
+   "simplified": "[baseSkill+0x30]",
+   "when": "always",
+   "residual": [
+    "+0x30]"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "CharacterActionManagerBase.get_UnTargetDist()",
+   "simplified": "CharacterActionManagerBase.get_UnTargetDist()",
+   "when": "always",
+   "vars": [
+    "CharacterActionManagerBase.get_UnTargetDist"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "MindimageSenjuSkillBase.Encryption(baseSkill)",
+   "simplified": "MindimageSenjuSkillBase.Encryption(baseSkill)",
+   "when": "(CharacterActionManagerBase.get_IsLocalDead() - 1153) hi 7 AND (mainWeapon==Knuckle & 1) ne 0 AND CharacterActionManagerBase.get_IsLocalDead() gt 834 AND CharacterActionManagerBase.get_IsLocalDead() gt 844 OR (mainWeapon==Knuckle & 1) ne 0 AND CharacterActionManagerBase.get_IsLocalDead() eq 842 AND CharacterActionManagerBase.get_IsLocalDead() gt 834 AND CharacterActionManagerBase.get_IsLocalDead() le 844 OR (CharacterActionManagerBase.get_IsLocalDead() - 129) hi 17 AND (mainWeapon==Knuckle & 1) ne 0 AND CharacterActionManagerBase.get_IsLocalDead() eq 514 AND CharacterActionManagerBase.get_IsLocalDead() le 834",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuSkillBase.Encryption"
+   ]
+  },
+  {
+   "method": "InitializeSmash",
+   "kind": "set",
+   "name": "abnormalType",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeBash",
+   "kind": "set",
+   "name": "abnormalType",
+   "formula": "3",
+   "simplified": "3",
+   "when": "always",
+   "by_level": 3
+  },
+  {
+   "method": "InitializeSonicWave",
+   "kind": "set",
+   "name": "abnormalType",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always",
+   "by_level": 2
+  },
+  {
+   "method": "InitializeShellBreak",
+   "kind": "set",
+   "name": "abnormalType",
+   "formula": "10",
+   "simplified": "10",
+   "when": "always",
+   "by_level": 10
+  },
+  {
+   "method": "InitializeEarthBind",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeEarthBind",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeEarthBind",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(1.5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1.5)",
+   "when": "WeaponType eq 16",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeEarthBind",
+   "kind": "set",
+   "name": "abnormalType",
+   "formula": "12",
+   "simplified": "12",
+   "when": "always",
+   "by_level": 12
+  },
+  {
+   "method": "InitializeEarthBind",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(((Lv << 2) + lv) + 50)",
+   "simplified": "4 × Lv + lv + 50",
+   "when": "WeaponType eq 16",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "InitializeEarthBind",
+   "kind": "set",
+   "name": "value",
+   "formula": "1000",
+   "simplified": "1000",
+   "when": "WeaponType eq 16",
+   "by_level": 1000
+  },
+  {
+   "method": "InitializeEarthBind",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(((int((Lv * 0.3)) * 0.5) + 1))",
+   "simplified": "MathUtil.DisplayMeterToDistance(0.5 × int(0.3 × Lv) + 1)",
+   "when": "WeaponType ne 16",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeEarthBind",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((Lv << 2) + lv)",
+   "simplified": "4 × Lv + lv",
+   "when": "WeaponType ne 16",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "InitializeEarthBind",
+   "kind": "set",
+   "name": "value",
+   "formula": "500",
+   "simplified": "500",
+   "when": "WeaponType ne 16",
+   "by_level": 500
+  },
+  {
+   "method": "InitializeEarthBind",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "((int((Lv * 0.3)) * 0.5) + 1)",
+   "simplified": "0.5 × int(0.3 × Lv) + 1",
+   "when": "always",
+   "by_level": [
+    1.0,
+    1.0,
+    1.0,
+    1.5,
+    1.5,
+    1.5,
+    2.0,
+    2.0,
+    2.0,
+    2.5
+   ]
+  },
+  {
+   "method": "InitializeHeavySmash",
+   "kind": "set",
+   "name": "abnormalType",
+   "formula": "15",
+   "simplified": "15",
+   "when": "always",
+   "by_level": 15
+  },
+  {
+   "method": "InitializeChariot",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeChariot",
+   "kind": "set",
+   "name": "abnormalType",
+   "formula": "13",
+   "simplified": "13",
+   "when": "always",
+   "by_level": 13
+  },
+  {
+   "method": "InitializeChariot",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "WeaponType eq 16",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "InitializeChariot",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "((11 - (int((Lv * 0.5)) << 1)) + -1)",
+   "simplified": "10 - 2 × int(0.5 × Lv)",
+   "when": "WeaponType eq 16",
+   "by_level": [
+    10,
+    8,
+    8,
+    6,
+    6,
+    4,
+    4,
+    2,
+    2,
+    0
+   ]
+  },
+  {
+   "method": "InitializeChariot",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "1",
+   "simplified": "1",
+   "when": "WeaponType eq 16",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeChariot",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "WeaponType eq 16",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeChariot",
+   "kind": "set",
+   "name": "width",
+   "formula": "1.5",
+   "simplified": "1.5",
+   "when": "WeaponType eq 16",
+   "by_level": 1.5
+  },
+  {
+   "method": "InitializeChariot",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "WeaponType ne 16",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "InitializeChariot",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "(11 - (int((Lv * 0.5)) << 1))",
+   "simplified": "11 - 2 × int(0.5 × Lv)",
+   "when": "WeaponType ne 16",
+   "by_level": [
+    11,
+    9,
+    9,
+    7,
+    7,
+    5,
+    5,
+    3,
+    3,
+    1
+   ]
+  },
+  {
+   "method": "InitializeFlashArts",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "(1 + int((AvoidActionManager.get_AvoidCount([playerAction.battleManager+0xa8]) * 0.5)))",
+   "simplified": "int(0.5 × AvoidActionManager.get_AvoidCount([playerAction.battleManager+0xa8])) + 1",
+   "when": "IsInstanceOf(playerAction, PlayerActionManager) ne 1",
+   "vars": [
+    "AvoidActionManager.get_AvoidCount"
+   ],
+   "residual": [
+    "+0xa8]"
+   ]
+  },
+  {
+   "method": "InitializeFlashArts",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "(1 + int((AvoidActionManager.get_AvoidCount([playerAction.battleManager+0xa0]) * 0.5)))",
+   "simplified": "int(0.5 × AvoidActionManager.get_AvoidCount([playerAction.battleManager+0xa0])) + 1",
+   "when": "IsInstanceOf(playerAction, PlayerActionManager) eq 1",
+   "vars": [
+    "AvoidActionManager.get_AvoidCount"
+   ],
+   "residual": [
+    "+0xa0]"
+   ]
+  },
+  {
+   "method": "InitializeExorcism",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "(LoopParam // 10)",
+   "simplified": "LoopParam // 10",
+   "when": "IsOtherPlayer ne 0"
+  },
+  {
+   "method": "InitializeExorcism",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeExorcism",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "2",
+   "simplified": "2",
+   "when": "IsOtherPlayer eq 0",
+   "by_level": 2
+  },
+  {
+   "method": "InitializeExorcism",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(Lv + (Lv << 1))",
+   "simplified": "3 × Lv",
+   "when": "IsOtherPlayer eq 0",
+   "by_level": [
+    3,
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30
+   ]
+  },
+  {
+   "method": "InitializeExorcism",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeExorcism",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(3)",
+   "simplified": "MathUtil.DisplayMeterToDistance(3)",
+   "when": "IsOtherPlayer eq 0",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeExorcism",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int((MathUtil.DisplayMeterToDistance(3) * 10))",
+   "simplified": "int(10 × MathUtil.DisplayMeterToDistance(3))",
+   "when": "IsOtherPlayer eq 0",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeExorcism",
+   "kind": "set",
+   "name": "abnormalType",
+   "formula": "13",
+   "simplified": "13",
+   "when": "IsOtherPlayer eq 0",
+   "by_level": 13
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "(CastTime / 10)",
+   "simplified": "CastTime / 10",
+   "when": "IsOtherPlayer ne 0 AND UnityEngine.Object.op_Inequality(playerAction) OR !UnityEngine.Object.op_Inequality(playerAction) AND IsOtherPlayer ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "isInstallation",
+   "formula": "(LoopParam eq 1 ? 1 : 0)",
+   "simplified": "LoopParam = 1 ? 1 : 0",
+   "when": "IsOtherPlayer ne 0 AND UnityEngine.Object.op_Inequality(playerAction) OR !UnityEngine.Object.op_Inequality(playerAction) AND IsOtherPlayer ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "isInstallation",
+   "formula": "([baseSkill+0x104] & 1)",
+   "simplified": "[baseSkill+0x104] & 1",
+   "when": "IsOtherPlayer eq 0 OR IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool)",
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "PlayerAttackBase.ExistWeaponType"
+   ],
+   "residual": [
+    "+0x104]"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "isFirst",
+   "formula": "[baseSkill+0x134]",
+   "simplified": "[baseSkill+0x134]",
+   "when": "IsOtherPlayer eq 0 OR IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool)",
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "PlayerAttackBase.ExistWeaponType"
+   ],
+   "residual": [
+    "+0x134]"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 OR IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool)",
+   "by_level": 1,
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "PlayerAttackBase.ExistWeaponType"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "[baseSkill+0x28]",
+   "simplified": "[baseSkill+0x28]",
+   "when": "IsOtherPlayer eq 0 OR IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool)",
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "PlayerAttackBase.ExistWeaponType"
+   ],
+   "residual": [
+    "+0x28]"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(2.5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(2.5)",
+   "when": "IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool) AND !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0",
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerAttackBase.ExistWeaponType"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool) AND !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0",
+   "by_level": 1,
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "PlayerAttackBase.ExistWeaponType"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "Element",
+   "formula": "5",
+   "simplified": "5",
+   "when": "IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool) AND !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0",
+   "by_level": 5,
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "PlayerAttackBase.ExistWeaponType"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "SubElement",
+   "formula": "[baseSkill+0x34]",
+   "simplified": "[baseSkill+0x34]",
+   "when": "IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool) AND !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0",
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "PlayerAttackBase.ExistWeaponType"
+   ],
+   "residual": [
+    "+0x34]"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "int((MathUtil.DisplayMeterToDistance(2.5) * 10))",
+   "simplified": "int(10 × MathUtil.DisplayMeterToDistance(2.5))",
+   "when": "IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool) AND !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0",
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerAttackBase.ExistWeaponType"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "([baseSkill+0x104] & 1)",
+   "simplified": "[baseSkill+0x104] & 1",
+   "when": "IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool) OR !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool) AND !PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0",
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "PlayerAttackBase.ExistWeaponType"
+   ],
+   "residual": [
+    "+0x104]"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(5)",
+   "when": "!PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool)",
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerAttackBase.ExistWeaponType"
+   ]
+  },
+  {
+   "method": "InitializeNemesis",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "int((MathUtil.DisplayMeterToDistance(5) * 10))",
+   "simplified": "int(10 × MathUtil.DisplayMeterToDistance(5))",
+   "when": "!PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Shield) AND IsOtherPlayer eq 0 AND PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Magictool)",
+   "vars": [
+    "ItemType.Magictool",
+    "ItemType.Shield",
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerAttackBase.ExistWeaponType"
+   ]
+  },
+  {
+   "method": "InitializeGeoImpact",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeGeoImpact",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeGeoImpact",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "IsOtherPlayer eq 0",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isRangeEquipBonus",
+   "formula": "(?mvn & 1)",
+   "simplified": "?mvn & 1",
+   "when": "always",
+   "residual": [
+    "?mvn"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isRangeSkillBonus",
+   "formula": "(?mvn & 1)",
+   "simplified": "?mvn & 1",
+   "when": "always",
+   "residual": [
+    "?mvn"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "target",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Matk",
+   "simplified": "status.Matk",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 131 AND MindimageSenjuAttackAction.get_AttackType() eq 2 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target), 0) OR !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target), 0) AND CharacterActionManagerBase.get_IsLocalDead() eq 131 AND MindimageSenjuAttackAction.get_AttackType() eq 2 OR CharacterActionManagerBase.get_IsLocalDead() eq 842 AND CharacterActionManagerBase.get_IsLocalDead() ne 131 AND MindimageSenjuAttackAction.get_AttackType() eq 2",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_AttackType",
+    "UnityEngine.Object.op_Inequality",
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "isNemesisBuf",
+   "formula": "(hasBuff(844) & 1)",
+   "simplified": "hasBuff(844) & 1",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 842 AND CharacterActionManagerBase.get_IsLocalDead() ne 131 AND MindimageSenjuAttackAction.get_AttackType() eq 2 OR CharacterActionManagerBase.get_IsLocalDead() eq 842 AND CharacterActionManagerBase.get_IsLocalDead() ne 131 AND MindimageSenjuAttackAction.get_AttackType() ne 2",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_AttackType"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 844 AND CharacterActionManagerBase.get_IsLocalDead() ne 131 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND MindimageSenjuAttackAction.get_AttackType() eq 2 OR CharacterActionManagerBase.get_IsLocalDead() eq 844 AND CharacterActionManagerBase.get_IsLocalDead() ne 131 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND MindimageSenjuAttackAction.get_AttackType() ne 2 OR CharacterActionManagerBase.get_IsLocalDead() eq 1160 AND CharacterActionManagerBase.get_IsLocalDead() ne 131 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND CharacterActionManagerBase.get_IsLocalDead() ne 844 AND MindimageSenjuAttackAction.get_AttackType() eq 2",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_AttackType",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 844 AND CharacterActionManagerBase.get_IsLocalDead() ne 131 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND MindimageSenjuAttackAction.get_AttackType() eq 2 OR CharacterActionManagerBase.get_IsLocalDead() eq 844 AND CharacterActionManagerBase.get_IsLocalDead() ne 131 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND MindimageSenjuAttackAction.get_AttackType() ne 2 OR CharacterActionManagerBase.get_IsLocalDead() eq 1160 AND CharacterActionManagerBase.get_IsLocalDead() ne 131 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND CharacterActionManagerBase.get_IsLocalDead() ne 844 AND MindimageSenjuAttackAction.get_AttackType() eq 2",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_AttackType",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Atk",
+   "simplified": "status.Atk",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 131 AND MindimageSenjuAttackAction.get_AttackType() ne 2 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target), 0) OR !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target), 0) AND CharacterActionManagerBase.get_IsLocalDead() eq 131 AND MindimageSenjuAttackAction.get_AttackType() ne 2 OR CharacterActionManagerBase.get_IsLocalDead() eq 842 AND CharacterActionManagerBase.get_IsLocalDead() ne 131 AND MindimageSenjuAttackAction.get_AttackType() ne 2",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_AttackType",
+    "UnityEngine.Object.op_Inequality",
+    "status.Atk"
+   ]
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isFirst",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "ActionRange",
+   "simplified": "ActionRange",
+   "when": "IsInheritance eq 0 AND SkillActionBase.op_Inequality(baseSkill) OR !SkillActionBase.op_Inequality(baseSkill) AND IsInheritance eq 0 OR !MindimageSenjuAttackAction.get_IsRange() AND IsInheritance ne 0 AND SkillActionBase.op_Inequality(baseSkill)",
+   "vars": [
+    "MindimageSenjuAttackAction.get_IsRange",
+    "SkillActionBase.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND skillRate.Length eq 0 OR CharacterActionManagerBase.get_IsLocalDead() gt 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 1160 AND CharacterActionManagerBase.get_IsLocalDead() ne 844 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND skillRate.Length eq 0 OR !SkillActionBase.op_Inequality(baseSkill) AND CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND skillRate.Length eq 0",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_IsRange",
+    "SkillActionBase.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "[baseSkill+0x20]",
+   "simplified": "[baseSkill+0x20]",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND skillRate.Length eq 0 OR CharacterActionManagerBase.get_IsLocalDead() gt 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 1160 AND CharacterActionManagerBase.get_IsLocalDead() ne 844 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND skillRate.Length eq 0 OR CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND fixAddDamage.Length eq 0 AND skillRate.Length ne 0",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_IsRange",
+    "SkillActionBase.op_Inequality"
+   ],
+   "residual": [
+    "+0x20]"
+   ]
+  },
+  {
+   "method": "CalcDamageChariot",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcDamageExorcism",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcDamageNemesis",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcDamageNemesis",
+   "kind": "set",
+   "name": "criticalAttackCount",
+   "formula": "(SkillActionBase.get_AttackCount(this) & 255)",
+   "simplified": "SkillActionBase.get_AttackCount(this) & 255",
+   "when": "criticalAttackCount eq -1 AND criticalAttackCount ge 1 AND criticalAttackCount lt SkillActionBase.get_AttackCount(this) AND isFirst eq 0 AND skillRate.Length ls 1 OR PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount eq -1 AND criticalAttackCount lt 1 AND isFirst eq 0 AND skillRate.Length ls 1 OR PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount eq -1 AND criticalAttackCount ge 1 AND criticalAttackCount ge SkillActionBase.get_AttackCount(this) AND isFirst eq 0 AND skillRate.Length ls 1",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "CalcDamageGeoImpact",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 842 OR CharacterActionManagerBase.get_IsLocalDead() eq 844 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 OR CharacterActionManagerBase.get_IsLocalDead() ne 842 AND CharacterActionManagerBase.get_IsLocalDead() ne 844",
+   "by_level": 1,
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead"
+   ]
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "isFirst",
+   "formula": "[baseSkill+0x134]",
+   "simplified": "[baseSkill+0x134]",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 844 AND CharacterActionManagerBase.get_IsLocalDead() ne 842",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead"
+   ],
+   "residual": [
+    "+0x134]"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[0] / 100)",
+   "simplified": "(skillRate[0] / 100)",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND fixAddDamage.Length eq 0 AND skillRate.Length ne 0 OR CharacterActionManagerBase.get_IsLocalDead() gt 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 1160 AND CharacterActionManagerBase.get_IsLocalDead() ne 844 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND fixAddDamage.Length eq 0 AND skillRate.Length ne 0 OR !SkillActionBase.op_Inequality(baseSkill) AND CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND fixAddDamage.Length eq 0 AND skillRate.Length ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_IsRange",
+    "SkillActionBase.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[0]",
+   "simplified": "fixAddDamage[0]",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND abnormalType ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND abnormalType eq 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR CharacterActionManagerBase.get_IsLocalDead() gt 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 1160 AND CharacterActionManagerBase.get_IsLocalDead() ne 844 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND abnormalType ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_IsRange",
+    "SkillActionBase.op_Inequality"
+   ]
+  },
+  {
+   "method": "CalcDamageChariot",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[0] / 100)",
+   "simplified": "(skillRate[0] / 100)",
+   "when": "fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR fixAddDamage.Length eq 0 AND skillRate.Length ne 0 OR PlayerAttackBase.checkAbnormalPercent(this, abnormalType, ((MobActionManagerBase.get_IsBoss(mobAction) ? ((percent lt 0 ? (percent + 1) : percent) >> 1) : percent), playerAction) & 1) ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "CalcDamageChariot",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[0]",
+   "simplified": "fixAddDamage[0]",
+   "when": "fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR PlayerAttackBase.checkAbnormalPercent(this, abnormalType, ((MobActionManagerBase.get_IsBoss(mobAction) ? ((percent lt 0 ? (percent + 1) : percent) >> 1) : percent), playerAction) & 1) ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR PlayerAttackBase.checkAbnormalPercent(this, abnormalType, (!MobActionManagerBase.get_IsBoss(mobAction) ? ((percent lt 0 ? (percent + 1) : percent) >> 1) : percent), playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "CalcDamageExorcism",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((target.Element eq 6 ? (skillRate[0] + 400) : skillRate[0]) / 100)",
+   "simplified": "((target.Element eq 6 ? (skillRate[0] + 400) : skillRate[0]) / 100)",
+   "when": "fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND target.Element eq 6 OR fixAddDamage.Length ne 0 AND isNemesisBuf ne 0 AND skillRate.Length ne 0 AND target.Element ne 6 OR fixAddDamage.Length ne 0 AND isNemesisBuf eq 0 AND skillRate.Length ne 0 AND target.Element ne 6",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "target.Element"
+   ]
+  },
+  {
+   "method": "CalcDamageExorcism",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "(target.Element eq 6 ? (fixAddDamage[0] + 100) : fixAddDamage[0])",
+   "simplified": "(target.Element eq 6 ? (fixAddDamage[0] + 100) : fixAddDamage[0])",
+   "when": "fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND target.Element eq 6 OR fixAddDamage.Length ne 0 AND isNemesisBuf ne 0 AND skillRate.Length ne 0 AND target.Element ne 6 OR fixAddDamage.Length ne 0 AND isNemesisBuf eq 0 AND skillRate.Length ne 0 AND target.Element ne 6",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "target.Element"
+   ]
+  },
+  {
+   "method": "CalcDamageNemesis",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[0] / 100)",
+   "simplified": "(skillRate[0] / 100)",
+   "when": "fixAddDamage.Length ne 0 AND isFirst ne 0 AND skillRate.Length ne 0 OR fixAddDamage.Length eq 0 AND isFirst ne 0 AND skillRate.Length ne 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcDamageNemesis",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[0]",
+   "simplified": "fixAddDamage[0]",
+   "when": "fixAddDamage.Length ne 0 AND isFirst ne 0 AND skillRate.Length ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "CalcDamageNemesis",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[1] / 100)",
+   "simplified": "(skillRate[1] / 100)",
+   "when": "!PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount lt 1 AND fixAddDamage.Length hi 1 AND isFirst eq 0 AND skillRate.Length hi 1 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount lt 1 AND fixAddDamage.Length ls 1 AND isFirst eq 0 AND skillRate.Length hi 1 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount ge 1 AND criticalAttackCount ge SkillActionBase.get_AttackCount(this) AND fixAddDamage.Length hi 1 AND isFirst eq 0 AND skillRate.Length hi 1",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "CalcDamageNemesis",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[1]",
+   "simplified": "fixAddDamage[1]",
+   "when": "!PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount lt 1 AND fixAddDamage.Length hi 1 AND isFirst eq 0 AND skillRate.Length hi 1 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount ge 1 AND criticalAttackCount ge SkillActionBase.get_AttackCount(this) AND fixAddDamage.Length hi 1 AND isFirst eq 0 AND skillRate.Length hi 1 OR criticalAttackCount eq -1 AND criticalAttackCount ge 1 AND criticalAttackCount lt SkillActionBase.get_AttackCount(this) AND fixAddDamage.Length hi 1 AND isFirst eq 0 AND skillRate.Length hi 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "CalcDamageGeoImpact",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[0] * 0.01)",
+   "simplified": "(skillRate[0] * 0.01)",
+   "when": "fixAddDamage.Length ne 0 AND hasBuff(1159) AND skillRate.Length ne 0 OR fixAddDamage.Length eq 0 AND hasBuff(1159) AND skillRate.Length ne 0 OR !hasBuff(1159) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcDamageGeoImpact",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[0]",
+   "simplified": "fixAddDamage[0]",
+   "when": "fixAddDamage.Length ne 0 AND hasBuff(1159) AND skillRate.Length ne 0 OR !hasBuff(1159) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(abnormalType, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(abnormalType, percent, playerAction)",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, percent, playerAction) AND SkillActionBase.op_Inequality(baseSkill) AND abnormalType ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR !PlayerAttackBase.checkAbnormalPercent(this, abnormalType, percent, playerAction) AND CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND SkillActionBase.op_Inequality(baseSkill) AND abnormalType ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR CharacterActionManagerBase.get_IsLocalDead() gt 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 1160 AND CharacterActionManagerBase.get_IsLocalDead() ne 844 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, percent, playerAction) AND SkillActionBase.op_Inequality(baseSkill) AND abnormalType ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_IsRange",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillActionBase.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(abnormalType)",
+   "simplified": "SetAbnormalType(abnormalType)",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, percent, playerAction) AND SkillActionBase.op_Inequality(baseSkill) AND abnormalType ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR CharacterActionManagerBase.get_IsLocalDead() gt 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 1160 AND CharacterActionManagerBase.get_IsLocalDead() ne 844 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, percent, playerAction) AND SkillActionBase.op_Inequality(baseSkill) AND abnormalType ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR !SkillActionBase.op_Inequality(baseSkill) AND CharacterActionManagerBase.get_IsLocalDead() le 843 AND CharacterActionManagerBase.get_IsLocalDead() ne 140 AND CharacterActionManagerBase.get_IsLocalDead() ne 842 AND IsInheritance ne 0 AND MindimageSenjuAttackAction.get_IsRange() AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, percent, playerAction) AND abnormalType ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "MindimageSenjuAttackAction.get_IsRange",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillActionBase.op_Inequality"
+   ]
+  },
+  {
+   "method": "CalcDamageChariot",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(abnormalType, (MobActionManagerBase.get_IsBoss(mobAction) ? ((percent lt 0 ? (percent + 1) : percent) >> 1) : percent), playerAction)",
+   "simplified": "checkAbnormalPercent(abnormalType, MobActionManagerBase.get_IsBoss(mobAction) ? percent ÷ 2 : percent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, abnormalType, ((MobActionManagerBase.get_IsBoss(mobAction) ? ((percent lt 0 ? (percent + 1) : percent) >> 1) : percent), playerAction) & 1) ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR PlayerAttackBase.checkAbnormalPercent(this, abnormalType, (!MobActionManagerBase.get_IsBoss(mobAction) ? ((percent lt 0 ? (percent + 1) : percent) >> 1) : percent), playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "vars": [
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "CalcDamageChariot",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(abnormalType)",
+   "simplified": "SetAbnormalType(abnormalType)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, abnormalType, ((MobActionManagerBase.get_IsBoss(mobAction) ? ((percent lt 0 ? (percent + 1) : percent) >> 1) : percent), playerAction) & 1) ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "vars": [
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "CalcDamageExorcism",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(abnormalType, (MobActionManagerBase.get_IsBoss(mobAction) ? (percent // 10) : percent), playerAction)",
+   "simplified": "checkAbnormalPercent(abnormalType, MobActionManagerBase.get_IsBoss(mobAction) ? percent // 10 : percent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, abnormalType, ((MobActionManagerBase.get_IsBoss(mobAction) ? (percent // 10) : percent), playerAction) & 1) ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND target.Element eq 6 OR PlayerAttackBase.checkAbnormalPercent(this, abnormalType, (!MobActionManagerBase.get_IsBoss(mobAction) ? (percent // 10) : percent), playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND target.Element eq 6 OR PlayerAttackBase.checkAbnormalPercent(this, abnormalType, ((MobActionManagerBase.get_IsBoss(mobAction) ? (percent // 10) : percent), playerAction) & 1) ne 0 AND fixAddDamage.Length ne 0 AND isNemesisBuf ne 0 AND skillRate.Length ne 0 AND target.Element ne 6",
+   "vars": [
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "CalcDamageExorcism",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, abnormalType, ((MobActionManagerBase.get_IsBoss(mobAction) ? (percent // 10) : percent), playerAction) & 1) ne 0 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND target.Element eq 6 OR PlayerAttackBase.checkAbnormalPercent(this, abnormalType, ((MobActionManagerBase.get_IsBoss(mobAction) ? (percent // 10) : percent), playerAction) & 1) ne 0 AND fixAddDamage.Length ne 0 AND isNemesisBuf ne 0 AND skillRate.Length ne 0 AND target.Element ne 6",
+   "vars": [
+    "MobActionManagerBase.get_IsBoss",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "CalcDamageNemesis",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), (maxAttackCount + 1))",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), maxAttackCount + 1)",
+   "when": "fixAddDamage.Length ne 0 AND isFirst ne 0 AND skillRate.Length ne 0 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount lt 1 AND fixAddDamage.Length hi 1 AND isFirst eq 0 AND skillRate.Length hi 1 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount ge 1 AND criticalAttackCount ge SkillActionBase.get_AttackCount(this) AND fixAddDamage.Length hi 1 AND isFirst eq 0 AND skillRate.Length hi 1",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "NemesisBuf..ctor",
+   "formula": ".ctor(Lv, target, actarAction)",
+   "simplified": ".ctor(Lv, target, actarAction)",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 844 AND IsInheritance ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isInstallation eq 0",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new NemesisBuf, Id)",
+   "simplified": "AddSelfBuffer(new, NemesisBuf, Id)",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 844 AND IsInheritance ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isInstallation eq 0",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1158, [baseSkill+0x14], 60)",
+   "simplified": "AddSelfBuffer(1158, [baseSkill+0x14], 60)",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 1158 AND CharacterActionManagerBase.get_IsLocalDead() ne 844 AND IsInheritance ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "+0x14]"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "GeoImpactAction.MpHeal",
+   "formula": "MpHeal(0)",
+   "simplified": "MpHeal(0)",
+   "when": "CharacterActionManagerBase.get_IsLocalDead() eq 1160 AND CharacterActionManagerBase.get_IsLocalDead() ne 1158 AND CharacterActionManagerBase.get_IsLocalDead() ne 844 AND IsInheritance ne 0",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass82_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "MindimageSenjuBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MindimageSenju, 1), (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 ? 1 : 0))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MindimageSenju, 1), (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 ? 1 : 0))",
+   "when": "(cancel & 1) eq 0 AND new MindimageSenjuBuf.IsEnd ne 0 OR (cancel & 1) eq 0 AND new MindimageSenjuBuf.IsEnd eq 0",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.MindimageSenju",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass82_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new MindimageSenjuBuf)",
+   "simplified": "AddSelfBuffer(new, MindimageSenjuBuf)",
+   "when": "(cancel & 1) eq 0 AND new MindimageSenjuBuf.IsEnd eq 0"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "MindimageSenjuBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool isMainKnuckle",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "((isMainKnuckle & 1) ne 0 ? ((20 - lv) + -10) : (20 - lv))",
+        "when": "((isMainKnuckle & 1) ne 0 ? ((20 - lv) + -10) : (20 - lv)) hi 0 OR ((isMainKnuckle & 1) ne 0 ? ((20 - lv) + -10) : (20 - lv)) ls 0",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "NemesisBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, GameObject target, PlayerActionManagerBase player",
+     "fields": {
+      "range": [
+       {
+        "formula": "MathUtil.DisplayMeterToDistance(16)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "playerAttackIdList": [
+       {
+        "formula": "new System.Collections.Generic.List<int>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((((Lv << 2) + lv) << 1) + (((Lv << 2) + lv) << 1))",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17",
+        "by_level": [
+         20,
+         40,
+         60,
+         80,
+         100,
+         120,
+         140,
+         160,
+         180,
+         200
+        ]
+       },
+       {
+        "formula": "(((Lv << 2) + lv) << 1)",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 17",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ],
+      "target": [
+       {
+        "formula": "target",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "playerAction": [
+       {
+        "formula": "player",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "mobAction": [
+       {
+        "formula": "UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "20"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeStack eq 0 OR !UnityEngine.Object.op_Inequality(lineEffect) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeStack ne 0 OR !NemesisBuf.CheckBufferLineConnect(this) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND UnityEngine.Object.op_Inequality(lineEffect) AND activeStack ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND activeStack eq 0 OR !UnityEngine.Object.op_Inequality(lineEffect) AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND activeStack ne 0 OR !NemesisBuf.CheckBufferLineConnect(this) AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND UnityEngine.Object.op_Inequality(lineEffect) AND activeStack ne 0"
+     }
+    ],
+    "Count": [
+     {
+      "method": "CountReset",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "lineEffect": [
+     {
+      "method": "OnCall",
+      "formula": "UnityEngine.GameObject.AddComponent<NemesisBuf.NemesisLineEffect>(UnityEngine.Component.get_gameObject([[Singleton<TakeManager>.get_Instance()+0x20]+0x30][takeUid]))",
+      "when": "UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponentInChildren<SkinnedMeshRenderer>(target), 0) AND UnityEngine.Object.op_Inequality(target) AND UnityEngine.Transform.Find(UnityEngine.Component.get_transform(playerAction), meta(0x3974210, 'Player')) eq 0 OR !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponentInChildren<SkinnedMeshRenderer>(target), 0) AND UnityEngine.Object.op_Inequality(target) AND UnityEngine.Transform.Find(UnityEngine.Component.get_transform(playerAction), meta(0x3974210, 'Player')) eq 0 OR UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<SkinnedMeshRenderer>(UnityEngine.Transform.Find(UnityEngine.Component.get_transform(playerAction), meta(0x3974210, 'Player'))), 0) AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponentInChildren<SkinnedMeshRenderer>(target), 0) AND UnityEngine.Object.op_Inequality(target) AND UnityEngine.Transform.Find(UnityEngine.Component.get_transform(playerAction), meta(0x3974210, 'Player')) ne 0"
+     }
+    ]
+   },
+   "hooks": [
+    "ChangeHyperMode",
+    "CheckBufferLineConnect",
+    "CheckPlayerAttackDamaged",
+    "CountReset",
+    "MobAttackDamaged",
+    "OnCall",
+    "PlayerAttackDamaged",
+    "get_BufEffectTakeId"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "NemesisBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "20"
+    }
+   },
+   "attached_via": "caller2:NemesisBuf$$.ctor<-MindimageSenjuAttackAction$$ActionHit",
+   "kind": "counter"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "MindimageSenjuBuf": {
+     "lv": "lv",
+     "self": "1"
+    },
+    "CountBufferBase": {
+     "lv": "lv",
+     "self": "(self & 1)"
+    }
+   },
+   "attached_via": "caller2:MindimageSenjuBuf$$.ctor<-MindimageSenjuAttackAction.<>c__DisplayClass82_0$$<ActionStart>b__0",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AvoidActionManager.get_AvoidCount",
+  "CharacterActionManagerBase.get_IsLocalDead",
+  "CharacterActionManagerBase.get_UnTargetDist",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "EquipItemData.get_SubWeapon",
+  "IMobStatusCalculator.get_Element",
+  "IPlayerStatusCalculator.get_Atk",
+  "IPlayerStatusCalculator.get_Matk",
+  "ItemType.Magictool",
+  "ItemType.Shield",
+  "MathUtil.DisplayMeterToDistance",
+  "MindimageSenjuAttackAction.get_AttackType",
+  "MindimageSenjuAttackAction.get_IsRange",
+  "MindimageSenjuSkillBase.Encryption",
+  "MobActionManagerBase.get_IsBoss",
+  "NemesisBuf.CheckBufferLineConnect",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CheckMagicCritical",
+  "PlayerAttackBase.ExistWeaponType",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillManager",
+  "Singleton.get_Instance",
+  "SkillActionBase.get_AttackCount",
+  "SkillActionBase.op_Inequality",
+  "SkillBufferId.Count",
+  "SkillId.MindimageSenju",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.AddComponent",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.GetComponentInChildren",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.Find",
+  "UnityEngine.Transform.get_position",
+  "status.Atk",
+  "status.Matk",
+  "target.Element"
+ ],
+ "residual": [
+  {
+   "where": "OnInitialize:Element",
+   "tokens": [
+    "+0x30]"
+   ]
+  },
+  {
+   "where": "InitializeFlashArts:maxAttackCount",
+   "tokens": [
+    "+0xa8]"
+   ]
+  },
+  {
+   "where": "InitializeFlashArts:maxAttackCount",
+   "tokens": [
+    "+0xa0]"
+   ]
+  },
+  {
+   "where": "InitializeNemesis:isInstallation",
+   "tokens": [
+    "+0x104]"
+   ]
+  },
+  {
+   "where": "InitializeNemesis:isFirst",
+   "tokens": [
+    "+0x134]"
+   ]
+  },
+  {
+   "where": "InitializeNemesis:maxAttackCount",
+   "tokens": [
+    "+0x28]"
+   ]
+  },
+  {
+   "where": "InitializeNemesis:SubElement",
+   "tokens": [
+    "+0x34]"
+   ]
+  },
+  {
+   "where": "InitializeNemesis:LoopParam",
+   "tokens": [
+    "+0x104]"
+   ]
+  },
+  {
+   "where": "ActionPreparation:isRangeEquipBonus",
+   "tokens": [
+    "?mvn"
+   ]
+  },
+  {
+   "where": "ActionPreparation:isRangeSkillBonus",
+   "tokens": [
+    "?mvn"
+   ]
+  },
+  {
+   "where": "calcPlayerToMobDamage:ActionRange",
+   "tokens": [
+    "+0x20]"
+   ]
+  },
+  {
+   "where": "OnInheritance:isFirst",
+   "tokens": [
+    "+0x134]"
+   ]
+  },
+  {
+   "where": "ActionHit:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "+0x14]"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,169 @@
+{
+ "version": 1,
+ "uid": 553,
+ "name_th": "ดีเทคชั่น",
+ "name_en": "Detection",
+ "tree": "HunterSkill",
+ "category": "Buffer",
+ "max_level": 35,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "DetectionAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 553,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(553, Lv)",
+   "simplified": "AddSelfBuffer(553, Lv)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "DetectionBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "40",
+        "when": "always",
+        "by_level": 40
+       }
+      ],
+      "critical": [
+       {
+        "formula": "Lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "hateRate": [
+       {
+        "formula": "(0xfffffff6 - lv)",
+        "when": "always",
+        "by_level": [
+         -11,
+         -12,
+         -13,
+         -14,
+         -15,
+         -16,
+         -17,
+         -18,
+         -19,
+         -20
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "critical",
+     "simplified": "critical",
+     "when": []
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "GetHateBonus"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "EnemyMobActionManagerBase.InitManagedMob",
+  "MobObjectManager.ReceiveMobaMobChangeHateManager",
+  "MobaPlayerSecondaryStatus.GetCrtConstant",
+  "PhotonListener.OnActionPartyChangeHateMine",
+  "PhotonListener.OnActionRoomChangeHateMine",
+  "PlayerSecondaryStatus.GetCrtConstant",
+  "PlayerSecondaryStatus.GetDisplayBonusCalcHate"
+ ],
+ "variables": [
+  "SkillBufferId.CrtUp",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

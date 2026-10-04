@@ -1,0 +1,518 @@
+{
+ "version": 1,
+ "uid": 1285,
+ "name_th": "[N]ดราก้อนสเลฟ[N2]ดราก้อนสเลฟ[N]",
+ "name_en": "DragSlave",
+ "tree": "AvatarSkill_1",
+ "category": "Attack",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "DragSlaveAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1285,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "PlayerAttackBase.CalcCostMp(this, actarAction)",
+   "simplified": "PlayerAttackBase.CalcCostMp(this, actarAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "PlayerAttackBase.CalcCostMp(this, actarAction)",
+   "simplified": "PlayerAttackBase.CalcCostMp(this, actarAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10))) + int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10)))) mi 4000 ? (int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10))) + int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10)))) : 4000)",
+   "simplified": "((int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10))) + int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10)))) mi 4000 ? (int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10))) + int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10)))) : 4000)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp",
+    "PlayerSecondaryStatus.CalcBaseMaxMp",
+    "PlayerStatusBase.get_SecondaryStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "normalElementBonusRate",
+   "formula": "25",
+   "simplified": "25",
+   "when": "always",
+   "by_level": 25
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "breakPercent",
+   "formula": "((PlayerAttackBase.CalcCostMp(this, actarAction) // 10) lt 100 ? (PlayerAttackBase.CalcCostMp(this, actarAction) // 10) : 100)",
+   "simplified": "min(PlayerAttackBase.CalcCostMp(this, actarAction) // 10, 100)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(min((((max((PlayerAttackBase.get_Mp() - 1000), 0) // 100) * 0.5) + ((PlayerAttackBase.get_Mp() lt 1000 ? PlayerAttackBase.get_Mp() : 1000) // 100)), 15))",
+   "simplified": "MathUtil.DisplayMeterToDistance(min(0.5 × max(A - 1000, 0) // 100 + min(A, 1000) // 100, 15))",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "PlayerAttackBase.get_Mp()"
+    ]
+   ],
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerAttackBase.get_Mp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 5, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 5, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10))) mi 2000 ? int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10))) : 2000)",
+   "simplified": "(int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10))) mi 2000 ? int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * (((PlayerAttackBase.CalcCostMp(this, actarAction) / 200) / 20) + 0.5)) * 10))) : 2000)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp",
+    "PlayerSecondaryStatus.CalcBaseMaxMp",
+    "PlayerStatusBase.get_SecondaryStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "((PlayerAttackBase.get_Mp() // 100) * 50)",
+   "simplified": "50 × PlayerAttackBase.get_Mp() // 100",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.get_Mp"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackTargetTransform",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y * ActionRange))",
+   "simplified": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y * ActionRange))",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z * ActionRange))",
+   "simplified": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z * ActionRange))",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "archetypeUid",
+   "formula": "IUserArchetype.get_ArchetypeUid(UnityEngine.Component.GetComponent<IUserArchetype>(actarAction))",
+   "simplified": "IUserArchetype.get_ArchetypeUid(UnityEngine.Component.GetComponent<IUserArchetype>(actarAction))",
+   "when": "always",
+   "vars": [
+    "IUserArchetype.get_ArchetypeUid"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "UnityEngine.Object.op_Inequality(target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR UnityEngine.Object.op_Inequality(target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "UnityEngine.Object.op_Inequality(target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR UnityEngine.Object.op_Inequality(target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "attackTargetTransform",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(attackTargetTransform).y",
+   "simplified": "UnityEngine.Transform.get_position(attackTargetTransform).y",
+   "when": "!PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(attackTargetTransform).y), size) AND UnityEngine.Object.op_Equality(attackTargetTransform, targetTransform) AND UnityEngine.Object.op_Inequality(attackTargetTransform) AND first eq 0 OR !PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(attackTargetTransform).y), size) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)), 0) AND !UnityEngine.Object.op_Equality(attackTargetTransform, targetTransform) AND UnityEngine.Object.op_Inequality(attackTargetTransform) AND first eq 0 OR (((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(attackTargetTransform).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(attackTargetTransform).x)) + ((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(attackTargetTransform).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(attackTargetTransform).z))) hi ((attackRange + size) * (attackRange + size)) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(attackTargetTransform).y), size) AND UnityEngine.Object.op_Equality(attackTargetTransform, targetTransform) AND UnityEngine.Object.op_Inequality(attackTargetTransform) AND first eq 0",
+   "vars": [
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.checkRangeHeight",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(attackTargetTransform).z",
+   "simplified": "UnityEngine.Transform.get_position(attackTargetTransform).z",
+   "when": "!PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(attackTargetTransform).y), size) AND UnityEngine.Object.op_Equality(attackTargetTransform, targetTransform) AND UnityEngine.Object.op_Inequality(attackTargetTransform) AND first eq 0 OR !PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(attackTargetTransform).y), size) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)), 0) AND !UnityEngine.Object.op_Equality(attackTargetTransform, targetTransform) AND UnityEngine.Object.op_Inequality(attackTargetTransform) AND first eq 0 OR (((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(attackTargetTransform).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(attackTargetTransform).x)) + ((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(attackTargetTransform).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(attackTargetTransform).z))) hi ((attackRange + size) * (attackRange + size)) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(attackTargetTransform).y), size) AND UnityEngine.Object.op_Equality(attackTargetTransform, targetTransform) AND UnityEngine.Object.op_Inequality(attackTargetTransform) AND first eq 0",
+   "vars": [
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.checkRangeHeight",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "rotation",
+   "formula": "1",
+   "simplified": "1",
+   "when": "UnityEngine.Object.op_Inequality(attackTargetTransform) AND param eq 100 AND param ne 101 AND param ne 102",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "rotation",
+   "formula": "0",
+   "simplified": "0",
+   "when": "abs(rotateDelta) mi ((defaultRotateSpeed * 1.5) * UnityEngine.Time.get_deltaTime()) AND param eq 101 AND param ne 102 AND rotation ne 0",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Time.get_deltaTime"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "rotateDelta",
+   "formula": "(rotateDelta - (rotateDelta mi 0 ? -((defaultRotateSpeed * 1.5) * UnityEngine.Time.get_deltaTime()) : ((defaultRotateSpeed * 1.5) * UnityEngine.Time.get_deltaTime())))",
+   "simplified": "(rotateDelta - (rotateDelta mi 0 ? -((defaultRotateSpeed * 1.5) * UnityEngine.Time.get_deltaTime()) : ((defaultRotateSpeed * 1.5) * UnityEngine.Time.get_deltaTime())))",
+   "when": "abs(rotateDelta) pl ((defaultRotateSpeed * 1.5) * UnityEngine.Time.get_deltaTime()) AND param eq 101 AND param ne 102 AND rotation ne 0",
+   "vars": [
+    "UnityEngine.Time.get_deltaTime"
+   ]
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "first",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "first eq 0 AND target.Element eq 7 OR first eq 0 AND target.Element ne 7 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element eq 7",
+   "vars": [
+    "AbnormalType.Breaking",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.Element"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "first eq 0 AND target.Element eq 7 OR first eq 0 AND target.Element ne 7 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element eq 7",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalType.Breaking",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "first eq 0 AND target.Element eq 7 OR first eq 0 AND target.Element ne 7 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element eq 7",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalType.Breaking",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "first eq 0 AND target.Element eq 7 OR first eq 0 AND target.Element ne 7 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element eq 7",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "AbnormalType.Breaking",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.Element",
+    "target.ExpDefMagic"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[ElementBonusRate]",
+   "formula": "(normalElementBonusRate / 100)",
+   "simplified": "normalElementBonusRate / 100",
+   "when": "first eq 0 AND target.Element eq 7 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element eq 7 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element eq 7",
+   "op": "AddRate",
+   "step": "ElementBonusRate",
+   "vars": [
+    "AbnormalType.Breaking",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetMagicExpList[MobActionManagerBase.get_gameObject(mobAction)] / 100)",
+   "simplified": "(targetMagicExpList[MobActionManagerBase.get_gameObject(mobAction)] / 100)",
+   "when": "first eq 0 AND target.Element eq 7 OR first eq 0 AND target.Element ne 7 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element eq 7",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "AbnormalType.Breaking",
+    "MobActionManagerBase.get_gameObject",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.Element"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(16, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(16, 100, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) AND first ne 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) AND first ne 0",
+   "vars": [
+    "AbnormalType.Collapse",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(16)",
+   "simplified": "SetAbnormalType(16)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) AND first ne 0",
+   "vars": [
+    "AbnormalType.Collapse",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(10, breakPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(10, breakPercent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element eq 7 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element eq 7 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element ne 7",
+   "vars": [
+    "AbnormalType.Breaking",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(10)",
+   "simplified": "SetAbnormalType(10)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element eq 7 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakPercent, playerAction) AND first eq 0 AND target.Element ne 7",
+   "vars": [
+    "AbnormalType.Breaking",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.Element"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Breaking",
+  "AbnormalType.Collapse",
+  "IMobStatusCalculator.get_Element",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "IUserArchetype.get_ArchetypeUid",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Target",
+  "MobActionManagerBase.get_gameObject",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CalcCostMp",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.checkRangeHeight",
+  "PlayerAttackBase.get_Mp",
+  "PlayerSecondaryStatus.CalcBaseMaxMp",
+  "PlayerStatusBase.get_SecondaryStatus",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_forward",
+  "UnityEngine.Transform.get_position",
+  "target.Element",
+  "target.ExpDefMagic"
+ ],
+ "residual": []
+}

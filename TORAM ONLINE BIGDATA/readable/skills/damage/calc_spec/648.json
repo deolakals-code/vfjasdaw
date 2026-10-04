@@ -1,0 +1,68 @@
+{
+ "version": 1,
+ "uid": 648,
+ "name_th": "เร็วดุจเทพ",
+ "name_en": "GodspeedLocus",
+ "tree": "DualSword",
+ "category": "Mastery",
+ "max_level": 50,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "GodspeedLocus",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "GodspeedLocus",
+  "bonuses": {
+   "FirstAttackRate": {
+    "id": 30,
+    "expr": "(Lv + 5)",
+    "by_level": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ]
+   },
+   "Agi": {
+    "id": 31,
+    "expr": "0",
+    "by_level": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

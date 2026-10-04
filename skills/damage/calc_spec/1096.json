@@ -1,0 +1,154 @@
+{
+ "version": 1,
+ "uid": 1096,
+ "name_th": "วายุโหมคลื่นกระหน่ำอัลติมา",
+ "name_en": "StormAndUrgeExtreme",
+ "tree": "BareHandSkill",
+ "category": "Mastery",
+ "max_level": 100,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "StormAndUrgeExtreme",
+ "proration": null,
+ "eq_limit": [
+  "Hand"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "StormAndUrgeExtremeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "temporaryCount": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "percent": [
+       {
+        "formula": "(Lv << 1)",
+        "when": "always",
+        "by_level": [
+         2,
+         4,
+         6,
+         8,
+         10,
+         12,
+         14,
+         16,
+         18,
+         20
+        ]
+       }
+      ],
+      "powerResistBreaker": [
+       {
+        "formula": "(Lv * 200)",
+        "when": "always",
+        "by_level": [
+         200,
+         400,
+         600,
+         800,
+         1000,
+         1200,
+         1400,
+         1600,
+         1800,
+         2000
+        ]
+       }
+      ],
+      "avoidStackHeal": [
+       {
+        "formula": "(Lv * 200)",
+        "when": "always",
+        "by_level": [
+         200,
+         400,
+         600,
+         800,
+         1000,
+         1200,
+         1400,
+         1600,
+         1800,
+         2000
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Percent",
+     "bonus_id": 52,
+     "formula": "percent",
+     "simplified": "percent",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "PowerResistBreaker",
+     "bonus_id": 72,
+     "formula": "powerResistBreaker",
+     "simplified": "powerResistBreaker",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "avoidStackHeal",
+     "simplified": "avoidStackHeal",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "StormAndUrgeExtreme",
+  "bonuses": {}
+ },
+ "hooks": [
+  "PlayerAttackBase.CalcCostMp",
+  "StormAndUrgeAction.ActionSkillEvent"
+ ],
+ "variables": [
+  "SkillBufferId.Percent",
+  "SkillBufferId.PowerResistBreaker",
+  "SkillBufferId.Value"
+ ],
+ "residual": []
+}

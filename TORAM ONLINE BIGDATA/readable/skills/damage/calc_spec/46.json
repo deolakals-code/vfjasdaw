@@ -1,0 +1,449 @@
+{
+ "version": 1,
+ "uid": 46,
+ "name_th": "เบอร์เซิร์ก",
+ "name_en": "Berserk",
+ "tree": "BladeSkill",
+ "category": "Buffer",
+ "max_level": 150,
+ "roles": [
+  "buff (self)",
+  "boosts normal-attack damage"
+ ],
+ "class": "BerserkAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 46,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "BerserkBuf..ctor",
+   "formula": ".ctor(Lv, gemCart(408[2]), mainWeaponType)",
+   "simplified": ".ctor(Lv, gemCart(408[2]), mainWeaponType)",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new BerserkBuf, Id)",
+   "simplified": "AddSelfBuffer(new, BerserkBuf, Id)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "BerserkBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "10",
+        "when": "always",
+        "by_level": 10
+       }
+      ],
+      "normalAttackRate": [
+       {
+        "formula": "(Lv * 10)",
+        "when": "always",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ],
+      "aspd": [
+       {
+        "formula": "(Lv * 100)",
+        "when": "always",
+        "by_level": [
+         100,
+         200,
+         300,
+         400,
+         500,
+         600,
+         700,
+         800,
+         900,
+         1000
+        ]
+       }
+      ],
+      "aspdRate": [
+       {
+        "formula": "(Lv * 10)",
+        "when": "always",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ],
+      "critical": [
+       {
+        "formula": "int((Lv * 2.5))",
+        "when": "always",
+        "by_level": [
+         2,
+         5,
+         7,
+         10,
+         12,
+         15,
+         17,
+         20,
+         22,
+         25
+        ]
+       }
+      ],
+      "stable": [
+       {
+        "formula": "(100 - (Lv + (Lv << 2)))",
+        "when": "always",
+        "by_level": [
+         95,
+         90,
+         85,
+         80,
+         75,
+         70,
+         65,
+         60,
+         55,
+         50
+        ]
+       }
+      ],
+      "defRate": [
+       {
+        "formula": "(100 - Lv)",
+        "when": "always",
+        "by_level": [
+         99,
+         98,
+         97,
+         96,
+         95,
+         94,
+         93,
+         92,
+         91,
+         90
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    },
+    {
+     "sig": "byte lv, byte gemCartValue, ItemDBData.ItemType mainWeapon, ItemDBData.ItemType subWeapon",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "((10) + 20)",
+        "when": "mainWeapon eq 11 OR mainWeapon eq 10 AND mainWeapon ne 11 AND subWeapon eq 10 OR mainWeapon eq 10 AND mainWeapon ne 11 AND subWeapon ne 10",
+        "by_level": 30
+       }
+      ],
+      "normalAttackRate": [
+       {
+        "formula": "(Lv * 10)",
+        "when": "always",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ],
+      "aspd": [
+       {
+        "formula": "(Lv * 100)",
+        "when": "always",
+        "by_level": [
+         100,
+         200,
+         300,
+         400,
+         500,
+         600,
+         700,
+         800,
+         900,
+         1000
+        ]
+       }
+      ],
+      "aspdRate": [
+       {
+        "formula": "(Lv * 10)",
+        "when": "always",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ],
+      "critical": [
+       {
+        "formula": "((int((Lv * 2.5))) << 1)",
+        "when": "mainWeapon eq 11",
+        "by_level": [
+         4,
+         10,
+         14,
+         20,
+         24,
+         30,
+         34,
+         40,
+         44,
+         50
+        ]
+       }
+      ],
+      "stable": [
+       {
+        "formula": "((((100 - (Lv + (Lv << 2)))) lt 0 ? (((100 - (Lv + (Lv << 2)))) + 1) : ((100 - (Lv + (Lv << 2))))) >> 1)",
+        "when": "mainWeapon eq 11 OR mainWeapon eq 10 AND mainWeapon ne 11 AND subWeapon eq 10 OR mainWeapon eq 10 AND mainWeapon ne 11 AND subWeapon ne 10",
+        "by_level": [
+         47,
+         45,
+         42,
+         40,
+         37,
+         35,
+         32,
+         30,
+         27,
+         25
+        ]
+       }
+      ],
+      "defRate": [
+       {
+        "formula": "((((100 - Lv)) lt 0 ? (((100 - Lv)) + 1) : ((100 - Lv))) >> 1)",
+        "when": "mainWeapon eq 10 AND mainWeapon ne 11 AND subWeapon ne 10",
+        "by_level": [
+         49,
+         49,
+         48,
+         48,
+         47,
+         47,
+         46,
+         46,
+         45,
+         45
+        ]
+       }
+      ],
+      "reduceValue": [
+       {
+        "formula": "gemCartValue",
+        "when": "mainWeapon eq 11 OR mainWeapon ne 10 AND mainWeapon ne 11 OR mainWeapon eq 10 AND mainWeapon ne 11 AND subWeapon eq 10",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "normalAttackRate",
+     "simplified": "normalAttackRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Stable",
+     "bonus_id": 41,
+     "formula": "-max((stable - (damageCount * reduceValue)), 0)",
+     "simplified": "-max(stable - damageCount × reduceValue, 0)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AspdRate",
+     "bonus_id": 36,
+     "formula": "aspdRate",
+     "simplified": "aspdRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Aspd",
+     "bonus_id": 35,
+     "formula": "aspd",
+     "simplified": "aspd",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MdefRate",
+     "bonus_id": 26,
+     "formula": "-max((defRate - (damageCount * reduceValue)), 0)",
+     "simplified": "-max(defRate - damageCount × reduceValue, 0)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "DefRate",
+     "bonus_id": 24,
+     "formula": "-max((defRate - (damageCount * reduceValue)), 0)",
+     "simplified": "-max(defRate - damageCount × reduceValue, 0)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "critical",
+     "simplified": "critical",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "damageCount": [
+     {
+      "method": "OnDamage",
+      "formula": "(damageCount + 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "OnDamage"
+   ],
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "AutoMemberActionManager.Damaged",
+  "GemCartBuffer.BerserkSuppressionBuff.Exemption",
+  "HorizontalCutAction.Damaged",
+  "MercenaryActionManager.Damaged",
+  "RampageAction.ReceivedAbnormal",
+  "SacrificeAction.ActionStart",
+  "SacrificeAction.StrengthPayHp",
+  "WeirdnessOfGodAction.ActionStart",
+  "WeirdnessOfGodAction.EffectiveAbnormalIgnition"
+ ],
+ "variables": [
+  "SkillBufferId.Aspd",
+  "SkillBufferId.AspdRate",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.DefRate",
+  "SkillBufferId.MdefRate",
+  "SkillBufferId.NormalAttackRate",
+  "SkillBufferId.Stable",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

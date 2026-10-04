@@ -1,0 +1,43 @@
+{
+  "question": "Does monster proration (p[slot]) change on every hit, or only on the first hit?",
+  "answer": "Default: only the FIRST damaging hit of one action instance on each target changes p[slot]. Later hits of the same action instance on the same target do not change it (they still read the current p[slot] in the damage formula). A few skills bypass this gate and change p[slot] on every hit.",
+  "confidence": "Code (libil2cpp disassembly, Android build). Not checked in game. 'One cast = one SkillActionBase instance' is inferred, not traced.",
+  "sources": {
+    "EnemyMobActionManagerBase.Damaged": "0x1eede78 (gate at 0x1eeee6c-0x1eeeea8, dispatch 0x1eeeeac, generic path 0x1eef3a0..0x1eef47c, update at 0x1eeef40..0x1eef068)",
+    "SkillActionBase.CheckHitTarget": "0x2489e28",
+    "SkillActionBase.ContainsHitTarget": "0x2489c00",
+    "SkillActionBase.AddHitTarget": "0x2489b1c",
+    "SkillActionBase.HitTarget": "0x248a250",
+    "SkillUtil.IsExpSkill": "0x23a55c0",
+    "MobStatus.CalcExpDef": "0x1f37150",
+    "other_managers_calling_CheckHitTarget": ["BCollaboBossActionManager.Damaged", "GuildRaidBossMobActionManager.Damaged", "ScoreAttackBossActionManager.Damaged"],
+    "note_other_managers": "Each calls CheckHitTarget once; identical gate structure assumed, not individually disassembled."
+  },
+  "per_hit_pipeline": [
+    {"step": 1, "check": "damageData.HitType (+0x14) == 0 (Miss)", "effect": "skip everything: no hit-target bookkeeping, no proration change", "where": "0x1eeee34"},
+    {"step": 2, "check": "hit-target bookkeeping", "effect": "w25 = CheckHitTarget(action, this mob) BEFORE marking. If not yet contained: AddHitTarget. Then HitTarget sets the per-target flag (TargetData +0x11 = 1). So w25 = 0 on the first damaging hit of this action on this mob, 1 afterwards. The flag is never cleared (no Clear/Reset method exists).", "where": "0x1eeee6c-0x1eeeea8"},
+    {"step": 3, "check": "per-ActionID dispatch (see special_action_ids)", "effect": "decides whether the w25 gate is honoured or bypassed", "where": "0x1eeeeac"},
+    {"step": 4, "check": "generic action: proceed only if w25 == 0 (first hit on this target)", "effect": "else skip", "where": "0x1eef478 (tbz w25,#0 -> update path)"},
+    {"step": 5, "check": "SkillUtil.IsExpSkill(ActionID)", "effect": "false for ActionID 10,11,12,25,26,27,28,1058 -> skip", "where": "0x1eeef78"},
+    {"step": 6, "check": "SkillActionBase.get_IsExpDefFluctuate (vtable 0x308)", "effect": "false -> skip. See is_exp_def_fluctuate.csv (33 classes constant false, 12 conditional).", "where": "0x1eeef90"},
+    {"step": 7, "check": "slot choice", "effect": "ActionID == 0 -> Normal; else ExpType 1 Physics -> Skill, 2 Magic -> Magic, 3 SkillNormal -> Normal; then MobStatus.CalcExpDef(slot, master bytes)", "where": "0x1eeefa8-0x1eef068"}
+  ],
+  "default_rule": "first_hit_per_target_per_action_instance",
+  "special_action_ids": [
+    {"action_id": 1219, "skill": "ขว้างคุไน (Kunai Throwing, ninja)", "rule": "every_hit", "note": "jumps straight to the update path (0x1eeef40), w25 ignored; class returns a per-instance byte from get_IsExpDefFluctuate"},
+    {"action_id": 658, "skill": "แอร์สไลเซอร์ (Air Slicer, dual)", "rule": "every_hit", "note": "w25 ignored; AirSlicerAction.ExpDefFluctuated called after the update (0x22131f0)"},
+    {"action_id": 554, "skill": "โฮมมิ่งช็อต (Homing Shot, hunter)", "rule": "every_hit", "note": "w25 ignored; HomingShotAction.ExpDefFluctuated called after (0x223eb98)"},
+    {"action_id": 117, "skill": "เมจิคไนฟ์ (Magic Knife)", "rule": "custom", "note": "MagicKnifeAction.CheckExpDefFluctuate (0x22714d0) decides; w25 ignored"},
+    {"action_id": 159, "skill": "MindimageSenjuAttackAction (name not in skills.csv)", "rule": "custom", "note": "MindimageSenjuAttackAction.CheckExpDefFluctuate (0x2282484) decides; w25 ignored"},
+    {"action_id": "class SlashReaperAction", "skill": "Slash Reaper", "rule": "custom", "note": "SlashReaperAction.CheckExpDefFluctuate (0x2314f00) decides; matched by class, not by ID"},
+    {"action_id": 301, "skill": "เครซี่แดกเกอร์ (Crazy Dagger)", "rule": "first_hit_and_flag", "note": "changes only if w25 == 0 AND damageData.DamageIndividualFlag (+0x74) bit1 is set"}
+  ],
+  "sub_action_inheritance": "SkillActionBase.CopyHitTargetData (0x248a35c) has exactly one caller: LunaDitherStarBladeRainAction.Inheritance. Only that spawned action inherits the parent's already-hit list; every other skill starts an empty list per action instance.",
+  "tornado_lance_note": "Action 988 (0x3dc) uses SkillActionBase.HitTargetNum()==0 (first hit across ALL targets) for its own stack logic; separate from proration.",
+  "damage_side": "Every hit (not only the first) reads the current p[slot] through TemplateAssignment -> GetTargetExpRate -> ExpRate step. So hit 1 of a multi-hit action is calculated with p before the change, hits 2..n with p after hit 1's change, subject to when the mob-side Damaged runs relative to the next hit's damage calculation (local vs server copy, MobStatus.SetExpDef) - not traced.",
+  "unverified": [
+    "(resolved, evidence.md section 12) one cast = one SkillActionBase instance: GameManager.AttackDamage calls AddAttackCount on the same action per hit.",
+    "Whether a normal-attack combo swing creates a new NormalAttackAction per swing (implied: each swing fluctuates).",
+    "Timing between the mob-side update and the next hit's player-side damage calculation."
+  ]
+}

@@ -1,0 +1,861 @@
+{
+ "version": 1,
+ "uid": 109,
+ "name_th": "[N]เวทมนตร์: บลาส[F]เฮลอินเฟรูโน่[A]อีเทอนอลบลิซซาร์ด[W]ฟอร์สเทมเพสต์[E]เทิร์นกราวิตี้[L]พันนิชเมนท์[D]อีคลิปส์[N]",
+ "name_en": "MagicBurst",
+ "tree": "MagicSkill",
+ "category": "Attack",
+ "max_level": 150,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "MagicBurstAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 109,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "(MathUtil.DisplayMeterToDistance(8) + MathUtil.DisplayMeterToDistance(((Lv hi 5 ? Lv : 5) - 5)))",
+   "simplified": "MathUtil.DisplayMeterToDistance(8) + MathUtil.DisplayMeterToDistance((Lv > 5 ? Lv : 5) - 5)",
+   "when": "(mainWeapon==Rod & 1) ne 0 OR (mainWeapon==Magictool & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 30) + 200)",
+   "simplified": "30 × Lv + 200",
+   "when": "always",
+   "by_level": [
+    230,
+    260,
+    290,
+    320,
+    350,
+    380,
+    410,
+    440,
+    470,
+    500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 60) + 1500) + baseINT)",
+   "simplified": "60 × Lv + baseINT + 1500",
+   "when": "(mainWeapon==Rod & 1) ne 0"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackAngle",
+   "formula": "((Lv << 1) + 40)",
+   "simplified": "2 × Lv + 40",
+   "when": "(mainWeapon==Rod & 1) ne 0 OR (mainWeapon==Magictool & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0",
+   "by_level": [
+    42,
+    44,
+    46,
+    48,
+    50,
+    52,
+    54,
+    56,
+    58,
+    60
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "max((PlayerAttackBase.CalcCastTime(this, 8, PlayerActionManagerBase.get_PlayerStatus()) - (PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[109].Count lt PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[109].Max ? PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[109].Count : PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[109].Max)), 0)",
+   "simplified": "max((PlayerAttackBase.CalcCastTime(this, 8, PlayerActionManagerBase.get_PlayerStatus()) - (PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[109].Count lt PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[109].Max ? PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[109].Count : PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[109].Max)), 0)",
+   "when": "(mainWeapon==Rod & 1) ne 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 OR (mainWeapon==Magictool & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int(((MathUtil.DistanceToDisplayMeter((MathUtil.DisplayMeterToDistance(8) + MathUtil.DisplayMeterToDistance(((Lv hi 5 ? Lv : 5) - 5)))) * 0.125) * 100))",
+   "simplified": "int(12.5 × MathUtil.DistanceToDisplayMeter(MathUtil.DisplayMeterToDistance(8) + MathUtil.DisplayMeterToDistance((Lv > 5 ? Lv : 5) - 5)))",
+   "when": "(mainWeapon==Rod & 1) ne 0 OR (mainWeapon==Magictool & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "MathUtil.DistanceToDisplayMeter"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "max(PlayerAttackBase.CalcCastTime(this, 8, PlayerActionManagerBase.get_PlayerStatus()), 0)",
+   "simplified": "max(PlayerAttackBase.CalcCastTime(this, 8, PlayerActionManagerBase.get_PlayerStatus()), 0)",
+   "when": "(mainWeapon==Rod & 1) ne 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 OR (mainWeapon==Magictool & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "((MathUtil.DisplayMeterToDistance(8) + MathUtil.DisplayMeterToDistance(((Lv hi 5 ? Lv : 5) - 5))) + MathUtil.DisplayMeterToDistance((Lv // 3)))",
+   "simplified": "MathUtil.DisplayMeterToDistance(8) + MathUtil.DisplayMeterToDistance((Lv > 5 ? Lv : 5) - 5) + MathUtil.DisplayMeterToDistance(Lv // 3)",
+   "when": "(mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 60) + 1500) + ((baseINT lt 0 ? (baseINT + 1) : baseINT) >> 1))",
+   "simplified": "60 × Lv + baseINT ÷ 2 + 1500",
+   "when": "(mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackAngle",
+   "formula": "(((Lv << 1) + 40) + ((Lv // 3) + ((Lv // 3) << 2)))",
+   "simplified": "2 × Lv + 5 × Lv // 3 + 40",
+   "when": "(mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0",
+   "by_level": [
+    42,
+    44,
+    51,
+    53,
+    55,
+    62,
+    64,
+    66,
+    73,
+    75
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int(((MathUtil.DistanceToDisplayMeter(((MathUtil.DisplayMeterToDistance(8) + MathUtil.DisplayMeterToDistance(((Lv hi 5 ? Lv : 5) - 5))) + MathUtil.DisplayMeterToDistance((Lv // 3)))) * 0.125) * 100))",
+   "simplified": "int(12.5 × MathUtil.DistanceToDisplayMeter(MathUtil.DisplayMeterToDistance(8) + MathUtil.DisplayMeterToDistance((Lv > 5 ? Lv : 5) - 5) + MathUtil.DisplayMeterToDistance(Lv // 3)))",
+   "when": "(mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "MathUtil.DistanceToDisplayMeter"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 60) + 1500)",
+   "simplified": "60 × Lv + 1500",
+   "when": "(mainWeapon==Magictool & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0",
+   "by_level": [
+    1560,
+    1620,
+    1680,
+    1740,
+    1800,
+    1860,
+    1920,
+    1980,
+    2040,
+    2100
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "Element",
+   "formula": "TryGetElemntType.elementType(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "TryGetElemntType.elementType(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND PlayerAttackBase.IsBlank(this) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND !SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "TryGetElemntType.elementType",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "forward.y",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "forward",
+   "formula": "(UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)",
+   "simplified": "(UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "forward.z",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND PlayerAttackBase.IsBlank(this) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "forward.z",
+   "formula": "UnityEngine.Vector3.static+0x8",
+   "simplified": "UnityEngine.Vector3.static + 8",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND PlayerAttackBase.IsBlank(this) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "forward",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "ActionRange pl 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 0 AND param ne 100 OR !UnityEngine.Object.op_Inequality(actarAction) AND ActionRange pl 0 AND param eq 0 AND param ne 100",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "forward.y",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "ActionRange pl 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 0 AND param ne 100 OR !UnityEngine.Object.op_Inequality(actarAction) AND ActionRange pl 0 AND param eq 0 AND param ne 100",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "forward.z",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "ActionRange pl 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 0 AND param ne 100 OR !UnityEngine.Object.op_Inequality(actarAction) AND ActionRange pl 0 AND param eq 0 AND param ne 100",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "invincibilityId",
+   "formula": "(AbnormalStateManager.AddInvincibilityTemporarilyInAction(PlayerActionManagerBase.get_AbnormalStatusManager(), 2) & 255)",
+   "simplified": "AbnormalStateManager.AddInvincibilityTemporarilyInAction(PlayerActionManagerBase.get_AbnormalStatusManager(), 2) & 255",
+   "when": "ActionRange pl 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 0 AND param ne 100",
+   "vars": [
+    "AbnormalStateManager.AddInvincibilityTemporarilyInAction",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "addInvincibility",
+   "formula": "1",
+   "simplified": "1",
+   "when": "ActionRange pl 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 0 AND param ne 100",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "enchantedBurstStack",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 OR !hasBuff(873) AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 AND hasBuff(873)",
+   "by_level": 1,
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 0x2000)",
+   "simplified": "SkillParam | 8192",
+   "when": "always"
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "lastUsedSkill",
+   "formula": "lastUsedSkill",
+   "simplified": "lastUsedSkill",
+   "when": "always"
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "invincibilityBufFunc",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "+0x14c",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "invincibilityId",
+   "formula": "(AbnormalStateManager.AddInvincibilityTemporarilyInAction(PlayerActionManagerBase.get_AbnormalStatusManager(), 2) & 255)",
+   "simplified": "AbnormalStateManager.AddInvincibilityTemporarilyInAction(PlayerActionManagerBase.get_AbnormalStatusManager(), 2) & 255",
+   "when": "always",
+   "vars": [
+    "AbnormalStateManager.AddInvincibilityTemporarilyInAction",
+    "PlayerActionManagerBase.get_AbnormalStatusManager"
+   ]
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "addInvincibility",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "MagicBurstAction.<>c__DisplayClass38_0..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(109)",
+   "simplified": "RemoveSelfBuffer(109)",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND PlayerAttackBase.IsBlank(this) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND !SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "EnchantedBurstAction.AddLocalStack",
+   "formula": "AddLocalStack(PlayerAttackBase.get_ActionID(), Id)",
+   "simplified": "AddLocalStack(PlayerAttackBase.get_ActionID(), Id)",
+   "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 AND hasBuff(873)",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(4, abnormalPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(4, abnormalPercent, playerAction)",
+   "when": "!PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, abnormalPercent, playerAction) OR !MobActionManagerBase.CheckMultiFlag(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, abnormalPercent, playerAction) OR MobActionManagerBase.CheckMultiFlag(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, abnormalPercent, playerAction)",
+   "vars": [
+    "AbnormalType.KnockBack",
+    "MobActionManagerBase.CheckMultiFlag",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "AddStack",
+   "kind": "call",
+   "name": "MagicBurstBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MagicBurst, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MagicBurst, 1))",
+   "when": "!UnityEngine.Object.op_Equality(playerAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MagicBurst, 1) ge 1 OR !UnityEngine.Object.op_Equality(playerAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MagicBurst, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 OR !UnityEngine.Object.op_Equality(playerAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MagicBurst, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.MagicBurst",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "AddStack",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new MagicBurstBuf)",
+   "simplified": "AddSelfBuffer(new, MagicBurstBuf)",
+   "when": "!UnityEngine.Object.op_Equality(playerAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MagicBurst, 1) ge 1 OR !UnityEngine.Object.op_Equality(playerAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MagicBurst, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 OR !UnityEngine.Object.op_Equality(playerAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MagicBurst, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.MagicBurst",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "MagicBurstBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "8"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "innerCount",
+     "simplified": "innerCount",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "innerCount": [
+     {
+      "method": "Next",
+      "formula": "(innerCount hs 7 ? 8 : (innerCount + 1))",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "((innerCount + count) lt 8 ? (innerCount + count) : 8)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "UpdateMaxValue",
+      "formula": "1",
+      "when": "(SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) le 0 AND SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) gt 0 OR (SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) le 0 AND SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) gt 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127) ne 0"
+     },
+     {
+      "method": "UpdateMaxValue",
+      "formula": "2",
+      "when": "((SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) + -1) le 0 AND (SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) gt 0 AND SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) gt 0 OR ((SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) + -1) le 0 AND (SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) gt 0 AND SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) gt 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127) ne 0"
+     },
+     {
+      "method": "UpdateMaxValue",
+      "formula": "3",
+      "when": "(((SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) + -1) + -1) le 0 AND ((SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) + -1) gt 0 AND (SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) gt 0 AND SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) gt 0 OR (((SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) + -1) + -1) le 0 AND ((SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) + -1) gt 0 AND (SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) gt 0 AND SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) gt 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127) ne 0"
+     },
+     {
+      "method": "UpdateMaxValue",
+      "formula": "0",
+      "when": "SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) le 0 OR SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) le 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127) ne 0"
+     }
+    ],
+    "Count": [
+     {
+      "method": "UpdateMaxValue",
+      "formula": "(1 gt innerCount ? innerCount : 1)",
+      "when": "(SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) le 0 AND SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) gt 0 OR (SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) le 0 AND SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) gt 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127) ne 0"
+     },
+     {
+      "method": "UpdateMaxValue",
+      "formula": "(2 gt innerCount ? innerCount : 2)",
+      "when": "((SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) + -1) le 0 AND (SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) gt 0 AND SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) gt 0 OR ((SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) + -1) le 0 AND (SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) gt 0 AND SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) gt 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127) ne 0"
+     },
+     {
+      "method": "UpdateMaxValue",
+      "formula": "(3 gt innerCount ? innerCount : 3)",
+      "when": "(((SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) + -1) + -1) le 0 AND ((SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) + -1) gt 0 AND (SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) + -1) gt 0 AND SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) gt 0 OR (((SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) + -1) + -1) le 0 AND ((SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) + -1) gt 0 AND (SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) + -1) gt 0 AND SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) gt 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127) ne 0"
+     },
+     {
+      "method": "UpdateMaxValue",
+      "formula": "(0 gt innerCount ? innerCount : 0)",
+      "when": "SkillUtil.CalcCastTime(cspd, 8, PlayerStatusBase.get_BattleStatus()) le 0 OR SkillUtil.CalcCastTime(cspd, System.Math.Max(1, (8 - (SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127), 0) * 0.1))), PlayerStatusBase.get_BattleStatus()) le 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 127) ne 0"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "UpdateMaxValue"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "MagicBurstBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "8"
+    }
+   },
+   "attached_via": "caller2:MagicBurstBuf$$.ctor<-MagicBurstAction$$AddStack",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MagicBurstAction.AddStack"
+ ],
+ "variables": [
+  "AbnormalStateManager.AddInvincibilityTemporarilyInAction",
+  "AbnormalType.KnockBack",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "MathUtil.DisplayMeterToDistance",
+  "MathUtil.DistanceToDisplayMeter",
+  "MobActionManagerBase.CheckMultiFlag",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerPrimaryStatus.int",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_BattleStatus",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.op_Inequality",
+  "SkillActionManagerBase.get_CurrentSkill",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "SkillBufferId.MotionSpeed",
+  "SkillBufferId.Value",
+  "SkillId.MagicBurst",
+  "SkillManager.GetSkillLv",
+  "SkillUtil.CalcCastTime",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuf.buf",
+  "TryGetBuf.out2",
+  "TryGetElemntType.elementType",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_forward",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

@@ -1,0 +1,364 @@
+{
+ "version": 1,
+ "uid": 1219,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "KunaiThrowingAction",
+ "proration": {
+  "slot": "Normal",
+  "mode": "every_hit + class check",
+  "attack_type": "SkillNormal",
+  "action_id": 1219,
+  "is_exp_def_fluctuate": "conditional",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseMp",
+   "formula": "NinjaSkillBase.CalcNinjaSkillBaseMp(this, 300, actarAction)",
+   "simplified": "NinjaSkillBase.CalcNinjaSkillBaseMp(this, 300, actarAction)",
+   "when": "always",
+   "vars": [
+    "NinjaSkillBase.CalcNinjaSkillBaseMp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) + 30) + (NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) + 30))",
+   "simplified": "2 × NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) + 60",
+   "when": "mainWeapon == Katana",
+   "vars": [
+    "NinjaSkillBase.GetNinjutsuTraining",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) + 30)",
+   "simplified": "NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) + 30",
+   "when": "mainWeapon != Katana",
+   "vars": [
+    "NinjaSkillBase.GetNinjutsuTraining",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "startPos.y",
+   "formula": "UnityEngine.Transform.get_position(IOtherPlayerActionManager.get_ActorTransform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(IOtherPlayerActionManager.get_ActorTransform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "IOtherPlayerActionManager.get_ActorTransform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "startPos.z",
+   "formula": "UnityEngine.Transform.get_position(IOtherPlayerActionManager.get_ActorTransform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(IOtherPlayerActionManager.get_ActorTransform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "IOtherPlayerActionManager.get_ActorTransform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)))",
+   "simplified": "int(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)))",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_Size"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "startPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "startPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "isHit",
+   "formula": "0",
+   "simplified": "0",
+   "when": "UnityEngine.Object.op_Equality(playerAction) OR !BattleManagerBase.get_IsTargeting(playerAction.battleManager) AND !UnityEngine.Object.op_Equality(playerAction) OR !UnityEngine.Object.op_Equality(playerAction) AND BattleManagerBase.get_IsTargeting(playerAction.battleManager) AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target)",
+   "by_level": 0,
+   "vars": [
+    "BattleManagerBase.get_IsTargeting",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "isHit",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(playerAction) AND !UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.get_transform(playerAction.battleManager.mainTargetData.Target), targetTransform) AND (((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(playerAction)).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(playerAction)).z)) + ((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(playerAction)).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(playerAction)).x))) ls ((ActionRange + size) * (ActionRange + size)) AND BattleManagerBase.get_IsTargeting(playerAction.battleManager)",
+   "by_level": 1,
+   "vars": [
+    "BattleManagerBase.get_IsTargeting",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "(damageCount + 1)",
+   "simplified": "damageCount + 1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CreateTake",
+   "kind": "set",
+   "name": "current",
+   "formula": "SkillLinkedTake.CreateNextTake(new SkillLinkedTake, 0xc0b5fc0)",
+   "simplified": "SkillLinkedTake.CreateNextTake(new, SkillLinkedTake, 0xc0b5fc0)",
+   "when": "CastTime gt 0",
+   "vars": [
+    "SkillLinkedTake.CreateNextTake"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpLit[MobActionManagerBase.get_MobStatus(mobAction).UniqueId] / 100)",
+   "simplified": "(targetExpLit[MobActionManagerBase.get_MobStatus(mobAction).UniqueId] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_MobStatus"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.CreateNextDamage",
+   "formula": "CreateNextDamage()",
+   "simplified": "CreateNextDamage()",
+   "when": "always"
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "BattleManagerBase.get_IsTargeting",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "IOtherPlayerActionManager.get_ActorTransform",
+  "MathUtil.CheckPercent",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_MobStatus",
+  "MobActionManagerBase.get_Size",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "NinjaSkillBase.CalcNinjaSkillBaseMp",
+  "NinjaSkillBase.GetNinjutsuTraining",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "SkillActionBase.op_Inequality",
+  "SkillComboState.GetThirdEyeValue",
+  "SkillLinkedTake.CreateNextTake",
+  "System.Math.Max",
+  "TryGetBuff.buff",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

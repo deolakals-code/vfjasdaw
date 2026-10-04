@@ -1,0 +1,329 @@
+{
+ "version": 1,
+ "uid": 673,
+ "name_th": "[N]Lบูมเมอแรง[N2]เลเพจบูมเมอแรง[N]",
+ "name_en": "L_Boomerang",
+ "tree": "PartisanSkill",
+ "category": "Object",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "placed object / trap / summon"
+ ],
+ "class": "L_BoomerangAction",
+ "proration": {
+  "slot": "Normal",
+  "mode": "first_hit_per_target",
+  "attack_type": "SkillNormal",
+  "action_id": 673,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(10)",
+   "simplified": "MathUtil.DisplayMeterToDistance(10)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(1)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang3, 1) * 25) + (((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) * 25) + (baseDEX + ((Lv * 25) + 200))) + 200)) + 200)",
+   "simplified": "25 × SkillManager.GetSkillLv(A, SkillId.L_Boomerang3, 1) + 25 × SkillManager.GetSkillLv(A, SkillId.L_Boomerang2, 1) + baseDEX + 25 × Lv + 600",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang3, 1) ge 1",
+   "defs": [
+    [
+     "A",
+     "PlayerStatusBase.get_SkillManager()"
+    ]
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.L_Boomerang2",
+    "SkillId.L_Boomerang3",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) * 25) + (baseDEX + ((Lv * 25) + 200))) + 200)",
+   "simplified": "25 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) + baseDEX + 25 × Lv + 400",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang3, 1) lt 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.L_Boomerang2",
+    "SkillId.L_Boomerang3",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang3, 1) * 25) + (baseDEX + ((Lv * 25) + 200))) + 200)",
+   "simplified": "25 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang3, 1) + baseDEX + 25 × Lv + 400",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) lt 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang3, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.L_Boomerang2",
+    "SkillId.L_Boomerang3",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(baseDEX + ((Lv * 25) + 200))",
+   "simplified": "baseDEX + 25 × Lv + 200",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) lt 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang3, 1) lt 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.L_Boomerang2",
+    "SkillId.L_Boomerang3",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(673)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "isHit",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(SkillActionBase.GetMainTarget(this), 0) AND !UnityEngine.Object.op_Equality(skillPosition) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.get_gameObject(SkillActionBase.GetMainTarget(this)), UnityEngine.Component.get_gameObject(targetTransform)) AND (((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z)) + ((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x))) ls ((Radius + size) * (Radius + size)) AND isHit eq 0",
+   "by_level": 1,
+   "vars": [
+    "SkillActionBase.GetMainTarget",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isHit",
+   "formula": "0",
+   "simplified": "0",
+   "when": "param eq 102 AND param ne 103",
+   "by_level": 0
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isMpHeal",
+   "formula": "0",
+   "simplified": "0",
+   "when": "param eq 103",
+   "by_level": 0
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(MobActionManagerBase.get_MobStatus(mobAction).localExpDefNormal / 100)",
+   "simplified": "(MobActionManagerBase.get_MobStatus(mobAction).localExpDefNormal / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_MobStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpList[mobAction] / 100)",
+   "simplified": "(targetExpList[mobAction] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(673)",
+   "simplified": "RemoveBuffer(673)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(673)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass26_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(673, 0)",
+   "simplified": "AddSelfBuffer(673, 0)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "BoomerangBuf",
+   "ctors": [
+    {
+     "sig": "",
+     "fields": {},
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "0",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "L_Boomerang2Action.ActionPreparation",
+  "L_Boomerang2Action.OnInitialize",
+  "L_Boomerang3Action.ActionPreparation",
+  "L_Boomerang3Action.OnInitialize",
+  "L_BoomerangAction.ActionPreparation",
+  "SkillBufferManager.UpdateBoomerangBuf"
+ ],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_MobStatus",
+  "MobStatus.localExpDefNormal",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.GetMainTarget",
+  "SkillId.L_Boomerang2",
+  "SkillId.L_Boomerang3",
+  "SkillManager.GetSkillLv",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

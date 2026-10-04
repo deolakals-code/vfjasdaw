@@ -1,0 +1,316 @@
+{
+ "version": 1,
+ "uid": 661,
+ "name_th": "เบลดสตริงเกอร์",
+ "name_en": "BladeStinger",
+ "tree": "DualSword",
+ "category": "Attack",
+ "max_level": 250,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "BladeStingerAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 661,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(24)",
+   "simplified": "MathUtil.DisplayMeterToDistance(24)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRateBase",
+   "formula": "((Lv * 40) + 300)",
+   "simplified": "40 × Lv + 300",
+   "when": "subWeapon == OneHandSword",
+   "by_level": [
+    340,
+    380,
+    420,
+    460,
+    500,
+    540,
+    580,
+    620,
+    660,
+    700
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicsResistBreaker",
+   "formula": "((Lv << 2) + 10)",
+   "simplified": "4 × Lv + 10",
+   "when": "always",
+   "by_level": [
+    14,
+    18,
+    22,
+    26,
+    30,
+    34,
+    38,
+    42,
+    46,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondSkillRateBase",
+   "formula": "(status.Agi + 300)",
+   "simplified": "status.Agi + 300",
+   "when": "subWeapon == OneHandSword",
+   "vars": [
+    "status.Agi"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "addSkillRate",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRateBase",
+   "formula": "(status.Dex + ((Lv * 40) + 300))",
+   "simplified": "status.Dex + 40 × Lv + 300",
+   "when": "subWeapon != OneHandSword",
+   "vars": [
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "addSkillRate",
+   "formula": "(((((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + physicsResistBreaker) * 10) - 1000) lt 500 ? ((((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + physicsResistBreaker) * 10) - 1000) : 500)",
+   "simplified": "min(10 × buffParam(PowerResistBreaker) + 10 × BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) + 10 × physicsResistBreaker - 1000, 500)",
+   "when": "((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + physicsResistBreaker) ge 101 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "PlayerStatusBase.get_BonusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isAvoidPossible",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 AND param eq 100",
+   "by_level": 1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType eq 10 OR SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType eq 10",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType ne 10 OR SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType ne 10",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[Def]",
+   "formula": "-PlayerAttackBase.CalcRegistDamage(this, SkillAttackType.Physics, PlayerActionManagerBase.get_PlayerStatus(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "simplified": "-PlayerAttackBase.CalcRegistDamage(this, SkillAttackType.Physics, PlayerActionManagerBase.get_PlayerStatus(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType eq 10 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType ne 10",
+   "op": "SetConstant",
+   "step": "Def",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcRegistDamage",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillAttackType.Physics",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((addSkillRate + skillRateBase) / 100)",
+   "simplified": "(addSkillRate + skillRateBase) / 100",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType eq 10 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType ne 10",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType eq 10 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType ne 10 OR SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType eq 10",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((addSkillRate + secondSkillRateBase) / 100)",
+   "simplified": "(addSkillRate + secondSkillRateBase) / 100",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType eq 10",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRateBase / 100)",
+   "simplified": "skillRateBase / 100",
+   "when": "SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType eq 10 OR SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType ne 10",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(secondSkillRateBase / 100)",
+   "simplified": "secondSkillRateBase / 100",
+   "when": "SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND SubWeaponType eq 10",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "BonusManager.GetBonusValue",
+  "BonusType.bPowerResistBreaker",
+  "CalcStep.CorrectHitCheck",
+  "IPlayerStatusCalculator.get_Agi",
+  "IPlayerStatusCalculator.get_Dex",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_MobBattleStatus",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcRegistDamage",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_BonusManager",
+  "SkillAttackType.Physics",
+  "SkillCalcTemplate.CheckStepResult",
+  "UnityEngine.Object.op_Inequality",
+  "status.Agi",
+  "status.Dex"
+ ],
+ "residual": []
+}

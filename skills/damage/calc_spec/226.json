@@ -1,0 +1,348 @@
+{
+ "version": 1,
+ "uid": 226,
+ "name_th": "ไลฟ์รีคัฟเวอรี่",
+ "name_en": "LifeRecovery",
+ "tree": "SupportSkill",
+ "category": "Circle",
+ "max_level": 10,
+ "roles": [
+  "buff (self)",
+  "circle / song area"
+ ],
+ "class": "LifeRecoveryAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 226,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "range",
+   "formula": "int(MathUtil.DisplayMeterToDistance(((Lv >> 1) + 5)))",
+   "simplified": "int(MathUtil.DisplayMeterToDistance(Lv ÷ 2 + 5))",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "LifeRecoveryBuf..ctor",
+   "formula": ".ctor(Lv, 1)",
+   "simplified": ".ctor(Lv, 1)",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new LifeRecoveryBuf, Id)",
+   "simplified": "AddSelfBuffer(new, LifeRecoveryBuf, Id)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "LifeRecoveryBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, float time, int val",
+     "fields": {
+      "range": [
+       {
+        "formula": "int(MathUtil.DisplayMeterToDistance((?ubfx + 5)))",
+        "when": "(self & 1) ne 0",
+        "by_level": null
+       }
+      ],
+      "IsDamageCancel": [
+       {
+        "formula": "1",
+        "when": "(self & 1) ne 0",
+        "by_level": 1
+       }
+      ],
+      "mVit": [
+       {
+        "formula": "System.Math.Max(0, val)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CircleBufferBase",
+      "args": [
+       "lv",
+       "(self & 1)",
+       "time"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "time"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "((Lv * 0xfffffff6) + 200)",
+     "simplified": "0xfffffff6 × Lv + 200",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0"
+     ]
+    },
+    {
+     "id": "HpRecoveryUp",
+     "bonus_id": 15,
+     "formula": "((mVit + (Lv << 2)) + 10)",
+     "simplified": "mVit + 4 × Lv + 10",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CircleBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, float time",
+     "fields": {
+      "targetList": [
+       {
+        "formula": "new System.Collections.Generic.List<Transform>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "900",
+        "when": "(self & 1) ne 0",
+        "by_level": 900
+       },
+       {
+        "formula": "time",
+        "when": "(self & 1) eq 0",
+        "by_level": null
+       }
+      ],
+      "intervalTime": [
+       {
+        "formula": "3",
+        "when": "(self & 1) ne 0",
+        "by_level": 3
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LocalId": [
+     {
+      "method": "set_LocalId",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "SetLocalId",
+      "formula": "id",
+      "when": "LocalId eq 0"
+     }
+    ],
+    "IsUpdate": [
+     {
+      "method": "set_IsUpdate",
+      "formula": "(value & 1)",
+      "when": "always"
+     },
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "(intervalTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime le 0 AND intervalTime gt 0 AND targetList.Count ge 1 OR (intervalTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime le 0 AND intervalTime gt 0 AND targetList.Count lt 1 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (intervalTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND intervalTime gt 0 AND targetList.Count ge 1"
+     },
+     {
+      "method": "UpdateClear",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND intervalTime le 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (intervalTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND intervalTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (intervalTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND intervalTime gt 0 AND targetList.Count ge 1"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "intervalTime": [
+     {
+      "method": "Updata",
+      "formula": "3",
+      "when": "(intervalTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime le 0 AND intervalTime gt 0 AND targetList.Count ge 1 OR (intervalTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime le 0 AND intervalTime gt 0 AND targetList.Count lt 1 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (intervalTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND intervalTime gt 0 AND targetList.Count ge 1"
+     },
+     {
+      "method": "Updata",
+      "formula": "(intervalTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(intervalTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime le 0 AND intervalTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (intervalTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND intervalTime gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckRange",
+    "CheckTarget",
+    "CheckTestRange",
+    "SetLocalId",
+    "UpdateClear",
+    "get_IsPlace",
+    "get_IsRange",
+    "get_IsUpdate",
+    "get_LocalId",
+    "get_Range",
+    "set_IsUpdate",
+    "set_LocalId"
+   ],
+   "child_args": {
+    "LifeRecoveryBuf": {
+     "lv": "lv",
+     "self": "(self & 1)",
+     "time": "time"
+    }
+   },
+   "attached_via": "caller2:LifeRecoveryBuf$$.ctor<-LifeRecoveryAction$$ActionHit",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PlayerSecondaryStatus.CalcHpRecovery",
+  "PlayerSecondaryStatus.get_HpRecovery"
+ ],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "SkillBufferId.HpRecoveryUp",
+  "SkillBufferId.MobLastDamageRateBuf",
+  "System.Math.Max",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

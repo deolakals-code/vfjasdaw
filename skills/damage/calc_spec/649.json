@@ -1,0 +1,540 @@
+{
+ "version": 1,
+ "uid": 649,
+ "name_th": "[N]แฟนทอมสแลช[N2]แฟนทอมอิคลิพส์[N]",
+ "name_en": "PhantomRave",
+ "tree": "DualSword",
+ "category": "Attack",
+ "max_level": 90,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "PhantomRaveAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 649,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "6",
+   "simplified": "6",
+   "when": "always",
+   "by_level": 6
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv * 20) + 500) + gemCart(305[4])) / 100)",
+   "simplified": "(20 × Lv + gemCart(305, [4]) + 500) / 100",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "freezeRate",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 20) + 200)",
+   "simplified": "20 × Lv + 200",
+   "when": "always",
+   "by_level": [
+    220,
+    240,
+    260,
+    280,
+    300,
+    320,
+    340,
+    360,
+    380,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "cost",
+   "formula": "400",
+   "simplified": "400",
+   "when": "always",
+   "by_level": 400
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "phantomMove",
+   "formula": "new PhantomRaveMove",
+   "simplified": "new PhantomRaveMove",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(SkillIndividualFlag | 2)",
+   "simplified": "SkillIndividualFlag | 2",
+   "when": "SkillActionBase.get_MotionSpeed(this) ne 0 AND change ne 0 OR SkillActionBase.get_MotionSpeed(this) eq 0 AND change ne 0",
+   "vars": [
+    "SkillActionBase.get_MotionSpeed"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "InstantKillTake",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND SkillActionBase.get_MotionSpeed(this) ne 0 OR PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND SkillActionBase.get_MotionSpeed(this) eq 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "SkillActionBase.get_MotionSpeed"
+   ]
+  },
+  {
+   "method": "AttackStartReceive",
+   "kind": "set",
+   "name": "InstantKillHitCount",
+   "formula": "(InstantKillHitCount + 1)",
+   "simplified": "InstantKillHitCount + 1",
+   "when": "(skillIndividualFlag & 1) ne 0"
+  },
+  {
+   "method": "AttackStartReceive",
+   "kind": "set",
+   "name": "InstantKillTake",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(skillIndividualFlag & 1) ne 0"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "placeDamageData",
+   "formula": "PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), StandardHitCount)",
+   "simplified": "PlayerAttackBase.templateToDamageData(this, new, SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), StandardHitCount)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.templateToDamageData"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcPhantomRaveLastDamageRate",
+   "kind": "set",
+   "name": "isPlaceBonus",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "LunaDitherStartInterruptableInitialize",
+   "kind": "set",
+   "name": "change",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "LunaDitherStartInterruptableInitialize",
+   "kind": "set",
+   "name": "freezeRate",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "LunaDitherStartInterruptableInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(24)",
+   "simplified": "MathUtil.DisplayMeterToDistance(24)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "LunaDitherStartInterruptableInitialize",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 4)",
+   "simplified": "SkillParam | 4",
+   "when": "always"
+  },
+  {
+   "method": "GetLocalizeKey",
+   "kind": "set",
+   "name": "change",
+   "formula": "change",
+   "simplified": "change",
+   "when": "always"
+  },
+  {
+   "method": "via PlayerAttackBase$$CalcDoubleThrowLastDamageRate",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 32)",
+   "simplified": "SkillParam | 32",
+   "when": "PlayerAttackBase.get_ActionID() ne 300 AND PlayerAttackBase.get_ActionID() ne 302 AND PlayerAttackBase.get_TreeType() eq 9 AND PlayerStatusBase.get_SkillBufferManager().skillBufList[293].CoolTime eq 0 AND costMp ne 0",
+   "vars": [
+    "PlayerAttackBase.get_ActionID",
+    "PlayerAttackBase.get_TreeType",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate * (change eq 0 ? 1 : 2))",
+   "simplified": "skillRate × (change = 0 ? 1 : 2)",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "(CalcPhantomRaveLastDamageRate.out2(this, PlayerActionManagerBase.get_PlayerStatus(), PlayerActionManagerBase.get_PlayerStatus()) - MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90)))",
+   "simplified": "CalcPhantomRaveLastDamageRate.out2(this, A, A) - MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "when": "TryGetProperties<object>.out2(mobAction, 90) ne 0",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "CalcPhantomRaveLastDamageRate.out2",
+    "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "SetRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "(CalcPhantomRaveLastDamageRate.out3(this, PlayerActionManagerBase.get_PlayerStatus(), PlayerActionManagerBase.get_PlayerStatus()) - MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90)))",
+   "simplified": "CalcPhantomRaveLastDamageRate.out3(this, A, A) - MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "when": "TryGetProperties<object>.out2(mobAction, 90) ne 0",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "CalcPhantomRaveLastDamageRate.out3",
+    "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "CalcPhantomRaveLastDamageRate.out2(this, PlayerActionManagerBase.get_PlayerStatus(), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "CalcPhantomRaveLastDamageRate.out2(this, A, A)",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "CalcPhantomRaveLastDamageRate.out2",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "CalcPhantomRaveLastDamageRate.out3(this, PlayerActionManagerBase.get_PlayerStatus(), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "CalcPhantomRaveLastDamageRate.out3(this, A, A)",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "CalcPhantomRaveLastDamageRate.out3",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "OnInitialize",
+   "kind": "call",
+   "name": "PhantomRaveMove..ctor",
+   "formula": ".ctor(2, actarAction)",
+   "simplified": ".ctor(2, actarAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(9, freezeRate, playerAction)",
+   "simplified": "checkAbnormalPercent(9, freezeRate, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "CreateMultiDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.createMultiHitDamage",
+   "formula": "createMultiHitDamage(damageData, damageData.TotalDamage)",
+   "simplified": "createMultiHitDamage(damageData, damageData.TotalDamage)",
+   "when": "always"
+  },
+  {
+   "method": "via PlayerAttackBase$$CalcDoubleThrowLastDamageRate",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(293)",
+   "simplified": "RemoveSelfBuffer(293)",
+   "when": "PlayerAttackBase.get_ActionID() ne 300 AND PlayerAttackBase.get_ActionID() ne 302 AND PlayerAttackBase.get_TreeType() eq 9 AND PlayerStatusBase.get_SkillBufferManager().skillBufList[293].CoolTime eq 0 AND costMp ne 0",
+   "vars": [
+    "PlayerAttackBase.get_ActionID",
+    "PlayerAttackBase.get_TreeType",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$CalcDoubleThrowLastDamageRate",
+   "kind": "call",
+   "name": "DoubleThrowBuf..ctor",
+   "formula": ".ctor(PlayerStatusBase.get_SkillBufferManager().skillBufList[293].Level, 1)",
+   "simplified": ".ctor(PlayerStatusBase.get_SkillBufferManager().skillBufList[293].Level, 1)",
+   "when": "PlayerAttackBase.get_ActionID() ne 300 AND PlayerAttackBase.get_ActionID() ne 302 AND PlayerAttackBase.get_TreeType() eq 9 AND PlayerStatusBase.get_SkillBufferManager().skillBufList[293].CoolTime eq 0 AND costMp ne 0",
+   "vars": [
+    "PlayerAttackBase.get_ActionID",
+    "PlayerAttackBase.get_TreeType",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$CalcDoubleThrowLastDamageRate",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new DoubleThrowBuf, Id)",
+   "simplified": "AddSelfBuffer(new, DoubleThrowBuf, Id)",
+   "when": "PlayerAttackBase.get_ActionID() ne 300 AND PlayerAttackBase.get_ActionID() ne 302 AND PlayerAttackBase.get_TreeType() eq 9 AND PlayerStatusBase.get_SkillBufferManager().skillBufList[293].CoolTime eq 0 AND costMp ne 0",
+   "vars": [
+    "PlayerAttackBase.get_ActionID",
+    "PlayerAttackBase.get_TreeType",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "DoubleThrowBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool coolTime",
+     "fields": {
+      "CoolTime": [
+       {
+        "formula": "(coolTime & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "(30 - lv)",
+        "when": "(coolTime & 1) ne 0",
+        "by_level": [
+         29,
+         28,
+         27,
+         26,
+         25,
+         24,
+         23,
+         22,
+         21,
+         20
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "CoolTime": [
+     {
+      "method": "set_CoolTime",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "ReductionCoolTime",
+      "formula": "(LeftTime - time)",
+      "when": "(LeftTime - time) hi 0 AND CoolTime ne 0"
+     },
+     {
+      "method": "ReductionCoolTime",
+      "formula": "0",
+      "when": "(LeftTime - time) ls 0 AND CoolTime ne 0"
+     }
+    ]
+   },
+   "hooks": [
+    "ReductionCoolTime",
+    "get_CoolTime",
+    "set_CoolTime"
+   ],
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "CalcPhantomRaveLastDamageRate.out2",
+  "CalcPhantomRaveLastDamageRate.out3",
+  "MathUtil.DisplayMeterToDistance",
+  "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CheckSkillIndividualFlag",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerAttackBase.get_TreeType",
+  "PlayerAttackBase.templateToDamageData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillActionBase.get_MotionSpeed",
+  "TryGetProperties.out2",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

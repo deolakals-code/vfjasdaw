@@ -1,0 +1,399 @@
+﻿uid,name_th,name_en,tree_type,category,class,proration_slot,proration_mode,templates,rate_L1,rate_L2,rate_L3,rate_L4,rate_L5,rate_L6,rate_L7,rate_L8,rate_L9,rate_L10,flat_L1,flat_L2,flat_L3,flat_L4,flat_L5,flat_L6,flat_L7,flat_L8,flat_L9,flat_L10
+0,,,,,NormalAttackAction,Normal,first_hit_per_target if class check passes,3,,,,,,,,,,,,,,,,,,,,
+7,,,,,PhiloEclailAttackAction,Skill,first_hit_per_target,1,,,,,,,,,,,110,120,130,140,150,160,170,180,190,200
+8,,,,,AvoidAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+9,,,,,FirstAidAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+10,,,,,DamageReflectionAction,Skill,never (IsExpSkill excludes ActionID),,,,,,,,,,,,,,,,,,,,,
+11,,,,,PhysicalPursuitAction,Skill,never (IsExpSkill excludes ActionID),1,,,,,,,,,,,,,,,,,,,,
+12,,,,,MagicPursuitAction,Magic,never (IsExpSkill excludes ActionID),1,,,,,,,,,,,,,,,,,,,,
+13,,,,,PetBlankMpHeel,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+14,,,,,SkillChargeAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+15,,,,,CronosDrivePursuitAction,none,never (ExpType None: no proration slot),1,,,,,,,,,,,275,300,325,350,375,400,425,450,475,500
+16,,,,,BeautiesOfNatureHealAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+17,,,,,ComboRelfectionAction,Normal,first_hit_per_target if class check passes,3,,,,,,,,,,,,,,,,,,,,
+18,,,,,MagicEgelAttackAction,Magic,never (IsExpDefFluctuate=false),1,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,300,300,300,300,300,300,300,300,300,300
+19,,,,,ImperialRayPursuitAction,Magic,never (IsExpDefFluctuate=false),1,6.5,8.0,9.5,11.0,12.5,14.0,15.5,17.0,18.5,20.0,310,320,330,340,350,360,370,380,390,400
+20,,,,,ShadowWalkAttackAction,Skill,first_hit_per_target if class check passes,1,12.0,14.0,16.0,18.0,20.0,22.0,24.0,26.0,28.0,30.0,100,100,100,100,100,100,100,100,100,100
+21,,,,,MagicFinawPursuitAction,Magic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+22,,,,,HolyLightPursuitAction,Magic,first_hit_per_target,1,1.15,1.3,1.45,1.6,1.75,1.9,2.05,2.2,2.35,2.5,200,200,200,200,200,200,200,200,200,200
+25,,,,,BonusNormalDamageAction,Normal,never (IsExpSkill excludes ActionID),1,,,,,,,,,,,,,,,,,,,,
+26,,,,,BonusPhysicalDamageAction,Skill,never (IsExpSkill excludes ActionID),1,,,,,,,,,,,,,,,,,,,,
+27,,,,,BonusMagicDamageAction,Magic,never (IsExpSkill excludes ActionID),1,,,,,,,,,,,,,,,,,,,,
+28,,,,,BonusNaturalDamageAction,Normal,never (IsExpSkill excludes ActionID),1,,,,,,,,,,,,,,,,,,,,
+33,ฮาร์ดฮิต,HardHit,BladeSkill,Attack,HardHitAction,Skill,first_hit_per_target,1,1.55,1.6,1.65,1.7,1.75,1.8,1.85,1.9,1.95,2.0,55,60,65,70,75,80,85,90,95,100
+34,แอสทิวท์,Astute,BladeSkill,Attack,AstuteAction,Skill,first_hit_per_target,1,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,155,160,165,170,175,180,185,190,195,200
+35,โซนิคเบรด,AccelBlade,BladeSkill,Attack,AccelBladeAction,Skill,first_hit_per_target,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,105,110,115,120,125,130,135,140,145,150
+38,ทริกเกอร์สแลช,TriggerSlash,BladeSkill,Attack,TriggerSlashAction,Skill,first_hit_per_target,1,,,,,,,,,,,210,220,230,240,250,260,270,280,290,300
+39,สไปรัลแอร์,SpiralAir,BladeSkill,Attack,SpiralAirAction,Skill,first_hit_per_target,3,0.31,0.37,0.43,0.49,0.55,0.61,0.67,0.73,0.79,0.85,,,,,,,,,,
+41,รัมเพจ,Rampage,BladeSkill,Buffer,RampageAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+42,ซอร์ดเทมเพสต์,SwordTempest,BladeSkill,Attack,SwordTempestAction,Skill,first_hit_per_target,1,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,80,80,80,80,80,80,80,80,80,80
+43,วอร์คราย,WarCry,BladeSkill,Support,WarCryAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+44,เมเทโอเบรคเกอร์,MeteorBreaker,BladeSkill,Attack,MeteoBreakerAction,Skill,first_hit_per_target,1,4.2,4.4,4.6,4.8,5.0,5.2,5.4,5.6,5.8,6.0,420,440,460,480,500,520,540,560,580,600
+45,บัสตาร์ดเบลด,BusterBlade,BladeSkill,Attack,BusterBladeAction,Skill,first_hit_per_target,1,0.75,1.5,2.25,3.0,3.75,4.5,5.25,6.0,6.75,7.5,30,60,90,120,150,180,210,240,270,300
+46,เบอร์เซิร์ก,Berserk,BladeSkill,Buffer,BerserkAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+47,ฟาสต์แอคแทค,FastAttack,BladeSkill,Attack,FastAttackAction,Normal,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+48,ชัทเอาท์,ShutOut,BladeSkill,Attack,ShutOutAction,Skill,first_hit_per_target,1,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,200,200,200,200,200,200,200,200,200,200
+49,ลูนาร์สแลช,MoonSlash,BladeSkill,Attack,MoonSlashAction,Skill,first_hit_per_target,1,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,400,400,400,400,400,400,400,400,400,400
+50,ออร่าเบลด,AuraBlade,BladeSkill,Attack,AuraBladeAction,Skill,first_hit_per_target,1,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,200,200,200,200,200,200,200,200,200,200
+51,แกลดดีเอท,Gladiate,BladeSkill,Buffer,GladiateAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+52,แฮมเมอร์สแลม,HammerDown,BladeSkill,Attack,HammerDownAction,dynamic,first_hit_per_target,1,,,,,,,,,,,100,100,100,100,100,100,100,100,100,100
+53,คลีฟวิงแอคแทค,CleaveAttack,BladeSkill,Attack,CleaveAttackAction,Skill,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+54,สตรอมเบลซ,StormBlazer,BladeSkill,Attack,StormBlazerAction,Skill,first_hit_per_target,1,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0,,,,,,,,,,
+55,การ์ดเบลด,GuardyBlade,BladeSkill,Buffer,GuardyBladeAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+56,ออร์คสแลช,Orgaslash,BladeSkill,Attack,OrgaslashAction,Skill,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+63,,,,,MoonSlashPursuitAction,Skill,never (IsExpDefFluctuate=false),1,,,,,,,,,,,,,,,,,,,,
+65,พาวเวอร์ชู้ต,PowerShoot,ShootSkill,Attack,PowerShootAction,Skill,first_hit_per_target,1,1.3,1.35,1.4,1.45,1.5,1.55,1.6,1.65,1.7,1.75,58,66,74,82,90,98,106,114,122,130
+66,บูลส์อาย,OneWheel,ShootSkill,Attack,OneWheelAction,Skill,first_hit_per_target,3,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0,34,38,42,46,50,54,58,62,66,70
+67,มีบาช็อต,MeebaShot,ShootSkill,Attack,MeebaShotAction,Skill,first_hit_per_target,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,55,60,65,70,75,80,85,90,95,100
+69,สเนคแอคแทค,HideAttack,ShootSkill,Buffer,HideAttackAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+70,แอร์โรว์เรน,ArrowRain,ShootSkill,Object,ArrowRainAction,Skill,first_hit_per_target,1,1.05,1.1,1.1,1.15,1.15,1.2,1.2,1.25,1.25,1.3,50,60,60,70,70,80,80,90,90,100
+71,พาราไลซิสช็อต,ParalysisShot,ShootSkill,Attack,ParalysisShotAction,Skill,first_hit_per_target,1,2.65,2.7,2.75,2.8,2.85,2.9,2.95,3.0,3.05,3.1,120,140,160,180,200,220,240,260,280,300
+73,สไนป์,Sniping,ShootSkill,Attack,SnipingAction,Skill,first_hit_per_target,1,9.1,9.2,9.3,9.4,9.5,9.6,9.7,9.8,9.9,10.0,310,320,330,340,350,360,370,380,390,400
+74,สโมคดัส,SmokeDust,ShootSkill,Attack,SmokeDustAction,Skill,first_hit_per_target,1,3.75,3.8,3.85,3.9,3.95,4.0,4.05,4.1,4.15,4.2,230,260,290,320,350,380,410,440,470,500
+76,ครอสสเฟียร์,CrossFire,ShootSkill,Attack,CrossFireAction,Skill,first_hit_per_target,1,0,0,0,0,0,0,0,0,0,0,310,320,330,340,350,360,370,380,390,400
+77,อาร์มเบรค,ArmBreak,ShootSkill,Attack,ArmBreakAction,Skill,first_hit_per_target,1,4.85,4.9,4.95,5.0,5.05,5.1,5.15,5.2,5.25,5.3,340,380,420,460,500,540,580,620,660,700
+78,เดคอยชูตเตอร์,DecoyShooter,ShootSkill,Object,DecoyShooterAction,none,never (ExpType None: no proration slot),1,,,,,,,,,,,,,,,,,,,,
+79,เดสทอลก์ช็อต,DeathTorqueShot,ShootSkill,Attack,DeathTorqueShotAction,Skill,first_hit_per_target,1,5.1,5.2,5.3,5.4,5.5,5.6,5.7,5.8,5.9,6.0,200,200,200,200,200,200,200,200,200,200
+80,รีโทรเกรดชอท,JumpbackShot,ShootSkill,Attack,JumpbackShotAction,Skill,first_hit_per_target,1,,,,,,,,,,,300,300,300,300,300,300,300,300,300,300
+81,พาราโบลาแคนนอน,ParabolaCannon,ShootSkill,Attack,ParabolaCannonAction,Skill,first_hit_per_target,1,,,,,,,,,,,400,400,400,400,400,400,400,400,400,400
+82,ทวินสตอร์ม,TwinStorm,ShootSkill,Buffer,TwinStormAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+84,แวนควิชเชอร์,Conquester,ShootSkill,Attack,ConquesterAction,Skill,first_hit_per_target,1,,,,,,,,,,,1200,1200,1200,1200,1200,1200,1200,1200,1200,1200
+85,ควิกโหลดเดอร์,QuickLoader,ShootSkill,Buffer,QuickLoaderAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+87,คู่หูนักล่า,HuntingOne,ShootSkill,Special,HuntingOneAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+88,เจาะทะลุ,Penetrator,ShootSkill,Attack,PenetratorAction,Skill,first_hit_per_target,3,,,,,,,,,,,600,600,600,600,600,600,600,600,600,600
+89,ไวด์สเปรด,WideSpread,ShootSkill,Object,WideSpreadAction,Skill,first_hit_per_target,1,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0,200,200,200,200,200,200,200,200,200,200
+95,,,,,JumpbackShotPursuitAction,Skill,never (IsExpDefFluctuate=false),1,,,,,,,,,,,,,,,,,,,,
+97,[N]เวทมนตร์:แอร์โรว์[F]ธนูไฟ[A]ธนูน้ำ[W]ธนูลม[E]ธนูดิน[L]ธนูแสง[D]ธนูมืด[N],MagicArrow,MagicSkill,Object,MagicArrowAction,Magic,first_hit_per_target,1,0.71,0.77,0.83,0.89,0.95,1.01,1.07,1.13,1.19,1.25,95,100,105,110,115,120,125,130,135,140
+98,[N]เวทมนตร์:แจฟลิน[F]หอกเพลิง[A]หอกน้ำแข็ง[W]หอกวายุ[E]หอกศิลา[L]หอกศักดิ์สิทธิ์[D]หอกอนธการ[N],MagicJabelin,MagicSkill,Attack,MagicJabelinAction,dynamic,first_hit_per_target,1,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,65,80,95,110,125,140,155,170,185,200
+99,[N]เวทมนตร์:กำแพง[F]กำแพงอัคคี[A]ม่านวารี[W]กำแพงวายุ[E]เขตแดนปฐพี[L]เขตแดนศักดิ์สิทธิ์[D]ประตูอสูร[N],MagicWall,MagicSkill,Object,MagicWallAction,Magic,first_hit_per_target,1,0.84,0.88,0.92,0.96,1.0,1.04,1.08,1.12,1.16,1.2,130,140,150,160,170,180,190,200,210,220
+101,ชาร์จ MP,Charging,MagicSkill,Buffer,ChargingAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+102,[N]เวทมนตร์:แลนซ์ [F]วัลแคน [A]ไอซ์ซิเคิล[W]สลาตัน[E]ปืนใหญ่ศิลา[L]แสงสังหาร[D]สุริยคราส[N],MagicLancer,MagicSkill,Object,MagicLancerAction,Magic,first_hit_per_target,1,2.65,2.8,2.95,3.1,3.25,3.4,3.55,3.7,3.85,4.0,304,308,312,316,320,324,328,332,336,340
+103,[N]เวทมนตร์:บลาส[F]เอ็กซ์โพลชั่น [A]แอบโซลูทซีโร่[W]แอร์โรว์บลาส[E]จีโออิมแพ็ค[L]ไชน์นิ่งบลาส[D]อีวิลบลาส[N],MagicBlast,MagicSkill,Attack,MagicBlastAction,Magic,first_hit_per_target,1,7.3,7.6,7.9,8.2,8.5,8.8,9.1,9.4,9.7,10.0,200,220,240,260,280,300,320,340,360,380
+105,เวทมนตร์:อิมแพ็ค,MagicImpact,MagicSkill,Attack,MagicImpactAction,dynamic,first_hit_per_target,1,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,110,120,130,140,150,160,170,180,190,200
+106,[N]เวทมนตร์:สตรอม[F]ไฟเออร์สตรอม[A]โฟรเซนไซโคลน[W]ธันเดอร์สตรอม[E]แซนด์สตรอม[L]ลักซ์วอร์เทคซ์[D]อีวิวเทมเพสต์[N],MagicStorm,MagicSkill,Object,MagicStormAction,Magic,first_hit_per_target,1,3.14,3.18,3.22,3.26,3.3,3.34,3.38,3.42,3.46,3.5,420,420,420,420,420,420,420,420,420,420
+108,เวทมนตร์: ไฟนอล,MagicFinaw,MagicSkill,Attack,MagicFinawAction,Magic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+109,[N]เวทมนตร์: บลาส[F]เฮลอินเฟรูโน่[A]อีเทอนอลบลิซซาร์ด[W]ฟอร์สเทมเพสต์[E]เทิร์นกราวิตี้[L]พันนิชเมนท์[D]อีคลิปส์[N],MagicBurst,MagicSkill,Attack,MagicBurstAction,Magic,first_hit_per_target,1,15.6,16.2,16.8,17.4,18.0,18.6,19.2,19.8,20.4,21.0,230,260,290,320,350,380,410,440,470,500
+110,แม็กซ์ไมเซอร์,Maximuyzer,MagicSkill,Buffer,MaximuyzerAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+111,เวทมนตร์:อีเกล,MagicEgel,MagicSkill,Buffer,MagicEgelAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+112,เวทมนตร์:เมจิกแคนนอน,MagicCannon,MagicSkill,Attack,MagicCannonAction,Magic,first_hit_per_target,3,,,,,,,,,,,700,700,700,700,700,700,700,700,700,700
+113,[N]เวทมนตร์:แครช[F]เมเทโอเรน[A]เฮล[W]ฟลูกูไรต์[E]ร็อคฟอล[L]เมเทโอไลท์[D]คอสมอส[N],MagicFall,MagicSkill,Attack,MagicFallAction,Magic,first_hit_per_target,1,,,,,,,,,,,400,400,400,400,400,400,400,400,400,400
+114,โครนอสชิฟท์,ChronosShift,MagicSkill,Special,ChronosShiftAction,dynamic,first_hit_per_target,,,,,,,,,,,,,,,,,,,,,
+116,เอนชานท์บาเรีย,MagicProtection,MagicSkill,Buffer,MagicProtectionAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+117,เมจิคไนฟ์,MagicKnife,MagicSkill,Object,MagicKnifeAction,Normal,custom_check,2,,,,,,,,,,,,,,,,,,,,
+118,คาดาร์เอเล็คซิโอ,KadarElexio,MagicSkill,Buffer,KadarElexioAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+120,เวทมนตร์:เรเซอร์,MagicLazer,MagicSkill,Attack,MagicLazerAction,Magic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+129,สแมช,Smash,MarshallSkill,Attack,SmashAction,Skill,first_hit_per_target,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,5,10,15,20,25,30,35,40,45,50
+130,บาช,Bash,MarshallSkill,Attack,BashAction,Skill,first_hit_per_target,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,10,20,30,40,50,60,70,80,90,100
+131,โซนิคเวฟ,SonicWave,MarshallSkill,Attack,SonicWaveAction,Skill,first_hit_per_target,1,1.025,1.05,1.075,1.1,1.125,1.15,1.175,1.2,1.225,1.25,30,35,40,45,50,55,60,65,70,75
+134,เชลเบรค,ShellBreak,MarshallSkill,Attack,ShellBreakAction,Skill,first_hit_per_target,1,1.55,1.6,1.65,1.7,1.75,1.8,1.85,1.9,1.95,2.0,210,220,230,240,250,260,270,280,290,300
+135,เอิร์ธไบด์,EarthBind,MarshallSkill,Attack,EarthBindAction,Skill,first_hit_per_target,1,1.02,1.05,1.07,1.1,1.12,1.15,1.17,1.2,1.22,1.25,30,35,40,45,50,55,60,65,70,75
+137,เฮวี่สแมช,HeavySmash,MarshallSkill,Attack,HeavySmashAction,Skill,first_hit_per_target,2,1.15,1.3,1.45,1.6,1.75,1.9,2.05,2.2,2.35,2.5,210,220,230,240,250,260,270,280,290,300
+138,ทริปเปิ้ลคิก,TryArts,MarshallSkill,Attack,TryArtsAction,Skill,first_hit_per_target,3,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0,27,29,31,33,35,37,39,41,43,45
+140,เชอริออต,Chariot,MarshallSkill,Attack,ChariotAction,Skill,first_hit_per_target,1,9.91,9.92,9.93,9.94,9.95,9.96,9.97,9.98,9.99,10.0,320,340,360,380,400,420,440,460,480,500
+141,รัช,Rush,MarshallSkill,Attack,RushAction,Skill,first_hit_per_target,1,3.4,3.8,4.2,4.6,5.0,5.4,5.8,6.2,6.6,7.0,220,240,260,280,300,320,340,360,380,400
+142,จักรา,Chakra,MarshallSkill,Support,ChakraAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+143,สไลด์ดิ้ง,Sliding,MarshallSkill,Special,SlidingAction,none,never (IsExpDefFluctuate=false),,,,,,,,,,,,,,,,,,,,,
+145,อาชูร่าออร่า,AshuraAura,MarshallSkill,Buffer,AshuraAuraAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+146,เฟลชบลิงค์,FlashArts,MarshallSkill,Attack,FlashArtsAction,Normal,first_hit_per_target,3,3.3,3.6,3.9,4.2,4.5,4.8,5.1,5.4,5.7,6.0,100,100,100,100,100,100,100,100,100,100
+147,เอเนอร์จี้คอนโทรล,Kakei,MarshallSkill,Buffer,KakeiAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+148,แนบพิงภูเขา,Thieshankai,MarshallSkill,Attack,ThieshankaiAction,Skill,first_hit_per_target,1,7.75,8.0,8.25,8.5,8.75,9.0,9.25,9.5,9.75,10.0,500,500,500,500,500,500,500,500,500,500
+149,กระทืบพสุธา,Shinkyaku,MarshallSkill,Attack,ShinkyakuAction,Skill,first_hit_per_target,1,7.75,8.0,8.25,8.5,8.75,9.0,9.25,9.5,9.75,10.0,300,300,300,300,300,300,300,300,300,300
+150,[N]หมุนปัด[N2]ขากงจักร[N],Senfutsu,MarshallSkill,Attack,SenfutsuAction,Skill,first_hit_per_target,3,,,,,,,,,,,,,,,,,,,,
+157,,,,,AshuraAuraAttackAction,Skill,never (IsExpDefFluctuate=false),1,,,,,,,,,,,,,,,,,,,,
+158,,,,,MindimageSenjuSupportAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+159,,,,,MindimageSenjuAttackAction,dynamic,custom_check + class check,1,,,,,,,,,,,,,,,,,,,,
+226,ไลฟ์รีคัฟเวอรี่,LifeRecovery,SupportSkill,Circle,LifeRecoveryAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+227,มานารีชาร์จ,ManaRecharge,SupportSkill,Circle,ManaRechargeAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+228,มินิฮีล,PetitHeal,SupportSkill,Heal,PutitHealAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+229,เบรฟออร่า,BraveAura,SupportSkill,Circle,BraveAuraAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+230,เมจิกบาเรีย,MagicBarrier,SupportSkill,Circle,MagicBarrierAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+231,รีคัฟเวอรี่,Recovery,SupportSkill,Heal,RecoveryAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+232,ไฮไซเคิล,HighCycle,SupportSkill,Circle,HighCycleAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+233,อิมมูนิตี้,DiseasetSeal,SupportSkill,Circle,DiseasetSealAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+234,แซงจูรี่,Sanctuary,SupportSkill,Object,SanctuaryAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+235,ควิกโมชั่น,QuickMotion,SupportSkill,Circle,QuickMotionAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+236,ฟาสต์รีเอคชั่น,HighReaction,SupportSkill,Circle,HighReactionAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+237,ฮีล,Heal,SupportSkill,Heal,HealAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+258,ชีลด์บาช,ShieldBash,ShieldSkill,Attack,ShieldBashAction,Skill,first_hit_per_target,1,0.01,0.03,0.04,0.06,0.07,0.09,0.1,0.12,0.13,0.15,55,60,65,70,75,80,85,90,95,100
+260,ชีลด์แคนนอน,ShieldCannon,ShieldSkill,Attack,ShieldCannonAction,Skill,first_hit_per_target,1,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.5,110,120,130,140,150,160,170,180,190,200
+262,การ์ดสไตร์ค,GuardStrike,ShieldSkill,Mastery,GuardStrikeAction,none,never (IsExpDefFluctuate=false),1,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,10,20,30,40,50,60,70,80,90,100
+263,โพรเทคชั่น,Protection,ShieldSkill,Support,ProtectionAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+264,อีจิส,Aegis,ShieldSkill,Support,AegisAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+265,การ์เดียน,Guardian,ShieldSkill,Support,GuardianAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+266,ชีลด์อัปเปอร์คัต,ShieldUpper,ShieldSkill,Attack,ShieldUpperAction,Skill,first_hit_per_target,1,0.15,0.3,0.45,0.6,0.75,0.9,1.05,1.2,1.35,1.5,100,100,100,100,100,100,100,100,100,100
+267,ดูอัลชีลด์,PairOfShields,ShieldSkill,Buffer,PairOfShieldsAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+268,รีแพร์ชีลด์,ShieldRepair,ShieldSkill,Buffer,ShieldRepairAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+269,บาลาเกรุง,Beragelung,ShieldSkill,Object,BeragelungAction,Skill,first_hit_per_target,1,6.525,7.05,7.575,8.1,8.625,9.15,9.675,10.2,10.725,11.25,110,120,130,140,150,160,170,180,190,200
+290,สไปก์ดาร์ต,SpikeDart,KnifeSkill,Attack,SpikeDartAction,Skill,first_hit_per_target,1,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,11,12,13,14,15,16,17,18,19,20
+291,พอยซั่นแดกเกอร์,PoisonDagger,KnifeSkill,Attack,PoisonDaggerAction,Skill,first_hit_per_target,1,0.52,0.55,0.57,0.6,0.62,0.65,0.67,0.7,0.72,0.75,110,120,130,140,150,160,170,180,190,200
+292,แกตติ้งไนฟ์,GatlingKnife,KnifeSkill,Attack,GatlingKnifeAction,Skill,first_hit_per_target,1,0.4,0.4,0.5,0.6,0.7,0.7,0.8,0.9,1.0,1.0,22,24,26,28,30,32,34,36,38,40
+295,โธร์วไนฟ์,Throwing,KnifeSkill,Attack,ThrowingAction,dynamic,first_hit_per_target,1,0.14,0.18,0.22,0.26,0.3,0.34,0.38,0.42,0.46,0.5,,,,,,,,,,
+299,ไนฟ์คอมแบท,KnifeCombat,KnifeSkill,Special,KnifeCombatAction,Skill,first_hit_per_target,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,,,,,,,,,
+300,[N]ฟินเชอร์ไนฟ์[F]ไนฟ์สไตล์[N],FlinchKnife,KnifeSkill,Attack,FlinchKnifeAction,Skill,first_hit_per_target,1,2.2,2.4,2.6,2.8,3.0,3.2,3.4,3.6,3.8,4.0,30,60,90,120,150,180,210,240,270,300
+301,เครซี่แดกเกอร์,CrazyDagger,KnifeSkill,Object,CrazyDaggerAction,Skill,first_hit_and_flag,1,,,,,,,,,,,200,200,200,200,200,200,200,200,200,200
+302,วีลไบต์,WheelBite,KnifeSkill,Attack,WheelBiteAction,Skill,first_hit_per_target,1,7.75,8.0,8.25,8.5,8.75,9.0,9.25,9.5,9.75,10.0,400,400,400,400,400,400,400,400,400,400
+319,,,,,CrazyDaggerPursuitAction,Normal,never (IsExpDefFluctuate=false),1,,,,,,,,,,,,,,,,,,,,
+449,จับสัตว์,Taming,TamerSkill,Special,TamingAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+452,เพ็ทฮีล,PetHeal,TamerSkill,Buffer,PetHealAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+455,เพ็ท MP ชาร์จ,PetCharge,TamerSkill,Buffer,PetChargeAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+513,แอสเซาต์แอคแทค,AssaultAttack,KnightSkill,Attack,AssaultAttackAction,Skill,first_hit_per_target,1,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.5,55,60,65,70,75,80,85,90,95,100
+514,โพรโวค,Provoke,KnightSkill,Special,ProvokeAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+516,เรจซอร์ด,RageSword,KnightSkill,Attack,RageSwordAction,Skill,first_hit_per_target,1,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,155,160,165,170,175,180,185,190,195,200
+517,N$Pดีเฟนส์$F$เพอร์เฟกต์ดีเฟนส์,P_Deffence,KnightSkill,Buffer,P_DeffenceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+518,ไบด์สไตร์ค,BindStrike,KnightSkill,Attack,BindStrikeAction,Skill,first_hit_per_target,1,4.55,4.6,4.65,4.7,4.75,4.8,4.85,4.9,4.95,5.0,210,220,230,240,250,260,270,280,290,300
+519,ฟาเรส,Fearless,KnightSkill,Buffer,FearlessAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+521,ไนท์สแตนซ์,KnightStance,KnightSkill,Buffer,KnightStanceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+522,โซนิคทรัสต์,SonicThrust,KnightSkill,Attack,SonicThrustAction,Skill,first_hit_per_target,1,1.65,1.8,1.95,2.1,2.25,2.4,2.55,2.7,2.85,3.0,200,200,200,200,200,200,200,200,200,200
+523,เรเวอเนีย,Levenir,KnightSkill,Attack,LevenirAction,Skill,never (IsExpDefFluctuate=false),3,,,,,,,,,,,40,80,120,160,200,240,280,320,360,400
+526,บลิงค์ซอร์ด,BlinkSword,KnightSkill,Attack,BlinkSwordAction,Skill,first_hit_per_target,1,5.75,6.5,7.25,8.0,8.75,9.5,10.25,11.0,11.75,12.5,200,200,200,200,200,200,200,200,200,200
+527,ไนท์เพลดจ์,KnightPledge,KnightSkill,Object,KnightPledgeAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+545,แตะ,KickBack,HunterSkill,Attack,KickBackAction,Skill,first_hit_per_target,1,,,,,,,,,,,10,20,30,40,50,60,70,80,90,100
+546,ซันไรส์แอร์โรว์,SunriseArrow,HunterSkill,Attack,SunriseArrowAction,Skill,first_hit_per_target,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,182,184,186,188,190,192,194,196,198,200
+547,เมจิคแอร์โรว์,ForceArrow,HunterSkill,Buffer,ForceArrow,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+548,แซทเทิลไลท์แอร์โรว์,SatelliteArrow,HunterSkill,Object,SatelliteArrowAction,Skill,first_hit_per_target,1,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0,300,300,300,300,300,300,300,300,300,300
+549,กับดักนิทรา,SleepTrap,HunterSkill,Object,SleepTrapAction,Magic,first_hit_per_target,1,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.1,55,60,65,70,75,80,85,90,95,100
+550,กับดักล่าสัตว์,SteelTrap,HunterSkill,Object,SteelTrapAction,Magic,first_hit_per_target,1,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.1,55,60,65,70,75,80,85,90,95,100
+551,ทุ่นระเบิด,Explossive,HunterSkill,Object,ExplossiveAction,Magic,first_hit_per_target,1,2.6,3.2,3.8,4.4,5.0,5.6,6.2,6.8,7.4,8.0,130,160,190,220,250,280,310,340,370,400
+552,กับดักความมืด,BlankTrap,HunterSkill,Object,BlankTrapAction,Magic,first_hit_per_target,1,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.1,55,60,65,70,75,80,85,90,95,100
+553,ดีเทคชั่น,Detection,HunterSkill,Buffer,DetectionAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+554,โฮมมิ่งช็อต,HomingShot,HunterSkill,Object,HomingShotAction,Normal,every_hit + class check,3,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,200,200,200,200,200,200,200,200,200,200
+555,เวอร์ติคัลแอร์,VerticalAir,HunterSkill,Attack,VerticalAirAction,Skill,first_hit_per_target,3,,,,,,,,,,,,,,,,,,,,
+556,ไซโคลนแอร์โรว์,CycloneArrow,HunterSkill,Attack,CycloneArrowAction,Skill,first_hit_per_target,1,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,100,100,100,100,100,100,100,100,100,100
+558,[N]มัลติเพิลฮันท์[W]วูปสไนเปอร์[H]สไนเปอร์วอลเลย์[G]วันแฮนด์ช็อต[S]ชาร์ปชูตเตอร์[N],MultipleHunt,HunterSkill,Attack,MultipleHuntAction,dynamic,first_hit_per_target,1,0.75,1.5,2.25,3.0,3.75,4.5,5.25,6.0,6.75,7.5,200,200,200,200,200,200,200,200,200,200
+559,แคมฟลาจ,Camouflage,HunterSkill,Buffer,CamouflageAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+561,โฟกัส,Focus,HunterSkill,Attack,FocusAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+577,อัญเชิญโกเล็ม,CallGolem,GolemSkill,Object,CallGolemAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+584,ระเบิดเวทมนตร์,MagicGrenade,GolemSkill,Attack,MagicGrenadeAction,Magic,never (IsExpDefFluctuate=false),1,,,,,,,,,,,,,,,,,,,,
+585,ระเบิดเยือกแข็ง,FreezeGrenade,GolemSkill,Attack,FreezeGrenadeAction,Magic,never (IsExpDefFluctuate=false),1,,,,,,,,,,,,,,,,,,,,
+586,ระเบิดแสง,FlashGrenade,GolemSkill,Attack,FlashGrenadeAction,Magic,never (IsExpDefFluctuate=false),1,,,,,,,,,,,,,,,,,,,,
+587,บาเรียสกรีน,BarrierScreen,GolemSkill,Object,BarrierScreenAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+609,เฟลช,FlashDrawnSword,MononofuSkill,Attack,FlashDrawnSwordAction,Skill,first_hit_per_target,3,,,,,,,,,,,,,,,,,,,,
+610,ปอมเมลสไตร์ค,StrikeBackOfSword,MononofuSkill,Attack,StrikeBackOfSwordAction,Skill,first_hit_per_target,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,110,120,130,140,150,160,170,180,190,200
+611,[N]พัลส์เบลด[N2]สวิฟต์พัลส์เบลด[N],WaveBlade,MononofuSkill,Attack,WaveBladeAction,Skill,first_hit_per_target if class check passes,3,,,,,,,,,,,31,32,33,34,35,36,37,38,39,40
+614,ทริปเปิ้ลทรัสต์,ThreeStageThrust,MononofuSkill,Attack,ThreeStageThrustAction,Skill,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+615,มากาดาจิ,CutOffTheDisaster,MononofuSkill,Special,CutOffTheDisasterAction,Skill,first_hit_per_target,2,2.3,2.6,2.9,3.2,3.5,3.8,4.1,4.4,4.7,5.0,110,120,130,140,150,160,170,180,190,200
+616,เมเคียวชิซุย,ClearAndSerene,MononofuSkill,Buffer,ClearAndSereneAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+617,ฮัซโซฮัปปะ,Okaranman,MononofuSkill,Object,HassohappaAction,Skill,first_hit_per_target,1,3.2,3.3,3.4,3.5,3.6,3.7,3.8,3.9,4.0,7.0,132,134,136,138,140,142,144,146,148,150
+618,ซังเทเซตเท็ตสึ,Zanteisettetsu,MononofuSkill,Attack,ZanteisettetsuAction,Skill,first_hit_per_target,3,1.2,1.4,1.6,1.8,2.0,2.2,2.4,2.6,2.8,3.0,10,20,30,40,50,60,70,80,90,100
+619,ชูคุจิ,Shukuchi,MononofuSkill,Mastery,ShukuchiAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+620,เท็นริวรันเซ,HeavenlyStar,MononofuSkill,Attack,HeavenlyStarAction,Skill,first_hit_per_target if class check passes,1,1.75,2.0,2.25,2.5,2.75,3.0,3.25,3.5,3.75,4.0,10,20,30,40,50,60,70,80,90,100
+621,การิวเท็นเซ,FinishingTouch,MononofuSkill,Attack,FinishingTouchAction,Skill,first_hit_per_target,1,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6,1.8,2.0,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000
+622,ไคริกิรันชิน,WeirdnessOfGod,MononofuSkill,Buffer,WeirdnessOfGodAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+623,คมดาบมายา,RepelBlade,MononofuSkill,Special,RepelBladeAction,Skill,first_hit_per_target,1,2.2,2.4,2.6,2.8,3.0,3.2,3.4,3.6,3.8,4.0,110,120,130,140,150,160,170,180,190,200
+624,[N]คาสุมิเซ็ตสึเก็คคะ[N2]เท็นริวรันเซ:ซันยุ[N],IllusionaryScene,MononofuSkill,Attack,IllusionarySceneAction,Skill,first_hit_per_target,2,8.25,9.0,9.75,10.5,11.25,12.0,12.75,13.5,14.25,15.0,200,200,200,200,200,200,200,200,200,200
+625,ชาโดว์เลสสแลช,ShadowlessSlash,MononofuSkill,Object,ShadowlessSlashAction,Skill,first_hit_per_target,1,,,,,,,,,,,300,300,300,300,300,300,300,300,300,300
+629,[N]ลมกระโชก[N2]ลมสงบนิ่ง[N3]ลมเหนือ[N4]ลมตะวันออก[N5]ลมตะวันตก[N6]ลมใต้[N7]สี่ฤดูกาล[N],Ichijhinnokaze,MononofuSkill,Special,IchijhinnokazeAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+630,ลมกรด,Hayate,MononofuSkill,Attack,HayateAction,Skill,first_hit_per_target,1,0.6,1.2,1.8,2.4,3.0,3.6,4.2,4.8,5.4,6.0,400,400,400,400,400,400,400,400,400,400
+637,,,,,IchijhinnokazeAttackAction,dynamic,first_hit_per_target,1,,,,,,,,,,,300,300,300,300,300,300,300,300,300,300
+638,,,,,TenjhoTengeMusouSwordAction,Skill,first_hit_per_target,1,35.0,35.0,35.0,35.0,35.0,35.0,35.0,35.0,35.0,35.0,,,,,,,,,,
+642,ทวินสแลช,TwinSlash,DualSword,Attack,TwinSlashAction,Skill,first_hit_per_target,1,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,110,120,130,140,150,160,170,180,190,200
+643,ครอสแพรี่,ParryingSword,DualSword,Attack,ParryingSwordAction,Skill,first_hit_per_target,1,1.01,1.02,1.03,1.04,1.05,1.06,1.07,1.08,1.09,1.1,55,60,65,70,75,80,85,90,95,100
+644,รีเฟล็กซ์,StepReactor,DualSword,Buffer,StepReactorAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+646,สปินนิ่งสแลช,AirSlide,DualSword,Object,AirSlideAction,Skill,first_hit_per_target,1,1.27,1.3,1.32,1.35,1.37,1.4,1.42,1.45,1.47,1.5,55,60,65,70,75,80,85,90,95,100
+647,ชาร์จจิ้งสแลช,DragoonSword,DualSword,Attack,DragoonSwordAction,Skill,first_hit_per_target,1,2.2,2.4,2.6,2.8,3.0,3.2,3.4,3.6,3.8,4.0,120,140,160,180,200,220,240,260,280,300
+649,[N]แฟนทอมสแลช[N2]แฟนทอมอิคลิพส์[N],PhantomRave,DualSword,Attack,PhantomRaveAction,Skill,first_hit_per_target,1,10.4,10.8,11.2,11.6,12.0,12.4,12.8,13.2,13.6,14.0,220,240,260,280,300,320,340,360,380,400
+650,แฟลชบลาส,PhiloEclair,DualSword,Buffer,PhiloEclairAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+651,ชาโดว์สเต็ป,WrapAround,DualSword,Attack,WrapAroundAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+652,[N]ไชน์นิ่งครอส[N2]เบลซซิ่งไชน์นิ่งครอส[N],ShiningCloth,DualSword,Attack,ShiningClothAction,Skill,first_hit_per_target,2,,,,,,,,,,,120,140,160,180,200,220,240,260,280,300
+653,[N]สตอร์มรีปเปอร์[N2]ออร์บิทรีปเปอร์[N],SturmLeaper,DualSword,Attack,SturmLeaperAction,Skill,first_hit_per_target,2,,,,,,,,,,,110,120,130,140,150,160,170,180,190,200
+654,เซเบอร์ออร่า,SaberAura,DualSword,Buffer,SaberAuraAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+655,ลูนาดิธเธอร์สตาร์,LunaDitherStar,DualSword,Attack,LunaDitherStarAction,Skill,first_hit_per_target,1,,,,,,,,,,,400,400,400,400,400,400,400,400,400,400
+656,ทวินบัสตาร์ดเบลด,TwinBusterBlade,DualSword,Attack,TwinBusterBladeAction,Skill,first_hit_per_target,1,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,30,60,90,120,150,180,210,240,270,300
+657,อาร์คเซเบอร์,ArkSaber,DualSword,Buffer,ArkSaberAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+658,แอร์สไลเซอร์,AirSlicer,DualSword,Attack,AirSlicerAction,dynamic,every_hit + class check,1,,,,,,,,,,,20,40,60,80,100,120,140,160,180,200
+659,เอเลียสลีย์,ArialSlay,DualSword,Special,ArialSlayAction,dynamic,first_hit_per_target,1,,,,,,,,,,,120,140,160,180,200,220,240,260,280,300
+660,ฮอร์ริซอนคัท,HorizontalCut,DualSword,Attack,HorizontalCutAction,Skill,never (IsExpDefFluctuate=false),1,,,,,,,,,,,30,60,90,120,150,180,210,240,270,300
+661,เบลดสตริงเกอร์,BladeStinger,DualSword,Attack,BladeStingerAction,Skill,first_hit_per_target,2,3.4,3.8,4.2,4.6,5.0,5.4,5.8,6.2,6.6,7.0,100,100,100,100,100,100,100,100,100,100
+671,,,,,LunaDitherStarBladeRainAction,Magic,first_hit_per_target,1,2.55,2.6,2.65,2.7,2.75,2.8,2.85,2.9,2.95,3.0,0,0,0,0,0,0,0,0,0,0
+673,[N]Lบูมเมอแรง[N2]เลเพจบูมเมอแรง[N],L_Boomerang,PartisanSkill,Object,L_BoomerangAction,Normal,first_hit_per_target,1,,,,,,,,,,,200,200,200,200,200,200,200,200,200,200
+674,[N]LบูมเมอแรงII[N2]เลเพจบูมเมอแรงII[N],L_Boomerang2,PartisanSkill,Object,L_Boomerang2Action,Normal,first_hit_per_target,1,,,,,,,,,,,100,100,100,100,100,100,100,100,100,100
+675,[N]LบูมเมอแรงIII[N2]เลเพจบูมเมอแรงIII[N],L_Boomerang3,PartisanSkill,Object,L_Boomerang3Action,Normal,first_hit_per_target,1,,,,,,,,,,,400,400,400,400,400,400,400,400,400,400
+676,[N]Nดราก้อนทูธ[N2]นีโน่ดราก้อนทูธ[N],N_DragonTooth,PartisanSkill,Attack,N_DragonToothAction,Skill,first_hit_per_target,1,0.75,1.5,2.25,3.0,3.75,4.5,5.25,6.0,6.75,7.5,,,,,,,,,,
+677,ฮีลลิ่งช็อต,HealingShot,PartisanSkill,Special,HealingShotAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+678,ลับคมลูกศร,ArrowSharpening,PartisanSkill,Buffer,ArrowSharpeningAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+680,ค้ำจุนแนวหน้า,MaintainingTheFront,PartisanSkill,Buffer,MaintainingTheFrontAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+703,,,,,RangeHateAttackAction,none,never (IsExpDefFluctuate=false),,,,,,,,,,,,,,,,,,,,,
+705,ออโต้ดีไวซ์,AutoDevice,SpriteSkill,Buffer,AutoDeviceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+707,เคาน์เตอร์ฟอร์ส,CounterForce,SpriteSkill,Object,CounterForceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+708,ไมโครฮีล,ClineHeal,SpriteSkill,Support,ClineHealAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+709,เอนฮานซ์,Enhance,SpriteSkill,Support,EnhanceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+710,แอสเทิลแลนซ์,AstralLance,SpriteSkill,Special,AstralLanceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+711,เรเซอร์เรคชั่น,Resurrection,SpriteSkill,Support,ResurrectionAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+712,สเตบิไลซ์,Stabilis,SpriteSkill,Support,StabilisAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+713,สไปรท์ชีลด์,SpriteShield,SpriteSkill,Buffer,SpriteShieldAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+714,เมจิกวัลแคน,MagicBalkan,SpriteSkill,Object,MagicBalkanAction,Magic,never (IsExpDefFluctuate=false),1,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0,0,0,0,0,0,0,0,0,0,0
+715,อิกนิชั่น,Ignition,SpriteSkill,Attack,IgnitionAction,Magic,first_hit_per_target,1,,,,,,,,,,,100,100,100,100,100,100,100,100,100,100
+716,อาร์เดดราค,Aldedrak,SpriteSkill,Object,AldedrakAction,Magic,first_hit_per_target,1,,,,,,,,,,,300,300,300,300,300,300,300,300,300,300
+717,แฟกทิสอาร์ม,FacticeArme,SpriteSkill,Attack,FacticeArmeAction,Magic,first_hit_per_target,2,,,,,,,,,,,4.5,18.0,40.5,72.0,112.5,162.0,220.5,288.0,364.5,450.0
+718,สแลชรีปเปอร์,SlashReaper,SpriteSkill,Object,SlashReaperAction,Magic,custom_check + class check,1,,,,,,,,,,,,,,,,,,,,
+721,คาตาลาโบมัส,Catarabomos,SpriteSkill,Attack,CatarabomosAction,none,never (IsExpDefFluctuate=false),,,,,,,,,,,,,,,,,,,,,
+722,เลเบนส์กลานซ์,LebenGlanz,SpriteSkill,Attack,LebenGlanzAction,none,never (IsExpDefFluctuate=false),,,,,,,,,,,,,,,,,,,,,
+732,,,,,LifeExplosionAction,Magic,first_hit_per_target,1,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,400,400,400,400,400,400,400,400,400,400
+733,,,,,AutoDeviceAttackAction,Normal,first_hit_per_target,,,,,,,,,,,,,,,,,,,,,
+734,,,,,AstralLanceAttackAction,Magic,never (IsExpDefFluctuate=false),1,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,500,500,500,500,500,500,500,500,500,500
+735,,,,,CounterForceAttackAction,Magic,never (IsExpDefFluctuate=false),1,,,,,,,,,,,75,75,75,75,75,75,75,75,75,75
+769,บทเพลงแห่งการเยียวยา,HealingSong,Minstrel,Circle,HealingSongAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+770,บทเพลงแห่งภูตพราย,FairySong,Minstrel,Circle,FairySongAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+771,บทเพลงแห่งชีวิต,SongOfLife,Minstrel,Circle,SongOfLifeAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+772,บทเพลงแห่งมายา,PhantomSong,Minstrel,Circle,PhantomSongAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+773,แอดลิบ,ImprovisationSong,Minstrel,Buffer,ImprovisationSongAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+774,บทเพลงแห่งความเร่าร้อน,EnthusiasticSong,Minstrel,Circle,EnthusiasticSongAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+775,บทเพลงแห่งภูมิปัญญา,KnowledgeSong,Minstrel,Circle,KnowledgeSongAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+776,บีทบลาสต์,BeatBlast,Minstrel,Special,BeatBlastAction,Magic,first_hit_per_target,1,1.15,1.3,1.45,1.6,1.75,1.9,2.05,2.2,2.35,2.5,0,0,0,0,0,0,0,0,0,0
+797,,,,,BattleNotesAttackAction,Normal,first_hit_per_target,,,,,,,,,,,,,,,,,,,,,
+799,,,,,SetlistAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+801,การร่ายรำแห่งภูตพราย,FairyDance,DancerSkill,Support,FairyDanceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+802,การร่ายรำอันรุนแรง,PassionDance,DancerSkill,Support,PassionDanceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+803,การร่ายรำให้กำลังใจ,SupportDance,DancerSkill,Support,SupportDanceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+804,การร่ายรำอันเฉียบคม,SharpDance,DancerSkill,Support,SharpDanceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+805,ตั้งรับอย่างสง่างาม,ElegantStance,DancerSkill,Buffer,ElegantStanceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+806,การร่ายรำอันทรงเสน่ห์,EnchantedDance,DancerSkill,Support,EnchantedDanceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+807,วิจิตรธรรมชาติ,BeautiesOfNature,DancerSkill,Attack,BeautiesOfNatureAction,Skill,first_hit_per_target,1,1.57,1.65,1.72,1.8,1.87,1.95,2.02,2.1,2.17,2.25,100,100,100,100,100,100,100,100,100,100
+833,เบลส,Bless,PriestSkill,Support,BlessAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+834,โฮลี่ฟิสท์,HollyFist,PriestSkill,Attack,HolyFistAction,Skill,first_hit_per_target,2,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0,55,60,65,70,75,80,85,90,95,100
+835,กลอเรีย,Gloria,PriestSkill,Support,GloriaAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+836,โฮลี่ไลท์,HollyLight,PriestSkill,Attack,HolyLightActin,Magic,first_hit_per_target,1,1.15,1.3,1.45,1.6,1.75,1.9,2.05,2.2,2.35,2.5,200,200,200,200,200,200,200,200,200,200
+838,อีเธอร์บาเรีย,EtherCoat,PriestSkill,Support,EtherCoatAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+839,ไฮเนสฮีล,HighnessHeal,PriestSkill,Support,HighnessHealAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+840,พรีเอล,Priere,PriestSkill,Support,PriereAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+841,ร็อดสทับ,RodStub,PriestSkill,Attack,RodStubAction,Skill,first_hit_per_target,1,,,,,,,,,,,100,100,100,100,100,100,100,100,100,100
+842,เอ็กซอร์ซิสต์,Exorcism,PriestSkill,Attack,ExorcismAction,Magic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+843,โฮลี่ไบเบิ้ล,HolyBible,PriestSkill,Buffer,HolyBibleAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+844,เนเมซิส,Nemesis,PriestSkill,Attack,NemesisAction,dynamic,first_hit_per_target,1,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,60,120,180,240,300,360,420,480,540,600
+847,โฮลี่เกรซ,HolyGrace,PriestSkill,Support,HolyGraceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+863,,,,,HolyGracePursuitAttackAction,Normal,first_hit_per_target,1,0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,300,300,300,300,300,600,900,1200,1500,1800
+866,อีเทอร์แฟลร์,EtherFlare,MagicBladeSkill,Attack,EtherFlareAction,dynamic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+867,คอนเวอร์ชั่น,Conversion,MagicBladeSkill,Mastery,ConversionAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+868,เอเลเม้นต์สแลช,ElementSlash,MagicBladeSkill,Attack,ElementSlashAction,dynamic,first_hit_per_target,1,,,,,,,,,,,65,80,95,110,125,140,155,170,185,200
+869,เรโซแนนซ์,Resonance,MagicBladeSkill,Buffer,ResonanceAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+870,[N]เอนชานท์ซอร์ด[N2]เอนชานท์บลาสซอร์ด[N],EnchantedSword,MagicBladeSkill,Attack,EnchantedSwordAction,dynamic,first_hit_per_target,3,4.6,5.2,5.8,6.4,7.0,7.6,8.2,8.8,9.4,10.0,300,300,300,300,300,300,300,300,300,300
+872,[N]เอนชานท์บลาส[N2]เอนชานท์อกรา[N],EnchantedBurst,MagicBladeSkill,Attack,EnchantedBurstAction,dynamic,first_hit_per_target,1,10.5,11.0,11.5,12.0,12.5,13.0,13.5,14.0,14.5,15.0,100,100,100,100,100,100,100,100,100,100
+873,ดูอัลบริงเกอร์,DualBringer,MagicBladeSkill,Buffer,DualBringerAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+874,[N]ยูเนียนซอร์ด[N2]รียูเนียนซอร์ด[N],UnionSword,MagicBladeSkill,Attack,UnionSwordAction,dynamic,first_hit_per_target,1,21.0,22.0,23.0,24.0,25.0,26.0,27.0,28.0,29.0,30.0,500,500,500,500,500,500,500,500,500,500
+875,เดรนบาเรีย,DrainBarrier,MagicBladeSkill,Buffer,DrainBarrierAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+876,เทเลพอร์ต,Teleport,MagicBladeSkill,Buffer,TeleportAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+878,โฟรทแดช,FloatDash,MagicBladeSkill,Buffer,FloatDashAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+897,,NpcFirstAid,28,Special,NpcFirstAidAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+898,,NpcHeal,28,Heal,NpcHealAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+899,,FlashOfTheWarGod,28,Attack,FlashOfTheWarGodAction,Skill,first_hit_per_target,1,10,10,10,10,10,10,10,10,10,10,,,,,,,,,,
+900,,JudgmentOfTheDarkGod,28,Attack,JudgmentOfTheDarkGodAction,Magic,first_hit_per_target,1,30.0,30.0,30.0,30.0,30.0,30.0,30.0,30.0,30.0,30.0,,,,,,,,,,
+901,,WarProvoke,28,Buffer,WarProvokeAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+902,,Hiding,28,Buffer,HidingAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+929,บาสต์แอคแทค,BusterAttack,PetSkill,Attack,BusterAttack,Skill,first_hit_per_target,1,4.3,4.6,4.9,5.2,5.5,5.8,6.1,6.4,6.7,7.0,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000
+933,เมจิกแลนซ์,SorciereLance,PetSkill,Attack,SorcielLance,Magic,first_hit_per_target,1,3.3,3.6,3.9,4.2,4.5,4.8,5.1,5.4,5.7,6.0,2100,2200,2300,2400,2500,2600,2700,2800,2900,3000
+934,คริติคอลอัพ,PetCriticalUp,PetSkill,Buffer,PetCriticalUp,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+935,เฮวี่แอคแทค,HeavyAttack,PetSkill,Attack,HeavyAttack,Skill,first_hit_per_target,1,3.2,3.4,3.6,3.8,4.0,4.2,4.4,4.6,4.8,5.0,40,80,120,160,200,240,280,320,360,400
+936,ลอบโจมตี,SneakAttack,PetSkill,Attack,SneakAttack,dynamic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+937,เมจิกชอต,MagicShot,PetSkill,Attack,MagicShot,Magic,first_hit_per_target,1,2.2,2.4,2.6,2.8,3.0,3.2,3.4,3.6,3.8,4.0,275,300,325,350,375,400,425,450,475,500
+938,บลาสต์แฟลร์,BlastFlare,PetSkill,Attack,BlastFlare,Magic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+939,เซอร์เคิลฮีล,KreisHeel,PetSkill,Heal,KreisHeel,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+940,กระตุ้นพลัง,BraveUp,PetSkill,Buffer,BraveUp,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+941,ปฐมพยาบาล,PetFirstAid,PetSkill,Special,PetFirstAid,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+942,เพิ่มกำลังใจ,MindUp,PetSkill,Buffer,MindUp,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+943,ฟื้นฟู,PetHealing,PetSkill,Heal,PetHealing,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+944,สวีปแอคแทค,SweepAttack,PetSkill,Attack,SweepAttack,Skill,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+945,คลีนฮิต,DownBlow,PetSkill,Attack,DownBlow,Skill,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+946,เรจแอคแทค,RageAttack,PetSkill,Attack,RageAttack,dynamic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+947,บลายอิ้งแชโดว์,BlindEye,PetSkill,Attack,BlindEye,Magic,first_hit_per_target,1,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.5,110,120,130,140,150,160,170,180,190,200
+948,เพิ่มแรงต้านทาน,CutUp,PetSkill,Buffer,CutUp,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+949,สตันแอคแทค,StanAttack,PetSkill,Attack,StanAttack,Skill,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+953,ชีลเบรคเกอร์,SealBreaker,PetSkill,Attack,SealBreaker,Magic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+958,การการโจมตีปกติ (กายภาพ),PetPhysicalAttack,PetSkill,Attack,PetNormalAttackAction,none,never (ExpType None: no proration slot),1,,,,,,,,,,,,,,,,,,,,
+959,การโจมตีปกติ (เวทมนตร์),PetMagicAttack,PetSkill,Attack,PetNormalMagicAction,none,never (ExpType None: no proration slot),1,,,,,,,,,,,,,,,,,,,,
+961,เฟลชสเต็ป,FlashStub,HalberdSkill,Attack,FlashStubAction,Skill,first_hit_per_target,1,1.05,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,55,60,65,70,75,80,85,90,95,100
+962,แคนนอนสเปียร์,CannonSpear,HalberdSkill,Attack,CannonSpearAction,Skill,first_hit_per_target,1,,,,,,,,,,,110,120,130,140,150,160,170,180,190,200
+963,เดดลี่สเปียร์,DeadlySpear,HalberdSkill,Attack,DeadlySpearAction,Skill,first_hit_per_target,1,1.1,1.1,1.15,1.2,1.25,1.3,1.35,1.4,1.45,1.5,83,86,89,92,95,98,101,104,107,110
+965,ควิกออร่า,QuickAura,HalberdSkill,Buffer,QuickAuraAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+966,ดราก้อนเทล,DragonTail,HalberdSkill,Attack,DragonTailAction,Skill,first_hit_per_target,1,0.73,0.76,0.79,0.82,0.85,0.88,0.91,0.94,0.97,1.0,100,100,100,100,100,100,100,100,100,100
+967,วานิชเรย์,PunishRay,HalberdSkill,Attack,PunishRayAction,Magic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+968,วอร์ครายสทรักเกิ้ล,AdversityRoar,HalberdSkill,Buffer,AdversityRoarAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+969,ไดฟ์อิมแพ็ค,DiveImpact,HalberdSkill,Object,DiveImpactAction,Skill,first_hit_per_target,1,,,,,,,,,,,220,240,260,280,300,320,340,360,380,400
+970,สไตร์คสเต็ป,StrikeStub,HalberdSkill,Attack,StrikeStubAction,Skill,first_hit_per_target,1,2.11,2.32,2.53,2.74,2.95,3.16,3.37,3.58,3.79,4.0,200,200,200,200,200,200,200,200,200,200
+972,ดราก้อนทูธ,DragonTooth,HalberdSkill,Attack,DragonToothAction,Skill,first_hit_per_target,1,0.75,1.5,2.25,3.0,3.75,4.5,5.25,6.0,6.75,7.5,,,,,,,,,,
+973,โครนอสไดรฟ์,CronosDrive,HalberdSkill,Attack,CronosDriveAction,Skill,first_hit_per_target,1,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,40,80,120,160,200,240,280,320,360,400
+974,เทพลมกรด,HandlingerOfGodspeed,HalberdSkill,Buffer,HandlingerOfGodspeedAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+975,[N]บัสเตอร์แลนซ์[P]แพนิกบัสเตอร์แลนซ์[N],BusterLunce,HalberdSkill,Attack,BusterLanceAction,dynamic,first_hit_per_target,1,,,,,,,,,,,100,100,100,100,100,100,100,100,100,100
+976,ดราโกนิกชาร์จ,DragonicCharge,HalberdSkill,Attack,DragonicChargeAction,Skill,first_hit_per_target,1,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0,30,60,90,120,150,180,210,240,270,300
+977,อินฟิไนท์ไดเมนชัน,DimensionTill,HalberdSkill,Object,DimensionTillAction,Skill,never (IsExpDefFluctuate=false),1,,,,,,,,,,,20,40,60,80,100,120,140,160,180,200
+980,บลิทซ์ไปก์,BlitzPike,HalberdSkill,Object,BlitzPikeAction,Magic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+981,ไลท์นิ่งเฮล,LightningHail,HalberdSkill,Object,LightningHailAction,Magic,first_hit_per_target,1,,,,,,,,,,,110,120,130,140,150,160,170,180,190,200
+982,ธอร์แฮมเมอร์,ThorHammer,HalberdSkill,Object,ThorHammerAction,Magic,first_hit_per_target,1,10.5,11.0,11.5,12.0,12.5,13.0,13.5,14.0,14.5,15.0,400,400,400,400,400,400,400,400,400,400
+988,,,,,BlitzPikePursuitAction,Normal,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+989,,,,,GodSpearHandling3Action,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+990,,,,,GodSpearHandling2Action,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+991,,,,,GodSpearHandling1Action,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+993,[N]แอสแซสซินสแทบ[F]ฟรอนท์สแทบ[S]ไซด์สแทบ[B]แบ็คสแทบ[N],AssassinStub,AssassinSkill,Attack,AssassinStubAction,Skill,first_hit_per_target,1,2.08,2.11,2.14,2.17,2.2,2.23,2.26,2.29,2.32,2.35,30,60,90,120,150,180,210,240,270,300
+994,อีเวชัน,Evolution,AssassinSkill,Support,EvolutionAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+995,แบ็คสเต็ป,Backstep,AssassinSkill,Special,BackstepAction,none,never (IsExpDefFluctuate=false),,,,,,,,,,,,,,,,,,,,,
+996,เซียรัม,Sierram,AssassinSkill,Support,SierramAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+997,ฟูเนวินเด,FuneVinte,AssassinSkill,Attack,FuneVinteAction,Skill,first_hit_per_target,1,,,,,,,,,,,550,600,650,700,750,800,850,900,950,1000
+1000,ชาโดว์วอล์ค,ShadowWalk,AssassinSkill,Buffer,ShadowWalkAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1001,เวนอมอินเจค,VenomInject,AssassinSkill,Buffer,VenomInjectAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1003,เวนอมสแนทช,VenomSnatch,AssassinSkill,Attack,VenomSnatchAction,none,never (IsExpDefFluctuate=false),,,,,,,,,,,,,,,,,,,,,
+1004,เดธรีเซฟชัน,DeathReception,AssassinSkill,Attack,DeathReceptionAction,Skill,first_hit_per_target,1,,,,,,,,,,,30,60,90,120,150,180,210,240,270,300
+1006,แอสเซาท์เชส,AssaultChase,AssassinSkill,Buffer,AssaultChaseAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1025,แฟมิเรีย,Familia,WizardSkill,Special,FamiliaAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1026,มานาคริสตัล,ManaCrystal,WizardSkill,Support,ManaCrystalAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1027,ไลท์นิ่ง,Lightning,WizardSkill,Object,LightningAction,Magic,first_hit_per_target if class check passes,1,,,,,,,,,,,80,80,80,80,80,80,80,80,80,80
+1028,บลิซซาร์ด,Blizzard,WizardSkill,Object,BlizzardAction,Magic,first_hit_per_target if class check passes,1,,,,,,,,,,,100,100,100,100,100,100,100,100,100,100
+1029,เมเทโอสตอร์มสไตร์ค,MeteorStrike,WizardSkill,Object,MeteorStrikeAction,Magic,first_hit_per_target if class check passes,1,,,,,,,,,,,300,300,300,300,300,300,300,300,300,300
+1030,สโตนสกิล,StoneSkin,WizardSkill,Support,StoneSkinAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1031,[N]อิมพีเรียลเรย์[PN]อิมพีเรียลบลาสท์[PF]อิมพีเรียลไฟร์[PA]อิมพีเรียลฟรีซ[PW]อิมพีเรียลโกลม[PE]อิมพีเรียลเปตรา[PL]อิมพีเรียลโฮลี่[PD]อิมพีเรียลชาโดว์[N],ImperialRay,WizardSkill,Attack,ImperialRayAction,Magic,never (IsExpDefFluctuate=false),1,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0,220,240,260,280,300,320,340,360,380,400
+1032,ไฮแฟมิเรีย,HighFamilia,WizardSkill,Special,HighFamiliaAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1034,คริสตัลเลเซอร์,CrystalLaser,WizardSkill,Object,CrystalLaserAction,Magic,first_hit_per_target,1,7.3,7.6,7.9,8.2,8.5,8.8,9.1,9.4,9.7,10.0,200,200,200,200,200,200,200,200,200,200
+1035,โอเวอร์ลิมิต,OverLimit,WizardSkill,Buffer,OverLimitAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1039,ชิฟท์,Shift,WizardSkill,Buffer,ShiftAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1057,บลัดดี้ไบท์,BloodBite,DarkPowerSkill,Attack,BloodBiteAction,Skill,first_hit_per_target,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,100,100,100,100,100,100,100,100,100,100
+1058,แซครีไฟซ์,Sacrifice,DarkPowerSkill,Special,SacrificeAction,Skill,never (IsExpSkill excludes ActionID),,6.0,7.0,8.0,9.0,10.0,10.0,10.0,10.0,10.0,10.0,,,,,,,,,,
+1059,ดาร์คสตริงเกอร์,DarkStinger,DarkPowerSkill,Attack,DarkStingerAction,Skill,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+1060,เดมอนคลอว์,DemonCrowe,DarkPowerSkill,Attack,DemonCroweAction,Skill,first_hit_per_target,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,40,80,120,160,200,240,280,320,360,400
+1061,เรดเทีย,RedTear,DarkPowerSkill,Object,RedTearAction,Skill,first_hit_per_target,1,1.82,1.84,1.86,1.88,1.9,1.92,1.94,1.96,1.98,2.0,,,,,,,,,,
+1062,รีเกรทเลส,Regret,DarkPowerSkill,Buffer,RegretAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1063,[N]โซลฮันเตอร์[N2]เดธรีปเปอร์[N],SoulHunt_Deathscythe,DarkPowerSkill,Attack,SoulHuntAction,Magic,first_hit_per_target,1,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,130,160,190,220,250,280,310,340,370,400
+1064,อีเทอนอลไนท์แมร์,EternalNightmare,DarkPowerSkill,Object,EternalNightmareAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1065,เนตรมารข่มขวัญ,IntimidatingEvilEye,DarkPowerSkill,Attack,IntimidatingEvilEyeAction,Magic,first_hit_per_target,1,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.1,20,40,60,80,100,120,140,160,180,200
+1066,เนตรมารเสน่หา,EnchantingEvilEye,DarkPowerSkill,Attack,EnchantingEvilEyeAction,Magic,first_hit_per_target,1,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,0,0,0,0,0,0,0,0,0,0
+1067,เนตรมารเพลิงทมิฬ,BlackFlameEvilEye,DarkPowerSkill,Attack,BlackFlameEvilEyeAction,Magic,first_hit_per_target,1,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,100,100,100,100,100,100,100,100,100,100
+1068,เนตรมารโกลาหล,ChaosEvilEye,DarkPowerSkill,Attack,ChaosEvilEyeAction,dynamic,first_hit_per_target,1,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,50,100,150,200,250,300,350,400,450,500
+1090,ชาร์จพลังชี่กง,CollectQigong,BareHandSkill,Buffer,CollectQigongAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1091,ซีซ่าแสลชเชอร์,FuriousEfforts,BareHandSkill,Buffer,FuriousEffortsAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1092,วายุโหมคลื่นกระหน่ำ,StormAndUrge,BareHandSkill,Buffer,StormAndUrgeAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1093,ชี่กงฟื้นฟู,HealQigong,BareHandSkill,Buffer,HealQigongAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1098,สะเทือนโลกา,EarthShattering,BareHandSkill,Buffer,EarthShatteringAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1121,เกรฟดิกเกอร์,GlaiveTigger,NecromancerSkill,Object,GlaiveTiggerAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1122,ทูม,Tomb,NecromancerSkill,Attack,TombAction,Skill,first_hit_per_target,1,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,30,60,90,120,150,180,210,240,270,300
+1123,แฟนทอมมิสไซล์,PhantomMissile,NecromancerSkill,Object,PhantomMissileAction,Magic,first_hit_per_target,3,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,500,500,500,500,500,500,500,500,500,500
+1125,สกัลเชคเกอร์,SkullShaker,NecromancerSkill,Attack,SkullShakerAction,Skill,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+1126,บลัดสตีล,BloodSteel,NecromancerSkill,Special,BloodSteelAction,Skill,first_hit_per_target,,,,,,,,,,,,,,,,,,,,,
+1127,ซัมมอนสเกเลตัน,SummonSkeleton,NecromancerSkill,Object,SummonSkeletonAction,Normal,never (IsExpDefFluctuate=false),1,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,,,,,,,,,,
+1129,เดนเจอร์เชค,DengerShake,NecromancerSkill,Attack,DengerShakeAction,Skill,first_hit_per_target,1,,,,,,,,,,,100,100,100,100,100,100,100,100,100,100
+1130,โซลสตรีม,SoulStream,NecromancerSkill,Object,SoulStreamAction,Magic,first_hit_per_target,1,,,,,,,,,,,495,540,585,630,675,720,765,810,855,900
+1131,ซัมมอนเดโมนิก,SummonDemonic,NecromancerSkill,Extra,SummonDemonicAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1153,กำปั้นผดุงคุณธรรม,ForefistPunch,CrusherSkill,Attack,ForefistPunchAction,Skill,first_hit_per_target,1,2.2,2.4,2.6,2.8,3.0,3.2,3.4,3.6,3.8,4.0,200,200,200,200,200,200,200,200,200,200
+1154,วิธีการหายใจ,BreathingMethod,CrusherSkill,Buffer,BreathingMethodAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1155,กลอเรียเทคชอต,GoliathTakeShot,CrusherSkill,Attack,GoliathTakeShotAction,Skill,first_hit_per_target,1,,,,,,,,,,,500,500,500,500,500,500,500,500,500,500
+1156,ฟลายอิ้งคิก,FloatingKick,CrusherSkill,Attack,FloatingKickAction,Skill,first_hit_per_target,1,5.2,5.4,5.6,5.8,6.0,6.2,6.4,6.6,6.8,7.0,110,120,130,140,150,160,170,180,190,200
+1157,คอมบิเนชั่น,Combination,CrusherSkill,Attack,CombinationAction,Normal,first_hit_per_target,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,,,,,,,,,,
+1158,ก็อดแฮนด์,GodHand,CrusherSkill,Attack,GodHandAction,Skill,first_hit_per_target,1,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,40,80,120,160,200,240,280,320,360,400
+1159,ผู้ทำลายล้าง,Destroyer,CrusherSkill,Buffer,DestroyerAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1160,เทอราบลาสต์,GeoImpact,CrusherSkill,Attack,GeoImpactAction,Skill,first_hit_per_target,1,,,,,,,,,,,710,720,730,740,750,760,770,780,790,800
+1162,กีย์เซอร์ชู้ต,GazerShoot,CrusherSkill,Attack,GazerShootAction,Skill,first_hit_per_target,1,0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,210,220,230,240,250,260,270,280,290,300
+1218,นินจูตสึ,Ninjutsu,NinjaSkill,Special,NinjutsuAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1219,,,,,KunaiThrowingAction,Normal,every_hit + class check,1,,,,,,,,,,,,,,,,,,,,
+1220,,,,,FumaShurikenAction,Skill,first_hit_per_target,1,,,,,,,,,,,120,140,160,180,200,220,240,260,280,300
+1221,,,,,FireStyleAction,Magic,first_hit_per_target,1,,,,,,,,,,,400,400,400,400,400,400,400,400,400,400
+1222,,,,,ThunderStyleAction,Skill,first_hit_per_target,1,,,,,,,,,,,220,240,260,280,300,320,340,360,380,400
+1223,,,,,WaterStyleAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1224,,,,,EarthStyleAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1225,,,,,WindStyleAction,Magic,first_hit_per_target,1,,,,,,,,,,,210,220,230,240,250,260,270,280,290,300
+1226,,,,,CloningTechniqueAction,Normal,never (IsExpDefFluctuate=false),1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,,,,,,,,,,
+1245,,,,,RapidAquaVortexAction,Skill,first_hit_per_target,1,,,,,,,,,,,500,500,500,500,500,500,500,500,500,500
+1246,,,,,EarthStyleAttackAction,Magic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+1247,,,,,UtsusemiAction,none,never (ExpType None: no proration slot),,,,,,,,,,,,,,,,,,,,,
+1249,ท่อเหล็ก,IronPipe,EventSkill,Attack,IronPipeAction,Skill,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,
+1250,เรโทรโบว์กัน,RetroBowgun,EventSkill,Attack,RetroBowgunAction,Skill,first_hit_per_target,1,,,,,,,,,,,100,100,100,100,100,100,100,100,100,100
+1251,แม็กนั่ม,Magnum,EventSkill,Attack,MagnumAction,Magic,first_hit_per_target,1,,,,,,,,,,,40,80,120,160,200,240,280,320,360,400
+1281,เอ็กซ์โพชั่น,Explosion,AvatarSkill_1,Attack,ExplosionAction,Magic,first_hit_per_target,1,,,,,,,,,,,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000
+1282,ไลท์ออฟเซเบอร์,LightOfSaber,AvatarSkill_1,Attack,LightOfSaberAction,Magic,first_hit_per_target,1,7.0,7.0,7.0,7.0,7.0,7.0,7.0,7.0,7.0,7.0,600,600,600,600,600,600,600,600,600,600
+1283,Morning Star,MorningStar,AvatarSkill_1,Attack,MorningStarAction,Skill,first_hit_per_target,3,,,,,,,,,,,100,100,100,100,100,100,100,100,100,100
+1285,[N]ดราก้อนสเลฟ[N2]ดราก้อนสเลฟ[N],DragSlave,AvatarSkill_1,Attack,DragSlaveAction,Magic,first_hit_per_target,1,,,,,,,,,,,,,,,,,,,,

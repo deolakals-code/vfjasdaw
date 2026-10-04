@@ -1,0 +1,291 @@
+{
+ "version": 1,
+ "uid": 516,
+ "name_th": "เรจซอร์ด",
+ "name_en": "RageSword",
+ "tree": "KnightSkill",
+ "category": "Attack",
+ "max_level": 35,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "RageSwordAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 516,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + 150) + (((status.Vit lt 0 ? (status.Vit + 1) : status.Vit) >> 1) + 30))",
+   "simplified": "10 × Lv + status.Vit ÷ 2 + 180",
+   "when": "subWeapon == Shield",
+   "vars": [
+    "status.Vit"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) + 50) + 100)",
+   "simplified": "5 × Lv + 150",
+   "when": "subWeapon == Shield",
+   "by_level": [
+    155,
+    160,
+    165,
+    170,
+    175,
+    180,
+    185,
+    190,
+    195,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 10) + 150)",
+   "simplified": "10 × Lv + 150",
+   "when": "subWeapon != Shield",
+   "by_level": [
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220,
+    230,
+    240,
+    250
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "subWeapon != Shield",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + KnightWill.GetParam(PlayerStatusBase.get_SkillManager().SkillMasteryList[520], BonusType.RageSwordSkillRate, (WeaponType eq 17 ? 1 : 0)))",
+   "simplified": "(skillRate + KnightWill.GetParam(PlayerStatusBase.get_SkillManager().SkillMasteryList[520], BonusType.RageSwordSkillRate, (WeaponType eq 17 ? 1 : 0)))",
+   "when": "(+0x109 & 2) ne 0 AND Lv eq 10 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusType.RageSwordSkillRate",
+    "KnightWill.GetParam",
+    "PlayerStatusBase.get_SkillManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "isHateTarget",
+   "formula": "1",
+   "simplified": "1",
+   "when": "UnityEngine.Object.op_Equality(UnityEngine.Component.get_gameObject(playerAction), MobActionManagerBase.get_Target(mobAction))",
+   "by_level": 1,
+   "vars": [
+    "MobActionManagerBase.get_Target",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(SkillIndividualFlag | 1)",
+   "simplified": "SkillIndividualFlag | 1",
+   "when": "UnityEngine.Object.op_Equality(UnityEngine.Component.get_gameObject(playerAction), MobActionManagerBase.get_Target(mobAction))",
+   "vars": [
+    "MobActionManagerBase.get_Target",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + gemCart(1019[4]))",
+   "simplified": "skillRate + gemCart(1019, [4])",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((skillRate + gemCart(1019[4])) / 100)",
+   "simplified": "(skillRate + gemCart(1019, [4])) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(516, Lv, Id)",
+   "simplified": "AddSelfBuffer(516, Lv, Id)",
+   "when": "MobaMode eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isHateTarget ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "RageSwordBuf",
+   "ctors": [
+    {
+     "sig": "",
+     "fields": {
+      "Level": [
+       {
+        "formula": "257",
+        "when": "always",
+        "by_level": 257
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PlayerAttackBase.CalcCostMp",
+  "PlayerAttackBase.RemoveAfterSkillBuf"
+ ],
+ "variables": [
+  "BonusType.RageSwordSkillRate",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Vit",
+  "KnightWill.GetParam",
+  "MobActionManagerBase.get_Target",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillManager",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "status.Vit"
+ ],
+ "residual": []
+}

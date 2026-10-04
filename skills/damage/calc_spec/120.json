@@ -1,0 +1,384 @@
+{
+ "version": 1,
+ "uid": 120,
+ "name_th": "เวทมนตร์:เรเซอร์",
+ "name_en": "MagicLazer",
+ "tree": "MagicSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "MagicLazerAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 120,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(21)",
+   "simplified": "MathUtil.DisplayMeterToDistance(21)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 75) + ((baseDEX lt 0 ? (baseDEX + 1) : baseDEX) >> 1))",
+   "simplified": "75 × Lv + baseDEX ÷ 2",
+   "when": "mainWeapon == Rod"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "(Lv << 1)",
+   "simplified": "2 × Lv",
+   "when": "mainWeapon == Rod OR mainWeapon != Magictool AND mainWeapon != OneHandSword AND mainWeapon != Rod",
+   "by_level": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "((MagicLazerAction.GetAddSkillRate(this) // 5) + 100)",
+   "simplified": "MagicLazerAction.GetAddSkillRate(this) // 5 + 100",
+   "when": "always",
+   "vars": [
+    "MagicLazerAction.GetAddSkillRate"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(Lv * 75)",
+   "simplified": "75 × Lv",
+   "when": "mainWeapon != Rod AND mainWeapon == OneHandSword OR mainWeapon != OneHandSword AND mainWeapon != Rod AND mainWeapon == Magictool OR mainWeapon != Magictool AND mainWeapon != OneHandSword AND mainWeapon != Rod",
+   "by_level": [
+    75,
+    150,
+    225,
+    300,
+    375,
+    450,
+    525,
+    600,
+    675,
+    750
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "int(((Lv << 1) * 1.5))",
+   "simplified": "int(3 × Lv)",
+   "when": "mainWeapon != OneHandSword AND mainWeapon != Rod AND mainWeapon == Magictool",
+   "by_level": [
+    3,
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "Lv",
+   "simplified": "Lv",
+   "when": "mainWeapon != Rod AND mainWeapon == OneHandSword",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isPaidMp",
+   "formula": "1",
+   "simplified": "1",
+   "when": "PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(120) OR !hasBuff(120) AND PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(120)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "Element",
+   "formula": "TryGetElemntType.elementType(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "TryGetElemntType.elementType(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(120) OR !PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND !hasBuff(120) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "TryGetElemntType.elementType",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 0x2000)",
+   "simplified": "SkillParam | 8192",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((skillRate + MagicLazerAction.GetAddSkillRate(this)) / 100)",
+   "simplified": "(skillRate + MagicLazerAction.GetAddSkillRate(this)) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MagicLazerAction.GetAddSkillRate"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(120)",
+   "simplified": "RemoveSelfBuffer(120)",
+   "when": "PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(120) OR !PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(120)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(12, abnormalRate, playerAction)",
+   "simplified": "checkAbnormalPercent(12, abnormalRate, playerAction)",
+   "when": "GemCartBufferManager.GetTalentElementType(PlayerStatusBase.get_GemCartBuffManager()) hi 8 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, abnormalRate, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, abnormalRate, playerAction) AND GemCartBufferManager.GetTalentElementType(PlayerStatusBase.get_GemCartBuffManager()) hi 8",
+   "vars": [
+    "AbnormalType.Stop",
+    "GemCartBufferManager.GetTalentElementType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.get_GemCartBuffManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(12)",
+   "simplified": "SetAbnormalType(12)",
+   "when": "GemCartBufferManager.GetTalentElementType(PlayerStatusBase.get_GemCartBuffManager()) hi 8 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, abnormalRate, playerAction)",
+   "vars": [
+    "AbnormalType.Stop",
+    "GemCartBufferManager.GetTalentElementType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.get_GemCartBuffManager"
+   ]
+  },
+  {
+   "method": "OnMotionEnd",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(120, Lv, 10)",
+   "simplified": "AddSelfBuffer(120, Lv, 10)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "MagicLazerBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool isEquipRod",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "10",
+        "when": "always",
+        "by_level": 10
+       }
+      ],
+      "magicResistBreakerRate": [
+       {
+        "formula": "((isEquipRod & 1) ne 0 ? 15 : 10)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MagicResistBreaker",
+     "bonus_id": 73,
+     "formula": "magicResistBreakerRate",
+     "simplified": "magicResistBreakerRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MagicResistBreaker",
+     "bonus_id": 73,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "name",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MagicLazerAction.ActionPreparation"
+ ],
+ "variables": [
+  "AbnormalType.Stop",
+  "GemCartBufferManager.GetTalentElementType",
+  "MagicLazerAction.GetAddSkillRate",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "SkillBufferId.MagicResistBreaker",
+  "TryGetElemntType.elementType",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

@@ -1,0 +1,1 @@
+{"name": "NormalAttackAction$$IsNormalAttack", "rva": "0x206a8c8", "addr": "0x206a8c8", "params": [["int", "skillId"]], "static": true, "returns": "bool", "truncated": false, "npaths": 3, "cases": [{"value": "1", "common": [], "variants": [["skillId le 732"], ["skillId gt 732"]], "n": 2}, {"value": "0", "common": [], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

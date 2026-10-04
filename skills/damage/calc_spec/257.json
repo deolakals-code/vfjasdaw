@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "uid": 257,
+ "name_th": "ชีลด์มาสเตอรี่",
+ "name_en": "ShieldMastary",
+ "tree": "ShieldSkill",
+ "category": "Mastery",
+ "max_level": 5,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "ShieldMastary",
+ "proration": null,
+ "eq_limit": [
+  "Shield"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "ShieldMastary",
+  "bonuses": {
+   "AspdRate": {
+    "id": 7,
+    "expr": "(Lv + (Lv << 2))",
+    "by_level": [
+     5,
+     10,
+     15,
+     20,
+     25,
+     30,
+     35,
+     40,
+     45,
+     50
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

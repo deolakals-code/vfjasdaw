@@ -1,0 +1,429 @@
+{
+ "version": 1,
+ "uid": 676,
+ "name_th": "[N]Nดราก้อนทูธ[N2]นีโน่ดราก้อนทูธ[N]",
+ "name_en": "N_DragonTooth",
+ "tree": "PartisanSkill",
+ "category": "Attack",
+ "max_level": 250,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "N_DragonToothAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 676,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "firstSkillRate",
+   "formula": "((Lv * 75) / 100)",
+   "simplified": "75 × Lv / 100",
+   "when": "always",
+   "by_level": [
+    0.75,
+    1.5,
+    2.25,
+    3.0,
+    3.75,
+    4.5,
+    5.25,
+    6.0,
+    6.75,
+    7.5
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondSkillRate",
+   "formula": "(max((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DragonTooth, 1) * 75), 0) / 100)",
+   "simplified": "max(75 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DragonTooth, 1), 0) / 100",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.DragonTooth",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "((max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DragonTooth, 1), 0) + (max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DragonTooth, 1), 0) << 2)) << 1)",
+   "simplified": "10 × max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DragonTooth, 1), 0)",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.DragonTooth",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "critical",
+   "formula": "(Lv * 5)",
+   "simplified": "5 × Lv",
+   "when": "always",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "resist",
+   "formula": "(Lv * 10)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "targetPos",
+   "formula": "castTime",
+   "simplified": "castTime",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "distance",
+   "formula": "(SkillIndividualFlag / 100)",
+   "simplified": "SkillIndividualFlag / 100",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "startPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "startPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetAction",
+   "formula": "UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target)",
+   "when": "!PlayerAttackBase.IsBlank(this)",
+   "vars": [
+    "PlayerAttackBase.IsBlank"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "startPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "!PlayerAttackBase.IsBlank(this)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "startPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "!PlayerAttackBase.IsBlank(this)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "!PlayerAttackBase.IsBlank(this)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "!PlayerAttackBase.IsBlank(this)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "!PlayerAttackBase.IsBlank(this)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "distance",
+   "formula": "max((fsqrt((((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x)))) - CharacterActionManagerBase.get_Size()), 0)",
+   "simplified": "max((fsqrt((((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x)))) - CharacterActionManagerBase.get_Size()), 0)",
+   "when": "!PlayerAttackBase.IsBlank(this)",
+   "vars": [
+    "CharacterActionManagerBase.get_Size",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int((max((fsqrt((((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x)))) - CharacterActionManagerBase.get_Size()), 0) * 100))",
+   "simplified": "int((max((fsqrt((((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x)))) - CharacterActionManagerBase.get_Size()), 0) * 100))",
+   "when": "!PlayerAttackBase.IsBlank(this)",
+   "vars": [
+    "CharacterActionManagerBase.get_Size",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcFirstDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcSecondDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcFirstDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "firstSkillRate",
+   "simplified": "firstSkillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcSecondDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "secondSkillRate",
+   "simplified": "secondSkillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  }
+ ],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "N_DragonToothBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "(Lv << 1)",
+     "simplified": "2 × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "CharacterActionManagerBase.get_Size",
+  "GetWeaponType.item",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.Value",
+  "SkillId.DragonTooth",
+  "SkillManager.GetSkillLv",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

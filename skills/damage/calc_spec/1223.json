@@ -1,0 +1,412 @@
+{
+ "version": 1,
+ "uid": 1223,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "WaterStyleAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1223,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseMp",
+   "formula": "NinjaSkillBase.CalcNinjaSkillBaseMp(this, 700, actarAction)",
+   "simplified": "NinjaSkillBase.CalcNinjaSkillBaseMp(this, 700, actarAction)",
+   "when": "always",
+   "vars": [
+    "NinjaSkillBase.CalcNinjaSkillBaseMp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "supportRange",
+   "formula": "MathUtil.DisplayMeterToDistance(((floor((Lv * 0.5)) * 0.5) + 2.5))",
+   "simplified": "MathUtil.DisplayMeterToDistance(0.5 × floor(0.5 × Lv) + 2.5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "effectTime",
+   "formula": "(10 + int((((NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) & 255) + 1) >> 1)))",
+   "simplified": "int(((NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) & 255) + 1) ÷ 2) + 10",
+   "when": "always",
+   "vars": [
+    "NinjaSkillBase.GetNinjutsuTraining",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ninjutsuTrainingLv",
+   "formula": "NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "NinjaSkillBase.GetNinjutsuTraining",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isWaterMirror",
+   "formula": "1",
+   "simplified": "1",
+   "when": "hasGemCart(410)",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(?bfi | NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "?bfi | NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "NinjaSkillBase.GetNinjutsuTraining",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ],
+   "residual": [
+    "?bfi"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "supportRange",
+   "formula": "MathUtil.DisplayMeterToDistance(((floor((?ubfx * 0.5)) * 0.5) + 2.5))",
+   "simplified": "MathUtil.DisplayMeterToDistance(0.5 × floor(0.5 × ?ubfx) + 2.5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ],
+   "residual": [
+    "?ubfx"
+   ]
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "effectTime",
+   "formula": "(int((((skillIndividualFlag & 255) + 1) >> 1)) + 10)",
+   "simplified": "int(((skillIndividualFlag & 255) + 1) ÷ 2) + 10",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "PlacePos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "PlacePos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillReceiveEffect",
+   "kind": "set",
+   "name": "effectTransform",
+   "formula": "UnityEngine.GameObject.get_transform(effect)",
+   "simplified": "UnityEngine.GameObject.get_transform(effect)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "SustainedSupport",
+   "kind": "set",
+   "name": "isFirst",
+   "formula": "0",
+   "simplified": "0",
+   "when": "UnityEngine.Object.op_Inequality(actarActionManager) AND isFirst ne 0 AND isWaterMirror ne 0",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "UpdatePlacePos",
+   "kind": "set",
+   "name": "PlacePos.y",
+   "formula": "UnityEngine.Transform.get_position(effectTransform).y",
+   "simplified": "UnityEngine.Transform.get_position(effectTransform).y",
+   "when": "UnityEngine.Object.op_Inequality(effectTransform) AND isWaterMirror ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "UpdatePlacePos",
+   "kind": "set",
+   "name": "PlacePos.z",
+   "formula": "UnityEngine.Transform.get_position(effectTransform).z",
+   "simplified": "UnityEngine.Transform.get_position(effectTransform).z",
+   "when": "UnityEngine.Object.op_Inequality(effectTransform) AND isWaterMirror ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "SustainedSupport",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(WaterStyleBuf.CreateWaterMirrorBuf(Lv, ninjutsuTrainingLv, isWaterMirror), Id)",
+   "simplified": "AddSelfBuffer(WaterStyleBuf.CreateWaterMirrorBuf(Lv, ninjutsuTrainingLv, isWaterMirror), Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarActionManager) AND isFirst ne 0 AND isWaterMirror ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "WaterStyleBuf.CreateWaterMirrorBuf"
+   ]
+  },
+  {
+   "method": "SustainedSupport",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1223, Lv, Id)",
+   "simplified": "AddSelfBuffer(1223, Lv, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarActionManager) AND WaterStyleAction.CheckRangeHit(0, UnityEngine.Component.get_transform(actarActionManager), 0) AND isWaterMirror eq 0 OR UnityEngine.Object.op_Equality(BattleMemberData.get_ActionManager(?stack), 0) AND UnityEngine.Object.op_Inequality(actarActionManager) AND WaterStyleAction.CheckRangeHit(0, UnityEngine.Component.get_transform(actarActionManager), 0) AND isWaterMirror eq 0 OR !CharacterActionManagerBase.get_IsDeadOrLocalDead(BattleMemberData.get_ActionManager(?stack)) AND !UnityEngine.Object.op_Equality(BattleMemberData.get_ActionManager(?stack), 0) AND UnityEngine.Object.op_Inequality(actarActionManager) AND WaterStyleAction.CheckRangeHit(0, UnityEngine.Component.get_transform(actarActionManager), 0) AND isWaterMirror eq 0",
+   "vars": [
+    "BattleMemberData.get_ActionManager",
+    "CharacterActionManagerBase.get_IsDeadOrLocalDead",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality",
+    "WaterStyleAction.CheckRangeHit"
+   ],
+   "residual": [
+    "?stack",
+    "?stack",
+    "?stack"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass39_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1223)",
+   "simplified": "RemoveSelfBuffer(1223)",
+   "when": "(cancel & 1) eq 0"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "WaterStyleBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "(self & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "3",
+        "when": "always",
+        "by_level": 3
+       }
+      ],
+      "damageCut": [
+       {
+        "formula": "(Lv + 5)",
+        "when": "always",
+        "by_level": [
+         6,
+         7,
+         8,
+         9,
+         10,
+         11,
+         12,
+         13,
+         14,
+         15
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MobLastDamageRateSupport",
+     "bonus_id": 7,
+     "formula": "damageCut",
+     "simplified": "damageCut",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateSupport",
+     "bonus_id": 7,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "CreateWaterMirrorBuf"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "InstallationBlackHolePattern.CheckSuctionHit",
+  "InstallationMoveBlackHolePattern.CheckSuctionHit",
+  "MobaPlayerActionManager.get_MoveSpeed",
+  "PetMemberActionManager.get_MoveSpeed",
+  "PlayerActionManager.get_MoveSpeed",
+  "PlayerAttackBase.ActionStart"
+ ],
+ "variables": [
+  "BattleMemberData.get_ActionManager",
+  "CharacterActionManagerBase.get_IsDeadOrLocalDead",
+  "MathUtil.DisplayMeterToDistance",
+  "NinjaSkillBase.CalcNinjaSkillBaseMp",
+  "NinjaSkillBase.GetNinjutsuTraining",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "SkillBufferId.MobLastDamageRateSupport",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_position",
+  "WaterStyleAction.CheckRangeHit",
+  "WaterStyleBuf.CreateWaterMirrorBuf"
+ ],
+ "residual": [
+  {
+   "where": "OnInitialize:SkillIndividualFlag",
+   "tokens": [
+    "?bfi"
+   ]
+  },
+  {
+   "where": "OtherPlayerAttackStartReceive:supportRange",
+   "tokens": [
+    "?ubfx"
+   ]
+  },
+  {
+   "where": "SustainedSupport:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "?stack",
+    "?stack",
+    "?stack"
+   ]
+  }
+ ]
+}

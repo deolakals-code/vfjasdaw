@@ -1,0 +1,77 @@
+{
+ "version": 1,
+ "uid": 645,
+ "name_th": "ควบคุมดาบคู่",
+ "name_en": "DualSwordTechnique",
+ "tree": "DualSword",
+ "category": "Mastery",
+ "max_level": 30,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "DualSwordTechnique",
+ "proration": null,
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "DualSwordTechnique",
+  "bonuses": {
+   "HitRate": {
+    "id": 21,
+    "expr": "((Lv + (Lv << 1)) + 5)",
+    "by_level": [
+     8,
+     11,
+     14,
+     17,
+     20,
+     23,
+     26,
+     29,
+     32,
+     35
+    ]
+   },
+   "CrtRate": {
+    "id": 23,
+    "expr": "((Lv + (Lv << 1)) + 5)",
+    "by_level": [
+     8,
+     11,
+     14,
+     17,
+     20,
+     23,
+     26,
+     29,
+     32,
+     35
+    ]
+   },
+   "Aspd": {
+    "id": 6,
+    "expr": "(Lv * 50)",
+    "by_level": [
+     50,
+     100,
+     150,
+     200,
+     250,
+     300,
+     350,
+     400,
+     450,
+     500
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

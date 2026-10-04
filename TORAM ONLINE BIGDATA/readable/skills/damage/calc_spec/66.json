@@ -1,0 +1,313 @@
+{
+ "version": 1,
+ "uid": 66,
+ "name_th": "บูลส์อาย",
+ "name_en": "OneWheel",
+ "tree": "ShootSkill",
+ "category": "Attack",
+ "max_level": 10,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "OneWheelAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 66,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun",
+  "Arrow"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv + (Lv << 2)) + 25) + gemCart(104[4])) + 25)",
+   "simplified": "5 × Lv + gemCart(104, [4]) + 50",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) eq 12 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND mainWeapon != Bowgun AND mainWeapon == Bow"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv << 2) + 30)",
+   "simplified": "4 × Lv + 30",
+   "when": "always",
+   "by_level": [
+    34,
+    38,
+    42,
+    46,
+    50,
+    54,
+    58,
+    62,
+    66,
+    70
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "difBreakPercent[0]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length eq 1 AND difBreakPercent.Length ne 0 OR (mainWeaponType & 0xfffffffe) eq 12 AND difBreakPercent.Length eq 1 AND difBreakPercent.Length ne 0 OR (mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length ls 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "difBreakPercent[1]",
+   "formula": "(Lv << 2)",
+   "simplified": "4 × Lv",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length ls 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 OR (mainWeaponType & 0xfffffffe) eq 12 AND difBreakPercent.Length ls 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 OR (mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND subWeapon != Bowgun AND subWeapon == Bow",
+   "by_level": [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+    40
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "difBreakPercent[2]",
+   "formula": "(Lv << 3)",
+   "simplified": "8 × Lv",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND subWeapon != Bow AND subWeapon != Bowgun OR (mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ls 1 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND subWeapon == Bowgun",
+   "by_level": [
+    8,
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    64,
+    72,
+    80
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv + (Lv << 2)) + 25) + gemCart(104[4]))",
+   "simplified": "5 × Lv + gemCart(104, [4]) + 25",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length eq 0 OR (mainWeaponType & 0xfffffffe) eq 12 AND difBreakPercent.Length eq 0 OR (mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length eq 1 AND difBreakPercent.Length ne 0"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "difBreakPercent[1]",
+   "formula": "((Lv << 2) + 10)",
+   "simplified": "4 × Lv + 10",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length hi 1 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND difBreakPercent.Length ne 2 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length eq 2 AND difBreakPercent.Length hi 1 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND difBreakPercent.Length hi 1 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND difBreakPercent.Length ne 2 AND mainWeapon == Bowgun",
+   "by_level": [
+    14,
+    18,
+    22,
+    26,
+    30,
+    34,
+    38,
+    42,
+    46,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "difBreakPercent[2]",
+   "formula": "((Lv << 3) + 20)",
+   "simplified": "8 × Lv + 20",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND difBreakPercent.Length hi 1 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND difBreakPercent.Length ne 2 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND difBreakPercent.Length hi 1 AND difBreakPercent.Length hi 2 AND difBreakPercent.Length ne 0 AND difBreakPercent.Length ne 1 AND difBreakPercent.Length ne 2 AND mainWeapon == Bowgun",
+   "by_level": [
+    28,
+    36,
+    44,
+    52,
+    60,
+    68,
+    76,
+    84,
+    92,
+    100
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "3",
+   "simplified": "3",
+   "when": "0 lo difBreakPercent.Length AND 1 lo difBreakPercent.Length AND 2 lo difBreakPercent.Length"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "0 lo difBreakPercent.Length AND 1 lo difBreakPercent.Length AND 2 hs difBreakPercent.Length"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "0 lo difBreakPercent.Length AND 1 hs difBreakPercent.Length"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "0 lo difBreakPercent.Length AND 1 hs difBreakPercent.Length OR 0 lo difBreakPercent.Length AND 1 lo difBreakPercent.Length AND 2 lo difBreakPercent.Length OR 0 lo difBreakPercent.Length AND 1 lo difBreakPercent.Length AND 2 hs difBreakPercent.Length",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "0 lo difBreakPercent.Length AND 1 hs difBreakPercent.Length OR 0 lo difBreakPercent.Length AND 1 lo difBreakPercent.Length AND 2 lo difBreakPercent.Length OR 0 lo difBreakPercent.Length AND 1 lo difBreakPercent.Length AND 2 hs difBreakPercent.Length",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "MathUtil.CheckPercent",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "SkillActionBase.op_Inequality",
+  "SkillComboState.GetThirdEyeValue",
+  "System.Math.Max",
+  "TryGetBuff.buff"
+ ],
+ "residual": []
+}

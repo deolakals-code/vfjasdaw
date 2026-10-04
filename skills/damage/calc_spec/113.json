@@ -1,0 +1,638 @@
+{
+ "version": 1,
+ "uid": 113,
+ "name_th": "[N]เวทมนตร์:แครช[F]เมเทโอเรน[A]เฮล[W]ฟลูกูไรต์[E]ร็อคฟอล[L]เมเทโอไลท์[D]คอสมอส[N]",
+ "name_en": "MagicFall",
+ "tree": "MagicSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "MagicFallAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 113,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "400",
+   "simplified": "400",
+   "when": "always",
+   "by_level": 400
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "(MathUtil.DisplayMeterToDistance(1.5) + MathUtil.DisplayMeterToDistance(0.5))",
+   "simplified": "MathUtil.DisplayMeterToDistance(1.5) + MathUtil.DisplayMeterToDistance(0.5)",
+   "when": "mainWeapon != Magictool AND mainWeapon == Rod",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "(MathUtil.DisplayMeterToDistance(1.5) + MathUtil.DisplayMeterToDistance(1.5))",
+   "simplified": "2 × MathUtil.DisplayMeterToDistance(1.5)",
+   "when": "mainWeapon == Magictool OR (mainWeapon==Magictool & 1) ne 0 AND mainWeapon != Magictool AND mainWeapon != Rod",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(1.5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1.5)",
+   "when": "(mainWeapon==Magictool & 1) eq 0 AND mainWeapon != Magictool AND mainWeapon != Rod",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetObject",
+   "formula": "target",
+   "simplified": "target",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackCenterPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackCenterPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackCenterPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "effectSize",
+   "formula": "((WeaponType eq 15 ? 2 : 1) * 0.5)",
+   "simplified": "0.5 × (WeaponType = 15 ? 2 : 1)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "Element",
+   "formula": "TryGetElemntType.elementType(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "TryGetElemntType.elementType(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "TryGetElemntType.elementType",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "(Radius / 10)",
+   "simplified": "Radius / 10",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "gemCartLv",
+   "formula": "GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv",
+   "simplified": "GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int(((max(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 3) * 0.5) * 10))",
+   "simplified": "int(5 × max(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 3))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv ge 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "MobActionManagerBase.get_Size",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int((max(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 3) * 10))",
+   "simplified": "int(10 × max(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 3))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1042).Lv lt 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "MobActionManagerBase.get_Size",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEventPreparation",
+   "kind": "set",
+   "name": "attackCenterPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x",
+   "when": "(param - 1) ls 8 AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv ge 1 OR (param - 1) ls 8 AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv lt 1 OR (param - 1) ls 8 AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv ge 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventPreparation",
+   "kind": "set",
+   "name": "attackCenterPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).y",
+   "when": "(param - 1) ls 8 AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv ge 1 OR (param - 1) ls 8 AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv lt 1 OR (param - 1) ls 8 AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv ge 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventPreparation",
+   "kind": "set",
+   "name": "attackCenterPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z",
+   "when": "(param - 1) ls 8 AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv ge 1 OR (param - 1) ls 8 AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv lt 1 OR (param - 1) ls 8 AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv ge 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "currentMeteorNumber",
+   "formula": "(currentMeteorNumber + 1)",
+   "simplified": "currentMeteorNumber + 1",
+   "when": "(param - 101) hi 98 AND (param - 200) ls 99 AND param eq 200 AND param ne 100"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "currentMeteorNumber",
+   "formula": "((param & 0xffff) - (((param & 0xffff) // 200) * 200))",
+   "simplified": "(param & 65535) - 200 × (param & 65535) // 200",
+   "when": "(param - 101) hi 98 AND (param - 200) ls 99 AND param ne 100 AND param ne 200"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackCenterPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x",
+   "when": "(param - 101) ls 98 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv gt 0 AND param ne 100 OR (param - 101) ls 98 AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv le 0 AND param ne 100 OR (param - 101) ls 98 AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv le 0 AND param ne 100",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackCenterPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).y",
+   "when": "(param - 101) ls 98 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv gt 0 AND param ne 100 OR (param - 101) ls 98 AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv le 0 AND param ne 100 OR (param - 101) ls 98 AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv le 0 AND param ne 100",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackCenterPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z",
+   "when": "(param - 101) ls 98 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv gt 0 AND param ne 100 OR (param - 101) ls 98 AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv le 0 AND param ne 100 OR (param - 101) ls 98 AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObject) AND gemCartLv le 0 AND param ne 100",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "enchantedBurstStack",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 OR !hasBuff(873) AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 AND hasBuff(873)",
+   "by_level": 1,
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND gemCartLv ge 1 OR ((currentMeteorNumber - 1) // 3) hs skillRate.Length AND ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND gemCartLv ge 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND gemCartLv lt 1"
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 0x2000)",
+   "simplified": "SkillParam | 8192",
+   "when": "always"
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "lastUsedSkill",
+   "formula": "lastUsedSkill",
+   "simplified": "lastUsedSkill",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "targetObject",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "attackCenterPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "attackCenterPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "attackCenterPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "effectSize",
+   "formula": "((WeaponType eq 15 ? 2 : 1) * 0.5)",
+   "simplified": "0.5 × (WeaponType = 15 ? 2 : 1)",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "(Radius / 10)",
+   "simplified": "Radius / 10",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[((currentMeteorNumber - 1) // 3)] / 100)",
+   "simplified": "(skillRate[((currentMeteorNumber - 1) // 3)] / 100)",
+   "when": "((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND gemCartLv ge 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND gemCartLv lt 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND gemCartLv ge 1",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND gemCartLv ge 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND gemCartLv lt 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND gemCartLv ge 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(MobActionManagerBase.get_MobStatus(mobAction).localExpDefMagic / 100)",
+   "simplified": "(MobActionManagerBase.get_MobStatus(mobAction).localExpDefMagic / 100)",
+   "when": "((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND gemCartLv ge 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND gemCartLv lt 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND gemCartLv ge 1",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_MobStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpList[mobAction] / 100)",
+   "simplified": "(targetExpList[mobAction] / 100)",
+   "when": "((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND gemCartLv ge 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND gemCartLv lt 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND gemCartLv ge 1",
+   "op": "SetRate",
+   "step": "ExpRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "EnchantedBurstAction.AddLocalStack",
+   "formula": "AddLocalStack(PlayerAttackBase.get_ActionID(), Id)",
+   "simplified": "AddLocalStack(PlayerAttackBase.get_ActionID(), Id)",
+   "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 AND hasBuff(873)",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(14, dizzyPercent[((currentMeteorNumber - 1) // 3)], playerAction)",
+   "simplified": "checkAbnormalPercent(14, dizzyPercent, [((currentMeteorNumber - 1) // 3)], playerAction)",
+   "when": "((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo dizzyPercent.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent[((currentMeteorNumber - 1) // 3)], playerAction) AND gemCartLv ge 1 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent[((currentMeteorNumber - 1) // 3)], playerAction) AND ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo dizzyPercent.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking) AND gemCartLv ge 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo dizzyPercent.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent[((currentMeteorNumber - 1) // 3)], playerAction) AND gemCartLv lt 1",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Breaking",
+    "AbnormalType.Dizzy",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(14)",
+   "simplified": "SetAbnormalType(14)",
+   "when": "((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo dizzyPercent.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent[((currentMeteorNumber - 1) // 3)], playerAction) AND gemCartLv ge 1 OR ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo dizzyPercent.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent[((currentMeteorNumber - 1) // 3)], playerAction) AND gemCartLv lt 1",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Breaking",
+    "AbnormalType.Dizzy",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(10, breakingPercent[((currentMeteorNumber - 1) // 3)], playerAction)",
+   "simplified": "checkAbnormalPercent(10, breakingPercent, [((currentMeteorNumber - 1) // 3)], playerAction)",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking) AND ((currentMeteorNumber - 1) // 3) lo breakingPercent.Length AND ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakingPercent[((currentMeteorNumber - 1) // 3)], playerAction) AND gemCartLv ge 1 OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakingPercent[((currentMeteorNumber - 1) // 3)], playerAction) AND ((currentMeteorNumber - 1) // 3) lo breakingPercent.Length AND ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND gemCartLv ge 1 OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking) AND ((currentMeteorNumber - 1) // 3) lo breakingPercent.Length AND ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakingPercent[((currentMeteorNumber - 1) // 3)], playerAction) AND gemCartLv lt 1",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Breaking",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(10)",
+   "simplified": "SetAbnormalType(10)",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking) AND ((currentMeteorNumber - 1) // 3) lo breakingPercent.Length AND ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakingPercent[((currentMeteorNumber - 1) // 3)], playerAction) AND gemCartLv ge 1 OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking) AND ((currentMeteorNumber - 1) // 3) lo breakingPercent.Length AND ((currentMeteorNumber - 1) // 3) lo criticalBonus.Length AND ((currentMeteorNumber - 1) // 3) lo skillRate.Length AND (currentMeteorNumber - 1) lo attackHits.Length AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakingPercent[((currentMeteorNumber - 1) // 3)], playerAction) AND gemCartLv lt 1",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Breaking",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Breaking",
+  "AbnormalType.Dizzy",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "GemCartBufferManager.GetGemCartBuffer",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "MobActionManagerBase.get_MobStatus",
+  "MobActionManagerBase.get_Size",
+  "MobStatus.localExpDefMagic",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "TryGetElemntType.elementType",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

@@ -1,0 +1,62 @@
+{
+ "version": 1,
+ "uid": 36,
+ "name_th": "ซอร์ดมาสเตอรี่",
+ "name_en": "BladeMastery",
+ "tree": "BladeSkill",
+ "category": "Mastery",
+ "max_level": 10,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "BladeMastery",
+ "proration": null,
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "BladeMastery",
+  "bonuses": {
+   "EqAtkRate": {
+    "id": 1,
+    "expr": "(Lv + (Lv << 1))",
+    "by_level": [
+     3,
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ]
+   },
+   "AtkRate": {
+    "id": 3,
+    "expr": "(int(((Lv + -2) / 5)) + 1)",
+    "by_level": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     2,
+     2,
+     2,
+     2
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

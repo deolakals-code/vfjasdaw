@@ -1,0 +1,59 @@
+{
+ "version": 1,
+ "uid": 930,
+ "name_th": "HP อัพ",
+ "name_en": "PetHpUp",
+ "tree": "PetSkill",
+ "category": "Mastery",
+ "max_level": 1,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "PetHpUp",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "PetHpUp",
+  "bonuses": {
+   "MaxHp": {
+    "id": 12,
+    "expr": "(Lv * 500)",
+    "by_level": [
+     500,
+     1000,
+     1500,
+     2000,
+     2500,
+     3000,
+     3500,
+     4000,
+     4500,
+     5000
+    ]
+   },
+   "MaxHpRate": {
+    "id": 13,
+    "expr": "(Lv << 1)",
+    "by_level": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14,
+     16,
+     18,
+     20
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

@@ -1,0 +1,189 @@
+{
+ "version": 1,
+ "uid": 237,
+ "name_th": "ฮีล",
+ "name_en": "Heal",
+ "tree": "SupportSkill",
+ "category": "Heal",
+ "max_level": 150,
+ "roles": [
+  "heal / recovery"
+ ],
+ "class": "HealAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 237,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(24)",
+   "simplified": "MathUtil.DisplayMeterToDistance(24)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!hasGemCart(1026) AND SkillBufferDataBase.GetParam(20) ge ((hasGemCart(1007) ? 200 : 300) // 100) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) ge 1 AND SkillBufferDataBase.GetParam(20) ge ((hasGemCart(1007) ? 200 : 300) // 100) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) lt 1 AND SkillBufferDataBase.GetParam(20) ge ((hasGemCart(1007) ? 200 : 300) // 100) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 AND hasGemCart(1026)",
+   "by_level": 0,
+   "vars": [
+    "GemCartBufferManager.GetBufferLevel",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "hpHeal",
+   "formula": "(((((Lv + 10) * status.MaxHp) // 100) + (Lv * 300)) - int((((((GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) + (GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) << 2)) << 1) * -0.01) + 1) * ((((((Lv + 10) * status.MaxHp) // 100) + (Lv * 300)) lt 0 ? (((((Lv + 10) * status.MaxHp) // 100) + (Lv * 300)) + 1) : ((((Lv + 10) * status.MaxHp) // 100) + (Lv * 300))) >> 1))))",
+   "simplified": "A - int((1 - 0.1 × GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71)) × (A ÷ 2))",
+   "when": "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) ge 1 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) eq 0 AND hasGemCart(1026)",
+   "defs": [
+    [
+     "A",
+     "(Lv + 10) × status.MaxHp // 100 + 300 × Lv"
+    ]
+   ],
+   "vars": [
+    "GemCartBufferManager.GetBufferLevel",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "status.MaxHp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseMp",
+   "formula": "(hasGemCart(1007) ? 200 : 300)",
+   "simplified": "hasGemCart(1007) ? 200 : 300",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!hasGemCart(1026) AND SkillBufferDataBase.GetParam(20) ge ((hasGemCart(1007) ? 200 : 300) // 100) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) ge 1 AND SkillBufferDataBase.GetParam(20) ge ((hasGemCart(1007) ? 200 : 300) // 100) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) lt 1 AND SkillBufferDataBase.GetParam(20) ge ((hasGemCart(1007) ? 200 : 300) // 100) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 AND hasGemCart(1026)",
+   "by_level": 1,
+   "vars": [
+    "GemCartBufferManager.GetBufferLevel",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "SkillUtil.CalcCastTime(1, PlayerStatusBase.get_BattleStatus())",
+   "simplified": "SkillUtil.CalcCastTime(1, PlayerStatusBase.get_BattleStatus())",
+   "when": "!hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) ge 1 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) lt 1 AND hasGemCart(1026)",
+   "vars": [
+    "GemCartBufferManager.GetBufferLevel",
+    "PlayerStatusBase.get_BattleStatus",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "SkillUtil.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "hpHeal",
+   "formula": "(((((Lv + 10) * status.MaxHp) // 100) + (Lv * 300)) - ((((((Lv + 10) * status.MaxHp) // 100) + (Lv * 300)) lt 0 ? (((((Lv + 10) * status.MaxHp) // 100) + (Lv * 300)) + 1) : ((((Lv + 10) * status.MaxHp) // 100) + (Lv * 300))) >> 1))",
+   "simplified": "A - (A ÷ 2)",
+   "when": "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) lt 1 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) eq 0 AND hasGemCart(1026)",
+   "defs": [
+    [
+     "A",
+     "(Lv + 10) × status.MaxHp // 100 + 300 × Lv"
+    ]
+   ],
+   "vars": [
+    "GemCartBufferManager.GetBufferLevel",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "status.MaxHp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "hpHeal",
+   "formula": "((((Lv + 10) * status.MaxHp) // 100) + (Lv * 300))",
+   "simplified": "(Lv + 10) × status.MaxHp // 100 + 300 × Lv",
+   "when": "!hasGemCart(1026) OR !hasGemCart(1026) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 OR !hasGemCart(1026) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "status.MaxHp"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "CheckHealStock",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "0",
+   "simplified": "0",
+   "when": "SkillIndividualFlag eq 1",
+   "by_level": 0
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "GemCartBufferManager.GetBufferLevel",
+  "IPlayerStatusCalculator.get_MaxHp",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerStatusBase.get_BattleStatus",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillUtil.CalcCastTime",
+  "TryGetBuf.buf",
+  "status.MaxHp"
+ ],
+ "residual": []
+}

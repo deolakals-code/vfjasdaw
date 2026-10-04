@@ -1,0 +1,213 @@
+{
+ "version": 1,
+ "uid": 556,
+ "name_th": "ไซโคลนแอร์โรว์",
+ "name_en": "CycloneArrow",
+ "tree": "HunterSkill",
+ "category": "Attack",
+ "max_level": 125,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "CycloneArrowAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 556,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(14)",
+   "simplified": "MathUtil.DisplayMeterToDistance(14)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "3",
+   "simplified": "3",
+   "when": "always",
+   "by_level": 3
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv + (Lv << 2)) << 1) + ((status.Dex lt 0 ? (status.Dex + 1) : status.Dex) >> 1))",
+   "simplified": "10 × Lv + status.Dex ÷ 2",
+   "when": "(mainWeapon==Arrow & 1) ne 0",
+   "vars": [
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "(mainWeapon==Arrow & 1) eq 0",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "skillTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "skillTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(1, (Lv * Lv), playerAction)",
+   "simplified": "checkAbnormalPercent(1, Lv × Lv, playerAction)",
+   "when": "MobActionManagerBase.get_IsPlayerManaged(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, (Lv * Lv), playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), skillTarget) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, (Lv * Lv), playerAction) AND MobActionManagerBase.get_IsPlayerManaged(mobAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), skillTarget)",
+   "vars": [
+    "AbnormalType.Flinch",
+    "MobActionManagerBase.get_IsPlayerManaged",
+    "MobActionManagerBase.get_gameObject",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "MobActionManagerBase.get_IsPlayerManaged(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, (Lv * Lv), playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), skillTarget)",
+   "vars": [
+    "AbnormalType.Flinch",
+    "MobActionManagerBase.get_IsPlayerManaged",
+    "MobActionManagerBase.get_gameObject",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(28, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(28, 100, playerAction)",
+   "when": "!MobActionManagerBase.get_IsBoss(mobAction) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), skillTarget) AND MobActionManagerBase.get_IsPlayerManaged(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Suction, 100, playerAction) OR !MobActionManagerBase.get_IsBoss(mobAction) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Suction, 100, playerAction) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), skillTarget) AND MobActionManagerBase.get_IsPlayerManaged(mobAction)",
+   "vars": [
+    "AbnormalType.Suction",
+    "MobActionManagerBase.get_IsBoss",
+    "MobActionManagerBase.get_IsPlayerManaged",
+    "MobActionManagerBase.get_gameObject",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Object.op_Equality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Flinch",
+  "AbnormalType.Suction",
+  "IPlayerStatusCalculator.get_Dex",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_IsBoss",
+  "MobActionManagerBase.get_IsPlayerManaged",
+  "MobActionManagerBase.get_gameObject",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "UnityEngine.Object.op_Equality",
+  "status.Dex"
+ ],
+ "residual": []
+}

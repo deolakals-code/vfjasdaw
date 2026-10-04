@@ -1,0 +1,68 @@
+{
+ "version": 1,
+ "uid": 450,
+ "name_th": "เทคนิคจับสัตว์ I",
+ "name_en": "CaptureTechnicI",
+ "tree": "TamerSkill",
+ "category": "Mastery",
+ "max_level": 30,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "CaptureTechnicI",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "CaptureTechnicI",
+  "bonuses": {
+   "LimitLvDown": {
+    "id": 32,
+    "expr": "int(((Lv * 0.5) + 0.5))",
+    "by_level": [
+     1,
+     1,
+     2,
+     2,
+     3,
+     3,
+     4,
+     4,
+     5,
+     5
+    ]
+   },
+   "LimitTimeUp": {
+    "id": 33,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

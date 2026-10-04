@@ -1,0 +1,569 @@
+{
+ "version": 1,
+ "uid": 1221,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "FireStyleAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1221,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseMp",
+   "formula": "NinjaSkillBase.CalcNinjaSkillBaseMp(this, 600, actarAction)",
+   "simplified": "NinjaSkillBase.CalcNinjaSkillBaseMp(this, 600, actarAction)",
+   "when": "always",
+   "vars": [
+    "NinjaSkillBase.CalcNinjaSkillBaseMp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "magicResistBreaker",
+   "formula": "gemCart(1031[2])",
+   "simplified": "gemCart(1031, [2])",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((Lv << 1) + 30)",
+   "simplified": "2 × Lv + 30",
+   "when": "always",
+   "by_level": [
+    32,
+    34,
+    36,
+    38,
+    40,
+    42,
+    44,
+    46,
+    48,
+    50
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "change",
+   "formula": "(SkillIndividualFlag eq 1 ? 1 : 0)",
+   "simplified": "SkillIndividualFlag = 1 ? 1 : 0",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "change",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "playerAbnormalData",
+   "formula": "AbnormalStateManager.GetAbnormalData(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition)",
+   "simplified": "AbnormalStateManager.GetAbnormalData(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition)",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalStateManager.GetAbnormalData",
+    "AbnormalType.Ignition",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "magicResistBreaker",
+   "formula": "(magicResistBreaker << 1)",
+   "simplified": "2 × magicResistBreaker",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "400",
+   "simplified": "400",
+   "when": "always",
+   "by_level": 400
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "targetSkillRate",
+   "formula": "((?mla + NinjaSkillBase.GetNinko(this, PlayerActionManagerBase.get_PlayerStatus())) + (NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) * 30))",
+   "simplified": "?mla + NinjaSkillBase.GetNinko(this, A) + 30 × NinjaSkillBase.GetNinjutsuTraining(this, A)",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "NinjaSkillBase.GetNinjutsuTraining",
+    "NinjaSkillBase.GetNinko",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "?mla"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "((rangeSkillRate + NinjaSkillBase.GetNinko(this, PlayerActionManagerBase.get_PlayerStatus())) + (NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) * 30))",
+   "simplified": "rangeSkillRate + NinjaSkillBase.GetNinko(this, A) + 30 × NinjaSkillBase.GetNinjutsuTraining(this, A)",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "NinjaSkillBase.GetNinjutsuTraining",
+    "NinjaSkillBase.GetNinko",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isFirstAttack",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "range",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isFirstAttack",
+   "formula": "change",
+   "simplified": "change",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND !UnityEngine.Object.op_Inequality(actarAction) AND change ne 0 OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND !UnityEngine.Object.op_Inequality(actarAction) AND change eq 0 OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), AbnormalType.Ignition) AND !AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND UnityEngine.Object.op_Inequality(actarAction) AND change ne 0",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isFirstAttack",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(MobActionManagerBase.get_transform(mainTarget)).y",
+   "simplified": "UnityEngine.Transform.get_position(MobActionManagerBase.get_transform(mainTarget)).y",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(MobActionManagerBase.get_transform(mainTarget)).z",
+   "simplified": "UnityEngine.Transform.get_position(MobActionManagerBase.get_transform(mainTarget)).z",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "targetExpRegister",
+   "formula": "target.ExpDefSkill",
+   "simplified": "target.ExpDefSkill",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), MobActionManagerBase.get_gameObject(mainTarget)) AND change ne 0 AND isFirstAttack ne 0",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(percent << 1)",
+   "simplified": "2 × percent",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, (percent << 1), playerAction) AND SkillUtil.CheckWeakElemet(PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction), target.Element) AND change eq 0 AND mainTarget eq mobAction OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, (percent << 1), playerAction) AND SkillUtil.CheckWeakElemet(PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction), target.Element) AND change eq 0 AND mainTarget eq mobAction",
+   "vars": [
+    "AbnormalType.Ignition",
+    "PlayerAttackBase.GetWeaponElementType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "target.Element"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(targetSkillRate / 100)",
+   "simplified": "targetSkillRate / 100",
+   "when": "change eq 0 AND mainTarget ne mobAction OR change eq 0 AND mainTarget eq mobAction OR UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), MobActionManagerBase.get_gameObject(mainTarget)) AND change ne 0 AND isFirstAttack eq 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister / 100)",
+   "simplified": "targetExpRegister / 100",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), MobActionManagerBase.get_gameObject(mainTarget)) AND change ne 0 AND isFirstAttack eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "change eq 0 AND mainTarget ne mobAction OR change eq 0 AND mainTarget eq mobAction OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), MobActionManagerBase.get_gameObject(mainTarget)) AND change ne 0 AND isFirstAttack eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(rangeSkillRate / 100)",
+   "simplified": "rangeSkillRate / 100",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), MobActionManagerBase.get_gameObject(mainTarget)) AND change ne 0 AND isFirstAttack ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), MobActionManagerBase.get_gameObject(mainTarget)) AND change ne 0 AND isFirstAttack ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(8, (percent << 1), playerAction)",
+   "simplified": "checkAbnormalPercent(8, 2 × percent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, (percent << 1), playerAction) AND SkillUtil.CheckWeakElemet(PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction), target.Element) AND change eq 0 AND mainTarget eq mobAction OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, (percent << 1), playerAction) AND SkillUtil.CheckWeakElemet(PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction), target.Element) AND change eq 0 AND mainTarget eq mobAction",
+   "vars": [
+    "AbnormalType.Ignition",
+    "PlayerAttackBase.GetWeaponElementType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(8)",
+   "simplified": "SetAbnormalType(8)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, (percent << 1), playerAction) AND SkillUtil.CheckWeakElemet(PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction), target.Element) AND change eq 0 AND mainTarget eq mobAction OR !SkillUtil.CheckWeakElemet(PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction), target.Element) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction) AND change eq 0 AND mainTarget eq mobAction",
+   "vars": [
+    "AbnormalType.Ignition",
+    "PlayerAttackBase.GetWeaponElementType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(8, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(8, percent, playerAction)",
+   "when": "!SkillUtil.CheckWeakElemet(PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction), target.Element) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction) AND change eq 0 AND mainTarget eq mobAction OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction) AND !SkillUtil.CheckWeakElemet(PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction), target.Element) AND change eq 0 AND mainTarget eq mobAction",
+   "vars": [
+    "AbnormalType.Ignition",
+    "PlayerAttackBase.GetWeaponElementType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "target.Element"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass38_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "AbnormalStateManager.RemoveAbnormalState",
+   "formula": "RemoveAbnormalState(8)",
+   "simplified": "RemoveAbnormalState(8)",
+   "when": "(cancel & 1) eq 0 AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "PlayerActionManagerBase.get_AbnormalStatusManager"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass38_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "AbnormalStateManager.RemoveAbnormalState",
+   "formula": "RemoveAbnormalState(8, 1)",
+   "simplified": "RemoveAbnormalState(8, 1)",
+   "when": "(cancel & 1) eq 0 AND AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) OR !AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Ignition) AND (cancel & 1) eq 0",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Ignition",
+    "PlayerActionManagerBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalStateManager.GetAbnormalData",
+  "AbnormalType.Ignition",
+  "IMobStatusCalculator.get_Element",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "MobActionManagerBase.get_gameObject",
+  "MobActionManagerBase.get_transform",
+  "NinjaSkillBase.CalcNinjaSkillBaseMp",
+  "NinjaSkillBase.GetNinjutsuTraining",
+  "NinjaSkillBase.GetNinko",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.GetEquipElement",
+  "SkillUtil.CheckWeakElemet",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "target.Element",
+  "target.ExpDefSkill"
+ ],
+ "residual": [
+  {
+   "where": "ActionPreparation:targetSkillRate",
+   "tokens": [
+    "?mla"
+   ]
+  }
+ ]
+}

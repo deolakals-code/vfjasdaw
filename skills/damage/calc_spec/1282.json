@@ -1,0 +1,240 @@
+{
+ "version": 1,
+ "uid": 1282,
+ "name_th": "ไลท์ออฟเซเบอร์",
+ "name_en": "LightOfSaber",
+ "tree": "AvatarSkill_1",
+ "category": "Attack",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "LightOfSaberAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1282,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "5",
+   "simplified": "5",
+   "when": "always",
+   "by_level": 5
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "700",
+   "simplified": "700",
+   "when": "always",
+   "by_level": 700
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "600",
+   "simplified": "600",
+   "when": "always",
+   "by_level": 600
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "capsuleLength",
+   "formula": "(capsuleLength * 3)",
+   "simplified": "3 × capsuleLength",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "capsuleWidth",
+   "formula": "(capsuleWidth * 2)",
+   "simplified": "2 × capsuleWidth",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "350",
+   "simplified": "350",
+   "when": "always",
+   "by_level": 350
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "5",
+   "simplified": "5",
+   "when": "always",
+   "by_level": 5
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackTransform",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate - ((PartyManager.get_PartyMemberNum(Singleton<PartyManager>.get_Instance()) * 100) - 100))",
+   "simplified": "skillRate - 100 × PartyManager.get_PartyMemberNum(Singleton<PartyManager>.get_Instance()) + 100",
+   "when": "PartyManager.get_IsParty(Singleton<PartyManager>.get_Instance(UnityEngine.GameObject.get_transform(target)))",
+   "vars": [
+    "PartyManager.get_IsParty",
+    "PartyManager.get_PartyMemberNum",
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "PartyManager.get_IsParty",
+  "PartyManager.get_PartyMemberNum",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "Singleton.get_Instance",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

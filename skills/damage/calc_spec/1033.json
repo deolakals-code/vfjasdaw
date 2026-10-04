@@ -1,0 +1,55 @@
+{
+ "version": 1,
+ "uid": 1033,
+ "name_th": "คาสต์มาสเตอรี่",
+ "name_en": "CastMastery",
+ "tree": "WizardSkill",
+ "category": "Mastery",
+ "max_level": 15,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "CastMastery",
+ "proration": null,
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "CastMastery",
+  "bonuses": {
+   "AtkRate": {
+    "id": 3,
+    "expr": "0",
+    "by_level": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "Cspd": {
+    "id": 38,
+    "expr": "(this.allWizardSkillLevel * Lv)",
+    "by_level": null
+   },
+   "CspdRate": {
+    "id": 39,
+    "expr": "((this.learnWizardSkillNum * (Lv >> 1)) + Lv)",
+    "by_level": null
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

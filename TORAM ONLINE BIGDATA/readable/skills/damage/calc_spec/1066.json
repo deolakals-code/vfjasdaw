@@ -1,0 +1,254 @@
+{
+ "version": 1,
+ "uid": 1066,
+ "name_th": "เนตรมารเสน่หา",
+ "name_en": "EnchantingEvilEye",
+ "tree": "DarkPowerSkill",
+ "category": "Attack",
+ "max_level": 60,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "EnchantingEvilEyeAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1066,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "6",
+   "simplified": "6",
+   "when": "always",
+   "by_level": 6
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(14)",
+   "simplified": "MathUtil.DisplayMeterToDistance(14)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "Lv",
+   "simplified": "Lv",
+   "when": "always",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(Lv * Lv)",
+   "simplified": "Lv × Lv",
+   "when": "always",
+   "by_level": [
+    1,
+    4,
+    9,
+    16,
+    25,
+    36,
+    49,
+    64,
+    81,
+    100
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((Lv * 100) / 100)",
+   "simplified": "100 × Lv / 100",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction))",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Charm",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "((target.Level * Lv) lt 0x2710 ? (target.Level * Lv) : 0x2710)",
+   "simplified": "min(target.Level × Lv, 10000)",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction))",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Charm",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.Level"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm)",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Charm",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction)",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Charm",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction)",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Charm",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(30, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(30, percent, playerAction)",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Charm) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Charm, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction))",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Charm",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Charm",
+  "IMobStatusCalculator.get_Level",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "MobActionManagerBase.get_Target",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Object.op_Equality",
+  "target.Level"
+ ],
+ "residual": []
+}

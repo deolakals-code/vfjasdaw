@@ -1,0 +1,337 @@
+{
+ "version": 1,
+ "uid": 20,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "ShadowWalkAttackAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target if class check passes",
+  "attack_type": "Physics",
+  "action_id": 20,
+  "is_exp_def_fluctuate": "conditional",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "range",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction, (this + 312)))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction, this + 312))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 200) + 1000)",
+   "simplified": "200 × Lv + 1000",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0 OR !UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0 OR MobaMode ne 0 AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0",
+   "by_level": [
+    1200,
+    1400,
+    1600,
+    1800,
+    2000,
+    2200,
+    2400,
+    2600,
+    2800,
+    3000
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "exSkillRate",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0 OR !UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0 OR MobaMode ne 0 AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0",
+   "by_level": 0,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "266",
+   "simplified": "266",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0 OR MobaMode ne 0 AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0 OR MobaMode eq 0 AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0",
+   "by_level": 266,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0 OR !UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0 OR !UnityEngine.Object.op_Equality(actarAction) AND ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) lt 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0",
+   "by_level": 100,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(10 | SkillIndividualFlag)",
+   "simplified": "10 | SkillIndividualFlag",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0 OR MobaMode ne 0 AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0 OR MobaMode eq 0 AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000].IsManual ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "int(frintp(((((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300))) + -0.5)))",
+   "simplified": "int(frintp((0.1 × Lv + 1) × min(weaponItem.Function, 300) - 0.5))",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) lt 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0 OR ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) lt 0 AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0 OR ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) lt 0 AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0",
+   "vars": [
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "exSkillRate",
+   "formula": "((int(frintp(((((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300))) + -0.5))) lt 0 ? (int(frintp(((((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300))) + -0.5))) + 3) : int(frintp(((((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300))) + -0.5)))) >> 2)",
+   "simplified": "int(frintp((0.1 × Lv + 1) × min(weaponItem.Function, 300) - 0.5)) ÷ 4",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) lt 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0 OR ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) lt 0 AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0 OR ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) lt 0 AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0",
+   "vars": [
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(((SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000], SkillBufferId.Count) // 5) + 1) | SkillIndividualFlag)",
+   "simplified": "(((SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1000], SkillBufferId.Count) // 5) + 1) | SkillIndividualFlag)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) lt 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0 OR !UnityEngine.Object.op_Equality(actarAction) AND ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) ge 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0 OR ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) lt 0 AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "int(floor(((((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300))) + 0.5)))",
+   "simplified": "int(floor((0.1 × Lv + 1) × min(weaponItem.Function, 300) + 0.5))",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) ge 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0 OR ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) ge 0 AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0 OR ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) ge 0 AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0",
+   "vars": [
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "exSkillRate",
+   "formula": "((int(floor(((((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300))) + 0.5))) lt 0 ? (int(floor(((((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300))) + 0.5))) + 3) : int(floor(((((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300))) + 0.5)))) >> 2)",
+   "simplified": "int(floor((0.1 × Lv + 1) × min(weaponItem.Function, 300) + 0.5)) ÷ 4",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) ge 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0 OR ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) ge 0 AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0 OR ((((Lv * 10) + 100) * 0.01) * (weaponItem.Function lt 300 ? weaponItem.Function : 300)) ge 0 AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND isCounter eq 0",
+   "vars": [
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam & 239)",
+   "simplified": "SkillParam & 239",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter eq 0 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability le 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99",
+   "vars": [
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "PlayerAttackBase.GetWeaponElementType",
+    "target.AvoidProbability",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter eq 0 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability le 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99",
+   "vars": [
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "target.AvoidProbability",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "SetIsCounter",
+   "kind": "set",
+   "name": "isCounter",
+   "formula": "(isCounter & 1)",
+   "simplified": "isCounter & 1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter eq 0 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability le 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "target.AvoidProbability",
+    "target.ExpDefSkill",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability le 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability gt 99 AND target.GuardProbability le 99",
+   "op": "SetRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "target.AvoidProbability",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter eq 0 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability le 99 OR !MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter ne 0 AND target.AvoidProbability le 99 AND target.GuardProbability gt 99",
+   "op": "SetConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "target.AvoidProbability",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[SkillRate]",
+   "formula": "((((attackCount - 1) * exSkillRate) + skillRate) / 100)",
+   "simplified": "((attackCount - 1) × exSkillRate + skillRate) / 100",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(mobAction) AND isCounter eq 0",
+   "op": "SetRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_IsDeadOrLocalDead"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "GetWeaponType.item",
+  "IMobStatusCalculator.get_AvoidProbability",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "IMobStatusCalculator.get_GuardProbability",
+  "MobActionManagerBase.get_IsDeadOrLocalDead",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "target.AvoidProbability",
+  "target.ExpDefSkill",
+  "target.GuardProbability"
+ ],
+ "residual": []
+}

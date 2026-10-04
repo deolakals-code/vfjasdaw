@@ -1,0 +1,68 @@
+{
+ "version": 1,
+ "uid": 483,
+ "name_th": "เพิ่มพลังป้องกัน",
+ "name_en": "DefUp",
+ "tree": "BattleSkill",
+ "category": "Mastery",
+ "max_level": 20,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "DefUp",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "DefUp",
+  "bonuses": {
+   "DefRate": {
+    "id": 16,
+    "expr": "int((Lv * 2.5))",
+    "by_level": [
+     2,
+     5,
+     7,
+     10,
+     12,
+     15,
+     17,
+     20,
+     22,
+     25
+    ]
+   },
+   "MdefRate": {
+    "id": 18,
+    "expr": "int((Lv * 2.5))",
+    "by_level": [
+     2,
+     5,
+     7,
+     10,
+     12,
+     15,
+     17,
+     20,
+     22,
+     25
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

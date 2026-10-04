@@ -1,0 +1,3826 @@
+{
+ "class": "UIPlayerStatusDetailPanel",
+ "methods": {
+  "AddBasicStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.STR",
+      "PlayerSecondaryStatus.get_Str(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.INT",
+      "PlayerSecondaryStatus.get_Int(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.VIT",
+      "PlayerSecondaryStatus.get_Vit(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AGI",
+      "PlayerSecondaryStatus.get_Agi(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.DEX",
+      "PlayerSecondaryStatus.get_Dex(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "AddHpStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MaxHP",
+      "PlayerSecondaryStatus.CalcBaseMaxHp(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.HpRecovery",
+      "PlayerSecondaryStatus.CalcHpRecovery(secondaryStatus, (PlayerActionManagerBase.get_IsBattleActive(actionManager) & 1))",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MaxMP",
+      "PlayerSecondaryStatus.CalcBaseMaxMp(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MpRecovery",
+      "PlayerSecondaryStatus.CalcMpRecovery(secondaryStatus, (PlayerActionManagerBase.get_IsBattleActive(actionManager) & 1))",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AtkMpRecovery",
+      "PlayerSecondaryStatus.get_AtkMpRecovery(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "AddBattleStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.EqAtk",
+      "PlayerSecondaryStatus.get_EqAtk(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Stable",
+      "PlayerSecondaryStatus.get_Stable(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Atk",
+      "PlayerSecondaryStatus.get_Atk(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PowerResistBreaker",
+      "UIPlayerStatusDetailPanel.CalcPhysicsResistBreakerValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Matk",
+      "PlayerSecondaryStatus.get_Matk(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicResistBreaker",
+      "UIPlayerStatusDetailPanel.CalcMagicResistBreakerValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Hit",
+      "PlayerSecondaryStatus.get_Hit(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Flee",
+      "PlayerSecondaryStatus.get_Flee(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Def",
+      "PlayerSecondaryStatus.get_Def(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Mdef",
+      "PlayerSecondaryStatus.get_Mdef(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.EqDef",
+      "PlayerSecondaryStatus.get_EqDef(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PowerDmgCut",
+      "UIPlayerStatusDetailPanel.CalcPowerDmgCutValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicDmgCut",
+      "UIPlayerStatusDetailPanel.CalcMagicDmgCutValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AntiVirus",
+      "PlayerSecondaryStatus.CalcAntiVirus(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "AddCriticalStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Critical",
+      "PlayerSecondaryStatus.get_Critical(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "PlayerSecondaryStatus.get_CriticalDmg(secondaryStatus) ge 300"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.CriticalDmg",
+      "PlayerSecondaryStatus.CalcCriticalDmg(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "PlayerSecondaryStatus.get_CriticalDmg(secondaryStatus) ge 300"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.CriticalMagic",
+      "PlayerSecondaryStatus.CalcMagicCritical(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "PlayerSecondaryStatus.get_CriticalDmg(secondaryStatus) ge 300"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.CriticalMagicDmg",
+      "PlayerSecondaryStatus.get_CriticalMagicDmg(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "PlayerSecondaryStatus.get_CriticalDmg(secondaryStatus) ge 300"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Critical",
+      "PlayerSecondaryStatus.get_Critical(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "PlayerSecondaryStatus.get_CriticalDmg(secondaryStatus) lt 300"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.CriticalDmg",
+      "PlayerSecondaryStatus.CalcCriticalDmg(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "PlayerSecondaryStatus.get_CriticalDmg(secondaryStatus) lt 300"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.CriticalMagic",
+      "PlayerSecondaryStatus.CalcMagicCritical(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "PlayerSecondaryStatus.get_CriticalDmg(secondaryStatus) lt 300"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.CriticalMagicDmg",
+      "PlayerSecondaryStatus.get_CriticalMagicDmg(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "PlayerSecondaryStatus.get_CriticalDmg(secondaryStatus) lt 300"
+     ]
+    }
+   ],
+   "paths": 2,
+   "truncated": false
+  },
+  "AddSpeedStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Aspd",
+      "PlayerSecondaryStatus.get_Aspd(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.NextAtkTime",
+      "PlayerSecondaryStatus.GetNextAtkTime(secondaryStatus, PlayerSecondaryStatus.get_Aspd(secondaryStatus))",
+      "DisplayFormatType.Seconds",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MotionSpeed",
+      "PlayerSecondaryStatus.GetCalcMotionSpeed(secondaryStatus, PlayerSecondaryStatus.get_Aspd(secondaryStatus))",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Cspd",
+      "PlayerSecondaryStatus.get_Cspd(secondaryStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "AddRangeAttackStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.ShortRangeRate",
+      "UIPlayerStatusDetailPanel.CalcShortRangeValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.LongRangeRate",
+      "UIPlayerStatusDetailPanel.CalcLongRangeValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.FirstAttack",
+      "PlayerStatusBase.GetFirstAttack()",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.FirstAttackRate",
+      "PlayerStatusBase.GetFirstAttackRate()",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "AddHateToRespawnStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Hate",
+      "PlayerSecondaryStatus.GetDisplayBonusCalcHate(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Exp",
+      "UIPlayerStatusDetailPanel.CalcExpValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PetExp",
+      "UIPlayerStatusDetailPanel.CalcPetExpValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Drop",
+      "UIPlayerStatusDetailPanel.CalcDropValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AvoidSpeed",
+      "(PlayerSecondaryStatus.GetbAvoid(secondaryStatus) + 100)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AvoidStack",
+      "AvoidActionManager.get_MaxAvoidCount(PlayerDataManager.get_AvoidActionManager(playerDataManager))",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.GuardSpeed",
+      "(PlayerSecondaryStatus.GetbGuardSpeed(secondaryStatus) + 100)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.GuardPower",
+      "(PlayerSecondaryStatus.GetbGuardPower(secondaryStatus) + 100)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Respawn",
+      "PlayerSecondaryStatus.GetRespawnRate(secondaryStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "AddElementKillerStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.FireKiller",
+      "PlayerAttackBase.GetElementKillerBonus(playerStatus, ElementType.Fire)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AquaKiller",
+      "PlayerAttackBase.GetElementKillerBonus(playerStatus, ElementType.Water)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.WindKiller",
+      "PlayerAttackBase.GetElementKillerBonus(playerStatus, ElementType.Wind)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.EarthKiller",
+      "PlayerAttackBase.GetElementKillerBonus(playerStatus, ElementType.Earth)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.LightKiller",
+      "PlayerAttackBase.GetElementKillerBonus(playerStatus, ElementType.Light)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.DarkKiller",
+      "PlayerAttackBase.GetElementKillerBonus(playerStatus, ElementType.Dark)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.NormalKiller",
+      "PlayerAttackBase.GetElementKillerBonus(playerStatus, ElementType.Normal)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "AddElementShieldStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.FireShield",
+      "PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bFireShield)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AquaShield",
+      "PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bAquaShield)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.WindShield",
+      "PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bWindShield)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.EarthShield",
+      "PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bEarthShield)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.LightShield",
+      "PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bLightShield)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.DarkShield",
+      "PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bDarkShield)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.NormalShield",
+      "PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bNormalShield)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "AddResistStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.SurroundingsResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bSurroundingsResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RangeResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bRangeResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.LineResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bLineResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MoveAttackResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMoveAttackResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.VerticalResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bVerticalResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BreathResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bBreathResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.TranslationResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bTranslationResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.WallResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bWallResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.WiddResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bWiddResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.ExplosionResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bExplosionResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BlackholeResist",
+      "BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bBlackholeResist)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "AddBarrierStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier), playerStatus)",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) ne 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "EquipRateBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier), playerStatus)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 162) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicBarrier",
+      "0",
+      "DisplayFormatType.Integer",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.RateBarrier",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.BarrierSpeed",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bPhysicalBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bMagicBarrier, stkp(-40)) & 1) eq 0",
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.bRateBarrier, stkp(-40)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<BarrierSpeed>(PlayerStatusBase.get_EquipBuffManager(), 162, stkp(-48)) & 1) eq 0"
+     ]
+    }
+   ],
+   "paths": 31,
+   "truncated": false
+  },
+  "AddAbsoluteStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AbsoluteHitRate",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 135).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteHitRate>(PlayerStatusBase.get_EquipBuffManager(), 135, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 135) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteFreeRate>(PlayerStatusBase.get_EquipBuffManager(), 136, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 136) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AbsoluteFreeRate",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 136).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteHitRate>(PlayerStatusBase.get_EquipBuffManager(), 135, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 135) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteFreeRate>(PlayerStatusBase.get_EquipBuffManager(), 136, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 136) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AbsoluteHitRate",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 135).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteHitRate>(PlayerStatusBase.get_EquipBuffManager(), 135, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 135) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteFreeRate>(PlayerStatusBase.get_EquipBuffManager(), 136, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 136) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AbsoluteHitRate",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 135).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteHitRate>(PlayerStatusBase.get_EquipBuffManager(), 135, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 135) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteFreeRate>(PlayerStatusBase.get_EquipBuffManager(), 136, stkp(-40)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AbsoluteFreeRate",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteHitRate>(PlayerStatusBase.get_EquipBuffManager(), 135, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 135) ne 0",
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteFreeRate>(PlayerStatusBase.get_EquipBuffManager(), 136, stkp(-40)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AbsoluteHitRate",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteHitRate>(PlayerStatusBase.get_EquipBuffManager(), 135, stkp(-24)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteFreeRate>(PlayerStatusBase.get_EquipBuffManager(), 136, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 136) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AbsoluteFreeRate",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 136).CalcValue",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteHitRate>(PlayerStatusBase.get_EquipBuffManager(), 135, stkp(-24)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteFreeRate>(PlayerStatusBase.get_EquipBuffManager(), 136, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 136) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AbsoluteHitRate",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteHitRate>(PlayerStatusBase.get_EquipBuffManager(), 135, stkp(-24)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteFreeRate>(PlayerStatusBase.get_EquipBuffManager(), 136, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 136) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AbsoluteHitRate",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteHitRate>(PlayerStatusBase.get_EquipBuffManager(), 135, stkp(-24)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteFreeRate>(PlayerStatusBase.get_EquipBuffManager(), 136, stkp(-40)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.AbsoluteFreeRate",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteHitRate>(PlayerStatusBase.get_EquipBuffManager(), 135, stkp(-24)) & 1) eq 0",
+      "(EquipBuffManager.TryGetEquipBuffer<AbsoluteFreeRate>(PlayerStatusBase.get_EquipBuffManager(), 136, stkp(-40)) & 1) eq 0"
+     ]
+    }
+   ],
+   "paths": 7,
+   "truncated": false
+  },
+  "AddBreakerStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Avoidbreaker",
+      "UIPlayerStatusDetailPanel.CalcAvoidBreakerValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.Guardbreaker",
+      "UIPlayerStatusDetailPanel.CalcGuardBreakerValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "AddDamageStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalPursuit",
+      "UIPlayerStatusDetailPanel.CalcPhysicalPursuitValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<DamageReflection>(PlayerStatusBase.get_EquipBuffManager(), 155, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 155) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicPursuit",
+      "UIPlayerStatusDetailPanel.CalcMagicPursuitValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<DamageReflection>(PlayerStatusBase.get_EquipBuffManager(), 155, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 155) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.DamageReflection",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 155).Value",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<DamageReflection>(PlayerStatusBase.get_EquipBuffManager(), 155, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 155) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.SelfDmgRate",
+      "(BonusManager.GetBonusTime(BonusType.bSelfDmgRate) * BonusManager.GetBuffValue(PlayerStatusBase.get_BonusManager(), BonusType.bSelfDmgRate))",
+      "DisplayFormatType.RateF2",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<DamageReflection>(PlayerStatusBase.get_EquipBuffManager(), 155, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 155) ne 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalPursuit",
+      "UIPlayerStatusDetailPanel.CalcPhysicalPursuitValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<DamageReflection>(PlayerStatusBase.get_EquipBuffManager(), 155, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 155) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicPursuit",
+      "UIPlayerStatusDetailPanel.CalcMagicPursuitValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<DamageReflection>(PlayerStatusBase.get_EquipBuffManager(), 155, stkp(-24)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 155) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.PhysicalPursuit",
+      "UIPlayerStatusDetailPanel.CalcPhysicalPursuitValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<DamageReflection>(PlayerStatusBase.get_EquipBuffManager(), 155, stkp(-24)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.MagicPursuit",
+      "UIPlayerStatusDetailPanel.CalcMagicPursuitValue(this)",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<DamageReflection>(PlayerStatusBase.get_EquipBuffManager(), 155, stkp(-24)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.DamageReflection",
+      "0",
+      "DisplayFormatType.RateInt",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<DamageReflection>(PlayerStatusBase.get_EquipBuffManager(), 155, stkp(-24)) & 1) eq 0"
+     ]
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.SelfDmgRate",
+      "(BonusManager.GetBonusTime(BonusType.bSelfDmgRate) * BonusManager.GetBuffValue(PlayerStatusBase.get_BonusManager(), BonusType.bSelfDmgRate))",
+      "DisplayFormatType.RateF2",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<DamageReflection>(PlayerStatusBase.get_EquipBuffManager(), 155, stkp(-24)) & 1) eq 0"
+     ]
+    }
+   ],
+   "paths": 3,
+   "truncated": false
+  },
+  "AddGrantStopStatus": {
+   "rows": [
+    {
+     "args": [
+      "this",
+      "DetailStatusType.GrantStopFlinch",
+      "((EquipBuffManager.IsGrantStopAbnormal(PlayerStatusBase.get_EquipBuffManager(), AbnormalType.Flinch) & 1) ne 0 ? 1 : 0)",
+      "DisplayFormatType.Toggle",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.GrantStopTumble",
+      "((EquipBuffManager.IsGrantStopAbnormal(PlayerStatusBase.get_EquipBuffManager(), AbnormalType.Tumble) & 1) ne 0 ? 1 : 0)",
+      "DisplayFormatType.Toggle",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    },
+    {
+     "args": [
+      "this",
+      "DetailStatusType.GrantStopStun",
+      "((EquipBuffManager.IsGrantStopAbnormal(PlayerStatusBase.get_EquipBuffManager(), AbnormalType.Stun) & 1) ne 0 ? 1 : 0)",
+      "DisplayFormatType.Toggle",
+      "?x3",
+      "?x4",
+      "?x5",
+      "?x6"
+     ],
+     "when": []
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  }
+ },
+ "helpers": {
+  "CalcSubAtkValue": {
+   "cases": [
+    {
+     "when": [
+      "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 10"
+     ],
+     "ret": "PlayerSecondaryStatus.get_SubEqAtk(secondaryStatus)"
+    },
+    {
+     "when": [
+      "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 10"
+     ],
+     "ret": "0"
+    }
+   ],
+   "paths": 2,
+   "truncated": false
+  },
+  "CalcPhysicsResistBreakerValue": {
+   "cases": [
+    {
+     "when": [],
+     "ret": "(BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) + SkillBufferManager.GetSkillBufferParam(PlayerStatusBase.get_SkillBufferManager(), SkillBufferId.PowerResistBreaker))"
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "CalcMagicResistBreakerValue": {
+   "cases": [
+    {
+     "when": [],
+     "ret": "(BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMagicResistBreaker) + SkillBufferManager.GetSkillBufferParam(PlayerStatusBase.get_SkillBufferManager(), SkillBufferId.MagicResistBreaker))"
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "CalcPowerDmgCutValue": {
+   "cases": [
+    {
+     "when": [
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillManager().SkillMasteryList, 259, stkp(-24), meta(0x3974490, Method$System.Collections.Generic.Dictionary<SkillId, SkillMasteryBase>.TryGetValue())) & 1) ne 0"
+     ],
+     "ret": "(SkillMasteryBase.GetMasteryParam(MasteryId.CutDmgRate, PlayerStatusBase.get_SkillManager().SkillMasteryList[SkillId.ForceShield]) + PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResist))"
+    },
+    {
+     "when": [
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillManager().SkillMasteryList, 259, stkp(-24), meta(0x3974490, Method$System.Collections.Generic.Dictionary<SkillId, SkillMasteryBase>.TryGetValue())) & 1) eq 0"
+     ],
+     "ret": "PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResist)"
+    }
+   ],
+   "paths": 2,
+   "truncated": false
+  },
+  "CalcMagicDmgCutValue": {
+   "cases": [
+    {
+     "when": [
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillManager().SkillMasteryList, 261, stkp(-24), meta(0x3974490, Method$System.Collections.Generic.Dictionary<SkillId, SkillMasteryBase>.TryGetValue())) & 1) ne 0"
+     ],
+     "ret": "(SkillMasteryBase.GetMasteryParam(MasteryId.CutDmgRate, PlayerStatusBase.get_SkillManager().SkillMasteryList[SkillId.MagicalShield]) + PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bMagicResist))"
+    },
+    {
+     "when": [
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillManager().SkillMasteryList, 261, stkp(-24), meta(0x3974490, Method$System.Collections.Generic.Dictionary<SkillId, SkillMasteryBase>.TryGetValue())) & 1) eq 0"
+     ],
+     "ret": "PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bMagicResist)"
+    }
+   ],
+   "paths": 2,
+   "truncated": false
+  },
+  "CalcShortRangeValue": {
+   "cases": [
+    {
+     "when": [],
+     "ret": "((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bShortRange) + 100) + SkillBufferManager.GetSkillBufferParam(PlayerStatusBase.get_SkillBufferManager(), SkillBufferId.ShortRangeRate))"
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "CalcLongRangeValue": {
+   "cases": [
+    {
+     "when": [],
+     "ret": "((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bLongRange) + 100) + SkillBufferManager.GetSkillBufferParam(PlayerStatusBase.get_SkillBufferManager(), SkillBufferId.LongRangeRate))"
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "CalcExpValue": {
+   "cases": [
+    {
+     "when": [
+      "serverBonusList.Length ne 1",
+      "serverBonusList.Length ne 0"
+     ],
+     "ret": "((System.Linq.Enumerable.Contains<short>(GemCartBag.GetIDEquipGemCart(PlayerDataManager.get_RegistletManager(playerDataManager)._bag), 68, meta(0x397e170, Method$System.Linq.Enumerable.Contains<short>()), ?x3) & 1) ne 0 ? 0 : ((((PlayerSecondaryStatus.GetExpBonus(secondaryStatus) + serverBonusList[0]) + serverBonusList[1]) + GameEventManager.GetExpBonusRate(Singleton<GameEventManager>.get_Instance(), PlayerStatusBase.get_PrimaryStatus().lv, (PartyManager.get_GroupAvatarMemberNum(Singleton<PartyManager>.get_Instance()) gt 0 ? 1 : 0))) + 100))"
+    },
+    {
+     "when": [
+      "serverBonusList.Length ne 1",
+      "serverBonusList.Length eq 0"
+     ],
+     "ret": null
+    },
+    {
+     "when": [
+      "serverBonusList.Length eq 1"
+     ],
+     "ret": null
+    }
+   ],
+   "paths": 3,
+   "truncated": false
+  },
+  "CalcPetExpValue": {
+   "cases": [
+    {
+     "when": [],
+     "ret": "(((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bExpRate) + 100) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPetExpRate)) + BonusManager.GetGuildFacilityExpBonus(PlayerStatusBase.get_BonusManager(), BonusType.bPetExpRate))"
+    }
+   ],
+   "paths": 1,
+   "truncated": false
+  },
+  "CalcDropValue": {
+   "cases": [
+    {
+     "when": [
+      "serverBonusList.Length hi 2",
+      "serverBonusList.Length ne 3"
+     ],
+     "ret": "((((PlayerSecondaryStatus.GetDropBonus(secondaryStatus) + serverBonusList[2]) + serverBonusList[3]) + GameEventManager.GetDropRate(Singleton<GameEventManager>.get_Instance())) + 100)"
+    },
+    {
+     "when": [
+      "serverBonusList.Length hi 2",
+      "serverBonusList.Length eq 3"
+     ],
+     "ret": null
+    },
+    {
+     "when": [
+      "serverBonusList.Length ls 2"
+     ],
+     "ret": null
+    }
+   ],
+   "paths": 3,
+   "truncated": false
+  },
+  "CalcAvoidBreakerValue": {
+   "cases": [
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AvoidBreaker>(PlayerStatusBase.get_EquipBuffManager(), 144, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 144) ne 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 70) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 70) ge 1",
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 10"
+     ],
+     "ret": "(TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 144).Value + int(((EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 17 ? 3 : 1) * GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 70))))"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AvoidBreaker>(PlayerStatusBase.get_EquipBuffManager(), 144, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 144) ne 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 70) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 70) ge 1",
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 10"
+     ],
+     "ret": "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 144).Value"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AvoidBreaker>(PlayerStatusBase.get_EquipBuffManager(), 144, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 144) ne 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 70) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 70) lt 1"
+     ],
+     "ret": "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 144).Value"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AvoidBreaker>(PlayerStatusBase.get_EquipBuffManager(), 144, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 144) ne 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 70) & 1) eq 0"
+     ],
+     "ret": "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 144).Value"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AvoidBreaker>(PlayerStatusBase.get_EquipBuffManager(), 144, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 144) eq 0"
+     ],
+     "ret": null
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AvoidBreaker>(PlayerStatusBase.get_EquipBuffManager(), 144, stkp(-40)) & 1) eq 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 70) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 70) ge 1",
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 10"
+     ],
+     "ret": "int(((EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 17 ? 3 : 1) * GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 70)))"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AvoidBreaker>(PlayerStatusBase.get_EquipBuffManager(), 144, stkp(-40)) & 1) eq 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 70) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 70) ge 1",
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 10"
+     ],
+     "ret": "0"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AvoidBreaker>(PlayerStatusBase.get_EquipBuffManager(), 144, stkp(-40)) & 1) eq 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 70) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 70) lt 1"
+     ],
+     "ret": "0"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<AvoidBreaker>(PlayerStatusBase.get_EquipBuffManager(), 144, stkp(-40)) & 1) eq 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 70) & 1) eq 0"
+     ],
+     "ret": "0"
+    }
+   ],
+   "paths": 9,
+   "truncated": false
+  },
+  "CalcGuardBreakerValue": {
+   "cases": [
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<GuardBreaker>(PlayerStatusBase.get_EquipBuffManager(), 145, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 145) ne 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 72) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 72) ge 1",
+      "(EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) | 16) eq 16"
+     ],
+     "ret": "(TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 145).Value + int(((EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 0 ? 3 : 1) * GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 72))))"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<GuardBreaker>(PlayerStatusBase.get_EquipBuffManager(), 145, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 145) ne 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 72) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 72) ge 1",
+      "(EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) | 16) ne 16"
+     ],
+     "ret": "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 145).Value"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<GuardBreaker>(PlayerStatusBase.get_EquipBuffManager(), 145, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 145) ne 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 72) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 72) lt 1"
+     ],
+     "ret": "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 145).Value"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<GuardBreaker>(PlayerStatusBase.get_EquipBuffManager(), 145, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 145) ne 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 72) & 1) eq 0"
+     ],
+     "ret": "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 145).Value"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<GuardBreaker>(PlayerStatusBase.get_EquipBuffManager(), 145, stkp(-40)) & 1) ne 0",
+      "TryGetEquipBuffer<object>.out2(PlayerStatusBase.get_EquipBuffManager(), 145) eq 0"
+     ],
+     "ret": null
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<GuardBreaker>(PlayerStatusBase.get_EquipBuffManager(), 145, stkp(-40)) & 1) eq 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 72) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 72) ge 1",
+      "(EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) | 16) eq 16"
+     ],
+     "ret": "int(((EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 0 ? 3 : 1) * GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 72)))"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<GuardBreaker>(PlayerStatusBase.get_EquipBuffManager(), 145, stkp(-40)) & 1) eq 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 72) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 72) ge 1",
+      "(EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) | 16) ne 16"
+     ],
+     "ret": "0"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<GuardBreaker>(PlayerStatusBase.get_EquipBuffManager(), 145, stkp(-40)) & 1) eq 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 72) & 1) ne 0",
+      "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 72) lt 1"
+     ],
+     "ret": "0"
+    },
+    {
+     "when": [
+      "(EquipBuffManager.TryGetEquipBuffer<GuardBreaker>(PlayerStatusBase.get_EquipBuffManager(), 145, stkp(-40)) & 1) eq 0",
+      "(GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 72) & 1) eq 0"
+     ],
+     "ret": "0"
+    }
+   ],
+   "paths": 9,
+   "truncated": false
+  },
+  "CalcPhysicalPursuitValue": {
+   "cases": [
+    {
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.AuraBlade, stkp(-24)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.AuraBlade) ne 0"
+     ],
+     "ret": "(EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bPhysicalPursuit) + SkillBufferDataBase.GetParam(85))"
+    },
+    {
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.AuraBlade, stkp(-24)) & 1) ne 0",
+      "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.AuraBlade) eq 0"
+     ],
+     "ret": null
+    },
+    {
+     "when": [
+      "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.AuraBlade, stkp(-24)) & 1) eq 0"
+     ],
+     "ret": "EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bPhysicalPursuit)"
+    }
+   ],
+   "paths": 3,
+   "truncated": false
+  },
+  "CalcMagicPursuitValue": {
+   "cases": [
+    {
+     "when": [
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1025, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) eq 0",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1032, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) ne 0",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 982, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) ne 0"
+     ],
+     "ret": "((EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bMagicPursuit) + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[SkillId.HighFamilia], SkillBufferId.Value)) + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[SkillId.ThorHammer], SkillBufferId.MagiclPursuitSkillRate))"
+    },
+    {
+     "when": [
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1025, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) eq 0",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1032, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) ne 0",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 982, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) eq 0"
+     ],
+     "ret": "(EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bMagicPursuit) + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[SkillId.HighFamilia], SkillBufferId.Value))"
+    },
+    {
+     "when": [
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1025, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) eq 0",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1032, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) eq 0",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 982, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) ne 0"
+     ],
+     "ret": "(EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bMagicPursuit) + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[SkillId.ThorHammer], SkillBufferId.MagiclPursuitSkillRate))"
+    },
+    {
+     "when": [
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1025, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) eq 0",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1032, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) eq 0",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 982, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) eq 0"
+     ],
+     "ret": "EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bMagicPursuit)"
+    },
+    {
+     "when": [
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1025, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) ne 0",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 982, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) ne 0"
+     ],
+     "ret": "((EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bMagicPursuit) + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[SkillId.Familia], SkillBufferId.Value)) + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[SkillId.ThorHammer], SkillBufferId.MagiclPursuitSkillRate))"
+    },
+    {
+     "when": [
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1025, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) ne 0",
+      "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 982, stkp(-40), meta(0x3974650, Method$System.Collections.Generic.Dictionary<SkillId, SkillBufferDataBase>.TryGetValue())) & 1) eq 0"
+     ],
+     "ret": "(EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bMagicPursuit) + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[SkillId.Familia], SkillBufferId.Value))"
+    }
+   ],
+   "paths": 6,
+   "truncated": false
+  }
+ }
+}

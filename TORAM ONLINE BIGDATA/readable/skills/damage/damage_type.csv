@@ -1,0 +1,631 @@
+﻿uid,name_th,tree,cls,in_tree,attack_type,th,exp_type,slot,slot_th,variants,note,evidence
+0,,,NormalAttackAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Normal,ช่องตีปกติ,,,Code (constant getter)
+7,,,PhiloEclailAttackAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+8,,,AvoidAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+9,,,FirstAidAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+10,,,DamageReflectionAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+11,,,PhysicalPursuitAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+12,,,MagicPursuitAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+13,,,PetBlankMpHeel,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+14,,,SkillChargeAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+15,,,CronosDrivePursuitAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+16,,,BeautiesOfNatureHealAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+17,,,ComboRelfectionAction,False,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+18,,,MagicEgelAttackAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+19,,,ImperialRayPursuitAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+20,,,ShadowWalkAttackAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+21,,,MagicFinawPursuitAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+22,,,HolyLightPursuitAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+25,,,BonusNormalDamageAction,False,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+26,,,BonusPhysicalDamageAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+27,,,BonusMagicDamageAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+28,,,BonusNaturalDamageAction,False,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+33,ฮาร์ดฮิต,#สกิลดาบ,HardHitAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+34,แอสทิวท์ ,#สกิลดาบ,AstuteAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+35,N$โซนิคเบรด$R2$ไฮโซนิคเบรด,#สกิลดาบ,AccelBladeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+36,ซอร์ดมาสเตอรี่,#สกิลดาบ,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+37,ควิกสแลช,#สกิลดาบ,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+38,ทริกเกอร์สแลช,#สกิลดาบ,TriggerSlashAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+39,สไปรัลแอร์,#สกิลดาบ,SpiralAirAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+40,ซอร์ดเทคนิก,#สกิลดาบ,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+41,รัมเพจ,#สกิลดาบ,RampageAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+42,ซอร์ดเทมเพสต์,#สกิลดาบ,SwordTempestAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+43,วอร์คราย,#สกิลดาบ,WarCryAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+44,เมเทโอเบรคเกอร์,#สกิลดาบ,MeteoBreakerAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+45,บัสตาร์ดเบลด,#สกิลดาบ,BusterBladeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+46,เบอร์เซิร์ก,#สกิลดาบ,BerserkAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+47,ฟาสต์แอคแทค,#สกิลดาบ,FastAttackAction,True,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+48,ชัทเอาท์,#สกิลดาบ,ShutOutAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+49,ลูนาร์สแลช,#สกิลดาบ,MoonSlashAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+50,ออร่าเบลด,#สกิลดาบ,AuraBladeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+51,แกลดดีเอท,#สกิลดาบ,GladiateAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+52,แฮมเมอร์สแลม,#สกิลดาบ,HammerDownAction,True,Dynamic,กายภาพ; เป็นธรรมดาเมื่อเข้าเงื่อนไขบัฟตอนเตรียมสกิล,dynamic,dynamic,dynamic,Physics: default (ctor); Normal: ActionPreparation: buff-active branch sets attackType=3,,Code (getter + ctor + set statements)
+53,คลีฟวิงแอคแทค,#สกิลดาบ,CleaveAttackAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+54,สตรอมเบลซ,#สกิลดาบ,StormBlazerAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+55,การ์ดเบลด,#สกิลดาบ,GuardyBladeAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+56,ออร์คสแลช,#สกิลดาบ,OrgaslashAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+63,,,MoonSlashPursuitAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+65,พาวเวอร์ชู้ต,#สกิลยิง,PowerShootAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+66,บูลส์อาย,#สกิลยิง,OneWheelAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+67,มีบาช็อต,#สกิลยิง,MeebaShotAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+68,ชู้ตมาสเตอรี่,#สกิลยิง,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+69,สเนคแอคแทค,#สกิลยิง,HideAttackAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+70,แอร์โรว์เรน,#สกิลยิง,ArrowRainAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+71,พาราไลซิสช็อต,#สกิลยิง,ParalysisShotAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+72,ลองเรนจ์,#สกิลยิง,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+73,สไนป์,#สกิลยิง,SnipingAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+74,สโมคดัส,#สกิลยิง,SmokeDustAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+75,ควิกดรอ,#สกิลยิง,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+76,ครอสสเฟียร์,#สกิลยิง,CrossFireAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+77,อาร์มเบรค,#สกิลยิง,ArmBreakAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+78,เดคอยชูตเตอร์,#สกิลยิง,DecoyShooterAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+79,เดสทอลก์ช็อต,#สกิลยิง,DeathTorqueShotAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+80,รีโทรเกรดชอท,#สกิลยิง,JumpbackShotAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+81,พาราโบลาแคนนอน,#สกิลยิง,ParabolaCannonAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+82,ทวินสตอร์ม,#สกิลยิง,TwinStormAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+83,ซามูไรอาร์เชอรี,#สกิลยิง,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+84,แวนควิชเชอร์,#สกิลยิง,ConquesterAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+85,ควิกโหลดเดอร์,#สกิลยิง,QuickLoaderAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+86,เอเลเมนท์สตาร์ทเตอร์,#สกิลยิง,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+87,คู่หูนักล่า,#สกิลยิง,HuntingOneAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+88,เจาะทะลุ,#สกิลยิง,PenetratorAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+89,ไวด์สเปรด,#สกิลยิง,WideSpreadAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+95,,,JumpbackShotPursuitAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+97,[N]เวทมนตร์:แอร์โรว์[F]ธนูไฟ[A]ธนูน้ำ[W]ธนูลม[E]ธนูดิน[L]ธนูแสง[D]ธนูมืด[N]  ,#マジックスキル,MagicArrowAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+98,[N]เวทมนตร์:แจฟลิน[F]หอกเพลิง[A]หอกน้ำแข็ง[W]หอกวายุ[E]หอกศิลา[L]หอกศักดิ์สิทธิ์[D]หอกอนธการ[N]  ,#マジックスキル,MagicJabelinAction,True,Dynamic,"เวท; ช่อง proration เป็นช่องตีปกติเมื่อเปิด ExSkill spell tuning (Rod), ไม่งั้นช่องเวท",dynamic,dynamic,dynamic,Magic: always,Normal if spellTuningJabelin != 0 else Magic,Code (getter + ctor + set statements)
+99,[N]เวทมนตร์:กำแพง[F]กำแพงอัคคี[A]ม่านวารี[W]กำแพงวายุ[E]เขตแดนปฐพี[L]เขตแดนศักดิ์สิทธิ์[D]ประตูอสูร[N]  ,#マジックスキル,MagicWallAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+100,เมจิกมาสเตอรี่,#マジックスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+101,ชาร์จ MP,#マジックスキル,ChargingAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+102,[N]เวทมนตร์:แลนซ์ [F]วัลแคน [A]ไอซ์ซิเคิล[W]สลาตัน[E]ปืนใหญ่ศิลา[L]แสงสังหาร[D]สุริยคราส[N]  ,#マジックスキル,MagicLancerAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+103,[N]เวทมนตร์:บลาส[F]เอ็กซ์โพลชั่น [A]แอบโซลูทซีโร่[W]แอร์โรว์บลาส[E]จีโออิมแพ็ค[L]ไชน์นิ่งบลาส[D]อีวิลบลาส[N],#マジックスキル,MagicBlastAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+104,เชนแคสต์,#マジックスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+105,เวทมนตร์:อิมแพ็ค,#マジックスキル,MagicImpactAction,True,Dynamic,"เวท; ช่อง proration เป็นช่องสกิลกายภาพเมื่อมีเจมคาร์ท 403, ไม่งั้นช่องเวท",dynamic,dynamic,dynamic,Magic: always,Skill if hasGemCart(403) else Magic,Code (getter + ctor + set statements)
+106,[N]เวทมนตร์:สตรอม[F]ไฟเออร์สตรอม[A]โฟรเซนไซโคลน[W]ธันเดอร์สตรอม[E]แซนด์สตรอม[L]ลักซ์วอร์เทคซ์[D]อีวิวเทมเพสต์[N],#マジックスキル,MagicStormAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+107,พาวเวอร์เวฟ,#マジックスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+108,เวทมนตร์: ไฟนอล,#マジックスキル,MagicFinawAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+109,[N]เวทมนตร์: บลาส[F]เฮลอินเฟรูโน่[A]อีเทอนอลบลิซซาร์ด[W]ฟอร์สเทมเพสต์[E]เทิร์นกราวิตี้[L]พันนิชเมนท์[D]อีคลิปส์[N],#マジックスキル,MagicBurstAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+110,แม็กซ์ไมเซอร์,#マジックスキル,MaximuyzerAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+111,เวทมนตร์:อีเกล,#マジックスキル,MagicEgelAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+112,เวทมนตร์:เมจิกแคนนอน,#マジックスキル,MagicCannonAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+113,[N]เวทมนตร์:แครช[F]เมเทโอเรน[A]เฮล[W]ฟลูกูไรต์[E]ร็อคฟอล[L]เมเทโอไลท์[D]คอสมอส[N]    ,#マジックスキル,MagicFallAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+114,โครนอสชิฟท์,#マジックスキル,ChronosShiftAction,True,Dynamic,เวทเป็นค่าเริ่มต้น; ก๊อปประเภทจากสกิลล่าสุดที่เก็บไว้,dynamic,dynamic,dynamic,Magic: default (ctor); copy: InitializeChronosShift: = saveSkill.AttackType when a skill is saved and not on cooldown,,Code (getter + ctor + set statements)
+115,แรพพิดชาร์จ,#マジックスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+116,เอนชานท์บาเรีย,#マジックスキル,MagicProtectionAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+117,เมจิคไนฟ์,#マジックスキル,MagicKnifeAction,True,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+118,คาดาร์เอเล็คซิโอ,#マジックスキル,KadarElexioAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+119,สเปลทูนนิ่ง,#マジックスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+120,เวทมนตร์:เรเซอร์,#マジックスキル,MagicLazerAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+129,สแมช,#マーシャルスキル,SmashAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+130,บาช,#マーシャルスキル,BashAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+131,โซนิคเวฟ,#マーシャルスキル,SonicWaveAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+132,มาร์เชียลมาสเตอรี่,#マーシャルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+133,แอกราเวท,#マーシャルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+134,เชลเบรค,#マーシャルスキル,ShellBreakAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+135,เอิร์ธไบด์,#マーシャルスキル,EarthBindAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+136,อัดกระแทก,#マーシャルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+137,เฮวี่สแมช,#マーシャルスキル,HeavySmashAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+138,ทริปเปิ้ลคิก,#マーシャルスキル,TryArtsAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+139,มาร์เชียลดิสซิพลิน,#マーシャルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+140,เชอริออต,#マーシャルスキル,ChariotAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+141,รัช,#マーシャルスキル,RushAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+142,จักรา,#マーシャルスキル,ChakraAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+143,สไลด์ดิ้ง,#マーシャルスキル,SlidingAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+144,แอบสแตรกต์อาร์ม,#マーシャルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+145,อาชูร่าออร่า,#マーシャルスキル,AshuraAuraAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+146,เฟลชบลิงค์,#マーシャルスキル,FlashArtsAction,True,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+147,เอเนอร์จี้คอนโทรล,#マーシャルスキル,KakeiAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+148,แนบพิงภูเขา,#マーシャルスキル,ThieshankaiAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+149,กระทืบพสุธา,#マーシャルスキル,ShinkyakuAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+150,[N]หมุนปัด[N2]ขากงจักร[N],#マーシャルスキル,SenfutsuAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+157,,,AshuraAuraAttackAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+158,,,MindimageSenjuSupportAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+159,,,MindimageSenjuAttackAction,False,Dynamic,"ได้ประเภทจากสกิลแม่; Exorcism = เวท, Nemesis = กายภาพ",dynamic,dynamic,dynamic,"copy: OnInitialize: = parent action (this+0x128) AttackType (vtable slot 6); Magic: InitializeExorcism, not other player; Physics: InitializeNemesis, not other player","expType = parent action ExpType (vtable slot 7), unchanged by Exorcism/Nemesis",Code (OnInitialize vtable slots 6/7 = AttackType/ExpType of parent action; slot naming Inferred from offset)
+161,เฮวี่อาร์เมอร์มาสเตอรี่,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+162,ไลท์อาร์เมอร์มาสเตอรี่,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+163,แอดวานซ์การ์ด,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+164,แอดวานซ์อีวาชั่น,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+165,ฟิซิคัลการ์ด,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+166,มิราจอีวาชั่น,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+192,#ガードスキル,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+193,แกล้งตาย,#サバイバルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+194,เพิ่ม Exp,#サバイバルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+195,เพิ่มอัตราดรอป,#サバイバルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+196,พักอย่างปลอดภัย,#サバイバルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+197,พักสั้นๆ,#サバイバルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+198,เร่ง HP,#サバイバルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+199,เร่ง HP ต่อเนื่อง,#サバイバルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+200,เร่ง MP,#サバイバルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+201,เร่ง MP ต่อเนื่อง,#サバイバルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+225,ปฐมพยาบาล,#サポートスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+226,ไลฟ์รีคัฟเวอรี่,#サポートスキル,LifeRecoveryAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+227,มานารีชาร์จ,#サポートスキル,ManaRechargeAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+228,มินิฮีล,#サポートスキル,PutitHealAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+229,เบรฟออร่า,#サポートスキル,BraveAuraAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+230,เมจิกบาเรีย,#サポートスキル,MagicBarrierAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+231,รีคัฟเวอรี่,#サポートスキル,RecoveryAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+232,ไฮไซเคิล,#サポートスキル,HighCycleAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+233,อิมมูนิตี้,#サポートスキル,DiseasetSealAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+234,แซงจูรี่,#サポートスキル,SanctuaryAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+235,ควิกโมชั่น,#サポートスキル,QuickMotionAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+236,ฟาสต์รีเอคชั่น,#サポートスキル,HighReactionAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+237,ฮีล,#サポートスキル,HealAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+257,ชีลด์มาสเตอรี่,#シールドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+258,ชีลด์บาช,#シールドスキル,ShieldBashAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+259,ฟอร์ชชีลด์,#シールドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+260,ชีลด์แคนนอน,#シールドスキル,ShieldCannonAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+261,เมจิกคัลชีลด์,#シールドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+262,การ์ดสไตร์ค,#シールドスキル,GuardStrikeAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+263,โพรเทคชั่น,#シールドスキル,ProtectionAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+264,อีจิส,#シールドスキル,AegisAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+265,การ์เดียน,#シールドスキル,GuardianAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+266,ชีลด์อัปเปอร์คัต,#シールドスキル,ShieldUpperAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+267,ดูอัลชีลด์,#シールドスキル,PairOfShieldsAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+268,รีแพร์ชีลด์,#シールドスキル,ShieldRepairAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+269,บาลาเกรุง,#シールドスキル,BeragelungAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+270,[N]ラスティール[N2]ラースバーン[N],#シールドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+290,สไปก์ดาร์ต,#ナイフスキル,SpikeDartAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+291,พอยซั่นแดกเกอร์,#ナイフスキル,PoisonDaggerAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+292,แกตติ้งไนฟ์,#ナイフスキル,GatlingKnifeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+293,ดับเบิ้ลสแทบ,#ナイフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+294,อเมซซิ่งโธร์ว,#ナイフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+295,โธร์วไนฟ์,#ナイフスキル,ThrowingAction,True,Dynamic,กายภาพ; เลเวล 10 เป็นธรรมดา,dynamic,dynamic,dynamic,Physics: default (ctor); Normal: OnInitialize: Lv == 10,,Code (getter + ctor + set statements)
+296,แซคเคิลอาร์ม,#ナイフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+297,อินเทนซีฟไนฟ์,#ナイフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+298,เมลเบรคเกอร์,#ナイフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+299,ไนฟ์คอมแบท,#ナイフスキル,KnifeCombatAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+300,[N]ฟินเชอร์ไนฟ์[F]ไนฟ์สไตล์[N],#ナイフスキル,FlinchKnifeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+301,เครซี่แดกเกอร์,#ナイフスキル,CrazyDaggerAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+302,วีลไบต์,#ナイフスキル,WheelBiteAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+319,,,CrazyDaggerPursuitAction,False,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+321,มาร์เก็ต,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+322,ต่อราคา,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+323,เพิ่มราคา,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+324,แผงขายส่วนตัว,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+325,จัดหาโกดัง,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+326,พาวเวอร์ออฟเพย์,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+327,แคชโฟร์,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+328,เจ้าพ่อการเงิน,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+329,รีไรเซชั่น,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+330,อินชัวรันซ์,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+331,รีเพย์เมนต์,#マーチャントスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+353,แปรรูปวัตถุดิบ,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+354,ทั่งตีเหล็กส่วนตัว,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+355,ทั่งช่างฝีมือ,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+356,ทั่งช่างตีเหล็ก,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+357,ทั่งมาสเตอร์,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+358,ถลุงอุปกรณ์,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+359,ถลุงระดับกลาง,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+360,ถลุงระดับสูง,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+361,ถลุงระดับมืออาชีพ,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+362,สร้างอุปกรณ์,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+363,สร้างอย่างระวัง,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+364,สร้างแบบมืออาชีพ,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+365,อัพเกรดอุปกรณ์,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+366,อัพเกรดอย่างเที่ยงตรง,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+367,อัพเกรดแบบมืออาชีพ,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+368,ทั่งมาสเตอร์II,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+369,อัพเกรดแบบมืออาชีพII,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+370,ความเข้าใจโลหะ,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+371,ความเข้าใจผ้า,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+372,ความเข้าอสูร,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+373,ความเข้าไม้,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+374,ความเข้ายา,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+375,ความเข้ามานา,#スミススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+385,,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+386,ขวดยามือใหม่,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+387,ขวดยาช่างฝีมือ,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+388,ขวดยาช่างผสมของ,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+389,ขวดยามาสเตอร์,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+390,ผสมไอเท็ม,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+391,ผสมระดับกลาง,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+392,ผสมระดับสูง,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+393,ผสมระดับมืออาชีพ,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+394,ผสมอุปกรณ์,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+395,เทคนิคการผสม I,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+396,เทคนิคการผสม II,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+400,ขวดยามาสเตอร์II,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+401,ผสมระดับมืออาชีพII,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+402,เทคนิคการผสมIII,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+403,การสังเคราะห์สี,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+404,คู่มือการผสมสี,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+405,คู่มือการผสมสีII,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+406,คู่มือการผสมสีIII,#アルケミースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+417,シールドランサー,#ファランクススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+418,ガードピアース,#ファランクススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+419,アサルトランス,#ファランクススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+420,ドラゴンリープ,#ファランクススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+421,リボルバーシールド,#ファランクススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+422,パワードチャージ,#ファランクススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+423,サバイブアーマー,#ファランクススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+424,ランパート,#ファランクススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+425,ファトゥム,#ファランクススキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+449,จับสัตว์,#テイマースキル,TamingAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+450,เทคนิคจับสัตว์ I,#テイマースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+451,จับอย่างเชี่ยวชาญ,#テイマースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+452,เพ็ทฮีล,#テイマースキル,PetHealAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+453,เทคนิคจับสัตว์ II,#テイマースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+454,จับอย่างละม่อม,#テイマースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+455,เพ็ท MP ชาร์จ,#テイマースキル,PetChargeAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+481,เพิ่มพลังโจมตี,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+482,เพิ่มพลังเวท,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+483,เพิ่มพลังป้องกัน,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+484,เต็มแรง,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+485,สมาธิ,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+486,เพิ่มการหลบหลีก,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+487,เพิ่มคริติคอล,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+488,ต่อต้านเต็มกำลัง,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+489,เพิ่มความแม่นยำ,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+490,พลังขู่ขวัญ,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+491,เพิ่มพลังเวทขั้นสูง,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+492,ดีเฟ้นส์มาสเตอรี่,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+493,แก่นแท้แห่งการโจมตี,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+494,สเปลเบิสต์,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+495,ซุปเปอร์กริป,#バトルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+513,แอสเซาต์แอคแทค,#ナイトスキル,AssaultAttackAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+514,โพรโวค,#ナイトスキル,ProvokeAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+515,แพรี่,#ナイトスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+516,เรจซอร์ด,#ナイトスキル,RageSwordAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+517,N$Pดีเฟนส์$F$เพอร์เฟกต์ดีเฟนส์,#ナイトスキル,P_DeffenceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+518,ไบด์สไตร์ค,#ナイトスキル,BindStrikeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+519,ฟาเรส,#ナイトスキル,FearlessAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+520,ไนท์วีล,#ナイトスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+521,ไนท์สแตนซ์,#ナイトスキル,KnightStanceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+522,โซนิคทรัสต์,#ナイトスキル,SonicThrustAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+523,เรเวอเนีย,#ナイトスキル,LevenirAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+524,ไนท์ฮีล,#ナイトスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+525,อาฟเตอร์ชีลด์,#ナイトスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+526,บลิงค์ซอร์ด,#ナイトスキル,BlinkSwordAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+527,ไนท์เพลดจ์,#ナイトスキル,KnightPledgeAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+545,แตะ,#ハンタースキル,KickBackAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+546,ซันไรส์แอร์โรว์,#ハンタースキル,SunriseArrowAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+547,เมจิคแอร์โรว์,#ハンタースキル,ForceArrow,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+548,แซทเทิลไลท์แอร์โรว์,#ハンタースキル,SatelliteArrowAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+549,กับดักนิทรา,#ハンタースキル,SleepTrapAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+550,กับดักล่าสัตว์,#ハンタースキル,SteelTrapAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+551,ทุ่นระเบิด,#ハンタースキル,ExplossiveAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+552,กับดักความมืด,#ハンタースキル,BlankTrapAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+553,ดีเทคชั่น,#ハンタースキル,DetectionAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+554,โฮมมิ่งช็อต,#ハンタースキル,HomingShotAction,True,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+555,เวอร์ติคัลแอร์,#ハンタースキル,VerticalAirAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+556,ไซโคลนแอร์โรว์,#ハンタースキル,CycloneArrowAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+557,ฮันเตอร์ครอสโบ,#ハンタースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+558,[N]มัลติเพิลฮันท์[W]วูปสไนเปอร์[H]สไนเปอร์วอลเลย์[G]วันแฮนด์ช็อต[S]ชาร์ปชูตเตอร์[N],#ハンタースキル,MultipleHuntAction,True,Dynamic,"ตามโหมด: Wolf Assault/Chasse Garde/Sharp Snipe = กายภาพ, High Rain Snipe = เวท",dynamic,dynamic,dynamic,Physics: InitializeWolfAssault / ChasseGarde / SharpSnipe; Magic: InitializeHighRainSnipe,,Code (getter + ctor + set statements)
+559,แคมฟลาจ,#ハンタースキル,CamouflageAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+560,ความรู้ของนักล่า,#ハンタースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+561,โฟกัส,#ハンタースキル,FocusAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+577,อัญเชิญโกเล็ม,#ゴーレムスキル,CallGolemAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+578,แลนเซอร์พลัส,#ゴーレムスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+579,ชีลด์พลัส,#ゴーレムスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+580,บัสเตอร์พลัส,#ゴーレムスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+581,เสริมพลังโจมตี,#ゴーレムスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+582,เสริมพลังป้องกัน,#ゴーレムスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+583,เสริมความเร็ว,#ゴーレムスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+584,ระเบิดเวทมนตร์,#ゴーレムスキル,MagicGrenadeAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+585,ระเบิดเยือกแข็ง,#ゴーレムスキル,FreezeGrenadeAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+586,ระเบิดแสง,#ゴーレムスキル,FlashGrenadeAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+587,บาเรียสกรีน,#ゴーレムスキル,BarrierScreenAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+588,เสริมบาเรีย,#ゴーレムスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+609,เฟลช,#モノノフスキル,FlashDrawnSwordAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+610,ปอมเมลสไตร์ค,#モノノフスキル,StrikeBackOfSwordAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+611,[N]พัลส์เบลด[N2]สวิฟต์พัลส์เบลด[N],#モノノフスキル,WaveBladeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+612,บุชิโด,#モノノフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+613,ทูแฮนด์,#モノノフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+614,ทริปเปิ้ลทรัสต์,#モノノフスキル,ThreeStageThrustAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+615,N$มากาดาจิ$R2$เท็นริวรันเซ: ซันโน,#モノノフスキル,CutOffTheDisasterAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+616,เมเคียวชิซุย,#モノノフスキル,ClearAndSereneAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+617,ฮัซโซฮัปปะ,#モノノフスキル,HassohappaAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+618,N$ซังเทเซตเท็ตสึ$R2$เท็นริวรันเซ: ซันโน,#モノノフスキル,ZanteisettetsuAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+619,ชูคุจิ,#モノノフスキル,ShukuchiAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+620,เท็นริวรันเซ,#モノノフスキル,HeavenlyStarAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+621,การิวเท็นเซ,#モノノフスキル,FinishingTouchAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+622,ไคริกิรันชิน,#モノノフスキル,WeirdnessOfGodAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+623,คมดาบมายา,#モノノフスキル,RepelBladeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+624,[N]คาสุมิเซ็ตสึเก็คคะ[N2]เท็นริวรันเซ:ซันยุ[N],#モノノフスキル,IllusionarySceneAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+625,ชาโดว์เลสสแลช,#モノノフスキル,ShadowlessSlashAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+626,นุคิอุจิเซ็นโนเซ็น,#モノノフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+627,ดอนท์เลส,#モノノフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+628,ลมมงคล,#モノノフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+629,[N]ลมกระโชก[N2]ลมสงบนิ่ง[N3]ลมเหนือ[N4]ลมตะวันออก[N5]ลมตะวันตก[N6]ลมใต้[N7]สี่ฤดูกาล[N],#モノノフスキル,IchijhinnokazeAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+630,ลมกรด,#モノノフスキル,HayateAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+631,ลมกระโชกแรง,#モノノフスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+637,,,IchijhinnokazeAttackAction,False,Dynamic,กายภาพ; ท่า Kariwatashi/Hibari/Ibuki/Arahae เป็นธรรมดา,dynamic,dynamic,dynamic,"Physics: default (ctor); InitializeNagi; Normal: InitializeKariwatashi / Hibari / Ibuki / Arahae, SkillEventArahae",,Code (getter + ctor + set statements)
+638,ดิไวน์สแลช,#モノノフスキル,TenjhoTengeMusouSwordAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+641,ดูเอลมาสเตอรี่,#デュアルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+642,ทวินสแลช,#デュアルスキル,TwinSlashAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+643,ครอสแพรี่,#デュアルスキル,ParryingSwordAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+644,รีเฟล็กซ์,#デュアルスキル,StepReactorAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+645,ควบคุมดาบคู่,#デュアルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+646,สปินนิ่งสแลช,#デュアルスキル,AirSlideAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+647,ชาร์จจิ้งสแลช,#デュアルスキル,DragoonSwordAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+648,เร็วดุจเทพ,#デュアルスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+649,[N]แฟนทอมสแลช[N2]แฟนทอมอิคลิพส์[N],#デュアルスキル,PhantomRaveAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+650,แฟลชบลาส,#デュアルスキル,PhiloEclairAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+651,ชาโดว์สเต็ป,#デュアルスキル,WrapAroundAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+652,[N]ไชน์นิ่งครอส[N2]เบลซซิ่งไชน์นิ่งครอส[N],#デュアルスキル,ShiningClothAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+653,[N]สตอร์มรีปเปอร์[N2]ออร์บิทรีปเปอร์[N],#デュアルスキル,SturmLeaperAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+654,เซเบอร์ออร่า,#デュアルスキル,SaberAuraAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+655,ลูนาดิธเธอร์สตาร์,#デュアルスキル,LunaDitherStarAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+656,ทวินบัสตาร์ดเบลด,#デュアルスキル,TwinBusterBladeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+657,อาร์คเซเบอร์,#デュアルスキル,ArkSaberAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+658,แอร์สไลเซอร์,#デュアルスキル,AirSlicerAction,True,Dynamic,กายภาพ; ช่อง proration เป็นช่องเวท (ctor expType=2),dynamic,dynamic,dynamic,Physics: always,Magic (ctor sets expType=2),Code (getter + ctor + set statements)
+659,เอเลียสลีย์,#デュアルスキル,ArialSlayAction,True,Dynamic,กายภาพ; เวทเมื่อถือ magic tool มือรอง,dynamic,dynamic,dynamic,Physics: default (ctor); Magic: OnInitialize: sub weapon is a magic tool,,Code (getter + ctor + set statements)
+660,ฮอร์ริซอนคัท,#デュアルスキル,HorizontalCutAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+661,เบลดสตริงเกอร์,#デュアルスキル,BladeStingerAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+671,,#デュアルスキル,LunaDitherStarBladeRainAction,False,Physics,กายภาพ (ใช้ ATK),Magic,Magic,ช่องเวท,,proration slot (Magic) differs from damage type (Physics): get_ExpType is a separate override,Code (constant getter)
+673,[N]Lบูมเมอแรง[N2]เลเพจบูมเมอแรง[N],#パルチザンスキル,L_BoomerangAction,True,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+674,[N]LบูมเมอแรงII[N2]เลเพจบูมเมอแรงII[N],#パルチザンスキル,L_Boomerang2Action,True,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+675,[N]LบูมเมอแรงIII[N2]เลเพจบูมเมอแรงIII[N],#パルチザンスキル,L_Boomerang3Action,True,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+676,[N]Nดราก้อนทูธ[N2]นีโน่ดราก้อนทูธ[N],#パルチザンスキル,N_DragonToothAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+677,ฮีลลิ่งช็อต,#パルチザンスキル,HealingShotAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+678,ลับคมลูกศร,#パルチザンスキル,ArrowSharpeningAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+679,สัญชาตญาณการอยู่รอด,#パルチザンスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+680,ค้ำจุนแนวหน้า,#パルチザンスキル,MaintainingTheFrontAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+681,ค้ำจุนแนวหน้าII,#パルチザンスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+703,,,RangeHateAttackAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+705,ออโต้ดีไวซ์,#スプライトスキル,AutoDeviceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+706,เอ็กเพรสเอด,#スプライトスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+707,เคาน์เตอร์ฟอร์ส,#スプライトスキル,CounterForceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+708,ไมโครฮีล,#スプライトスキル,ClineHealAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+709,เอนฮานซ์,#スプライトスキル,EnhanceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+710,แอสเทิลแลนซ์,#スプライトスキル,AstralLanceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+711,เรเซอร์เรคชั่น,#スプライトスキル,ResurrectionAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+712,สเตบิไลซ์,#スプライトスキル,StabilisAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+713,สไปรท์ชีลด์,#スプライトスキル,SpriteShieldAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+714,เมจิกวัลแคน,#スプライトスキル,MagicBalkanAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+715,อิกนิชั่น,#スプライトスキル,IgnitionAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+716,อาร์เดดราค,#スプライトスキル,AldedrakAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+717,แฟกทิสอาร์ม,#スプライトスキル,FacticeArmeAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+718,สแลชรีปเปอร์,#スプライトスキル,SlashReaperAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+719,สไปรท์อัพเกรด,#スプライトスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+720,รีเทค,#スプライトスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+721,คาตาลาโบมัส,#スプライトスキル,CatarabomosAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+722,เลเบนส์กลานซ์,#スプライトスキル,LebenGlanzAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+732,,,LifeExplosionAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+733,,,AutoDeviceAttackAction,False,Magic,เวท (ใช้ MATK),SkillNormal,Normal,ช่องตีปกติ,,proration slot (Normal) differs from damage type (Magic): get_ExpType is a separate override,Code (constant getter)
+734,,,AstralLanceAttackAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+735,,,CounterForceAttackAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+769,บทเพลงแห่งการเยียวยา,#ミンストレル,HealingSongAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+770,บทเพลงแห่งภูตพราย,#ミンストレル,FairySongAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+771,บทเพลงแห่งชีวิต,#ミンストレル,SongOfLifeAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+772,บทเพลงแห่งมายา,#ミンストレル,PhantomSongAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+773,แอดลิบ,#ミンストレル,ImprovisationSongAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+774,บทเพลงแห่งความเร่าร้อน,#ミンストレル,EnthusiasticSongAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+775,บทเพลงแห่งภูมิปัญญา,#ミンストレル,KnowledgeSongAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+776,บีทบลาสต์,#ミンストレル,BeatBlastAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+777,ซาวนด์เวล,#ミンストレル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+778,แบทเทิลโน้ต,#ミンストレル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+797,,,BattleNotesAttackAction,False,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+799,เซ็ตลิสต์,#ミンストレル,SetlistAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+801,การร่ายรำแห่งภูตพราย,#ダンサー,FairyDanceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+802,การร่ายรำอันรุนแรง,#ダンサー,PassionDanceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+803,การร่ายรำให้กำลังใจ,#ダンサー,SupportDanceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+804,การร่ายรำอันเฉียบคม,#ダンサー,SharpDanceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+805,ตั้งรับอย่างสง่างาม,#ダンサー,ElegantStanceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+806,การร่ายรำอันทรงเสน่ห์,#ダンサー,EnchantedDanceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+807,วิจิตรธรรมชาติ,#ダンサー,BeautiesOfNatureAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+833,เบลส,,BlessAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+834,โฮลี่ฟิสท์,,HolyFistAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+835,กลอเรีย,,GloriaAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+836,โฮลี่ไลท์,,HolyLightActin,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+837,เอนเชนส์เบลส,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+838,อีเธอร์บาเรีย,,EtherCoatAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+839,ไฮเนสฮีล,,HighnessHealAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+840,พรีเอล,,PriereAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+841,ร็อดสทับ,,RodStubAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+842,เอ็กซอร์ซิสต์,,ExorcismAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+843,โฮลี่ไบเบิ้ล,,HolyBibleAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+844,เนเมซิส,,NemesisAction,True,Dynamic,ฮิตแรกกายภาพ; ฮิตระยะถัดไป (NextRangeHit) เป็นเวท,dynamic,dynamic,dynamic,Physics: isFirst = 1 (ActionPreparation); Magic: isFirst = 0 (NextRangeHit),,Code (getter + ctor + set statements)
+845,แอสพิสโซล,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+846,คำสอนศักดิ์สิทธิ์,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+847,โฮลี่เกรซ,,HolyGraceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+863,,,HolyGracePursuitAttackAction,False,Magic,เวท (ใช้ MATK),SkillNormal,Normal,ช่องตีปกติ,,proration slot (Normal) differs from damage type (Magic): get_ExpType is a separate override,Code (constant getter)
+865,เมจิกวอริเออร์มาสเตอรี่,#マジックブレードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+866,อีเทอร์แฟลร์,#マジックブレードスキル,EtherFlareAction,True,Dynamic,เวท; กายภาพเมื่อมีบัฟ 867,dynamic,dynamic,dynamic,Magic: no buff 867 (conversion = 0); Physics: buff 867 active (conversion = 1),,Code (getter + ctor + set statements)
+867,คอนเวอร์ชั่น,#マジックブレードスキル,ConversionAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+868,เอเลเม้นต์สแลช,#マジックブレードスキル,ElementSlashAction,True,Dynamic,เวท; กายภาพเมื่อมีบัฟ 867,dynamic,dynamic,dynamic,Magic: no buff 867 (conversion = 0); Physics: buff 867 active (conversion = 1),,Code (getter + ctor + set statements)
+869,เรโซแนนซ์,#マジックブレードスキル,ResonanceAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+870,[N]เอนชานท์ซอร์ด[N2]เอนชานท์บลาสซอร์ด[N],#マジックブレードスキル,EnchantedSwordAction,True,Dynamic,กายภาพ; เวทเมื่อมีบัฟ 867 (กลับด้านกับ 866),dynamic,dynamic,dynamic,Physics: no buff 867 (conversion = 0); Magic: buff 867 active (conversion = 1),,Code (getter + ctor + set statements)
+871,เอนชานท์สเปล,#マジックブレードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+872,[N]เอนชานท์บลาส[N2]เอนชานท์อกรา[N],#マジックブレードスキル,EnchantedBurstAction,True,Dynamic,เวท; กายภาพเมื่อมีบัฟ 867,dynamic,dynamic,dynamic,Magic: no buff 867 (conversion = 0); Physics: buff 867 active (conversion = 1),,Code (getter + ctor + set statements)
+873,ดูอัลบริงเกอร์,#マジックブレードスキル,DualBringerAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+874,[N]ยูเนียนซอร์ด[N2]รียูเนียนซอร์ด[N],#マジックブレードスキル,UnionSwordAction,True,Dynamic,กายภาพ; เวทเมื่อมีบัฟ 867 (กลับด้านกับ 866),dynamic,dynamic,dynamic,Physics: no buff 867 (conversion = 0); Magic: buff 867 active (conversion = 1),,Code (getter + ctor + set statements)
+875,เดรนบาเรีย,#マジックブレードスキル,DrainBarrierAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+876,เทเลพอร์ต,#マジックブレードスキル,TeleportAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+877,เดรนรีคอล,#マジックブレードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+878,โฟรทแดช,#マジックブレードスキル,FloatDashAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+879,เมจิกสกิน,#マジックブレードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+897,,,NpcFirstAidAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+898,,,NpcHealAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+899,,,FlashOfTheWarGodAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+900,,,JudgmentOfTheDarkGodAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+901,,,WarProvokeAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+902,,,HidingAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+929,บาสต์แอคแทค,#ペット専用スキル,BusterAttack,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+930,HP อัพ,#ペット専用スキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+931,ดูดซับ MP,#ペット専用スキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+932,ซ่อนตัว,#ペット専用スキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+933,เมจิกแลนซ์,#ペット専用スキル,SorcielLance,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+934,คริติคอลอัพ,#ペット専用スキル,PetCriticalUp,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+935,เฮวี่แอคแทค,#ペット専用スキル,HeavyAttack,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+936,ลอบโจมตี,#ペット専用スキル,SneakAttack,True,Dynamic,"เทียบ ATK กับ MATK ของผู้เล่น: ATK<MATK = เวท, ไม่งั้นกายภาพ",dynamic,dynamic,dynamic,Physics: status.Atk >= status.Matk; Magic: status.Atk < status.Matk,,Code (getter + ctor + set statements)
+937,เมจิกชอต,#ペット専用スキル,MagicShot,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+938,บลาสต์แฟลร์,#ペット専用スキル,BlastFlare,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+939,เซอร์เคิลฮีล,#ペット専用スキル,KreisHeel,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+940,กระตุ้นพลัง,#ペット専用スキル,BraveUp,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+941,ปฐมพยาบาล,#ペット専用スキル,PetFirstAid,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+942,เพิ่มกำลังใจ,#ペット専用スキル,MindUp,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+943,ฟื้นฟู,#ペット専用スキル,PetHealing,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+944,สวีปแอคแทค,#ペット専用スキル,SweepAttack,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+945,คลีนฮิต,#ペット専用スキル,DownBlow,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+946,เรจแอคแทค,#ペット専用スキル,RageAttack,True,Dynamic,"เทียบ ATK กับ MATK ของผู้เล่น: ATK<MATK = เวท, ไม่งั้นกายภาพ",dynamic,dynamic,dynamic,Physics: status.Atk >= status.Matk; Magic: status.Atk < status.Matk,,Code (getter + ctor + set statements)
+947,บลายอิ้งแชโดว์,#ペット専用スキル,BlindEye,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+948,เพิ่มแรงต้านทาน,#ペット専用スキル,CutUp,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+949,สตันแอคแทค,#ペット専用スキル,StanAttack,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+950,ปกป้อง,#ペット専用スキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+951,ดูดซับ HP,#ペット専用スキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+952,MP อัพ,#ペット専用スキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+953,ชีลเบรคเกอร์,#ペット専用スキル,SealBreaker,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+958,การการโจมตีปกติ (กายภาพ),#ペット専用スキル,PetNormalAttackAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+959,การโจมตีปกติ (เวทมนตร์),#ペット専用スキル,PetNormalMagicAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+961,เฟลชสเต็ป,#ハルバードスキル,FlashStubAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+962,แคนนอนสเปียร์,#ハルバードスキル,CannonSpearAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+963,เดดลี่สเปียร์,#ハルバードスキル,DeadlySpearAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+964,ฮัลเบิร์ทมาสเตอรี่,#ハルバードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+965,ควิกออร่า,#ハルバードスキル,QuickAuraAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+966,ดราก้อนเทล,#ハルバードスキル,DragonTailAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+967,วานิชเรย์,#ハルバードスキル,PunishRayAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+968,วอร์ครายสทรักเกิ้ล,#ハルバードスキル,AdversityRoarAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+969,ไดฟ์อิมแพ็ค,#ハルバードスキル,DiveImpactAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+970,สไตร์คสเต็ป,#ハルバードスキル,StrikeStubAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+971,คริติคอลสเปียร์,#ハルバードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+972,ดราก้อนทูธ,#ハルバードスキル,DragonToothAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+973,โครนอสไดรฟ์,#ハルバードスキル,CronosDriveAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+974,เทพลมกรด,#ハルバードスキル,HandlingerOfGodspeedAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+975,[N]บัสเตอร์แลนซ์[P]แพนิกบัสเตอร์แลนซ์[N],#ハルバードスキル,BusterLanceAction,True,Dynamic,กายภาพ; เวทเมื่อเป็นท่า Punish Ray,dynamic,dynamic,dynamic,Physics: isPunishRay = 0; Magic: isPunishRay = 1 (ActionPreparation conditions),,Code (getter + ctor + set statements)
+976,ดราโกนิกชาร์จ,#ハルバードスキル,DragonicChargeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+977,อินฟิไนท์ไดเมนชัน,#ハルバードスキル,DimensionTillAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+978,ออลไมทีวีลด์,#ハルバードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+979,ทอร์นาโดแลนซ์,#ハルバードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+980,บลิทซ์ไปก์,#ハルバードスキル,BlitzPikeAction,True,Dynamic,กายภาพ; ช่อง proration เป็นช่องเวท (ExpType const 2),Magic,Magic,ช่องเวท,Physics: always (OnInitialize / CalcFirst/SecondDamageData),Magic (const),Code (getter + ctor + set statements)
+981,ไลท์นิ่งเฮล,#ハルバードスキル,LightningHailAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+982,ธอร์แฮมเมอร์,#ハルバードスキル,ThorHammerAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+988,,,BlitzPikePursuitAction,False,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+989,,,GodSpearHandling3Action,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+990,,,GodSpearHandling2Action,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+991,,,GodSpearHandling1Action,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+993,[N]แอสแซสซินสแทบ[F]ฟรอนท์สแทบ[S]ไซด์สแทบ[B]แบ็คสแทบ[N],#アサシンスキル,AssassinStubAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+994,อีเวชัน,#アサシンスキル,EvolutionAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+995,แบ็คสเต็ป,#アサシンスキル,BackstepAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+996,เซียรัม,#アサシンスキル,SierramAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+997,ฟูเนวินเด,#アサシンスキル,FuneVinteAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+998,ละทิ้ง,#アサシンスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+999,ซิคาเรียส,#アサシンスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1000,ชาโดว์วอล์ค,#アサシンスキル,ShadowWalkAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1001,เวนอมอินเจค,#アサシンスキル,VenomInjectAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1002,พิษกัดกร่อน,#アサシンスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1003,เวนอมสแนทช,#アサシンスキル,VenomSnatchAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1004,เดธรีเซฟชัน,#アサシンスキル,DeathReceptionAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1005,เคล็ดลับลอบสังหาร,#アサシンスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1006,แอสเซาท์เชส,#アサシンスキル,AssaultChaseAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1007,นักปรุงยาพิษ,#アサシンスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1025,แฟมิเรีย,#ウィザードスキル,FamiliaAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1026,มานาคริสตัล,#ウィザードスキル,ManaCrystalAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1027,ไลท์นิ่ง,#ウィザードスキル,LightningAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1028,บลิซซาร์ด,#ウィザードスキル,BlizzardAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1029,เมเทโอสตอร์มสไตร์ค,#ウィザードスキル,MeteorStrikeAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1030,สโตนสกิล,#ウィザードスキル,StoneSkinAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1031,[N]อิมพีเรียลเรย์[PN]อิมพีเรียลบลาสท์[PF]อิมพีเรียลไฟร์[PA]อิมพีเรียลฟรีซ[PW]อิมพีเรียลโกลม[PE]อิมพีเรียลเปตรา[PL]อิมพีเรียลโฮลี่[PD]อิมพีเรียลชาโดว์[N],#ウィザードスキル,ImperialRayAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1032,ไฮแฟมิเรีย,#ウィザードスキル,HighFamiliaAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1033,คาสต์มาสเตอรี่,#ウィザードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1034,คริสตัลเลเซอร์,#ウィザードスキル,CrystalLaserAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1035,โอเวอร์ลิมิต,#ウィザードスキル,OverLimitAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1036,ซอร์ดเซอรีไกด์,#ウィザードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1037,ของที่แมวทำหล่น,#ウィザードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1038,การวิจัยเวทมนตร์,#ウィザードスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1039,ชิฟท์,#ウィザードスキル,ShiftAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1057,บลัดดี้ไบท์,#ダークパワースキル,BloodBiteAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1058,แซครีไฟซ์,#ダークパワースキル,SacrificeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1059,ดาร์คสตริงเกอร์,#ダークパワースキル,DarkStingerAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1060,เดมอนคลอว์,#ダークパワースキル,DemonCroweAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1061,เรดเทีย,#ダークパワースキル,RedTearAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1062,รีเกรทเลส,#ダークパワースキル,RegretAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1063,[N]โซลฮันเตอร์[N2]เดธรีปเปอร์[N],#ダークパワースキル,SoulHuntAction,True,Physics,กายภาพ (ใช้ ATK),Magic,Magic,ช่องเวท,,proration slot (Magic) differs from damage type (Physics): get_ExpType is a separate override,Code (constant getter)
+1064,อีเทอนอลไนท์แมร์,#ダークパワースキル,EternalNightmareAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1065,เนตรมารข่มขวัญ,#ダークパワースキル,IntimidatingEvilEyeAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1066,เนตรมารเสน่หา,#ダークパワースキル,EnchantingEvilEyeAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1067,เนตรมารเพลิงทมิฬ,#ダークパワースキル,BlackFlameEvilEyeAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1068,เนตรมารโกลาหล,#ダークパワースキル,ChaosEvilEyeAction,True,Dynamic,เวท; ช่อง proration ตั้งใน ctor (expType=2) = ช่องเวท,dynamic,dynamic,dynamic,Magic: always,Magic (ctor sets expType=2),Code (getter + ctor + set statements)
+1089,ความชำนาญการสู้มือเปล่า,#ベアハンドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1090,ชาร์จพลังชี่กง,#ベアハンドスキル,CollectQigongAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1091,ซีซ่าแสลชเชอร์,#ベアハンドスキル,FuriousEffortsAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1092,วายุโหมคลื่นกระหน่ำ,#ベアハンドスキル,StormAndUrgeAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1093,ชี่กงฟื้นฟู,#ベアハンドスキル,HealQigongAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1094,ชาร์จพลังชี่กงอัลติมา,#ベアハンドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1095,ซีซ่าแสลชเชอร์อัลติมา,#ベアハンドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1096,วายุโหมคลื่นกระหน่ำอัลติมา,#ベアハンドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1097,การปะทะของจิตวิญญาณ,#ベアハンドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1098,สะเทือนโลกา,#ベアハンドスキル,EarthShatteringAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1099,ฟื้นคืนชีพ,#ベアハンドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1100,ซ่อนเร้นตัวตน,#ベアハンドスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1121,เกรฟดิกเกอร์,#ネクロマンサースキル,GlaiveTiggerAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1122,ทูม,#ネクロマンサースキル,TombAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1123,แฟนทอมมิสไซล์,#ネクロマンサースキル,PhantomMissileAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1124,พลั่วชั้นดี,#ネクロマンサースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1125,สกัลเชคเกอร์,#ネクロマンサースキル,SkullShakerAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1126,บลัดสตีล,#ネクロマンサースキル,BloodSteelAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1127,ซัมมอนสเกเลตัน,#ネクロマンサースキル,SummonSkeletonAction,True,Physics,กายภาพ (ใช้ ATK),SkillNormal,Normal,ช่องตีปกติ,,proration slot (Normal) differs from damage type (Physics): get_ExpType is a separate override,Code (constant getter)
+1128,ฮาร์เวสต์,#ネクロマンサースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1129,เดนเจอร์เชค,#ネクロマンサースキル,DengerShakeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1130,โซลสตรีม,#ネクロマンサースキル,SoulStreamAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1131,ซัมมอนเดโมนิก,#ネクロマンサースキル,SummonDemonicAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1132,แผนตลบหลัง,#ネクロマンサースキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1153,กำปั้นผดุงคุณธรรม,#クラッシャー,ForefistPunchAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1154,วิธีการหายใจ,#クラッシャー,BreathingMethodAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1155,กลอเรียเทคชอต,#クラッシャー,GoliathTakeShotAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1156,ฟลายอิ้งคิก,#クラッシャー,FloatingKickAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1157,คอมบิเนชั่น,#クラッシャー,CombinationAction,True,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+1158,ก็อดแฮนด์,#クラッシャー,GodHandAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1159,ผู้ทำลายล้าง,#クラッシャー,DestroyerAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1160,เทอราบลาสต์,#クラッシャー,GeoImpactAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1161,ร่างแกร่งดุจเทพ,#クラッシャー,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1162,กีย์เซอร์ชู้ต,#クラッシャー,GazerShootAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1185,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1186,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1187,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1188,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1189,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1190,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1191,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1192,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1217,นินจาสปิริต,#ニンジャスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1218,นินจูตสึ,#ニンジャスキル,NinjutsuAction,True,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1219,ขว้างคุไน,#ニンジャスキル,KunaiThrowingAction,False,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+1220,ชูริเคนปีศาจวายุ,#ニンジャスキル,FumaShurikenAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1221,[N]คาถาไฟ[N2]ระเบิดเพลิงโลกันต์[N],#ニンジャスキル,FireStyleAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1222,[N]คาถาสายฟ้า[N2]อสนีบาต[N],#ニンジャスキル,ThunderStyleAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1223,คาถาน้ำ,#ニンジャスキル,WaterStyleAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1224,คาถาดิน,#ニンジャスキル,EarthStyleAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1225,[N]คาถาลม[N2]เจาะเกราะ[N],#ニンジャスキル,WindStyleAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1226,คาถาแยกร่าง,#ニンジャスキル,CloningTechniqueAction,False,Normal,ธรรมดา (SkillNormal),SkillNormal,Normal,ช่องตีปกติ,,,Code (constant getter)
+1227,ศาสตร์แห่งนินจูตสึ I,#ニンジャスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1228,ศาสตร์แห่งนินจูตสึ II,#ニンジャスキル,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1245,,,RapidAquaVortexAction,False,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1246,,,EarthStyleAttackAction,False,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1247,จักจั่นลอกคราบ,#ニンジャスキル,UtsusemiAction,False,None,ไม่มีประเภท (None),None,none,ไม่มีช่อง,,,Code (constant getter)
+1249,ท่อเหล็ก,,IronPipeAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1250,เรโทรโบว์กัน,,RetroBowgunAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1251,แม็กนั่ม,,MagnumAction,True,Physics,กายภาพ (ใช้ ATK),Magic,Magic,ช่องเวท,,proration slot (Magic) differs from damage type (Physics): get_ExpType is a separate override,Code (constant getter)
+1281,เอ็กซ์โพชั่น,,ExplosionAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1282,ไลท์ออฟเซเบอร์,,LightOfSaberAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1283,Morning Star,,MorningStarAction,True,Physics,กายภาพ (ใช้ ATK),Physics,Skill,ช่องสกิลกายภาพ,,,Code (constant getter)
+1284,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1285,[N]ดราก้อนสเลฟ[N2]ดราก้อนสเลฟ[N],,DragSlaveAction,True,Magic,เวท (ใช้ MATK),Magic,Magic,ช่องเวท,,,Code (constant getter)
+1345,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1346,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1347,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1348,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1349,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1350,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1351,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1352,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1353,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1354,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1355,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1356,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1357,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1358,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1359,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1360,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1361,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1362,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1363,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1364,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1365,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1366,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1367,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1368,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1369,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1370,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1371,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1372,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class
+1373,,,,True,-,ไม่มี action class ฝั่ง client,,,,,,no SkillFactory action class

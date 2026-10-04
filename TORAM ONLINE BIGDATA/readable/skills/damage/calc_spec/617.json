@@ -1,0 +1,514 @@
+{
+ "version": 1,
+ "uid": 617,
+ "name_th": "ฮัซโซฮัปปะ",
+ "name_en": "Okaranman",
+ "tree": "MononofuSkill",
+ "category": "Object",
+ "max_level": 70,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "placed object / trap / summon",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "HassohappaAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 617,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetSubWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetSubWeaponType.item(actarAction))",
+   "when": "mainWeapon == Bow",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv << 1) + 130)",
+   "simplified": "2 × Lv + 130",
+   "when": "always",
+   "by_level": [
+    132,
+    134,
+    136,
+    138,
+    140,
+    142,
+    144,
+    146,
+    148,
+    150
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv + (Lv << 2)) << 1) lo 90 ? ((Lv + (Lv << 2)) << 1) : 90) + 210)",
+   "simplified": "(10 × Lv < 90 ? 10 × Lv : 90) + 210",
+   "when": "always",
+   "by_level": [
+    220,
+    230,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300,
+    300
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "System.Math.Min((int(floor((Lv * 0.3))) + 1), 3)",
+   "simplified": "System.Math.Min(int(floor(0.3 × Lv)) + 1, 3)",
+   "when": "always",
+   "vars": [
+    "System.Math.Min"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "firstRadius",
+   "formula": "MathUtil.DisplayMeterToDistance((int(((Lv + 1) * 0.25)) + 2))",
+   "simplified": "MathUtil.DisplayMeterToDistance(int(0.25 × Lv + 0.25) + 2)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondRadius",
+   "formula": "(MathUtil.DisplayMeterToDistance((int(((Lv + 1) * 0.25)) + 2)) + MathUtil.DisplayMeterToDistance((int(((Lv + 1) * 0.25)) + 2)))",
+   "simplified": "2 × MathUtil.DisplayMeterToDistance(int(0.25 × Lv + 0.25) + 2)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 2)",
+   "simplified": "SkillParam | 2",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "mainWeapon != Bow",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "change",
+   "formula": "1",
+   "simplified": "1",
+   "when": "CountBufferBase.get_Peak() AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 617) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !CountBufferBase.get_Peak() AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 617) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "CountBufferBase.get_Peak",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "firstRadius",
+   "formula": "(firstRadius + MathUtil.DisplayMeterToDistance(2))",
+   "simplified": "firstRadius + MathUtil.DisplayMeterToDistance(2)",
+   "when": "CountBufferBase.get_Peak() AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 617) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !CountBufferBase.get_Peak() AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 617) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "CountBufferBase.get_Peak",
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "secondRadius",
+   "formula": "(secondRadius + MathUtil.DisplayMeterToDistance(2))",
+   "simplified": "secondRadius + MathUtil.DisplayMeterToDistance(2)",
+   "when": "CountBufferBase.get_Peak() AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 617) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !CountBufferBase.get_Peak() AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 617) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "CountBufferBase.get_Peak",
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isFirstAttck",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "IsSwordMoveStart",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND ActionRange ne -1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 8 AND ISwordMove.CheckSwordMoveStart(actarAction, this) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND param ne 200 OR !UnityEngine.Object.op_Equality(actarAction) AND ActionRange ne -1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 AND ISwordMove.CheckSwordMoveStart(actarAction, this) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND SwordMove.AddBuf(this, actarAction) AND param ne 200 OR !SwordMove.AddBuf(this, actarAction) AND !UnityEngine.Object.op_Equality(actarAction) AND ActionRange ne -1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 AND ISwordMove.CheckSwordMoveStart(actarAction, this) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND param ne 200",
+   "by_level": 1,
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "ISwordMove.CheckSwordMoveStart",
+    "InputManager.get_LeftInputKey",
+    "PlayerStatusBase.get_EquipItemData",
+    "SwordMove.AddBuf",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((change eq 0 ? (Lv eq 10 ? (skillRate + 300) : skillRate) : ((Lv eq 10 ? (skillRate + 300) : skillRate) + 100)) / 100)",
+   "simplified": "(change = 0 ? A : A + 100) / 100",
+   "when": "isFirstAttck ne 0",
+   "defs": [
+    [
+     "A",
+     "Lv = 10 ? skillRate + 300 : skillRate"
+    ]
+   ],
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamage"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "(PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamageRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((change eq 0 ? skillRate : (skillRate + 100)) / 100)",
+   "simplified": "(change = 0 ? skillRate : skillRate + 100) / 100",
+   "when": "isFirstAttck eq 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(617)",
+   "simplified": "RemoveSelfBuffer(617)",
+   "when": "CountBufferBase.get_Peak() AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 617) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "CountBufferBase.get_Peak",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SwordMoveBuf",
+   "ctors": [
+    {
+     "sig": "bool damageInvalid",
+     "fields": {
+      "Level": [
+       {
+        "formula": "257",
+        "when": "always",
+        "by_level": 257
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "damageInvalid": [
+       {
+        "formula": "(damageInvalid & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "damageInvalid",
+     "simplified": "damageInvalid",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "damageInvalid": [
+     {
+      "method": "DamageInvalid",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "EndSwordMove",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckDamageInvalid",
+    "DamageInvalid",
+    "EndSwordMove"
+   ],
+   "attached_via": "caller2:SwordMove$$AddBuf<-HassohappaAction$$ActionSkillEvent",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "CountBufferBase.get_Peak",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "GetSubWeaponType.item",
+  "GetWeaponType.item",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "ISwordMove.CheckSwordMoveStart",
+  "InputManager.get_LeftInputKey",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "Singleton.get_Instance",
+  "SkillBufferId.Value",
+  "SwordMove.AddBuf",
+  "System.Math.Min",
+  "TryGetBuf.out2",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

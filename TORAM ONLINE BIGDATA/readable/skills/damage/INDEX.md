@@ -1,0 +1,45 @@
+# Skill reference index
+
+Plain-language walkthrough of every skill: [DETAILS.md](DETAILS.md). Raw recovered data per tree: below.
+
+- [(internal actions) `(internal actions)`](trees/_internal_actions_.md) — 53 entries
+- [สกิลดาบ `BladeSkill`](trees/BladeSkill.md) — 24 entries
+- [สกิลยิง `ShootSkill`](trees/ShootSkill.md) — 25 entries
+- [マジックスキル `MagicSkill`](trees/MagicSkill.md) — 24 entries
+- [マーシャルスキル `MarshallSkill`](trees/MarshallSkill.md) — 22 entries
+- [GuardSkill `GuardSkill`](trees/GuardSkill.md) — 7 entries
+- [サバイバルスキル `SurvivalSkill`](trees/SurvivalSkill.md) — 9 entries
+- [サポートスキル `SupportSkill`](trees/SupportSkill.md) — 13 entries
+- [シールドスキル `ShieldSkill`](trees/ShieldSkill.md) — 14 entries
+- [ナイフスキル `KnifeSkill`](trees/KnifeSkill.md) — 13 entries
+- [マーチャントスキル `MerchantSkill`](trees/MerchantSkill.md) — 11 entries
+- [スミススキル `SmithSkill`](trees/SmithSkill.md) — 23 entries
+- [アルケミースキル `AlchemySkill`](trees/AlchemySkill.md) — 19 entries
+- [ファランクススキル `LuckSkill`](trees/LuckSkill.md) — 9 entries
+- [テイマースキル `TamerSkill`](trees/TamerSkill.md) — 7 entries
+- [バトルスキル `BattleSkill`](trees/BattleSkill.md) — 15 entries
+- [ナイトスキル `KnightSkill`](trees/KnightSkill.md) — 15 entries
+- [ハンタースキル `HunterSkill`](trees/HunterSkill.md) — 17 entries
+- [ゴーレムスキル `GolemSkill`](trees/GolemSkill.md) — 12 entries
+- [モノノフスキル `MononofuSkill`](trees/MononofuSkill.md) — 23 entries
+- [デュアルスキル `DualSword`](trees/DualSword.md) — 21 entries
+- [パルチザンスキル `PartisanSkill`](trees/PartisanSkill.md) — 9 entries
+- [スプライトスキル `SpriteSkill`](trees/SpriteSkill.md) — 18 entries
+- [ミンストレル `Minstrel`](trees/Minstrel.md) — 10 entries
+- [ダンサー `DancerSkill`](trees/DancerSkill.md) — 7 entries
+- [PriestSkill `PriestSkill`](trees/PriestSkill.md) — 15 entries
+- [マジックブレードスキル `MagicBladeSkill`](trees/MagicBladeSkill.md) — 15 entries
+- [28 `28`](trees/28.md) — 6 entries
+- [ペット専用スキル `PetSkill`](trees/PetSkill.md) — 27 entries
+- [ハルバードスキル `HalberdSkill`](trees/HalberdSkill.md) — 22 entries
+- [アサシンスキル `AssassinSkill`](trees/AssassinSkill.md) — 15 entries
+- [ウィザードスキル `WizardSkill`](trees/WizardSkill.md) — 15 entries
+- [ダークパワースキル `DarkPowerSkill`](trees/DarkPowerSkill.md) — 12 entries
+- [ベアハンドスキル `BareHandSkill`](trees/BareHandSkill.md) — 12 entries
+- [ネクロマンサースキル `NecromancerSkill`](trees/NecromancerSkill.md) — 12 entries
+- [クラッシャー `CrusherSkill`](trees/CrusherSkill.md) — 10 entries
+- [37 `37`](trees/37.md) — 8 entries
+- [ニンジャスキル `NinjaSkill`](trees/NinjaSkill.md) — 4 entries
+- [EventSkill `EventSkill`](trees/EventSkill.md) — 3 entries
+- [AvatarSkill_1 `AvatarSkill_1`](trees/AvatarSkill_1.md) — 5 entries
+- [DebugSkill `DebugSkill`](trees/DebugSkill.md) — 29 entries

@@ -1,0 +1,390 @@
+{
+ "version": 1,
+ "uid": 1034,
+ "name_th": "คริสตัลเลเซอร์",
+ "name_en": "CrystalLaser",
+ "tree": "WizardSkill",
+ "category": "Object",
+ "max_level": 35,
+ "roles": [
+  "attack (deals damage)",
+  "placed object / trap / summon"
+ ],
+ "class": "CrystalLaserAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1034,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 30) + 700)",
+   "simplified": "30 × Lv + 700",
+   "when": "always",
+   "by_level": [
+    730,
+    760,
+    790,
+    820,
+    850,
+    880,
+    910,
+    940,
+    970,
+    1000
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "failure",
+   "formula": "1",
+   "simplified": "1",
+   "when": "SkillIndividualFlag eq -1",
+   "by_level": 1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure ne 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05",
+   "vars": [
+    "ManaCrystalBuf.StartCrystalLaser",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "StartCrystalLaser.pos",
+    "TryGetBuf.buf",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDir.y",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure ne 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05",
+   "vars": [
+    "ManaCrystalBuf.StartCrystalLaser",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "StartCrystalLaser.pos",
+    "TryGetBuf.buf",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDir.z",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure ne 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05",
+   "vars": [
+    "ManaCrystalBuf.StartCrystalLaser",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "StartCrystalLaser.pos",
+    "TryGetBuf.buf",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "target",
+   "formula": "target",
+   "simplified": "target",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND !PlayerAttackBase.IsBlank(this) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure ne 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05",
+   "vars": [
+    "ManaCrystalBuf.StartCrystalLaser",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "StartCrystalLaser.pos",
+    "TryGetBuf.buf",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND !PlayerAttackBase.IsBlank(this) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure ne 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05",
+   "by_level": -1,
+   "vars": [
+    "ManaCrystalBuf.StartCrystalLaser",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "StartCrystalLaser.pos",
+    "TryGetBuf.buf",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "UnityEngine.Vector3.static+0x0",
+   "simplified": "UnityEngine.Vector3.static",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure ne 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) le 1e-05",
+   "vars": [
+    "ManaCrystalBuf.StartCrystalLaser",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "StartCrystalLaser.pos",
+    "TryGetBuf.buf",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDir.y",
+   "formula": "UnityEngine.Vector3.static+0x4",
+   "simplified": "UnityEngine.Vector3.static + 4",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure ne 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) le 1e-05",
+   "vars": [
+    "ManaCrystalBuf.StartCrystalLaser",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "StartCrystalLaser.pos",
+    "TryGetBuf.buf",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDir.z",
+   "formula": "UnityEngine.Vector3.static+0x8",
+   "simplified": "UnityEngine.Vector3.static + 8",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure ne 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND failure eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312))) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - StartCrystalLaser.pos(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)))) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) le 1e-05",
+   "vars": [
+    "ManaCrystalBuf.StartCrystalLaser",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "StartCrystalLaser.pos",
+    "TryGetBuf.buf",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "failure",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !ManaCrystalBuf.StartCrystalLaser(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026), (this + 312)) AND !PlayerAttackBase.IsBlank(this) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1026) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "ManaCrystalBuf.StartCrystalLaser",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05 AND param eq 101 AND param ne 102",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackDir.y",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05 AND param eq 101 AND param ne 102",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackDir.z",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))))",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) gt 1e-05 AND param eq 101 AND param ne 102",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "UnityEngine.Vector3.static+0x0",
+   "simplified": "UnityEngine.Vector3.static",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) le 1e-05 AND param eq 101 AND param ne 102",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackDir.y",
+   "formula": "UnityEngine.Vector3.static+0x4",
+   "simplified": "UnityEngine.Vector3.static + 4",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) le 1e-05 AND param eq 101 AND param ne 102",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackDir.z",
+   "formula": "UnityEngine.Vector3.static+0x8",
+   "simplified": "UnityEngine.Vector3.static + 8",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - crystalPos.z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - crystalPos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - crystalPos.y))))) le 1e-05 AND param eq 101 AND param ne 102",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "SetConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "Toram.Common.Actions.TargetPlayerData..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "!PartyManager.get_IsParty(Singleton<PartyManager>.get_Instance()) AND !UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 102 OR !PartyManager.get_IsParty(Singleton<PartyManager>.get_Instance()) AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 102 OR !PartyManager.get_IsParty(Singleton<PartyManager>.get_Instance()) AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 102",
+   "vars": [
+    "PartyManager.get_IsParty",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "ManaCrystalBuf.StartCrystalLaser",
+  "MathUtil.DisplayMeterToDistance",
+  "PartyManager.get_IsParty",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "Singleton.get_Instance",
+  "StartCrystalLaser.pos",
+  "TryGetBuf.buf",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

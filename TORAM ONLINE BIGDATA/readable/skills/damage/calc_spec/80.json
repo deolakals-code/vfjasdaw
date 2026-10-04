@@ -1,0 +1,501 @@
+{
+ "version": 1,
+ "uid": 80,
+ "name_th": "รีโทรเกรดชอท",
+ "name_en": "JumpbackShot",
+ "tree": "ShootSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "JumpbackShotAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 80,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 50) + 500) + baseDEX)",
+   "simplified": "50 × Lv + baseDEX + 500",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(20)",
+   "simplified": "MathUtil.DisplayMeterToDistance(20)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "width",
+   "formula": "MathUtil.DisplayMeterToDistance(1.5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1.5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) OR !PlayerAttackBase.IsBlank(this) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) le 1e-05",
+   "by_level": 1,
+   "vars": [
+    "JumpbackShotAction.CheckForwardInput",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) OR !JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) OR !PlayerAttackBase.IsBlank(this) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) gt 1e-05",
+   "vars": [
+    "JumpbackShotAction.CheckForwardInput",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDir.y",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) OR !JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) OR !PlayerAttackBase.IsBlank(this) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) gt 1e-05",
+   "vars": [
+    "JumpbackShotAction.CheckForwardInput",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackDir.z",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) OR !JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) OR !PlayerAttackBase.IsBlank(this) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) gt 1e-05",
+   "vars": [
+    "JumpbackShotAction.CheckForwardInput",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "JumpbackShotAction.<>c__DisplayClass30_0..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "PlayerAttackBase.IsBlank(this) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) OR !JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target)",
+   "vars": [
+    "JumpbackShotAction.CheckForwardInput",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "JumpbackShotProtectionBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) OR !JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) OR !PlayerAttackBase.IsBlank(this) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) gt 1e-05",
+   "vars": [
+    "JumpbackShotAction.CheckForwardInput",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new JumpbackShotProtectionBuf, Id)",
+   "simplified": "AddSelfBuffer(new, JumpbackShotProtectionBuf, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) OR !JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) OR !PlayerAttackBase.IsBlank(this) AND JumpbackShotAction.CheckForwardInput(UnityEngine.Component.get_gameObject(actarAction), UnityEngine.Component.get_gameObject(actarAction), target) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) gt 1e-05",
+   "vars": [
+    "JumpbackShotAction.CheckForwardInput",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "call",
+   "name": "JumpbackShotAction.<>c__DisplayClass32_0..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(94)",
+   "simplified": "RemoveSelfBuffer(94)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionStart>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(94)",
+   "simplified": "RemoveSelfBuffer(94)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass30_1::<ActionStart>b__2",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(94)",
+   "simplified": "RemoveSelfBuffer(94)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass30_1::<ActionStart>b__3",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(94)",
+   "simplified": "RemoveSelfBuffer(94)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "JumpbackShotProtectionBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "damageCut": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "damageCut": [
+     {
+      "method": "Damaged",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckDamageInvalid",
+    "Damaged"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "JumpbackShotProtectionBuf": {
+     "lv": "lv",
+     "self": "1"
+    },
+    "JumpBackShotBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:JumpbackShotProtectionBuf$$.ctor<-JumpbackShotAction$$ActionStart",
+   "kind": "flag/param"
+  },
+  {
+   "class": "JumpBackShotBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "counter": [
+       {
+        "formula": "new System.Collections.Generic.Dictionary<MobActionManagerBase, int>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "max": [
+       {
+        "formula": "(int((Lv * 0.3)) + 2)",
+        "when": "always",
+        "by_level": [
+         2,
+         2,
+         2,
+         3,
+         3,
+         3,
+         4,
+         4,
+         4,
+         5
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [
+    "GetCount",
+    "Next",
+    "ReMark",
+    "Resister"
+   ],
+   "attached_via": "manual:constructed only by PlayerBattleManager.PursuitJumpbackShotAttack, which gates on TryGetBuf(80); ReMark called from JumpbackShotAction.ReceiveAttackResult",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "JumpbackShotAction.ReceiveAttackResult",
+  "MobaPlayerBattleManager.PursuitJumpbackShotAttack",
+  "PlayerBattleManager.PursuitJumpbackShotAttack"
+ ],
+ "variables": [
+  "JumpbackShotAction.CheckForwardInput",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CheckSkillIndividualFlag",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.IsBlank",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.GetEquipElement",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_forward",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

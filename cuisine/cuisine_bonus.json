@@ -1,0 +1,906 @@
+{
+ "note": "House cuisine (landbuff) bonus lines. Source: Cuisine master + HouseCuisineManager.GetBonusParameter (0x21172e8): BonusParameter(PropertyID, Property1Val[lv-1]) -> BonusManager.CreateBonus -> PlayerStatusBase.SetCooking (slot 0xFE). PropertyID is a BonusType id.",
+ "levelFromRecipeExp": [
+  [
+   0,
+   1
+  ],
+  [
+   3,
+   2
+  ],
+  [
+   9,
+   3
+  ],
+  [
+   21,
+   4
+  ],
+  [
+   45,
+   5
+  ],
+  [
+   93,
+   6
+  ],
+  [
+   189,
+   7
+  ],
+  [
+   381,
+   8
+  ],
+  [
+   765,
+   9
+  ],
+  [
+   1533,
+   10
+  ]
+ ],
+ "mainDishDurationHours": 12,
+ "dishes": [
+  {
+   "id": 1,
+   "foodPoint": 100,
+   "lines": [
+    {
+     "bonusId": 1,
+     "bonus": "bStr",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      14,
+      18,
+      22,
+      26,
+      30
+     ]
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "foodPoint": 100,
+   "lines": [
+    {
+     "bonusId": 2,
+     "bonus": "bInt",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      14,
+      18,
+      22,
+      26,
+      30
+     ]
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "foodPoint": 100,
+   "lines": [
+    {
+     "bonusId": 3,
+     "bonus": "bVit",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      14,
+      18,
+      22,
+      26,
+      30
+     ]
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "foodPoint": 100,
+   "lines": [
+    {
+     "bonusId": 4,
+     "bonus": "bAgi",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      14,
+      18,
+      22,
+      26,
+      30
+     ]
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "foodPoint": 100,
+   "lines": [
+    {
+     "bonusId": 5,
+     "bonus": "bDex",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      14,
+      18,
+      22,
+      26,
+      30
+     ]
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "foodPoint": 300,
+   "lines": [
+    {
+     "bonusId": 12,
+     "bonus": "bMaxHpTo10",
+     "values": [
+      40,
+      80,
+      120,
+      160,
+      200,
+      260,
+      320,
+      380,
+      440,
+      500
+     ]
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "foodPoint": 300,
+   "lines": [
+    {
+     "bonusId": 14,
+     "bonus": "bMaxMp",
+     "values": [
+      60,
+      120,
+      180,
+      240,
+      300,
+      440,
+      580,
+      720,
+      860,
+      1000
+     ]
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "foodPoint": 300,
+   "lines": [
+    {
+     "bonusId": 15,
+     "bonus": "bEqAtk",
+     "values": [
+      6,
+      12,
+      18,
+      24,
+      30,
+      44,
+      58,
+      72,
+      86,
+      100
+     ]
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "foodPoint": 600,
+   "lines": [
+    {
+     "bonusId": 17,
+     "bonus": "bAtk",
+     "values": [
+      6,
+      12,
+      18,
+      24,
+      30,
+      44,
+      58,
+      72,
+      86,
+      100
+     ]
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "foodPoint": 600,
+   "lines": [
+    {
+     "bonusId": 19,
+     "bonus": "bMatk",
+     "values": [
+      6,
+      12,
+      18,
+      24,
+      30,
+      44,
+      58,
+      72,
+      86,
+      100
+     ]
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "foodPoint": 200,
+   "lines": [
+    {
+     "bonusId": 22,
+     "bonus": "bHit",
+     "values": [
+      6,
+      12,
+      18,
+      24,
+      30,
+      44,
+      58,
+      72,
+      86,
+      100
+     ]
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "foodPoint": 200,
+   "lines": [
+    {
+     "bonusId": 24,
+     "bonus": "bFlee",
+     "values": [
+      6,
+      12,
+      18,
+      24,
+      30,
+      44,
+      58,
+      72,
+      86,
+      100
+     ]
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "foodPoint": 200,
+   "lines": [
+    {
+     "bonusId": 26,
+     "bonus": "bDef",
+     "values": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      140,
+      180,
+      220,
+      260,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "foodPoint": 200,
+   "lines": [
+    {
+     "bonusId": 28,
+     "bonus": "bMdef",
+     "values": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      140,
+      180,
+      220,
+      260,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "foodPoint": 300,
+   "lines": [
+    {
+     "bonusId": 38,
+     "bonus": "bAtkMpRecovery",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      14,
+      18,
+      22,
+      26,
+      30
+     ]
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "foodPoint": 400,
+   "lines": [
+    {
+     "bonusId": 40,
+     "bonus": "bCritical",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      14,
+      18,
+      22,
+      26,
+      30
+     ]
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "foodPoint": 400,
+   "lines": [
+    {
+     "bonusId": 49,
+     "bonus": "bPowerResist",
+     "values": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      26,
+      32,
+      38,
+      44,
+      50
+     ]
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "foodPoint": 400,
+   "lines": [
+    {
+     "bonusId": 50,
+     "bonus": "bMagicResist",
+     "values": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      26,
+      32,
+      38,
+      44,
+      50
+     ]
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "foodPoint": 1000,
+   "lines": [
+    {
+     "bonusId": 53,
+     "bonus": "bFireKiller",
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "foodPoint": 1000,
+   "lines": [
+    {
+     "bonusId": 54,
+     "bonus": "bAquaKiller",
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "foodPoint": 1000,
+   "lines": [
+    {
+     "bonusId": 55,
+     "bonus": "bWindKiller",
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": 22,
+   "foodPoint": 1000,
+   "lines": [
+    {
+     "bonusId": 56,
+     "bonus": "bEarthKiller",
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": 23,
+   "foodPoint": 1000,
+   "lines": [
+    {
+     "bonusId": 57,
+     "bonus": "bLightKiller",
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "foodPoint": 1000,
+   "lines": [
+    {
+     "bonusId": 58,
+     "bonus": "bDarkKiller",
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": 25,
+   "foodPoint": 1000,
+   "lines": [
+    {
+     "bonusId": 59,
+     "bonus": "bNormalKiller",
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": 26,
+   "foodPoint": 300,
+   "lines": [
+    {
+     "bonusId": 62,
+     "bonus": "bHateRate",
+     "values": [
+      6,
+      12,
+      18,
+      24,
+      30,
+      44,
+      58,
+      72,
+      86,
+      100
+     ]
+    }
+   ]
+  },
+  {
+   "id": 27,
+   "foodPoint": 300,
+   "lines": [
+    {
+     "bonusId": 62,
+     "bonus": "bHateRate",
+     "values": [
+      -6,
+      -12,
+      -18,
+      -24,
+      -30,
+      -44,
+      -58,
+      -72,
+      -86,
+      -100
+     ]
+    }
+   ]
+  },
+  {
+   "id": 28,
+   "foodPoint": 5000,
+   "lines": [
+    {
+     "bonusId": 63,
+     "bonus": "bExpRate",
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    }
+   ]
+  },
+  {
+   "id": 29,
+   "foodPoint": 10000,
+   "lines": [
+    {
+     "bonusId": 64,
+     "bonus": "bDropRate",
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    }
+   ]
+  },
+  {
+   "id": 30,
+   "foodPoint": 500,
+   "lines": [
+    {
+     "bonusId": 71,
+     "bonus": "bFireShield",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      13,
+      16,
+      19,
+      22,
+      25
+     ]
+    }
+   ]
+  },
+  {
+   "id": 31,
+   "foodPoint": 500,
+   "lines": [
+    {
+     "bonusId": 72,
+     "bonus": "bAquaShield",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      13,
+      16,
+      19,
+      22,
+      25
+     ]
+    }
+   ]
+  },
+  {
+   "id": 32,
+   "foodPoint": 500,
+   "lines": [
+    {
+     "bonusId": 73,
+     "bonus": "bWindShield",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      13,
+      16,
+      19,
+      22,
+      25
+     ]
+    }
+   ]
+  },
+  {
+   "id": 33,
+   "foodPoint": 500,
+   "lines": [
+    {
+     "bonusId": 74,
+     "bonus": "bEarthShield",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      13,
+      16,
+      19,
+      22,
+      25
+     ]
+    }
+   ]
+  },
+  {
+   "id": 34,
+   "foodPoint": 500,
+   "lines": [
+    {
+     "bonusId": 75,
+     "bonus": "bLightShield",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      13,
+      16,
+      19,
+      22,
+      25
+     ]
+    }
+   ]
+  },
+  {
+   "id": 35,
+   "foodPoint": 500,
+   "lines": [
+    {
+     "bonusId": 76,
+     "bonus": "bDarkShield",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      13,
+      16,
+      19,
+      22,
+      25
+     ]
+    }
+   ]
+  },
+  {
+   "id": 36,
+   "foodPoint": 500,
+   "lines": [
+    {
+     "bonusId": 77,
+     "bonus": "bNormalShield",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      13,
+      16,
+      19,
+      22,
+      25
+     ]
+    }
+   ]
+  },
+  {
+   "id": 37,
+   "foodPoint": 200,
+   "lines": [
+    {
+     "bonusId": 159,
+     "bonus": "bPhysicalBarrier",
+     "values": [
+      400,
+      800,
+      1200,
+      1600,
+      2000,
+      2600,
+      3200,
+      3800,
+      4400,
+      5000
+     ]
+    }
+   ]
+  },
+  {
+   "id": 38,
+   "foodPoint": 200,
+   "lines": [
+    {
+     "bonusId": 160,
+     "bonus": "bMagicBarrier",
+     "values": [
+      400,
+      800,
+      1200,
+      1600,
+      2000,
+      2600,
+      3200,
+      3800,
+      4400,
+      5000
+     ]
+    }
+   ]
+  },
+  {
+   "id": 39,
+   "foodPoint": 300,
+   "lines": [
+    {
+     "bonusId": 161,
+     "bonus": "bRateBarrier",
+     "values": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      14,
+      18,
+      22,
+      26,
+      30
+     ]
+    }
+   ]
+  }
+ ]
+}

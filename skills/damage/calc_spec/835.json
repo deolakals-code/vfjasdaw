@@ -1,0 +1,308 @@
+{
+ "version": 1,
+ "uid": 835,
+ "name_th": "กลอเรีย",
+ "name_en": "Gloria",
+ "tree": "PriestSkill",
+ "category": "Support",
+ "max_level": 35,
+ "roles": [
+  "buff (self)",
+  "buff (party / others)"
+ ],
+ "class": "GloriaAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 835,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "guard",
+   "formula": "(((Lv >> 1) + 5) + 5)",
+   "simplified": "Lv ÷ 2 + 10",
+   "when": "mainWeapon == Rod",
+   "by_level": [
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "guard",
+   "formula": "((Lv >> 1) + 5)",
+   "simplified": "Lv ÷ 2 + 5",
+   "when": "mainWeapon != Rod",
+   "by_level": [
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "GloriaBuf..ctor",
+   "formula": ".ctor(Lv, guard)",
+   "simplified": ".ctor(Lv, guard)",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(new GloriaBuf)",
+   "simplified": "AddBuffer(new, GloriaBuf)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "GloriaBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int guard",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "30",
+        "when": "always",
+        "by_level": 30
+       }
+      ],
+      "defUpRate": [
+       {
+        "formula": "(int(((Lv * Lv) * 1.5)) + 50)",
+        "when": "always",
+        "by_level": [
+         51,
+         56,
+         63,
+         74,
+         87,
+         104,
+         123,
+         146,
+         171,
+         200
+        ]
+       }
+      ],
+      "guardUp": [
+       {
+        "formula": "guard",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "isViewSelfIcon": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "0"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "DefRate",
+     "bonus_id": 24,
+     "formula": "defUpRate",
+     "simplified": "defUpRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MdefRate",
+     "bonus_id": 26,
+     "formula": "defUpRate",
+     "simplified": "defUpRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "GuardRate",
+     "bonus_id": 27,
+     "formula": "guardUp",
+     "simplified": "guardUp",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "isViewSelfIcon": [
+     {
+      "method": "SetViewSelfIcon",
+      "formula": "(flag & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "GloriaBuf": {
+     "lv": "lv",
+     "self": "0"
+    }
+   },
+   "attached_via": "caller2:GloriaBuf$$.ctor<-GloriaAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PetStatus.get_GuardDelay"
+ ],
+ "variables": [
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "SkillBufferId.DefRate",
+  "SkillBufferId.GuardRate",
+  "SkillBufferId.MdefRate",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

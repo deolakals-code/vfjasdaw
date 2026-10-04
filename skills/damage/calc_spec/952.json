@@ -1,0 +1,43 @@
+{
+ "version": 1,
+ "uid": 952,
+ "name_th": "MP อัพ",
+ "name_en": "PetMpUp",
+ "tree": "PetSkill",
+ "category": "Mastery",
+ "max_level": 1,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "PetMpUp",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "PetMpUp",
+  "bonuses": {
+   "MaxMp": {
+    "id": 14,
+    "expr": "(Lv * 100)",
+    "by_level": [
+     100,
+     200,
+     300,
+     400,
+     500,
+     600,
+     700,
+     800,
+     900,
+     1000
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

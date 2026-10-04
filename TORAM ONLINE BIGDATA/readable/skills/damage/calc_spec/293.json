@@ -1,0 +1,37 @@
+{
+ "version": 1,
+ "uid": 293,
+ "name_th": "ดับเบิ้ลสแทบ",
+ "name_en": "DoubleThrow",
+ "tree": "KnifeSkill",
+ "category": "Mastery",
+ "max_level": 50,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "DoubleThrow",
+ "proration": null,
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "DoubleThrow",
+  "bonuses": {
+   "Trigger": {
+    "id": 0,
+    "expr": "?addv",
+    "by_level": null
+   }
+  }
+ },
+ "hooks": [
+  "AvoidActionManager.DoubleThrowAvoid",
+  "PlayerBattleManager.OnSkillActionDamaged"
+ ],
+ "variables": [],
+ "residual": []
+}

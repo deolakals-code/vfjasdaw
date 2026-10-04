@@ -1,0 +1,203 @@
+{
+ "version": 1,
+ "uid": 1249,
+ "name_th": "ท่อเหล็ก",
+ "name_en": "IronPipe",
+ "tree": "EventSkill",
+ "category": "Attack",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "IronPipeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1249,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(0.5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(0.5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(int((baseSTR / 2.5)) + ((Lv + (Lv << 2)) + 50))",
+   "simplified": "int(baseSTR / 2.5) + 5 × Lv + 50",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "criticalRate",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "always",
+   "by_level": 5
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "invincibilityId",
+   "formula": "AbnormalStateManager.AddInvincibilityTemporarilyInAction(PlayerActionManagerBase.get_AbnormalStatusManager(), 1)",
+   "simplified": "AbnormalStateManager.AddInvincibilityTemporarilyInAction(PlayerActionManagerBase.get_AbnormalStatusManager(), 1)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND param eq 101 AND param ne 102",
+   "vars": [
+    "AbnormalStateManager.AddInvincibilityTemporarilyInAction",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInitializeEventRoom",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(2)",
+   "simplified": "MathUtil.DisplayMeterToDistance(2)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitializeEventRoom",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(2)",
+   "simplified": "MathUtil.DisplayMeterToDistance(2)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(1, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(1, 100, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(1)",
+   "simplified": "SetAbnormalType(1)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, 100, playerAction)",
+   "vars": [
+    "AbnormalType.Flinch",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.AddInvincibilityTemporarilyInAction",
+  "AbnormalType.Flinch",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.str",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

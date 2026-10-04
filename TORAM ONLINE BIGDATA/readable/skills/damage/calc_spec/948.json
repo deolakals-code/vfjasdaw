@@ -1,0 +1,133 @@
+{
+ "version": 1,
+ "uid": 948,
+ "name_th": "เพิ่มแรงต้านทาน",
+ "name_en": "CutUp",
+ "tree": "PetSkill",
+ "category": "Buffer",
+ "max_level": 1,
+ "roles": [
+  "buff (self)",
+  "buff (party / others)"
+ ],
+ "class": "CutUp",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 948,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnPetSkillInitialize",
+   "kind": "set",
+   "name": "isSupportStrong",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(PlayerAttackBase.get_ActionID(), Lv, 0)",
+   "simplified": "AddBuffer(PlayerAttackBase.get_ActionID(), Lv, 0)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.get_ActionID",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "CutUpBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int value",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "10",
+        "when": "always",
+        "by_level": 10
+       }
+      ],
+      "isSupportSpecialty": [
+       {
+        "formula": "(value eq 1 ? 1 : 0)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "PowerDmgCut",
+     "bonus_id": 21,
+     "formula": "((isSupportSpecialty eq 0 ? 0 : 5) + (Lv + (Lv << 1)))",
+     "simplified": "(isSupportSpecialty = 0 ? 0 : 5) + 3 × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MagicDmgCut",
+     "bonus_id": 22,
+     "formula": "((isSupportSpecialty eq 0 ? 0 : 5) + (Lv + (Lv << 1)))",
+     "simplified": "(isSupportSpecialty = 0 ? 0 : 5) + 3 × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "PlayerAttackBase.get_ActionID",
+  "SkillBufferId.MagicDmgCut",
+  "SkillBufferId.PowerDmgCut",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

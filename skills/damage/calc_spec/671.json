@@ -1,0 +1,445 @@
+{
+ "version": 1,
+ "uid": 671,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "LunaDitherStarBladeRainAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 671,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "1.5",
+   "simplified": "1.5",
+   "when": "always",
+   "by_level": 1.5
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "resistBreaker",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "always",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + (Lv << 2)) + 250)",
+   "simplified": "5 × Lv + 250",
+   "when": "always",
+   "by_level": [
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290,
+    295,
+    300
+   ]
+  },
+  {
+   "method": "Inheritance",
+   "kind": "set",
+   "name": "parentSkill",
+   "formula": "parentSkill",
+   "simplified": "parentSkill",
+   "when": "always"
+  },
+  {
+   "method": "Inheritance",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(parentSkill.SkillParam & 0xfffff7fe)",
+   "simplified": "parentSkill.SkillParam & 0xfffff7fe",
+   "when": "always"
+  },
+  {
+   "method": "Inheritance",
+   "kind": "set",
+   "name": "targetExpList",
+   "formula": "attackPos",
+   "simplified": "attackPos",
+   "when": "always"
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "(Radius + 1.5)",
+   "simplified": "Radius + 1.5",
+   "when": "always"
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "bladeRainAttackCount",
+   "formula": "(bladeRainAttackCount + 1)",
+   "simplified": "bladeRainAttackCount + 1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefMagic"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpList[mobAction] / 100)",
+   "simplified": "(targetExpList[mobAction] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "LunaDitherStarBladeRainBuf..ctor",
+   "formula": ".ctor(Lv, Id)",
+   "simplified": ".ctor(Lv, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new LunaDitherStarBladeRainBuf, Id)",
+   "simplified": "AddSelfBuffer(new, LunaDitherStarBladeRainBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass45_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "LunaDitherStarBuf..ctor",
+   "formula": ".ctor([<>c__DisplayClass45_0.<>4__this+0x14], System.Linq.Enumerable.Count<bool>([<>c__DisplayClass45_0.<>4__this+0x148], LunaDitherStarBladeRainAction.<>c.<>9__45_1))",
+   "simplified": ".ctor([<>c__DisplayClass45_0.<>4__this+0x14], System.Linq.Enumerable.Count<bool>([<>c__DisplayClass45_0.<>4__this+0x148], LunaDitherStarBladeRainAction.<>c.<>9__45_1))",
+   "when": "(cancel & 1) eq 0 AND SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.LunaDitherStarBladeRain, (this + 32)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 671, (this + 32)) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.LunaDitherStarBladeRain",
+    "TryGetBuf.buf"
+   ],
+   "residual": [
+    "+0x14]",
+    "+0x148]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass45_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new LunaDitherStarBuf, [<>c__DisplayClass45_0.<>4__this+0x10])",
+   "simplified": "AddSelfBuffer(new, LunaDitherStarBuf, [<>c__DisplayClass45_0.<>4__this+0x10])",
+   "when": "(cancel & 1) eq 0 AND SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.LunaDitherStarBladeRain, (this + 32)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 671, (this + 32)) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.LunaDitherStarBladeRain",
+    "TryGetBuf.buf"
+   ],
+   "residual": [
+    "+0x10]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass45_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(671)",
+   "simplified": "RemoveSelfBuffer(671)",
+   "when": "(cancel & 1) ne 0 OR !SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.LunaDitherStarBladeRain, (this + 32)) AND (cancel & 1) eq 0 OR (cancel & 1) eq 0 AND SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.LunaDitherStarBladeRain, (this + 32)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 671, (this + 32)) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.LunaDitherStarBladeRain",
+    "TryGetBuf.buf"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "LunaDitherStarBladeRainBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, byte localId",
+     "fields": {
+      "LocalId": [
+       {
+        "formula": "localId",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LocalId": [
+     {
+      "method": "set_LocalId",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_LocalId",
+    "set_LocalId"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "LunaDitherStarBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int hitCount",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "((hitCount + (hitCount << 1)) << 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "LunaDitherStarBladeRainBuf": {
+     "lv": "lv",
+     "self": "1"
+    },
+    "LunaDitherStarBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:LunaDitherStarBladeRainBuf$$.ctor<-LunaDitherStarBladeRainAction$$ActionStart",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "LunaDitherStarAction.ReceivedAbnormal",
+  "LunaDitherStarBladeRainAction.<>c__DisplayClass45_0.<ActionStart>b__0"
+ ],
+ "variables": [
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferManager.TryGetBuf",
+  "SkillId.LunaDitherStarBladeRain",
+  "System.Linq.Enumerable.Count",
+  "TryGetBuf.buf",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "target.ExpDefMagic"
+ ],
+ "residual": [
+  {
+   "where": ".<>c__DisplayClass45_0::<ActionStart>b__0:LunaDitherStarBuf..ctor",
+   "tokens": [
+    "+0x14]",
+    "+0x148]"
+   ]
+  },
+  {
+   "where": ".<>c__DisplayClass45_0::<ActionStart>b__0:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "+0x10]"
+   ]
+  }
+ ]
+}

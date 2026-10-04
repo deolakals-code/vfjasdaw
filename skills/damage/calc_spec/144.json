@@ -1,0 +1,35 @@
+{
+ "version": 1,
+ "uid": 144,
+ "name_th": "แอบสแตรกต์อาร์ม",
+ "name_en": "MindimageSenju",
+ "tree": "MarshallSkill",
+ "category": "Mastery",
+ "max_level": 240,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "MindimageSenju",
+ "proration": null,
+ "eq_limit": [
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "MindimageSenju",
+  "bonuses": {}
+ },
+ "hooks": [
+  "AvoidActionManager.CheckMindimageSenju",
+  "MindimageSenjuAttackAction.<>c__DisplayClass82_0.<ActionStart>b__0",
+  "MindimageSenjuSkillBase.CheckInheritance",
+  "MindimageSenjuSupportAction.<>c__DisplayClass57_0.<ActionStart>b__0",
+  "MobaPlayerBattleManager.StartMindimageSenju",
+  "PlayerBattleManager.StartMindimageSenju"
+ ],
+ "variables": [],
+ "residual": []
+}

@@ -1,0 +1,265 @@
+{
+ "version": 1,
+ "uid": 70,
+ "name_th": "แอร์โรว์เรน",
+ "name_en": "ArrowRain",
+ "tree": "ShootSkill",
+ "category": "Object",
+ "max_level": 30,
+ "roles": [
+  "attack (deals damage)",
+  "placed object / trap / summon"
+ ],
+ "class": "ArrowRainAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 70,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun",
+  "Arrow"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((int((Lv * 0.5)) * 5) + 5) + 100)",
+   "simplified": "5 × int(0.5 × Lv) + 105",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND Lv hs 2 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) ne 12 AND Lv hs 2 AND subWeapon != Bow AND subWeapon != Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND Lv hs 2 AND mainWeapon != Bowgun AND mainWeapon == Bow",
+   "by_level": [
+    105,
+    110,
+    110,
+    115,
+    115,
+    120,
+    120,
+    125,
+    125,
+    130
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((int((Lv * 0.5)) * 10) + 50)",
+   "simplified": "10 × int(0.5 × Lv) + 50",
+   "when": "always",
+   "by_level": [
+    50,
+    60,
+    60,
+    70,
+    70,
+    80,
+    80,
+    90,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "((gemCart(203[2]) + ((Lv // 3) + 1)) << 1)",
+   "simplified": "2 × gemCart(203, [2]) + 2 × Lv // 3 + 2",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND Lv hs 2 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) ne 12 AND Lv lo 2 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) eq 12 AND Lv hs 2 AND mainWeapon != Bowgun AND mainWeapon == Bow"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(gemCart(203[2]) + ((Lv // 3) + 1))",
+   "simplified": "gemCart(203, [2]) + Lv // 3 + 1",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "(gemCart(203[2]) + ((Lv // 3) + 1))",
+   "simplified": "gemCart(203, [2]) + Lv // 3 + 1",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND Lv hs 2 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) ne 12 AND Lv lo 2 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND Lv hs 2 AND mainWeapon == Bowgun"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((int((Lv * 0.5)) * 5) + 5) + 100) + 70)",
+   "simplified": "5 × int(0.5 × Lv) + 175",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND Lv hs 2 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND Lv hs 2 AND mainWeapon == Bowgun",
+   "by_level": [
+    175,
+    180,
+    180,
+    185,
+    185,
+    190,
+    190,
+    195,
+    195,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "100",
+   "simplified": "100",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND Lv lo 2 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) ne 12 AND Lv lo 2 AND subWeapon != Bow AND subWeapon != Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND Lv lo 2 AND mainWeapon != Bowgun AND mainWeapon == Bow",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "170",
+   "simplified": "170",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND Lv lo 2 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND Lv lo 2 AND mainWeapon == Bowgun",
+   "by_level": 170
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerStatusBase.GetEquipElement",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

@@ -1,0 +1,61 @@
+{
+ "version": 1,
+ "uid": 1097,
+ "name_th": "การปะทะของจิตวิญญาณ",
+ "name_en": "CollisionOfFightingSpirit",
+ "tree": "BareHandSkill",
+ "category": "Mastery",
+ "max_level": 100,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "CollisionOfFightingSpirit",
+ "proration": null,
+ "eq_limit": [
+  "Hand"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "CollisionOfFightingSpirit",
+  "bonuses": {
+   "LastDmgRate": {
+    "id": 8,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   },
+   "Percent": {
+    "id": 27,
+    "expr": "int(((Lv + (Lv << 2)) * 0.5))",
+    "by_level": [
+     2,
+     5,
+     7,
+     10,
+     12,
+     15,
+     17,
+     20,
+     22,
+     25
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

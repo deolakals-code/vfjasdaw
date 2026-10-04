@@ -1,0 +1,808 @@
+{
+ "version": 1,
+ "steps": [
+  {
+   "id": 0,
+   "name": "HitCheck",
+   "kind": "check"
+  },
+  {
+   "id": 1,
+   "name": "InvincibleCheck",
+   "kind": "check"
+  },
+  {
+   "id": 2,
+   "name": "AvoidBreakCheck",
+   "kind": "check"
+  },
+  {
+   "id": 3,
+   "name": "AvoidCheck",
+   "kind": "check"
+  },
+  {
+   "id": 4,
+   "name": "CorrectHitCheck",
+   "kind": "check"
+  },
+  {
+   "id": 5,
+   "name": "MetalSlimeFlagCheck",
+   "kind": "check"
+  },
+  {
+   "id": 6,
+   "name": "CriticalCheck",
+   "kind": "check"
+  },
+  {
+   "id": 7,
+   "name": "BaseDamage",
+   "kind": "constant"
+  },
+  {
+   "id": 8,
+   "name": "SkillConstantDamage",
+   "kind": "constant"
+  },
+  {
+   "id": 9,
+   "name": "BufferConstantDamage",
+   "kind": "constant"
+  },
+  {
+   "id": 10,
+   "name": "Def",
+   "kind": "constant"
+  },
+  {
+   "id": 11,
+   "name": "FirstAttack",
+   "kind": "constant"
+  },
+  {
+   "id": 12,
+   "name": "MinusDamageCheck",
+   "kind": "check"
+  },
+  {
+   "id": 13,
+   "name": "CriticalRate",
+   "kind": "rate"
+  },
+  {
+   "id": 14,
+   "name": "WeakElementDamageCheck",
+   "kind": "check"
+  },
+  {
+   "id": 15,
+   "name": "ElementBonusRate",
+   "kind": "rate"
+  },
+  {
+   "id": 16,
+   "name": "NormalElementDamageResistRate",
+   "kind": "rate"
+  },
+  {
+   "id": 17,
+   "name": "NormalAttackPowerWave",
+   "kind": "rate"
+  },
+  {
+   "id": 18,
+   "name": "SkillRate",
+   "kind": "rate"
+  },
+  {
+   "id": 19,
+   "name": "FirstAttackRate",
+   "kind": "rate"
+  },
+  {
+   "id": 20,
+   "name": "AutoSkillRate",
+   "kind": "rate"
+  },
+  {
+   "id": 21,
+   "name": "StableRate",
+   "kind": "rate"
+  },
+  {
+   "id": 22,
+   "name": "AutoSkillConstant",
+   "kind": "constant"
+  },
+  {
+   "id": 23,
+   "name": "ExpRate",
+   "kind": "rate"
+  },
+  {
+   "id": 24,
+   "name": "TypeDamageRate",
+   "kind": "rate"
+  },
+  {
+   "id": 25,
+   "name": "LastDamageRate",
+   "kind": "rate"
+  },
+  {
+   "id": 26,
+   "name": "DistanceResistRate",
+   "kind": "rate"
+  },
+  {
+   "id": 27,
+   "name": "SpecialLastDamageRate",
+   "kind": "rate"
+  },
+  {
+   "id": 28,
+   "name": "GemDamageRate",
+   "kind": "rate"
+  },
+  {
+   "id": 29,
+   "name": "AbnormalDamageIncreaseRate",
+   "kind": "rate"
+  },
+  {
+   "id": 30,
+   "name": "LastConstantDamage",
+   "kind": "constant"
+  },
+  {
+   "id": 31,
+   "name": "GuardBreakCheck",
+   "kind": "check"
+  },
+  {
+   "id": 32,
+   "name": "GuardCheck",
+   "kind": "check"
+  },
+  {
+   "id": 33,
+   "name": "GuardPower",
+   "kind": "other"
+  },
+  {
+   "id": 34,
+   "name": "NormalAttackTreasureHuntLastDamageRate",
+   "kind": "rate"
+  },
+  {
+   "id": 35,
+   "name": "DamageLimit",
+   "kind": "constant"
+  },
+  {
+   "id": 36,
+   "name": "MinDamage",
+   "kind": "constant"
+  },
+  {
+   "id": 37,
+   "name": "MaxDamage",
+   "kind": "constant"
+  },
+  {
+   "id": 38,
+   "name": "IsMinDamage",
+   "kind": "rate"
+  },
+  {
+   "id": 39,
+   "name": "IsMaxDamage",
+   "kind": "rate"
+  },
+  {
+   "id": 40,
+   "name": "SpecificWeaponLastDamage",
+   "kind": "rate"
+  },
+  {
+   "id": 41,
+   "name": "Max",
+   "kind": "other"
+  }
+ ],
+ "get_damage": [
+  "d = BaseDamage + SkillConstantDamage + BufferConstantDamage + Def(negative) + FirstAttack ; d = max(d, 0)",
+  "d = int(d * CriticalRate)                       # only when the hit is a critical",
+  "d = int(d * ElementBonusRate) ; d = int(d * NormalElementDamageResistRate) ; d = int(d * NormalAttackPowerWave)",
+  "d = int(d * SkillRate) ; d = int(d * FirstAttackRate) ; d = int(d * AutoSkillRate) ; d = int(d * StableRate)",
+  "d = d + AutoSkillConstant",
+  "d = int(d * ExpRate)                            # proration",
+  "d = int(d * TypeDamageRate) ; d = int(d * LastDamageRate) ; d = int(d * DistanceResistRate)",
+  "d = int(d * SpecialLastDamageRate) ; d = int(d * GemDamageRate) ; d = int(d * AbnormalDamageIncreaseRate)",
+  "d = max(d, 0) + LastConstantDamage",
+  "if guarded: d = int(d * GuardPower / 100)       # GuardPower default 25",
+  "d = int(d * NormalAttackTreasureHuntLastDamageRate)",
+  "d = min(d, DamageLimit) ; d = max(d, MinDamage) ; d = min(d, MaxDamage) ; d = int(d * SpecificWeaponLastDamage)",
+  "if d <= 0: d = 1       # a miss returns 0 before this; a MetalSlime-flag target returns 1"
+ ],
+ "notes": [
+  "Several AddRate / AddConstant into the same step are SUMMED; SetRate / SetConstant replace the slot.",
+  "An empty Rate slot is x1 and an empty Constant slot is +0. Every Rate step truncates to int (C# (int) cast).",
+  "Evidence: calc Reverse/dual_sword/formula.md section 1.2 (hand-verified against the assembly) and skills/damage/VALIDATION.md."
+ ],
+ "template_terms": [
+  {
+   "term": "SetCheck[HitCheck]",
+   "value": "SkillCalcTemplate.CheckStepResult(template, CalcStep.AvoidCheck)",
+   "when": [
+    "(hitState & 2) ne 0",
+    "(MobActionManagerBase.get_SystemInvincible(mobAction) & 1) eq 0",
+    "(SkillCalcTemplate.CheckStepResult(template, CalcStep.AvoidCheck) & 1) eq 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "SetCheck[CorrectHitCheck]",
+   "value": "SkillCalcTemplate.CheckStepResult(template, CalcStep.AvoidCheck)",
+   "when": [
+    "(hitState & 2) ne 0",
+    "(MobActionManagerBase.get_SystemInvincible(mobAction) & 1) eq 0",
+    "(SkillCalcTemplate.CheckStepResult(template, CalcStep.AvoidCheck) & 1) eq 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "SetCheck[CriticalCheck]",
+   "value": "SkillCalcTemplate.CheckStepResult(template, CalcStep.CriticalCheck)",
+   "when": [
+    "(hitState & 2) ne 0",
+    "(MobActionManagerBase.get_SystemInvincible(mobAction) & 1) eq 0",
+    "(SkillCalcTemplate.CheckStepResult(template, CalcStep.AvoidCheck) & 1) eq 0",
+    "(SkillCalcTemplate.CheckStepResult(template, CalcStep.CriticalCheck) & 1) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "SetCheck[CriticalCheck]",
+   "value": "SkillCalcTemplate.CheckStepResult(template, CalcStep.CriticalCheck)",
+   "when": [
+    "(hitState & 2) ne 0",
+    "(MobActionManagerBase.get_SystemInvincible(mobAction) & 1) eq 0",
+    "(SkillCalcTemplate.CheckStepResult(template, CalcStep.AvoidCheck) & 1) eq 0",
+    "(SkillCalcTemplate.CheckStepResult(template, CalcStep.CriticalCheck) & 1) eq 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddConstant[BaseDamage]",
+   "value": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, attackType, skillMaster.EqLimit, (SkillCalcTemplate.CheckStepResult(template, CalcStep.CriticalCheck) & 1))",
+   "when": [],
+   "lets": {}
+  },
+  {
+   "term": "AddConstant[Def]",
+   "value": "-PlayerAttackBase.CalcRegistDamage(this, attackType, PlayerActionManagerBase.get_PlayerStatus(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": [],
+   "lets": {}
+  },
+  {
+   "term": "AddConstant[BufferConstantDamage]",
+   "value": "SkillBufferManager.GetSkillBufferParam(PlayerStatusBase.get_SkillBufferManager(), SkillBufferId.SkillConstantDamage)",
+   "when": [],
+   "lets": {}
+  },
+  {
+   "term": "AddConstant[BufferConstantDamage]",
+   "value": "ArkSaber.CalcConstantDamage(playerAction, mobAction)",
+   "when": [],
+   "lets": {}
+  },
+  {
+   "term": "SetCheck[WeakElementDamageCheck]",
+   "value": "PlayerAttackBase.CalcElementBonus(PlayerActionManagerBase.get_PlayerStatus(), PlayerActionManagerBase.get_PlayerStatus(), attackType, SubElement)",
+   "when": [
+    "SubElement ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[ElementBonusRate]",
+   "value": "_t1507",
+   "when": [
+    "SubElement ne 0"
+   ],
+   "lets": {
+    "_t1507": "(PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), attackType, IMobStatusCalculator.get_Element(MobActionManagerBase.get_MobBattleStatus(mobAction))) gt PlayerAttackBase.CalcElementBonus(PlayerActionManagerBase.get_PlayerStatus(), PlayerActionManagerBase.get_PlayerStatus(), attackType, SubElement) ? PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), attackType, IMobStatusCalculator.get_Element(MobActionManagerBase.get_MobBattleStatus(mobAction))) : PlayerAttackBase.CalcElementBonus(PlayerActionManagerBase.get_PlayerStatus(), PlayerActionManagerBase.get_PlayerStatus(), attackType, SubElement))"
+   }
+  },
+  {
+   "term": "AddRate[NormalElementDamageResistRate]",
+   "value": "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate(PlayerActionManagerBase.get_PlayerStatus(), mobAction)",
+   "when": [
+    "SubElement ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "SetCheck[WeakElementDamageCheck]",
+   "value": "((ElementReach.TryGetWeaponElement(playerAction, out) & 1) eq 0 ? ElementReach.TryGetWeaponElement(playerAction, out) : _t1508)",
+   "when": [
+    "SubElement eq 0"
+   ],
+   "lets": {
+    "_t1508": "(((ElementReach.TryGetWeaponElement(playerAction, out) & 1) ne 0 && TryGetWeaponElement.element(playerAction) eq 0) || ((ElementReach.TryGetWeaponElement(playerAction, out) & 1) ne 0 && TryGetWeaponElement.element(playerAction) ne 0 && (ElementReach.CheckActiveElementReach(this) & 1) eq 0) ? ElementReach.CheckActiveElementReach(this) : PlayerAttackBase.CalcElementBonus(PlayerActionManagerBase.get_PlayerStatus(), PlayerActionManagerBase.get_PlayerStatus(), attackType, TryGetWeaponElement.element(playerAction)))"
+   }
+  },
+  {
+   "term": "AddRate[ElementBonusRate]",
+   "value": "_t1510",
+   "when": [
+    "SubElement eq 0"
+   ],
+   "lets": {
+    "_t1510": "(((ElementReach.TryGetWeaponElement(playerAction, out) & 1) eq 0) || ((ElementReach.TryGetWeaponElement(playerAction, out) & 1) ne 0 && TryGetWeaponElement.element(playerAction) eq 0) || ((ElementReach.TryGetWeaponElement(playerAction, out) & 1) ne 0 && TryGetWeaponElement.element(playerAction) ne 0 && (ElementReach.CheckActiveElementReach(this) & 1) eq 0) ? PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), attackType, IMobStatusCalculator.get_Element(MobActionManagerBase.get_MobBattleStatus(mobAction))) : _t1509)"
+   }
+  },
+  {
+   "term": "AddRate[NormalElementDamageResistRate]",
+   "value": "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate(PlayerActionManagerBase.get_PlayerStatus(), mobAction)",
+   "when": [
+    "SubElement eq 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[CriticalRate]",
+   "value": "(_t1511 / 100)",
+   "when": [],
+   "lets": {
+    "_t1511": "((SubElement ne 0 && attackType ne 2) || (SubElement eq 0 && attackType ne 2) ? IPlayerStatusCalculator.get_CriticalDmg(PlayerStatusBase.get_BattleStatus()) : IPlayerStatusCalculator.get_CriticalMagicDmg(PlayerStatusBase.get_BattleStatus()))"
+   }
+  },
+  {
+   "term": "AddRate[StableRate]",
+   "value": "_t1512",
+   "when": [],
+   "lets": {
+    "_t1512": "PlayerAttackBase.CalcStable(attackType, IPlayerStatusCalculator.get_Stable(PlayerStatusBase.get_BattleStatus()), (SkillCalcTemplate.CheckStepResult(template, CalcStep.CorrectHitCheck) & 1), PlayerActionManagerBase.get_PlayerStatus())"
+   }
+  },
+  {
+   "term": "AddRate[ExpRate]",
+   "value": "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(attackType, PlayerAttackBase.get_ActionID(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": [],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[LastDamageRate]",
+   "value": "PlayerAttackBase.CalcBufferLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": [],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[LastDamageRate]",
+   "value": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "when": [
+    "IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1",
+    "(EnemyMobActionManagerBase.TryGetProperties<MobPropertyLifeReduceDamage>(mobAction, 90, out) & 1) ne 0",
+    "TryGetProperties<object>.out2(mobAction, 90) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[DistanceResistRate]",
+   "value": "PlayerAttackBase.CalcDistanceResistRate(playerAction, mobAction)",
+   "when": [],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[TypeDamageRate]",
+   "value": "_t1513",
+   "when": [],
+   "lets": {
+    "_t1513": "PlayerAttackBase.CalcSkillTypeBonusRate(PlayerActionManagerBase.get_PlayerStatus(), ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetSkillBonusType(attackType, PlayerAttackBase.get_ActionID()), ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetSkillTreeBonus(TreeType, PlayerAttackBase.get_ActionID()))"
+   }
+  },
+  {
+   "term": "AddRate[GemDamageRate]",
+   "value": "PlayerAttackBase.CalcGemLastDamageRate(PlayerActionManagerBase.get_PlayerStatus(), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": [],
+   "lets": {}
+  },
+  {
+   "term": "SetConstant[DamageLimit]",
+   "value": "CheckPlayerDamageUpLimit.limitDamage(this_tpl(), playerAction, mobAction)",
+   "when": [
+    "(PlayerAttackBase.CheckPlayerDamageUpLimit(this_tpl(), playerAction, mobAction, out) & 1) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddConstant[MinDamage]",
+   "value": "_t1504",
+   "when": [
+    "(_t1503 & 1) ne 0",
+    "_t1504 ne -1"
+   ],
+   "lets": {
+    "_t1504": "CheckDamageLimit.min(((PlayerAttackBase.CheckPlayerDamageUpLimit(this_tpl(), playerAction, mobAction, out) & 1) eq 0 ? PlayerAttackBase.CheckPlayerDamageUpLimit(this_tpl(), playerAction, mobAction, out) : this_tpl()), mobAction)"
+   }
+  },
+  {
+   "term": "AddConstant[MaxDamage]",
+   "value": "_t1505",
+   "when": [
+    "(_t1503 & 1) ne 0",
+    "_t1505 ne -1"
+   ],
+   "lets": {
+    "_t1505": "CheckDamageLimit.max(((PlayerAttackBase.CheckPlayerDamageUpLimit(this_tpl(), playerAction, mobAction, out) & 1) eq 0 ? PlayerAttackBase.CheckPlayerDamageUpLimit(this_tpl(), playerAction, mobAction, out) : this_tpl()), mobAction)"
+   }
+  },
+  {
+   "term": "AddRate[AbnormalDamageIncreaseRate]",
+   "value": "_t1514",
+   "when": [
+    "(_t1506 & 1) ne 0"
+   ],
+   "lets": {
+    "_t1514": "CheckAbnormalDamageIncrease.out2(((_t1503 & 1) eq 0 ? _t1503 : ((_t1503 & 1) ne 0 && _t1505 eq -1 ? (_t1504 eq -1 ? _t1503 : this_tpl()) : this_tpl())), mobAction, ((_t1503 & 1) eq 0 ? _t1503 : ((_t1503 & 1) ne 0 && _t1505 eq -1 ? (_t1504 eq -1 ? _t1503 : _t1504) : _t1505)))"
+   }
+  },
+  {
+   "term": "AddRate[LastDamageRate]",
+   "value": "PetMemberActionManager.get_PartyPetDamageDownRate(playerAction)",
+   "when": [
+    "TreeType eq 29"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[SpecificWeaponLastDamage]",
+   "value": "PlayerAttackBase.GetSpecificWeaponLastDamageRate(playerAction, mobAction)",
+   "when": [],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[CriticalRate]",
+   "value": "(IPlayerStatusCalculator.get_CriticalMagicDmg(PlayerStatusBase.get_BattleStatus()) / 100)",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[StableRate]",
+   "value": "_t1512",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0"
+   ],
+   "lets": {
+    "_t1512": "PlayerAttackBase.CalcStable(attackType, IPlayerStatusCalculator.get_Stable(PlayerStatusBase.get_BattleStatus()), (SkillCalcTemplate.CheckStepResult(template, CalcStep.CorrectHitCheck) & 1), PlayerActionManagerBase.get_PlayerStatus())"
+   }
+  },
+  {
+   "term": "AddRate[ExpRate]",
+   "value": "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(attackType, PlayerAttackBase.get_ActionID(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[LastDamageRate]",
+   "value": "PlayerAttackBase.CalcBufferLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[LastDamageRate]",
+   "value": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0",
+    "IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1",
+    "(EnemyMobActionManagerBase.TryGetProperties<MobPropertyLifeReduceDamage>(mobAction, 90, out) & 1) ne 0",
+    "TryGetProperties<object>.out2(mobAction, 90) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[DistanceResistRate]",
+   "value": "PlayerAttackBase.CalcDistanceResistRate(playerAction, mobAction)",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[TypeDamageRate]",
+   "value": "_t1513",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0"
+   ],
+   "lets": {
+    "_t1513": "PlayerAttackBase.CalcSkillTypeBonusRate(PlayerActionManagerBase.get_PlayerStatus(), ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetSkillBonusType(attackType, PlayerAttackBase.get_ActionID()), ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetSkillTreeBonus(TreeType, PlayerAttackBase.get_ActionID()))"
+   }
+  },
+  {
+   "term": "AddRate[GemDamageRate]",
+   "value": "PlayerAttackBase.CalcGemLastDamageRate(PlayerActionManagerBase.get_PlayerStatus(), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "SetConstant[DamageLimit]",
+   "value": "CheckPlayerDamageUpLimit.limitDamage(this_tpl(), playerAction, mobAction)",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0",
+    "(PlayerAttackBase.CheckPlayerDamageUpLimit(this_tpl(), playerAction, mobAction, out) & 1) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddConstant[MinDamage]",
+   "value": "_t1504",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0",
+    "(_t1503 & 1) ne 0",
+    "_t1504 ne -1"
+   ],
+   "lets": {
+    "_t1504": "CheckDamageLimit.min(((PlayerAttackBase.CheckPlayerDamageUpLimit(this_tpl(), playerAction, mobAction, out) & 1) eq 0 ? PlayerAttackBase.CheckPlayerDamageUpLimit(this_tpl(), playerAction, mobAction, out) : this_tpl()), mobAction)"
+   }
+  },
+  {
+   "term": "AddConstant[MaxDamage]",
+   "value": "_t1505",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0",
+    "(_t1503 & 1) ne 0",
+    "_t1505 ne -1"
+   ],
+   "lets": {
+    "_t1505": "CheckDamageLimit.max(((PlayerAttackBase.CheckPlayerDamageUpLimit(this_tpl(), playerAction, mobAction, out) & 1) eq 0 ? PlayerAttackBase.CheckPlayerDamageUpLimit(this_tpl(), playerAction, mobAction, out) : this_tpl()), mobAction)"
+   }
+  },
+  {
+   "term": "AddRate[AbnormalDamageIncreaseRate]",
+   "value": "_t1514",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0",
+    "(_t1506 & 1) ne 0"
+   ],
+   "lets": {
+    "_t1514": "CheckAbnormalDamageIncrease.out2(((_t1503 & 1) eq 0 ? _t1503 : ((_t1503 & 1) ne 0 && _t1505 eq -1 ? (_t1504 eq -1 ? _t1503 : this_tpl()) : this_tpl())), mobAction, ((_t1503 & 1) eq 0 ? _t1503 : ((_t1503 & 1) ne 0 && _t1505 eq -1 ? (_t1504 eq -1 ? _t1503 : _t1504) : _t1505)))"
+   }
+  },
+  {
+   "term": "AddRate[LastDamageRate]",
+   "value": "PetMemberActionManager.get_PartyPetDamageDownRate(playerAction)",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0",
+    "TreeType eq 29"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[SpecificWeaponLastDamage]",
+   "value": "PlayerAttackBase.GetSpecificWeaponLastDamageRate(playerAction, mobAction)",
+   "when": [
+    "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873) ne 0"
+   ],
+   "lets": {}
+  },
+  {
+   "term": "AddRate[LastDamageRate]",
+   "value": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), attackType)",
+   "when": [],
+   "lets": {}
+  }
+ ],
+ "helpers": [
+  "EquipItemData.CalcDef",
+  "EquipItemData.CalcFlee",
+  "EquipItemData.CalcMdef",
+  "EquipItemData.GetEquip",
+  "EquipItemData.WeaponTypeCalculatorBase.CalcAtk",
+  "EquipItemData.WeaponTypeCalculatorBase.CalcStable",
+  "EquipItemData.WeaponTypeCalculatorBase.CalcSubAtk",
+  "EquipItemData.WeaponTypeCalculatorBase.CalcSubEqAtk",
+  "EquipItemData.WeaponTypeCalculatorBase.SubCalcMatk",
+  "EquipItemData.WeaponTypeCalculatorBase.SubCalcStable",
+  "EquipItemData.WeaponTypeCalculatorBase.calcAspdParam",
+  "EquipItemData.WeaponTypeCalculatorBase.calcAtkParam",
+  "EquipItemData.WeaponTypeCalculatorBase.calcMatkParam",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "EquipItemData.get_Body",
+  "EquipItemData.get_Option",
+  "EquipItemData.get_SubWeapon",
+  "EquipItemData.get_SubWeaponItemType",
+  "EquipItemData.get_Weapon",
+  "EquipItemData.get_WeaponItemType",
+  "PlayerAttackBase.CalcBonusLastDamageRate",
+  "PlayerAttackBase.CalcDistanceResistRate",
+  "PlayerAttackBase.CalcDoubleThrowLastDamageRate",
+  "PlayerAttackBase.CalcElementKillerBonus",
+  "PlayerAttackBase.CalcGemLastDamageRate",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.CalcLastDamageRate",
+  "PlayerAttackBase.CalcMagicResistDamage",
+  "PlayerAttackBase.CalcMotionSpeed",
+  "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate",
+  "PlayerAttackBase.CalcPlayerDamageUpLimit",
+  "PlayerAttackBase.CalcPowerResistDamage",
+  "PlayerAttackBase.CalcRegistDamage",
+  "PlayerAttackBase.CalcSkillMasteryLastDamageRate",
+  "PlayerAttackBase.CalcSkillTypeBonusRate",
+  "PlayerAttackBase.CheckAbnormalDamageIncrease",
+  "PlayerAttackBase.CheckDamageLimit",
+  "PlayerAttackBase.CheckHit",
+  "PlayerAttackBase.CheckLongRangeAttack",
+  "PlayerAttackBase.CheckMagicCritical",
+  "PlayerAttackBase.CheckMobActionUnobstructable",
+  "PlayerAttackBase.CheckPlayerDamageUpLimit",
+  "PlayerAttackBase.CheckSkillIndividualFlag",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.ContainsNotApplicableSkill",
+  "PlayerAttackBase.CorrectComboRate",
+  "PlayerAttackBase.CreateDummyDamageData",
+  "PlayerAttackBase.ExistWeaponType",
+  "PlayerAttackBase.GetLimitDamage",
+  "PlayerAttackBase.GetSpecificWeaponLastDamageRate",
+  "PlayerAttackBase.GetSubWeaponType",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.GetWeaponType",
+  "PlayerAttackBase.HitReactionAssign",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.IsFailure",
+  "PlayerAttackBase.PossibilityAbnormalState",
+  "PlayerAttackBase.calcBaseDamage",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerAttackBase.cheakRangeAngle",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.checkCriticalPercent",
+  "PlayerAttackBase.checkMobReaction",
+  "PlayerAttackBase.checkRangeHeight",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerAttackBase.get_CheckBlank",
+  "PlayerAttackBase.get_IsRangeEquipBonus",
+  "PlayerAttackBase.get_IsRangeSkillBonus",
+  "PlayerAttackBase.get_Mp",
+  "PlayerAttackBase.get_TreeType",
+  "PlayerAttackBase.templateToDamageData",
+  "SkillActionBase.ActiveHpLock",
+  "SkillActionBase.CalcActualDamage",
+  "SkillActionBase.CalcMagicStablePercent",
+  "SkillActionBase.CalcStablePercent",
+  "SkillActionBase.CheckMainTarget",
+  "SkillActionBase.CheckRangeHit",
+  "SkillActionBase.Equals",
+  "SkillActionBase.GetMainTarget",
+  "SkillActionBase.IsFailure",
+  "SkillActionBase.StrengthPayHp",
+  "SkillActionBase.checkPercent",
+  "SkillActionBase.get_ActionID",
+  "SkillActionBase.get_AttackCount",
+  "SkillActionBase.get_AttackType",
+  "SkillActionBase.get_BaseMp",
+  "SkillActionBase.get_IsChatLog",
+  "SkillActionBase.get_IsFallFailure",
+  "SkillActionBase.get_IsHitRigidity",
+  "SkillActionBase.get_IsInterruptable",
+  "SkillActionBase.get_IsMoveAssistContinue",
+  "SkillActionBase.get_IsOverlay",
+  "SkillActionBase.get_IsPutUpWeapon",
+  "SkillActionBase.get_IsRange",
+  "SkillActionBase.get_IsServantSkill",
+  "SkillActionBase.get_IsSupport",
+  "SkillActionBase.get_IsUnsheatheWeapon",
+  "SkillActionBase.get_MotionSpeed",
+  "SkillActionBase.get_Mp",
+  "SkillActionBase.op_Equality",
+  "SkillActionBase.op_Inequality",
+  "SkillCalcTemplate.CheckStepResult",
+  "SkillCalcTemplate.GetDamage",
+  "SkillCalcTemplate.checkType",
+  "SkillCalcTemplate.get_Item"
+ ],
+ "status": [
+  "IMobStatusCalculator.CalcDef",
+  "IMobStatusCalculator.CalcMdef",
+  "IMobStatusCalculator.SetMobStatus",
+  "IMobStatusCalculator.get_AvoidProbability",
+  "IMobStatusCalculator.get_CutAttack",
+  "IMobStatusCalculator.get_CutMagicAttack",
+  "IMobStatusCalculator.get_DamagePercent",
+  "IMobStatusCalculator.get_Def",
+  "IMobStatusCalculator.get_Element",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "IMobStatusCalculator.get_ExpDefNormal",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "IMobStatusCalculator.get_GuardProbability",
+  "IMobStatusCalculator.get_Level",
+  "IMobStatusCalculator.get_MagicDef",
+  "IMobStatusCalculator.get_MaxHp",
+  "IMobStatusCalculator.get_MoveSpeed",
+  "IMobStatusCalculator.get_NecessaryFleePercent",
+  "IMobStatusCalculator.get_NecessaryHit",
+  "IMobStatusCalculator.get_Persona",
+  "IMobStatusCalculator.get_PersonaValue",
+  "IMobStatusCalculator.get_Property",
+  "IMobStatusCalculator.get_StablePercent",
+  "IPlayerStatusCalculator.CalcBaseGuardPower",
+  "IPlayerStatusCalculator.GetDamageCut",
+  "IPlayerStatusCalculator.GetDefFact",
+  "IPlayerStatusCalculator.GetMdefFact",
+  "IPlayerStatusCalculator.GetMotionSpeed",
+  "IPlayerStatusCalculator.GetNextAtkTime",
+  "IPlayerStatusCalculator.GetSkillDelayRate1",
+  "IPlayerStatusCalculator.GetSkillDelayRate2",
+  "IPlayerStatusCalculator.SetGuildStatusBoost",
+  "IPlayerStatusCalculator.get_Agi",
+  "IPlayerStatusCalculator.get_AntiVirus",
+  "IPlayerStatusCalculator.get_Aspd",
+  "IPlayerStatusCalculator.get_Atk",
+  "IPlayerStatusCalculator.get_AtkMpRecovery",
+  "IPlayerStatusCalculator.get_AvoidDelay",
+  "IPlayerStatusCalculator.get_AvoidSpeed",
+  "IPlayerStatusCalculator.get_AvoidStack",
+  "IPlayerStatusCalculator.get_Critical",
+  "IPlayerStatusCalculator.get_CriticalDmg",
+  "IPlayerStatusCalculator.get_CriticalMagicDmg",
+  "IPlayerStatusCalculator.get_Crt",
+  "IPlayerStatusCalculator.get_Cspd",
+  "IPlayerStatusCalculator.get_Def",
+  "IPlayerStatusCalculator.get_Dex",
+  "IPlayerStatusCalculator.get_ElementPower",
+  "IPlayerStatusCalculator.get_EqAtk",
+  "IPlayerStatusCalculator.get_EqDef",
+  "IPlayerStatusCalculator.get_Flee",
+  "IPlayerStatusCalculator.get_GuardDelay",
+  "IPlayerStatusCalculator.get_GuardPower",
+  "IPlayerStatusCalculator.get_GuardSpeed",
+  "IPlayerStatusCalculator.get_Hit",
+  "IPlayerStatusCalculator.get_HpRecovery",
+  "IPlayerStatusCalculator.get_Int",
+  "IPlayerStatusCalculator.get_Luk",
+  "IPlayerStatusCalculator.get_Lv",
+  "IPlayerStatusCalculator.get_Matk",
+  "IPlayerStatusCalculator.get_MaxHp",
+  "IPlayerStatusCalculator.get_MaxMp",
+  "IPlayerStatusCalculator.get_Mdef",
+  "IPlayerStatusCalculator.get_Men",
+  "IPlayerStatusCalculator.get_MpRecovery",
+  "IPlayerStatusCalculator.get_Respawn",
+  "IPlayerStatusCalculator.get_Stable",
+  "IPlayerStatusCalculator.get_Str",
+  "IPlayerStatusCalculator.get_SubAtk",
+  "IPlayerStatusCalculator.get_SubEqAtk",
+  "IPlayerStatusCalculator.get_SubMatk",
+  "IPlayerStatusCalculator.get_SubStable",
+  "IPlayerStatusCalculator.get_Tec",
+  "IPlayerStatusCalculator.get_Vit",
+  "MobStatus.localExpDefMagic",
+  "MobStatus.localExpDefNormal",
+  "MobStatus.localExpDefSkill",
+  "PlayerPrimaryStatus.agi",
+  "PlayerPrimaryStatus.crt",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.int",
+  "PlayerPrimaryStatus.luk",
+  "PlayerPrimaryStatus.men",
+  "PlayerPrimaryStatus.str",
+  "PlayerPrimaryStatus.tec",
+  "PlayerPrimaryStatus.vit"
+ ],
+ "evidence": {
+  "GetDamage": "RVA 0x21ff504 (hand-verified)",
+  "TemplateAssignment": "RVA 0x206bbb0 (decoded: variables.json PlayerAttackBase.TemplateAssignment)"
+ }
+}

@@ -1,0 +1,655 @@
+{
+ "version": 1,
+ "uid": 14,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "SkillChargeAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 14,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "0",
+   "simplified": "0",
+   "when": "baseSkillId eq 112 AND baseSkillId gt 111 AND baseSkillId ne 1155 AND baseSkillId ne 718",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(baseSkillId | (baseSkillLv << 16))",
+   "simplified": "baseSkillId | 0x10000 × baseSkillLv",
+   "when": "baseSkillId eq 1155 AND baseSkillId gt 111 OR baseSkillId eq 718 AND baseSkillId gt 111 AND baseSkillId ne 1155 OR baseSkillId le 111 AND baseSkillId ne 0 AND baseSkillId ne 76"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "400",
+   "simplified": "400",
+   "when": "baseSkillId eq 718 AND baseSkillId gt 111 AND baseSkillId ne 1155 OR baseSkillId eq 76 AND baseSkillId le 111 AND baseSkillId ne 0",
+   "by_level": 400
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "500",
+   "simplified": "500",
+   "when": "baseSkillId eq 1155 AND baseSkillId gt 111",
+   "by_level": 500
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "SetBaseSkill",
+   "kind": "set",
+   "name": "baseSkillId",
+   "formula": "id",
+   "simplified": "id",
+   "when": "always"
+  },
+  {
+   "method": "SetBaseSkill",
+   "kind": "set",
+   "name": "baseSkillLv",
+   "formula": "lv",
+   "simplified": "lv",
+   "when": "always",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "SetComboType",
+   "kind": "set",
+   "name": "comboType",
+   "formula": "comboType",
+   "simplified": "comboType",
+   "when": "always"
+  },
+  {
+   "method": "SetComboRate",
+   "kind": "set",
+   "name": "comboSkillRate",
+   "formula": "rate",
+   "simplified": "rate",
+   "when": "always"
+  },
+  {
+   "method": "SetComboRate",
+   "kind": "set",
+   "name": "comboRate",
+   "formula": "rate",
+   "simplified": "rate",
+   "when": "always"
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1155, baseSkillLv)",
+   "simplified": "AddSelfBuffer(1155, baseSkillLv)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(SkillBufferManager.AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.GoliathTakeShot, baseSkillLv, 0), GoliathTakeShotBuf) eq 1 AND baseSkillId eq 1155 AND baseSkillId gt 112 AND baseSkillId ne 718 OR !UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(SkillBufferManager.AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.GoliathTakeShot, baseSkillLv, 0), GoliathTakeShotBuf) ne 1 AND baseSkillId eq 1155 AND baseSkillId gt 112 AND baseSkillId ne 718",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.AddSelfBuffer",
+    "SkillId.GoliathTakeShot",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SlashReaperBuf..ctor",
+   "formula": ".ctor(baseSkillLv, actarAction)",
+   "simplified": ".ctor(baseSkillLv, actarAction)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND baseSkillId eq 718 AND baseSkillId gt 112",
+   "vars": [
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new SlashReaperBuf)",
+   "simplified": "AddSelfBuffer(new, SlashReaperBuf)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND baseSkillId eq 718 AND baseSkillId gt 112",
+   "vars": [
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "MagicCannonBuf..ctor",
+   "formula": ".ctor(baseSkillLv)",
+   "simplified": ".ctor(baseSkillLv)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND baseSkillId eq 112 AND baseSkillId le 112 AND baseSkillId ne 76",
+   "vars": [
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new MagicCannonBuf)",
+   "simplified": "AddSelfBuffer(new, MagicCannonBuf)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND baseSkillId eq 112 AND baseSkillId le 112 AND baseSkillId ne 76",
+   "vars": [
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(76, baseSkillLv)",
+   "simplified": "AddSelfBuffer(76, baseSkillLv)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(SkillBufferManager.AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.CrossFire, baseSkillLv, 0), CrossFireBuf) eq 1 AND baseSkillId eq 76 AND baseSkillId le 112 OR !UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(SkillBufferManager.AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.CrossFire, baseSkillLv, 0), CrossFireBuf) ne 1 AND baseSkillId eq 76 AND baseSkillId le 112",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.AddSelfBuffer",
+    "SkillId.CrossFire",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ReceiveSupport",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(112)",
+   "simplified": "RemoveSelfBuffer(112)",
+   "when": "response.Value eq 112 AND response.Value ne 718 AND returnCode ne 0"
+  },
+  {
+   "method": "ReceiveSupport",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(718)",
+   "simplified": "RemoveSelfBuffer(718)",
+   "when": "response.Value eq 718 AND returnCode ne 0"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "MagicCannonBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "chargeTimer": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "flag": [
+       {
+        "formula": "2048",
+        "when": "always",
+        "by_level": 2048
+       }
+      ],
+      "bonus": [
+       {
+        "formula": "(Lv * 50)",
+        "when": "always",
+        "by_level": [
+         50,
+         100,
+         150,
+         200,
+         250,
+         300,
+         350,
+         400,
+         450,
+         500
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "200"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "chargeValue",
+     "simplified": "chargeValue",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "chargeTimer": [
+     {
+      "method": "Updata",
+      "formula": "(chargeTimer - UnityEngine.Time.get_deltaTime())",
+      "when": "(chargeTimer - UnityEngine.Time.get_deltaTime()) hi 0 AND BuffEffectActive ne 0 OR (chargeTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND BuffEffectActive ne 0"
+     },
+     {
+      "method": "Next",
+      "formula": "1",
+      "when": "always"
+     }
+    ],
+    "chargeValue": [
+     {
+      "method": "Next",
+      "formula": "(((chargeValue lt 0x2710 ? 100 : 50) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? 100 : 50) + chargeValue) : 0x4e20)",
+      "when": "always"
+     },
+     {
+      "method": "Charge",
+      "formula": "(((chargeValue lt 0x2710 ? ((((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) : ((((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) lt 0 ? (((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) + 1) : ((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime)))) >> 1)) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? ((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) : ((((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) lt 0 ? (((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) + 1) : ((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime)))) >> 1)) + chargeValue) : 0x4e20)",
+      "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), 37)"
+     },
+     {
+      "method": "MagicBalkanCharge",
+      "formula": "(((chargeValue lt 0x2710 ? (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) : (((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) lt 0 ? ((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) + 1) : (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000)) >> 1)) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) : (((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) lt 0 ? ((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) + 1) : (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000)) >> 1)) + chargeValue) : 0x4e20)",
+      "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), 37) AND (isFirst & 1) ne 0"
+     },
+     {
+      "method": "MagicBalkanCharge",
+      "formula": "(((chargeValue lt 0x2710 ? bonus : ((bonus lt 0 ? (bonus + 1) : bonus) >> 1)) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? bonus : ((bonus lt 0 ? (bonus + 1) : bonus) >> 1)) + chargeValue) : 0x4e20)",
+      "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), 37) AND (isFirst & 1) eq 0"
+     },
+     {
+      "method": "UpdateChargeValue",
+      "formula": "(chargeValue lt 0x4e20 ? chargeValue : 0x4e20)",
+      "when": "always"
+     }
+    ],
+    "Count": [
+     {
+      "method": "Next",
+      "formula": "(Max lt ((((chargeValue lt 0x2710 ? 100 : 50) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? 100 : 50) + chargeValue) : 0x4e20) // 100) ? Max : ((((chargeValue lt 0x2710 ? 100 : 50) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? 100 : 50) + chargeValue) : 0x4e20) // 100))",
+      "when": "always"
+     },
+     {
+      "method": "Charge",
+      "formula": "(Max lt ((((chargeValue lt 0x2710 ? ((((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) : ((((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) lt 0 ? (((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) + 1) : ((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime)))) >> 1)) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? ((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) : ((((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) lt 0 ? (((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) + 1) : ((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime)))) >> 1)) + chargeValue) : 0x4e20) // 100) ? Max : ((((chargeValue lt 0x2710 ? ((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) : ((((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) lt 0 ? (((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) + 1) : ((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime)))) >> 1)) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? ((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) : ((((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) lt 0 ? (((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime))) + 1) : ((((max(status.Cspd, 0) lt 1000 ? max(status.Cspd) : 1000) << ((EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 ? 1 : 0)) + max((((max(status.Cspd, 0) - 1000) // 9) lt 1000 ? ((max(status.Cspd) - 1000) // 9) : 1000))) + int((bonus * castTime)))) >> 1)) + chargeValue) : 0x4e20) // 100))",
+      "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), 37)"
+     },
+     {
+      "method": "MagicBalkanCharge",
+      "formula": "(Max lt ((((chargeValue lt 0x2710 ? (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) : (((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) lt 0 ? ((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) + 1) : (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000)) >> 1)) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) : (((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) lt 0 ? ((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) + 1) : (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000)) >> 1)) + chargeValue) : 0x4e20) // 100) ? Max : ((((chargeValue lt 0x2710 ? (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) : (((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) lt 0 ? ((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) + 1) : (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000)) >> 1)) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) : (((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) lt 0 ? ((max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000) + 1) : (max(status.Cspd) lt 1000 ? max(status.Cspd) : 1000)) >> 1)) + chargeValue) : 0x4e20) // 100))",
+      "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), 37) AND (isFirst & 1) ne 0"
+     },
+     {
+      "method": "MagicBalkanCharge",
+      "formula": "(Max lt ((((chargeValue lt 0x2710 ? bonus : ((bonus lt 0 ? (bonus + 1) : bonus) >> 1)) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? bonus : ((bonus lt 0 ? (bonus + 1) : bonus) >> 1)) + chargeValue) : 0x4e20) // 100) ? Max : ((((chargeValue lt 0x2710 ? bonus : ((bonus lt 0 ? (bonus + 1) : bonus) >> 1)) + chargeValue) lt 0x4e20 ? ((chargeValue lt 0x2710 ? bonus : ((bonus lt 0 ? (bonus + 1) : bonus) >> 1)) + chargeValue) : 0x4e20) // 100))",
+      "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), 37) AND (isFirst & 1) eq 0"
+     },
+     {
+      "method": "UpdateChargeValue",
+      "formula": "(Max lt ((chargeValue lt 0x4e20 ? chargeValue : 0x4e20) // 100) ? Max : ((chargeValue lt 0x4e20 ? chargeValue : 0x4e20) // 100))",
+      "when": "always"
+     }
+    ],
+    "comboType": [
+     {
+      "method": "SetComboParam",
+      "formula": "type",
+      "when": "always"
+     }
+    ],
+    "comboRate": [
+     {
+      "method": "SetComboParam",
+      "formula": "rate",
+      "when": "always"
+     }
+    ],
+    "flag": [
+     {
+      "method": "Start",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Charge",
+    "GetComboParam",
+    "MagicBalkanCharge",
+    "Next",
+    "SetComboParam",
+    "Start",
+    "UpdateChargeValue"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "SlashReaperBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "playerAction": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "battleManager": [
+       {
+        "formula": "playerAction.battleManager",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "pointCount": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "Max": [
+       {
+        "formula": "99",
+        "when": "always",
+        "by_level": 99
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "Lv"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "EnableCounter": [
+     {
+      "method": "set_EnableCounter",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "slashReaper": [
+     {
+      "method": "SetAction",
+      "formula": "action",
+      "when": "slashReaper ne action"
+     },
+     {
+      "method": "StartSkill",
+      "formula": "PlayerBattleManager.StartSlashReaper(battleManager, Lv)",
+      "when": "!SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND !SkillActionBase.op_Inequality(battleManager.nextAction) AND !SkillActionBase.op_Inequality(slashReaper) AND BuffEffectActive ne 0 AND Count ge 1 AND IsInstanceOf(battleManager.skillActManager, SkillActionManager) eq 1 AND MobPopAreaGaugeManager.get_Instance().IsBonus eq 0 OR !SkillActionBase.op_Inequality(slashReaper) AND BuffEffectActive ne 0 AND Count ge 1 AND IsInstanceOf(battleManager.skillActManager, SkillActionManager) eq 1 AND MobPopAreaGaugeManager.get_Instance().IsBonus eq 0 AND SkillActionBase.get_ActionID() ne 718 AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillActionBase.op_Inequality(battleManager.nextAction) OR !SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND !SkillActionBase.op_Inequality(slashReaper) AND BuffEffectActive ne 0 AND Count ge 1 AND IsInstanceOf(battleManager.skillActManager, SkillActionManager) eq 1 AND MobPopAreaGaugeManager.get_Instance().IsBonus eq 0 AND SkillActionBase.get_ActionID() ne 718 AND SkillActionBase.op_Inequality(battleManager.nextAction)"
+     }
+    ],
+    "pointCount": [
+     {
+      "method": "Next",
+      "formula": "((pointCount + Lv) - (((pointCount + Lv) // 10) * 10))",
+      "when": "always"
+     }
+    ],
+    "comboType": [
+     {
+      "method": "SetComboParam",
+      "formula": "type",
+      "when": "always"
+     }
+    ],
+    "comboRate": [
+     {
+      "method": "SetComboParam",
+      "formula": "rate",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "GetComboParam",
+    "Next",
+    "OnLeave",
+    "SetAction",
+    "SetComboParam",
+    "StartSkill",
+    "UpdateBradeNum",
+    "get_Element",
+    "get_EnableCounter",
+    "set_EnableCounter"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "MagicCannonBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "200"
+    },
+    "SlashReaperBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "Lv"
+    }
+   },
+   "attached_via": "caller2:SlashReaperBuf$$.ctor<-SkillChargeAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.MagicalExplosion",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "IPlayerStatusCalculator.get_Cspd",
+  "MobPopAreaGaugeManager.get_Instance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerBattleManager.StartSlashReaper",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillActionBase.get_ActionID",
+  "SkillActionBase.op_Inequality",
+  "SkillActionManagerBase.get_CurrentSkill",
+  "SkillBufferId.Count",
+  "SkillBufferId.Value",
+  "SkillBufferManager.AddSelfBuffer",
+  "SkillId.CrossFire",
+  "SkillId.GoliathTakeShot",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

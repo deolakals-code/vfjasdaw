@@ -1,0 +1,273 @@
+﻿SkillActionBase: meth  CalcDamage(2)
+CallGolemActionManager: field <IsNextAttackSkillRateBoost>k__BackingField ; prop  IsNextAttackSkillRateBoost ; meth  get_IsNextAttackSkillRateBoost(0) ; meth  set_IsNextAttackSkillRateBoost(1)
+MobPropertyDistanceResist: meth  GetResistRate(2)
+MobPropertyResistMultiDamage: meth  GetResistDamageNumber(0) ; meth  GetResistDamageRate(0)
+MobAttackBase: meth  calcResistDamage(2) ; meth  calcResistDamage(2) ; meth  calcElementResistDamage(2)
+BonusMagicDamageAction: field skillRate
+BonusNaturalDamageAction: field skillRate
+BonusNormalDamageAction: field skillRate
+BonusPhysicalDamageAction: field skillRate
+CronosDrivePursuitAction: field skillRate
+GuardStrikeAction: field skillRate
+ImperialRayPursuitAction: field skillRate
+JumpbackShotPursuitAction: field baseSkillRate ; field bonusSkillRate
+NormalAttackAction: field orgaslashBonusSkillRate ; meth  calcRampageSkillRate(2)
+PhysicalPursuitAction: field skillRate
+PlayerAttackBase: field comboSkillRate ; prop  ComboSkillRate ; meth  get_ComboSkillRate(0) ; meth  SetComboRate(1) ; meth  CorrectComboRate(0) ; meth  CalcPowerResistDamage(3) ; meth  CalcMagicResistDamage(3) ; meth  CalcNormalElementWeaponDamageResistRate(2) ; meth  CalcDistanceResistRate(2)
+GemCartBufferId: field SkillRate = 4  [i32]
+AssassinStubAction: field skillRate
+DeathReceptionAction: field singleSkillRate ; field rangeSkillRate
+FuneVinteAction: field skillRate
+ShadowWalkAttackAction: field skillRate ; field exSkillRate
+DragSlaveAction: field skillRate
+ExplosionAction: field skillRate
+LightOfSaberAction: field skillRate
+MorningStarAction: field skillRate
+AccelBladeAction: field skillRate
+AstuteAction: field skillRate
+AuraBladeAction: field skillRate
+BusterBladeAction: field skillRate
+CleaveAttackAction: field skillRate ; field bonusSkillRate
+FastAttackAction: field skillRate
+HammerDownAction: field skillRate
+HardHitAction: field skillRate
+MeteoBreakerAction: field targetSkillRate ; field rangeSkillRate
+MoonSlashAction: field firstSkillRate ; field secondSkillRate
+MoonSlashPursuitAction: field skillRate
+OrgaslashAction: field singleAttackSkillRate ; field explosionSkillRate
+ShutOutAction: field skillRate ; field bonusSkillRate ; meth  CalcBonusResistDamage(2)
+SpiralAirAction: field skillRate
+StormBlazerAction: field skillRate
+SwordTempestAction: field skillRateFirst ; field skillRate
+TriggerSlashAction: field skillRate
+SkillCalcTemplate/CalcStep: field NormalElementDamageResistRate = 16  [i32] ; field SkillRate = 18  [i32] ; field AutoSkillRate = 20  [i32] ; field DistanceResistRate = 26  [i32]
+CombinationAction: field skillRate
+FloatingKickAction: field skillRate
+ForefistPunchAction: field skillRate
+GazerShootAction: field skillRate ; field longBonusSkillRate
+GeoImpactAction: field skillRate
+GodHandAction: field skillRate
+GoliathTakeShotAction: field baseSkillRate ; field chargeSkillRate ; field chargeComboRate ; meth  CorrectComboRate(0)
+BeautiesOfNatureAction: field skillRate
+BlackFlameEvilEyeAction: field skillRate
+BloodBiteAction: field skillRate
+ChaosEvilEyeAction: field skillRate
+DarkStingerAction: field skillRate
+DemonCroweAction: field skillRate
+EnchantingEvilEyeAction: field skillRate
+IntimidatingEvilEyeAction: field skillRate
+RedTearAction: field skillRate
+SacrificeAction: field skillRate
+SoulHuntAction: field firstSkillRate ; field secondSkillRate
+AirSlicerAction: field firstSkillRate ; field secondSkillRate ; field secondSkillRateBonus
+AirSlideAction: field skillRateFirst ; field skillRate
+ArialSlayAction: field skillRate
+BladeStingerAction: field skillRateBase ; field secondSkillRateBase ; field addSkillRate
+DragoonSwordAction: field skillRate
+HorizontalCutAction: field skillRate ; field secondSkillRate
+LunaDitherStarAction: field crossSkillRate
+LunaDitherStarBladeRainAction: field skillRate
+ParryingSwordAction: field skillRate
+PhantomRaveAction: field skillRate
+PhiloEclailAttackAction: field skillRate
+ShiningClothAction: field skillRate
+SturmLeaperAction: field skillRate
+TwinBusterBladeAction: field firstSkillRate ; field secondSkillRate
+TwinSlashAction: field skillRate
+IronPipeAction: field skillRate
+MagnumAction: field skillRate
+RetroBowgunAction: field skillRate
+BlitzPikeAction: field skillRate
+BlitzPikePursuitAction: field skillRate
+BusterLanceAction: field skillRate
+CannonSpearAction: field skillRate
+CronosDriveAction: field skillRate
+DeadlySpearAction: field skillRate
+DimensionTillAction: field skillRate
+DiveImpactAction: field fristSkillRate ; field secondSkillRate
+DragonicChargeAction: field targetSkillRate ; field rangeSkillRate
+DragonTailAction: field fristSkillRate ; field secondSkillRate
+DragonToothAction: field skillRate
+FlashStubAction: field skillRate
+LightningHailAction: field skillRate
+PunishRayAction: field skillRate ; field bonusSkillRate
+StrikeStubAction: field skillRate ; field bonusSkillRate
+ThorHammerAction: field skillRate ; field pursuitSkillRate
+BlankTrapAction: field skillRate
+CycloneArrowAction: field skillRate
+ExplossiveAction: field skillRate
+HomingShotAction: field skillRate
+KickBackAction: field skillRate
+MultipleHuntAction: field skillRate ; field secondSkillRate ; meth  calcDamageWolfAssault(2) ; meth  calcDamageHighRainSnipe(2) ; meth  calcDamageChasseGarde(2) ; meth  calcDamageSharpSnipe(2)
+SatelliteArrowAction: field skillRate
+SleepTrapAction: field skillRate
+SteelTrapAction: field skillRate
+SunriseArrowAction: field skillRate
+VerticalAirAction: field skillRate
+CrazyDaggerAction: field skillRate
+CrazyDaggerPursuitAction: field skillRate
+FlinchKnifeAction: field skillRate
+GatlingKnifeAction: field skillRate ; field bonusSkillRate
+KnifeCombatAction: field skillRate
+PoisonDaggerAction: field skillRate ; field bonusSkillRate
+SpikeDartAction: field skillRate ; field bonusSkillRate
+ThrowingAction: field skillRate
+WheelBiteAction: field skillRate
+AssaultAttackAction: field skillRate
+BindStrikeAction: field skillRate
+BlinkSwordAction: field skillRate
+LevenirAction: field skillRate
+RageSwordAction: field skillRate
+SonicThrustAction: field skillRate
+ElementSlashAction: field skillRate
+EnchantedBurstAction: field skillRate
+EnchantedSwordAction: field skillRate ; meth  CalcDamage(3)
+EtherFlareAction: field skillRate
+UnionSwordAction: field firstSkillRate ; field secondSkillRate
+ChronosShiftAction: field skillRate
+MagicArrowAction: field skillRate
+MagicBlastAction: field skillRate
+MagicBurstAction: field skillRate
+MagicCannonAction: field baseSkillRate ; field skillRate ; field chargeComboRate ; meth  CorrectComboRate(0)
+MagicEgelAttackAction: field skillRate
+MagicFallAction: field skillRate
+MagicFinawAction: field skillRate
+MagicFinawPursuitAction: field skillRate
+MagicImpactAction: field skillRate
+MagicJabelinAction: field skillRate
+MagicKnifeAction: field skillRate
+MagicLancerAction: field skillRate
+MagicLazerAction: field skillRate ; meth  GetAddSkillRate(0)
+MagicStormAction: field skillRate
+MagicWallAction: field skillRate
+AshuraAuraAttackAction: field skillRate
+BashAction: field skillRate
+ChariotAction: field skillRate
+EarthBindAction: field skillRate
+FlashArtsAction: field skillRate
+HeavySmashAction: field baseSkillRate
+MindimageSenjuAttackAction: field skillRate ; meth  CalcDamageChariot(2) ; meth  CalcDamageExorcism(2) ; meth  CalcDamageNemesis(2) ; meth  CalcDamageGeoImpact(2)
+RushAction: field skillRate
+SenfutsuAction: field skillRate
+ShellBreakAction: field skillRate
+ShinkyakuAction: field skillRate
+SmashAction: field skillRate
+SonicWaveAction: field skillRate
+ThieshankaiAction: field skillRate
+TryArtsAction: field skillRate
+BeatBlastAction: field skillRate
+CutOffTheDisasterAction: field skillRate ; field heavenlyStarSkillRate
+FinishingTouchAction: field skillRate
+FlashDrawnSwordAction: field skillRate
+HassohappaAction: field skillRate
+HayateAction: field skillRate ; field calcDamageData
+HeavenlyStarAction: field skillRate
+IchijhinnokazeAttackAction: field skillRates
+IllusionarySceneAction: field rangekiSkillRate ; field finishSkillRate
+RepelBladeAction: field skillRate
+ShadowlessSlashAction: field skillRate
+StrikeBackOfSwordAction: field skillRate
+TenjhoTengeMusouSwordAction: field skillRate
+ThreeStageThrustAction: field skillRate
+WaveBladeAction: field skillRate
+ZanteisettetsuAction: field skillRate ; field pursuitSkillRate ; field heavenlyStarSkillRate
+DengerShakeAction: field skillRate
+PhantomMissileAction: field skillRate
+SkullShakerAction: field skillRate
+SoulStreamAction: field skillRate
+SummonSkeletonAction: field skillRate
+SummonSkeletonBomb: field skillRate
+TombAction: field skillRate
+CloningTechniqueAction: field skillRate
+EarthStyleAttackAction: field skillRate
+FireStyleAction: field targetSkillRate ; field rangeSkillRate
+FumaShurikenAction: field skillRate
+KunaiThrowingAction: field skillRate
+RapidAquaVortexAction: field skillRate
+ThunderStyleAction: field skillRate
+WindStyleAction: field skillRate
+FlashOfTheWarGodAction: field skillRate
+JudgmentOfTheDarkGodAction: field skillRate
+L_Boomerang2Action: field skillRate
+L_Boomerang3Action: field skillRate
+L_BoomerangAction: field skillRate
+N_DragonToothAction: field firstSkillRate ; field secondSkillRate
+ExorcismAction: field skillRate
+HolyFistAction: field physicsSkillRate ; field magicSkillRate
+HolyGracePursuitAttackAction: field skillRate
+HolyLightActin: field skillRate
+HolyLightPursuitAction: field skillRate
+NemesisAction: field targetSkillRate ; field placeSkillRate
+RodStubAction: field skillRate
+BeragelungAction: field skillRate
+ShieldBashAction: field skillRate
+ShieldCannonAction: field skillRate
+ShieldUpperAction: field skillRate
+ArmBreakAction: field skillRate ; field bonusSkillRate
+ArrowRainAction: field skillRate
+ConquesterAction: field skillRate
+CrossFireAction: field mainSkillRate ; field subSkillRate ; field decoySkillRate ; field chargeComboRate ; meth  CorrectComboRate(0)
+DeathTorqueShotAction: field skillRate
+DecoyShooterAction: field skillRate
+DecoyShooterPursuitAction: field skillRate
+JumpbackShotAction: field skillRate
+MeebaShotAction: field skillRate ; field bonusSkillRate
+OneWheelAction: field skillRate
+ParabolaCannonAction: field skillRate ; field trapSkillRate
+ParalysisShotAction: field skillRate ; field bonusSkillRate
+PenetratorAction: field skillRate
+PowerShootAction: field skillRate
+SmokeDustAction: field skillRate ; field bonusSkillRate
+SnipingAction: field skillRate
+WideSpreadAction: field skillRate
+AldedrakAction: field skillRate
+AstralLanceAttackAction: field skillRate
+AutoDeviceAttackAction: field powerWaveSkillRate
+CounterForceAttackAction: field skillRate
+FacticeArmeAction: field skillRate
+IgnitionAction: field skillRate
+LifeExplosionAction: field skillRate
+MagicBalkanAction: field skillRate
+SlashReaperAction: field skillRate ; field chargeComboRate ; meth  CorrectComboRate(0)
+BlizzardAction: field skillRate
+CrystalLaserAction: field skillRate
+ImperialRayAction: field skillRate
+MeteorStrikeAction: field skillRate
+CallGolemBuf: meth  GetDamageResistRate(1)
+CrossFireBuf: field comboRate
+GeoImpactBuf: meth  CalcDamage(1)
+GoliathTakeShotBuf: field comboRate
+IchijhinnokazeBuf: meth  GetSkillRate(2) ; meth  GetNormalAttackSkillRate(1)
+MagicCannonBuf: field comboRate
+SkillBufferId: field PhysicalPursuitSkillRate = 85  [i32] ; field MagiclPursuitSkillRate = 86  [i32]
+SlashReaperBuf: field comboRate
+FamiliaMeteorStrikeAction: field skillRate
+CallGolemNormalAttackAction: field skillRate
+GolemGrenadeSkillBase: field skillRate ; meth  CalcSkillRate(2)
+HuntingOneNormalAttackAction: field skillRate
+AssassinationSecrets: meth  GetAssassinStubSkillRate(2) ; meth  GetFuneVinteMpSkillRate(2)
+IchijhinnokazeAratame: meth  GetNormalAttackSkillRateBonus(1)
+KnightWill/BonusType: field AssaultAttackSkillRate = 0  [i32] ; field RageSwordSkillRate = 2  [i32] ; field BindStrikeSkillRate = 3  [i32]
+PoisonMixer: meth  GetDeathReceptionSingleAttackSkillRate(2) ; meth  GetDeathReceptionRangeAttackSkillRate(2)
+MasteryId: field SkillRate = 26  [i32]
+RageAttack: field skillRate
+SneakAttack: field skillRate
+BlastFlare: field skillRate
+BlindEye: field skillRate
+MagicShot: field skillRate
+SealBreaker: field skillRate
+SorcielLance: field skillRate
+BusterAttack: field skillRate
+DownBlow: field skillRate
+HeavyAttack: field skillRate
+StanAttack: field skillRate
+SweepAttack: field skillRate
+SkillComboState/Values: field FillDownSkillRate
+SummonDemonicAttackAction: field skillRate
+SummonDemonicSpecialAttack: field skillRate
+SkillChargeAction: field comboRate ; meth  SetComboRate(1)
+SummonDemonicAction: meth  GetDamageResistRate(2)
+BlackKnightSkillActionBase: meth  CalcDamage(2)
+SmithGrant: meth  getSuccessSkillRate(0)
+Toram.Common.Rooms.BossDifficultyLevelMethods: field FlinchResistRate ; field TumbleResistRate ; field StunResistRate
+hits: 272

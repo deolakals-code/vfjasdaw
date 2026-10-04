@@ -1,0 +1,799 @@
+{
+ "version": 1,
+ "uid": 773,
+ "name_th": "แอดลิบ",
+ "name_en": "ImprovisationSong",
+ "tree": "Minstrel",
+ "category": "Buffer",
+ "max_level": 60,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "ImprovisationSongAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 773,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "gemcartGuitaristLv",
+   "formula": "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 46)",
+   "simplified": "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 46)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND (System.Collections.IEnumerator#0(System.Collections.Generic.IEnumerable<SkillBufferDataBase>#0!SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000))) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !SkillBufferManager.TryGetImprovisationSongBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND (System.Collections.IEnumerator#0(System.Collections.Generic.IEnumerable<SkillBufferDataBase>#0SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000))) AND SongActionBase.IsSongSkillId(CharacterActionManagerBase.get_Size()) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) ge 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "CharacterActionManagerBase.get_Size",
+    "GemCartBufferManager.GetBufferLevel",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillBufferManager.TryGetImprovisationSongBuf",
+    "SongActionBase.IsSongSkillId",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(Toram.Common.ProgramUtil.ShiftLeftBitByShort((SkillBufferDataBase.get_SkillId() & 0xffff)) | 0)",
+   "simplified": "Toram.Common.ProgramUtil.ShiftLeftBitByShort(SkillBufferDataBase.get_SkillId() & 65535) | 0",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 46) ne 0 AND SkillBufferManager.TryGetImprovisationSongBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsEnd ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND SkillBufferManager.TryGetImprovisationSongBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) AND SongBufferBase.CheckTake(TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288))) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsEnd eq 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsSuspendSong eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !SongBufferBase.CheckTake(TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288))) AND GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 46) ne 0 AND SkillBufferManager.TryGetImprovisationSongBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsEnd eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "GemCartBufferManager.GetBufferLevel",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.get_SkillId",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillBufferManager.TryGetImprovisationSongBuf",
+    "SongBufferBase.CheckTake",
+    "Toram.Common.ProgramUtil.ShiftLeftBitByShort",
+    "TryGetImprovisationSongBuf.songBuf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(Toram.Common.ProgramUtil.ShiftLeftBitByShort((SkillBufferDataBase.get_SkillId() & 0xffff)) | 1)",
+   "simplified": "Toram.Common.ProgramUtil.ShiftLeftBitByShort(SkillBufferDataBase.get_SkillId() & 65535) | 1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 46) eq 0 AND SkillBufferManager.TryGetImprovisationSongBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsEnd ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !SongBufferBase.CheckTake(TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288))) AND GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 46) eq 0 AND SkillBufferManager.TryGetImprovisationSongBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsEnd eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 46) eq 0 AND SkillBufferManager.TryGetImprovisationSongBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) AND SongBufferBase.CheckTake(TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288))) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsEnd eq 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsSuspendSong ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "GemCartBufferManager.GetBufferLevel",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.get_SkillId",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillBufferManager.TryGetImprovisationSongBuf",
+    "SongBufferBase.CheckTake",
+    "Toram.Common.ProgramUtil.ShiftLeftBitByShort",
+    "TryGetImprovisationSongBuf.songBuf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(Toram.Common.ProgramUtil.ShiftLeftBitByShort(0) | 0)",
+   "simplified": "Toram.Common.ProgramUtil.ShiftLeftBitByShort(0) | 0",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !SkillBufferManager.TryGetImprovisationSongBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillBufferManager.TryGetImprovisationSongBuf",
+    "Toram.Common.ProgramUtil.ShiftLeftBitByShort",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isDamaged",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer ne 0 AND param eq 200",
+   "by_level": 1
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "isDamaged",
+   "formula": "1",
+   "simplified": "1",
+   "when": "+0x129 eq 0 AND +0x12a eq 0 AND IsOtherPlayer eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773).damaged ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR +0x129 eq 0 AND +0x12a ne 0 AND IsOtherPlayer eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BeatBlast, 1) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773).damaged ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR +0x129 eq 0 AND +0x12a ne 0 AND IsOtherPlayer eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BeatBlast, 1) ge 1 AND SkillUtil.CheckSkillEquipLimit(PlayerStatusBase.get_EquipItemData(), MasterSkillDataManager.GetSkillMaster(Singleton<MasterSkillDataManager>.get_Instance(), SkillId.BeatBlast)) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773).damaged ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "MasterSkillDataManager.GetSkillMaster",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BeatBlast",
+    "SkillManager.GetSkillLv",
+    "SkillUtil.CheckSkillEquipLimit",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActiveResumeSong",
+   "kind": "set",
+   "name": "isResumed",
+   "formula": "1",
+   "simplified": "1",
+   "when": "+0x128 eq 0 OR (CharacterActionManagerBase.get_Size() - 769) ls 6 AND +0x128 eq 0 OR (CharacterActionManagerBase.get_Size() - 769) hi 6 AND +0x128 eq 0",
+   "by_level": 1,
+   "vars": [
+    "CharacterActionManagerBase.get_Size"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "ImprovisationSongBuf..ctor",
+   "formula": ".ctor(Lv, Id)",
+   "simplified": ".ctor(Lv, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SkillBufferManager.TryGetImprovisationSongBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) AND SongBufferBase.CheckTake(TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288))) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsEnd eq 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsSuspendSong eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillBufferManager.TryGetImprovisationSongBuf",
+    "SongBufferBase.CheckTake",
+    "TryGetImprovisationSongBuf.songBuf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ImprovisationSongBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ImprovisationSongBuf, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SkillBufferManager.TryGetImprovisationSongBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) AND SongBufferBase.CheckTake(TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288))) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsEnd eq 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager(), (this + 288)).IsSuspendSong eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillBufferManager.TryGetImprovisationSongBuf",
+    "SongBufferBase.CheckTake",
+    "TryGetImprovisationSongBuf.songBuf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(773)",
+   "simplified": "RemoveSelfBuffer(773)",
+   "when": "Id eq TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773).skillLocalId AND IsOtherPlayer eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 200",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "call",
+   "name": "BeatBlastBuf..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "+0x129 eq 0 AND +0x12a ne 0 AND IsOtherPlayer eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BeatBlast, 1) ge 1 AND SkillUtil.CheckSkillEquipLimit(PlayerStatusBase.get_EquipItemData(), MasterSkillDataManager.GetSkillMaster(Singleton<MasterSkillDataManager>.get_Instance(), SkillId.BeatBlast)) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773).damaged ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "MasterSkillDataManager.GetSkillMaster",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BeatBlast",
+    "SkillManager.GetSkillLv",
+    "SkillUtil.CheckSkillEquipLimit",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new BeatBlastBuf)",
+   "simplified": "AddSelfBuffer(new, BeatBlastBuf)",
+   "when": "+0x129 eq 0 AND +0x12a ne 0 AND IsOtherPlayer eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BeatBlast, 1) ge 1 AND SkillUtil.CheckSkillEquipLimit(PlayerStatusBase.get_EquipItemData(), MasterSkillDataManager.GetSkillMaster(Singleton<MasterSkillDataManager>.get_Instance(), SkillId.BeatBlast)) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 773).damaged ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "MasterSkillDataManager.GetSkillMaster",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BeatBlast",
+    "SkillManager.GetSkillLv",
+    "SkillUtil.CheckSkillEquipLimit",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass31_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(773)",
+   "simplified": "RemoveSelfBuffer(773)",
+   "when": "TryGetBuf<object>.out2(<>c__DisplayClass31_0.bufManager, 773) ne 0"
+  },
+  {
+   "method": ".<>c__DisplayClass31_0::<ActionPreparation>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(773)",
+   "simplified": "RemoveSelfBuffer(773)",
+   "when": "(cancel & 1) ne 0 AND TryGetBuf<object>.out2(<>c__DisplayClass31_0.bufManager, 773) ne 0"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "BeatBlastBuf",
+   "ctors": [
+    {
+     "sig": "",
+     "fields": {},
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "1",
+       "1",
+       "20"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "Count": [
+     {
+      "method": "PayStack",
+      "formula": "(Count lt 7 ? 0 : (Count - 6))",
+      "when": "always"
+     },
+     {
+      "method": "SetStack",
+      "formula": "(Max lt stack ? Max : stack)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "PayStack",
+    "SetStack"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "ImprovisationSongBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, byte skillLocalId",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "skillLocalId": [
+       {
+        "formula": "skillLocalId",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "damageCut": [
+       {
+        "formula": "256",
+        "when": "Lv eq 10",
+        "by_level": 256
+       },
+       {
+        "formula": "(((Lv + (Lv << 2)) << 1) lo 100 ? ((Lv + (Lv << 2)) << 1) : 100)",
+        "when": "Lv ne 10",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MobLastDamageRateUnique",
+     "bonus_id": 5,
+     "formula": "+0x1e",
+     "simplified": "+0x1e",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateUnique",
+     "bonus_id": 5,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "damaged": [
+     {
+      "method": "Damaged",
+      "formula": "1",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckDamaged",
+    "Damaged",
+    "get_SkillLocalId"
+   ],
+   "kind": "timed"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "BeatBlastBuf": {
+     "lv": "1",
+     "self": "1",
+     "max": "20"
+    }
+   },
+   "attached_via": "caller2:BeatBlastBuf$$.ctor<-ImprovisationSongAction$$ActionSkillEventIfMoveIndex",
+   "kind": "counter"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "ImprovisationSongBuf": {
+     "lv": "lv",
+     "self": "1"
+    },
+    "CountBufferBase": {
+     "lv": "lv",
+     "self": "(self & 1)"
+    }
+   },
+   "attached_via": "caller2:ImprovisationSongBuf$$.ctor<-ImprovisationSongAction$$ActionPreparation",
+   "kind": "flag/param"
+  },
+  {
+   "class": "SongBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, PlayerActionManagerBase actorAction, int archetypeId, byte skillLocalId",
+     "fields": {
+      "suspendedTimer": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "playTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "isChangeSongMotion": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "sendSupportTimer": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "partyMemberNum": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "actorAction": [
+       {
+        "formula": "actorAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "takeController": [
+       {
+        "formula": "actorAction.TakeController",
+        "when": "UnityEngine.Object.op_Inequality(actorAction)",
+        "by_level": null
+       }
+      ],
+      "ArchetypeId": [
+       {
+        "formula": "archetypeId",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "SkillLocalId": [
+       {
+        "formula": "skillLocalId",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "IsSensory": [
+     {
+      "method": "set_IsSensory",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsSuspendSong": [
+     {
+      "method": "set_IsSuspendSong",
+      "formula": "(value & 1)",
+      "when": "always"
+     },
+     {
+      "method": "UpdateMotionSwitch",
+      "formula": "1",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(actorAction) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsEnd eq 0 AND IsSelfAction ne 0 AND SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SongBufferBase.CheckTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND isChangeSongMotion eq 0"
+     }
+    ],
+    "ArchetypeId": [
+     {
+      "method": "set_ArchetypeId",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "SkillLocalId": [
+     {
+      "method": "set_SkillLocalId",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSendSupport": [
+     {
+      "method": "set_IsSendSupport",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "isChangeSongMotion": [
+     {
+      "method": "UpdateMotionSwitch",
+      "formula": "(PlayerActionManagerBase.get_IsBattleActive(actorAction) & 1)",
+      "when": "!UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND PlayerActionManagerBase.get_IsBattleActive(actorAction) AND SongBufferBase.CheckTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 OR !PlayerActionManagerBase.get_IsBattleActive(actorAction) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND SongBufferBase.CheckTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND isChangeSongMotion ne 0 OR !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND PlayerActionManagerBase.get_IsBattleActive(actorAction) AND SongBufferBase.CheckTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0"
+     },
+     {
+      "method": "UpdateMotionSwitch",
+      "formula": "1",
+      "when": "!SongBufferBase.CheckTake(this) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND PlayerActionManagerBase.get_IsBattleActive(actorAction) AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 OR !PlayerActionManagerBase.get_IsBattleActive(actorAction) AND !SongBufferBase.CheckTake(this) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND isChangeSongMotion ne 0 OR !SongBufferBase.CheckTake(this) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND PlayerActionManagerBase.get_IsBattleActive(actorAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0"
+     }
+    ],
+    "suspendedTimer": [
+     {
+      "method": "UpdateMotionSwitch",
+      "formula": "10",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(actorAction) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsEnd eq 0 AND IsSelfAction ne 0 AND SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SongBufferBase.CheckTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND isChangeSongMotion eq 0"
+     }
+    ]
+   },
+   "hooks": [
+    "UpdateMotionSwitch",
+    "get_ArchetypeId",
+    "get_IsSendSupport",
+    "get_IsSensory",
+    "get_IsSuspendSong",
+    "get_SkillLocalId",
+    "set_ArchetypeId",
+    "set_IsSendSupport",
+    "set_IsSensory",
+    "set_IsSuspendSong",
+    "set_SkillLocalId"
+   ],
+   "attached_via": "caller2:FairySongBuf$$CreateSelfBuf<-ImprovisationSongAction$$ActiveResumeSong",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobAttackBase.CalcLastDamage"
+ ],
+ "variables": [
+  "CharacterActionManagerBase.get_Size",
+  "GemCartBufferManager.GetBufferLevel",
+  "InputManager.get_LeftInputKey",
+  "MasterSkillDataManager.GetSkillMaster",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_IsBattleActive",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "Singleton.get_Instance",
+  "SkillActionBase.op_Equality",
+  "SkillActionManagerBase.get_CurrentSkill",
+  "SkillBufferDataBase.get_SkillId",
+  "SkillBufferId.Count",
+  "SkillBufferId.MobLastDamageRateUnique",
+  "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+  "SkillBufferManager.TryGetImprovisationSongBuf",
+  "SkillId.BeatBlast",
+  "SkillManager.GetSkillLv",
+  "SkillUtil.CheckSkillEquipLimit",
+  "SongActionBase.IsSongSkillId",
+  "SongBufferBase.CheckTake",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TakeController.get_MainPlayer",
+  "Toram.Common.ProgramUtil.ShiftLeftBitByShort",
+  "TryGetBuf.out2",
+  "TryGetImprovisationSongBuf.songBuf",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

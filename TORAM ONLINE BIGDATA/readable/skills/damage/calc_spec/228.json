@@ -1,0 +1,170 @@
+{
+ "version": 1,
+ "uid": 228,
+ "name_th": "มินิฮีล",
+ "name_en": "PetitHeal",
+ "tree": "SupportSkill",
+ "category": "Heal",
+ "max_level": 10,
+ "roles": [
+  "heal / recovery"
+ ],
+ "class": "PutitHealAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 228,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(24)",
+   "simplified": "MathUtil.DisplayMeterToDistance(24)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "SkillBufferDataBase.GetParam(20) ge (baseMp // 100) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0",
+   "by_level": 0,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "hpHeal",
+   "formula": "(((status.MaxHp * Lv) // 100) + (Lv * 30))",
+   "simplified": "status.MaxHp × Lv // 100 + 30 × Lv",
+   "when": "always",
+   "vars": [
+    "status.MaxHp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "SkillBufferDataBase.GetParam(20) ge (baseMp // 100) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0",
+   "by_level": 1,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "SkillUtil.CalcCastTime(1, PlayerStatusBase.get_BattleStatus())",
+   "simplified": "SkillUtil.CalcCastTime(1, PlayerStatusBase.get_BattleStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_BattleStatus",
+    "SkillUtil.CalcCastTime"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "hpHeal",
+   "formula": "(hpHeal - int((((((GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) + (GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) << 2)) << 1) * -0.01) + 1) * ((hpHeal lt 0 ? (hpHeal + 1) : hpHeal) >> 1))))",
+   "simplified": "hpHeal - int((1 - 0.1 × GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71)) × (hpHeal ÷ 2))",
+   "when": "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) ge 1 AND SkillIndividualFlag eq 1 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) ge 1 AND SkillIndividualFlag ne 1 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) ge 1 AND SkillIndividualFlag eq 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 AND hasGemCart(1026)",
+   "vars": [
+    "GemCartBufferManager.GetBufferLevel",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "hpHeal",
+   "formula": "(hpHeal - ((hpHeal lt 0 ? (hpHeal + 1) : hpHeal) >> 1))",
+   "simplified": "hpHeal - (hpHeal ÷ 2)",
+   "when": "GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) lt 1 AND SkillIndividualFlag eq 1 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) lt 1 AND SkillIndividualFlag ne 1 AND hasGemCart(1026) OR GemCartBufferManager.GetBufferLevel(PlayerStatusBase.get_GemCartBuffManager(), 71) lt 1 AND SkillIndividualFlag eq 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 23) ne 0 AND hasGemCart(1026)",
+   "vars": [
+    "GemCartBufferManager.GetBufferLevel",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "CheckHealStock",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "0",
+   "simplified": "0",
+   "when": "SkillIndividualFlag eq 1",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "(isPlayer & 1) ne 0",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "RecoveryAction.OnInitialize"
+ ],
+ "variables": [
+  "GemCartBufferManager.GetBufferLevel",
+  "IPlayerStatusCalculator.get_MaxHp",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerStatusBase.get_BattleStatus",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillUtil.CalcCastTime",
+  "TryGetBuf.buf",
+  "status.MaxHp"
+ ],
+ "residual": []
+}

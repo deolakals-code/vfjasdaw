@@ -1,0 +1,131 @@
+{
+ "version": 1,
+ "uid": 679,
+ "name_th": "สัญชาตญาณการอยู่รอด",
+ "name_en": "SurvivalInstinct",
+ "tree": "PartisanSkill",
+ "category": "Mastery",
+ "max_level": 250,
+ "roles": [
+  "buff (self)",
+  "passive mastery",
+  "no client action class (system / production / unreleased)"
+ ],
+ "class": null,
+ "proration": null,
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "SurvivalInstinctBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "20",
+        "when": "always",
+        "by_level": 20
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MaxHpUp",
+     "bonus_id": 61,
+     "formula": "(Lv * 500)",
+     "simplified": "500 × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MaxHpUpRate",
+     "bonus_id": 62,
+     "formula": "Lv",
+     "simplified": "Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "RateDamageResist",
+     "bonus_id": 74,
+     "formula": "int((Lv * 2.5))",
+     "simplified": "int(2.5 × Lv)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobAttackBase.CalcLastDamage"
+ ],
+ "variables": [
+  "SkillBufferId.MaxHpUp",
+  "SkillBufferId.MaxHpUpRate",
+  "SkillBufferId.RateDamageResist",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

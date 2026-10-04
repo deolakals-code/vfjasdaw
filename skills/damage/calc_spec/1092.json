@@ -1,0 +1,262 @@
+{
+ "version": 1,
+ "uid": 1092,
+ "name_th": "วายุโหมคลื่นกระหน่ำ",
+ "name_en": "StormAndUrge",
+ "tree": "BareHandSkill",
+ "category": "Buffer",
+ "max_level": 1,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "StormAndUrgeAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1092,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "useQigongNum",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "useQigongNum",
+   "formula": "TakeQigongBuf.GetUseQigongNum(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089])",
+   "simplified": "TakeQigongBuf.GetUseQigongNum(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089])",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TakeQigongBuf.GetUseQigongNum",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "TakeQigongBuf.GetUseQigongNum(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089])",
+   "simplified": "TakeQigongBuf.GetUseQigongNum(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089])",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TakeQigongBuf.GetUseQigongNum",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1092, Lv)",
+   "simplified": "AddSelfBuffer(1092, Lv)",
+   "when": "IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.StormAndUrgeExtreme, 1) lt 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1092) AND useQigongNum ge 1 OR !hasBuff(1092) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.StormAndUrgeExtreme, 1) lt 1 AND UnityEngine.Object.op_Inequality(actarAction) AND useQigongNum ge 1 OR IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) eq 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.StormAndUrgeExtreme, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1092) AND useQigongNum ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.StormAndUrgeExtreme",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1096, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.StormAndUrgeExtreme, 1), Id)",
+   "simplified": "AddSelfBuffer(1096, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.StormAndUrgeExtreme, 1), Id)",
+   "when": "IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) eq 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.StormAndUrgeExtreme, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1092) AND useQigongNum ge 1 OR !hasBuff(1092) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) eq 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.StormAndUrgeExtreme, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND useQigongNum ge 1 OR IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) ne 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.StormAndUrgeExtreme, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1092) AND useQigongNum ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.StormAndUrgeExtreme",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "StormAndUrgeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int useNum",
+     "fields": {
+      "moveSpeed": [
+       {
+        "formula": "50",
+        "when": "always",
+        "by_level": 50
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "30",
+        "when": "always",
+        "by_level": 30
+       }
+      ],
+      "Count": [
+       {
+        "formula": "useNum",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "playerDataManager": [
+       {
+        "formula": "PlayerDataManager.GetPlayerDataManager()",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "10"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "HitUp",
+     "bonus_id": 42,
+     "formula": "((Count * Lv) * Lv)",
+     "simplified": "Count × Lv × Lv",
+     "when": []
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "moveSpeed",
+     "simplified": "moveSpeed",
+     "when": []
+    },
+    {
+     "id": "Aspd",
+     "bonus_id": 35,
+     "formula": "((Count * Lv) * 100)",
+     "simplified": "100 × Count × Lv",
+     "when": []
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "int(((Count * Lv) * 0.2))",
+     "simplified": "int(0.2 × Count × Lv)",
+     "when": []
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(playerDataManager)) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(playerDataManager).TakeController).TakeId eq 0x16b4c OR !PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(playerDataManager)) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(playerDataManager).TakeController).TakeId ne 0x16b4c OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(playerDataManager)) AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(playerDataManager).TakeController).TakeId eq 0x16b4c AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(playerDataManager).TakeController).isTakePlay ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(playerDataManager)) AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND IsEnd eq 0 AND LeftTime gt 0 AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(playerDataManager).TakeController).TakeId eq 0x16b4c OR !PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(playerDataManager)) AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND IsEnd eq 0 AND LeftTime gt 0 AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(playerDataManager).TakeController).TakeId ne 0x16b4c OR !PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(playerDataManager)) AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND IsEnd ne 0 AND LeftTime gt 0 AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(playerDataManager).TakeController).TakeId eq 0x16b4c"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "EarthShatteringAction.ActionSkillEvent",
+  "EarthShatteringAction.ActionStart",
+  "EarthShatteringBuf.GetBufferEffectAppendParameter",
+  "MobaPlayerActionManager.get_MoveSpeed",
+  "PlayerActionManager.get_MoveSpeed",
+  "Revival.OnActionMobDamage",
+  "SelfDisclosure.UpdateCristaBonus",
+  "StormAndUrgeAction.ActionSkillEvent"
+ ],
+ "variables": [
+  "PlayerActionManagerBase.get_IsBattleActive",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_PlayerActionManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.Aspd",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.Count",
+  "SkillBufferId.HitUp",
+  "SkillBufferId.Value",
+  "SkillId.StormAndUrgeExtreme",
+  "SkillManager.GetSkillLv",
+  "TakeController.get_MainPlayer",
+  "TakeQigongBuf.GetUseQigongNum",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

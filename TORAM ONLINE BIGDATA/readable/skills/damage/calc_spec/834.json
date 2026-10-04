@@ -1,0 +1,268 @@
+{
+ "version": 1,
+ "uid": 834,
+ "name_th": "โฮลี่ฟิสท์",
+ "name_en": "HollyFist",
+ "tree": "PriestSkill",
+ "category": "Attack",
+ "max_level": 15,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "HolyFistAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 834,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "5",
+   "simplified": "5",
+   "when": "always",
+   "by_level": 5
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(ExistWeaponType.item(actarAction, 16))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(ExistWeaponType.item(actarAction, 16))",
+   "when": "always",
+   "vars": [
+    "ExistWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "magicSkillRate",
+   "formula": "(((Lv + (Lv << 2)) + 50) / 100)",
+   "simplified": "(5 × Lv + 50) / 100",
+   "when": "always",
+   "by_level": [
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicsSkillRate",
+   "formula": "(((((Lv + (Lv << 2)) + 50) + ((Lv + (Lv << 2)) + 50)) + status.Str) / 100)",
+   "simplified": "(10 × Lv + status.Str + 100) / 100",
+   "when": "always",
+   "vars": [
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "always",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "weaponRange",
+   "simplified": "weaponRange",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicsSkillRate",
+   "formula": "(((Lv + (Lv << 2)) + 50) / 100)",
+   "simplified": "(5 × Lv + 50) / 100",
+   "when": "always",
+   "by_level": [
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(ExistWeaponType.item(actarAction, 14))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(ExistWeaponType.item(actarAction, 14))",
+   "when": "always",
+   "vars": [
+    "ExistWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "magicSkillRate",
+   "formula": "(((((Lv + (Lv << 2)) + 50) + ((Lv + (Lv << 2)) + 50)) + status.Int) / 100)",
+   "simplified": "(10 × Lv + status.Int + 100) / 100",
+   "when": "always",
+   "vars": [
+    "status.Int"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always"
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "magicSkillRate",
+   "simplified": "magicSkillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(SkillAttackType.Physics, PlayerAttackBase.get_ActionID(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "simplified": "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(SkillAttackType.Physics, PlayerAttackBase.get_ActionID(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerAttackBase.get_ActionID",
+    "SkillAttackType.Physics"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "physicsSkillRate",
+   "simplified": "physicsSkillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 2)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), 2)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "ExistWeaponType.item",
+  "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate",
+  "IPlayerStatusCalculator.get_Int",
+  "IPlayerStatusCalculator.get_Str",
+  "MobActionManagerBase.get_MobBattleStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.get_ActionID",
+  "SkillAttackType.Physics",
+  "status.Int",
+  "status.Str"
+ ],
+ "residual": []
+}

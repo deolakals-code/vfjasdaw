@@ -1,0 +1,64 @@
+{
+ "version": 1,
+ "uid": 581,
+ "name_th": "เสริมพลังโจมตี",
+ "name_en": "AttackPerformanceImprovement",
+ "tree": "GolemSkill",
+ "category": "Mastery",
+ "max_level": 250,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "AttackPerformanceImprovement",
+ "proration": null,
+ "eq_limit": [
+  "Bowgun",
+  "Rod"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "AttackPerformanceImprovement",
+  "bonuses": {
+   "Value": {
+    "id": 28,
+    "expr": "(Lv << 1)",
+    "by_level": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14,
+     16,
+     18,
+     20
+    ]
+   },
+   "Hit": {
+    "id": 20,
+    "expr": "((Lv * Lv) << 1)",
+    "by_level": [
+     2,
+     8,
+     18,
+     32,
+     50,
+     72,
+     98,
+     128,
+     162,
+     200
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "CallGolemNormalAttackAction.OnInitialize"
+ ],
+ "variables": [],
+ "residual": []
+}

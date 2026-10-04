@@ -1,0 +1,218 @@
+{
+ "version": 1,
+ "uid": 619,
+ "name_th": "ชูคุจิ",
+ "name_en": "Shukuchi",
+ "tree": "MononofuSkill",
+ "category": "Mastery",
+ "max_level": 70,
+ "roles": [
+  "buff (self)",
+  "passive mastery",
+  "modifies normal-attack behaviour",
+  "boosts normal-attack damage"
+ ],
+ "class": "ShukuchiAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 619,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(-1)",
+   "simplified": "MathUtil.DisplayMeterToDistance(-1)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int((NextActionRrange + CharacterActionManagerBase.get_Size()))",
+   "simplified": "int(NextActionRrange + CharacterActionManagerBase.get_Size())",
+   "when": "UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target), 0)",
+   "vars": [
+    "CharacterActionManagerBase.get_Size",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(619, Lv, Id)",
+   "simplified": "AddSelfBuffer(619, Lv, Id)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ShukuchiBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "400",
+     "simplified": "400",
+     "when": [
+      "BuffEffectActive ne 0",
+      "unannouncedDestination ne 0"
+     ]
+    },
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "(Lv + (Lv << 2))",
+     "simplified": "5 × Lv",
+     "when": [
+      "BuffEffectActive ne 0",
+      "unannouncedDestination eq 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "((Lv * Lv) >> 1)",
+     "simplified": "Lv × Lv ÷ 2",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "unannouncedDestination": [
+     {
+      "method": "ValidUnannouncedDestination",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "InvalidUnannouncedDestination",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "InvalidUnannouncedDestination",
+    "ValidUnannouncedDestination"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "Shukuchi",
+  "bonuses": {}
+ },
+ "hooks": [
+  "CloningTechniqueAction.ActionStart",
+  "IchijhinnokazeAratame.InvokeShukuchi",
+  "IchijhinnokazeAttackAction.ActionPreparation",
+  "IchijhinnokazeBuf.Updata",
+  "MobaPlayerBattleManager.<ShukuchiMoveWait>d__93.MoveNext",
+  "MobaPlayerBattleManager.AbnormalFear",
+  "MobaPlayerBattleManager.OnBattleEnd",
+  "NormalAttackAction.ActionPreparation",
+  "NormalAttackAction.calcPlayerToMobDamage",
+  "PlayerBattleManager.<ShukuchiMoveWait>d__54.MoveNext",
+  "PlayerBattleManager.AbnormalFear",
+  "PlayerBattleManager.OnBattleEnd",
+  "PlayerSecondaryStatus.get_AtkMpRecovery",
+  "ShukuchiAction.CanActivated"
+ ],
+ "variables": [
+  "CharacterActionManagerBase.get_Size",
+  "MathUtil.DisplayMeterToDistance",
+  "SkillBufferId.NormalAttackRate",
+  "SkillBufferId.Value",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

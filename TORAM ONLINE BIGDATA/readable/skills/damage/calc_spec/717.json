@@ -1,0 +1,347 @@
+{
+ "version": 1,
+ "uid": 717,
+ "name_th": "แฟกทิสอาร์ม",
+ "name_en": "FacticeArme",
+ "tree": "SpriteSkill",
+ "category": "Attack",
+ "max_level": 170,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "FacticeArmeAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 717,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((status.Agi + status.Dex) + 750)",
+   "simplified": "status.Agi + status.Dex + 750",
+   "when": "always",
+   "vars": [
+    "status.Agi",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "(((Lv * Lv) + ((Lv * Lv) << 1)) << 1)",
+   "simplified": "6 × Lv × Lv",
+   "when": "always",
+   "by_level": [
+    6,
+    24,
+    54,
+    96,
+    150,
+    216,
+    294,
+    384,
+    486,
+    600
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "type",
+   "formula": "UnityEngine.Random.Range(0, 5)",
+   "simplified": "UnityEngine.Random.Range(0, 5)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Random.Range"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "UnityEngine.Random.Range(0, 5)",
+   "simplified": "UnityEngine.Random.Range(0, 5)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Random.Range"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "type",
+   "formula": "SkillIndividualFlag",
+   "simplified": "SkillIndividualFlag",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "canBackStep",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(skillEventId & 0xffff) eq 1",
+   "by_level": 1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "type eq 3 OR type eq 0 AND type ne 3 OR type eq 4 AND type ne 0 AND type ne 3"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "type ne 0 AND type ne 3 AND type ne 4"
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "canBackStep",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(mainTarget) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND type eq 2 OR !UnityEngine.Object.op_Equality(mainTarget) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND type eq 2",
+   "by_level": 1,
+   "vars": [
+    "InputManager.get_LeftInputKey",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((skillRate / 100) * 0.75)",
+   "simplified": "0.75 × skillRate / 100",
+   "when": "type eq 3 OR type eq 0 AND type ne 3 OR type eq 4 AND type ne 0 AND type ne 3",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "(constantDamage * 0.75)",
+   "simplified": "0.75 × constantDamage",
+   "when": "type eq 3 OR type eq 0 AND type ne 3 OR type eq 4 AND type ne 0 AND type ne 3",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((skillRate / 100) * 0.25)",
+   "simplified": "0.25 × skillRate / 100",
+   "when": "type eq 0 AND type ne 3 OR type eq 4 AND type ne 0 AND type ne 3",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "(constantDamage * 0.25)",
+   "simplified": "0.25 × constantDamage",
+   "when": "type eq 0 AND type ne 3 OR type eq 4 AND type ne 0 AND type ne 3",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "type ne 0 AND type ne 3 AND type ne 4",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "type ne 0 AND type ne 3 AND type ne 4",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "<CreateTake>b__29_0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(94)",
+   "simplified": "RemoveSelfBuffer(94)",
+   "when": "always"
+  },
+  {
+   "method": "<CreateTake>b__29_1",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(94)",
+   "simplified": "RemoveSelfBuffer(94)",
+   "when": "always"
+  },
+  {
+   "method": "<CreateTake>b__29_2",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(624)",
+   "simplified": "RemoveSelfBuffer(624)",
+   "when": "always"
+  },
+  {
+   "method": "<CreateTake>b__29_3",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(624)",
+   "simplified": "RemoveSelfBuffer(624)",
+   "when": "(cancel & 1) ne 0"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "attached_via": "caller2:JumpbackShotProtectionBuf$$.ctor<-FacticeArmeAction$$CreateTake",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IPlayerStatusCalculator.get_Agi",
+  "IPlayerStatusCalculator.get_Dex",
+  "InputManager.get_LeftInputKey",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.GetEquipElement",
+  "Singleton.get_Instance",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Random.Range",
+  "UnityEngine.Transform.get_position",
+  "status.Agi",
+  "status.Dex"
+ ],
+ "residual": []
+}

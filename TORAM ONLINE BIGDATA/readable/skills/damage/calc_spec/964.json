@@ -1,0 +1,59 @@
+{
+ "version": 1,
+ "uid": 964,
+ "name_th": "ฮัลเบิร์ทมาสเตอรี่",
+ "name_en": "HalberdMastery",
+ "tree": "HalberdSkill",
+ "category": "Mastery",
+ "max_level": 10,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "HalberdMastery",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "HalberdMastery",
+  "bonuses": {
+   "EqAtkRate": {
+    "id": 1,
+    "expr": "(Lv + (Lv << 1))",
+    "by_level": [
+     3,
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ]
+   },
+   "AtkRate": {
+    "id": 3,
+    "expr": "(int((((Lv - 3) * 0.2) + 1)) + 1)",
+    "by_level": [
+     1,
+     1,
+     2,
+     2,
+     2,
+     2,
+     2,
+     3,
+     3,
+     3
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

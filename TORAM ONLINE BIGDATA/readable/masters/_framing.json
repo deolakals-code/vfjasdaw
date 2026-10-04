@@ -1,0 +1,287 @@
+{
+ "version": "a7e43f32",
+ "tables": {
+  "AvatarColorPallet": {
+   "bytes": 252,
+   "framing": "variable"
+  },
+  "AvaterGroupColor": {
+   "bytes": 43,
+   "framing": "variable"
+  },
+  "CharConversion": {
+   "bytes": 1685,
+   "framing": "variable"
+  },
+  "Cuisine": {
+   "bytes": 1955,
+   "count": 39,
+   "header": 5,
+   "count_at": 1,
+   "count_width": 4,
+   "record_bytes": 50,
+   "prefix_hex": "00"
+  },
+  "EnchantmentData": {
+   "bytes": 4916,
+   "count": 1,
+   "header": 8,
+   "count_at": 4,
+   "count_width": 4,
+   "record_bytes": 4908,
+   "prefix_hex": "00020000"
+  },
+  "EquipColorPallet": {
+   "bytes": 289,
+   "framing": "variable"
+  },
+  "EquipModelProperty": {
+   "bytes": 14932,
+   "count": 1,
+   "header": 8,
+   "count_at": 4,
+   "count_width": 4,
+   "record_bytes": 14924,
+   "prefix_hex": "05149700"
+  },
+  "FishingFishMaster": {
+   "bytes": 1338,
+   "count": 36,
+   "header": 6,
+   "count_at": 4,
+   "count_width": 2,
+   "record_bytes": 37,
+   "prefix_hex": "00000000"
+  },
+  "GuildBgmRecipeMaster": {
+   "bytes": 78,
+   "count": 4,
+   "header": 6,
+   "count_at": 4,
+   "count_width": 2,
+   "record_bytes": 18,
+   "prefix_hex": "00000000"
+  },
+  "GuildFacilityMaster": {
+   "bytes": 3997,
+   "framing": "variable"
+  },
+  "GuildQuestMaster": {
+   "bytes": 27790,
+   "framing": "variable"
+  },
+  "GuildRenovationMaster": {
+   "bytes": 206,
+   "count": 7,
+   "header": 3,
+   "count_at": 1,
+   "count_width": 2,
+   "record_bytes": 29,
+   "prefix_hex": "00"
+  },
+  "HighRaidBossMaster": {
+   "bytes": 710,
+   "framing": "variable"
+  },
+  "HighRaidMaterialMaster": {
+   "bytes": 41,
+   "count": 6,
+   "header": 5,
+   "count_at": 1,
+   "count_width": 4,
+   "record_bytes": 6,
+   "prefix_hex": "00"
+  },
+  "HighRaidTrophyMaster": {
+   "bytes": 2299,
+   "count": 164,
+   "header": 3,
+   "count_at": 1,
+   "count_width": 2,
+   "record_bytes": 14,
+   "prefix_hex": "00"
+  },
+  "HouseObjMaster": {
+   "bytes": 66255,
+   "framing": "variable"
+  },
+  "HuntingOneData": {
+   "bytes": 18,
+   "count": 1,
+   "header": 4,
+   "count_at": 0,
+   "count_width": 4,
+   "record_bytes": 14,
+   "prefix_hex": ""
+  },
+  "ItemCreateSupport": {
+   "bytes": 180,
+   "count": 2,
+   "header": 4,
+   "count_at": 0,
+   "count_width": 4,
+   "record_bytes": 88,
+   "prefix_hex": ""
+  },
+  "ItemDorpData": {
+   "bytes": 40863,
+   "count": 3143,
+   "header": 4,
+   "count_at": 0,
+   "count_width": 4,
+   "record_bytes": 13,
+   "prefix_hex": ""
+  },
+  "ItemMaster": {
+   "bytes": 433570,
+   "count": 11718,
+   "header": 4,
+   "count_at": 0,
+   "count_width": 4,
+   "record_bytes": 37,
+   "prefix_hex": ""
+  },
+  "ItemProperties": {
+   "bytes": 196244,
+   "count": 4460,
+   "header": 4,
+   "count_at": 0,
+   "count_width": 4,
+   "record_bytes": 44,
+   "prefix_hex": ""
+  },
+  "ItemRandomPropertyMaster": {
+   "bytes": 22312,
+   "count": 328,
+   "header": 8,
+   "count_at": 4,
+   "count_width": 4,
+   "record_bytes": 68,
+   "prefix_hex": "00000000"
+  },
+  "MissionSkipMaster": {
+   "bytes": 1165,
+   "count": 129,
+   "header": 4,
+   "count_at": 0,
+   "count_width": 4,
+   "record_bytes": 9,
+   "prefix_hex": ""
+  },
+  "NGItem": {
+   "bytes": 120,
+   "count": 29,
+   "header": 4,
+   "count_at": 0,
+   "count_width": 4,
+   "record_bytes": 4,
+   "prefix_hex": ""
+  },
+  "PetCaptureDataMaster": {
+   "bytes": 29220,
+   "count": 1,
+   "header": 3,
+   "count_at": 1,
+   "count_width": 2,
+   "record_bytes": 29217,
+   "prefix_hex": "c4"
+  },
+  "PetRaceMaster": {
+   "bytes": 30,
+   "count": 3,
+   "header": 6,
+   "count_at": 4,
+   "count_width": 2,
+   "record_bytes": 8,
+   "prefix_hex": "00000000"
+  },
+  "RecipeMaster": {
+   "bytes": 97484,
+   "framing": "variable"
+  },
+  "RegistletMaster": {
+   "bytes": 1278,
+   "count": 1,
+   "header": 4,
+   "count_at": 0,
+   "count_width": 4,
+   "record_bytes": 1274,
+   "prefix_hex": ""
+  },
+  "RhythmMaster": {
+   "bytes": 2441,
+   "count": 28,
+   "header": 5,
+   "count_at": 1,
+   "count_width": 4,
+   "record_bytes": 87,
+   "prefix_hex": "02"
+  },
+  "ServantData": {
+   "bytes": 17,
+   "framing": "variable"
+  },
+  "SkillMaster": {
+   "bytes": 15152,
+   "count": 631,
+   "header": 8,
+   "count_at": 4,
+   "count_width": 4,
+   "record_bytes": 24,
+   "prefix_hex": "fdffffff"
+  },
+  "SpinaWarpMaster": {
+   "bytes": 369,
+   "count": 28,
+   "header": 5,
+   "count_at": 1,
+   "count_width": 4,
+   "record_bytes": 13,
+   "prefix_hex": "01"
+  },
+  "StyleData": {
+   "bytes": 332,
+   "framing": "variable"
+  },
+  "SummonDemonicData": {
+   "bytes": 14,
+   "count": 1,
+   "header": 4,
+   "count_at": 0,
+   "count_width": 4,
+   "record_bytes": 10,
+   "prefix_hex": ""
+  },
+  "TrophyMaster": {
+   "bytes": 5885,
+   "count": 653,
+   "header": 8,
+   "count_at": 4,
+   "count_width": 4,
+   "record_bytes": 9,
+   "prefix_hex": "02000000"
+  },
+  "WarpListMaster": {
+   "bytes": 2667,
+   "count": 1,
+   "header": 2,
+   "count_at": 0,
+   "count_width": 2,
+   "record_bytes": 2665,
+   "prefix_hex": ""
+  },
+  "WaveRewardMaster": {
+   "bytes": 83,
+   "count": 1,
+   "header": 6,
+   "count_at": 4,
+   "count_width": 2,
+   "record_bytes": 77,
+   "prefix_hex": "0001289a"
+  },
+  "WorldMapMaster": {
+   "bytes": 13514,
+   "framing": "variable"
+  }
+ }
+}

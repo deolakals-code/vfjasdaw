@@ -1,0 +1,98 @@
+{
+ "version": 1,
+ "uid": 708,
+ "name_th": "ไมโครฮีล",
+ "name_en": "ClineHeal",
+ "tree": "SpriteSkill",
+ "category": "Support",
+ "max_level": 170,
+ "roles": [
+  "heal / recovery"
+ ],
+ "class": "ClineHealAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 708,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "hpHeal",
+   "formula": "int(((((Lv * 5) / 100) * status.Matk) + (Lv * 50)))",
+   "simplified": "int(5 × Lv / 100 × status.Matk + 50 × Lv)",
+   "when": "always",
+   "vars": [
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "UnityEngine.Object.op_Equality(UnityEngine.Component.get_gameObject(actarAction), target)",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "target",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IPlayerStatusCalculator.get_Matk",
+  "MathUtil.DisplayMeterToDistance",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Object.op_Equality",
+  "status.Matk"
+ ],
+ "residual": []
+}

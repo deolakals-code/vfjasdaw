@@ -1,0 +1,507 @@
+{
+ "version": 1,
+ "uid": 875,
+ "name_th": "เดรนบาเรีย",
+ "name_en": "DrainBarrier",
+ "tree": "MagicBladeSkill",
+ "category": "Buffer",
+ "max_level": 1,
+ "roles": [
+  "buff (self)",
+  "buff (party / others)"
+ ],
+ "class": "DrainBarrierAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 875,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Magictool"
+ ],
+ "fields": [
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "DrainBarrierBuf..ctor",
+   "formula": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus(), Id)",
+   "simplified": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus(), Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new DrainBarrierBuf, Id)",
+   "simplified": "AddSelfBuffer(new, DrainBarrierBuf, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "DamageFunction",
+   "kind": "call",
+   "name": "DrainBarrierBuf.GetMpHeal",
+   "formula": "GetMpHeal((responseData.AttackType eq 2 ? 1 : 0))",
+   "simplified": "GetMpHeal(responseData.AttackType = 2 ? 1 : 0)",
+   "when": "DrainBarrierBuf.GetMpHeal(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875), (responseData.AttackType eq 2 ? 1 : 0)) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875) ne 0 AND responseData.AttackType ne 3 OR DrainBarrierBuf.GetMpHeal(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875), (responseData.AttackType eq 2 ? 1 : 0)) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875) ne 0 AND responseData.AttackType ne 3 OR !Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 875) AND DrainBarrierBuf.GetMpHeal(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875), (responseData.AttackType eq 2 ? 1 : 0)) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875) ne 0 AND responseData.AttackType ne 3",
+   "vars": [
+    "DrainBarrierBuf.GetMpHeal",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.EnchantedBurst",
+    "SkillManager.GetSkillLv",
+    "Toram.Common.Actions.ActionAppendData.Contains"
+   ]
+  },
+  {
+   "method": "DamageFunction",
+   "kind": "call",
+   "name": "EnchantedBurstBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1))",
+   "when": "!Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 875) AND DrainBarrierBuf.GetMpHeal(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875), (responseData.AttackType eq 2 ? 1 : 0)) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875) ne 0 AND responseData.AttackType ne 3 OR DrainBarrierBuf.GetMpHeal(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875), (responseData.AttackType eq 2 ? 1 : 0)) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 875) AND Toram.Common.Actions.ActionAppendData.Get(responseData.AppendData, 875) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875) ne 0 AND responseData.AttackType ne 3 OR DrainBarrierBuf.GetMpHeal(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875), (responseData.AttackType eq 2 ? 1 : 0)) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 875) AND Toram.Common.Actions.ActionAppendData.Get(responseData.AppendData, 875) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875) ne 0 AND responseData.AttackType ne 3",
+   "vars": [
+    "DrainBarrierBuf.GetMpHeal",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.EnchantedBurst",
+    "SkillManager.GetSkillLv",
+    "Toram.Common.Actions.ActionAppendData.Contains",
+    "Toram.Common.Actions.ActionAppendData.Get"
+   ]
+  },
+  {
+   "method": "DamageFunction",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(new EnchantedBurstBuf)",
+   "simplified": "AddBuffer(new, EnchantedBurstBuf)",
+   "when": "!Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 875) AND DrainBarrierBuf.GetMpHeal(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875), (responseData.AttackType eq 2 ? 1 : 0)) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875) ne 0 AND responseData.AttackType ne 3 OR DrainBarrierBuf.GetMpHeal(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875), (responseData.AttackType eq 2 ? 1 : 0)) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 875) AND Toram.Common.Actions.ActionAppendData.Get(responseData.AppendData, 875) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875) ne 0 AND responseData.AttackType ne 3 OR DrainBarrierBuf.GetMpHeal(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875), (responseData.AttackType eq 2 ? 1 : 0)) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 875) AND Toram.Common.Actions.ActionAppendData.Get(responseData.AppendData, 875) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 875) ne 0 AND responseData.AttackType ne 3",
+   "vars": [
+    "DrainBarrierBuf.GetMpHeal",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.EnchantedBurst",
+    "SkillManager.GetSkillLv",
+    "Toram.Common.Actions.ActionAppendData.Contains",
+    "Toram.Common.Actions.ActionAppendData.Get"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass21_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(875)",
+   "simplified": "RemoveBuffer(875)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass21_0::<ActionStart>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(875)",
+   "simplified": "RemoveBuffer(875)",
+   "when": "(cancel & 1) ne 0"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "DrainBarrierBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase status, byte localId",
+     "fields": {
+      "damageCutAttackList": [
+       {
+        "formula": "new System.Collections.Generic.List<MobAttackBase>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "skillLocalId": [
+       {
+        "formula": "localId",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "damageCut": [
+       {
+        "formula": "((Lv << 3) + lv)",
+        "when": "always",
+        "by_level": 9
+       }
+      ],
+      "mpHeal": [
+       {
+        "formula": "20",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10",
+        "by_level": 20
+       },
+       {
+        "formula": "10",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 10",
+        "by_level": 10
+       }
+      ],
+      "bonusMpHeal": [
+       {
+        "formula": "80",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10",
+        "by_level": 80
+       },
+       {
+        "formula": "40",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 10",
+        "by_level": 40
+       }
+      ],
+      "maxStackMpHeal": [
+       {
+        "formula": "(int(((Lv + 1) * 0.5)) * 100)",
+        "when": "always",
+        "by_level": 100
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "PowerDmgCut",
+     "bonus_id": 21,
+     "formula": "damageCut",
+     "simplified": "damageCut",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MagicDmgCut",
+     "bonus_id": 22,
+     "formula": "damageCut",
+     "simplified": "damageCut",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "stackMpHeal": [
+     {
+      "method": "Stack",
+      "formula": "(maxStackMpHeal lt (stackMpHeal + mpHealValue) ? maxStackMpHeal : (stackMpHeal + mpHealValue))",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckDamageCutMobAttack",
+    "GetMpHeal",
+    "GetTotalMpHealValue",
+    "Stack",
+    "SuccessDamageCut",
+    "get_SkillLocalId"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "EnchantedBurstBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "flag": [
+       {
+        "formula": "2050",
+        "when": "always",
+        "by_level": 2050
+       }
+      ],
+      "addStackSkillIdDataList": [
+       {
+        "formula": "new System.Collections.Generic.List<SkillIdData>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "9",
+        "when": "always",
+        "by_level": 9
+       }
+      ],
+      "localCount": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "flag": [
+     {
+      "method": "Next",
+      "formula": "(flag & 0xfffff7ff)",
+      "when": "Count ge 1 AND localCount ge (Max lt (Count + 1) ? Max : (Count + 1)) OR Count ge 1 AND localCount lt (Max lt (Count + 1) ? Max : (Count + 1))"
+     }
+    ],
+    "Count": [
+     {
+      "method": "PayStack",
+      "formula": "(Count lt 3 ? 0 : (Count - 3))",
+      "when": "always"
+     }
+    ],
+    "localCount": [
+     {
+      "method": "LocalNext",
+      "formula": "(Max lt (localCount + 1) ? Max : (localCount + 1))",
+      "when": "(System.Linq.Enumerable.Any<SkillIdData>(addStackSkillIdDataList, new System.Func<SkillIdData, bool>, meta(0x39a9e50, Method$System.Linq.Enumerable.Any<SkillIdData>())) & 1) eq 0"
+     }
+    ]
+   },
+   "hooks": [
+    "AddStack",
+    "GetPayStack",
+    "LocalNext",
+    "Next",
+    "PayStack"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "DrainRecallBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int totalMpHealValue, int mainWeapon, int subWeapon",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "(Lv << 1)",
+        "when": "always",
+        "by_level": 2
+       }
+      ],
+      "mpHeal": [
+       {
+        "formula": "(mainWeapon eq 14 ? ((((Lv + (Lv << 2)) + ((totalMpHealValue lt 0 ? (totalMpHealValue + 1) : totalMpHealValue) >> 1)) lt 0 ? (((Lv + (Lv << 2)) + ((totalMpHealValue lt 0 ? (totalMpHealValue + 1) : totalMpHealValue) >> 1)) + 1) : ((Lv + (Lv << 2)) + ((totalMpHealValue lt 0 ? (totalMpHealValue + 1) : totalMpHealValue) >> 1))) >> 1) : ((Lv + (Lv << 2)) + ((totalMpHealValue lt 0 ? (totalMpHealValue + 1) : totalMpHealValue) >> 1)))",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "mpHeal",
+     "simplified": "mpHeal",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "caller2:DrainRecall$$AddBuf<-DrainBarrierAction.<>c__DisplayClass21_0$$<ActionStart>b__0",
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "DrainBarrierBuf": {
+     "lv": "lv",
+     "self": "1"
+    },
+    "EnchantedBurstBuf": {
+     "lv": "lv",
+     "self": "1"
+    },
+    "DrainRecallBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:EnchantedBurstBuf$$.ctor<-DrainBarrierAction$$DamageFunction",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "DrainBarrierBuf.GetMpHeal",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.Count",
+  "SkillBufferId.MagicDmgCut",
+  "SkillBufferId.PowerDmgCut",
+  "SkillBufferId.Value",
+  "SkillId.EnchantedBurst",
+  "SkillManager.GetSkillLv",
+  "System.Linq.Enumerable.Any",
+  "Toram.Common.Actions.ActionAppendData.Contains",
+  "Toram.Common.Actions.ActionAppendData.Get",
+  "TryGetBuf.out2",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

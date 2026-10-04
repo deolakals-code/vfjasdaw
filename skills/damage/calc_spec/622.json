@@ -1,0 +1,429 @@
+{
+ "version": 1,
+ "uid": 622,
+ "name_th": "ไคริกิรันชิน",
+ "name_en": "WeirdnessOfGod",
+ "tree": "MononofuSkill",
+ "category": "Buffer",
+ "max_level": 150,
+ "roles": [
+  "buff (self)",
+  "boosts normal-attack damage"
+ ],
+ "class": "WeirdnessOfGodAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 622,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "flag",
+   "formula": "(flag | 1)",
+   "simplified": "flag | 1",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND hasGemCart(401) OR !UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND hasGemCart(401)",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Berserk",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "abnormalLocalId",
+   "formula": "TryGetAbnormalLocalId.abnormalLocalId(actarAction)",
+   "simplified": "TryGetAbnormalLocalId.abnormalLocalId(actarAction)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND !hasGemCart(401) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 OR !UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) lt 1 AND hasGemCart(401) OR !UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND hasGemCart(401)",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Berserk",
+    "SkillManager.GetSkillLv",
+    "TryGetAbnormalLocalId.abnormalLocalId",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "abnormalLocalId",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND !hasGemCart(401) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 OR !UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) lt 1 AND hasGemCart(401) OR !UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND hasGemCart(401)",
+   "by_level": 0,
+   "vars": [
+    "MathUtil.CheckPercent",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Berserk",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND hasGemCart(401) OR !UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND hasGemCart(401) OR !MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) AND !UnityEngine.Object.op_Equality(actarAction) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND hasGemCart(401)",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Berserk",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "EffectiveAbnormalIgnition",
+   "kind": "call",
+   "name": "WeirdnessOfGodBuf..ctor",
+   "formula": ".ctor(skill.Level, (PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Katana) ? 8 : 0))",
+   "simplified": ".ctor(skill.Level, (PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Katana) ? 8 : 0))",
+   "when": "!SkillActionBase.op_Equality(skill) AND !hasBuff(CrtDamageUp) AND PlayerAttackBase.get_ActionID() eq 622 OR !SkillActionBase.op_Equality(skill) AND PlayerAttackBase.get_ActionID() eq 622 AND hasBuff(CrtDamageUp) OR !SkillActionBase.op_Equality(skill) AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND PlayerAttackBase.get_ActionID() eq 622",
+   "vars": [
+    "ItemType.Katana",
+    "PlayerAttackBase.ExistWeaponType",
+    "PlayerAttackBase.get_ActionID",
+    "SkillActionBase.op_Equality"
+   ]
+  },
+  {
+   "method": "EffectiveAbnormalIgnition",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new WeirdnessOfGodBuf, skill.Id)",
+   "simplified": "AddSelfBuffer(new, WeirdnessOfGodBuf, skill.Id)",
+   "when": "!SkillActionBase.op_Equality(skill) AND !hasBuff(CrtDamageUp) AND PlayerAttackBase.get_ActionID() eq 622 OR !SkillActionBase.op_Equality(skill) AND PlayerAttackBase.get_ActionID() eq 622 AND hasBuff(CrtDamageUp) OR !SkillActionBase.op_Equality(skill) AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND PlayerAttackBase.get_ActionID() eq 622",
+   "vars": [
+    "PlayerAttackBase.get_ActionID",
+    "SkillActionBase.op_Equality"
+   ]
+  },
+  {
+   "method": "EffectiveAbnormalIgnition",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(41)",
+   "simplified": "RemoveSelfBuffer(41)",
+   "when": "!SkillActionBase.op_Equality(skill) AND !hasBuff(CrtDamageUp) AND PlayerAttackBase.get_ActionID() eq 622",
+   "vars": [
+    "PlayerAttackBase.get_ActionID",
+    "SkillActionBase.op_Equality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "WeirdnessOfGodBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "(int((Lv * 0.5)) + 5)",
+        "when": "always",
+        "by_level": [
+         5,
+         6,
+         6,
+         7,
+         7,
+         8,
+         8,
+         9,
+         9,
+         10
+        ]
+       }
+      ],
+      "atkMpHeal": [
+       {
+        "formula": "((Lv hi 5 ? (Lv eq 10 ? 15 : 10) : 5) + Lv)",
+        "when": "always",
+        "by_level": [
+         6,
+         7,
+         8,
+         9,
+         10,
+         16,
+         17,
+         18,
+         19,
+         25
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "sig": "byte lv, ItemDBData.ItemType weaponType",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "(((int((Lv * 0.5)) + 5)) * 3)",
+        "when": "weaponType eq 8",
+        "by_level": [
+         15,
+         18,
+         18,
+         21,
+         21,
+         24,
+         24,
+         27,
+         27,
+         30
+        ]
+       }
+      ],
+      "atkMpHeal": [
+       {
+        "formula": "((Lv hi 5 ? (Lv eq 10 ? 15 : 10) : 5) + Lv)",
+        "when": "always",
+        "by_level": [
+         6,
+         7,
+         8,
+         9,
+         10,
+         16,
+         17,
+         18,
+         19,
+         25
+        ]
+       }
+      ],
+      "normalAttackRate": [
+       {
+        "formula": "(normalAttackRate + 50)",
+        "when": "weaponType eq 8",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AtkUp",
+     "bonus_id": 54,
+     "formula": "atk",
+     "simplified": "atk",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "normalAttackRate",
+     "simplified": "normalAttackRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "registBreak",
+     "simplified": "registBreak",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "atkMpHeal",
+     "simplified": "atkMpHeal",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "IchijhinnokazeAttackAction.ActionPreparation",
+  "TenjhoTengeMusouSwordAction.ActionPreparation"
+ ],
+ "variables": [
+  "ItemType.Katana",
+  "MathUtil.CheckPercent",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.ExistWeaponType",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.op_Equality",
+  "SkillBufferId.AtkUp",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.NormalAttackRate",
+  "SkillBufferId.Value",
+  "SkillId.Berserk",
+  "SkillManager.GetSkillLv",
+  "TryGetAbnormalLocalId.abnormalLocalId",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

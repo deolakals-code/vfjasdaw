@@ -1,0 +1,68 @@
+{
+ "version": 1,
+ "uid": 487,
+ "name_th": "เพิ่มคริติคอล",
+ "name_en": "CrtUp",
+ "tree": "BattleSkill",
+ "category": "Mastery",
+ "max_level": 60,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "CrtUp",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "CrtUp",
+  "bonuses": {
+   "Crt": {
+    "id": 22,
+    "expr": "int((Lv * 0.5))",
+    "by_level": [
+     0,
+     1,
+     1,
+     2,
+     2,
+     3,
+     3,
+     4,
+     4,
+     5
+    ]
+   },
+   "CrtDmg": {
+    "id": 24,
+    "expr": "int((Lv * 0.5))",
+    "by_level": [
+     0,
+     1,
+     1,
+     2,
+     2,
+     3,
+     3,
+     4,
+     4,
+     5
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

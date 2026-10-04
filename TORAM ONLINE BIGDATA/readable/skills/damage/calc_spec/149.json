@@ -1,0 +1,237 @@
+{
+ "version": 1,
+ "uid": 149,
+ "name_th": "กระทืบพสุธา",
+ "name_en": "Shinkyaku",
+ "tree": "MarshallSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "ShinkyakuAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 149,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "mainWeapon == Knuckle",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 25) + 750) / 100)",
+   "simplified": "(25 × Lv + 750) / 100",
+   "when": "mainWeapon == Knuckle",
+   "by_level": [
+    7.75,
+    8.0,
+    8.25,
+    8.5,
+    8.75,
+    9.0,
+    9.25,
+    9.5,
+    9.75,
+    10.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "flinchPercent",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "(mainWeaponType | 16) eq 16 AND mainWeapon != Knuckle OR (mainWeaponType | 16) ne 16 AND mainWeapon != Knuckle",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv * 25) + 750) + System.Math.Max(status.Str, status.Dex)) / 100)",
+   "simplified": "(25 × Lv + System.Math.Max(status.Str, status.Dex) + 750) / 100",
+   "when": "(mainWeaponType | 16) eq 16 AND mainWeapon != Knuckle OR (mainWeaponType | 16) ne 16 AND mainWeapon != Knuckle",
+   "vars": [
+    "System.Math.Max",
+    "status.Dex",
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ignoreAvoidPercent",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "(mainWeaponType | 16) eq 16 AND mainWeapon != Knuckle OR (mainWeaponType | 16) ne 16 AND mainWeapon != Knuckle",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(1, flinchPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(1, flinchPercent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction) AND target.AvoidProbability le 99 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction) AND target.AvoidProbability le 99 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction) AND target.AvoidProbability gt 99",
+   "vars": [
+    "AbnormalType.Flinch",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.AvoidProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(1, 0)",
+   "simplified": "SetAbnormalType(1, 0)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction) AND target.AvoidProbability le 99 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction) AND target.AvoidProbability gt 99",
+   "vars": [
+    "AbnormalType.Flinch",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.AvoidProbability"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Flinch",
+  "GetWeaponType.item",
+  "IMobStatusCalculator.get_AvoidProbability",
+  "IPlayerStatusCalculator.get_Dex",
+  "IPlayerStatusCalculator.get_Str",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "System.Math.Max",
+  "status.Dex",
+  "status.Str",
+  "target.AvoidProbability"
+ ],
+ "residual": []
+}

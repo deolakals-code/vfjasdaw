@@ -1,0 +1,530 @@
+{
+ "version": 1,
+ "uid": 1058,
+ "name_th": "แซครีไฟซ์",
+ "name_en": "Sacrifice",
+ "tree": "DarkPowerSkill",
+ "category": "Special",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "SacrificeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "never (IsExpSkill excludes ActionID)",
+  "attack_type": "Physics",
+  "action_id": 1058,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 100) lo 500 ? (Lv * 100) : 500) + 500)",
+   "simplified": "(100 × Lv < 500 ? 100 × Lv : 500) + 500",
+   "when": "always",
+   "by_level": 600
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "stable",
+   "formula": "(EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.SacrificeStable) + ((Lv eq 10 ? 45 : 35) + ((Lv hi 5 ? Lv : 5) + ((Lv hi 5 ? Lv : 5) << 2))))",
+   "simplified": "(EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.SacrificeStable) + ((Lv eq 10 ? 45 : 35) + ((Lv hi 5 ? Lv : 5) + ((Lv hi 5 ? Lv : 5) << 2))))",
+   "when": "always",
+   "vars": [
+    "BonusType.SacrificeStable",
+    "EternalNightmareBuf.GetParam",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "consumptionHpRate",
+   "formula": "10",
+   "simplified": "10",
+   "when": "always",
+   "by_level": 10
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "stable",
+   "formula": "((Lv eq 10 ? 45 : 35) + ((Lv hi 5 ? Lv : 5) + ((Lv hi 5 ? Lv : 5) << 2)))",
+   "simplified": "(Lv = 10 ? 45 : 35) + 5 × (Lv > 5 ? Lv : 5)",
+   "when": "always",
+   "by_level": 60
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND hasGemCart(401)",
+   "by_level": 1,
+   "vars": [
+    "MathUtil.CheckPercent",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Berserk",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "consumptionHp",
+   "formula": "int(((consumptionHpRate * status.MaxHp) * 89129))",
+   "simplified": "int(0x15c29 × consumptionHpRate × status.MaxHp)",
+   "when": "always",
+   "vars": [
+    "status.MaxHp"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[BaseDamage]",
+   "formula": "int(((consumptionHpRate * status.MaxHp) * 89129))",
+   "simplified": "int(0x15c29 × consumptionHpRate × status.MaxHp)",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "BaseDamage",
+   "vars": [
+    "status.MaxHp"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[StableRate]",
+   "formula": "PlayerAttackBase.CalcStable(SacrificeAction.get_AttackType(), stable, (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) & 1), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcStable(SacrificeAction.get_AttackType(), stable, SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new, SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) & 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "op": "AddRate",
+   "step": "StableRate",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcStable",
+    "PlayerAttackBase.HitReactionAssign",
+    "SacrificeAction.get_AttackType",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[ExpRate]",
+   "formula": "((100 - max(target.CutAttack)) / 100)",
+   "simplified": "(100 - max(target.CutAttack)) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.CutAttack"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "(1 - MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90, PlayerActionManagerBase.get_PlayerStatus())))",
+   "simplified": "1 - MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90, PlayerActionManagerBase.get_PlayerStatus()))",
+   "when": "IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND TryGetProperties<object>.out2(mobAction, 90, PlayerActionManagerBase.get_PlayerStatus()) ne 0 OR CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND TryGetProperties<object>.out2(mobAction, 90, PlayerActionManagerBase.get_PlayerStatus()) ne 0 OR CheckDamageLimit.max(this, mobAction) eq -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND TryGetProperties<object>.out2(mobAction, 90, PlayerActionManagerBase.get_PlayerStatus()) ne 0",
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "CheckDamageLimit.max",
+    "CheckDamageLimit.min",
+    "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[DamageLimit]",
+   "formula": "CheckPlayerDamageUpLimit.limitDamage(this, playerAction, mobAction)",
+   "simplified": "CheckPlayerDamageUpLimit.limitDamage(this, playerAction, mobAction)",
+   "when": "always",
+   "op": "SetConstant",
+   "step": "DamageLimit",
+   "vars": [
+    "CheckPlayerDamageUpLimit.limitDamage"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[MinDamage]",
+   "formula": "CheckDamageLimit.min(this, mobAction)",
+   "simplified": "CheckDamageLimit.min(this, mobAction)",
+   "when": "CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 OR CheckDamageLimit.max(this, mobAction) eq -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 OR CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) ne 1",
+   "op": "AddConstant",
+   "step": "MinDamage",
+   "vars": [
+    "CheckDamageLimit.max",
+    "CheckDamageLimit.min"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[MaxDamage]",
+   "formula": "CheckDamageLimit.max(this, mobAction)",
+   "simplified": "CheckDamageLimit.max(this, mobAction)",
+   "when": "CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 OR CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) eq -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 OR CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) ne 1",
+   "op": "AddConstant",
+   "step": "MaxDamage",
+   "vars": [
+    "CheckDamageLimit.max",
+    "CheckDamageLimit.min"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND hasGemCart(401) OR !MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) AND !UnityEngine.Object.op_Equality(actarAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND hasGemCart(401)",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Berserk",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "CheckPayHp",
+   "kind": "call",
+   "name": "SoulHuntBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1))",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND consumptionHp ge 1 AND consumptionHp lt (PlayerStatusBase.get_GameStatus().serverExHp + PlayerStatusBase.get_GameStatus().serverHp) AND hasBuff(1061) OR !hasBuff(1061) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND consumptionHp ge 1 AND consumptionHp lt (PlayerStatusBase.get_GameStatus().serverExHp + PlayerStatusBase.get_GameStatus().serverHp)",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.SoulHunt_Deathscythe",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "CheckPayHp",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new SoulHuntBuf)",
+   "simplified": "AddSelfBuffer(new, SoulHuntBuf)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND consumptionHp ge 1 AND consumptionHp lt (PlayerStatusBase.get_GameStatus().serverExHp + PlayerStatusBase.get_GameStatus().serverHp) AND hasBuff(1061) OR !hasBuff(1061) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND consumptionHp ge 1 AND consumptionHp lt (PlayerStatusBase.get_GameStatus().serverExHp + PlayerStatusBase.get_GameStatus().serverHp)",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.SoulHunt_Deathscythe",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "StrengthPayHp",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(41)",
+   "simplified": "RemoveSelfBuffer(41)",
+   "when": "!hasBuff(CrtDamageUp) AND CharacterActionManagerBase.AddAbnormalState(UnityEngine.Component.get_gameObject(actarAction), 3, 3, 0, 0, 0, 1) AND SkillIndividualFlag ne 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "CharacterActionManagerBase.AddAbnormalState",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SoulHuntBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "10"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "SoulHuntBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "10"
+    }
+   },
+   "attached_via": "caller2:SoulHuntBuf$$.ctor<-SacrificeAction$$CheckPayHp",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "BonusType.SacrificeStable",
+  "CalcStep.CorrectHitCheck",
+  "CharacterActionManagerBase.AddAbnormalState",
+  "CheckDamageLimit.max",
+  "CheckDamageLimit.min",
+  "CheckPlayerDamageUpLimit.limitDamage",
+  "EternalNightmareBuf.GetParam",
+  "IMobStatusCalculator.get_CutAttack",
+  "IPlayerStatusCalculator.get_MaxHp",
+  "MathUtil.CheckPercent",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.CalcStable",
+  "PlayerAttackBase.HitReactionAssign",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_GameStatus",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SacrificeAction.get_AttackType",
+  "SkillActionBase.op_Inequality",
+  "SkillBufferId.Count",
+  "SkillCalcTemplate.CheckStepResult",
+  "SkillComboState.GetThirdEyeValue",
+  "SkillId.Berserk",
+  "SkillId.SoulHunt_Deathscythe",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuff.buff",
+  "TryGetProperties.out2",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "status.MaxHp",
+  "target.CutAttack"
+ ],
+ "residual": []
+}

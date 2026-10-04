@@ -1,0 +1,182 @@
+{
+ "version": 1,
+ "uid": 867,
+ "name_th": "คอนเวอร์ชั่น",
+ "name_en": "Conversion",
+ "tree": "MagicBladeSkill",
+ "category": "Mastery",
+ "max_level": 60,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "ConversionAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 867,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword",
+  "Bowgun",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(867)",
+   "simplified": "RemoveBuffer(867)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(867)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "ConversionBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "!hasBuff(867) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ConversionBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ConversionBuf, Id)",
+   "when": "!hasBuff(867) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ConversionBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "ConversionBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:ConversionBuf$$.ctor<-ConversionAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "ConversionAction.ActionHit",
+  "ElementSlashAction.OnInitialize",
+  "EnchantedBurstAction.OnInitialize",
+  "EnchantedSwordAction.OnInitialize",
+  "EquipItemData.WeaponTypeCalculatorBase.CalcMatk",
+  "EtherFlareAction.OnInitialize",
+  "UnionSwordAction.OnInitialize"
+ ],
+ "variables": [
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

@@ -1,0 +1,568 @@
+{
+ "version": 1,
+ "uid": 1063,
+ "name_th": "[N]โซลฮันเตอร์[N2]เดธรีปเปอร์[N]",
+ "name_en": "SoulHunt_Deathscythe",
+ "tree": "DarkPowerSkill",
+ "category": "Attack",
+ "max_level": 180,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "SoulHuntAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1063,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "firstSkillRate",
+   "formula": "((Lv * 50) + 500)",
+   "simplified": "50 × Lv + 500",
+   "when": "always",
+   "by_level": [
+    550,
+    600,
+    650,
+    700,
+    750,
+    800,
+    850,
+    900,
+    950,
+    1000
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondSkillRate",
+   "formula": "500",
+   "simplified": "500",
+   "when": "always",
+   "by_level": 500
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 30) + 100)",
+   "simplified": "30 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    130,
+    160,
+    190,
+    220,
+    250,
+    280,
+    310,
+    340,
+    370,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(Lv * Lv)",
+   "simplified": "Lv × Lv",
+   "when": "always",
+   "by_level": [
+    1,
+    4,
+    9,
+    16,
+    25,
+    36,
+    49,
+    64,
+    81,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseMpHeal",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "always",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int((MathUtil.DisplayMeterToDistance(4) * 10))",
+   "simplified": "int(10 × MathUtil.DisplayMeterToDistance(4))",
+   "when": "(mainWeaponType - 8) hi 8",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int((MathUtil.DisplayMeterToDistance(4) * 10))",
+   "simplified": "int(10 × MathUtil.DisplayMeterToDistance(4))",
+   "when": "(mainWeaponType - 8) hi 8",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "(motionSpeed * 0.1)",
+   "simplified": "0.1 × motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "secondSkillRate",
+   "formula": "(secondSkillRate + (((baseVIT // 10) + 100) * PlayerStatusBase.get_SkillBufferManager().skillBufList[1063].Count))",
+   "simplified": "(secondSkillRate + (((baseVIT // 10) + 100) * PlayerStatusBase.get_SkillBufferManager().skillBufList[1063].Count))",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "activeInvincibility",
+   "formula": "1",
+   "simplified": "1",
+   "when": "ActionRange pl 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 101",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "attackCount ne 1 AND attackCount ne 2",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "attackCount eq 2 OR attackCount ne 1 AND attackCount ne 2"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "6",
+   "simplified": "6",
+   "when": "attackCount eq 2",
+   "by_level": 6
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(secondSkillRate / 100)",
+   "simplified": "secondSkillRate / 100",
+   "when": "attackCount ne 1 AND attackCount ne 2",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "attackCount eq 2 OR attackCount ne 1 AND attackCount ne 2",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(MobActionManagerBase.get_MobStatus(mobAction).localExpDefMagic / 100)",
+   "simplified": "(MobActionManagerBase.get_MobStatus(mobAction).localExpDefMagic / 100)",
+   "when": "attackCount eq 2 OR attackCount ne 1 AND attackCount ne 2",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_MobStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(firstSkillRate / 100)",
+   "simplified": "firstSkillRate / 100",
+   "when": "attackCount eq 2",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpList[MobActionManagerBase.get_MobStatus(mobAction).UniqueId] / 100)",
+   "simplified": "(targetExpList[MobActionManagerBase.get_MobStatus(mobAction).UniqueId] / 100)",
+   "when": "attackCount eq 2 OR attackCount ne 1 AND attackCount ne 2",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_MobStatus"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1063)",
+   "simplified": "RemoveSelfBuffer(1063)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(13, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(13, percent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, percent, playerAction) AND attackCount eq 1 AND attackCount ne 2 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, percent, playerAction) AND attackCount eq 1 AND attackCount ne 2",
+   "vars": [
+    "AbnormalType.Fear",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(13)",
+   "simplified": "SetAbnormalType(13)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Fear, percent, playerAction) AND attackCount eq 1 AND attackCount ne 2",
+   "vars": [
+    "AbnormalType.Fear",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "PayHp",
+   "kind": "call",
+   "name": "SoulHuntBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1))",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.SoulHunt_Deathscythe",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "PayHp",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new SoulHuntBuf)",
+   "simplified": "AddSelfBuffer(new, SoulHuntBuf)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.SoulHunt_Deathscythe",
+    "SkillManager.GetSkillLv"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SoulHuntBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "10"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "SoulHuntBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "10"
+    }
+   },
+   "attached_via": "caller2:SoulHuntBuf$$.ctor<-SoulHuntAction$$PayHp",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "DarkStingerAction.ActionStart",
+  "GameManager.ReceiveActionSupportDelay",
+  "HealingShotAction.CheckPayHp",
+  "ReceiveSupportResult.OnActionPlayerSupport",
+  "ReceiveSupportResult.OnEventPlayerSupport",
+  "SacrificeAction.CheckPayHp",
+  "SkillComboState.CheckBloody",
+  "SkillComboState.CheckTenacityCost",
+  "SoulHuntAction.PayHp",
+  "SpriteShieldAction.CheckPayHp"
+ ],
+ "variables": [
+  "AbnormalType.Fear",
+  "GetWeaponType.item",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_MobStatus",
+  "MobStatus.localExpDefMagic",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.vit",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.Count",
+  "SkillId.SoulHunt_Deathscythe",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

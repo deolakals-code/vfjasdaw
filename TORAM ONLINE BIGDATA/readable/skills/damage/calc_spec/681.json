@@ -1,0 +1,54 @@
+{
+ "version": 1,
+ "uid": 681,
+ "name_th": "ค้ำจุนแนวหน้าII",
+ "name_en": "MaintainingTheFront2",
+ "tree": "PartisanSkill",
+ "category": "Mastery",
+ "max_level": 160,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "MaintainingTheFrontMastery",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "MaintainingTheFrontMastery",
+  "bonuses": {
+   "MaxHp": {
+    "id": 12,
+    "expr": "(Lv * 100)",
+    "by_level": [
+     100,
+     200,
+     300,
+     400,
+     500,
+     600,
+     700,
+     800,
+     900,
+     1000
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "MaintainingTheFrontBuf..ctor"
+ ],
+ "variables": [],
+ "residual": []
+}

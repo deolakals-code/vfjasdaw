@@ -1,0 +1,66 @@
+{
+ "version": 1,
+ "uid": 641,
+ "name_th": "ดูเอลมาสเตอรี่",
+ "name_en": "DualMastery",
+ "tree": "DualSword",
+ "category": "Mastery",
+ "max_level": 30,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "DualMastery",
+ "proration": null,
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "DualMastery",
+  "bonuses": {
+   "HitRate": {
+    "id": 21,
+    "expr": "((Lv + (Lv << 1)) - 55)",
+    "by_level": [
+     -52,
+     -49,
+     -46,
+     -43,
+     -40,
+     -37,
+     -34,
+     -31,
+     -28,
+     -25
+    ]
+   },
+   "CrtRate": {
+    "id": 23,
+    "expr": "((Lv + (Lv << 1)) - 55)",
+    "by_level": [
+     -52,
+     -49,
+     -46,
+     -43,
+     -40,
+     -37,
+     -34,
+     -31,
+     -28,
+     -25
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "EquipItemData.OneHundSwordCalculator.CalcSubAtk",
+  "EquipItemData.OneHundSwordCalculator.SubCalcStable",
+  "EquipItemData.OneHundSwordCalculator.calcAtkParam",
+  "SkillManager.GetEquipEnableSkillList"
+ ],
+ "variables": [],
+ "residual": []
+}

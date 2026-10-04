@@ -1,0 +1,74 @@
+﻿dict,key,name,name_th,UsePotential,Coefficient,MaterialCategory,AbilityCategory,Rate,BaseMax,UpperMax,LowerMax,OverRate,DoubleUse,material
+Bonus,1,bStr,STR+,5,50,2,1,1.00,20,50,50,1,0,Beast
+Bonus,6,bStrRate,STR+%,10,100,2,1,0.00,10,10,10,1,0,Beast
+Bonus,2,bInt,INT+,5,50,3,1,1.00,20,50,50,1,0,Wood
+Bonus,7,bIntRate,INT+%,10,100,3,1,0.00,10,10,10,1,0,Wood
+Bonus,3,bVit,VIT+,5,50,0,1,1.00,20,50,50,1,0,Metal
+Bonus,8,bVitRate,VIT+%,10,100,0,1,0.00,10,10,10,1,0,Metal
+Bonus,4,bAgi,AGI+,5,50,1,1,1.00,20,50,50,1,0,Cloth
+Bonus,9,bAgiRate,AGI+%,10,100,1,1,0.00,10,10,10,1,0,Cloth
+Bonus,5,bDex,DEX+,5,50,4,1,1.00,20,50,50,1,0,Drug
+Bonus,10,bDexRate,DEX+%,10,100,4,1,0.00,10,10,10,1,0,Drug
+Bonus,17,bAtk,ATK+,3,33,2,3,1.00,20,50,50,1,1,Beast
+Bonus,18,bAtkRate,ATK+%,10,100,2,3,0.50,10,25,25,1,1,Beast
+Bonus,40,bCritical,อัตราคริติคอล+,1,10,5,8,1.00,20,50,20,1,0,Magic
+Bonus,41,bCriticalRate,อัตราคริติคอล+%,1,10,5,8,1.00,20,50,20,1,0,Magic
+Bonus,42,bCriticalDmg,ความเสียหายคริติคอล+,3,33,5,8,0.35,20,30,30,1,0,Magic
+Bonus,43,bCriticalDmgRate,ความเสียหายคริติคอล+%,10,100,5,8,0.19,10,15,15,1,0,Magic
+Bonus,19,bMatk,MATK+,3,33,3,3,1.00,20,50,50,1,1,Wood
+Bonus,20,bMatkRate,MATK+%,10,100,3,3,0.50,10,25,25,1,1,Wood
+Bonus,21,bSta,ความเสถียร+%,20,200,4,3,0.19,5,10,10,1,0,Drug
+Bonus,22,bHit,ความแม่น+,10,100,4,5,0.69,10,30,30,2,1,Drug
+Bonus,23,bHitRate,ความแม่น+%,20,200,4,5,0.19,5,10,10,1,1,Drug
+Bonus,24,bFlee,หลบหลีก+,10,100,1,6,0.69,10,30,30,2,2,Cloth
+Bonus,25,bFleeRate,หลบหลีก+%,20,200,1,6,0.19,5,10,10,1,2,Cloth
+Bonus,26,bDef,DEF+,3,33,0,4,1.00,20,50,50,10,2,Metal
+Bonus,27,bDefRate,DEF+%,10,100,0,4,0.35,10,20,20,1,2,Metal
+Bonus,28,bMdef,MDEF+,3,33,0,4,1.00,20,50,50,10,2,Metal
+Bonus,29,bMdefRate,MDEF+%,10,100,0,4,0.35,10,20,20,1,2,Metal
+Bonus,30,bAspd,ความเร็วการโจมตี+,1,3,1,7,1.00,20,50,50,16,0,Cloth
+Bonus,31,bAspdRate,ความเร็วการโจมตี+%,1,10,1,7,0.19,20,25,25,1,0,Cloth
+Bonus,32,bCspd,ความเร็วเวลาร่าย+,1,3,4,7,1.00,20,50,50,16,0,Drug
+Bonus,33,bCspdRate,ความเร็วเวลาร่าย+%,1,10,4,7,0.19,20,25,25,1,0,Drug
+Bonus,34,bHpRecovery,ฟื้นฟู HP อัตโนมัติ+,5,50,0,2,1.00,20,50,50,1,2,Metal
+Bonus,35,bHpRecoveryRate,ฟื้นฟู HP อัตโนมัติ+%,10,100,0,2,0.00,10,10,10,1,2,Metal
+Bonus,36,bMpRecovery,ฟื้นฟู MP อัตโนมัติ+,10,100,3,2,0.50,10,25,25,1,2,Wood
+Bonus,37,bMpRecoveryRate,ฟื้นฟู MP อัตโนมัติ+%,20,200,3,2,0.00,5,5,5,1,2,Wood
+Bonus,44,bAntiVirus,ต้านภาวะผิดปกติ+%,20,200,5,10,0.19,5,10,10,1,0,Magic
+Bonus,45,bGuard,การฟื้นฟู Guard+%,20,200,5,10,0.19,5,10,5,1,0,Magic
+Bonus,46,bGuardPower,พลัง Guard+%,20,200,5,10,0.19,5,10,5,1,0,Magic
+Bonus,47,bAvoid,การฟื้นฟู Avoid+%,20,200,5,10,0.19,5,10,5,1,0,Magic
+Bonus,49,bPowerResist,ต้านทานอาวุธ+%,10,100,0,4,0.35,10,20,20,1,2,Metal
+Bonus,50,bMagicResist,ต้านทานเวท+%,10,100,3,4,0.35,10,20,20,1,2,Wood
+Bonus,51,bPowerResistBreaker,อาวุธเจาะเข้า+%,20,200,2,3,0.40,5,15,15,1,1,Beast
+Bonus,52,bMagicResistBreaker,เวทเจาะเข้า+%,20,200,3,3,0.40,5,15,15,1,1,Wood
+Bonus,53,bFireKiller,เพิ่มความเสียหายแก่ธาตุไฟ+%,5,50,5,9,0.35,20,30,30,1,1,Magic
+Bonus,54,bAquaKiller,เพิ่มความเสียหายแก่ธาตุน้ำ+%,5,50,5,9,0.35,20,30,30,1,1,Magic
+Bonus,55,bWindKiller,เพิ่มความเสียหายแก่ธาตุลม+%,5,50,5,9,0.35,20,30,30,1,1,Magic
+Bonus,56,bEarthKiller,เพิ่มความเสียหายแก่ธาตุดิน+%,5,50,5,9,0.35,20,30,30,1,1,Magic
+Bonus,57,bLightKiller,เพิ่มความเสียหายแก่ธาตุแสง+%,5,50,5,9,0.35,20,30,30,1,1,Magic
+Bonus,58,bDarkKiller,เพิ่มความเสียหายแก่ธาตุมืด+%,5,50,5,9,0.35,20,30,30,1,1,Magic
+Bonus,71,bFireShield,ต้านธาตุไฟ+%,5,50,5,9,0.69,20,40,40,1,2,Magic
+Bonus,72,bAquaShield,ต้านธาตุน้ำ+%,5,50,5,9,0.69,20,40,40,1,2,Magic
+Bonus,73,bWindShield,ต้านธาตุลม+%,5,50,5,9,0.69,20,40,40,1,2,Magic
+Bonus,74,bEarthShield,ต้านธาตุดิน+%,5,50,5,9,0.69,20,40,40,1,2,Magic
+Bonus,75,bLightShield,ต้านธาตุแสง+%,5,50,5,9,0.69,20,40,40,1,2,Magic
+Bonus,76,bDarkShield,ต้านธาตุมืด+%,5,50,5,9,0.69,20,40,40,1,2,Magic
+Bonus,62,bHateRate,เฮท+%,6,67,5,10,0.50,15,30,15,1,0,Magic
+Bonus,12,bMaxHpTo10,HP สูงสุด+,3,33,0,2,1.00,20,50,50,16,0,Metal
+Bonus,13,bMaxHpRate,HP สูงสุด+%,10,100,0,2,0.35,10,20,20,1,0,Metal
+Bonus,110,bMaxMpTo10,MP สูงสุด+,6,67,3,2,0.50,15,30,15,1,0,Wood
+Bonus,121,bSurroundingsResist,ลดดาเมจ (ศูนย์กลางที่ศัตรู) +%,3,30,0,4,1.00,0,30,0,1,2,Metal
+Bonus,122,bRangeResist,ลดดาเมจ (ศูนย์กลางที่ผู้เล่น) +%,3,30,0,4,1.00,0,30,0,1,2,Metal
+Bonus,123,bLineResist,ลดดาเมจ (เส้นตรง) +%,3,30,2,4,1.00,0,30,0,1,2,Beast
+Bonus,124,bMoveAttackResist,ลดดาเมจ (พุ่งชน) +%,3,30,2,4,1.00,0,30,0,1,2,Beast
+Bonus,125,bVerticalResist,ลดดาเมจ (อุกกาบาต) +%,2,20,4,4,1.00,0,30,0,1,2,Drug
+Bonus,126,bBreathResist,ลดดาเมจ (ลูกกระสุน) +%,2,20,3,4,1.00,0,30,0,1,2,Wood
+Bonus,127,bTranslationResist,ลดดาเมจ (เลียดพื้น) +%,2,20,3,4,1.00,0,30,0,1,2,Wood
+Bonus,128,bWallResist,ลดดาเมจ (พื้นกับดัก) +%,2,20,4,4,1.00,0,30,0,1,2,Drug
+Element,1,Element.Fire,เพิ่มธาตุไฟ,100,300,5,11,0.00,1,1,0,1,0,Magic
+Element,2,Element.Water,เพิ่มธาตุน้ำ,100,300,5,11,0.00,1,1,0,1,0,Magic
+Element,3,Element.Wind,เพิ่มธาตุลม,100,300,5,11,0.00,1,1,0,1,0,Magic
+Element,4,Element.Earth,เพิ่มธาตุดิน,100,300,5,11,0.00,1,1,0,1,0,Magic
+Element,5,Element.Light,เพิ่มธาตุแสง,100,300,5,11,0.00,1,1,0,1,0,Magic
+Element,6,Element.Dark,เพิ่มธาตุมืด,100,300,5,11,0.00,1,1,0,1,0,Magic

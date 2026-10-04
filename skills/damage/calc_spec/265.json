@@ -1,0 +1,307 @@
+{
+ "version": 1,
+ "uid": 265,
+ "name_th": "การ์เดียน",
+ "name_en": "Guardian",
+ "tree": "ShieldSkill",
+ "category": "Support",
+ "max_level": 100,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "GuardianAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 265,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Shield"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "range",
+   "formula": "int(MathUtil.DisplayMeterToDistance(int(((Lv * 0.5) + 1))))",
+   "simplified": "int(MathUtil.DisplayMeterToDistance(int(0.5 × Lv + 1)))",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(265, Lv, Id)",
+   "simplified": "AddSelfBuffer(265, Lv, Id)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "GuardianBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, float time, int val",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "(((System.Math.Max(0, (Lv - 5)) + lv) * 10) + 30)",
+        "when": "(self & 1) ne 0",
+        "by_level": null
+       }
+      ],
+      "range": [
+       {
+        "formula": "int(MathUtil.DisplayMeterToDistance(int(((Lv * 0.5) + 1))))",
+        "when": "(self & 1) ne 0",
+        "by_level": null
+       }
+      ],
+      "Refine": [
+       {
+        "formula": "val",
+        "when": "(self & 1) eq 0",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CircleBufferBase",
+      "args": [
+       "lv",
+       "(self & 1)",
+       "time"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "time"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "HateRate",
+     "bonus_id": 89,
+     "formula": "(Num * (int((Lv * 1.5)) + 15))",
+     "simplified": "Num × (int(1.5 × Lv) + 15)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0",
+      "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17"
+     ]
+    },
+    {
+     "id": "Guard",
+     "bonus_id": 57,
+     "formula": "(Refine + 15)",
+     "simplified": "Refine + 15",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0",
+      "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "(Num * (int((Lv * 0.33)) + 2))",
+     "simplified": "Num × (int(0.33 × Lv) + 2)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0",
+      "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17"
+     ]
+    },
+    {
+     "id": "MAtkUpRate",
+     "bonus_id": 30,
+     "formula": "(((Lv << 1) - 30) * Num)",
+     "simplified": "(2 × Lv - 30) × Num",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0",
+      "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17"
+     ]
+    },
+    {
+     "id": "AtkUpRate",
+     "bonus_id": 29,
+     "formula": "(Num * (int((Lv * 1.5)) - 20))",
+     "simplified": "Num × (int(1.5 × Lv) - 20)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0",
+      "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateSupport",
+     "bonus_id": 7,
+     "formula": "(Refine + (int((Lv * 1.5)) + 20))",
+     "simplified": "Refine + int(1.5 × Lv) + 20",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0",
+      "(Refine & 0x80000000) eq 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "(Lv + 5)",
+     "simplified": "Lv + 5",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0",
+      "(Refine & 0x80000000) eq 0"
+     ]
+    },
+    {
+     "id": "HateRate",
+     "bonus_id": 89,
+     "formula": "(((Lv - (Lv << 2)) - (Refine << 1)) - 30)",
+     "simplified": "-(3 × Lv) - 2 × Refine - 30",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0",
+      "(Refine & 0x80000000) eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "Num": [
+     {
+      "method": "set_Num",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "Refine": [
+     {
+      "method": "set_Refine",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "status": [
+     {
+      "method": "SetStatus",
+      "formula": "status",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "SetStatus",
+    "get_Num",
+    "get_Refine",
+    "set_Num",
+    "set_Refine"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PlayerSecondaryStatus.GetDisplayBonusCalcHate"
+ ],
+ "variables": [
+  "EquipItemData.get_SubWeapon",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.AtkUpRate",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.Guard",
+  "SkillBufferId.HateRate",
+  "SkillBufferId.MAtkUpRate",
+  "SkillBufferId.MobLastDamageRateSupport",
+  "System.Math.Max",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

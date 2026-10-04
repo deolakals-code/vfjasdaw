@@ -1,0 +1,32 @@
+{
+ "version": 1,
+ "uid": 626,
+ "name_th": "นุคิอุจิเซ็นโนเซ็น",
+ "name_en": "UnannouncedDestination",
+ "tree": "MononofuSkill",
+ "category": "Mastery",
+ "max_level": 240,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "UnannouncedDestination",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "UnannouncedDestination",
+  "bonuses": {}
+ },
+ "hooks": [
+  "IchijhinnokazeAttackAction.CheckSetunakenran",
+  "NormalAttackAction.ActionPreparation",
+  "ShukuchiAction.OnInitialize",
+  "UnannouncedDestination.CheckMinimumBehavior",
+  "WaveBladeAction.ActionPreparation"
+ ],
+ "variables": [],
+ "residual": []
+}

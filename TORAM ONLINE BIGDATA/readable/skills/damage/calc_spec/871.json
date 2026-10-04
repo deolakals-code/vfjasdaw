@@ -1,0 +1,79 @@
+{
+ "version": 1,
+ "uid": 871,
+ "name_th": "เอนชานท์สเปล",
+ "name_en": "EnchantedSpell",
+ "tree": "MagicBladeSkill",
+ "category": "Extra",
+ "max_level": 180,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "EnchantedSpell",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "EnchantedSpellBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, float time",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "time",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "name",
+   "kind": "timed"
+  }
+ ],
+ "passives": {
+  "class": "EnchantedSpell",
+  "bonuses": {}
+ },
+ "hooks": [
+  "PlayerAttackBase.CheckEnchantedSpellMpLessInvoke",
+  "ReceiveSupportResult.OnEventPlayerSupport"
+ ],
+ "variables": [
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

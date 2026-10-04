@@ -1,0 +1,276 @@
+{
+ "version": 1,
+ "uid": 292,
+ "name_th": "แกตติ้งไนฟ์",
+ "name_en": "GatlingKnife",
+ "tree": "KnifeSkill",
+ "category": "Attack",
+ "max_level": 50,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "GatlingKnifeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 292,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((int(((Lv - 1) * 0.75)) * 10) + 40) / 100)",
+   "simplified": "(10 × int(0.75 × Lv - 0.75) + 40) / 100",
+   "when": "always",
+   "by_level": [
+    0.4,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.7,
+    0.8,
+    0.9,
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv << 1) + 20)",
+   "simplified": "2 × Lv + 20",
+   "when": "always",
+   "by_level": [
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "((((baseAGI + baseSTR) + baseDEX) // 30) / 100)",
+   "simplified": "(baseAGI + baseSTR + baseDEX) // 30 / 100",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusFixAddDamage",
+   "formula": "status.SubEqAtk",
+   "simplified": "status.SubEqAtk",
+   "when": "always",
+   "vars": [
+    "status.SubEqAtk"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "(((Lv + 2) >> 2) + 5)",
+   "simplified": "(Lv + 2) ÷ 4 + 5",
+   "when": "always",
+   "by_level": [
+    5,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    8
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "addExcetraDamage",
+   "formula": "System.Delegate.Combine(addExcetraDamage, new System.Action)",
+   "simplified": "System.Delegate.Combine(addExcetraDamage, new, System.Action)",
+   "when": "MobaMode ne 0 AND damageCount lt 1 OR 1 ge damageCount AND MobaMode ne 0 AND damageCount ge 1 OR 1 lt damageCount AND 2 ge damageCount AND MobaMode ne 0 AND damageCount ge 1",
+   "vars": [
+    "System.Delegate.Combine"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 8)",
+   "simplified": "SkillParam | 8",
+   "when": "(SkillParam & 32) eq 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND damageCount lt 1 OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND damageCount lt 1 OR (SkillParam & 32) eq 0 AND 1 ge damageCount AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND damageCount ge 1",
+   "vars": [
+    "MasteryId.Trigger",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "bonusSkillRate",
+   "simplified": "bonusSkillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "bonusFixAddDamage",
+   "simplified": "bonusFixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), GatlingKnifeAction.get_AttackType())",
+   "simplified": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), GatlingKnifeAction.get_AttackType())",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND damageCount lt 1 OR (SkillParam & 32) ne 0 AND 1 ge damageCount AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND damageCount ge 1 OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 AND damageCount lt 1",
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "GatlingKnifeAction.get_AttackType",
+    "MasteryId.Trigger",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcLastDamageRate",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[LastDamageRate]",
+   "formula": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "simplified": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 AND damageCount lt 1 OR (SkillParam & 32) ne 0 AND 1 ge damageCount AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 AND damageCount ge 1 OR (SkillParam & 32) ne 0 AND 1 ge damageCount AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 AND damageCount ge 1 AND damageCount lt 1",
+   "op": "AddRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "MasteryId.Trigger",
+    "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "GatlingKnifeAction.get_AttackType",
+  "IPlayerStatusCalculator.get_SubEqAtk",
+  "MasteryId.Trigger",
+  "MathUtil.DisplayMeterToDistance",
+  "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcLastDamageRate",
+  "PlayerPrimaryStatus.agi",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.GetEquipElement",
+  "SkillActionBase.checkPercent",
+  "SkillMasteryBase.GetMasteryParam",
+  "System.Delegate.Combine",
+  "TryGetProperties.out2",
+  "status.SubEqAtk"
+ ],
+ "residual": []
+}

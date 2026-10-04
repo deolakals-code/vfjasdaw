@@ -1,0 +1,277 @@
+{
+ "version": 1,
+ "uid": 53,
+ "name_th": "คลีฟวิงแอคแทค",
+ "name_en": "CleaveAttack",
+ "tree": "BladeSkill",
+ "category": "Attack",
+ "max_level": 30,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "CleaveAttackAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 53,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 10) + 150)",
+   "simplified": "10 × Lv + 150",
+   "when": "always",
+   "by_level": [
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220,
+    230,
+    240,
+    250
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "((status.Str lt 0 ? (status.Str + 1) : status.Str) >> 1)",
+   "simplified": "status.Str ÷ 2",
+   "when": "always",
+   "vars": [
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "(status.Vit + (((Lv << 4) - Lv) + 150))",
+   "simplified": "status.Vit + 15 × Lv + 150",
+   "when": "always",
+   "vars": [
+    "status.Vit"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "(PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) + 0.5)",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) + 0.5",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y * MathUtil.DisplayMeterToDistance(1)))",
+   "simplified": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y * MathUtil.DisplayMeterToDistance(1)))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z * MathUtil.DisplayMeterToDistance(1)))",
+   "simplified": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z * MathUtil.DisplayMeterToDistance(1)))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "targetNum",
+   "formula": "(((targetNum + 1) + 1) + 1)",
+   "simplified": "targetNum + 3",
+   "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(?stack) AND !UnityEngine.Object.op_Equality(mainTarget, MobActionManagerBase.get_transform(?stack)) AND !UnityEngine.Object.op_Inequality(?stack) AND CleaveAttackAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), MobActionManagerBase.get_transform(?stack), MobActionManagerBase.get_Size(?stack)) AND IsOtherPlayer eq 0 AND MobPopAreaGaugeManager.get_Instance().IsBonus eq 0 AND param eq 100 OR !MobActionManagerBase.get_IsDeadOrLocalDead(?stack) AND !UnityEngine.Object.op_Equality(mainTarget, MobActionManagerBase.get_transform(?stack)) AND CleaveAttackAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), MobActionManagerBase.get_transform(?stack), MobActionManagerBase.get_Size(?stack)) AND IsOtherPlayer eq 0 AND MobPopAreaGaugeManager.get_Instance().IsBonus eq 0 AND SkillActionBase.CheckMainTarget(this, MobActionManagerBase.get_CharacterActionManagerBase(?stack)) AND UnityEngine.Object.op_Inequality(?stack) AND param eq 100 OR !MobActionManagerBase.get_IsDeadOrLocalDead(?stack) AND !UnityEngine.Object.op_Equality(mainTarget, MobActionManagerBase.get_transform(?stack)) AND !UnityEngine.Object.op_Inequality(?stack) AND CleaveAttackAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), MobActionManagerBase.get_transform(?stack), MobActionManagerBase.get_Size(?stack)) AND IsOtherPlayer eq 0 AND MobPopAreaGaugeManager.get_Instance().IsBonus ne 0 AND MobPopAreaGaugeManager.get_Instance().IsCoolTime ne 0 AND param eq 100",
+   "vars": [
+    "CleaveAttackAction.CheckRangeHit",
+    "MobActionManagerBase.get_CharacterActionManagerBase",
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "MobActionManagerBase.get_Size",
+    "MobActionManagerBase.get_transform",
+    "MobPopAreaGaugeManager.get_Instance",
+    "SkillActionBase.CheckMainTarget",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "?stack",
+    "?stack",
+    "?stack",
+    "?stack",
+    "?stack"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "(bonusSkillRate * targetNum)",
+   "simplified": "bonusSkillRate × targetNum",
+   "when": "IsOtherPlayer eq 0 AND param eq 100 AND targetNum le 0 OR IsOtherPlayer eq 0 AND PlayerAttackBase.get_Mp() le (targetNum * 100) AND param eq 100 AND targetNum gt 0 OR IsOtherPlayer eq 0 AND PlayerAttackBase.get_Mp() gt (targetNum * 100) AND param eq 100 AND targetNum gt 0",
+   "vars": [
+    "PlayerAttackBase.get_Mp"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(min((skillRate + bonusSkillRate), 1000) / 100)",
+   "simplified": "min(skillRate + bonusSkillRate, 1000) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "CleaveAttackAction.CheckRangeHit",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Str",
+  "IPlayerStatusCalculator.get_Vit",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "MobActionManagerBase.get_IsDeadOrLocalDead",
+  "MobActionManagerBase.get_Size",
+  "MobActionManagerBase.get_transform",
+  "MobPopAreaGaugeManager.get_Instance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.get_Mp",
+  "PlayerStatusBase.GetEquipElement",
+  "SkillActionBase.CheckMainTarget",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_forward",
+  "UnityEngine.Transform.get_position",
+  "status.Str",
+  "status.Vit"
+ ],
+ "residual": [
+  {
+   "where": "ActionSkillEvent:targetNum",
+   "tokens": [
+    "?stack",
+    "?stack",
+    "?stack",
+    "?stack",
+    "?stack"
+   ]
+  }
+ ]
+}

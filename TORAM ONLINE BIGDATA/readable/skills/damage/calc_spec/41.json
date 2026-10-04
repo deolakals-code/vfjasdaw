@@ -1,0 +1,330 @@
+{
+ "version": 1,
+ "uid": 41,
+ "name_th": "รัมเพจ",
+ "name_en": "Rampage",
+ "tree": "BladeSkill",
+ "category": "Buffer",
+ "max_level": 70,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "RampageAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 41,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "RampageBuf..ctor",
+   "formula": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new RampageBuf, Id)",
+   "simplified": "AddSelfBuffer(new, RampageBuf, Id)",
+   "when": "always"
+  },
+  {
+   "method": "ReceivedAbnormal",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(41)",
+   "simplified": "RemoveSelfBuffer(41)",
+   "when": "!Toram.Common.Actions.ActionAppendData.Contains(appendData, 46) AND !hasBuff(CrtDamageUp)",
+   "vars": [
+    "Toram.Common.Actions.ActionAppendData.Contains"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "RampageBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "600",
+        "when": "always",
+        "by_level": 600
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "11"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    },
+    {
+     "sig": "byte lv, PlayerStatusBase playerStatus",
+     "fields": {
+      "status": [
+       {
+        "formula": "playerStatus",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "11"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "isFinish",
+     "simplified": "isFinish",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value2",
+     "bonus_id": 51,
+     "formula": "(((Lv hi 6 ? Lv : 6) + (Lv << 1)) - 5)",
+     "simplified": "(Lv > 6 ? Lv : 6) + 2 × Lv - 5",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "CountBufferBase.get_Peak() AND LeftTime le 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND CountBufferBase.get_Peak() AND LeftTime gt 0 OR !CountBufferBase.get_Peak() AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "!CountBufferBase.get_Peak() AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Next",
+      "formula": "0",
+      "when": "Count ne (Max - 1) AND CountBufferBase.get_Peak()"
+     }
+    ],
+    "isFinish": [
+     {
+      "method": "Next",
+      "formula": "1",
+      "when": "Count eq (Max - 1)"
+     },
+     {
+      "method": "Next",
+      "formula": "0",
+      "when": "Count ne (Max - 1) AND CountBufferBase.get_Peak()"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "get_IsAbnormalDamageCancel"
+   ],
+   "kind": "timed"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "RampageBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "11"
+    }
+   },
+   "attached_via": "caller2:RampageBuf$$.ctor<-RampageAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "GemCartBuffer.BerserkSuppressionBuff.Exemption",
+  "NormalAttackAction.OnInitialize",
+  "PlayerSecondaryStatus.get_AtkMpRecovery",
+  "RampageAction.ReceivedAbnormal"
+ ],
+ "variables": [
+  "CountBufferBase.get_Peak",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "SkillBufferId.Count",
+  "SkillBufferId.Value",
+  "SkillBufferId.Value2",
+  "System.Math.Max",
+  "System.Math.Min",
+  "Toram.Common.Actions.ActionAppendData.Contains",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

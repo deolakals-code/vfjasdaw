@@ -1,0 +1,52 @@
+{
+ "version": 1,
+ "uid": 75,
+ "name_th": "ควิกดรอ",
+ "name_en": "QuickDraw",
+ "tree": "ShootSkill",
+ "category": "Mastery",
+ "max_level": 70,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "QuickDraw",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "QuickDraw",
+  "bonuses": {
+   "Trigger": {
+    "id": 0,
+    "expr": "(Lv + (Lv << 1))",
+    "by_level": [
+     3,
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

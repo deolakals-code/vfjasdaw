@@ -1,0 +1,263 @@
+{
+ "version": 1,
+ "uid": 1130,
+ "name_th": "โซลสตรีม",
+ "name_en": "SoulStream",
+ "tree": "NecromancerSkill",
+ "category": "Object",
+ "max_level": 260,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment",
+  "placed object / trap / summon"
+ ],
+ "class": "SoulStreamAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1130,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 100) + baseINT)",
+   "simplified": "100 × Lv + baseINT",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "((Lv * 45) + 450)",
+   "simplified": "45 × Lv + 450",
+   "when": "always",
+   "by_level": [
+    495,
+    540,
+    585,
+    630,
+    675,
+    720,
+    765,
+    810,
+    855,
+    900
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 1.5, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 1.5, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "abnormalPer",
+   "formula": "(((TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count + (TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count << 2)) << 1) lt 100 ? ((TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count + (TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count << 2)) << 1) : 100)",
+   "simplified": "(((TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count + (TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count << 2)) << 1) lt 100 ? ((TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count + (TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count << 2)) << 1) : 100)",
+   "when": "(max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) gt TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality",
+    "status.MaxMp"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count * 75) + skillRate)",
+   "simplified": "((TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count * 75) + skillRate)",
+   "when": "(max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) gt TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality",
+    "status.MaxMp"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count",
+   "simplified": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count",
+   "when": "(max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) gt TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality",
+    "status.MaxMp"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "abnormalPer",
+   "formula": "((((max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) + ((max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) << 2)) << 1) lt 100 ? (((max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) + ((max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) << 2)) << 1) : 100)",
+   "simplified": "((((max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) + ((max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) << 2)) << 1) lt 100 ? (((max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) + ((max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) << 2)) << 1) : 100)",
+   "when": "(max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) le TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality",
+    "status.MaxMp"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) * 75) + skillRate)",
+   "simplified": "(((max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) * 75) + skillRate)",
+   "when": "(max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) le TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality",
+    "status.MaxMp"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100)",
+   "simplified": "(max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100)",
+   "when": "(max((status.MaxMp - (PlayerStatusBase.get_GameStatus().localExMp + PlayerStatusBase.get_GameStatus().localMp)), 0) // 100) le TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121).Count AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality",
+    "status.MaxMp"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(15, abnormalPer, playerAction)",
+   "simplified": "checkAbnormalPercent(15, abnormalPer, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(15)",
+   "simplified": "SetAbnormalType(15)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Weak, abnormalPer, playerAction)",
+   "vars": [
+    "AbnormalType.Weak",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Weak",
+  "IPlayerStatusCalculator.get_MaxMp",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.int",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_GameStatus",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "TryGetBuf.out2",
+  "UnityEngine.Object.op_Inequality",
+  "status.MaxMp"
+ ],
+ "residual": []
+}

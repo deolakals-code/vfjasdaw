@@ -1,0 +1,294 @@
+{
+ "version": 1,
+ "uid": 1251,
+ "name_th": "แม็กนั่ม",
+ "name_en": "Magnum",
+ "tree": "EventSkill",
+ "category": "Attack",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "MagnumAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1251,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(18)",
+   "simplified": "MathUtil.DisplayMeterToDistance(18)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(status.Lv + (Lv * 100))",
+   "simplified": "status.Lv + 100 × Lv",
+   "when": "always",
+   "vars": [
+    "status.Lv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) << 3)",
+   "simplified": "40 × Lv",
+   "when": "always",
+   "by_level": 40
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "OnInitializeEventRoom",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(18)",
+   "simplified": "MathUtil.DisplayMeterToDistance(18)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefMagic"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "MagnumBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int count",
+     "fields": {
+      "Count": [
+       {
+        "formula": "count",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "hitRate": [
+       {
+        "formula": "(95 - lv)",
+        "when": "always",
+        "by_level": 94
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "99"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    },
+    {
+     "id": "HitRate",
+     "bonus_id": 11,
+     "formula": "-hitRate",
+     "simplified": "-hitRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "HitRate",
+     "bonus_id": 11,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "intervalTimer": [
+     {
+      "method": "Updata",
+      "formula": "(20 - Lv)",
+      "when": "(intervalTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND isInterval ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(intervalTimer - UnityEngine.Time.get_deltaTime())",
+      "when": "(intervalTimer - UnityEngine.Time.get_deltaTime()) hi 0 AND isInterval ne 0"
+     },
+     {
+      "method": "ActiveMagnumCount",
+      "formula": "(20 - lv)",
+      "when": "always"
+     }
+    ],
+    "isInterval": [
+     {
+      "method": "ActiveMagnumCount",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "InactiveMagnumCount",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "Level": [
+     {
+      "method": "ActiveMagnumCount",
+      "formula": "lv",
+      "when": "always"
+     },
+     {
+      "method": "SetSkillParam",
+      "formula": "lv",
+      "when": "always"
+     }
+    ],
+    "hitRate": [
+     {
+      "method": "SetSkillParam",
+      "formula": "((((((baseTEC // 3) - baseTEC) >> 1) + (((baseTEC // 3) - baseTEC) >> 31)) - lv) + 95)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "ActiveMagnumCount",
+    "InactiveMagnumCount",
+    "SetSkillParam"
+   ],
+   "attached_via": "name",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MagnumAction.IsFailure",
+  "MagnumAction.calcPlayerToMobDamage",
+  "ReceiveSupportResult.OnEventPlayerSupport"
+ ],
+ "variables": [
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "IPlayerStatusCalculator.get_Lv",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerPrimaryStatus.tec",
+  "SkillBufferId.Count",
+  "SkillBufferId.HitRate",
+  "UnityEngine.Time.get_deltaTime",
+  "status.Lv",
+  "target.ExpDefMagic"
+ ],
+ "residual": []
+}

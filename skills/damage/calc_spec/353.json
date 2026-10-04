@@ -1,0 +1,34 @@
+{
+ "version": 1,
+ "uid": 353,
+ "name_th": "แปรรูปวัตถุดิบ",
+ "name_en": "MaterialCraft",
+ "tree": "SmithSkill",
+ "category": "Extra",
+ "max_level": 25,
+ "roles": [
+  "no client action class (system / production / unreleased)"
+ ],
+ "class": null,
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "SmithProcessingDialog.UpdateTotal"
+ ],
+ "variables": [],
+ "residual": []
+}

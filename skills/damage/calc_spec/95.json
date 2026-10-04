@@ -1,0 +1,193 @@
+{
+ "version": 1,
+ "uid": 95,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "JumpbackShotPursuitAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "Physics",
+  "action_id": 95,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseSkillRate",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "((Lv * 0.01) * status.Dex)",
+   "simplified": "0.01 × Lv × status.Dex",
+   "when": "always",
+   "vars": [
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "resistBreaker",
+   "formula": "50",
+   "simplified": "50",
+   "when": "always",
+   "by_level": 50
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Atk",
+   "simplified": "status.Atk",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "status.Atk"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "SetParameter",
+   "kind": "set",
+   "name": "count",
+   "formula": "count",
+   "simplified": "count",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(min((baseSkillRate + (bonusSkillRate * count)), 500) / 100)",
+   "simplified": "min(baseSkillRate + bonusSkillRate × count, 500) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  }
+ ],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "JumpBackShotBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "counter": [
+       {
+        "formula": "new System.Collections.Generic.Dictionary<MobActionManagerBase, int>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "max": [
+       {
+        "formula": "(int((Lv * 0.3)) + 2)",
+        "when": "always",
+        "by_level": [
+         2,
+         2,
+         2,
+         3,
+         3,
+         3,
+         4,
+         4,
+         4,
+         5
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [
+    "GetCount",
+    "Next",
+    "ReMark",
+    "Resister"
+   ],
+   "attached_via": "manual:PursuitJumpbackShotAttack reads its per-monster counter (GetCount/Next) and passes it to this action as `count`",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IPlayerStatusCalculator.get_Atk",
+  "IPlayerStatusCalculator.get_Dex",
+  "PlayerAttackBase.GetWeaponElementType",
+  "UnityEngine.Object.op_Inequality",
+  "status.Atk",
+  "status.Dex"
+ ],
+ "residual": []
+}

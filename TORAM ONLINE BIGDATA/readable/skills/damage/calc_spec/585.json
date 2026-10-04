@@ -1,0 +1,211 @@
+{
+ "version": 1,
+ "uid": 585,
+ "name_th": "ระเบิดเยือกแข็ง",
+ "name_en": "FreezeGrenade",
+ "tree": "GolemSkill",
+ "category": "Attack",
+ "max_level": 200,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "FreezeGrenadeAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "Magic",
+  "action_id": 585,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bowgun",
+  "Shield"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MagicGrenade, 1)",
+   "simplified": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MagicGrenade, 1)",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.MagicGrenade",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "maxThrowingDistance",
+   "formula": "MathUtil.DisplayMeterToDistance(((motionSpeed * 0.5) + 3))",
+   "simplified": "MathUtil.DisplayMeterToDistance(0.5 × motionSpeed + 3)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 17 AND FreezeGrenadeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.Component.get_transform(actarAction), 0) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 200 OR EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 17 AND FreezeGrenadeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.Component.get_transform(actarAction), 0) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1093) AND param eq 200 OR !hasBuff(1093) AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 17 AND FreezeGrenadeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.Component.get_transform(actarAction), 0) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 200",
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "FreezeGrenadeAction.CheckRangeHit",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(9, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(9, percent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Freeze, percent, playerAction) AND SkillActionBase.DamageData.CheckEffectiveAbnormal(PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 1)) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Freeze, percent, playerAction) AND SkillActionBase.DamageData.CheckEffectiveAbnormal(PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 1))",
+   "vars": [
+    "AbnormalType.Freeze",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerAttackBase.templateToDamageData",
+    "SkillActionBase.DamageData.CheckEffectiveAbnormal"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(9)",
+   "simplified": "SetAbnormalType(9)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Freeze, percent, playerAction) AND SkillActionBase.DamageData.CheckEffectiveAbnormal(PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 1))",
+   "vars": [
+    "AbnormalType.Freeze",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerAttackBase.templateToDamageData",
+    "SkillActionBase.DamageData.CheckEffectiveAbnormal"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Freeze",
+  "EquipItemData.get_SubWeaponItemType",
+  "FreezeGrenadeAction.CheckRangeHit",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.templateToDamageData",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.DamageData.CheckEffectiveAbnormal",
+  "SkillId.MagicGrenade",
+  "SkillManager.GetSkillLv",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

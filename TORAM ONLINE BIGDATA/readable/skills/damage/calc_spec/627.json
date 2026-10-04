@@ -1,0 +1,209 @@
+{
+ "version": 1,
+ "uid": 627,
+ "name_th": "ดอนท์เลส",
+ "name_en": "Inflexibility",
+ "tree": "MononofuSkill",
+ "category": "Mastery",
+ "max_level": 240,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "Inflexibility",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "InflexibilityBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool isGemCart",
+     "fields": {
+      "interval": [
+       {
+        "formula": "((?sbfx - lv) + 12)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "cooldownInterval": [
+       {
+        "formula": "2",
+        "when": "always",
+        "by_level": 2
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((?sbfx - lv) + 12)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "100"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "HitUp",
+     "bonus_id": 42,
+     "formula": "hit",
+     "simplified": "hit",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "FirstAttackRate",
+     "bonus_id": 45,
+     "formula": "firstAttackRate",
+     "simplified": "firstAttackRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "BaseEqAtk",
+     "bonus_id": 71,
+     "formula": "baseEqAtk",
+     "simplified": "baseEqAtk",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "EqAtk",
+     "bonus_id": 9,
+     "formula": "eqAtk",
+     "simplified": "eqAtk",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MotionSpeed",
+     "bonus_id": 0,
+     "formula": "motionSpeed",
+     "simplified": "motionSpeed",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "cooldownInterval",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND BuffEffectActive ne 0 AND Count gt 0 AND LeftTime gt 0 AND isCooldown ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND BuffEffectActive ne 0 AND Count le 0 AND LeftTime gt 0 AND isCooldown ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "interval",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND BuffEffectActive ne 0 AND LeftTime gt 0 AND isCooldown eq 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND BuffEffectActive ne 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "StartCooldown",
+      "formula": "2",
+      "when": "isCooldown eq 0"
+     },
+     {
+      "method": "EndCooldown",
+      "formula": "((?sbfx - Lv) + 12)",
+      "when": "isCooldown ne 0"
+     }
+    ],
+    "Count": [
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - System.Math.Min((Count - ((Count // 10) * 10)), count)), 0)",
+      "when": "always"
+     },
+     {
+      "method": "StartCooldown",
+      "formula": "newCount",
+      "when": "isCooldown eq 0"
+     }
+    ],
+    "isCooldown": [
+     {
+      "method": "StartCooldown",
+      "formula": "1",
+      "when": "isCooldown eq 0"
+     },
+     {
+      "method": "EndCooldown",
+      "formula": "0",
+      "when": "isCooldown ne 0"
+     }
+    ],
+    "interval": [
+     {
+      "method": "EndCooldown",
+      "formula": "((?sbfx - Lv) + 12)",
+      "when": "isCooldown ne 0"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckHeavenlyStarPowerUp",
+    "CheckMpHalving",
+    "CheckSwordMoveBuffer",
+    "EndCooldown",
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "StartCooldown"
+   ],
+   "attached_via": "name",
+   "kind": "timed"
+  }
+ ],
+ "passives": {
+  "class": "Inflexibility",
+  "bonuses": {}
+ },
+ "hooks": [
+  "EquipItemData.WeaponTypeCalculatorBase.CalcEqAtk",
+  "HeavenlyStarBuf.IllusionarySceneReset",
+  "Inflexibility.CheckAdd",
+  "MobaPlayerSecondaryStatus.GetMotionSpeed",
+  "PlayerAttackBase.CalcCostMp",
+  "PlayerSecondaryStatus.GetCalcMotionSpeed",
+  "SwordMove.AddBuf"
+ ],
+ "variables": [
+  "SkillBufferId.BaseEqAtk",
+  "SkillBufferId.EqAtk",
+  "SkillBufferId.FirstAttackRate",
+  "SkillBufferId.HitUp",
+  "SkillBufferId.MotionSpeed",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

@@ -1,0 +1,314 @@
+{
+ "version": 1,
+ "uid": 975,
+ "name_th": "[N]บัสเตอร์แลนซ์[P]แพนิกบัสเตอร์แลนซ์[N]",
+ "name_en": "BusterLunce",
+ "tree": "HalberdSkill",
+ "category": "Attack",
+ "max_level": 70,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "BusterLanceAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 975,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(15)",
+   "simplified": "MathUtil.DisplayMeterToDistance(15)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(500 + (((status.Agi + status.Str) lt 0 ? ((status.Agi + status.Str) + 1) : (status.Agi + status.Str)) >> 1))",
+   "simplified": "(status.Agi + status.Str) ÷ 2 + 500",
+   "when": "always",
+   "vars": [
+    "status.Agi",
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "distanceAttenuation",
+   "formula": "(100 - (Lv + (Lv << 2)))",
+   "simplified": "100 - 5 × Lv",
+   "when": "always",
+   "by_level": [
+    95,
+    90,
+    85,
+    80,
+    75,
+    70,
+    65,
+    60,
+    55,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isGemCart",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attenuationStartDist",
+   "formula": "(attenuationStartDist + 3)",
+   "simplified": "attenuationStartDist + 3",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "gemCartRate",
+   "formula": "gemCart(1044[4])",
+   "simplified": "gemCart(1044, [4])",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 16)",
+   "simplified": "SkillParam | 16",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND SkillActionBase.checkPercent(this, 100, 30) AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Equality(actarAction) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND PlayerAttackBase.IsBlank(this) AND SkillActionBase.checkPercent(this, 100, 30) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND MobaMode ne 0 AND SkillActionBase.checkPercent(this, 100, 30) AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "SkillActionBase.checkPercent",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isPunishRay",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "punishRayLv",
+   "formula": "PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[967].Level",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[967].Level",
+   "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "distanceAttenuation",
+   "formula": "(distanceAttenuation + -25)",
+   "simplified": "distanceAttenuation - 25",
+   "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(fixAddDamage + 100)",
+   "simplified": "fixAddDamage + 100",
+   "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + ((PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[967].Level + (PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[967].Level << 2)) << 1))",
+   "simplified": "(skillRate + ((PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[967].Level + (PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[967].Level << 2)) << 1))",
+   "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "GetLocalizeKey",
+   "kind": "set",
+   "name": "isPunishRay",
+   "formula": "isPunishRay",
+   "simplified": "isPunishRay",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((((skillRate - (distanceAttenuation * max((((MathUtil.DistanceToDisplayMeter(ActionRange) mi MobActionManagerBase.get_PlayerMeterDistance(mobAction) ? MathUtil.DistanceToDisplayMeter(ActionRange) : MobActionManagerBase.get_PlayerMeterDistance(mobAction)) - attenuationStartDist) + 1), 0))) pl 100 ? min((skillRate - (distanceAttenuation * max((((MathUtil.DistanceToDisplayMeter(ActionRange) mi MobActionManagerBase.get_PlayerMeterDistance(mobAction) ? MathUtil.DistanceToDisplayMeter(ActionRange) : MobActionManagerBase.get_PlayerMeterDistance(mobAction)) - attenuationStartDist) + 1), 0))), 855) : 100) + gemCartRate) / 100)",
+   "simplified": "((((skillRate - (distanceAttenuation * max((((MathUtil.DistanceToDisplayMeter(ActionRange) mi MobActionManagerBase.get_PlayerMeterDistance(mobAction) ? MathUtil.DistanceToDisplayMeter(ActionRange) : MobActionManagerBase.get_PlayerMeterDistance(mobAction)) - attenuationStartDist) + 1), 0))) pl 100 ? min((skillRate - (distanceAttenuation * max((((MathUtil.DistanceToDisplayMeter(ActionRange) mi MobActionManagerBase.get_PlayerMeterDistance(mobAction) ? MathUtil.DistanceToDisplayMeter(ActionRange) : MobActionManagerBase.get_PlayerMeterDistance(mobAction)) - attenuationStartDist) + 1), 0))), 855) : 100) + gemCartRate) / 100)",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MathUtil.DistanceToDisplayMeter",
+    "MobActionManagerBase.get_PlayerMeterDistance"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(BusterLanceAction.get_AttackType(), PlayerAttackBase.get_ActionID(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "simplified": "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(BusterLanceAction.get_AttackType(), PlayerAttackBase.get_ActionID(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "BusterLanceAction.get_AttackType",
+    "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerAttackBase.get_ActionID"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Fear",
+  "BusterLanceAction.get_AttackType",
+  "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate",
+  "IPlayerStatusCalculator.get_Agi",
+  "IPlayerStatusCalculator.get_Str",
+  "MathUtil.DisplayMeterToDistance",
+  "MathUtil.DistanceToDisplayMeter",
+  "MobActionManagerBase.get_MobBattleStatus",
+  "MobActionManagerBase.get_PlayerMeterDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillActionBase.checkPercent",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "status.Agi",
+  "status.Str"
+ ],
+ "residual": []
+}

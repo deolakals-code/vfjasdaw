@@ -1,0 +1,13 @@
+// Assembly: UnityEngine.CoreModule.dll
+// Namespace: UnityEngine
+public enum LightType // TypeDefIndex: 16255
+{
+	// Fields
+	public int value__; // 0x0
+	public const LightType Spot = 0;
+	public const LightType Directional = 1;
+	public const LightType Point = 2;
+	public const LightType Area = 3;
+	public const LightType Rectangle = 3;
+	public const LightType Disc = 4;
+}

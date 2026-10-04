@@ -1,0 +1,1 @@
+{"name": "BlackKnightPlayerStatus$$GetDefPercent", "rva": "0x2495b0c", "addr": "0x2495b0c", "params": [], "static": false, "returns": "float", "truncated": false, "npaths": 2, "cases": [{"value": "((def / maxDef) * 100)", "common": ["maxDef ne 0"], "variants": [], "n": 1}, {"value": "100", "common": ["maxDef eq 0"], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

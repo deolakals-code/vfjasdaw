@@ -1,0 +1,270 @@
+{
+ "version": 1,
+ "uid": 996,
+ "name_th": "เซียรัม",
+ "name_en": "Sierram",
+ "tree": "AssassinSkill",
+ "category": "Support",
+ "max_level": 35,
+ "roles": [
+  "buff (self)",
+  "buff (party / others)"
+ ],
+ "class": "SierramAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 996,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SierramBuf..ctor",
+   "formula": ".ctor(Lv, 0, EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator))",
+   "simplified": ".ctor(Lv, 0, EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator))",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(new SierramBuf)",
+   "simplified": "AddBuffer(new, SierramBuf)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SierramBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int subWeaponType",
+     "fields": {
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "subWeapon == NinjutsuBook OR subWeapon != NinjutsuBook AND subWeapon != ShortSword OR subWeapon != NinjutsuBook AND subWeapon == ShortSword",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "subWeapon == NinjutsuBook OR subWeapon != NinjutsuBook AND subWeapon != ShortSword OR subWeapon != NinjutsuBook AND subWeapon == ShortSword",
+        "by_level": -1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "subWeapon == NinjutsuBook OR subWeapon != NinjutsuBook AND subWeapon != ShortSword OR subWeapon != NinjutsuBook AND subWeapon == ShortSword",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "(self & 1)",
+        "when": "subWeapon == NinjutsuBook OR subWeapon != NinjutsuBook AND subWeapon != ShortSword OR subWeapon != NinjutsuBook AND subWeapon == ShortSword",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((Lv + 10) * 3)",
+        "when": "subWeapon == NinjutsuBook OR subWeapon != NinjutsuBook AND subWeapon == ShortSword",
+        "by_level": [
+         33,
+         36,
+         39,
+         42,
+         45,
+         48,
+         51,
+         54,
+         57,
+         60
+        ]
+       },
+       {
+        "formula": "(Lv + 10)",
+        "when": "subWeapon != NinjutsuBook AND subWeapon != ShortSword",
+        "by_level": [
+         11,
+         12,
+         13,
+         14,
+         15,
+         16,
+         17,
+         18,
+         19,
+         20
+        ]
+       }
+      ],
+      "reducePoisonDamage": [
+       {
+        "formula": "int(((Lv * 2.5) + 25))",
+        "when": "subWeapon == NinjutsuBook OR subWeapon != NinjutsuBook AND subWeapon != ShortSword OR subWeapon != NinjutsuBook AND subWeapon == ShortSword",
+        "by_level": [
+         27,
+         30,
+         32,
+         35,
+         37,
+         40,
+         42,
+         45,
+         47,
+         50
+        ]
+       }
+      ],
+      "reduceIgnitionDamage": [
+       {
+        "formula": "((Lv << 1) + 10)",
+        "when": "subWeapon == NinjutsuBook OR subWeapon != NinjutsuBook AND subWeapon != ShortSword OR subWeapon != NinjutsuBook AND subWeapon == ShortSword",
+        "by_level": [
+         12,
+         14,
+         16,
+         18,
+         20,
+         22,
+         24,
+         26,
+         28,
+         30
+        ]
+       }
+      ],
+      "isViewSelfIcon": [
+       {
+        "formula": "(self & 1)",
+        "when": "subWeapon == NinjutsuBook OR subWeapon != NinjutsuBook AND subWeapon != ShortSword OR subWeapon != NinjutsuBook AND subWeapon == ShortSword",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "reducePoisonDamage",
+     "simplified": "reducePoisonDamage",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value2",
+     "bonus_id": 51,
+     "formula": "reduceIgnitionDamage",
+     "simplified": "reduceIgnitionDamage",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ],
+    "isViewSelfIcon": [
+     {
+      "method": "SetViewSelfIcon",
+      "formula": "(flag & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.Value",
+  "SkillBufferId.Value2",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

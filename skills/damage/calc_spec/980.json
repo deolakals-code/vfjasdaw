@@ -1,0 +1,610 @@
+{
+ "version": 1,
+ "uid": 980,
+ "name_th": "บลิทซ์ไปก์",
+ "name_en": "BlitzPike",
+ "tree": "HalberdSkill",
+ "category": "Object",
+ "max_level": 70,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment",
+  "placed object / trap / summon"
+ ],
+ "class": "BlitzPikeAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 980,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(24)",
+   "simplified": "MathUtil.DisplayMeterToDistance(24)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[0]",
+   "formula": "((((Lv * 10) + 300) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) << 2)) << 1)) + ((baseSTR lt 0 ? (baseSTR + 1) : baseSTR) >> 1))",
+   "simplified": "10 × Lv + 10 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) + baseSTR ÷ 2 + 300",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) ge 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) ge 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length ls 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.ThorHammer",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[1]",
+   "formula": "((((Lv * 30) + 100) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) << 2)) << 1)) + ((baseINT lt 0 ? (baseINT + 1) : baseINT) >> 1))",
+   "simplified": "30 × Lv + 10 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) + baseINT ÷ 2 + 100",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) ge 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.ThorHammer",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage[0]",
+   "formula": "300",
+   "simplified": "300",
+   "when": "fixAddDamage.Length ls 1 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) lt 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) ge 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": 300,
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.ThorHammer",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage[1]",
+   "formula": "((status.Int lt 0 ? (status.Int + 1) : status.Int) >> 1)",
+   "simplified": "status.Int ÷ 2",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) lt 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) ge 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) ge 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length ls 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.ThorHammer",
+    "SkillManager.GetSkillLv",
+    "status.Int"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalPer",
+   "formula": "((baseINT // 10) + (Lv + (Lv << 2)))",
+   "simplified": "baseINT // 10 + 5 × Lv",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) lt 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) ge 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.ThorHammer",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[1]",
+   "formula": "((Lv * 30) + 100)",
+   "simplified": "30 × Lv + 100",
+   "when": "fixAddDamage.Length eq 0 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length ls 1 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.ThorHammer, 1) lt 1 AND fixAddDamage.Length hi 1 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": [
+    130,
+    160,
+    190,
+    220,
+    250,
+    280,
+    310,
+    340,
+    370,
+    400
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.ThorHammer",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[0]",
+   "formula": "((Lv * 10) + 300)",
+   "simplified": "10 × Lv + 300",
+   "when": "skillRate.Length eq 1 AND skillRate.Length ne 0 OR fixAddDamage.Length eq 0 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length ls 1 AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": [
+    310,
+    320,
+    330,
+    340,
+    350,
+    360,
+    370,
+    380,
+    390,
+    400
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) lt 8 ? 1 : 0)",
+   "simplified": "MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) < 8 ? 1 : 0",
+   "when": "(MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) lt 8 ? 1 : 0) eq 1 AND UnityEngine.Object.op_Inequality(target) OR (MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) lt 8 ? 1 : 0) ne 1 AND UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "MobActionManagerBase.get_PlayerMeterDistance",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "when": "(MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) lt 8 ? 1 : 0) eq 1 AND UnityEngine.Object.op_Inequality(target) OR (MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) lt 8 ? 1 : 0) ne 1 AND UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "MobActionManagerBase.get_PlayerMeterDistance",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!UnityEngine.Object.op_Inequality(target)",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isAbnormalSucces",
+   "formula": "1",
+   "simplified": "1",
+   "when": "attackCount eq 0",
+   "by_level": 1
+  },
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcSecondDamageData",
+   "kind": "set",
+   "name": "Element",
+   "formula": "3",
+   "simplified": "3",
+   "when": "always",
+   "by_level": 3
+  },
+  {
+   "method": "CalcSecondDamageData",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "CalcSecondDamageData",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[0] / 100)",
+   "simplified": "(skillRate[0] / 100)",
+   "when": "fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR fixAddDamage.Length eq 0 AND skillRate.Length ne 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPer, playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalType.Paralysis",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[0]",
+   "simplified": "fixAddDamage[0]",
+   "when": "fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPer, playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPer, playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalType.Paralysis",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(exp / 100)",
+   "simplified": "exp / 100",
+   "when": "fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPer, playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPer, playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "AbnormalType.Paralysis",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "CalcSecondDamageData",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[1] / 100)",
+   "simplified": "(skillRate[1] / 100)",
+   "when": "fixAddDamage.Length hi 1 AND skillRate.Length hi 1 OR fixAddDamage.Length ls 1 AND skillRate.Length hi 1",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcSecondDamageData",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[1]",
+   "simplified": "fixAddDamage[1]",
+   "when": "fixAddDamage.Length hi 1 AND skillRate.Length hi 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "CalcSecondDamageData",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(exp / 100)",
+   "simplified": "exp / 100",
+   "when": "fixAddDamage.Length hi 1 AND skillRate.Length hi 1",
+   "op": "SetRate",
+   "step": "ExpRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(987, 0)",
+   "simplified": "AddSelfBuffer(987, 0)",
+   "when": "attackCount eq 2 OR attackCount eq 0 AND attackCount ne 2 OR attackCount ne 0 AND attackCount ne 2"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(987)",
+   "simplified": "RemoveSelfBuffer(987)",
+   "when": "attackCount eq 2 OR attackCount eq 0 AND attackCount ne 2 OR attackCount ne 0 AND attackCount ne 2"
+  },
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(6, abnormalPer, playerAction)",
+   "simplified": "checkAbnormalPercent(6, abnormalPer, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPer, playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPer, playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "vars": [
+    "AbnormalType.Paralysis",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(6)",
+   "simplified": "SetAbnormalType(6)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPer, playerAction) AND fixAddDamage.Length ne 0 AND skillRate.Length ne 0",
+   "vars": [
+    "AbnormalType.Paralysis",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "BlitzPikeBuf..ctor",
+   "formula": ".ctor(Lv, actarAction)",
+   "simplified": ".ctor(Lv, actarAction)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND param eq 101 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 980) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 101",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new BlitzPikeBuf, Id)",
+   "simplified": "AddSelfBuffer(new, BlitzPikeBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND param eq 101 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 980) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 101",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "BlitzPikeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "effectPosList": [
+       {
+        "formula": "0x165d9d4(meta(0x3973d10, UnityEngine.Vector3[]_TypeInfo), 4, playerAction)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "effectDataList": [
+       {
+        "formula": "new System.Collections.Generic.List<BlitzPikeBuf.EffectData>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "4",
+        "when": "always",
+        "by_level": 4
+       }
+      ],
+      "playerAction": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "int((intervalTimer * 100))",
+     "simplified": "int(100 × intervalTimer)",
+     "when": []
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "takeController": [
+     {
+      "method": "UpdateParam",
+      "formula": "[Singleton<TakeManager>.get_Instance()+0x20]",
+      "when": "always"
+     }
+    ],
+    "intervalTimer": [
+     {
+      "method": "Updata",
+      "formula": "max((intervalTimer - UnityEngine.Time.get_deltaTime()), 0)",
+      "when": "IsEnd eq 0 AND max((intervalTimer - UnityEngine.Time.get_deltaTime()), 0) hi 0 OR !UnityEngine.Object.op_Inequality(playerAction) AND IsEnd eq 0 AND max((intervalTimer - UnityEngine.Time.get_deltaTime()), 0) ls 0 OR !UnityEngine.Object.op_Implicit(playerAction.battleManager) AND IsEnd eq 0 AND System.Linq.Enumerable.FirstOrDefault<BlitzPikeBuf.EffectData>(effectDataList, new System.Func<BlitzPikeBuf.EffectData, bool>) ne 0 AND UnityEngine.Object.op_Inequality(playerAction) AND max((intervalTimer - UnityEngine.Time.get_deltaTime()), 0) ls 0"
+     },
+     {
+      "method": "Prev",
+      "formula": "1",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "<Prev>b__21_0",
+    "<Updata>b__20_0",
+    "ClearEffect",
+    "EffectUpdate",
+    "OnLeave",
+    "Prev",
+    "TakeEvent",
+    "UpdateParam"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "BlitzPikeBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:BlitzPikeBuf$$.ctor<-BlitzPikeAction$$ActionSkillEvent",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "SkillBufferManager.UpdateIndividualBuf"
+ ],
+ "variables": [
+  "AbnormalType.Paralysis",
+  "IPlayerStatusCalculator.get_Int",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_PlayerMeterDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.int",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "Singleton.get_Instance",
+  "SkillBufferId.Count",
+  "SkillBufferId.Value",
+  "SkillId.ThorHammer",
+  "SkillManager.GetSkillLv",
+  "System.Linq.Enumerable.FirstOrDefault",
+  "TryGetBuf.out2",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Implicit",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "status.Int"
+ ],
+ "residual": []
+}

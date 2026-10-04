@@ -1,0 +1,77 @@
+{
+ "version": 1,
+ "uid": 133,
+ "name_th": "แอกราเวท",
+ "name_en": "OneChance",
+ "tree": "MarshallSkill",
+ "category": "Mastery",
+ "max_level": 10,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "OneChance",
+ "proration": null,
+ "eq_limit": [
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "OneChance",
+  "bonuses": {
+   "Trigger": {
+    "id": 0,
+    "expr": "((Lv << 2) + 10)",
+    "by_level": [
+     14,
+     18,
+     22,
+     26,
+     30,
+     34,
+     38,
+     42,
+     46,
+     50
+    ]
+   },
+   "SkillRate": {
+    "id": 26,
+    "expr": "(int((Lv * 2.5)) + 25)",
+    "by_level": [
+     27,
+     30,
+     32,
+     35,
+     37,
+     40,
+     42,
+     45,
+     47,
+     50
+    ]
+   },
+   "Value": {
+    "id": 28,
+    "expr": "int((Lv * 0.5))",
+    "by_level": [
+     0,
+     1,
+     1,
+     2,
+     2,
+     3,
+     3,
+     4,
+     4,
+     5
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

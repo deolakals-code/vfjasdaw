@@ -1,0 +1,62 @@
+{
+ "version": 1,
+ "uid": 579,
+ "name_th": "ชีลด์พลัส",
+ "name_en": "ShieldTypeImproved",
+ "tree": "GolemSkill",
+ "category": "Mastery",
+ "max_level": 200,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "ShieldTypeImproved",
+ "proration": null,
+ "eq_limit": [
+  "Bowgun",
+  "Rod"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "ShieldTypeImproved",
+  "bonuses": {
+   "LimitTimeUp": {
+    "id": 33,
+    "expr": "(Lv << 3)",
+    "by_level": [
+     8,
+     16,
+     24,
+     32,
+     40,
+     48,
+     56,
+     64,
+     72,
+     80
+    ]
+   },
+   "Value": {
+    "id": 28,
+    "expr": "(Lv << 1)",
+    "by_level": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14,
+     16,
+     18,
+     20
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

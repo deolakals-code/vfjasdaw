@@ -1,0 +1,1902 @@
+{
+ "AccelBladeBuf": {
+  "owners": [
+   35
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "AfterShieldBuf": {
+  "owners": [
+   525
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": []
+ },
+ "AspisSeoulBuf": {
+  "owners": [
+   845
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": []
+ },
+ "AstuteBuf": {
+  "owners": [
+   34
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "MobaPlayerActionManager$$ReceiveAttack",
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "BloodSuckingBuf": {
+  "owners": [],
+  "via": [],
+  "callers": [
+   "SkillBufferManager$$AddSkillComboBuf"
+  ]
+ },
+ "BoomerangBuf": {
+  "owners": [
+   673
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "BraveAuraBuf": {
+  "owners": [
+   229
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "BraveUpBuf": {
+  "owners": [
+   940
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "BusterBladeBuf": {
+  "owners": [
+   45
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "CallGolemBuf": {
+  "owners": [
+   577
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "GameManager$$ReceiveSummons"
+  ]
+ },
+ "ChainCastBuf": {
+  "owners": [
+   104
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "ChainCastStackBuf": {
+  "owners": [
+   104
+  ],
+  "via": [
+   "manual:name stem + constructed in monster Damaged hooks (stack of ChainCast); inferred"
+  ],
+  "callers": [
+   "BCollaboBossActionManager$$Damaged",
+   "EnemyMobActionManagerBase$$Damaged",
+   "GuildRaidBossMobActionManager$$Damaged",
+   "ScoreAttackBossActionManager$$Damaged"
+  ]
+ },
+ "ChargingBuf": {
+  "owners": [
+   101
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "ChronosShiftBuf": {
+  "owners": [
+   114
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "PlayerAttackBase.<>c__DisplayClass118_0$$<RegistChronosShift>b__0"
+  ]
+ },
+ "CircleBufferBase": {
+  "owners": [
+   226,
+   227
+  ],
+  "via": [
+   "caller2:LifeRecoveryBuf$$.ctor<-LifeRecoveryAction$$ActionHit",
+   "caller2:ManaRechargeBuf$$.ctor<-ManaRechargeAction$$ActionHit"
+  ],
+  "callers": [
+   "BraveAuraBuf$$.ctor",
+   "DiseasetSealBuf$$.ctor",
+   "GuardianBuf$$.ctor",
+   "HighCycleBuf$$.ctor",
+   "HighReactionBuf$$.ctor",
+   "LifeRecoveryBuf$$.ctor",
+   "MagicBarrierBuf$$.ctor",
+   "ManaRechargeBuf$$.ctor",
+   "QuickMotionBuf$$.ctor"
+  ]
+ },
+ "CollectQigongBuf": {
+  "owners": [
+   1090
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "ReceiveSupportResult$$OnActionPlayerSupport"
+  ]
+ },
+ "CountBufferBase": {
+  "owners": [
+   0,
+   14,
+   41,
+   49,
+   51,
+   54,
+   56,
+   69,
+   82,
+   85,
+   88,
+   109,
+   111,
+   116,
+   118,
+   145,
+   158,
+   159,
+   521,
+   523,
+   547,
+   614,
+   615,
+   618,
+   620,
+   624,
+   628,
+   629,
+   653,
+   655,
+   677,
+   710,
+   713,
+   773,
+   844,
+   846,
+   967,
+   1000,
+   1001,
+   1003,
+   1039,
+   1058,
+   1059,
+   1063,
+   1091,
+   1093,
+   1095,
+   1099,
+   1121,
+   1160
+  ],
+  "via": [
+   "caller2:AshuraAuraBuf$$.ctor<-AshuraAuraAction$$ActionHit",
+   "caller2:AstralLanceBuf$$.ctor<-AstralLanceAction$$ActionHit",
+   "caller2:BeatBlastBuf$$.ctor<-ImprovisationSongAction$$ActionSkillEventIfMoveIndex",
+   "caller2:ForceArrowBuf$$.ctor<-ForceArrow$$ActionHit",
+   "caller2:FuriousEffortsBuf$$.ctor<-FuriousEffortsAction$$ActionSkillEvent",
+   "caller2:FuriousEffortsExtremeBuf$$.ctor<-FuriousEffortsExtreme$$Damaged",
+   "caller2:GeoImpactBuf$$.ctor<-GeoImpactAction$$ActionStart",
+   "caller2:GladiateBuf$$.ctor<-GladiateAction$$ActionHit",
+   "caller2:GlaiveTiggerBuf$$.ctor<-GlaiveTiggerAction.<>c__DisplayClass24_0$$<ActionStart>b__0",
+   "caller2:HealQigongBuf$$.ctor<-HealQigongAction$$ActionSkillEvent",
+   "caller2:HealQigongBuf$$.ctor<-Revival$$OnActionMobDamage",
+   "caller2:HeavenlyStarBuf$$.ctor<-CutOffTheDisasterAction.<>c__DisplayClass31_1$$<ActionSkillEvent>b__1",
+   "caller2:HeavenlyStarBuf$$.ctor<-HeavenlyStarAction$$ActionStart",
+   "caller2:HeavenlyStarBuf$$.ctor<-ZanteisettetsuAction.<>c__DisplayClass32_0$$<ActionSkillEvent>b__1",
+   "caller2:HideAttackBuf$$.ctor<-HideAttackAction$$ActionHit",
+   "caller2:HideAttackBuf$$.ctor<-MindimageSenjuSupportAction$$ActionHit",
+   "caller2:IchijhinnokazeBuf$$.ctor<-IchijhinnokazeAction$$ActionHit",
+   "caller2:KadarElexioBuf$$.ctor<-KadarElexioAction$$PlayRandomEffect",
+   "caller2:KnightStanceBuf$$.ctor<-KnightStanceAction$$ActionHit",
+   "caller2:LevenirBuf$$.ctor<-LevenirAction$$AbnormalStack",
+   "caller2:MagicBurstBuf$$.ctor<-MagicBurstAction$$AddStack",
+   "caller2:MagicEgelBuf$$.ctor<-MagicEgelAction$$ActionHit",
+   "caller2:MagicProtectionBuf$$.ctor<-MagicProtectionAction$$ActionHit",
+   "caller2:MizukazeBuf$$.ctor<-Mizukaze$$UpdateBuf",
+   "caller2:MoonSlashBuf$$.ctor<-MoonSlashAction$$ActionHit",
+   "caller2:NemesisBuf$$.ctor<-MindimageSenjuAttackAction$$ActionHit",
+   "caller2:NemesisBuf$$.ctor<-NemesisAction$$ActionHit",
+   "caller2:OkaranmanBuf$$.ctor<-IllusionarySceneAction.<>c__DisplayClass30_0$$<ActionPreparation>b__0",
+   "caller2:OrgaslashBuf$$.ctor<-OrgaslashAction$$ActionPreparation",
+   "caller2:PenetratorBuf$$.ctor<-PenetratorAction$$ActionSkillEvent",
+   "caller2:PunishRayBuf$$.ctor<-PunishRayAction$$ActionSkillEvent",
+   "caller2:QuickLoaderBuf$$.ctor<-QuickLoaderAction$$ActionHit",
+   "caller2:RampageBuf$$.ctor<-RampageAction$$ActionHit",
+   "caller2:SacredTeachingsBuf$$.ctor<-SacredTeachings$$ReceiveEventSupport",
+   "caller2:SamuraiArcheryBuf$$.ctor<-NormalAttackAction$$Damaged",
+   "caller2:ShadowWalkBuf$$.ctor<-ShadowWalkAction$$ActionHit",
+   "caller2:ShiftBuf$$.ctor<-ShiftAction$$ReceiveSupport",
+   "caller2:SlashReaperBuf$$.ctor<-SkillChargeAction$$ActionHit",
+   "caller2:SoulHuntBuf$$.ctor<-DarkStingerAction$$ActionStart",
+   "caller2:SoulHuntBuf$$.ctor<-HealingShotAction$$CheckPayHp",
+   "caller2:SoulHuntBuf$$.ctor<-SacrificeAction$$CheckPayHp",
+   "caller2:SoulHuntBuf$$.ctor<-SoulHuntAction$$PayHp",
+   "caller2:SoulHuntBuf$$.ctor<-SpriteShieldAction$$CheckPayHp",
+   "caller2:StormBlazerBuf$$.ctor<-StormBlazerAction$$StackStormBlazer",
+   "caller2:SturmLeaperBuf$$.ctor<-SturmLeaperAction.<>c__DisplayClass31_0$$<ActionStart>b__1",
+   "caller2:ThreeStageThrustBuf$$.ctor<-ThreeStageThrustAction$$ActionHit",
+   "caller2:TwinStormBuf$$.ctor<-TwinStormAction$$ActionHit",
+   "caller2:VenomInjectBuf$$.ctor<-VenomInjectAction$$ActionHit",
+   "caller2:VenomSnatchBuf$$.ctor<-VenomSnatchAction$$BattleResult",
+   "caller2:WrapAroundBuf$$.ctor<-LunaDitherStarAction$$ActionSkillEvent"
+  ],
+  "callers": [
+   "AshuraAuraBuf$$.ctor",
+   "AstralLanceBuf$$.ctor",
+   "BeatBlastBuf$$.ctor",
+   "ForceArrowBuf$$.ctor",
+   "FuriousEffortsBuf$$.ctor",
+   "FuriousEffortsExtremeBuf$$.ctor",
+   "GemCartHealStockpileBuf$$.ctor",
+   "GeoImpactBuf$$.ctor",
+   "GladiateBuf$$.ctor",
+   "GlaiveTiggerBuf$$.ctor",
+   "GodHandBuf$$.ctor",
+   "GoliathTakeShotBuf$$.ctor",
+   "HealQigongBuf$$.ctor",
+   "HeavenlyStarBuf$$.ctor",
+   "HideAttackBuf$$.ctor",
+   "HuntingOneBuf$$.ctor",
+   "IchijhinnokazeBuf$$.ctor",
+   "InflexibilityBuf$$.ctor",
+   "KadarElexioBuf$$.ctor",
+   "KnightPledgeBuf$$.ctor",
+   "KnightStanceBuf$$.ctor",
+   "LevenirBuf$$.ctor",
+   "MagicBurstBuf$$.ctor",
+   "MagicCannonBuf$$.ctor",
+   "MagicEgelBuf$$.ctor",
+   "MagicProtectionBuf$$.ctor",
+   "MagnumBuf$$.ctor",
+   "MizukazeBuf$$.ctor",
+   "MoonSlashBuf$$.ctor",
+   "NemesisBuf$$.ctor",
+   "NextAttackBufferBase$$.ctor",
+   "OkaranmanBuf$$.ctor",
+   "OldSong.SkillSongBufferDataBase$$.ctor",
+   "OrgaslashBuf$$.ctor",
+   "PenetratorBuf$$.ctor",
+   "PunishRayBuf$$.ctor",
+   "QuickLoaderBuf$$.ctor",
+   "RampageBuf$$.ctor",
+   "RampageBuf$$.ctor",
+   "SaberAuraBuf$$.ctor",
+   "SacredTeachingsBuf$$.ctor",
+   "SamuraiArcheryBuf$$.ctor",
+   "SensoryBuf$$.ctor",
+   "ShadowWalkBuf$$.ctor",
+   "ShiftBuf$$.ctor",
+   "SlashReaperBuf$$.ctor",
+   "SoulHuntBuf$$.ctor",
+   "StoneSkinBuf$$.ctor",
+   "StormAndUrgeBuf$$.ctor",
+   "StormAndUrgeExtremeBuf$$.ctor",
+   "StormBlazerBuf$$.ctor",
+   "SturmLeaperBuf$$.ctor",
+   "SummonDemonicBuf$$.ctor",
+   "TakeQigongBuf$$.ctor",
+   "ThieshankaiBuf$$.ctor",
+   "ThreeStageThrustBuf$$.ctor",
+   "TornadoLanceBuf$$.ctor",
+   "TornadoLanceBuf$$NextStack",
+   "TwinStormBuf$$.ctor",
+   "VenomInjectBuf$$.ctor",
+   "VenomSnatchBuf$$.ctor",
+   "WrapAroundBuf$$.ctor"
+  ]
+ },
+ "CronosDriveBuf": {
+  "owners": [
+   973
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "CrossFireBuf": {
+  "owners": [
+   76
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "CutOffTheDisasterBuf": {
+  "owners": [
+   615
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "CutUpBuf": {
+  "owners": [
+   948
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "DancerBufferBase": {
+  "owners": [],
+  "via": [],
+  "callers": [
+   "PassionDanceBuf$$.ctor",
+   "SharpDanceBuf$$.ctor",
+   "SupportDanceBuf$$.ctor"
+  ]
+ },
+ "DarkStingerBuf": {
+  "owners": [
+   1059
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "DeadlySpearBuf": {
+  "owners": [
+   963
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "MobaPlayerActionManager$$ReceiveAttack",
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "DetectionBuf": {
+  "owners": [
+   553
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "DiseasetSealBuf": {
+  "owners": [
+   233
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "DivaCheeringBuf": {
+  "owners": [
+   1284
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "NewWaveRoomData$$ReceiveMinusHateEvent"
+  ]
+ },
+ "DragonicChargeBuf": {
+  "owners": [
+   976
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "DrainRecallBuf": {
+  "owners": [
+   875,
+   877
+  ],
+  "via": [
+   "caller2:DrainRecall$$AddBuf<-DrainBarrierAction.<>c__DisplayClass21_0$$<ActionStart>b__0",
+   "name"
+  ],
+  "callers": [
+   "DrainRecall$$AddBuf"
+  ]
+ },
+ "EarthShatteringPassiveBuf": {
+  "owners": [
+   1119
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "ElementReachBuf": {
+  "owners": [
+   86
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "ElementReach$$EnemyDamage"
+  ]
+ },
+ "EnchantedDanceBuf": {
+  "owners": [
+   806
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "EnchantedSpellBuf": {
+  "owners": [
+   871
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "ReceiveSupportResult$$OnEventPlayerSupport"
+  ]
+ },
+ "EnchantedSwordBuf": {
+  "owners": [
+   870
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": []
+ },
+ "EnthusiasticSongBuf": {
+  "owners": [
+   774
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": []
+ },
+ "EquipRateBarrierBuf": {
+  "owners": [
+   4
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "EquipSkillBufferBase": {
+  "owners": [],
+  "via": [],
+  "callers": []
+ },
+ "EternalNightmareBuf": {
+  "owners": [
+   1064
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "EternalNightmareBuf$$.ctor",
+   "EternalNightmareBuf$$.ctor",
+   "ReceiveSupportResult$$OnActionPlayerSupport",
+   "ReceiveSupportResult$$OnEventPlayerSupport"
+  ]
+ },
+ "ExorcismBuf": {
+  "owners": [
+   842
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "FairyDanceBuf": {
+  "owners": [
+   801
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "FairySongBuf": {
+  "owners": [
+   770
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": []
+ },
+ "FamiliaBuf": {
+  "owners": [
+   1025
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "GameManager$$ReceiveSummons",
+   "ReceiveSupportResult$$OnActionPlayerSupport"
+  ]
+ },
+ "FastAttackBuf": {
+  "owners": [
+   47
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "FirstAidBuf": {
+  "owners": [
+   9,
+   897,
+   941
+  ],
+  "via": [
+   "caller2:SkillBufferManager$$UpdateFirstAidBuffer<-NpcFirstAidAction$$ActionStart",
+   "caller2:SkillBufferManager$$UpdateFirstAidBuffer<-PetFirstAid$$ActionStart",
+   "name"
+  ],
+  "callers": [
+   "PlayerBattleManager$$OnSkillActionStart",
+   "SkillBufferManager$$UpdateFirstAidBuffer"
+  ]
+ },
+ "ForefistPunchBuf": {
+  "owners": [
+   1153
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "FuriousEffortsExtremeBuf": {
+  "owners": [
+   1095
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "BCollaboBossActionManager$$Damaged",
+   "EnemyMobActionManagerBase$$Damaged",
+   "FuriousEffortsExtreme$$Damaged",
+   "GuildRaidBossMobActionManager$$Damaged",
+   "ScoreAttackBossActionManager$$Damaged"
+  ]
+ },
+ "GemCartHealStockpileBuf": {
+  "owners": [],
+  "via": [],
+  "callers": [
+   "GemCartBuffer.HealStockpileBuff$$.ctor",
+   "GemCartBuffer.HealStockpileBuff$$Update"
+  ]
+ },
+ "GodHandBuf": {
+  "owners": [
+   1158
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "MobaPlayerActionManager$$ReceiveDamaged",
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "GoliathTakeShotBuf": {
+  "owners": [
+   1155
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "GuardianBuf": {
+  "owners": [
+   265
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "HalberdTemporaryMatkBuf": {
+  "owners": [
+   987
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "HandlingerOfGodspeedBuf": {
+  "owners": [
+   974,
+   989,
+   990,
+   991
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "HealingShotBuf": {
+  "owners": [
+   677
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "HealingSongBuf": {
+  "owners": [
+   769
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": []
+ },
+ "HighCycleBuf": {
+  "owners": [
+   232
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "HighFamiliaBuf": {
+  "owners": [
+   1032
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "GameManager$$ReceiveSummons",
+   "ReceiveSupportResult$$OnActionPlayerSupport"
+  ]
+ },
+ "HighReactionBuf": {
+  "owners": [
+   236
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "HolyBibleBuf": {
+  "owners": [
+   843
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "HorizontalCutBuf": {
+  "owners": [
+   660
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "HuntingOneBuf": {
+  "owners": [
+   87
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "GameManager$$ReceiveSummons"
+  ]
+ },
+ "ImperialRayBuf": {
+  "owners": [
+   1031
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "EnemyMobActionManagerBase$$PursuitImperialRay"
+  ]
+ },
+ "InflexibilityBuf": {
+  "owners": [
+   627
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "ReceiveSupportResult$$OnEventPlayerSupport"
+  ]
+ },
+ "JudgmentOfTheDarkGodBuf": {
+  "owners": [
+   900
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "ReceiveSupportResult$$OnEventNpcSupport",
+   "ReceiveSupportResult$$OnEventPlayerSupport"
+  ]
+ },
+ "JumpBackShotBuf": {
+  "owners": [
+   80,
+   95
+  ],
+  "via": [
+   "manual:PursuitJumpbackShotAttack reads its per-monster counter (GetCount/Next) and passes it to this action as `count`",
+   "manual:constructed only by PlayerBattleManager.PursuitJumpbackShotAttack, which gates on TryGetBuf(80); ReMark called from JumpbackShotAction.ReceiveAttackResult"
+  ],
+  "callers": [
+   "MobaPlayerBattleManager$$PursuitJumpbackShotAttack",
+   "PlayerBattleManager$$PursuitJumpbackShotAttack"
+  ]
+ },
+ "KadarElexioBuf": {
+  "owners": [
+   118
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "KadarElexioAction$$PlayRandomEffect",
+   "KadarElexioBuf$$CreateFailure",
+   "KadarElexioBuf$$CreateOverloadStart",
+   "ReceiveSupportResult$$OnActionPlayerSupport"
+  ]
+ },
+ "KnightPledgeBuf": {
+  "owners": [
+   527
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "SkillBufferManager$$AddOtherKnightPledgeBuf",
+   "SkillBufferManager$$UpdateSelfKnightPledgeBuf"
+  ]
+ },
+ "KnowledgeSongBuf": {
+  "owners": [
+   775
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": []
+ },
+ "MagicBarrierBuf": {
+  "owners": [
+   230
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "MagicImpactBuf": {
+  "owners": [
+   105
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "MagicLazerBuf": {
+  "owners": [
+   120
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "MagicSkinBuf": {
+  "owners": [
+   879
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "MagicSkin$$DamageAdjustment",
+   "MobaPlayerActionManager$$ReceiveDamaged"
+  ]
+ },
+ "MagnumBuf": {
+  "owners": [
+   1251
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "ReceiveSupportResult$$OnEventPlayerSupport"
+  ]
+ },
+ "MailBreakerBuf": {
+  "owners": [
+   298
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "MaintainingTheFrontBuf": {
+  "owners": [
+   680
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "ReceiveSupportResult$$OnActionPlayerSupport"
+  ]
+ },
+ "ManaCrystalBuf": {
+  "owners": [
+   1026
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "ReceiveSupportResult$$OnActionPlayerSupport",
+   "ReceiveSupportResult$$OnEventPlayerSupport"
+  ]
+ },
+ "MindUpBuf": {
+  "owners": [
+   942
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "MirageStepBuf": {
+  "owners": [
+   166
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "AvoidActionManager$$AvoidMove",
+   "AvoidActionManager$$AvoidStart"
+  ]
+ },
+ "MizukazeBuf": {
+  "owners": [
+   628
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "Mizukaze$$UpdateBuf"
+  ]
+ },
+ "MultipleHuntBuf": {
+  "owners": [
+   558
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "N_DragonToothBuf": {
+  "owners": [
+   676
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "NextAttackBufferBase": {
+  "owners": [
+   146,
+   158,
+   847
+  ],
+  "via": [
+   "caller2:ClearAndSereneBuf$$.ctor<-MindimageSenjuSupportAction$$ActionHit",
+   "caller2:FlashArtsBuf$$.ctor<-FlashArtsAction$$ActionStart",
+   "caller2:HolyGraceNextSkillMpHalvingBuf$$.ctor<-HolyGraceAction$$ActionHit"
+  ],
+  "callers": [
+   "ClearAndSereneBuf$$.ctor",
+   "FlashArtsBuf$$.ctor",
+   "HolyGraceNextSkillMpHalvingBuf$$.ctor",
+   "MultipleHuntBuf$$.ctor"
+  ]
+ },
+ "P_DeffenceActionBuf": {
+  "owners": [
+   517
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "ParalysisShotBuf": {
+  "owners": [
+   71
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "MobaPlayerActionManager$$ReceiveAttack",
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "ParryingSwordBuf": {
+  "owners": [
+   643
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "PassionDanceBuf": {
+  "owners": [
+   802
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "PetCriticalUpBuf": {
+  "owners": [
+   934
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "PhantomSongBuf": {
+  "owners": [
+   772
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": []
+ },
+ "PhiloEclairBuf": {
+  "owners": [
+   650
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "QuickMotionBuf": {
+  "owners": [
+   235
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "RageSwordBuf": {
+  "owners": [
+   516
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "MobaPlayerActionManager$$ReceiveAttack",
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "RapidChargeBuf": {
+  "owners": [
+   115
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "ReceiveSupportResult$$OnActionPlayerSupport"
+  ]
+ },
+ "RecoveryBuf": {
+  "owners": [
+   231
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": []
+ },
+ "RegretBuf": {
+  "owners": [
+   1062
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "RetakeBuf": {
+  "owners": [
+   720
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "RevivalBuf": {
+  "owners": [
+   1099
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "RushAidBuf": {
+  "owners": [
+   706
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "PlayerBattleManager$$checkAssistMove"
+  ]
+ },
+ "RushBuf": {
+  "owners": [
+   141
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SaberAuraBuf": {
+  "owners": [
+   654
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SacredTeachingsBuf": {
+  "owners": [
+   846
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "SacredTeachings$$ReceiveEventSupport",
+   "SacredTeachings$$ReceiveHpHeal",
+   "SacredTeachings$$ReceiveOtherHpHeal"
+  ]
+ },
+ "SanctuaryBuf": {
+  "owners": [
+   234
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SeekeriusBuf": {
+  "owners": [
+   999
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SenfutsuBuf": {
+  "owners": [
+   150
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SensoryBuf": {
+  "owners": [],
+  "via": [],
+  "callers": [
+   "SkillBufferManager$$UpdateValidSongBuf"
+  ]
+ },
+ "SharpDanceBuf": {
+  "owners": [
+   804
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "ShiningClothBuf": {
+  "owners": [
+   652
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "ShukuchiBuf": {
+  "owners": [
+   0,
+   619,
+   631
+  ],
+  "via": [
+   "caller2:IchijhinnokazeAratame$$InvokeShukuchi<-NormalAttackAction$$calcPlayerToMobDamage",
+   "caller:IchijhinnokazeAratame$$InvokeShukuchi",
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "IchijhinnokazeAratame$$InvokeShukuchi",
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SkillBufferDataBase": {
+  "owners": [
+   50,
+   52,
+   55,
+   79,
+   80,
+   86,
+   147,
+   158,
+   159,
+   263,
+   264,
+   269,
+   299,
+   300,
+   301,
+   302,
+   517,
+   519,
+   525,
+   526,
+   559,
+   561,
+   587,
+   621,
+   624,
+   657,
+   659,
+   671,
+   678,
+   705,
+   707,
+   709,
+   714,
+   717,
+   722,
+   773,
+   805,
+   807,
+   833,
+   835,
+   838,
+   847,
+   866,
+   867,
+   872,
+   873,
+   875,
+   877,
+   878,
+   879,
+   966,
+   980,
+   981,
+   993,
+   994,
+   995,
+   997,
+   1006,
+   1067,
+   1098,
+   1126,
+   1129,
+   1159,
+   1162,
+   1224,
+   1226,
+   1283
+  ],
+  "via": [
+   "caller2:AegisBuf$$.ctor<-AegisAction$$ActionHit",
+   "caller2:AegisBuf$$.ctor<-ProtectionAction$$ActionHit",
+   "caller2:AfterShieldBuf$$CreateCooltimeBuf<-AfterShield$$InvalidDamage",
+   "caller2:AfterShieldBuf$$CreateDefaultBuf<-P_DeffenceAction.<>c__DisplayClass26_0$$<ActionPreparation>b__0",
+   "caller2:ArialSlayBuf$$.ctor<-ArialSlayAction$$ActionStart",
+   "caller2:ArkSaberBuf$$.ctor<-ArkSaberAction$$ActionHit",
+   "caller2:ArrowSharpeningBuf$$.ctor<-ArrowSharpeningAction$$ActionHit",
+   "caller2:AssassinStubBuf$$.ctor<-AssassinStubAction$$ActionPreparation",
+   "caller2:AssaultChaseBuf$$.ctor<-AssaultChaseAction$$ActionHit",
+   "caller2:AuraBladeBuf$$.ctor<-AuraBladeAction.<>c__DisplayClass28_0$$<ActionStart>b__0",
+   "caller2:AutoDeviceBuf$$.ctor<-AutoDeviceAction$$ActionHit",
+   "caller2:BackstepBuf$$.ctor<-BackstepAction$$ActionStart",
+   "caller2:BarrierScreenBuf$$.ctor<-BarrierScreenAction$$ActionSkillEvent",
+   "caller2:BeautiesOfNatureBuf$$.ctor<-BeautiesOfNatureAction$$ActionStart",
+   "caller2:BeragelungBuf$$.ctor<-BeragelungAction$$ValidDebuff",
+   "caller2:BlackFlameEvilEyeBuf$$.ctor<-BlackFlameEvilEyeAction$$ActionPreparation",
+   "caller2:BlessBuf$$.ctor<-BlessAction$$ActionHit",
+   "caller2:BlinkSwordBuf$$.ctor<-BlinkSwordAction$$ActionSkillEvent",
+   "caller2:BlitzPikeBuf$$.ctor<-BlitzPikeAction$$ActionSkillEvent",
+   "caller2:BloodSteelBuf$$.ctor<-BloodSteelAction$$ActionHit",
+   "caller2:BreathingMethodBuf$$.ctor<-GazerShootAction$$ActionHit",
+   "caller2:CamouflageBuf$$.ctor<-CamouflageAction$$ActionHit",
+   "caller2:CloningTechniqueBuf$$.ctor<-CloningTechniqueAction$$ActionSkillEvent",
+   "caller2:ConversionBuf$$.ctor<-ConversionAction$$ActionHit",
+   "caller2:CounterForceBuf$$.ctor<-CounterForceAction$$ActionHit",
+   "caller2:CrazyDaggerBuf$$.ctor<-CrazyDaggerAction$$ActionStart",
+   "caller2:DeathTorqueShotBuf$$.ctor<-DeathTorqueShotAction$$calcPlayerToMobDamage",
+   "caller2:DengerShakeBuf$$.ctor<-DengerShakeAction.<>c__DisplayClass35_0$$<ActionStart>b__0",
+   "caller2:DestroyerBuf$$.ctor<-DestroyerAction$$ActionHit",
+   "caller2:DragonTailBuf$$.ctor<-DragonTailAction$$ActionStart",
+   "caller2:DrainRecallBuf$$.ctor<-DrainRecall$$AddBuf",
+   "caller2:DualBringerBuf$$.ctor<-DualBringerAction$$ActionHit",
+   "caller2:EarthShatteringBuf$$.ctor<-EarthShatteringAction$$ActionSkillEvent",
+   "caller2:EarthStyleBuf$$.ctor<-EarthStyleAction$$ActionHit",
+   "caller2:ElegantStanceBuf$$.ctor<-ElegantStanceAction$$ActionHit",
+   "caller2:ElementReachBuf$$.ctor<-ElementReach$$EnemyDamage",
+   "caller2:EnchantedBurstBuf$$.ctor<-DrainBarrierAction$$DamageFunction",
+   "caller2:EnchantedBurstSwordBuf$$.ctor<-EnchantedBurstAction$$ActionPreparation",
+   "caller2:EnhanceBuf$$.ctor<-EnhanceAction$$AddEnhanceBuf",
+   "caller2:EtherCoatBuf$$.ctor<-EtherCoatAction$$ActionHit",
+   "caller2:EtherFlareBuf$$.ctor<-EtherFlareAction$$CheckAbnormalSubEffect",
+   "caller2:EvolutionBuf$$.ctor<-EvolutionAction$$ActionHit",
+   "caller2:FearlessBuf$$.ctor<-FearlessAction$$ActionHit",
+   "caller2:FinishingTouchBuf$$.ctor<-FinishingTouchAction$$AddSwordSoul",
+   "caller2:FloatDashBuf$$.ctor<-FloatDashAction$$ActionHit",
+   "caller2:FocusBuf$$.ctor<-FocusAction$$ValidDebuff",
+   "caller2:FuneVinteBuf$$.ctor<-FuneVinteAction$$ActionStart",
+   "caller2:GloriaBuf$$.ctor<-GloriaAction$$ActionHit",
+   "caller2:GuardyBladeBuf$$.ctor<-GuardyBladeAction$$ActionHit",
+   "caller2:HammerDownBuf$$.ctor<-HammerDownAction$$ActionStart",
+   "caller2:HolyGraceBuf$$.ctor<-HolyGraceAction$$ActionHit",
+   "caller2:IllusionarySceneBuf$$.ctor<-IllusionarySceneAction$$ActionPreparation",
+   "caller2:ImprovisationSongBuf$$.ctor<-ImprovisationSongAction$$ActionPreparation",
+   "caller2:JumpbackShotProtectionBuf$$.ctor<-FacticeArmeAction$$CreateTake",
+   "caller2:JumpbackShotProtectionBuf$$.ctor<-JumpbackShotAction$$ActionStart",
+   "caller2:KakeiBuf$$.ctor<-KakeiAction$$Damaged",
+   "caller2:KnifeCombatBuf$$.ctor<-FlinchKnifeAction$$ActionStart",
+   "caller2:KnifeCombatBuf$$.ctor<-KnifeCombatAction$$ActionStart",
+   "caller2:KnifeCombatBuf$$.ctor<-WheelBiteAction.<>c__DisplayClass31_0$$<ActionStart>b__0",
+   "caller2:LebenGlanzBuf$$.ctor<-LebenGlanzAction$$ValidDebuff",
+   "caller2:LightningHailBuf$$.ctor<-LightningHailAction$$ActionStart",
+   "caller2:LunaDitherStarBladeRainBuf$$.ctor<-LunaDitherStarBladeRainAction$$ActionStart",
+   "caller2:MagicBalkanBuf$$.ctor<-MagicBalkanAction$$ActionStart",
+   "caller2:MagicSkinBuf$$.ctor<-MagicSkin$$DamageAdjustment",
+   "caller2:MindimageSenjuBuf$$.ctor<-MindimageSenjuAttackAction.<>c__DisplayClass82_0$$<ActionStart>b__0",
+   "caller2:MindimageSenjuBuf$$.ctor<-MindimageSenjuSupportAction.<>c__DisplayClass57_0$$<ActionStart>b__0",
+   "caller2:MorningStarBuf$$.ctor<-MorningStarAction$$ActionStart"
+  ],
+  "callers": [
+   "AccelBladeBuf$$.ctor",
+   "AegisBuf$$.ctor",
+   "AfterShieldBuf$$.ctor",
+   "AfterShieldBuf$$CreateCooltimeBuf",
+   "AfterShieldBuf$$CreateDefaultBuf",
+   "ArialSlayBuf$$.ctor",
+   "ArkSaberBuf$$.ctor",
+   "ArrowSharpeningBuf$$.ctor",
+   "AspisSeoulBuf$$.ctor",
+   "AssassinStubBuf$$.ctor",
+   "AssaultChaseBuf$$.ctor",
+   "AstuteBuf$$.ctor",
+   "AuraBladeBuf$$.ctor",
+   "AutoDeviceBuf$$.ctor",
+   "BackstepBuf$$.ctor",
+   "BarrierScreenBuf$$.ctor",
+   "BeautiesOfNatureBuf$$.ctor",
+   "BeragelungBuf$$.ctor",
+   "BerserkBuf$$.ctor",
+   "BlackFlameEvilEyeBuf$$.ctor",
+   "BlessBuf$$.ctor",
+   "BlinkSwordBuf$$.ctor",
+   "BlitzPikeBuf$$.ctor",
+   "BloodSteelBuf$$.ctor",
+   "BoomerangBuf$$.ctor",
+   "BraveUpBuf$$.ctor",
+   "BreathingMethodBuf$$.ctor",
+   "BusterBladeBuf$$.ctor",
+   "CallGolemBuf$$.ctor",
+   "CamouflageBuf$$.ctor",
+   "ChainCastBuf$$.ctor",
+   "ChainCastStackBuf$$.ctor",
+   "ChakraBuf$$.ctor",
+   "ChargingBuf$$.ctor",
+   "ChronosShiftBuf$$.ctor",
+   "CircleBufferBase$$.ctor",
+   "CloningTechniqueBuf$$.ctor",
+   "CollectQigongBuf$$.ctor",
+   "ConversionBuf$$.ctor",
+   "CountBufferBase$$.ctor",
+   "CounterForceBuf$$.ctor",
+   "CrazyDaggerBuf$$.ctor",
+   "CronosDriveBuf$$.ctor",
+   "CrossFireBuf$$.ctor",
+   "CutOffTheDisasterBuf$$.ctor",
+   "CutUpBuf$$.ctor",
+   "DancerBufferBase$$.ctor",
+   "DarkStingerBuf$$.ctor",
+   "DeadlySpearBuf$$.ctor",
+   "DeathTorqueShotBuf$$.ctor",
+   "DengerShakeBuf$$.ctor",
+   "DestroyerBuf$$.ctor",
+   "DetectionBuf$$.ctor",
+   "DivaCheeringBuf$$.ctor",
+   "DoubleThrowBuf$$.ctor",
+   "DragonTailBuf$$.ctor",
+   "DragonicChargeBuf$$.ctor",
+   "DrainBarrierBuf$$.ctor",
+   "DrainRecallBuf$$.ctor",
+   "DualBringerBuf$$.ctor",
+   "EarthShatteringBuf$$.ctor",
+   "EarthShatteringBuf$$.ctor",
+   "EarthShatteringPassiveBuf$$.ctor",
+   "EarthStyleBuf$$.ctor",
+   "ElegantStanceBuf$$.ctor",
+   "ElementReachBuf$$.ctor",
+   "EnchantedBurstBuf$$.ctor",
+   "EnchantedBurstSwordBuf$$.ctor",
+   "EnchantedDanceBuf$$.ctor",
+   "EnchantedSpellBuf$$.ctor",
+   "EnchantedSwordBuf$$.ctor",
+   "EnhanceBuf$$.ctor",
+   "EquipMagicBarrierBuf$$.ctor",
+   "EquipPhysicalBarrierBuf$$.ctor",
+   "EquipRateBarrierBuf$$.ctor",
+   "EquipSkillBufferBase$$.ctor",
+   "EternalNightmareBuf$$.ctor",
+   "EtherCoatBuf$$.ctor",
+   "EtherFlareBuf$$.ctor",
+   "EvolutionBuf$$.ctor",
+   "ExorcismBuf$$.ctor",
+   "FairyDanceBuf$$.ctor",
+   "FamiliaBuf$$.ctor",
+   "FastAttackBuf$$.ctor",
+   "FearlessBuf$$.ctor",
+   "FinishingTouchBuf$$.ctor",
+   "FirstAidBuf$$.ctor",
+   "FloatDashBuf$$.ctor",
+   "FocusBuf$$.ctor",
+   "ForefistPunchBuf$$.ctor",
+   "FuneVinteBuf$$.ctor",
+   "GloriaBuf$$.ctor",
+   "GuardyBladeBuf$$.ctor",
+   "HalberdTemporaryMatkBuf$$.ctor",
+   "HammerDownBuf$$.ctor",
+   "HandlingerOfGodspeedBuf$$.ctor",
+   "HealingShotBuf$$.ctor",
+   "HighFamiliaBuf$$.ctor",
+   "HolyBibleBuf$$.ctor",
+   "HolyGraceBuf$$.ctor",
+   "HorizontalCutBuf$$.ctor",
+   "IllusionarySceneBuf$$.ctor",
+   "ImperialRayBuf$$.ctor",
+   "ImprovisationSongBuf$$.ctor",
+   "JudgmentOfTheDarkGodBuf$$.ctor",
+   "JumpBackShotBuf$$.ctor",
+   "JumpbackShotProtectionBuf$$.ctor",
+   "KakeiBuf$$.ctor",
+   "KakeiDeffenceBuf$$.ctor",
+   "KnifeCombatBuf$$.ctor",
+   "LebenGlanzBuf$$.ctor",
+   "LightningHailBuf$$.ctor",
+   "LunaDitherStarBladeRainBuf$$.ctor",
+   "LunaDitherStarBuf$$.ctor",
+   "MagicBalkanBuf$$.ctor",
+   "MagicImpactBuf$$.ctor",
+   "MagicLazerBuf$$.ctor",
+   "MagicSkinBuf$$.ctor",
+   "MailBreakerBuf$$.ctor",
+   "MaintainingTheFrontBuf$$.ctor",
+   "ManaCrystalBuf$$.ctor",
+   "MindUpBuf$$.ctor",
+   "MindimageSenjuBuf$$.ctor",
+   "MirageStepBuf$$.ctor",
+   "MorningStarBuf$$.ctor",
+   "PetCriticalUpBuf$$.ctor"
+  ]
+ },
+ "SmokeDustBuf": {
+  "owners": [
+   74
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "MobaPlayerActionManager$$ReceiveAttack",
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SnipingBuf": {
+  "owners": [
+   73
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SongBufferBase": {
+  "owners": [
+   769,
+   770,
+   771,
+   772,
+   773,
+   774,
+   775
+  ],
+  "via": [
+   "caller2:EnthusiasticSongBuf$$CreateSelfBuf<-EnthusiasticSongAction$$EffectiveSongBuffer",
+   "caller2:FairySongBuf$$CreateSelfBuf<-FairySongAction$$EffectiveSongBuffer",
+   "caller2:FairySongBuf$$CreateSelfBuf<-ImprovisationSongAction$$ActiveResumeSong",
+   "caller2:HealingSongBuf$$CreateSelfBuf<-HealingSongAction$$EffectiveSongBuffer",
+   "caller2:KnowledgeSongBuf$$CreateSelfBuf<-KnowledgeSongAction$$EffectiveSongBuffer",
+   "caller2:PhantomSongBuf$$CreateSelfBuf<-PhantomSongAction$$EffectiveSongBuffer",
+   "caller2:SongOfLifeBuf$$CreateSelfBuf<-SongOfLifeAction$$EffectiveSongBuffer"
+  ],
+  "callers": [
+   "EnthusiasticSongBuf$$.ctor",
+   "EnthusiasticSongBuf$$CreateOtherBuf",
+   "EnthusiasticSongBuf$$CreateSelfBuf",
+   "FairySongBuf$$.ctor",
+   "FairySongBuf$$CreateOtherBuf",
+   "FairySongBuf$$CreateSelfBuf",
+   "HealingSongBuf$$.ctor",
+   "HealingSongBuf$$CreateOtherBuf",
+   "HealingSongBuf$$CreateSelfBuf",
+   "KnowledgeSongBuf$$.ctor",
+   "KnowledgeSongBuf$$CreateOtherBuf",
+   "KnowledgeSongBuf$$CreateSelfBuf",
+   "PhantomSongBuf$$.ctor",
+   "PhantomSongBuf$$CreateOtherBuf",
+   "PhantomSongBuf$$CreateSelfBuf",
+   "SongOfLifeBuf$$.ctor",
+   "SongOfLifeBuf$$CreateOtherBuf",
+   "SongOfLifeBuf$$CreateSelfBuf"
+  ]
+ },
+ "SongOfLifeBuf": {
+  "owners": [
+   771
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": []
+ },
+ "SpriteShieldBuf": {
+  "owners": [
+   713
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "StabilisBuf": {
+  "owners": [
+   712
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "StepReactorbuf": {
+  "owners": [
+   644
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "StoneSkinBuf": {
+  "owners": [
+   1030
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "StormAndUrgeBuf": {
+  "owners": [
+   1092
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "MobaOtherPlayerActionManager$$OnSkillEventReceive",
+   "OtherPlayerActionManager$$OnSkillEventReceive",
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "StormAndUrgeExtremeBuf": {
+  "owners": [
+   1096
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SummonDemonicBuf": {
+  "owners": [
+   1131
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "GameManager$$ReceiveSummons"
+  ]
+ },
+ "SupportDanceBuf": {
+  "owners": [
+   803
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SurvivalInstinctBuf": {
+  "owners": [
+   679
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "SwordMoveBuf": {
+  "owners": [
+   0,
+   611,
+   617,
+   623,
+   625,
+   1222
+  ],
+  "via": [
+   "caller2:SwordMove$$AddBuf<-HassohappaAction$$ActionSkillEvent",
+   "caller2:SwordMove$$AddBuf<-NormalAttackAction$$ActionSkillEvent",
+   "caller2:SwordMove$$AddBuf<-RepelBladeAction$$ActionSkillEvent",
+   "caller2:SwordMove$$AddBuf<-ShadowlessSlashAction$$ActionSkillEvent",
+   "caller2:SwordMove$$AddBuf<-ThunderStyleAction$$ActionSkillEvent",
+   "caller2:SwordMove$$AddBuf<-WaveBladeAction$$ActionSkillEvent"
+  ],
+  "callers": [
+   "SwordMove$$AddBuf"
+  ]
+ },
+ "TakeQigongBuf": {
+  "owners": [
+   1089
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "ThieshankaiBuf": {
+  "owners": [
+   148
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "TornadoLanceBuf": {
+  "owners": [
+   979
+  ],
+  "via": [
+   "name"
+  ],
+  "callers": [
+   "ReceiveBattleResult$$AttackMobaMob"
+  ]
+ },
+ "TriggerSlashBuf": {
+  "owners": [
+   38
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "WaterStyleBuf": {
+  "owners": [
+   1223
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "WheelBiteBuf": {
+  "owners": [
+   302
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "WindStyleBuf": {
+  "owners": [
+   1225
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ },
+ "ZanteisettetsuBuf": {
+  "owners": [
+   618
+  ],
+  "via": [
+   "factory:CreateSkillBuffer"
+  ],
+  "callers": [
+   "SkillFactory$$CreateSkillBuffer"
+  ]
+ }
+}

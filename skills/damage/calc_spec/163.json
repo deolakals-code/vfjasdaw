@@ -1,0 +1,61 @@
+{
+ "version": 1,
+ "uid": 163,
+ "name_th": "แอดวานซ์การ์ด",
+ "name_en": "AdvanceGuard",
+ "tree": "GuardSkill",
+ "category": "Mastery",
+ "max_level": 120,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "AdvanceGuard",
+ "proration": null,
+ "eq_limit": [
+  "HevyArmor"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "AdvanceGuard",
+  "bonuses": {
+   "Guard": {
+    "id": 9,
+    "expr": "(Lv >> 1)",
+    "by_level": [
+     0,
+     1,
+     1,
+     2,
+     2,
+     3,
+     3,
+     4,
+     4,
+     5
+    ]
+   },
+   "GuardPower": {
+    "id": 10,
+    "expr": "int(((Lv + 1) >> 1))",
+    "by_level": [
+     1,
+     1,
+     2,
+     2,
+     3,
+     3,
+     4,
+     4,
+     5,
+     5
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

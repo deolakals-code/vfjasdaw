@@ -1,0 +1,71 @@
+// Assembly: Assembly-CSharp.dll
+// Namespace: 
+public enum TakeParameterType // TypeDefIndex: 4636
+{
+	// Fields
+	public short value__; // 0x0
+	public const TakeParameterType Non = 0;
+	public const TakeParameterType Loop = 1;
+	public const TakeParameterType Speed = 2;
+	public const TakeParameterType TargetSize = 3;
+	public const TakeParameterType ItemId = 4;
+	public const TakeParameterType ItemRare = 5;
+	public const TakeParameterType EffectScaling = 6;
+	public const TakeParameterType ElementType = 7;
+	public const TakeParameterType SettingColorR = 8;
+	public const TakeParameterType SettingColorG = 9;
+	public const TakeParameterType SettingColorB = 10;
+	public const TakeParameterType RecoveryHp = 11;
+	public const TakeParameterType RecoveryMp = 12;
+	public const TakeParameterType ClipTimer = 13;
+	public const TakeParameterType AddSupportRingRot = 14;
+	public const TakeParameterType SupportRingDist = 15;
+	public const TakeParameterType ParentTakeParam = 16;
+	public const TakeParameterType MoveAngle = 17;
+	public const TakeParameterType SetEffectPositionX = 18;
+	public const TakeParameterType SetEffectPositionY = 19;
+	public const TakeParameterType SetEffectPositionZ = 20;
+	public const TakeParameterType PlayerUid = 21;
+	public const TakeParameterType SkillId = 22;
+	public const TakeParameterType SetEffectAngleX = 23;
+	public const TakeParameterType SetEffectAngleY = 24;
+	public const TakeParameterType SetEffectAngleZ = 25;
+	public const TakeParameterType MoveSpeed = 26;
+	public const TakeParameterType MoveTime = 27;
+	public const TakeParameterType SetEndTimer = 28;
+	public const TakeParameterType CheckEffectDisable = 29;
+	public const TakeParameterType MoveX = 30;
+	public const TakeParameterType MoveY = 31;
+	public const TakeParameterType MoveZ = 32;
+	public const TakeParameterType TargetTimeMoveSlowStart = 33;
+	public const TakeParameterType TargetTimeMoveSlowStop = 34;
+	public const TakeParameterType VoiceId = 35;
+	public const TakeParameterType SubElementType = 36;
+	public const TakeParameterType CheckParentTakeId = 37;
+	public const TakeParameterType CheckParentAnimationId = 38;
+	public const TakeParameterType SettingColorRGB = 39;
+	public const TakeParameterType SetParam0InShader = 40;
+	public const TakeParameterType SetParam1InShader = 41;
+	public const TakeParameterType SetParam2InShader = 42;
+	public const TakeParameterType SetParam3InShader = 43;
+	public const TakeParameterType ItemDropType = 44;
+	public const TakeParameterType ForcePlaySEType = 45;
+	public const TakeParameterType CallChantTakeUid = 46;
+	public const TakeParameterType MoveDist = 47;
+	public const TakeParameterType TakeParamValue = 48;
+	public const TakeParameterType RotateTime = 49;
+	public const TakeParameterType RotateSpeed = 50;
+	public const TakeParameterType ValidDirectMove = 51;
+	public const TakeParameterType RestoreScale = 52;
+	public const TakeParameterType SendCallObjectPosition = 53;
+	public const TakeParameterType SendServarValue1 = 54;
+	public const TakeParameterType SendServarValue2 = 55;
+	public const TakeParameterType SendServarValue3 = 56;
+	public const TakeParameterType SendChildEffectScaling = 57;
+	public const TakeParameterType SetEffectTakeId = 58;
+	public const TakeParameterType TargetRotationDegree = 59;
+	public const TakeParameterType TargetRotationDistance = 60;
+	public const TakeParameterType ScaleAnimationX = 61;
+	public const TakeParameterType ScaleAnimationY = 62;
+	public const TakeParameterType ScaleAnimationZ = 63;
+}

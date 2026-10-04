@@ -1,0 +1,61 @@
+{
+ "version": 1,
+ "uid": 100,
+ "name_th": "เมจิกมาสเตอรี่",
+ "name_en": "MagicMastary",
+ "tree": "MagicSkill",
+ "category": "Mastery",
+ "max_level": 10,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "MagicMastary",
+ "proration": null,
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "MagicMastary",
+  "bonuses": {
+   "EqAtkRate": {
+    "id": 1,
+    "expr": "(Lv + (Lv << 1))",
+    "by_level": [
+     3,
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ]
+   },
+   "MatkRate": {
+    "id": 5,
+    "expr": "(int(((Lv + -2) / 5)) + 1)",
+    "by_level": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     2,
+     2,
+     2,
+     2
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

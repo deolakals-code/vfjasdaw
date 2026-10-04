@@ -1,0 +1,238 @@
+{
+ "version": 1,
+ "uid": 561,
+ "name_th": "โฟกัส",
+ "name_en": "Focus",
+ "tree": "HunterSkill",
+ "category": "Attack",
+ "max_level": 285,
+ "roles": [
+  "buff (self)",
+  "buff (party / others)"
+ ],
+ "class": "FocusAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 561,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(16)",
+   "simplified": "MathUtil.DisplayMeterToDistance(16)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "FocusDebuff..ctor",
+   "formula": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), Lv)",
+   "simplified": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), Lv)",
+   "when": "always",
+   "vars": [
+    "Toram.Common.ArchetypeUid.get_Id"
+   ]
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "FocusBuf..ctor",
+   "formula": ".ctor(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 15), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 15), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 15) ne 0",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(new FocusBuf)",
+   "simplified": "AddBuffer(new, FocusBuf)",
+   "when": "always"
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "FocusBuf..ctor",
+   "formula": ".ctor(0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 15) eq 0",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "InvalidDebuff",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(561)",
+   "simplified": "RemoveBuffer(561)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "FocusBuf",
+   "ctors": [
+    {
+     "sig": "FocusDebuff debuf, PlayerStatusBase status",
+     "fields": {
+      "longRangeRate": [
+       {
+        "formula": "int(((debuf.Level * 0.5) + 0.5))",
+        "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), 561, 1) lt 1 OR (EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) & 0xfffffffe) ne 12 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), 561, 1) ge 1 OR (EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) - 17) hi 1 AND (EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) & 0xfffffffe) eq 12 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), 561, 1) ge 1",
+        "by_level": null
+       }
+      ],
+      "shortRangeRate": [
+       {
+        "formula": "(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Focus, 1) >> 1)",
+        "when": "(EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) - 17) ls 1 AND (EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) & 0xfffffffe) eq 12 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), 561, 1) ge 1",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "debuf.Level",
+       "0"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "LongRangeRate",
+     "bonus_id": 67,
+     "formula": "longRangeRate",
+     "simplified": "longRangeRate",
+     "when": []
+    },
+    {
+     "id": "ShortRangeRate",
+     "bonus_id": 66,
+     "formula": "shortRangeRate",
+     "simplified": "shortRangeRate",
+     "when": []
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "FocusBuf": {
+     "lv": "debuf.Level",
+     "self": "0"
+    }
+   },
+   "attached_via": "caller2:FocusBuf$$.ctor<-FocusAction$$ValidDebuff",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "FocusBuf..ctor"
+ ],
+ "variables": [
+  "EquipItemData.get_SubWeaponItemType",
+  "EquipItemData.get_WeaponItemType",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_BuffManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.LongRangeRate",
+  "SkillBufferId.ShortRangeRate",
+  "SkillId.Focus",
+  "SkillManager.GetSkillLv",
+  "Toram.Common.ArchetypeUid.get_Id",
+  "TryGetBuff.buff"
+ ],
+ "residual": []
+}

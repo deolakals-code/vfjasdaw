@@ -1,0 +1,588 @@
+{
+ "version": 1,
+ "uid": 301,
+ "name_th": "เครซี่แดกเกอร์",
+ "name_en": "CrazyDagger",
+ "tree": "KnifeSkill",
+ "category": "Object",
+ "max_level": 225,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "placed object / trap / summon",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "CrazyDaggerAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_and_flag",
+  "attack_type": "Physics",
+  "action_id": 301,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(16)",
+   "simplified": "MathUtil.DisplayMeterToDistance(16)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "knifeNum",
+   "formula": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count)",
+   "simplified": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon == ShortSword OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((GetSubWeaponType.item(actarAction).Function // 10) lt 50 ? (GetSubWeaponType.item(actarAction).Function // 10) : 50) + (((Lv << 4) - Lv) + 50)) + 50)",
+   "simplified": "((((GetSubWeaponType.item(actarAction).Function // 10) lt 50 ? (GetSubWeaponType.item(actarAction).Function // 10) : 50) + (((Lv << 4) - Lv) + 50)) + 50)",
+   "when": "((1 << mainWeaponType) & 0x10401) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword OR ((1 << mainWeaponType) & 0x10401) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "mainWeaponType hi 16 AND subWeapon == ShortSword OR mainWeaponType hi 16 AND subWeapon != ShortSword OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon == ShortSword",
+   "by_level": 200,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count)",
+   "simplified": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon == ShortSword OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((GetSubWeaponType.item(actarAction).Function // 10) lt 50 ? (GetSubWeaponType.item(actarAction).Function // 10) : 50) + (((Lv << 4) - Lv) + 50))",
+   "simplified": "(((GetSubWeaponType.item(actarAction).Function // 10) lt 50 ? (GetSubWeaponType.item(actarAction).Function // 10) : 50) + (((Lv << 4) - Lv) + 50))",
+   "when": "mainWeaponType hi 16 AND subWeapon == ShortSword OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon == ShortSword OR ((1 << mainWeaponType) & 0x10401) eq 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv << 4) - Lv) + 50) + 50)",
+   "simplified": "15 × Lv + 100",
+   "when": "((1 << mainWeaponType) & 0x10401) ne 0 AND mainWeaponType ls 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType ls 16 AND subWeapon != ShortSword",
+   "by_level": [
+    115,
+    130,
+    145,
+    160,
+    175,
+    190,
+    205,
+    220,
+    235,
+    250
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv << 4) - Lv) + 50)",
+   "simplified": "15 × Lv + 50",
+   "when": "mainWeaponType hi 16 AND subWeapon != ShortSword OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) eq 0 AND mainWeaponType ls 16 AND subWeapon != ShortSword",
+   "by_level": [
+    65,
+    80,
+    95,
+    110,
+    125,
+    140,
+    155,
+    170,
+    185,
+    200
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "knifeNum",
+   "formula": "1",
+   "simplified": "1",
+   "when": "mainWeaponType hi 16 AND subWeapon == ShortSword OR mainWeaponType hi 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "1",
+   "simplified": "1",
+   "when": "mainWeaponType hi 16 AND subWeapon == ShortSword OR mainWeaponType hi 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "by_level": 1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 8)",
+   "simplified": "SkillParam | 8",
+   "when": "SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "MasteryId.Trigger",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "crazyDaggerBuf",
+   "formula": "new CrazyDaggerBuf",
+   "simplified": "new CrazyDaggerBuf",
+   "when": "!PlayerAttackBase.IsBlank(this) AND (SkillBufferManager.TryGetBuf<CrazyDaggerBuf>!PlayerStatusBase.get_SkillBufferManager(), 301, (this + 336)) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND (SkillBufferManager.TryGetBuf<CrazyDaggerBuf>!PlayerStatusBase.get_SkillBufferManager(), 301, (this + 336)) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "knifeNum",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "crazyDaggerBuf",
+   "formula": "[actarAction+0xa8]",
+   "simplified": "[actarAction+0xa8]",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ],
+   "residual": [
+    "+0xa8]"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 8) eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 8) ne 0 AND MobaMode ne 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 8)",
+   "simplified": "SkillParam | 8",
+   "when": "(SkillParam & 32) ne 0 AND (SkillParam & 8) ne 0 AND MobaMode eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 32) eq 0 AND (SkillParam & 8) ne 0 AND MobaMode eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 32) ne 0 AND (SkillParam & 8) ne 0 AND MobaMode eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 AND TryGetProperties<object>.out2(mobAction, 90) ne 0"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 8) eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 8) ne 0 AND MobaMode ne 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((skillRate * System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>))) / 100)",
+   "simplified": "((skillRate * System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>))) / 100)",
+   "when": "System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 8) eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 8) ne 0 AND MobaMode ne 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 8) eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 8) ne 0 AND MobaMode ne 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), CrazyDaggerAction.get_AttackType())",
+   "simplified": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), CrazyDaggerAction.get_AttackType())",
+   "when": "(SkillParam & 32) ne 0 AND (SkillParam & 8) ne 0 AND MobaMode eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 32) ne 0 AND (SkillParam & 8) ne 0 AND MobaMode eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 AND TryGetProperties<object>.out2(mobAction, 90) ne 0 OR (SkillParam & 32) ne 0 AND (SkillParam & 8) ne 0 AND MobaMode eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "CrazyDaggerAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcLastDamageRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[LastDamageRate]",
+   "formula": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "simplified": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "when": "(SkillParam & 32) ne 0 AND (SkillParam & 8) ne 0 AND MobaMode eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 AND TryGetProperties<object>.out2(mobAction, 90) ne 0",
+   "op": "AddRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 8) eq 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0 OR (SkillParam & 8) ne 0 AND MobaMode ne 0 AND System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func<KeyValuePair<int, MobActionManagerBase>, bool>)) ge 1 AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase.DamageData>(damageDataList, new System.Func<SkillActionBase.DamageData, bool>) eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "CrazyDaggerBuf..ctor",
+   "formula": ".ctor(Lv, actarAction)",
+   "simplified": ".ctor(Lv, actarAction)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND (SkillBufferManager.TryGetBuf<CrazyDaggerBuf>!PlayerStatusBase.get_SkillBufferManager(), 301, (this + 336)) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND (SkillBufferManager.TryGetBuf<CrazyDaggerBuf>!PlayerStatusBase.get_SkillBufferManager(), 301, (this + 336)) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new CrazyDaggerBuf, Id)",
+   "simplified": "AddSelfBuffer(new, CrazyDaggerBuf, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND (SkillBufferManager.TryGetBuf<CrazyDaggerBuf>!PlayerStatusBase.get_SkillBufferManager(), 301, (this + 336)) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND (SkillBufferManager.TryGetBuf<CrazyDaggerBuf>!PlayerStatusBase.get_SkillBufferManager(), 301, (this + 336)) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "CrazyDaggerBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction, bool other = False",
+     "fields": {
+      "isOther": [
+       {
+        "formula": "(False & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "Max": [
+       {
+        "formula": "5",
+        "when": "always",
+        "by_level": 5
+       }
+      ],
+      "playerAction": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "effectManager": [
+       {
+        "formula": "new CrazyDaggerBuf.EffectManager",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "SetCount",
+      "formula": "(count lt 0 ? 0 : (Max lt count ? Max : count))",
+      "when": "always"
+     },
+     {
+      "method": "SkillGuard",
+      "formula": "CrazyDaggerBuf.EffectManager.get_KnifeNum(effectManager)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "AttackStart",
+    "Next",
+    "OtherAttackStart",
+    "SetCount",
+    "SkillAttack",
+    "SkillAttackOther",
+    "SkillEnd",
+    "SkillGuard",
+    "SkillStart"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "CrazyDaggerBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:CrazyDaggerBuf$$.ctor<-CrazyDaggerAction$$ActionStart",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "CrazyDaggerAction.OnInitialize",
+  "CrazyDaggerPursuitAction.OnInitialize",
+  "NormalAttackAction.ActionPreparation",
+  "NormalAttackAction.Damaged",
+  "PlayerAttackBase.ActionStart",
+  "SkillBufferManager.UpdateIndividualBuf"
+ ],
+ "variables": [
+  "CrazyDaggerAction.get_AttackType",
+  "CrazyDaggerBuf.EffectManager.get_KnifeNum",
+  "GetSubWeaponType.item",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "MasteryId.Trigger",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcLastDamageRate",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillActionBase.checkPercent",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "SkillMasteryBase.GetMasteryParam",
+  "System.Linq.Enumerable.Count",
+  "System.Linq.Enumerable.FirstOrDefault",
+  "System.Linq.Enumerable.Where",
+  "TryGetBuf.buf",
+  "TryGetProperties.out2",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefSkill"
+ ],
+ "residual": [
+  {
+   "where": "ActionStartOthers:crazyDaggerBuf",
+   "tokens": [
+    "+0xa8]"
+   ]
+  }
+ ]
+}

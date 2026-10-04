@@ -1,0 +1,464 @@
+{
+ "version": 1,
+ "uid": 1003,
+ "name_th": "เวนอมสแนทช",
+ "name_en": "VenomSnatch",
+ "tree": "AssassinSkill",
+ "category": "Attack",
+ "max_level": 125,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "VenomSnatchAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "None",
+  "action_id": 1003,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "CheckCollectionAbnormalPoisonTarget",
+   "kind": "set",
+   "name": "collectingPoisonTarget",
+   "formula": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(actorAction.battleManager.mainTargetData.Target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(actorAction.battleManager.mainTargetData.Target)",
+   "when": "AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(actorAction.battleManager.mainTargetData.Target)), AbnormalType.Poison) AND UnityEngine.Object.op_Inequality(actorAction.battleManager.mainTargetData.Target) OR !AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(actorAction.battleManager.mainTargetData.Target)), AbnormalType.Poison) AND AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(actorAction.battleManager.mainTargetData.Target)), AbnormalType.SavePoison) AND UnityEngine.Object.op_Inequality(actorAction.battleManager.mainTargetData.Target)",
+   "vars": [
+    "AbnormalStateManager.ContainsAbnormal",
+    "AbnormalType.Poison",
+    "AbnormalType.SavePoison",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "CheckCollectionAbnormalPoisonTarget",
+   "kind": "set",
+   "name": "+0x12c",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "CheckCollectionAbnormalPoisonTarget",
+   "kind": "set",
+   "name": "collectingPoisonTarget",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!UnityEngine.Object.op_Inequality(actorAction.battleManager.mainTargetData.Target) OR !AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(actorAction.battleManager.mainTargetData.Target)), AbnormalType.SavePoison) AND !AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(actorAction.battleManager.mainTargetData.Target)), AbnormalType.Poison) AND UnityEngine.Object.op_Inequality(actorAction.battleManager.mainTargetData.Target)",
+   "by_level": 0,
+   "vars": [
+    "AbnormalStateManager.ContainsAbnormal",
+    "AbnormalType.Poison",
+    "AbnormalType.SavePoison",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "BattleResult",
+   "kind": "call",
+   "name": "VenomSnatchAction.CalcHpHealValue",
+   "formula": "CalcHpHealValue(PlayerActionManagerBase.get_PlayerStatus(), ?ubfx)",
+   "simplified": "CalcHpHealValue(PlayerActionManagerBase.get_PlayerStatus(), ?ubfx)",
+   "when": "(flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) ge 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 OR (flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) lt 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 OR (flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) ge 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) lt 1",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.DeathReception",
+    "SkillId.VenomSnatch",
+    "SkillManager.GetSkillLv",
+    "VenomSnatchAction.CalcHpHealValue",
+    "VenomSnatchAction.CalcMpHealValue"
+   ],
+   "residual": [
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx"
+   ]
+  },
+  {
+   "method": "BattleResult",
+   "kind": "call",
+   "name": "VenomSnatchAction.CalcMpHealValue",
+   "formula": "CalcMpHealValue(PlayerActionManagerBase.get_PlayerStatus(), ?ubfx)",
+   "simplified": "CalcMpHealValue(PlayerActionManagerBase.get_PlayerStatus(), ?ubfx)",
+   "when": "(flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) ge 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 OR (flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) lt 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 OR (flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) ge 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) lt 1",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.DeathReception",
+    "SkillId.VenomSnatch",
+    "SkillManager.GetSkillLv",
+    "VenomSnatchAction.CalcHpHealValue",
+    "VenomSnatchAction.CalcMpHealValue"
+   ],
+   "residual": [
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx"
+   ]
+  },
+  {
+   "method": "BattleResult",
+   "kind": "call",
+   "name": "VenomSnatchBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), ?ubfx)",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), ?ubfx)",
+   "when": "(flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) ge 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 OR (flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) ge 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) lt 1 OR (flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) ge 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) lt 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.DeathReception",
+    "SkillId.VenomSnatch",
+    "SkillManager.GetSkillLv",
+    "VenomSnatchAction.CalcHpHealValue",
+    "VenomSnatchAction.CalcMpHealValue"
+   ],
+   "residual": [
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx"
+   ]
+  },
+  {
+   "method": "BattleResult",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new VenomSnatchBuf)",
+   "simplified": "AddSelfBuffer(new, VenomSnatchBuf)",
+   "when": "(flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) ge 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 OR (flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) ge 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) lt 1 OR (flag & 255) eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.DeathReception, 1) ge 1 AND VenomSnatchAction.CalcHpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) lt 1 AND VenomSnatchAction.CalcMpHealValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.VenomSnatch, 1), PlayerActionManagerBase.get_PlayerStatus(), ?ubfx) ge 1",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.DeathReception",
+    "SkillId.VenomSnatch",
+    "SkillManager.GetSkillLv",
+    "VenomSnatchAction.CalcHpHealValue",
+    "VenomSnatchAction.CalcMpHealValue"
+   ],
+   "residual": [
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx"
+   ]
+  },
+  {
+   "method": "GiveVaccinations",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(231)",
+   "simplified": "RemoveBuffer(231)",
+   "when": "(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 231).effectType - 1) ls 1 AND RecoveryBuf.CreateVenomSnatchBuf(poisonLevel).LeftTime gt TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 231).LeftTime AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 231) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "RecoveryBuf.CreateVenomSnatchBuf"
+   ]
+  },
+  {
+   "method": "GiveVaccinations",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(RecoveryBuf.CreateVenomSnatchBuf(poisonLevel), 0)",
+   "simplified": "AddSelfBuffer(RecoveryBuf.CreateVenomSnatchBuf(poisonLevel), 0)",
+   "when": "always",
+   "vars": [
+    "RecoveryBuf.CreateVenomSnatchBuf"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "VenomSnatchBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int poisonLevel",
+     "fields": {
+      "poisonLevel": [
+       {
+        "formula": "poisonLevel",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "poisonLevel",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "poisonLevel"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "poisonLevel",
+     "simplified": "poisonLevel",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "CountBufferBase.GetParam(this, id)",
+     "simplified": "CountBufferBase.GetParam(this, id)",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "VenomSnatchBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "poisonLevel"
+    }
+   },
+   "attached_via": "caller2:VenomSnatchBuf$$.ctor<-VenomSnatchAction$$BattleResult",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "DeathReceptionAction.IsFailure",
+  "VenomSnatchAction.BattleResult"
+ ],
+ "variables": [
+  "AbnormalStateManager.ContainsAbnormal",
+  "AbnormalType.Poison",
+  "AbnormalType.SavePoison",
+  "CountBufferBase.GetParam",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "RecoveryBuf.CreateVenomSnatchBuf",
+  "SkillBufferId.Count",
+  "SkillBufferId.Value",
+  "SkillId.DeathReception",
+  "SkillId.VenomSnatch",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuf.out2",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "VenomSnatchAction.CalcHpHealValue",
+  "VenomSnatchAction.CalcMpHealValue"
+ ],
+ "residual": [
+  {
+   "where": "BattleResult:VenomSnatchAction.CalcHpHealValue",
+   "tokens": [
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx"
+   ]
+  },
+  {
+   "where": "BattleResult:VenomSnatchAction.CalcMpHealValue",
+   "tokens": [
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx"
+   ]
+  },
+  {
+   "where": "BattleResult:VenomSnatchBuf..ctor",
+   "tokens": [
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx"
+   ]
+  },
+  {
+   "where": "BattleResult:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx",
+    "?ubfx"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,695 @@
+{
+ "version": 1,
+ "uid": 99,
+ "name_th": "[N]เวทมนตร์:กำแพง[F]กำแพงอัคคี[A]ม่านวารี[W]กำแพงวายุ[E]เขตแดนปฐพี[L]เขตแดนศักดิ์สิทธิ์[D]ประตูอสูร[N]",
+ "name_en": "MagicWall",
+ "tree": "MagicSkill",
+ "category": "Object",
+ "max_level": 10,
+ "roles": [
+  "attack (deals damage)",
+  "placed object / trap / summon"
+ ],
+ "class": "MagicWallAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 99,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "spellTuningWall",
+   "formula": "ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 99)",
+   "simplified": "ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 99)",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 eq 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND +0x151 ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+   "vars": [
+    "ExSkillSpellTuning.GetEnabledConfig",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 eq 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 eq 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 4) + 80)",
+   "simplified": "4 × Lv + 80",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 eq 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+   "by_level": [
+    84,
+    88,
+    92,
+    96,
+    100,
+    104,
+    108,
+    112,
+    116,
+    120
+   ],
+   "vars": [
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 120)",
+   "simplified": "10 × Lv + 120",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 eq 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+   "by_level": [
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220
+   ],
+   "vars": [
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "((int((Lv * 0.5)) + 5) + ((int((Lv * 0.5)) + 5) << 1))",
+   "simplified": "3 × int(0.5 × Lv) + 15",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND +0x151 ne 0",
+   "by_level": [
+    15,
+    18,
+    18,
+    21,
+    21,
+    24,
+    24,
+    27,
+    27,
+    30
+   ],
+   "vars": [
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "((int((Lv * 0.5)) + 5) + ((int((Lv * 0.5)) + 5) << 1))",
+   "simplified": "3 × int(0.5 × Lv) + 15",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND +0x151 ne 0",
+   "by_level": [
+    15,
+    18,
+    18,
+    21,
+    21,
+    24,
+    24,
+    27,
+    27,
+    30
+   ],
+   "vars": [
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 eq 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "(int((Lv * 0.5)) + 5)",
+   "simplified": "int(0.5 × Lv) + 5",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND +0x151 eq 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 eq 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND +0x151 eq 0",
+   "by_level": [
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10
+   ],
+   "vars": [
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(int((Lv * 0.5)) + 5)",
+   "simplified": "int(0.5 × Lv) + 5",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND +0x151 eq 0 OR (mainWeapon==Rod & 1) ne 0 AND +0x151 eq 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND +0x151 eq 0",
+   "by_level": [
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10
+   ],
+   "vars": [
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "WriteSkillIndividualFlag",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "((System.Convert.ToByte(+0x151) & 255) | (((int((rad * 10)) << 1) | (System.Convert.ToByte((spellTuningWall ne 0 ? 1 : 0)) & 255)) << 1))",
+   "simplified": "((System.Convert.ToByte(+0x151) & 255) | (((int((rad * 10)) << 1) | (System.Convert.ToByte((spellTuningWall ne 0 ? 1 : 0)) & 255)) << 1))",
+   "when": "always",
+   "vars": [
+    "System.Convert.ToByte"
+   ]
+  },
+  {
+   "method": "ReadSkillIndividualFlag",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "((SkillIndividualFlag >> 1) >> 1)",
+   "simplified": "(SkillIndividualFlag ÷ 2) ÷ 2",
+   "when": "always"
+  },
+  {
+   "method": "ReadSkillIndividualFlag",
+   "kind": "set",
+   "name": "spellTuningWall",
+   "formula": "(System.Convert.ToBoolean(((SkillIndividualFlag >> 1) & 1)) & 1)",
+   "simplified": "System.Convert.ToBoolean(SkillIndividualFlag ÷ 2 & 1) & 1",
+   "when": "always",
+   "vars": [
+    "System.Convert.ToBoolean"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "Element",
+   "formula": "TryGetElemntType.elementType(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "TryGetElemntType.elementType(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "TryGetElemntType.elementType",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "placePosition",
+   "formula": "UnityEngine.Transform.get_position(actorTransform).x",
+   "simplified": "UnityEngine.Transform.get_position(actorTransform).x",
+   "when": "!PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(actorTransform).y), size) AND spellTuningWall ne 0 OR (((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x)) + ((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z))) hi ((rad + size) * (rad + size)) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(actorTransform).y), size) AND spellTuningWall ne 0 OR (((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x)) + ((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z))) ls ((rad + size) * (rad + size)) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(actorTransform).y), size) AND spellTuningWall ne 0",
+   "vars": [
+    "PlayerAttackBase.checkRangeHeight",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "placePosition.y",
+   "formula": "UnityEngine.Transform.get_position(actorTransform).y",
+   "simplified": "UnityEngine.Transform.get_position(actorTransform).y",
+   "when": "!PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(actorTransform).y), size) AND spellTuningWall ne 0 OR (((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x)) + ((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z))) hi ((rad + size) * (rad + size)) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(actorTransform).y), size) AND spellTuningWall ne 0 OR (((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x)) + ((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z))) ls ((rad + size) * (rad + size)) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(actorTransform).y), size) AND spellTuningWall ne 0",
+   "vars": [
+    "PlayerAttackBase.checkRangeHeight",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "placePosition.z",
+   "formula": "UnityEngine.Transform.get_position(actorTransform).z",
+   "simplified": "UnityEngine.Transform.get_position(actorTransform).z",
+   "when": "!PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(actorTransform).y), size) AND spellTuningWall ne 0 OR (((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x)) + ((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z))) hi ((rad + size) * (rad + size)) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(actorTransform).y), size) AND spellTuningWall ne 0 OR (((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(actorTransform).x)) + ((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(actorTransform).z))) ls ((rad + size) * (rad + size)) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(actorTransform).y), size) AND spellTuningWall ne 0",
+   "vars": [
+    "PlayerAttackBase.checkRangeHeight",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "placePosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "IsOtherPlayer ne 0 AND param eq 0 OR IsOtherPlayer eq 0 AND param eq 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "placePosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "IsOtherPlayer ne 0 AND param eq 0 OR IsOtherPlayer eq 0 AND param eq 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "placePosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "IsOtherPlayer ne 0 AND param eq 0 OR IsOtherPlayer eq 0 AND param eq 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "spellTuningWall",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipSubWeaponElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipSubWeaponElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipSubWeaponElement",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(actarAction) AND (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0",
+   "by_level": -1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 1024)",
+   "simplified": "SkillParam | 1024",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(actarAction) AND (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv * 4) + 80) + (baseINT // 10)) + gemCart(106[4]))",
+   "simplified": "4 × Lv + baseINT // 10 + gemCart(106, [4]) + 80",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(actarAction) AND (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 120)",
+   "simplified": "10 × Lv + 120",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(actarAction) AND (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0",
+   "by_level": [
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220
+   ],
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "(int((Lv * 0.5)) + 5)",
+   "simplified": "int(0.5 × Lv) + 5",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(actarAction) AND (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0",
+   "by_level": [
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10
+   ],
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(int((Lv * 0.5)) + 5)",
+   "simplified": "int(0.5 × Lv) + 5",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(actarAction) AND (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0",
+   "by_level": [
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10
+   ],
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 4) + 80) + gemCart(106[4]))",
+   "simplified": "4 × Lv + gemCart(106, [4]) + 80",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !UnityEngine.Object.op_Inequality(actarAction) AND (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 0x2000)",
+   "simplified": "SkillParam | 8192",
+   "when": "always"
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "lastUsedSkill",
+   "formula": "lastUsedSkill",
+   "simplified": "lastUsedSkill",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "!MobActionManagerBase.get_IsPlayerManaged(mobAction) OR MobActionManagerBase.get_IsPlayerManaged(mobAction) AND spellTuningWall ne 0 OR MobActionManagerBase.get_IsPlayerManaged(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, 100, playerAction) AND spellTuningWall eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "AbnormalType.KnockBack",
+    "MobActionManagerBase.get_IsPlayerManaged",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "target.ExpDefMagic"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "!MobActionManagerBase.get_IsPlayerManaged(mobAction) OR MobActionManagerBase.get_IsPlayerManaged(mobAction) AND spellTuningWall ne 0 OR MobActionManagerBase.get_IsPlayerManaged(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, 100, playerAction) AND spellTuningWall eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "AbnormalType.KnockBack",
+    "MobActionManagerBase.get_CharacterActionManagerBase",
+    "MobActionManagerBase.get_IsPlayerManaged",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), damageCount)",
+   "when": "!MobActionManagerBase.get_IsPlayerManaged(mobAction) OR MobActionManagerBase.get_IsPlayerManaged(mobAction) AND spellTuningWall ne 0 OR MobActionManagerBase.get_IsPlayerManaged(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, 100, playerAction) AND spellTuningWall eq 0",
+   "vars": [
+    "AbnormalType.KnockBack",
+    "MobActionManagerBase.get_IsPlayerManaged",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(4, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(4, 100, playerAction)",
+   "when": "MobActionManagerBase.get_IsPlayerManaged(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, 100, playerAction) AND spellTuningWall eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.KnockBack, 100, playerAction) AND MobActionManagerBase.get_IsPlayerManaged(mobAction) AND spellTuningWall eq 0",
+   "vars": [
+    "AbnormalType.KnockBack",
+    "MobActionManagerBase.get_IsPlayerManaged",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.KnockBack",
+  "ExSkillSpellTuning.GetEnabledConfig",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "MobActionManagerBase.get_IsPlayerManaged",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.checkRangeHeight",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_ExSkillManager",
+  "PlayerPrimaryStatus.int",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.GetEquipSubWeaponElement",
+  "System.Convert.ToBoolean",
+  "System.Convert.ToByte",
+  "TryGetElemntType.elementType",
+  "TryGetExSkillData.out2",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefMagic"
+ ],
+ "residual": []
+}

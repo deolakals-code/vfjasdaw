@@ -1,0 +1,304 @@
+{
+ "version": 1,
+ "uid": 1028,
+ "name_th": "บลิซซาร์ด",
+ "name_en": "Blizzard",
+ "tree": "WizardSkill",
+ "category": "Object",
+ "max_level": 35,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment",
+  "placed object / trap / summon"
+ ],
+ "class": "BlizzardAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target if class check passes",
+  "attack_type": "Magic",
+  "action_id": 1028,
+  "is_exp_def_fluctuate": "conditional",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod",
+  "Magictool"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always",
+   "by_level": 2
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(HighFamiliaAction.GetBlizzardPowerUpValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HighFamilia, 1)) + ((Lv + (Lv << 2)) + 100))",
+   "simplified": "HighFamiliaAction.GetBlizzardPowerUpValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HighFamilia, 1)) + 5 × Lv + 100",
+   "when": "always",
+   "vars": [
+    "HighFamiliaAction.GetBlizzardPowerUpValue",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.HighFamilia",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "Lv",
+   "simplified": "Lv",
+   "when": "always",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int((MathUtil.DisplayMeterToDistance(8) * 10))",
+   "simplified": "int(10 × MathUtil.DisplayMeterToDistance(8))",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "(int((Lv * 0.3)) + 3)",
+   "simplified": "int(0.3 × Lv) + 3",
+   "when": "always",
+   "by_level": [
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 16)",
+   "simplified": "SkillParam | 16",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.HighFamilia) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND PlayerAttackBase.IsBlank(this) AND SkillActionBase.checkPercent(this, 100, 30) OR !PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.HighFamilia) AND !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND PlayerAttackBase.get_ActionID() eq 0 AND SkillActionBase.checkPercent(this, 100, 30) OR !PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.HighFamilia) AND !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND PlayerAttackBase.ContainsNotApplicableSkill(PlayerAttackBase.get_ActionID()) AND PlayerAttackBase.get_ActionID() ne 0 AND SkillActionBase.checkPercent(this, 100, 30)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.ContainsNotApplicableSkill",
+    "PlayerAttackBase.IsBlank",
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "SkillActionBase.checkPercent"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeHighFamilia",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 256)",
+   "simplified": "SkillParam | 256",
+   "when": "always"
+  },
+  {
+   "method": "InitializeHighFamilia",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefMagic"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), maxAttackCount)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), maxAttackCount)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(9, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(9, percent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(9)",
+   "simplified": "SetAbnormalType(9)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Freeze, percent, playerAction)",
+   "vars": [
+    "AbnormalType.Freeze",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Fear",
+  "AbnormalType.Freeze",
+  "HighFamiliaAction.GetBlizzardPowerUpValue",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.ContainsNotApplicableSkill",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.checkPercent",
+  "SkillId.HighFamilia",
+  "SkillManager.GetSkillLv",
+  "UnityEngine.GameObject.get_transform",
+  "target.ExpDefMagic"
+ ],
+ "residual": []
+}

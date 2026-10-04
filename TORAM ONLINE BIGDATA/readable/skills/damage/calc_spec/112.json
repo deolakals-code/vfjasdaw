@@ -1,0 +1,626 @@
+{
+ "version": 1,
+ "uid": 112,
+ "name_th": "เวทมนตร์:เมจิกแคนนอน",
+ "name_en": "MagicCannon",
+ "tree": "MagicSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "MagicCannonAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 112,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(24)",
+   "simplified": "MathUtil.DisplayMeterToDistance(24)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "700",
+   "simplified": "700",
+   "when": "always",
+   "by_level": 700
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseSkillRate",
+   "formula": "(Lv + (Lv << 1))",
+   "simplified": "3 × Lv",
+   "when": "always",
+   "by_level": [
+    3,
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance((FieldManager.get_IsMoRoom(Singleton<FieldManager>.get_Instance()) ? 100 : 24))",
+   "simplified": "MathUtil.DisplayMeterToDistance(FieldManager.get_IsMoRoom(Singleton<FieldManager>.get_Instance()) ? 100 : 24)",
+   "when": "always",
+   "vars": [
+    "FieldManager.get_IsMoRoom",
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "width",
+   "formula": "MathUtil.DisplayMeterToDistance(3)",
+   "simplified": "MathUtil.DisplayMeterToDistance(3)",
+   "when": "(mainWeapon==Magictool & 1) ne 0 AND mainWeapon != Rod OR (mainWeapon==Magictool & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) eq 0 AND mainWeapon != Rod OR (mainWeapon==Magictool & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND mainWeapon != Rod",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "700",
+   "simplified": "700",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND mainWeapon == Rod OR (mainWeapon==Magictool & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND mainWeapon != Rod OR (mainWeapon==Magictool & 1) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND mainWeapon != Rod",
+   "by_level": 700,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "width",
+   "formula": "MathUtil.DisplayMeterToDistance((mainWeapon == Magictool ? 3 : 1.5))",
+   "simplified": "MathUtil.DisplayMeterToDistance(mainWeapon = Magictool ? 3 : 1.5)",
+   "when": "mainWeapon == Rod OR (mainWeapon==Magictool & 1) eq 0 AND mainWeapon != Rod OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) eq 0 AND mainWeapon == Rod",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "!PlayerAttackBase.IsBlank(this) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "!PlayerAttackBase.IsBlank(this) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "SkillBufferDataBase.GetParam(20)",
+   "simplified": "SkillBufferDataBase.GetParam(20)",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND SkillBufferDataBase.GetParam(20) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND ((LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) lt 5 ? (LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) : 5) ge 1 AND SkillBufferDataBase.GetParam(20) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND ((LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) lt 5 ? (LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) : 5) lt 1 AND SkillBufferDataBase.GetParam(20) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((WeaponType eq 15 ? (SkillBufferDataBase.GetParam(20) + (SkillBufferDataBase.GetParam(20) << 1)) : SkillBufferDataBase.GetParam(20)) + fixAddDamage)",
+   "simplified": "(WeaponType = 15 ? 3 × A : A) + fixAddDamage",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND SkillBufferDataBase.GetParam(20) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND ((LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) lt 5 ? (LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) : 5) ge 1 AND SkillBufferDataBase.GetParam(20) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND ((LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) lt 5 ? (LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) : 5) lt 1 AND SkillBufferDataBase.GetParam(20) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "defs": [
+    [
+     "A",
+     "SkillBufferDataBase.GetParam(20)"
+    ]
+   ],
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "((LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) lt 5 ? (LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) : 5)",
+   "simplified": "min(LoopParam + A - (SkillBufferDataBase.GetParam(20) - 20 × A = 0 ? 1 : 0), 5)",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND SkillBufferDataBase.GetParam(20) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND ((LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) lt 5 ? (LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) : 5) ge 1 AND SkillBufferDataBase.GetParam(20) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND ((LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) lt 5 ? (LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) : 5) lt 1 AND SkillBufferDataBase.GetParam(20) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "defs": [
+    [
+     "A",
+     "SkillBufferDataBase.GetParam(20) // 20"
+    ]
+   ],
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "guardIgnorePercent",
+   "formula": "max(((SkillBufferDataBase.GetParam(20) - 100) lt 100 ? (SkillBufferDataBase.GetParam(20) - 100) : 100), 0)",
+   "simplified": "max(min(SkillBufferDataBase.GetParam(20) - 100, 100), 0)",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND SkillBufferDataBase.GetParam(20) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND ((LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) lt 5 ? (LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) : 5) ge 1 AND SkillBufferDataBase.GetParam(20) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND ((LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) lt 5 ? (LoopParam + ((SkillBufferDataBase.GetParam(20) // 20) - ((SkillBufferDataBase.GetParam(20) - ((SkillBufferDataBase.GetParam(20) // 20) * 20)) eq 0 ? 1 : 0))) : 5) lt 1 AND SkillBufferDataBase.GetParam(20) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "Element",
+   "formula": "TryGetElemntType.elementType(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "TryGetElemntType.elementType(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int16Enum, int>.ContainsKey(new SkillLinkedTake._parameter, 7) & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int16Enum, int>.ContainsKey(new SkillLinkedTake._parameter, 7) & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int16Enum, int>.ContainsKey(new SkillLinkedTake._parameter, 7) & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 112).BuffEffectActive eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "TryGetElemntType.elementType",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isRotationTarget",
+   "formula": "0",
+   "simplified": "0",
+   "when": "param eq 101",
+   "by_level": 0
+  },
+  {
+   "method": "ActionSkillReceiveEffect",
+   "kind": "set",
+   "name": "effect",
+   "formula": "effect",
+   "simplified": "effect",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "enchantedBurstStack",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 OR !hasBuff(873) AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 AND hasBuff(873)",
+   "by_level": 1,
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "0 hs skillRate.Length AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 hs skillRate.Length AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability gt 99 OR 0 hs skillRate.Length AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability le 99",
+   "vars": [
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "0 lo skillRate.Length AND 1 hs skillRate.Length AND 1 lt LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 hs skillRate.Length AND 1 lt LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability gt 99 OR 0 lo skillRate.Length AND 1 hs skillRate.Length AND 1 lt LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability le 99",
+   "vars": [
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "3",
+   "simplified": "3",
+   "when": "0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 hs skillRate.Length AND 2 lt LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 hs skillRate.Length AND 2 lt LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability gt 99 OR 0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 hs skillRate.Length AND 2 lt LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability le 99",
+   "vars": [
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 0x2000)",
+   "simplified": "SkillParam | 8192",
+   "when": "always"
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "lastUsedSkill",
+   "formula": "lastUsedSkill",
+   "simplified": "lastUsedSkill",
+   "when": "always"
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "lastUsedSkill.Radius",
+   "simplified": "lastUsedSkill.Radius",
+   "when": "always"
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "width",
+   "formula": "lastUsedSkill.width",
+   "simplified": "lastUsedSkill.width",
+   "when": "always"
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "lastUsedSkill.LoopParam",
+   "simplified": "lastUsedSkill.LoopParam",
+   "when": "always"
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "baseSkillRate",
+   "formula": "lastUsedSkill.baseSkillRate",
+   "simplified": "lastUsedSkill.baseSkillRate",
+   "when": "always"
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "lastUsedSkill.skillRate",
+   "simplified": "lastUsedSkill.skillRate",
+   "when": "always"
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "chargeComboType",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "chargeComboRate",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((baseINT + (baseSkillRate * skillRate[0])) / 100)",
+   "simplified": "((baseINT + (baseSkillRate * skillRate[0])) / 100)",
+   "when": "0 lo skillRate.Length AND 1 ge LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 ge LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability gt 99 OR 0 lo skillRate.Length AND 1 hs skillRate.Length AND 1 lt LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability le 99",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "0 lo skillRate.Length AND 1 ge LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 ge LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability gt 99 OR 0 lo skillRate.Length AND 1 ge LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability le 99",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((baseINT + (baseSkillRate * skillRate[1])) / 100)",
+   "simplified": "((baseINT + (baseSkillRate * skillRate[1])) / 100)",
+   "when": "0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 ge LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 ge LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability gt 99 OR 0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 hs skillRate.Length AND 2 lt LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability le 99",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((baseINT + (baseSkillRate * skillRate[2])) / 100)",
+   "simplified": "((baseINT + (baseSkillRate * skillRate[2])) / 100)",
+   "when": "0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 lo skillRate.Length AND 2 lt LoopParam AND 3 ge LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 lo skillRate.Length AND 2 lt LoopParam AND 3 lt LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 lo skillRate.Length AND 2 lt LoopParam AND 3 ge LoopParam AND LoopParam ge 1 AND WeaponType eq 14 AND attackCount lt LoopParam AND target.GuardProbability gt 99",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((baseSkillRate * skillRate[0]) / 100)",
+   "simplified": "((baseSkillRate * skillRate[0]) / 100)",
+   "when": "0 lo skillRate.Length AND 1 ge LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 ge LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability gt 99 OR 0 lo skillRate.Length AND 1 hs skillRate.Length AND 1 lt LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability le 99",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((baseSkillRate * skillRate[1]) / 100)",
+   "simplified": "((baseSkillRate * skillRate[1]) / 100)",
+   "when": "0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 ge LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 ge LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability gt 99 OR 0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 hs skillRate.Length AND 2 lt LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability le 99",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((baseSkillRate * skillRate[2]) / 100)",
+   "simplified": "((baseSkillRate * skillRate[2]) / 100)",
+   "when": "0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 lo skillRate.Length AND 2 lt LoopParam AND 3 ge LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 lo skillRate.Length AND 2 lt LoopParam AND 3 lt LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability le 99 OR 0 lo skillRate.Length AND 1 lo skillRate.Length AND 1 lt LoopParam AND 2 lo skillRate.Length AND 2 lt LoopParam AND 3 ge LoopParam AND LoopParam ge 1 AND WeaponType ne 14 AND attackCount lt LoopParam AND target.GuardProbability gt 99",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "target.GuardProbability"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "AbnormalStateManager.RemoveAbnormalState",
+   "formula": "RemoveAbnormalState(37)",
+   "simplified": "RemoveAbnormalState(37)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int16Enum, int>.ContainsKey(new SkillLinkedTake._parameter, 7) & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(112)",
+   "simplified": "RemoveSelfBuffer(112)",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int16Enum, int>.ContainsKey(new SkillLinkedTake._parameter, 7) & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int16Enum, int>.ContainsKey(new SkillLinkedTake._parameter, 7) & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "EnchantedBurstAction.AddLocalStack",
+   "formula": "AddLocalStack(PlayerAttackBase.get_ActionID(), Id)",
+   "simplified": "AddLocalStack(PlayerAttackBase.get_ActionID(), Id)",
+   "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0 AND hasBuff(873)",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "MagicCannonAction.ActionStart",
+  "MagicCannonAction.OnInitialize",
+  "MobaPlayerActionManager.GetSkillTargetType",
+  "PlayerActionManager.GetSkillTargetType",
+  "PlayerAttackBase.MagicCannonCharge",
+  "PlayerDataManager.OnAbnormalDamage",
+  "SkillChargeAction.ReceiveSupport"
+ ],
+ "variables": [
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "FieldManager.get_IsMoRoom",
+  "IMobStatusCalculator.get_GuardProbability",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerPrimaryStatus.int",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "Singleton.get_Instance",
+  "SkillBufferDataBase.GetParam",
+  "System.Collections.Generic.Dictionary.ContainsKey",
+  "TryGetBuf.buf",
+  "TryGetElemntType.elementType",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "target.GuardProbability"
+ ],
+ "residual": []
+}

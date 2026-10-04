@@ -1,0 +1,228 @@
+{
+ "version": 1,
+ "uid": 230,
+ "name_th": "เมจิกบาเรีย",
+ "name_en": "MagicBarrier",
+ "tree": "SupportSkill",
+ "category": "Circle",
+ "max_level": 30,
+ "roles": [
+  "buff (self)",
+  "circle / song area"
+ ],
+ "class": "MagicBarrierAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 230,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "SkillUtil.CalcCastTime(1, PlayerStatusBase.get_BattleStatus())",
+   "simplified": "SkillUtil.CalcCastTime(1, PlayerStatusBase.get_BattleStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_BattleStatus",
+    "SkillUtil.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "range",
+   "formula": "int(MathUtil.DisplayMeterToDistance(((Lv >> 1) + 5)))",
+   "simplified": "int(MathUtil.DisplayMeterToDistance(Lv ÷ 2 + 5))",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(230, Lv, Id)",
+   "simplified": "AddSelfBuffer(230, Lv, Id)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "MagicBarrierBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, float time",
+     "fields": {
+      "range": [
+       {
+        "formula": "int(MathUtil.DisplayMeterToDistance((?ubfx + 5)))",
+        "when": "(self & 1) ne 0",
+        "by_level": null
+       }
+      ],
+      "IsDamageCancel": [
+       {
+        "formula": "1",
+        "when": "(self & 1) ne 0",
+        "by_level": 1
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CircleBufferBase",
+      "args": [
+       "lv",
+       "(self & 1)",
+       "time"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "time"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MdefRate",
+     "bonus_id": 26,
+     "formula": "((Lv << 1) + 10)",
+     "simplified": "2 × Lv + 10",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "DefRate",
+     "bonus_id": 24,
+     "formula": "((Lv << 1) + 10)",
+     "simplified": "2 × Lv + 10",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "FleeRate",
+     "bonus_id": 12,
+     "formula": "(int((Lv * 2.5)) - 75)",
+     "simplified": "int(2.5 × Lv) - 75",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "FleeRate",
+     "bonus_id": 12,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateSupport",
+     "bonus_id": 7,
+     "formula": "(Lv << 1)",
+     "simplified": "2 × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerStatusBase.get_BattleStatus",
+  "SkillBufferId.DefRate",
+  "SkillBufferId.FleeRate",
+  "SkillBufferId.MdefRate",
+  "SkillBufferId.MobLastDamageRateSupport",
+  "SkillUtil.CalcCastTime",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

@@ -1,0 +1,195 @@
+{
+ "version": 1,
+ "uid": 841,
+ "name_th": "ร็อดสทับ",
+ "name_en": "RodStub",
+ "tree": "PriestSkill",
+ "category": "Attack",
+ "max_level": 15,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "RodStubAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 841,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(7)",
+   "simplified": "MathUtil.DisplayMeterToDistance(7)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + 190) + status.Str)",
+   "simplified": "Lv + status.Str + 190",
+   "when": "always",
+   "vars": [
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(((Lv + (Lv << 2)) + 25) + 25)",
+   "simplified": "5 × Lv + 50",
+   "when": "subWeapon == Shield",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "resist",
+   "formula": "((baseSTR // 10) + 25)",
+   "simplified": "baseSTR // 10 + 25",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((Lv + (Lv << 2)) + 25)",
+   "simplified": "5 × Lv + 25",
+   "when": "subWeapon != Shield",
+   "by_level": [
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    70,
+    75
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(1, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(1, percent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction)",
+   "vars": [
+    "AbnormalType.Flinch",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Flinch",
+  "IPlayerStatusCalculator.get_Str",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.str",
+  "status.Str"
+ ],
+ "residual": []
+}

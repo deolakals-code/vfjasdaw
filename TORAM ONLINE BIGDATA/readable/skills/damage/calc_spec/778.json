@@ -1,0 +1,51 @@
+{
+ "version": 1,
+ "uid": 778,
+ "name_th": "แบทเทิลโน้ต",
+ "name_en": "BattleNotes",
+ "tree": "Minstrel",
+ "category": "Mastery",
+ "max_level": 120,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "BattleNotes",
+ "proration": null,
+ "eq_limit": [
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "BattleNotes",
+  "bonuses": {
+   "Percent": {
+    "id": 27,
+    "expr": "((Lv + (Lv << 2)) << 1)",
+    "by_level": [
+     10,
+     20,
+     30,
+     40,
+     50,
+     60,
+     70,
+     80,
+     90,
+     100
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "PlayerBattleManager.StartBattleNotesAttack"
+ ],
+ "variables": [],
+ "residual": []
+}

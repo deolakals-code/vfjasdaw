@@ -1,0 +1,324 @@
+{
+ "version": 1,
+ "uid": 713,
+ "name_th": "สไปรท์ชีลด์",
+ "name_en": "SpriteShield",
+ "tree": "SpriteSkill",
+ "category": "Buffer",
+ "max_level": 250,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "SpriteShieldAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 713,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "consumptionHp",
+   "formula": "System.Math.Max(int(((status.MaxHp * (30 - (Lv << 1))) * 89129)), 100)",
+   "simplified": "System.Math.Max(int(0x15c29 × status.MaxHp × (30 - 2 × Lv)), 100)",
+   "when": "always",
+   "vars": [
+    "System.Math.Max",
+    "status.MaxHp"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "CheckPayHp",
+   "kind": "call",
+   "name": "SoulHuntBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1))",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND consumptionHp ge 1 AND consumptionHp lt (PlayerStatusBase.get_GameStatus().serverExHp + PlayerStatusBase.get_GameStatus().serverHp)",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.SoulHunt_Deathscythe",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "CheckPayHp",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new SoulHuntBuf)",
+   "simplified": "AddSelfBuffer(new, SoulHuntBuf)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SoulHunt_Deathscythe, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND consumptionHp ge 1 AND consumptionHp lt (PlayerStatusBase.get_GameStatus().serverExHp + PlayerStatusBase.get_GameStatus().serverHp)",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.SoulHunt_Deathscythe",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(713, Lv, Id)",
+   "simplified": "AddSelfBuffer(713, Lv, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SoulHuntBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "10"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SpriteShieldBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "(self & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "(Lv * Lv)",
+     "simplified": "Lv × Lv",
+     "when": []
+    },
+    {
+     "id": "MobLastDamageRateSupport",
+     "bonus_id": 7,
+     "formula": "50",
+     "simplified": "50",
+     "when": []
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "SoulHuntBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "10"
+    }
+   },
+   "attached_via": "caller2:SoulHuntBuf$$.ctor<-SpriteShieldAction$$CheckPayHp",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerActionManager.Damaged",
+  "MobaPlayerActionManager.ReceiveDamaged",
+  "MobaPlayerSecondaryStatus.get_AntiVirus",
+  "PlayerActionManager.AddEventAbnormal",
+  "PlayerActionManager.Damaged",
+  "PlayerSecondaryStatus.CalcAntiVirus"
+ ],
+ "variables": [
+  "IPlayerStatusCalculator.get_MaxHp",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerStatusBase.get_GameStatus",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.Count",
+  "SkillBufferId.MobLastDamageRateSupport",
+  "SkillBufferId.Value",
+  "SkillId.SoulHunt_Deathscythe",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Object.op_Inequality",
+  "status.MaxHp"
+ ],
+ "residual": []
+}

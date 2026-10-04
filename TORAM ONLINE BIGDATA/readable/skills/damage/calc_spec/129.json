@@ -1,0 +1,249 @@
+{
+ "version": 1,
+ "uid": 129,
+ "name_th": "สแมช",
+ "name_en": "Smash",
+ "tree": "MarshallSkill",
+ "category": "Attack",
+ "max_level": 10,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "SmashAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 129,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) + (status.Agi // 10)) + 25)",
+   "simplified": "5 × Lv + status.Agi // 10 + 25",
+   "when": "always",
+   "vars": [
+    "status.Agi"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(ExistWeaponType.item(actarAction, 16))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(ExistWeaponType.item(actarAction, 16))",
+   "when": "always",
+   "vars": [
+    "ExistWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv + Lv) + 50) + ((Lv + (Lv << 1)) + 50)) + gemCart(107[4]))",
+   "simplified": "5 × Lv + gemCart(107, [4]) + 100",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "flinchPercent",
+   "formula": "((Lv hi 5 ? 75 : 50) + 25)",
+   "simplified": "(Lv > 5 ? 75 : 50) + 25",
+   "when": "always",
+   "by_level": [
+    75,
+    75,
+    75,
+    75,
+    75,
+    100,
+    100,
+    100,
+    100,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "always",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + Lv) + 50)",
+   "simplified": "2 × Lv + 50",
+   "when": "always",
+   "by_level": [
+    52,
+    54,
+    56,
+    58,
+    60,
+    62,
+    64,
+    66,
+    68,
+    70
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "flinchPercent",
+   "formula": "(Lv hi 5 ? 75 : 50)",
+   "simplified": "Lv > 5 ? 75 : 50",
+   "when": "always",
+   "by_level": [
+    50,
+    50,
+    50,
+    50,
+    50,
+    75,
+    75,
+    75,
+    75,
+    75
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(1, flinchPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(1, flinchPercent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Flinch",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Flinch",
+  "ExistWeaponType.item",
+  "IPlayerStatusCalculator.get_Agi",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.GetEquipElement",
+  "status.Agi"
+ ],
+ "residual": []
+}

@@ -1,0 +1,409 @@
+{
+ "version": 1,
+ "uid": 264,
+ "name_th": "อีจิส",
+ "name_en": "Aegis",
+ "tree": "ShieldSkill",
+ "category": "Support",
+ "max_level": 20,
+ "roles": [
+  "buff (self)",
+  "buff (party / others)"
+ ],
+ "class": "AegisAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 264,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "(mp - 200)",
+   "simplified": "mp - 200",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "SkillUtil.CalcCastTime(0, PlayerStatusBase.get_BattleStatus())",
+   "simplified": "SkillUtil.CalcCastTime(0, PlayerStatusBase.get_BattleStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_BattleStatus",
+    "SkillUtil.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "AegisBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "!hasGemCart(1036) OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Protection, 1) ge 1 AND hasGemCart(1036) OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Protection, 1) lt 1 AND hasGemCart(1036)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Protection",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(new AegisBuf)",
+   "simplified": "AddBuffer(new, AegisBuf)",
+   "when": "!hasGemCart(1036) OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Protection, 1) ge 1 AND hasGemCart(1036) OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Protection, 1) lt 1 AND hasGemCart(1036)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Protection",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "ProtectionBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Protection, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Protection, 1))",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Protection, 1) ge 1 AND hasGemCart(1036)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Protection",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(new ProtectionBuf)",
+   "simplified": "AddBuffer(new, ProtectionBuf)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Protection, 1) ge 1 AND hasGemCart(1036)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Protection",
+    "SkillManager.GetSkillLv"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "AegisBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "(Lv * 60)",
+        "when": "always",
+        "by_level": [
+         60,
+         120,
+         180,
+         240,
+         300,
+         360,
+         420,
+         480,
+         540,
+         600
+        ]
+       }
+      ],
+      "isViewSelfIcon": [
+       {
+        "formula": "IsSelfAction",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MagicDmgCut",
+     "bonus_id": 22,
+     "formula": "((int((Lv / 3)) + (int((Lv / 3)) << 2)) + 10)",
+     "simplified": "5 × int(Lv / 3) + 10",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "PowerDmgCut",
+     "bonus_id": 21,
+     "formula": "((int((Lv / 3)) + (int((Lv / 3)) << 2)) - 35)",
+     "simplified": "5 × int(Lv / 3) - 35",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "isViewSelfIcon": [
+     {
+      "method": "SetViewSelfIcon",
+      "formula": "(flag & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "ProtectionBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "257",
+        "when": "always",
+        "by_level": 257
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "(Lv * 60)",
+        "when": "always",
+        "by_level": [
+         60,
+         120,
+         180,
+         240,
+         300,
+         360,
+         420,
+         480,
+         540,
+         600
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "PowerDmgCut",
+     "bonus_id": 21,
+     "formula": "((int((Lv / 3)) + (int((Lv / 3)) << 2)) + 10)",
+     "simplified": "5 × int(Lv / 3) + 10",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MagicDmgCut",
+     "bonus_id": 22,
+     "formula": "((int((Lv / 3)) + (int((Lv / 3)) << 2)) - 35)",
+     "simplified": "5 × int(Lv / 3) - 35",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ],
+    "isViewSelfIcon": [
+     {
+      "method": "SetViewSelfIcon",
+      "formula": "(flag & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "AegisBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:AegisBuf$$.ctor<-AegisAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "ProtectionAction.ActionHit"
+ ],
+ "variables": [
+  "EquipItemData.get_SubWeapon",
+  "PlayerStatusBase.get_BattleStatus",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.MagicDmgCut",
+  "SkillBufferId.PowerDmgCut",
+  "SkillId.Protection",
+  "SkillManager.GetSkillLv",
+  "SkillUtil.CalcCastTime",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

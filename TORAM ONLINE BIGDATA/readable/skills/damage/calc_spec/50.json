@@ -1,0 +1,552 @@
+{
+ "version": 1,
+ "uid": 50,
+ "name_th": "ออร่าเบลด",
+ "name_en": "AuraBlade",
+ "tree": "BladeSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "AuraBladeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 50,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(3.5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(3.5)",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword OR mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 100) + 500)",
+   "simplified": "100 × Lv + 500",
+   "when": "always",
+   "by_level": [
+    600,
+    700,
+    800,
+    900,
+    1000,
+    1100,
+    1200,
+    1300,
+    1400,
+    1500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "2",
+   "simplified": "2",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword",
+   "by_level": 2
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "(MathUtil.DisplayMeterToDistance(3.5) + MathUtil.DisplayMeterToDistance(0.5))",
+   "simplified": "MathUtil.DisplayMeterToDistance(3.5) + MathUtil.DisplayMeterToDistance(0.5)",
+   "when": "mainWeapon == TwoHandSword",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "gemCartTarget",
+   "formula": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "when": "!AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) AND WeaponType eq 10 AND hasGemCart(1041) OR !AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) AND WeaponType ne 10 AND hasGemCart(1041)",
+   "vars": [
+    "AuraBladeAction.CheckRangeHit",
+    "MobActionManagerBase.get_Size",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "2",
+   "simplified": "2",
+   "when": "!AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) AND WeaponType eq 10 AND hasGemCart(1041) OR !AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(0)) AND !UnityEngine.Object.op_Inequality(target) AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 10 AND hasGemCart(1041)",
+   "by_level": 2,
+   "vars": [
+    "AuraBladeAction.CheckRangeHit",
+    "MobActionManagerBase.get_Size",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) AND WeaponType eq 10 AND hasGemCart(1041) OR !AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) AND WeaponType ne 10 AND hasGemCart(1041) OR !AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(0)) AND !UnityEngine.Object.op_Inequality(target) AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 10 AND hasGemCart(1041)",
+   "by_level": 1,
+   "vars": [
+    "AuraBladeAction.CheckRangeHit",
+    "MobActionManagerBase.get_Size",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "gemCartTarget",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(0)) AND !UnityEngine.Object.op_Inequality(target) AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 10 AND hasGemCart(1041) OR !AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(0)) AND !UnityEngine.Object.op_Inequality(target) AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ne 10 AND hasGemCart(1041)",
+   "by_level": 0,
+   "vars": [
+    "AuraBladeAction.CheckRangeHit",
+    "MobActionManagerBase.get_Size",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "+0x13c",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(0)) AND !UnityEngine.Object.op_Inequality(target) AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 10 AND hasGemCart(1041) OR !AuraBladeAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.GameObject.get_transform(target), MobActionManagerBase.get_Size(0)) AND !UnityEngine.Object.op_Inequality(target) AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ne 10 AND hasGemCart(1041)",
+   "by_level": 0,
+   "vars": [
+    "AuraBladeAction.CheckRangeHit",
+    "MobActionManagerBase.get_Size",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "isSwordPressureHit",
+   "formula": "1",
+   "simplified": "1",
+   "when": "damageCount ge maxAttackCount",
+   "by_level": 1
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "swordPressureEffect",
+   "formula": "0",
+   "simplified": "0",
+   "when": "damageCount ge maxAttackCount",
+   "by_level": 0
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "+0x154",
+   "formula": "0",
+   "simplified": "0",
+   "when": "damageCount ge maxAttackCount",
+   "by_level": 0
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "(damageCount + 1)",
+   "simplified": "damageCount + 1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "maxAttackCount ge 2 OR maxAttackCount lt 2 OR MobActionManagerBase.get_SystemInvincible(mobAction) AND maxAttackCount ge 2",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "maxAttackCount ge 2 OR maxAttackCount lt 2 OR MobActionManagerBase.get_SystemInvincible(mobAction) AND maxAttackCount ge 2",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible"
+   ]
+  },
+  {
+   "method": "ActionSkillReceiveEffect",
+   "kind": "set",
+   "name": "swordPressureEffect",
+   "formula": "effect",
+   "simplified": "effect",
+   "when": "UnityEngine.Object.op_Equality(swordPressureEffect)",
+   "vars": [
+    "UnityEngine.Object.op_Equality"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "maxAttackCount ge 2 OR maxAttackCount lt 2 OR MobActionManagerBase.get_SystemInvincible(mobAction) AND maxAttackCount ge 2",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "maxAttackCount ge 2 OR maxAttackCount lt 2 OR MobActionManagerBase.get_SystemInvincible(mobAction) AND maxAttackCount ge 2",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.CreateNextDamage",
+   "formula": "CreateNextDamage()",
+   "simplified": "CreateNextDamage()",
+   "when": "maxAttackCount ge 2 OR MobActionManagerBase.get_SystemInvincible(mobAction) AND maxAttackCount ge 2",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass28_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "AuraBladeBuf..ctor",
+   "formula": ".ctor([<>c__DisplayClass28_0.<>4__this+0x14], PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor([<>c__DisplayClass28_0.<>4__this+0x14], PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ],
+   "residual": [
+    "+0x14]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass28_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new AuraBladeBuf, [<>c__DisplayClass28_0.<>4__this+0x10])",
+   "simplified": "AddSelfBuffer(new, AuraBladeBuf, [<>c__DisplayClass28_0.<>4__this+0x10])",
+   "when": "always",
+   "residual": [
+    "+0x10]"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "AuraBladeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase status",
+     "fields": {
+      "status": [
+       {
+        "formula": "status",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "40",
+        "when": "always",
+        "by_level": 40
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "lastDamageRate",
+     "simplified": "lastDamageRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "PhysicalPursuitSkillRate",
+     "bonus_id": 85,
+     "formula": "percent",
+     "simplified": "percent",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "ExtensionTime",
+      "formula": "(LeftTime + 10)",
+      "when": "always"
+     }
+    ],
+    "lastDamageRate": [
+     {
+      "method": "CalcBufferValue",
+      "formula": "10",
+      "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) eq 10"
+     },
+     {
+      "method": "CalcBufferValue",
+      "formula": "20",
+      "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) ne 10"
+     },
+     {
+      "method": "CalcBufferValue",
+      "formula": "30",
+      "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 11"
+     }
+    ],
+    "percent": [
+     {
+      "method": "CalcBufferValue",
+      "formula": "((Lv + (Lv << 2)) << 1)",
+      "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) eq 10 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) ne 10"
+     },
+     {
+      "method": "CalcBufferValue",
+      "formula": "((((Lv + (Lv << 2)) << 1) lt 0 ? (((Lv + (Lv << 2)) << 1) + 1) : ((Lv + (Lv << 2)) << 1)) >> 1)",
+      "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 11"
+     }
+    ]
+   },
+   "hooks": [
+    "CalcBufferValue",
+    "CheckPersistent",
+    "ExtensionTime"
+   ],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "AuraBladeBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:AuraBladeBuf$$.ctor<-AuraBladeAction.<>c__DisplayClass28_0$$<ActionStart>b__0",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "BusterBladeAction.<>c__DisplayClass22_0.<ActionStart>b__0",
+  "BusterBladeAction.OnInitialize",
+  "PhysicalPursuitAction.calcPlayerToMobDamage",
+  "PlayerAttackBase.ApplyAuraBlade",
+  "PlayerBattleManager.PursuitAttack"
+ ],
+ "variables": [
+  "AuraBladeAction.CheckRangeHit",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Size",
+  "MobActionManagerBase.get_SystemInvincible",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.PhysicalPursuitSkillRate",
+  "SkillBufferId.Value",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": [
+  {
+   "where": ".<>c__DisplayClass28_0::<ActionStart>b__0:AuraBladeBuf..ctor",
+   "tokens": [
+    "+0x14]"
+   ]
+  },
+  {
+   "where": ".<>c__DisplayClass28_0::<ActionStart>b__0:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "+0x10]"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,291 @@
+{
+ "version": 1,
+ "uid": 47,
+ "name_th": "ฟาสต์แอคแทค",
+ "name_en": "FastAttack",
+ "tree": "BladeSkill",
+ "category": "Attack",
+ "max_level": 70,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "FastAttackAction",
+ "proration": {
+  "slot": "Normal",
+  "mode": "first_hit_per_target",
+  "attack_type": "SkillNormal",
+  "action_id": 47,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(System.Math.Min(50, ((Lv + (Lv << 2)) + 5)) + (status.Agi // 5))",
+   "simplified": "System.Math.Min(50, 5 × Lv + 5) + status.Agi // 5",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "vars": [
+    "System.Math.Min",
+    "status.Agi"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "System.Math.Min(300, (((Lv + 1) * (Lv + 1)) + (((Lv + 1) * (Lv + 1)) << 1)))",
+   "simplified": "System.Math.Min(300, 3 × (Lv + 1) × (Lv + 1))",
+   "when": "always",
+   "vars": [
+    "System.Math.Min"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "200",
+   "simplified": "200",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "by_level": 200
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isDualSword",
+   "formula": "1",
+   "simplified": "1",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(System.Math.Min(50, ((Lv + (Lv << 2)) + 5)) + (status.Dex // 5))",
+   "simplified": "System.Math.Min(50, 5 × Lv + 5) + status.Dex // 5",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword",
+   "vars": [
+    "System.Math.Min",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "300",
+   "simplified": "300",
+   "when": "mainWeapon == TwoHandSword OR mainWeapon != OneHandSword AND mainWeapon != TwoHandSword OR mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword",
+   "by_level": 300
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "System.Math.Min(50, ((Lv + (Lv << 2)) + 5))",
+   "simplified": "System.Math.Min(50, 5 × Lv + 5)",
+   "when": "mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "vars": [
+    "System.Math.Min"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(System.Math.Min(50, ((Lv + (Lv << 2)) + 5)) + (status.Str // 5))",
+   "simplified": "System.Math.Min(50, 5 × Lv + 5) + status.Str // 5",
+   "when": "mainWeapon == TwoHandSword",
+   "vars": [
+    "System.Math.Min",
+    "status.Str"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(47, Lv, Id)",
+   "simplified": "AddSelfBuffer(47, Lv, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND Lv eq 10 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(2, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(2, percent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, percent, playerAction) AND isDualSword ne 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, percent, playerAction) AND isDualSword ne 0",
+   "vars": [
+    "AbnormalType.Tumble",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(2)",
+   "simplified": "SetAbnormalType(2)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, percent, playerAction) AND isDualSword ne 0",
+   "vars": [
+    "AbnormalType.Tumble",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "FastAttackBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PlayerAttackBase.CalcCostMp",
+  "PlayerAttackBase.RemoveAfterSkillBuf"
+ ],
+ "variables": [
+  "AbnormalType.Tumble",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Agi",
+  "IPlayerStatusCalculator.get_Dex",
+  "IPlayerStatusCalculator.get_Str",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "System.Math.Min",
+  "UnityEngine.Object.op_Inequality",
+  "status.Agi",
+  "status.Dex",
+  "status.Str"
+ ],
+ "residual": []
+}

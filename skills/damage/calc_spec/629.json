@@ -1,0 +1,460 @@
+{
+ "version": 1,
+ "uid": 629,
+ "name_th": "[N]ลมกระโชก[N2]ลมสงบนิ่ง[N3]ลมเหนือ[N4]ลมตะวันออก[N5]ลมตะวันตก[N6]ลมใต้[N7]สี่ฤดูกาล[N]",
+ "name_en": "Ichijhinnokaze",
+ "tree": "MononofuSkill",
+ "category": "Special",
+ "max_level": 70,
+ "roles": [
+  "buff (self)",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "IchijhinnokazeAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 629,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "IchijhinnokazeBuf..ctor",
+   "formula": ".ctor(Lv, actarAction)",
+   "simplified": ".ctor(Lv, actarAction)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new IchijhinnokazeBuf, Id)",
+   "simplified": "AddSelfBuffer(new, IchijhinnokazeBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ResetSpecialAcion",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(629)",
+   "simplified": "RemoveSelfBuffer(629)",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 629) ne 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 621) eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 629) ne 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 621) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 621).IsEnd ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 629) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "ResetSpecialAcion",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(621)",
+   "simplified": "RemoveSelfBuffer(621)",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 621) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 621).IsEnd ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 629) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "IchijhinnokazeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase actionManager",
+     "fields": {
+      "isBattleActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "actionManager": [
+       {
+        "formula": "actionManager",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "takeController": [
+       {
+        "formula": "actionManager.TakeController",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "effectManager": [
+       {
+        "formula": "PlayerActionManagerBase.get_BufferEffectManager()",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "equipMainKatana": [
+       {
+        "formula": "(EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? 1 : 0)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "(NowAttackMode + 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "3"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "BaseEqAtk",
+     "bonus_id": 71,
+     "formula": "baseEqAtk",
+     "simplified": "baseEqAtk",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AtkUp",
+     "bonus_id": 54,
+     "formula": "atk",
+     "simplified": "atk",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Percent",
+     "bonus_id": 52,
+     "formula": "((Lv + (Lv << 2)) << 1)",
+     "simplified": "10 × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value2",
+     "bonus_id": 51,
+     "formula": "activeSkill",
+     "simplified": "activeSkill",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "NowAttackMode",
+     "simplified": "NowAttackMode",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AtkUpRate",
+     "bonus_id": 29,
+     "formula": "atkRate",
+     "simplified": "atkRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "NowAttackMode",
+     "simplified": "NowAttackMode",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    },
+    {
+     "id": "Value2",
+     "bonus_id": 51,
+     "formula": "activeSkill",
+     "simplified": "activeSkill",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "NowAttackMode": [
+     {
+      "method": "set_NowAttackMode",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "isPutUpWeapon": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "IchijhinnokazeBuf.CheckBattleActive(this) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND IchijhinnokazeBuf.CheckPlayMotion(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0 OR !IchijhinnokazeBuf.CheckPlayMotion(this) AND IchijhinnokazeBuf.CheckBattleActive(this) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0 OR !IchijhinnokazeBuf.CheckPlayMotion(this) AND IchijhinnokazeBuf.CheckBattleActive(this) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon eq 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "!IchijhinnokazeBuf.CheckBattleActive(this) AND !InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND IchijhinnokazeBuf.CheckPlayMotion(this) AND isBattleActive eq 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0 OR !IchijhinnokazeBuf.CheckBattleActive(this) AND !IchijhinnokazeBuf.CheckPlayMotion(this) AND !InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND isBattleActive eq 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0 OR !IchijhinnokazeBuf.CheckBattleActive(this) AND !IchijhinnokazeBuf.CheckPlayMotion(this) AND !InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND isBattleActive eq 0 AND isFieldLeave eq 0 AND isUpdateWeapon eq 0"
+     }
+    ],
+    "isBattleActive": [
+     {
+      "method": "Updata",
+      "formula": "(IchijhinnokazeBuf.CheckBattleActive(this) & 1)",
+      "when": "IchijhinnokazeBuf.CheckBattleActive(this) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND IchijhinnokazeBuf.CheckPlayMotion(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0 OR !IchijhinnokazeBuf.CheckPlayMotion(this) AND IchijhinnokazeBuf.CheckBattleActive(this) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0 OR !IchijhinnokazeBuf.CheckPlayMotion(this) AND IchijhinnokazeBuf.CheckBattleActive(this) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon eq 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "!IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND IchijhinnokazeBuf.CheckBattleActive(this) AND IchijhinnokazeBuf.CheckPlayMotion(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0 OR !IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND !IchijhinnokazeBuf.CheckPlayMotion(this) AND IchijhinnokazeBuf.CheckBattleActive(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0 OR !IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND !IchijhinnokazeBuf.CheckPlayMotion(this) AND IchijhinnokazeBuf.CheckBattleActive(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon eq 0"
+     }
+    ],
+    "isUpdateWeapon": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "!IchijhinnokazeBuf.CheckBattleActive(this) AND !IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND IchijhinnokazeBuf.CheckPlayMotion(this) AND isBattleActive eq 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0 OR IchijhinnokazeBuf.CheckBattleActive(this) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND IchijhinnokazeBuf.CheckPlayMotion(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0 OR !IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND IchijhinnokazeBuf.CheckBattleActive(this) AND IchijhinnokazeBuf.CheckPlayMotion(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "!IchijhinnokazeBuf.CheckBattleActive(this) AND !IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND !IchijhinnokazeBuf.CheckPlayMotion(this) AND isBattleActive eq 0 AND isFieldLeave eq 0 AND isUpdateWeapon eq 0 OR !IchijhinnokazeBuf.CheckPlayMotion(this) AND IchijhinnokazeBuf.CheckBattleActive(this) AND IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon eq 0 OR !IchijhinnokazeBuf.CheckPlayLoopMotion(this) AND !IchijhinnokazeBuf.CheckPlayMotion(this) AND IchijhinnokazeBuf.CheckBattleActive(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isFieldLeave eq 0 AND isUpdateWeapon eq 0"
+     }
+    ],
+    "isFieldLeave": [
+     {
+      "method": "OnLeave",
+      "formula": "1",
+      "when": "always"
+     }
+    ],
+    "atk": [
+     {
+      "method": "UpdateParameter",
+      "formula": "int(((SkillBufferDataBase.GetParam(this, SkillBufferId.Percent) * firstAttack) / 100))",
+      "when": "always"
+     }
+    ],
+    "atkRate": [
+     {
+      "method": "UpdateParameter",
+      "formula": "int(((SkillBufferDataBase.GetParam(this, SkillBufferId.Percent) * firstAttackRate) / 100))",
+      "when": "always"
+     }
+    ],
+    "baseEqAtk": [
+     {
+      "method": "UpdateParameter",
+      "formula": "int(((SkillBufferDataBase.GetParam(this, SkillBufferId.Percent) * firstAttackRate) / 100))",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Active",
+    "BufferEnd",
+    "Inactive",
+    "OnLeave",
+    "UpdateParameter",
+    "get_BufEffectTakeId",
+    "get_IsPutUpWeapon",
+    "get_NowAttackMode",
+    "set_NowAttackMode"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "IchijhinnokazeBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "3"
+    }
+   },
+   "attached_via": "caller2:IchijhinnokazeBuf$$.ctor<-IchijhinnokazeAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "EquipItemData.WeaponTypeCalculatorBase.CalcEqAtk",
+  "HayateAction.IsFailure",
+  "IchijhinnokazeAction.IsFailure",
+  "IchijhinnokazeAttackAction.CheckSetunakenran",
+  "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+  "PlayerActionManager.GetSkillTargetType",
+  "TenjhoTengeMusouSwordAction.CheckActive"
+ ],
+ "variables": [
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "IchijhinnokazeBuf.CheckBattleActive",
+  "IchijhinnokazeBuf.CheckPlayLoopMotion",
+  "IchijhinnokazeBuf.CheckPlayMotion",
+  "InputManager.get_LeftInputKey",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_BufferEffectManager",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "Singleton.get_Instance",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.AtkUp",
+  "SkillBufferId.AtkUpRate",
+  "SkillBufferId.BaseEqAtk",
+  "SkillBufferId.Count",
+  "SkillBufferId.Percent",
+  "SkillBufferId.Value",
+  "SkillBufferId.Value2",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuf.out2",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

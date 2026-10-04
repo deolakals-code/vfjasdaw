@@ -1,0 +1,52 @@
+{
+ "version": 1,
+ "uid": 195,
+ "name_th": "เพิ่มอัตราดรอป",
+ "name_en": "DropUp",
+ "tree": "SurvivalSkill",
+ "category": "Mastery",
+ "max_level": 1,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "DropUp",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "DropUp",
+  "bonuses": {
+   "Value": {
+    "id": 28,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

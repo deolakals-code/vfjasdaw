@@ -1,0 +1,265 @@
+{
+ "version": 1,
+ "uid": 1125,
+ "name_th": "สกัลเชคเกอร์",
+ "name_en": "SkullShaker",
+ "tree": "NecromancerSkill",
+ "category": "Attack",
+ "max_level": 205,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "SkullShakerAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1125,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "dizzyPercent",
+   "formula": "System.Math.Min(((baseSTR // 5) + (Lv + (Lv << 2))), 100)",
+   "simplified": "System.Math.Min(baseSTR // 5 + 5 × Lv, 100)",
+   "when": "always",
+   "vars": [
+    "System.Math.Min"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "IsAvoidCancel",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mobAction",
+   "formula": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((WeaponType eq 14 ? (int((Lv * 7.5)) + 25) : int((Lv * 7.5))) * MobBuffBase.GetValue()) + skillRate)",
+   "simplified": "(WeaponType = 14 ? int(7.5 × Lv) + 25 : int(7.5 × Lv)) × MobBuffBase.GetValue() + skillRate",
+   "when": "TryGetBuff.buff(MobActionManagerBase.get_BuffManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 18) ne 0",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "MobBuffBase.GetValue",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "stunPercent",
+   "formula": "((MobBuffBase.GetValue() + (MobBuffBase.GetValue() << 2)) << 1)",
+   "simplified": "10 × MobBuffBase.GetValue()",
+   "when": "TryGetBuff.buff(MobActionManagerBase.get_BuffManager(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), 18) ne 0",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "MobBuffBase.GetValue",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "IsAvoidCancel",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(14, dizzyPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(14, dizzyPercent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "AbnormalType.Stun",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(14)",
+   "simplified": "SetAbnormalType(14)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 18) ne 0",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "AbnormalType.Stun",
+    "MobActionManagerBase.get_BuffManager",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(3, stunPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(3, stunPercent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "AbnormalType.Stun",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "AbnormalType.Stun",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkullShakerDebuff..ctor",
+   "formula": ".ctor((MobBuffBase.GetValue() + 1))",
+   "simplified": ".ctor((MobBuffBase.GetValue() + 1))",
+   "when": "!PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 18) ne 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 18) ne 0",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "AbnormalType.Stun",
+    "MobActionManagerBase.get_BuffManager",
+    "MobBuffBase.GetValue",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkullShakerDebuff..ctor",
+   "formula": ".ctor(1)",
+   "simplified": ".ctor(1)",
+   "when": "!PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, dizzyPercent, playerAction) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "AbnormalType.Stun",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Dizzy",
+  "AbnormalType.Stun",
+  "GetWeaponType.item",
+  "MobActionManagerBase.get_BuffManager",
+  "MobBuffBase.GetValue",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.GetEquipElement",
+  "System.Math.Min",
+  "TryGetBuff.buff",
+  "UnityEngine.GameObject.GetComponent"
+ ],
+ "residual": []
+}

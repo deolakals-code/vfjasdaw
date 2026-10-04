@@ -1,0 +1,422 @@
+{
+ "version": 1,
+ "uid": 1061,
+ "name_th": "เรดเทีย",
+ "name_en": "RedTear",
+ "tree": "DarkPowerSkill",
+ "category": "Object",
+ "max_level": 120,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "placed object / trap / summon"
+ ],
+ "class": "RedTearAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1061,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "6",
+   "simplified": "6",
+   "when": "always",
+   "by_level": 6
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "resist",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv << 1) + 180)",
+   "simplified": "2 × Lv + 180",
+   "when": "always",
+   "by_level": [
+    182,
+    184,
+    186,
+    188,
+    190,
+    192,
+    194,
+    196,
+    198,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int(MathUtil.DisplayMeterToDistance(int(((Lv + 3) * 0.25))))",
+   "simplified": "int(MathUtil.DisplayMeterToDistance(int(0.25 × Lv + 0.75)))",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "int(((EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.RedTearDurationTimeRate) * (int((Lv * 0.5)) gt 1 ? int((Lv * 0.5)) : 1)) * 0.01))",
+   "simplified": "int(((EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.RedTearDurationTimeRate) * (int((Lv * 0.5)) gt 1 ? int((Lv * 0.5)) : 1)) * 0.01))",
+   "when": "always",
+   "vars": [
+    "BonusType.RedTearDurationTimeRate",
+    "EternalNightmareBuf.GetParam",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int(((EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.RedTearDurationTimeRate) * (int((Lv * 0.5)) gt 1 ? int((Lv * 0.5)) : 1)) * 0.01))",
+   "simplified": "int(((EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.RedTearDurationTimeRate) * (int((Lv * 0.5)) gt 1 ? int((Lv * 0.5)) : 1)) * 0.01))",
+   "when": "always",
+   "vars": [
+    "BonusType.RedTearDurationTimeRate",
+    "EternalNightmareBuf.GetParam",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0.5, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0.5, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "(int((Lv * 0.5)) gt 1 ? int((Lv * 0.5)) : 1)",
+   "simplified": "max(int(0.5 × Lv), 1)",
+   "when": "always",
+   "by_level": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(int((Lv * 0.5)) gt 1 ? int((Lv * 0.5)) : 1)",
+   "simplified": "max(int(0.5 × Lv), 1)",
+   "when": "always",
+   "by_level": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "6",
+   "simplified": "6",
+   "when": "always",
+   "by_level": 6
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefMagic"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": ".<>c__DisplayClass35_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "RedTearBuf..ctor",
+   "formula": ".ctor([<>c__DisplayClass35_0.<>4__this+0x14])",
+   "simplified": ".ctor([<>c__DisplayClass35_0.<>4__this+0x14])",
+   "when": "always",
+   "residual": [
+    "+0x14]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass35_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new RedTearBuf, [<>c__DisplayClass35_0.<>4__this+0x10])",
+   "simplified": "AddSelfBuffer(new, RedTearBuf, [<>c__DisplayClass35_0.<>4__this+0x10])",
+   "when": "always",
+   "residual": [
+    "+0x10]"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "RedTearBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((int((Lv * 0.5)) gt 1 ? int((Lv * 0.5)) : 1) + 1)",
+        "when": "always",
+        "by_level": [
+         2,
+         2,
+         2,
+         3,
+         3,
+         4,
+         4,
+         5,
+         5,
+         6
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "SacrificeAction.CheckPayHp"
+ ],
+ "variables": [
+  "BonusType.RedTearDurationTimeRate",
+  "EternalNightmareBuf.GetParam",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefMagic"
+ ],
+ "residual": [
+  {
+   "where": ".<>c__DisplayClass35_0::<ActionStart>b__0:RedTearBuf..ctor",
+   "tokens": [
+    "+0x14]"
+   ]
+  },
+  {
+   "where": ".<>c__DisplayClass35_0::<ActionStart>b__0:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "+0x10]"
+   ]
+  }
+ ]
+}

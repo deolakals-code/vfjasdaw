@@ -1,0 +1,71 @@
+{
+ "version": 1,
+ "uid": 865,
+ "name_th": "เมจิกวอริเออร์มาสเตอรี่",
+ "name_en": "KnowledgeOfMagicWarriorMastary",
+ "tree": "MagicBladeSkill",
+ "category": "Mastery",
+ "max_level": 1,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "KnowledgeOfMagicWarriorMastary",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "KnowledgeOfMagicWarriorMastary",
+  "bonuses": {
+   "CspdRate": {
+    "id": 39,
+    "expr": "(System.Math.Max((Lv - 5), 0, 0, ?x3) + Lv)",
+    "by_level": null
+   },
+   "Cspd": {
+    "id": 38,
+    "expr": "((Lv + (Lv << 2)) << 1)",
+    "by_level": [
+     10,
+     20,
+     30,
+     40,
+     50,
+     60,
+     70,
+     80,
+     90,
+     100
+    ]
+   },
+   "Matk": {
+    "id": 4,
+    "expr": "(System.Math.Max((Lv - 5), 0, 0, ?x3) + (Lv << 1))",
+    "by_level": null
+   },
+   "AtkRate": {
+    "id": 3,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [
+  "System.Math.Max"
+ ],
+ "residual": []
+}

@@ -1,0 +1,519 @@
+{
+ "version": 1,
+ "uid": 989,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "GodSpearHandling3Action",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 989,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(974, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HandlingerOfGodspeed, 1), Id)",
+   "simplified": "AddSelfBuffer(974, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HandlingerOfGodspeed, 1), Id)",
+   "when": "IsInstanceOf(SkillBufferManager.AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.HandlingerOfGodspeed, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HandlingerOfGodspeed, 1), Id), HandlingerOfGodspeedBuf) ne 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HandlingerOfGodspeed, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) OR IsInstanceOf(SkillBufferManager.AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.HandlingerOfGodspeed, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HandlingerOfGodspeed, 1), Id), HandlingerOfGodspeedBuf) eq 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HandlingerOfGodspeed, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferManager.AddSelfBuffer",
+    "SkillId.HandlingerOfGodspeed",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "HandlingerOfGodspeedBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "bufTakeId": [
+       {
+        "formula": "0x11e1aad0",
+        "when": "always",
+        "by_level": 300002000
+       }
+      ],
+      "avoid": [
+       {
+        "formula": "Lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "maxMp": [
+       {
+        "formula": "100",
+        "when": "always",
+        "by_level": 100
+       }
+      ],
+      "aspd": [
+       {
+        "formula": "(Lv * 30)",
+        "when": "always",
+        "by_level": [
+         30,
+         60,
+         90,
+         120,
+         150,
+         180,
+         210,
+         240,
+         270,
+         300
+        ]
+       }
+      ],
+      "actionSpeed": [
+       {
+        "formula": "Lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsDamageCancel": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "physicsResist": [
+       {
+        "formula": "((Lv - lv) + 100)",
+        "when": "always",
+        "by_level": 100
+       }
+      ],
+      "magicResist": [
+       {
+        "formula": "((Lv - lv) + 100)",
+        "when": "always",
+        "by_level": 100
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((Lv << 1) + 10)",
+        "when": "always",
+        "by_level": [
+         12,
+         14,
+         16,
+         18,
+         20,
+         22,
+         24,
+         26,
+         28,
+         30
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AvoidUp",
+     "bonus_id": 87,
+     "formula": "avoid",
+     "simplified": "avoid",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MaxMpUp",
+     "bonus_id": 64,
+     "formula": "-maxMp",
+     "simplified": "-maxMp",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "cverlayCount",
+     "simplified": "cverlayCount",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Aspd",
+     "bonus_id": 35,
+     "formula": "aspd",
+     "simplified": "aspd",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MagicDmgCut",
+     "bonus_id": 22,
+     "formula": "(cverlayCount * (HandlingerOfGodspeedBuf.GetGodSpearHandlingParam(this, id) - magicResist))",
+     "simplified": "cverlayCount × (HandlingerOfGodspeedBuf.GetGodSpearHandlingParam(this, id) - magicResist)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "PowerDmgCut",
+     "bonus_id": 21,
+     "formula": "(cverlayCount * (HandlingerOfGodspeedBuf.GetGodSpearHandlingParam(this, id) - physicsResist))",
+     "simplified": "cverlayCount × (HandlingerOfGodspeedBuf.GetGodSpearHandlingParam(this, id) - physicsResist)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MotionSpeedRate",
+     "bonus_id": 1,
+     "formula": "actionSpeed",
+     "simplified": "actionSpeed",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "NextParam",
+      "formula": "(type eq 9 ? ((((level & 255) << 1) + 10) + 30) : (((level & 255) << 1) + 10))",
+      "when": "takeUid lt 1 OR max((cverlayCount - 1), 0) lo effectUidList.Length AND takeUid ge 1"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "(type eq 9 ? (((Lv << 1) + 10) + 30) : ((Lv << 1) + 10))",
+      "when": "cverlayCount eq cverlayCount OR cverlayCount eq 0 AND cverlayCount lt 1 AND cverlayCount ne cverlayCount OR cverlayCount gt 2 AND cverlayCount gt cverlayCount AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     }
+    ],
+    "cverlayCount": [
+     {
+      "method": "DamageFunction",
+      "formula": "(cverlayCount - 1)",
+      "when": "(cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) lt 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] eq -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "((cverlayCount lt 3 ? cverlayCount : 3) gt 1 ? (cverlayCount lt 3 ? cverlayCount : 3) : 1)",
+      "when": "cverlayCount eq cverlayCount OR cverlayCount eq 0 AND cverlayCount lt 1 AND cverlayCount ne cverlayCount OR cverlayCount gt 2 AND cverlayCount gt cverlayCount AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     }
+    ],
+    "bufTakeId": [
+     {
+      "method": "DamageFunction",
+      "formula": "((cverlayCount - 1) + 0x11e1aad0)",
+      "when": "(cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] eq -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length"
+     },
+     {
+      "method": "NextParam",
+      "formula": "(cverlayCount + 0x11e1aad0)",
+      "when": "takeUid lt 1 OR max((cverlayCount - 1), 0) lo effectUidList.Length AND takeUid ge 1"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "(cverlayCount + 0x11e1aad0)",
+      "when": "cverlayCount eq cverlayCount OR cverlayCount eq 0 AND cverlayCount lt 1 AND cverlayCount ne cverlayCount OR cverlayCount gt 2 AND cverlayCount gt cverlayCount AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "(((cverlayCount + 1) + 1) + 0x11e1aad0)",
+      "when": "((cverlayCount + 1) + 1) hs effectUidList.Length AND (cverlayCount + 1) lo effectUidList.Length AND cverlayCount le cverlayCount AND cverlayCount lo effectUidList.Length AND cverlayCount lt cverlayCount AND cverlayCount ne ((cverlayCount + 1) + 1) AND cverlayCount ne (cverlayCount + 1) AND cverlayCount ne 0 AND cverlayCount ne cverlayCount OR ((cverlayCount + 1) + 1) lo effectUidList.Length AND (cverlayCount + 1) lo effectUidList.Length AND cverlayCount le cverlayCount AND cverlayCount lo effectUidList.Length AND cverlayCount lt cverlayCount AND cverlayCount ne (((cverlayCount + 1) + 1) + 1) AND cverlayCount ne ((cverlayCount + 1) + 1) AND cverlayCount ne (cverlayCount + 1) AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "((cverlayCount + 1) + 0x11e1aad0)",
+      "when": "(cverlayCount + 1) hs effectUidList.Length AND cverlayCount le cverlayCount AND cverlayCount lo effectUidList.Length AND cverlayCount lt cverlayCount AND cverlayCount ne (cverlayCount + 1) AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "0x11e1aad2",
+      "when": "0 lo effectUidList.Length AND 1 lo effectUidList.Length AND 2 hs effectUidList.Length AND cverlayCount eq 0 AND cverlayCount ge 1 AND cverlayCount ne 1 AND cverlayCount ne 2 AND cverlayCount ne cverlayCount OR 0 lo effectUidList.Length AND 1 lo effectUidList.Length AND 2 lo effectUidList.Length AND cverlayCount eq 0 AND cverlayCount ge 1 AND cverlayCount ne 1 AND cverlayCount ne 2 AND cverlayCount ne 3 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "0x11e1aad1",
+      "when": "0 lo effectUidList.Length AND 1 hs effectUidList.Length AND cverlayCount eq 0 AND cverlayCount ge 1 AND cverlayCount ne 1 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "0x11e1aad0",
+      "when": "0 hs effectUidList.Length AND cverlayCount eq 0 AND cverlayCount ge 1 AND cverlayCount ne cverlayCount"
+     }
+    ],
+    "avoid": [
+     {
+      "method": "DamageFunction",
+      "formula": "((cverlayCount - 1) * Lv)",
+      "when": "(cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] eq -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length"
+     },
+     {
+      "method": "NextParam",
+      "formula": "(cverlayCount * (level & 255))",
+      "when": "takeUid lt 1 OR max((cverlayCount - 1), 0) lo effectUidList.Length AND takeUid ge 1"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "(((cverlayCount lt 3 ? cverlayCount : 3) gt 1 ? (cverlayCount lt 3 ? cverlayCount : 3) : 1) * Lv)",
+      "when": "cverlayCount eq cverlayCount OR cverlayCount eq 0 AND cverlayCount lt 1 AND cverlayCount ne cverlayCount OR cverlayCount gt 2 AND cverlayCount gt cverlayCount AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "CalcParam",
+      "formula": "(cverlayCount * Lv)",
+      "when": "always"
+     }
+    ],
+    "maxMp": [
+     {
+      "method": "DamageFunction",
+      "formula": "((cverlayCount - 1) * 100)",
+      "when": "(cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] eq -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length"
+     },
+     {
+      "method": "NextParam",
+      "formula": "(cverlayCount * 100)",
+      "when": "takeUid lt 1 OR max((cverlayCount - 1), 0) lo effectUidList.Length AND takeUid ge 1"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "(((cverlayCount lt 3 ? cverlayCount : 3) gt 1 ? (cverlayCount lt 3 ? cverlayCount : 3) : 1) * 100)",
+      "when": "cverlayCount eq cverlayCount OR cverlayCount eq 0 AND cverlayCount lt 1 AND cverlayCount ne cverlayCount OR cverlayCount gt 2 AND cverlayCount gt cverlayCount AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "CalcParam",
+      "formula": "(cverlayCount * 100)",
+      "when": "always"
+     }
+    ],
+    "aspd": [
+     {
+      "method": "DamageFunction",
+      "formula": "((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 9 ? ((Lv * 30) + 100) : (Lv * 30)) * (cverlayCount - 1))",
+      "when": "(cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] eq -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length"
+     },
+     {
+      "method": "NextParam",
+      "formula": "((type eq 9 ? (((level & 255) * 30) + 100) : ((level & 255) * 30)) * cverlayCount)",
+      "when": "takeUid lt 1 OR max((cverlayCount - 1), 0) lo effectUidList.Length AND takeUid ge 1"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "((type eq 9 ? ((Lv * 30) + 100) : (Lv * 30)) * ((cverlayCount lt 3 ? cverlayCount : 3) gt 1 ? (cverlayCount lt 3 ? cverlayCount : 3) : 1))",
+      "when": "cverlayCount eq cverlayCount OR cverlayCount eq 0 AND cverlayCount lt 1 AND cverlayCount ne cverlayCount OR cverlayCount gt 2 AND cverlayCount gt cverlayCount AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "CalcParam",
+      "formula": "((type eq 9 ? ((Lv * 30) + 100) : (Lv * 30)) * cverlayCount)",
+      "when": "always"
+     }
+    ],
+    "actionSpeed": [
+     {
+      "method": "DamageFunction",
+      "formula": "((cverlayCount - 1) * Lv)",
+      "when": "(cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] eq -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length"
+     },
+     {
+      "method": "NextParam",
+      "formula": "(cverlayCount * (level & 255))",
+      "when": "takeUid lt 1 OR max((cverlayCount - 1), 0) lo effectUidList.Length AND takeUid ge 1"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "(((cverlayCount lt 3 ? cverlayCount : 3) gt 1 ? (cverlayCount lt 3 ? cverlayCount : 3) : 1) * Lv)",
+      "when": "cverlayCount eq cverlayCount OR cverlayCount eq 0 AND cverlayCount lt 1 AND cverlayCount ne cverlayCount OR cverlayCount gt 2 AND cverlayCount gt cverlayCount AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "CalcParam",
+      "formula": "(cverlayCount * Lv)",
+      "when": "always"
+     }
+    ],
+    "physicsResist": [
+     {
+      "method": "DamageFunction",
+      "formula": "((Lv - (Lv << 2)) + (EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 9 ? 55 : 100))",
+      "when": "(cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] eq -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length"
+     },
+     {
+      "method": "NextParam",
+      "formula": "(((level & 255) - level) + (type eq 9 ? 55 : 100))",
+      "when": "takeUid lt 1 OR max((cverlayCount - 1), 0) lo effectUidList.Length AND takeUid ge 1"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "((Lv - (Lv << 2)) + (type eq 9 ? 55 : 100))",
+      "when": "cverlayCount eq cverlayCount OR cverlayCount eq 0 AND cverlayCount lt 1 AND cverlayCount ne cverlayCount OR cverlayCount gt 2 AND cverlayCount gt cverlayCount AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "CalcParam",
+      "formula": "((Lv - (Lv << 2)) + (type eq 9 ? 55 : 100))",
+      "when": "always"
+     }
+    ],
+    "magicResist": [
+     {
+      "method": "DamageFunction",
+      "formula": "((Lv - (Lv << 2)) + (EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 9 ? 55 : 100))",
+      "when": "(cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] eq -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length"
+     },
+     {
+      "method": "NextParam",
+      "formula": "(((level & 255) - level) + (type eq 9 ? 55 : 100))",
+      "when": "takeUid lt 1 OR max((cverlayCount - 1), 0) lo effectUidList.Length AND takeUid ge 1"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "((Lv - (Lv << 2)) + (type eq 9 ? 55 : 100))",
+      "when": "cverlayCount eq cverlayCount OR cverlayCount eq 0 AND cverlayCount lt 1 AND cverlayCount ne cverlayCount OR cverlayCount gt 2 AND cverlayCount gt cverlayCount AND cverlayCount ne 0 AND cverlayCount ne cverlayCount"
+     },
+     {
+      "method": "CalcParam",
+      "formula": "((Lv - (Lv << 2)) + (type eq 9 ? 55 : 100))",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "DamageFunction",
+      "formula": "0",
+      "when": "(cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] eq -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length"
+     },
+     {
+      "method": "DamageFunction",
+      "formula": "1",
+      "when": "!Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) OR (cverlayCount - 1) lt 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] ne -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length OR (cverlayCount - 1) lt 1 AND Toram.Common.Actions.ActionAppendData.Contains(responseData.AppendData, 974) AND effectUidList[max((cverlayCount - 1), 0)] eq -1 AND max((cverlayCount - 1), 0) lo effectUidList.Length"
+     }
+    ],
+    "playerStatus": [
+     {
+      "method": "NextParam",
+      "formula": "status",
+      "when": "always"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "PlayerActionManagerBase.get_PlayerStatus()",
+      "when": "always"
+     }
+    ],
+    "effectUidList[0]": [
+     {
+      "method": "UpdateParam",
+      "formula": "0xffffffff",
+      "when": "0 ge cverlayCount AND 0 lo effectUidList.Length AND 0xffffffff lt cverlayCount AND 1 ge cverlayCount AND 1 lo effectUidList.Length AND 2 lo effectUidList.Length AND cverlayCount gt cverlayCount AND cverlayCount le 2 AND cverlayCount ne 0 AND cverlayCount ne cverlayCount AND effectUidList[0] ne -1 AND effectUidList[1] ne -1 AND effectUidList[2] ne -1 OR 0 ge cverlayCount AND 0 lo effectUidList.Length AND 0xffffffff ge cverlayCount AND 1 ge cverlayCount AND 1 lo effectUidList.Length AND 2 lo effectUidList.Length AND cverlayCount gt cverlayCount AND cverlayCount le 2 AND cverlayCount ne 0 AND cverlayCount ne cverlayCount AND effectUidList[0] ne -1 AND effectUidList[1] ne -1 AND effectUidList[2] ne -1 OR 0 ge cverlayCount AND 0 lo effectUidList.Length AND 0xffffffff lt cverlayCount AND 1 ge cverlayCount AND 1 lo effectUidList.Length AND 2 lo effectUidList.Length AND cverlayCount gt cverlayCount AND cverlayCount le 2 AND cverlayCount ne 0 AND cverlayCount ne cverlayCount AND effectUidList[0] ne -1 AND effectUidList[1] eq -1 AND effectUidList[2] ne -1"
+     },
+     {
+      "method": "UpdateParam",
+      "formula": "BufferEffectManager.SkillBufferEffectPlay(PlayerActionManagerBase.get_BufferEffectManager(), this, 0)",
+      "when": "0 lo effectUidList.Length AND cverlayCount eq 0 AND cverlayCount eq 1 AND cverlayCount ge 1 AND cverlayCount ne cverlayCount OR 0 lo effectUidList.Length AND 1 hs effectUidList.Length AND cverlayCount eq 0 AND cverlayCount ge 1 AND cverlayCount ne 1 AND cverlayCount ne cverlayCount OR 0 lo effectUidList.Length AND 1 lo effectUidList.Length AND cverlayCount eq 0 AND cverlayCount eq 2 AND cverlayCount ge 1 AND cverlayCount ne 1 AND cverlayCount ne cverlayCount"
+     }
+    ]
+   },
+   "hooks": [
+    "CalcParam",
+    "DamageFunction",
+    "GetGodSpearHandlingParam",
+    "NextParam",
+    "UpdateParam",
+    "get_BufEffectTakeId"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "BufferEffectManager.SkillBufferEffectPlay",
+  "EquipItemData.get_Weapon",
+  "HandlingerOfGodspeedBuf.GetGodSpearHandlingParam",
+  "PlayerActionManagerBase.get_BufferEffectManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.Aspd",
+  "SkillBufferId.AvoidUp",
+  "SkillBufferId.MagicDmgCut",
+  "SkillBufferId.MaxMpUp",
+  "SkillBufferId.MotionSpeedRate",
+  "SkillBufferId.PowerDmgCut",
+  "SkillBufferId.Value",
+  "SkillBufferManager.AddSelfBuffer",
+  "SkillId.HandlingerOfGodspeed",
+  "SkillManager.GetSkillLv",
+  "Toram.Common.Actions.ActionAppendData.Contains",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

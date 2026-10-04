@@ -1,0 +1,52 @@
+{
+ "version": 1,
+ "uid": 481,
+ "name_th": "เพิ่มพลังโจมตี",
+ "name_en": "AtkUp",
+ "tree": "BattleSkill",
+ "category": "Mastery",
+ "max_level": 20,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "AtkUp",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "AtkUp",
+  "bonuses": {
+   "AtkRate": {
+    "id": 3,
+    "expr": "int((Lv * 2.5))",
+    "by_level": [
+     2,
+     5,
+     7,
+     10,
+     12,
+     15,
+     17,
+     20,
+     22,
+     25
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

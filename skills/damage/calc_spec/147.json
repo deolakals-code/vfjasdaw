@@ -1,0 +1,621 @@
+{
+ "version": 1,
+ "uid": 147,
+ "name_th": "เอเนอร์จี้คอนโทรล",
+ "name_en": "Kakei",
+ "tree": "MarshallSkill",
+ "category": "Buffer",
+ "max_level": 240,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "KakeiAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 147,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "KakeiDeffenceBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new KakeiDeffenceBuf)",
+   "simplified": "AddSelfBuffer(new, KakeiDeffenceBuf)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "KakeiBuf..ctor",
+   "formula": ".ctor(SkillActionManagerBase.get_CurrentSkill().Level, [SkillActionManagerBase.get_CurrentSkill()+0xfc])",
+   "simplified": ".ctor(SkillActionManagerBase.get_CurrentSkill().Level, [SkillActionManagerBase.get_CurrentSkill()+0xfc])",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0 OR !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.op_Equality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "SkillId.Chakra",
+    "SkillManager.GetSkillLv",
+    "TryGetBuf.buf"
+   ],
+   "residual": [
+    "+0xfc]"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new KakeiBuf)",
+   "simplified": "AddSelfBuffer(new, KakeiBuf)",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0 OR !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.op_Equality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "SkillId.Chakra",
+    "SkillManager.GetSkillLv",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(872)",
+   "simplified": "RemoveSelfBuffer(872)",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0 OR !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.op_Equality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "SkillId.Chakra",
+    "SkillManager.GetSkillLv",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(894)",
+   "simplified": "RemoveSelfBuffer(894)",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0 OR !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.op_Equality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "SkillId.Chakra",
+    "SkillManager.GetSkillLv",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(142)",
+   "simplified": "RemoveSelfBuffer(142)",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.op_Equality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "SkillId.Chakra",
+    "SkillManager.GetSkillLv",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "ChakraBuf..ctor",
+   "formula": ".ctor((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) gt SkillActionManagerBase.get_CurrentSkill().Level ? SkillActionManagerBase.get_CurrentSkill().Level : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1)), 1, ([SkillActionManagerBase.get_CurrentSkill()+0xfc] eq 16 ? 1 : 0))",
+   "simplified": ".ctor((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) gt SkillActionManagerBase.get_CurrentSkill().Level ? SkillActionManagerBase.get_CurrentSkill().Level : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1)), 1, ([SkillActionManagerBase.get_CurrentSkill()+0xfc] eq 16 ? 1 : 0))",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.op_Equality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "SkillId.Chakra",
+    "SkillManager.GetSkillLv",
+    "TryGetBuf.buf"
+   ],
+   "residual": [
+    "+0xfc]"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ChakraBuf)",
+   "simplified": "AddSelfBuffer(new, ChakraBuf)",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Chakra, 1) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 156) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.op_Equality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "SkillId.Chakra",
+    "SkillManager.GetSkillLv",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass22_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(156)",
+   "simplified": "RemoveSelfBuffer(156)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass22_0::<ActionStart>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(156)",
+   "simplified": "RemoveSelfBuffer(156)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ChakraBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, bool isKnuckle",
+     "fields": {
+      "IsDamageCancel": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((Lv + 10) + 10)",
+        "when": "(isKnuckle & 1) ne 0",
+        "by_level": [
+         21,
+         22,
+         23,
+         24,
+         25,
+         26,
+         27,
+         28,
+         29,
+         30
+        ]
+       },
+       {
+        "formula": "(Lv + 10)",
+        "when": "(isKnuckle & 1) eq 0",
+        "by_level": [
+         11,
+         12,
+         13,
+         14,
+         15,
+         16,
+         17,
+         18,
+         19,
+         20
+        ]
+       }
+      ],
+      "attckMpRecovery": [
+       {
+        "formula": "(System.Math.Max((Lv - 5), 0) + Lv)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "baseDamageCutRate": [
+       {
+        "formula": "((Lv << 1) + 30)",
+        "when": "(isKnuckle & 1) ne 0",
+        "by_level": [
+         32,
+         34,
+         36,
+         38,
+         40,
+         42,
+         44,
+         46,
+         48,
+         50
+        ]
+       },
+       {
+        "formula": "((Lv << 1) + 10)",
+        "when": "(isKnuckle & 1) eq 0",
+        "by_level": [
+         12,
+         14,
+         16,
+         18,
+         20,
+         22,
+         24,
+         26,
+         28,
+         30
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "attckMpRecovery",
+     "simplified": "attckMpRecovery",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "BaseDamageCut",
+     "bonus_id": 59,
+     "formula": "baseDamageCut",
+     "simplified": "baseDamageCut",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateSupport",
+     "bonus_id": 7,
+     "formula": "baseDamageCutRate",
+     "simplified": "baseDamageCutRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "KakeiBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int mainWeapon",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "(int((((Lv * Lv) * 60) / 100)) + 30)",
+        "when": "always",
+        "by_level": [
+         30,
+         32,
+         35,
+         39,
+         45,
+         51,
+         59,
+         68,
+         78,
+         90
+        ]
+       }
+      ],
+      "directEqAtk": [
+       {
+        "formula": "0",
+        "when": "mainWeapon ne 16",
+        "by_level": null
+       },
+       {
+        "formula": "((Lv << 2) + lv)",
+        "when": "mainWeapon eq 16",
+        "by_level": [
+         5,
+         10,
+         15,
+         20,
+         25,
+         30,
+         35,
+         40,
+         45,
+         50
+        ]
+       }
+      ],
+      "stable": [
+       {
+        "formula": "10",
+        "when": "always",
+        "by_level": 10
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "BaseEqAtkUpRate",
+     "bonus_id": 70,
+     "formula": "directEqAtk",
+     "simplified": "directEqAtk",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Stable",
+     "bonus_id": 41,
+     "formula": "stable",
+     "simplified": "stable",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "KakeiDeffenceBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "GuardSuccess": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "GuardSuccess": [
+     {
+      "method": "set_GuardSuccess",
+      "formula": "(value & 1)",
+      "when": "always"
+     },
+     {
+      "method": "Guard",
+      "formula": "1",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Guard",
+    "get_GuardSuccess",
+    "set_GuardSuccess"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "ChakraBuf": {
+     "lv": "lv",
+     "self": "(self & 1)"
+    },
+    "KakeiBuf": {
+     "lv": "lv",
+     "self": "1"
+    },
+    "KakeiDeffenceBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:KakeiBuf$$.ctor<-KakeiAction$$Damaged",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "EnchantedBurstAction.ActionHit",
+  "EnchantedBurstAction.AddLocalStack",
+  "EnchantedSwordAction.ActionPreparation",
+  "EquipItemData.WeaponTypeCalculatorBase.CalcEqAtk"
+ ],
+ "variables": [
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.op_Equality",
+  "SkillActionManagerBase.get_CurrentSkill",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.BaseDamageCut",
+  "SkillBufferId.BaseEqAtkUpRate",
+  "SkillBufferId.MobLastDamageRateSupport",
+  "SkillBufferId.Stable",
+  "SkillId.Chakra",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "TryGetBuf.buf",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": [
+  {
+   "where": "Damaged:KakeiBuf..ctor",
+   "tokens": [
+    "+0xfc]"
+   ]
+  },
+  {
+   "where": "Damaged:ChakraBuf..ctor",
+   "tokens": [
+    "+0xfc]"
+   ]
+  }
+ ]
+}

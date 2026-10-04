@@ -1,0 +1,295 @@
+{
+ "version": 1,
+ "uid": 973,
+ "name_th": "โครนอสไดรฟ์",
+ "name_en": "CronosDrive",
+ "tree": "HalberdSkill",
+ "category": "Attack",
+ "max_level": 150,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "CronosDriveAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 973,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 50) + 100) / 100)",
+   "simplified": "(50 × Lv + 100) / 100",
+   "when": "always",
+   "by_level": [
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    4.0,
+    4.5,
+    5.0,
+    5.5,
+    6.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) << 3)",
+   "simplified": "40 × Lv",
+   "when": "always",
+   "by_level": [
+    40,
+    80,
+    120,
+    160,
+    200,
+    240,
+    280,
+    320,
+    360,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int(((IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_SecondaryStatus()) + ((SkillActionBase.get_MotionSpeed(this) / 100) * 1.5)) * 100))",
+   "simplified": "int(100 × IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_SecondaryStatus()) + 150 × SkillActionBase.get_MotionSpeed(this) / 100)",
+   "when": "always",
+   "vars": [
+    "IPlayerStatusCalculator.GetNextAtkTime",
+    "PlayerStatusBase.get_SecondaryStatus",
+    "SkillActionBase.get_MotionSpeed"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "baseHitReaction",
+   "formula": "PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.HitReactionAssign(this, new, SkillCalcTemplate, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.HitReactionAssign"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "CronosDriveBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "(int((Lv eq 0 ? 0 : ((?ands - 1) * 0.5))) + 5)",
+        "when": "Lv ne 10",
+        "by_level": null
+       },
+       {
+        "formula": "10",
+        "when": "Lv eq 10",
+        "by_level": 10
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "DimensionTillAction.ActionHit",
+  "MobaPlayerBattleManager.ReceiveSkillMotionEnd"
+ ],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.GetNextAtkTime",
+  "MathUtil.CheckPercent",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.HitReactionAssign",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_SecondaryStatus",
+  "SkillActionBase.get_MotionSpeed",
+  "SkillActionBase.op_Inequality",
+  "SkillComboState.GetThirdEyeValue",
+  "System.Math.Max",
+  "TryGetBuff.buff",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

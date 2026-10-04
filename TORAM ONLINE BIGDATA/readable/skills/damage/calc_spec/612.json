@@ -1,0 +1,105 @@
+{
+ "version": 1,
+ "uid": 612,
+ "name_th": "บุชิโด",
+ "name_en": "Bushido",
+ "tree": "MononofuSkill",
+ "category": "Mastery",
+ "max_level": 10,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "Bushido",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "Bushido",
+  "bonuses": {
+   "MaxHp": {
+    "id": 12,
+    "expr": "((Lv + (Lv << 2)) << 1)",
+    "by_level": [
+     10,
+     20,
+     30,
+     40,
+     50,
+     60,
+     70,
+     80,
+     90,
+     100
+    ]
+   },
+   "MaxMp": {
+    "id": 14,
+    "expr": "((Lv + (Lv << 2)) << 1)",
+    "by_level": [
+     10,
+     20,
+     30,
+     40,
+     50,
+     60,
+     70,
+     80,
+     90,
+     100
+    ]
+   },
+   "Hit": {
+    "id": 20,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   },
+   "AtkRate": {
+    "id": 3,
+    "expr": "(int(((Lv + 2) * vec(0x9999999a, 0x3fc99999))) + 1)",
+    "by_level": null
+   },
+   "EqAtkRate": {
+    "id": 1,
+    "expr": "(Lv + (Lv << 1))",
+    "by_level": [
+     3,
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

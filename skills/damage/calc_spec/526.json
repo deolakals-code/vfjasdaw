@@ -1,0 +1,656 @@
+{
+ "version": 1,
+ "uid": 526,
+ "name_th": "บลิงค์ซอร์ด",
+ "name_en": "BlinkSword",
+ "tree": "KnightSkill",
+ "category": "Attack",
+ "max_level": 285,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "BlinkSwordAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 526,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(14)",
+   "simplified": "MathUtil.DisplayMeterToDistance(14)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "weaponRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 75) + 500)",
+   "simplified": "75 × Lv + 500",
+   "when": "always",
+   "by_level": [
+    575,
+    650,
+    725,
+    800,
+    875,
+    950,
+    1025,
+    1100,
+    1175,
+    1250
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((int((Lv * 4.5)) + 5) + 50)",
+   "simplified": "int(4.5 × Lv) + 55",
+   "when": "(mainWeapon==Shield & 1) ne 0",
+   "by_level": [
+    59,
+    64,
+    68,
+    73,
+    77,
+    82,
+    86,
+    91,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isEquipShield",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(mainWeapon==Shield & 1) ne 0",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "(((PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) * 10) mi 0 ? int((PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) * 10)) : int((PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) * 10))) & 255)",
+   "simplified": "(((PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) * 10) mi 0 ? int((PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) * 10)) : int((PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) * 10))) & 255)",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(int((Lv * 4.5)) + 5)",
+   "simplified": "int(4.5 × Lv) + 5",
+   "when": "(mainWeapon==Shield & 1) eq 0",
+   "by_level": [
+    9,
+    14,
+    18,
+    23,
+    27,
+    32,
+    36,
+    41,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + baseVIT)",
+   "simplified": "skillRate + baseVIT",
+   "when": "AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isEquipShield ne 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND isEquipShield ne 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND isEquipShield ne 0",
+   "vars": [
+    "AbnormalStateManager.CheckAbnormalType",
+    "AbnormalType.Flinch",
+    "CalcStep.AvoidCheck",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "isTeleport",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck)",
+   "by_level": 1,
+   "vars": [
+    "AbnormalStateManager.CheckAbnormalType",
+    "AbnormalType.Flinch",
+    "CalcStep.AvoidCheck",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isTeleport ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isTeleport eq 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND isTeleport ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "movePos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isTeleport ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isTeleport eq 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND isTeleport ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "movePos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isTeleport ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isTeleport eq 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND isTeleport ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "movePos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isTeleport ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isTeleport eq 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND isTeleport ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isTeleport ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND isTeleport ne 0",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "weaponRange",
+   "formula": "(?v3 / 10)",
+   "simplified": "?v3 / 10",
+   "when": "always",
+   "residual": [
+    "?v3"
+   ]
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "isTeleport",
+   "formula": "1",
+   "simplified": "1",
+   "when": "PlayerAttackBase.CheckSkillIndividualFlag(this, 1)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((skillRate + baseVIT) / 100)",
+   "simplified": "(skillRate + baseVIT) / 100",
+   "when": "AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isEquipShield ne 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND isEquipShield ne 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND isEquipShield ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.CheckAbnormalType",
+    "AbnormalType.Flinch",
+    "CalcStep.AvoidCheck",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "!AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck)",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.CheckAbnormalType",
+    "AbnormalType.Flinch",
+    "CalcStep.AvoidCheck",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(1, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(1, percent, playerAction)",
+   "when": "!PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch)",
+   "vars": [
+    "AbnormalStateManager.CheckAbnormalType",
+    "AbnormalType.Flinch",
+    "CalcStep.AvoidCheck",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(1)",
+   "simplified": "SetAbnormalType(1)",
+   "when": "AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isEquipShield ne 0 OR AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isEquipShield eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND AbnormalStateManager.CheckAbnormalType(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, percent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND isEquipShield ne 0",
+   "vars": [
+    "AbnormalStateManager.CheckAbnormalType",
+    "AbnormalType.Flinch",
+    "CalcStep.AvoidCheck",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "BlinkSwordBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "(((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).x))) hi ((targetSize + weaponRange) * (targetSize + weaponRange)) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(mainTarget) AND isTeleport ne 0 AND param eq 100 OR (((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).x))) ls ((targetSize + weaponRange) * (targetSize + weaponRange)) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(mainTarget) AND isTeleport ne 0 AND param eq 100 OR !UnityEngine.Object.op_Inequality(mainTarget) AND (((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - movePos.z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - movePos.z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - movePos) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - movePos))) hi ((targetSize + weaponRange) * (targetSize + weaponRange)) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isTeleport ne 0 AND param eq 100",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new BlinkSwordBuf, Id)",
+   "simplified": "AddSelfBuffer(new, BlinkSwordBuf, Id)",
+   "when": "(((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).x))) hi ((targetSize + weaponRange) * (targetSize + weaponRange)) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(mainTarget) AND isTeleport ne 0 AND param eq 100 OR (((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(mainTarget)).x))) ls ((targetSize + weaponRange) * (targetSize + weaponRange)) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(mainTarget) AND isTeleport ne 0 AND param eq 100 OR !UnityEngine.Object.op_Inequality(mainTarget) AND (((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - movePos.z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z - movePos.z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - movePos) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x - movePos))) hi ((targetSize + weaponRange) * (targetSize + weaponRange)) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isTeleport ne 0 AND param eq 100",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "BlinkSwordBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "3",
+        "when": "always",
+        "by_level": 3
+       }
+      ],
+      "rateDamageResist": [
+       {
+        "formula": "((Lv << 1) + lv)",
+        "when": "always",
+        "by_level": [
+         3,
+         6,
+         9,
+         12,
+         15,
+         18,
+         21,
+         24,
+         27,
+         30
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "RateDamageResist",
+     "bonus_id": 74,
+     "formula": "rateDamageResist",
+     "simplified": "rateDamageResist",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "RateDamageResist",
+     "bonus_id": 74,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "BlinkSwordBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:BlinkSwordBuf$$.ctor<-BlinkSwordAction$$ActionSkillEvent",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobAttackBase.CalcLastDamage"
+ ],
+ "variables": [
+  "AbnormalStateManager.CheckAbnormalType",
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "AbnormalType.Flinch",
+  "CalcStep.AvoidCheck",
+  "CalcStep.HitCheck",
+  "GetWeaponType.item",
+  "MathUtil.CheckPercent",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.CheckSkillIndividualFlag",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.HitReactionAssign",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.vit",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "SkillActionBase.op_Inequality",
+  "SkillBufferId.RateDamageResist",
+  "SkillCalcTemplate.CheckStepResult",
+  "SkillComboState.GetThirdEyeValue",
+  "System.Math.Max",
+  "TryGetBuff.buff",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": [
+  {
+   "where": "InitializeOthers:weaponRange",
+   "tokens": [
+    "?v3"
+   ]
+  }
+ ]
+}

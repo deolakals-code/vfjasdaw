@@ -1,0 +1,332 @@
+{
+ "version": 1,
+ "uid": 79,
+ "name_th": "เดสทอลก์ช็อต",
+ "name_en": "DeathTorqueShot",
+ "tree": "ShootSkill",
+ "category": "Attack",
+ "max_level": 70,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "DeathTorqueShotAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 79,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(14)",
+   "simplified": "MathUtil.DisplayMeterToDistance(14)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + 500) + (((status.Dex + status.Str) lt 0 ? ((status.Dex + status.Str) + 1) : (status.Dex + status.Str)) >> 1))",
+   "simplified": "10 × Lv + (status.Dex + status.Str) ÷ 2 + 500",
+   "when": "mainWeapon != Bowgun AND mainWeapon == Bow",
+   "vars": [
+    "status.Dex",
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 10) + 500)",
+   "simplified": "10 × Lv + 500",
+   "when": "mainWeapon != Bow AND mainWeapon != Bowgun",
+   "by_level": [
+    510,
+    520,
+    530,
+    540,
+    550,
+    560,
+    570,
+    580,
+    590,
+    600
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + 500) + status.Dex)",
+   "simplified": "10 × Lv + status.Dex + 500",
+   "when": "mainWeapon == Bowgun",
+   "vars": [
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "DeathTorqueShotBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new DeathTorqueShotBuf, Id)",
+   "simplified": "AddSelfBuffer(new, DeathTorqueShotBuf, Id)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(PlayerAttackBase.get_ActionID())",
+   "simplified": "RemoveSelfBuffer(PlayerAttackBase.get_ActionID())",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.get_ActionID"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "DeathTorqueShotBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "hitRate": [
+       {
+        "formula": "(100 - ((Lv * Lv) // 5))",
+        "when": "always",
+        "by_level": [
+         100,
+         100,
+         99,
+         97,
+         95,
+         93,
+         91,
+         88,
+         84,
+         80
+        ]
+       }
+      ],
+      "critical": [
+       {
+        "formula": "(((Lv * Lv) >> 1) + 25)",
+        "when": "always",
+        "by_level": [
+         25,
+         27,
+         29,
+         33,
+         37,
+         43,
+         49,
+         57,
+         65,
+         75
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "HitRate",
+     "bonus_id": 11,
+     "formula": "-hitRate",
+     "simplified": "-hitRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "critical",
+     "simplified": "critical",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "DeathTorqueShotBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:DeathTorqueShotBuf$$.ctor<-DeathTorqueShotAction$$calcPlayerToMobDamage",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IPlayerStatusCalculator.get_Dex",
+  "IPlayerStatusCalculator.get_Str",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.get_ActionID",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.HitRate",
+  "status.Dex",
+  "status.Str"
+ ],
+ "residual": []
+}

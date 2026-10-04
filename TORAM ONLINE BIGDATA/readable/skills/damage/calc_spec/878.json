@@ -1,0 +1,286 @@
+{
+ "version": 1,
+ "uid": 878,
+ "name_th": "โฟรทแดช",
+ "name_en": "FloatDash",
+ "tree": "MagicBladeSkill",
+ "category": "Buffer",
+ "max_level": 180,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "FloatDashAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 878,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "AbnormalStateManager.RemoveAbnormalState",
+   "formula": "RemoveAbnormalState(11, 1)",
+   "simplified": "RemoveAbnormalState(11, 1)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 10",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "AbnormalStateManager.RemoveAbnormalState",
+   "formula": "RemoveAbnormalState(12, 1)",
+   "simplified": "RemoveAbnormalState(12, 1)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 10",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "FloatDashBuf..ctor",
+   "formula": ".ctor(Lv, actarAction)",
+   "simplified": ".ctor(Lv, actarAction)",
+   "when": "!SkillActionBase.op_Inequality(actarAction.battleManager.nextAction) AND UnityEngine.Object.op_Inequality(actarAction) OR SkillActionBase.get_ActionID() eq 0 AND SkillActionBase.op_Inequality(actarAction.battleManager.nextAction) AND UnityEngine.Object.op_Inequality(actarAction) OR SkillActionBase.get_ActionID() ne 0 AND SkillActionBase.op_Inequality(actarAction.battleManager.nextAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "SkillActionBase.get_ActionID",
+    "SkillActionBase.op_Inequality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new FloatDashBuf, Id)",
+   "simplified": "AddSelfBuffer(new, FloatDashBuf, Id)",
+   "when": "!SkillActionBase.op_Inequality(actarAction.battleManager.nextAction) AND UnityEngine.Object.op_Inequality(actarAction) OR SkillActionBase.get_ActionID() eq 0 AND SkillActionBase.op_Inequality(actarAction.battleManager.nextAction) AND UnityEngine.Object.op_Inequality(actarAction) OR SkillActionBase.get_ActionID() ne 0 AND SkillActionBase.op_Inequality(actarAction.battleManager.nextAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "SkillActionBase.get_ActionID",
+    "SkillActionBase.op_Inequality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "FloatDashBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "isBattleActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "playerAction": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "takeController": [
+       {
+        "formula": "playerAction.TakeController",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "effectManager": [
+       {
+        "formula": "PlayerActionManagerBase.get_BufferEffectManager()",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MoveSpeed",
+     "bonus_id": 69,
+     "formula": "moveSpeed",
+     "simplified": "moveSpeed",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AvoidUp",
+     "bonus_id": 87,
+     "formula": "avoid",
+     "simplified": "avoid",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Flee",
+     "bonus_id": 13,
+     "formula": "flee",
+     "simplified": "flee",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND IsEnd ne 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND IsEnd ne 0 AND LeftTime gt 0 OR !PlayerActionManagerBase.get_IsBattleActive(playerAction) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime gt 0 AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND isBattleActive eq 0 AND updateFloatDash ne 0"
+     },
+     {
+      "method": "BufferEnd",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "updateFloatDash": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(playerAction) AND FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND isBattleActive eq 0 AND updateFloatDash ne 0 OR FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateFloatDash ne 0 OR FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateFloatDash ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "!FloatDashBuf.CheckFloatDashTake(this) AND !PlayerActionManagerBase.get_IsBattleActive(playerAction) AND IsEnd eq 0 AND LeftTime le 0 AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND isBattleActive eq 0 AND updateFloatDash eq 0 OR !FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateFloatDash eq 0 OR !FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateFloatDash eq 0"
+     }
+    ],
+    "isBattleActive": [
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateFloatDash ne 0 OR FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateFloatDash ne 0 OR FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).TakeId ne 0xbf67452 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND updateFloatDash ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(PlayerActionManagerBase.get_IsBattleActive(playerAction) & 1)",
+      "when": "FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).TakeId eq 0xbf67452 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND updateFloatDash ne 0 OR !FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).TakeId eq 0xbf67452 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND updateFloatDash ne 0 OR !FloatDashBuf.CheckFloatDashTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).TakeId eq 0xbf67452 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND updateFloatDash eq 0"
+     }
+    ]
+   },
+   "hooks": [
+    "BufferEnd",
+    "CheckFloatDashTake"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "FloatDashBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:FloatDashBuf$$.ctor<-FloatDashAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerActionManager.NextSkillReserve",
+  "MobaPlayerActionManager.TargetMobBattleReserve",
+  "MobaPlayerActionManager.get_MoveSpeed",
+  "MobaPlayerBattleManager.OnSkillActionEnd",
+  "PlayerActionManager.Update",
+  "PlayerActionManager.get_MoveSpeed",
+  "PlayerActionManager.targetMobBattleReserve",
+  "PlayerAttackBase.CalcCostMp",
+  "PlayerBattleManager.OnSkillActionEnd",
+  "ShukuchiAction.CanActivated"
+ ],
+ "variables": [
+  "FloatDashBuf.CheckFloatDashTake",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_BufferEffectManager",
+  "PlayerActionManagerBase.get_IsBattleActive",
+  "PlayerAttackBase.IsBlank",
+  "SkillActionBase.get_ActionID",
+  "SkillActionBase.op_Inequality",
+  "SkillBufferId.AvoidUp",
+  "SkillBufferId.Flee",
+  "SkillBufferId.MoveSpeed",
+  "TakeController.get_MainPlayer",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

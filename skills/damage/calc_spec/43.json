@@ -1,0 +1,284 @@
+{
+ "version": 1,
+ "uid": 43,
+ "name_th": "วอร์คราย",
+ "name_en": "WarCry",
+ "tree": "BladeSkill",
+ "category": "Support",
+ "max_level": 70,
+ "roles": [
+  "buff (self)",
+  "buff (party / others)"
+ ],
+ "class": "WarCryAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 43,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "((SkillParam | 16) | 512)",
+   "simplified": "SkillParam | 16 | 512",
+   "when": "!hasGemCart(1017) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND MobManager.HasPlayerHateManager(TargetableListManagerBase<MobManager>.get_Instance()) AND PlayerAttackBase.IsBlank(this) AND SkillActionBase.checkPercent(this, 100, 30) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnightWill, 1) ge 1 AND UnityEngine.Object.op_Inequality(PlayerStatusBase.get_SkillManager(), 0) OR !PlayerAttackBase.IsBlank(this) AND !hasGemCart(1017) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND MobManager.HasPlayerHateManager(TargetableListManagerBase<MobManager>.get_Instance()) AND PlayerAttackBase.get_ActionID() eq 0 AND SkillActionBase.checkPercent(this, 100, 30) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnightWill, 1) ge 1 AND UnityEngine.Object.op_Inequality(PlayerStatusBase.get_SkillManager(), 0) OR !PlayerAttackBase.IsBlank(this) AND !hasGemCart(1017) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND MobManager.HasPlayerHateManager(TargetableListManagerBase<MobManager>.get_Instance()) AND PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND PlayerAttackBase.get_ActionID() ne 0 AND SkillActionBase.checkPercent(this, 100, 30) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnightWill, 1) ge 1 AND UnityEngine.Object.op_Inequality(PlayerStatusBase.get_SkillManager(), 0)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "MobManager.HasPlayerHateManager",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.checkPercent",
+    "SkillId.KnightWill",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 16)",
+   "simplified": "SkillParam | 16",
+   "when": "!UnityEngine.Object.op_Inequality(PlayerStatusBase.get_SkillManager(), 0) AND !hasGemCart(1017) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND PlayerAttackBase.IsBlank(this) AND SkillActionBase.checkPercent(this, 100, 30) OR !hasGemCart(1017) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND PlayerAttackBase.IsBlank(this) AND SkillActionBase.checkPercent(this, 100, 30) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnightWill, 1) lt 1 AND UnityEngine.Object.op_Inequality(PlayerStatusBase.get_SkillManager(), 0) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(PlayerStatusBase.get_SkillManager(), 0) AND !hasGemCart(1017) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND PlayerAttackBase.get_ActionID() eq 0 AND SkillActionBase.checkPercent(this, 100, 30)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "PlayerAttackBase.IsBlank",
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.checkPercent",
+    "SkillId.KnightWill",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 512)",
+   "simplified": "SkillParam | 512",
+   "when": "!AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND MobManager.HasPlayerHateManager(TargetableListManagerBase<MobManager>.get_Instance()) AND PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnightWill, 1) ge 1 AND UnityEngine.Object.op_Inequality(PlayerStatusBase.get_SkillManager(), 0) OR AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND MobManager.HasPlayerHateManager(TargetableListManagerBase<MobManager>.get_Instance()) AND PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnightWill, 1) ge 1 AND UnityEngine.Object.op_Inequality(PlayerStatusBase.get_SkillManager(), 0) AND hasGemCart(1017) OR !AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND !PlayerAttackBase.IsBlank(this) AND MobManager.HasPlayerHateManager(TargetableListManagerBase<MobManager>.get_Instance()) AND PlayerAttackBase.get_ActionID() eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnightWill, 1) ge 1 AND UnityEngine.Object.op_Inequality(PlayerStatusBase.get_SkillManager(), 0)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "MobManager.HasPlayerHateManager",
+    "PlayerAttackBase.IsBlank",
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.KnightWill",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "WarCryBuf..ctor",
+   "formula": ".ctor(Lv, WeaponType)",
+   "simplified": ".ctor(Lv, WeaponType)",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(new WarCryBuf)",
+   "simplified": "AddBuffer(new, WarCryBuf)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "WarCryBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, byte val",
+     "fields": {
+      "isViewSelfIcon": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((val & 255) eq 10 ? ((Lv + 15) + 50) : (Lv + 15))",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "equip": [
+       {
+        "formula": "val",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AtkUpRate",
+     "bonus_id": 29,
+     "formula": "((equip eq 11 ? 5 : 0) + Lv)",
+     "simplified": "(equip = 11 ? 5 : 0) + Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AtkUpRate",
+     "bonus_id": 29,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ],
+    "isViewSelfIcon": [
+     {
+      "method": "SetViewSelfIcon",
+      "formula": "(flag & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "KnightStanceBuf.GetFearResistValue"
+ ],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Fear",
+  "MobManager.HasPlayerHateManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.checkPercent",
+  "SkillBufferId.AtkUpRate",
+  "SkillId.KnightWill",
+  "SkillManager.GetSkillLv",
+  "TargetableListManagerBase.get_Instance",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

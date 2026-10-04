@@ -1,0 +1,33 @@
+=== export_quests 11:45:55
+Traceback (most recent call last):
+  File "D:\toram reverse data\scripts\export_quests.py", line 80, in <module>
+    assert len(raw) == 4 + 16 * count, ta.m_Name
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Quest_93503
+=== export_cuisine 11:45:57
+39 cuisines
+=== export_trophies 11:45:59
+754 trophies, 653 from master
+=== export_collect_slot 11:46:00
+Traceback (most recent call last):
+  File "D:\toram reverse data\scripts\export_collect_slot.py", line 20, in <module>
+    b = open('master_data/02dc3f32/RecipeMaster.dec', 'rb').read()
+        ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'master_data/02dc3f32/RecipeMaster.dec'
+=== export_skills 11:46:00
+630 records, 577 skills, 40 trees
+trees: 1:#สกิลดาบ | 2:#สกิลยิง | 3:#マジックスキル | 4:#マーシャルスキル | 6:#サバイバルスキル | 7:#サポートスキル | 8:#シールドスキル | 9:#ナイフスキル | 10:#マーチャントスキル | 11:#スミススキル | 12:#アルケミースキル | 13:#ファランクススキル | 14:#テイマースキル | 15:#バトルスキル | 16:#ナイトスキル | 17:#ハンタースキル | 18:#ゴーレムスキル | 19:#モノノフスキル | 20:#デュアルスキル | 21:#パルチザンスキル | 22:#スプライトスキル | 24:#ミンストレル | 25:#ダンサー | 26: | 27:#マジックブレードスキル | 28: | 29:#ペット専用スキル | 30:#ハルバードスキル | 31:#アサシンスキル | 32:#ウィザードスキル | 33:#ダークパワースキル | 34:#ベアハンドスキル | 35:#ネクロマンサースキル | 36:#クラッシャー | 37: | 38:#ニンジャスキル | 39: | 40: | 41: | 42:
+missing names: 54
+=== export_skills_full 11:46:00
+577 skills; {'Attack': 183, 'Mastery': 173, 'Buffer': 74, 'Support': 30, 'Object': 50, 'Special': 25, 'Extra': 14, 'Unknown': 1, 'Circle': 19, 'Heal': 8}
+buff-like: 131 | without stat tag: 31
+no Thai desc: 44 | no en name: 61
+=== export_items 11:46:02
+11718 items, 126 icons -> D:\toram reverse data\items
+=== export_monsters 11:46:04
+9615 spawn records, 1291 monsters, 1072 maps, 6338 with drops, 335 model bundles, 4012 records with a model -> D:\toram reverse data\monsters
+1352 Enemy_th names; 1290 with stats; 448 pet-capturable; 10 high raid bosses; 593 with cached model
+3143 item drop sources, 2864 with a mob
+3701 boss difficulty rows
+1353 monsters, 10602 csv rows -> D:\toram reverse data\monsters\monster_full.json|csv ; 1291 with stats, 689 boss-flagged
+22 guild raid records -> D:\toram reverse data\monsters\GUILDRAID_BOSS.json|csv

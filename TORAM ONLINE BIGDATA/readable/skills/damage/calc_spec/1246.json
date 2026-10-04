@@ -1,0 +1,128 @@
+{
+ "version": 1,
+ "uid": 1246,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "EarthStyleAttackAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1246,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Matk",
+   "simplified": "status.Matk",
+   "when": "always",
+   "vars": [
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((skillRate + ((NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) + (NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) << 2)) << 2)) + (((skillRate + ((NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) + (NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) << 2)) << 2)) * 0.5) * (PlayerStatusBase.get_SkillBufferManager().skillBufList[1224].Max - PlayerStatusBase.get_SkillBufferManager().skillBufList[1224].Count))) + NinjaSkillBase.GetNinko(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "(((skillRate + ((NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) + (NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) << 2)) << 2)) + (((skillRate + ((NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) + (NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) << 2)) << 2)) * 0.5) * (PlayerStatusBase.get_SkillBufferManager().skillBufList[1224].Max - PlayerStatusBase.get_SkillBufferManager().skillBufList[1224].Count))) + NinjaSkillBase.GetNinko(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "when": "always",
+   "vars": [
+    "NinjaSkillBase.GetNinjutsuTraining",
+    "NinjaSkillBase.GetNinko",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((skillRate + ((NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) + (NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) << 2)) << 2)) + NinjaSkillBase.GetNinko(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "skillRate + 20 × NinjaSkillBase.GetNinjutsuTraining(this, A) + NinjaSkillBase.GetNinko(this, A)",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "vars": [
+    "NinjaSkillBase.GetNinjutsuTraining",
+    "NinjaSkillBase.GetNinko",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IPlayerStatusCalculator.get_Matk",
+  "NinjaSkillBase.GetNinjutsuTraining",
+  "NinjaSkillBase.GetNinko",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "status.Matk"
+ ],
+ "residual": []
+}

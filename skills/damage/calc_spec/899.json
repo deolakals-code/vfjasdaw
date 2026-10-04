@@ -1,0 +1,105 @@
+{
+ "version": 1,
+ "uid": 899,
+ "name_th": "",
+ "name_en": "FlashOfTheWarGod",
+ "tree": 28,
+ "category": "Attack",
+ "max_level": 0,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "FlashOfTheWarGodAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 899,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(6)",
+   "simplified": "MathUtil.DisplayMeterToDistance(6)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "1000",
+   "simplified": "1000",
+   "when": "always",
+   "by_level": 1000
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "10",
+   "simplified": "10",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[LastConstantDamage]",
+   "formula": "int((target.MaxHp * 0.75))",
+   "simplified": "int(0.75 × target.MaxHp)",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "LastConstantDamage",
+   "vars": [
+    "target.MaxHp"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IMobStatusCalculator.get_MaxHp",
+  "MathUtil.DisplayMeterToDistance",
+  "target.MaxHp"
+ ],
+ "residual": []
+}

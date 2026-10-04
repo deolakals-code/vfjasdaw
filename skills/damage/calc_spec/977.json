@@ -1,0 +1,319 @@
+{
+ "version": 1,
+ "uid": 977,
+ "name_th": "อินฟิไนท์ไดเมนชัน",
+ "name_en": "DimensionTill",
+ "tree": "HalberdSkill",
+ "category": "Object",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment",
+  "placed object / trap / summon"
+ ],
+ "class": "DimensionTillAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "Physics",
+  "action_id": 977,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((baseAGI + baseSTR) // 5) + 400)",
+   "simplified": "(baseAGI + baseSTR) // 5 + 400",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) << 2)",
+   "simplified": "20 × Lv",
+   "when": "always",
+   "by_level": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140,
+    160,
+    180,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "flashPercent",
+   "formula": "((((baseAGI * 0x66666667) >> 32) >> 2) + (Lv + (Lv << 2)))",
+   "simplified": "baseAGI ÷ 10 + 5 × Lv",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "placePosition",
+   "formula": "castTime",
+   "simplified": "castTime",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "arrowAngle",
+   "formula": "90",
+   "simplified": "90",
+   "when": "always",
+   "by_level": 90
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "arrowEventTake",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetAction",
+   "formula": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "arrowAngle",
+   "formula": "90",
+   "simplified": "90",
+   "when": "always",
+   "by_level": 90
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "arrowEventTake",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "arrowAngle",
+   "formula": "(((arrowAngle + 250) gt 360 ? 0xfffffe98 : 0) + (arrowAngle + 250))",
+   "simplified": "(arrowAngle + 250 > 360 ? 0xfffffe98 : 0) + arrowAngle + 250",
+   "when": "(System.Collections.Generic.Dictionary<Int16Enum, int>.ContainsKey(arrowEventTake._parameter, 24) & 1) ne 0 AND param eq 1 OR (System.Collections.Generic.Dictionary<Int16Enum, int>.ContainsKey(arrowEventTake._parameter, 24) & 1) eq 0 AND param eq 1"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "(hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0 OR (hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND (hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0",
+   "vars": [
+    "AbnormalType.Flash",
+    "PlayerAttackBase.GetWeaponElementType",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0 OR (hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND (hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0",
+   "vars": [
+    "AbnormalType.Flash",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "isCronosDriveBuf",
+   "formula": "(hasBuff(973) & 1)",
+   "simplified": "hasBuff(973) & 1",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "hitCount",
+   "formula": "(hitCount + 1)",
+   "simplified": "hitCount + 1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "(hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0 OR (hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND (hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0",
+   "op": "SetRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalType.Flash",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "(hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0 OR (hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND (hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0",
+   "op": "SetConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalType.Flash",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(33, flashPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(33, flashPercent, playerAction)",
+   "when": "(hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND (hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0",
+   "vars": [
+    "AbnormalType.Flash",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(33)",
+   "simplified": "SetAbnormalType(33)",
+   "when": "(hitCount - ((hitCount // splitHitCount) * splitHitCount)) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Flash",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Flash",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.agi",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.GetEquipElement",
+  "System.Collections.Generic.Dictionary.ContainsKey",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

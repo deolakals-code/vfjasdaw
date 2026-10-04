@@ -1,0 +1,1 @@
+{"name": "PlayerSecondaryStatus$$GetSkillDelayRate1", "rva": "0x2050c7c", "addr": "0x2050c7c", "params": [["int", "cspd"]], "static": false, "returns": "int", "truncated": false, "npaths": 1, "cases": [{"value": "(100 - (int((cspd * 0.05)) lt 50 ? int((cspd * 0.05)) : 50))", "common": [], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

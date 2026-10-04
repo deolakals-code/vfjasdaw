@@ -1,0 +1,85 @@
+// Assembly: Assembly-CSharp.dll
+// Namespace: 
+public enum MahjongVoiceType // TypeDefIndex: 4439
+{
+	// Fields
+	public int value__; // 0x0
+	public const MahjongVoiceType CallPon = 0;
+	public const MahjongVoiceType CallChii = 1;
+	public const MahjongVoiceType CallKan = 2;
+	public const MahjongVoiceType CallRiichi = 3;
+	public const MahjongVoiceType CallDoubleRiichi = 4;
+	public const MahjongVoiceType CallTsumo = 5;
+	public const MahjongVoiceType CallRon = 6;
+	public const MahjongVoiceType DrawGame = 7;
+	public const MahjongVoiceType CallNorth = 8;
+	public const MahjongVoiceType NormalDraw_Ready = 9;
+	public const MahjongVoiceType NormalDraw = 10;
+	public const MahjongVoiceType Sufurenda = 11;
+	public const MahjongVoiceType Sukaikan = 12;
+	public const MahjongVoiceType Kyushukyuhai = 13;
+	public const MahjongVoiceType KazoeYakuman = 14;
+	public const MahjongVoiceType Mangan = 15;
+	public const MahjongVoiceType Haneman = 16;
+	public const MahjongVoiceType Baiman = 17;
+	public const MahjongVoiceType Sanbaiman = 18;
+	public const MahjongVoiceType Yakuman = 19;
+	public const MahjongVoiceType DoubleYakuman = 20;
+	public const MahjongVoiceType TripleYakuman = 21;
+	public const MahjongVoiceType QuadrupleYakuman = 22;
+	public const MahjongVoiceType QuintupleYakuman = 23;
+	public const MahjongVoiceType SextupleYakuman = 24;
+	public const MahjongVoiceType Tenho = 25;
+	public const MahjongVoiceType Chiho = 26;
+	public const MahjongVoiceType Daisangen = 27;
+	public const MahjongVoiceType Suanko = 28;
+	public const MahjongVoiceType SuankoTankimachi = 29;
+	public const MahjongVoiceType Tsuiso = 30;
+	public const MahjongVoiceType Ryuiso = 31;
+	public const MahjongVoiceType Chinroto = 32;
+	public const MahjongVoiceType Kokushimuso = 33;
+	public const MahjongVoiceType KokushimusoJusanmenmachi = 34;
+	public const MahjongVoiceType Daisushi = 35;
+	public const MahjongVoiceType Shosushi = 36;
+	public const MahjongVoiceType Sukantsu = 37;
+	public const MahjongVoiceType Churenpoto = 38;
+	public const MahjongVoiceType ChurenpotoKyumenmachi = 39;
+	public const MahjongVoiceType Chankan = 40;
+	public const MahjongVoiceType RinshanKaiho = 41;
+	public const MahjongVoiceType Haitei = 42;
+	public const MahjongVoiceType Houtei = 43;
+	public const MahjongVoiceType East = 44;
+	public const MahjongVoiceType South = 45;
+	public const MahjongVoiceType West = 46;
+	public const MahjongVoiceType North = 47;
+	public const MahjongVoiceType Chun = 48;
+	public const MahjongVoiceType Haku = 49;
+	public const MahjongVoiceType Hatsu = 50;
+	public const MahjongVoiceType DoubleEast = 51;
+	public const MahjongVoiceType DoubleSouth = 52;
+	public const MahjongVoiceType DoubleWest = 53;
+	public const MahjongVoiceType DoubleNorth = 54;
+	public const MahjongVoiceType Tanyao = 55;
+	public const MahjongVoiceType Ipeko = 56;
+	public const MahjongVoiceType Pinfu = 57;
+	public const MahjongVoiceType Chanta = 58;
+	public const MahjongVoiceType Ikkitsukan = 59;
+	public const MahjongVoiceType SanshokuDojun = 60;
+	public const MahjongVoiceType SanshokuDoko = 61;
+	public const MahjongVoiceType Sankantsu = 62;
+	public const MahjongVoiceType Toitoi = 63;
+	public const MahjongVoiceType Sananko = 64;
+	public const MahjongVoiceType Shosangen = 65;
+	public const MahjongVoiceType Honroto = 66;
+	public const MahjongVoiceType Chitoitsu = 67;
+	public const MahjongVoiceType Junchan = 68;
+	public const MahjongVoiceType Honitsu = 69;
+	public const MahjongVoiceType Ryanpeko = 70;
+	public const MahjongVoiceType Chinitsu = 71;
+	public const MahjongVoiceType Riichi = 72;
+	public const MahjongVoiceType DoubleRiichi = 73;
+	public const MahjongVoiceType Tsumo = 74;
+	public const MahjongVoiceType Ippatsu = 75;
+	public const MahjongVoiceType Dora = 76;
+	public const MahjongVoiceType Max = 77;
+}

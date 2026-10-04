@@ -1,0 +1,48 @@
+class,rva,result,detail
+SkillActionBase,0x2487dfc,true,base default
+BonusMagicDamageAction,0x205bb5c,false,constant
+BonusNaturalDamageAction,0x205c078,false,constant
+BonusNormalDamageAction,0x205c5a8,false,constant
+BonusPhysicalDamageAction,0x205cac4,false,constant
+GuardStrikeAction,0x206208c,false,constant
+ImperialRayPursuitAction,0x2062634,false,constant
+JumpbackShotPursuitAction,0x2062ef0,false,constant
+MagicPursuitAction,0x2063558,false,constant
+NormalAttackAction,0x20639a0,conditional,true unless SkillIndividualFlag 0x400 (NormalAttackAction.Flag.KnifeCombat) is set
+PhysicalPursuitAction,0x206aef8,false,constant
+BackstepAction,0x21e40e4,false,constant
+ShadowWalkAttackAction,0x21e7dbc,conditional,returns byte field 0x144
+VenomSnatchAction,0x21e8cfc,false,constant
+MoonSlashPursuitAction,0x21f7400,false,constant
+AirSlicerAction,0x2211e34,conditional,returns byte field 0x144
+HorizontalCutAction,0x2218060,false,constant
+LunaDitherStarAction,0x22195b8,true,tail-calls base -> true
+DimensionTillAction,0x222a9ec,false,constant
+HomingShotAction,0x223d548,conditional,returns byte field 0x148
+CrazyDaggerPursuitAction,0x224b79c,false,constant
+LevenirAction,0x2254f30,false,constant
+MagicEgelAttackAction,0x2266a60,false,constant
+AshuraAuraAttackAction,0x22785e4,false,constant
+MindimageSenjuAttackAction,0x227cfd8,conditional,returns byte field 0x176
+SlidingAction,0x2285c3c,false,constant
+HeavenlyStarAction,0x22921f8,conditional,returns byte field 0x134
+WaveBladeAction,0x22b66b4,conditional,true iff byte field @+0x13c == 0
+SummonSkeletonAction,0x22c17e0,false,constant
+CloningTechniqueAction,0x22c864c,false,constant
+KunaiThrowingAction,0x22ce6bc,conditional,returns byte field 0x141
+RangeHateAttackAction,0x22e14a0,false,constant
+AstralLanceAttackAction,0x2306f3c,false,constant
+CatarabomosAction,0x2309704,false,constant
+CounterForceAttackAction,0x230b054,false,constant
+LebenGlanzAction,0x230e220,false,constant
+MagicBalkanAction,0x230f6f0,false,constant
+SlashReaperAction,0x2311558,conditional,true iff int field @+0x144 == 2
+BlizzardAction,0x2316184,conditional,true unless SkillParamFlag 0x100 (HighFamilia) is set
+ImperialRayAction,0x2318d38,false,constant
+LightningAction,0x2319af8,conditional,true unless SkillParamFlag 0x100 (HighFamilia) is set
+MeteorStrikeAction,0x231a80c,conditional,true unless SkillParamFlag 0x100 (HighFamilia) is set
+CallGolemNormalAttackAction,0x234c8ec,false,constant
+FlashGrenadeAction,0x234f598,false,constant
+FreezeGrenadeAction,0x2350854,false,constant
+MagicGrenadeAction,0x23518c0,false,constant
+DropManaCrystalAction,0x23b5c38,false,constant

@@ -1,0 +1,1 @@
+{"name": "EquipItemData$$CalcFlee", "rva": "0x18f2a68", "addr": "0x18f2a68", "params": [["PlayerStatusBase", "status"]], "static": false, "returns": "int", "truncated": false, "npaths": 2, "cases": [{"value": "0", "common": ["(ItemData.get_BattleCustomize(EquipItemData.get_Body(this)) & 255) hi 3"], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

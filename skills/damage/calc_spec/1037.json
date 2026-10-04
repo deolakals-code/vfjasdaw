@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "uid": 1037,
+ "name_th": "ของที่แมวทำหล่น",
+ "name_en": "CatsDropItem",
+ "tree": "WizardSkill",
+ "category": "Mastery",
+ "max_level": 285,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "CatsDropItem",
+ "proration": null,
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "CatsDropItem",
+  "bonuses": {
+   "Percent": {
+    "id": 27,
+    "expr": "(Lv * Lv)",
+    "by_level": [
+     1,
+     4,
+     9,
+     16,
+     25,
+     36,
+     49,
+     64,
+     81,
+     100
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

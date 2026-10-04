@@ -1,0 +1,77 @@
+{
+ "version": 1,
+ "uid": 136,
+ "name_th": "อัดกระแทก",
+ "name_en": "StrongChase",
+ "tree": "MarshallSkill",
+ "category": "Mastery",
+ "max_level": 30,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "StrongChase",
+ "proration": null,
+ "eq_limit": [
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "StrongChase",
+  "bonuses": {
+   "SkillRate": {
+    "id": 26,
+    "expr": "(Lv + (Lv << 2))",
+    "by_level": [
+     5,
+     10,
+     15,
+     20,
+     25,
+     30,
+     35,
+     40,
+     45,
+     50
+    ]
+   },
+   "PowerResistBreaker": {
+    "id": 40,
+    "expr": "(Lv + (Lv << 2))",
+    "by_level": [
+     5,
+     10,
+     15,
+     20,
+     25,
+     30,
+     35,
+     40,
+     45,
+     50
+    ]
+   },
+   "HitRate": {
+    "id": 21,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

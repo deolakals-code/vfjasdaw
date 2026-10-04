@@ -1,0 +1,270 @@
+{
+ "version": 1,
+ "uid": 1281,
+ "name_th": "เอ็กซ์โพชั่น",
+ "name_en": "Explosion",
+ "tree": "AvatarSkill_1",
+ "category": "Attack",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "ExplosionAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1281,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "System.Math.Max(PlayerAttackBase.CalcCostMp(this, actarAction), 100)",
+   "simplified": "System.Math.Max(PlayerAttackBase.CalcCostMp(this, actarAction), 100)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp",
+    "System.Math.Max"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "System.Math.Max(PlayerAttackBase.CalcCostMp(this, actarAction), 100)",
+   "simplified": "System.Math.Max(PlayerAttackBase.CalcCostMp(this, actarAction), 100)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp",
+    "System.Math.Max"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((System.Math.Max(PlayerAttackBase.CalcCostMp(this, actarAction), 100) // 100) * 100) * 3)",
+   "simplified": "300 × System.Math.Max(PlayerAttackBase.CalcCostMp(this, actarAction), 100) // 100",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp",
+    "System.Math.Max"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "1000",
+   "simplified": "1000",
+   "when": "always",
+   "by_level": 1000
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "range",
+   "formula": "(MathUtil.DisplayMeterToDistance(4) * 3)",
+   "simplified": "3 × MathUtil.DisplayMeterToDistance(4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((System.Math.Max(PlayerAttackBase.CalcCostMp(this, actarAction), 100) // 100) * 100)",
+   "simplified": "100 × System.Math.Max(PlayerAttackBase.CalcCostMp(this, actarAction), 100) // 100",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp",
+    "System.Math.Max"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "range",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "RecalcCostMp",
+   "kind": "set",
+   "name": "mp",
+   "formula": "System.Math.Max(PlayerAttackBase.CalcCostMp(this, playerAction), 100)",
+   "simplified": "System.Math.Max(PlayerAttackBase.CalcCostMp(this, playerAction), 100)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp",
+    "System.Math.Max"
+   ]
+  },
+  {
+   "method": "RecalcCostMp",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "System.Math.Max(PlayerAttackBase.CalcCostMp(this, playerAction), 100)",
+   "simplified": "System.Math.Max(PlayerAttackBase.CalcCostMp(this, playerAction), 100)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp",
+    "System.Math.Max"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "param ne 0 AND param ne 1 OR IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND param eq 1 AND param ne 0 OR IsInstanceOf(actarAction, OtherPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND param eq 1 AND param ne 0"
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.CalcCostMp",
+  "System.Math.Max",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

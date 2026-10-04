@@ -1,0 +1,201 @@
+{
+ "version": 1,
+ "uid": 104,
+ "name_th": "เชนแคสต์",
+ "name_en": "ChainCast",
+ "tree": "MagicSkill",
+ "category": "Mastery",
+ "max_level": 30,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "ChainCast",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "ChainCastBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MotionSpeedRate",
+     "bonus_id": 1,
+     "formula": "(Lv + (Lv << 2))",
+     "simplified": "5 × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MotionSpeedRate",
+     "bonus_id": 1,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  },
+  {
+   "class": "ChainCastStackBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase status",
+     "fields": {
+      "playerStatus": [
+       {
+        "formula": "status",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MotionSpeed",
+     "bonus_id": 0,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MatkUp",
+     "bonus_id": 55,
+     "formula": "((Count * Lv) << (EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 15 ? 1 : 0))",
+     "simplified": "Count × Lv << (EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) = 15 ? 1 : 0)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "((Count * Lv) << (EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 14 ? 1 : 0))",
+     "simplified": "Count × Lv << (EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) = 14 ? 1 : 0)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "30",
+      "when": "(Count - 1) gt 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(Count - 1) le 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0"
+     },
+     {
+      "method": "Next",
+      "formula": "30",
+      "when": "always"
+     }
+    ],
+    "Count": [
+     {
+      "method": "Updata",
+      "formula": "(Count - 1)",
+      "when": "(Count - 1) gt 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 OR (Count - 1) le 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0"
+     }
+    ]
+   },
+   "hooks": [
+    "Next"
+   ],
+   "attached_via": "manual:name stem + constructed in monster Damaged hooks (stack of ChainCast); inferred",
+   "kind": "counter"
+  }
+ ],
+ "passives": {
+  "class": "ChainCast",
+  "bonuses": {}
+ },
+ "hooks": [],
+ "variables": [
+  "EquipItemData.get_WeaponItemType",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.Count",
+  "SkillBufferId.MatkUp",
+  "SkillBufferId.MotionSpeed",
+  "SkillBufferId.MotionSpeedRate",
+  "SkillBufferId.Value",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

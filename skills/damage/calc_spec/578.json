@@ -1,0 +1,62 @@
+{
+ "version": 1,
+ "uid": 578,
+ "name_th": "แลนเซอร์พลัส",
+ "name_en": "LancerTypeImproved",
+ "tree": "GolemSkill",
+ "category": "Mastery",
+ "max_level": 200,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "LancerTypeImproved",
+ "proration": null,
+ "eq_limit": [
+  "Bowgun",
+  "Rod"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "LancerTypeImproved",
+  "bonuses": {
+   "PowerResistBreaker": {
+    "id": 40,
+    "expr": "(((Lv << 3) - Lv) + 5)",
+    "by_level": [
+     12,
+     19,
+     26,
+     33,
+     40,
+     47,
+     54,
+     61,
+     68,
+     75
+    ]
+   },
+   "Crt": {
+    "id": 22,
+    "expr": "int((Lv * 7.5))",
+    "by_level": [
+     7,
+     15,
+     22,
+     30,
+     37,
+     45,
+     52,
+     60,
+     67,
+     75
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

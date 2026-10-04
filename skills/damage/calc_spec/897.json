@@ -1,0 +1,220 @@
+{
+ "version": 1,
+ "uid": 897,
+ "name_th": "",
+ "name_en": "NpcFirstAid",
+ "tree": 28,
+ "category": "Special",
+ "max_level": 0,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "NpcFirstAidAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 897,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "6",
+   "simplified": "6",
+   "when": "always",
+   "by_level": 6
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "cost",
+   "formula": "FirstAidBuf.GetParam(14)",
+   "simplified": "FirstAidBuf.GetParam(14)",
+   "when": "always",
+   "vars": [
+    "FirstAidBuf.GetParam"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "cost",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "FirstAidBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, float time",
+     "fields": {
+      "_flag": [
+       {
+        "formula": "2560",
+        "when": "always",
+        "by_level": 2560
+       }
+      ],
+      "levelDownTimer": [
+       {
+        "formula": "time",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "FirstAidCost",
+     "bonus_id": 14,
+     "formula": "((Lv * 100) + 100)",
+     "simplified": "100 × Lv + 100",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "FirstAidCost",
+     "bonus_id": 14,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "levelDownTimer": [
+     {
+      "method": "Updata",
+      "formula": "((levelDownTimer - UnityEngine.Time.get_deltaTime()) + 60)",
+      "when": "((Lv - 1) & 255) ne 0 AND ((levelDownTimer - UnityEngine.Time.get_deltaTime()) + 60) ne 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime le 0 AND levelDownTimer gt 0 OR ((Lv - 1) & 255) ne 0 AND ((levelDownTimer - UnityEngine.Time.get_deltaTime()) + 60) ne 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND levelDownTimer gt 0 OR ((Lv - 1) & 255) ne 0 AND ((levelDownTimer - UnityEngine.Time.get_deltaTime()) + 60) ne 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND levelDownTimer gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "((Lv - 1) & 255) eq 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND levelDownTimer gt 0 OR ((Lv - 1) & 255) eq 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime eq 0 AND LeftTime le 0 AND levelDownTimer gt 0 OR ((Lv - 1) & 255) eq 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime le 0 AND LeftTime ne 0 AND levelDownTimer gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(levelDownTimer - UnityEngine.Time.get_deltaTime())",
+      "when": "(levelDownTimer - UnityEngine.Time.get_deltaTime()) hi 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ne 0 AND LeftTime le 0 AND levelDownTimer gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) hi 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ne 0 AND LeftTime gt 0 AND levelDownTimer gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) hi 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ne 0 AND LeftTime gt 0 AND levelDownTimer gt 0"
+     },
+     {
+      "method": "LevelUp",
+      "formula": "60",
+      "when": "levelDownTimer eq 0"
+     }
+    ],
+    "Level": [
+     {
+      "method": "Updata",
+      "formula": "(Lv - 1)",
+      "when": "((Lv - 1) & 255) ne 0 AND ((levelDownTimer - UnityEngine.Time.get_deltaTime()) + 60) ne 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime le 0 AND levelDownTimer gt 0 OR ((Lv - 1) & 255) eq 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND levelDownTimer gt 0 OR ((Lv - 1) & 255) eq 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime eq 0 AND LeftTime le 0 AND levelDownTimer gt 0"
+     },
+     {
+      "method": "LevelUp",
+      "formula": "(Lv + 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND levelDownTimer le 0 AND levelDownTimer ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) hi 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ne 0 AND LeftTime gt 0 AND levelDownTimer gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) eq 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND levelDownTimer eq 0 AND levelDownTimer le 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND levelDownTimer le 0 AND levelDownTimer ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND levelDownTimer eq 0 AND levelDownTimer le 0 OR ((Lv - 1) & 255) eq 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND levelDownTimer gt 0"
+     },
+     {
+      "method": "ValidInvincible",
+      "formula": "time",
+      "when": "always"
+     },
+     {
+      "method": "InvalidInvincible",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "_flag": [
+     {
+      "method": "Updata",
+      "formula": "((_flag & 0xffffe7ff) | 2048)",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND levelDownTimer le 0 AND levelDownTimer ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND levelDownTimer eq 0 AND levelDownTimer le 0 OR ((Lv - 1) & 255) eq 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (levelDownTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND levelDownTimer gt 0"
+     },
+     {
+      "method": "ValidInvincible",
+      "formula": "((_flag & 0xffffe7ff) | 0x1000)",
+      "when": "always"
+     },
+     {
+      "method": "InvalidInvincible",
+      "formula": "((_flag & 0xffffe7ff) | 2048)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "InvalidInvincible",
+    "LevelUp",
+    "ValidInvincible"
+   ],
+   "attached_via": "caller2:SkillBufferManager$$UpdateFirstAidBuffer<-NpcFirstAidAction$$ActionStart",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "FirstAidBuf.GetParam",
+  "SkillBufferId.FirstAidCost",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

@@ -1,0 +1,701 @@
+{
+ "version": 1,
+ "uid": 624,
+ "name_th": "[N]คาสุมิเซ็ตสึเก็คคะ[N2]เท็นริวรันเซ:ซันยุ[N]",
+ "name_en": "IllusionaryScene",
+ "tree": "MononofuSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "IllusionarySceneAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 624,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangekiSkillRate",
+   "formula": "((Lv * 75) + 750)",
+   "simplified": "75 × Lv + 750",
+   "when": "always",
+   "by_level": [
+    825,
+    900,
+    975,
+    1050,
+    1125,
+    1200,
+    1275,
+    1350,
+    1425,
+    1500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "finishSkillRate",
+   "formula": "((SkillBufferDataBase.GetParam(20) lt 1 ? 100 : (((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1) * 25) + 150) * SkillBufferDataBase.GetParam(20))) + ((status.Dex << 1) // (5 - SkillBufferDataBase.GetParam(20))))",
+   "simplified": "(A < 1 ? 100 : (25 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1) + 150) × A) + 2 × status.Dex // (5 - A)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 620) ne 0 AND mainWeapon == Katana OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 620) ne 0 AND mainWeapon != Katana AND subWeapon == Katana",
+   "defs": [
+    [
+     "A",
+     "SkillBufferDataBase.GetParam(20)"
+    ]
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillId.HeavenlyStar",
+    "SkillManager.GetSkillLv",
+    "TryGetBuf.buf",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "finishConstantDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "mainWeapon == Katana OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 620) ne 0 AND mainWeapon == Katana OR mainWeapon != Katana AND subWeapon == Katana",
+   "by_level": 200,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "finishSkillRate",
+   "formula": "(SkillBufferDataBase.GetParam(20) lt 1 ? 100 : (((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1) * 25) + 150) * SkillBufferDataBase.GetParam(20)))",
+   "simplified": "A < 1 ? 100 : (25 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1) + 150) × A",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 620) ne 0 AND mainWeapon != Katana AND subWeapon != Katana",
+   "defs": [
+    [
+     "A",
+     "SkillBufferDataBase.GetParam(20)"
+    ]
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillId.HeavenlyStar",
+    "SkillManager.GetSkillLv",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "finishSkillRate",
+   "formula": "(finishSkillRate + ((status.Dex << 1) // 5))",
+   "simplified": "finishSkillRate + 2 × status.Dex // 5",
+   "when": "mainWeapon == Katana OR mainWeapon != Katana AND subWeapon == Katana",
+   "vars": [
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(SkillIndividualFlag | 1)",
+   "simplified": "SkillIndividualFlag | 1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 620) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 620) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "heavenlyStarStack",
+   "formula": "CountBufferBase.GetParam(20)",
+   "simplified": "CountBufferBase.GetParam(20)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 620) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "CountBufferBase.GetParam",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(rangekiSkillRate / 100)",
+   "simplified": "rangekiSkillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "rangekiConstantDamage",
+   "simplified": "rangekiConstantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "(PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamageRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamage"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(finishSkillRate / 100)",
+   "simplified": "finishSkillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "finishConstantDamage",
+   "simplified": "finishConstantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "IllusionarySceneBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 620) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 620) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new IllusionarySceneBuf, Id)",
+   "simplified": "AddSelfBuffer(new, IllusionarySceneBuf, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 620) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 620) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(0)",
+   "simplified": "SetAbnormalType(0)",
+   "when": "!UnityEngine.Object.op_Equality(playerAction) AND IsInstanceOf(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 624), IllusionarySceneBuf) eq 1 AND SkillDamageData.IsInactivityAbnormal(damageData) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 624) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillDamageData.IsInactivityAbnormal",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(620, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1), 0)",
+   "simplified": "AddSelfBuffer(620, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1), 0)",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.HeavenlyStar",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(624)",
+   "simplified": "RemoveSelfBuffer(624)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "OkaranmanBuf..ctor",
+   "formula": ".ctor([<>c__DisplayClass30_0.<>4__this+0x14])",
+   "simplified": ".ctor([<>c__DisplayClass30_0.<>4__this+0x14])",
+   "when": "always",
+   "residual": [
+    "+0x14]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new OkaranmanBuf)",
+   "simplified": "AddSelfBuffer(new, OkaranmanBuf)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionPreparation>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(624)",
+   "simplified": "RemoveSelfBuffer(624)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionPreparation>b__1",
+   "kind": "call",
+   "name": "OkaranmanBuf..ctor",
+   "formula": ".ctor([<>c__DisplayClass30_0.<>4__this+0x14])",
+   "simplified": ".ctor([<>c__DisplayClass30_0.<>4__this+0x14])",
+   "when": "always",
+   "residual": [
+    "+0x14]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionPreparation>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new OkaranmanBuf)",
+   "simplified": "AddSelfBuffer(new, OkaranmanBuf)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionPreparation>b__2",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(624)",
+   "simplified": "RemoveSelfBuffer(624)",
+   "when": "(cancel & 1) ne 0"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "IllusionarySceneBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "isSuperArmor": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "damageCutValue": [
+       {
+        "formula": "((Lv << 3) + lv)",
+        "when": "always",
+        "by_level": [
+         9,
+         18,
+         27,
+         36,
+         45,
+         54,
+         63,
+         72,
+         81,
+         90
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "damageCutValue",
+     "simplified": "damageCutValue",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "parrySuccess": [
+     {
+      "method": "ParrySuccess",
+      "formula": "1",
+      "when": "always"
+     }
+    ],
+    "isSuperArmor": [
+     {
+      "method": "EndSuperArmor",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckParry",
+    "CheckSuperArmor",
+    "EndSuperArmor",
+    "ParrySuccess"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "OkaranmanBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "OkaranmanBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "1"
+    }
+   },
+   "attached_via": "caller2:OkaranmanBuf$$.ctor<-IllusionarySceneAction.<>c__DisplayClass30_0$$<ActionPreparation>b__0",
+   "kind": "counter"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "IllusionarySceneBuf": {
+     "lv": "lv",
+     "self": "1"
+    },
+    "CountBufferBase": {
+     "lv": "lv",
+     "self": "(self & 1)"
+    }
+   },
+   "attached_via": "caller2:IllusionarySceneBuf$$.ctor<-IllusionarySceneAction$$ActionPreparation",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "FacticeArmeAction.ActionSkillEvent",
+  "IllusionarySceneAction.<>c__DisplayClass30_0.<ActionPreparation>b__0",
+  "IllusionarySceneAction.ActionSkillEvent",
+  "IllusionarySceneAction.Damaged",
+  "MobAttackBase.CalcLastDamage"
+ ],
+ "variables": [
+  "CountBufferBase.GetParam",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Dex",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "SkillBufferId.MobLastDamageRateBuf",
+  "SkillDamageData.IsInactivityAbnormal",
+  "SkillId.HeavenlyStar",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuf.buf",
+  "TryGetBuf.out2",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "status.Dex"
+ ],
+ "residual": [
+  {
+   "where": ".<>c__DisplayClass30_0::<ActionPreparation>b__0:OkaranmanBuf..ctor",
+   "tokens": [
+    "+0x14]"
+   ]
+  },
+  {
+   "where": ".<>c__DisplayClass30_0::<ActionPreparation>b__1:OkaranmanBuf..ctor",
+   "tokens": [
+    "+0x14]"
+   ]
+  }
+ ]
+}

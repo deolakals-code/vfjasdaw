@@ -1,0 +1,305 @@
+{
+ "version": 1,
+ "uid": 319,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "CrazyDaggerPursuitAction",
+ "proration": {
+  "slot": "Normal",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "SkillNormal",
+  "action_id": 319,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((System.Math.Min(((GetSubWeaponType.item(actarAction).Function // ((mul64(baseDEX, 0xae147ae1) >> 37) + 15)) + 50), 100) + 50) * SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count))",
+   "simplified": "((System.Math.Min(((GetSubWeaponType.item(actarAction).Function // ((mul64(baseDEX, 0xae147ae1) >> 37) + 15)) + 50), 100) + 50) * SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count))",
+   "when": "((1 << mainWeaponType) & 0x10401) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "System.Math.Min",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count)",
+   "simplified": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon == ShortSword OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count)",
+   "simplified": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon == ShortSword OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(System.Math.Min(((GetSubWeaponType.item(actarAction).Function // ((mul64(baseDEX, 0xae147ae1) >> 37) + 15)) + 50), 100) + 50)",
+   "simplified": "(System.Math.Min(((GetSubWeaponType.item(actarAction).Function // ((mul64(baseDEX, 0xae147ae1) >> 37) + 15)) + 50), 100) + 50)",
+   "when": "((1 << mainWeaponType) & 0x10401) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword OR ((1 << mainWeaponType) & 0x10401) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) eq 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "System.Math.Min",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(System.Math.Min(((GetSubWeaponType.item(actarAction).Function // ((mul64(baseDEX, 0xae147ae1) >> 37) + 15)) + 50), 100) * SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count))",
+   "simplified": "(System.Math.Min(((GetSubWeaponType.item(actarAction).Function // ((mul64(baseDEX, 0xae147ae1) >> 37) + 15)) + 50), 100) * SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count))",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon == ShortSword OR ((1 << mainWeaponType) & 0x10401) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "System.Math.Min",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "System.Math.Min(((GetSubWeaponType.item(actarAction).Function // ((mul64(baseDEX, 0xae147ae1) >> 37) + 15)) + 50), 100)",
+   "simplified": "System.Math.Min(((GetSubWeaponType.item(actarAction).Function // ((mul64(baseDEX, 0xae147ae1) >> 37) + 15)) + 50), 100)",
+   "when": "mainWeaponType hi 16 AND subWeapon == ShortSword OR ((1 << mainWeaponType) & 0x10401) eq 0 AND mainWeaponType ls 16 AND subWeapon == ShortSword OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) eq 0 AND mainWeaponType hi 16 AND subWeapon == ShortSword",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "System.Math.Min",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(100 * SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count))",
+   "simplified": "100 × SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count)",
+   "when": "((1 << mainWeaponType) & 0x10401) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType ls 16 AND subWeapon != ShortSword",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "100",
+   "simplified": "100",
+   "when": "((1 << mainWeaponType) & 0x10401) ne 0 AND mainWeaponType ls 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) eq 0 AND mainWeaponType ls 16 AND subWeapon != ShortSword",
+   "by_level": 100,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(50 * SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count))",
+   "simplified": "50 × SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301), SkillBufferId.Count)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType hi 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) ne 0 AND mainWeaponType ls 16 AND subWeapon != ShortSword",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "50",
+   "simplified": "50",
+   "when": "mainWeaponType hi 16 AND subWeapon != ShortSword OR ((1 << mainWeaponType) & 0x10401) eq 0 AND mainWeaponType ls 16 AND subWeapon != ShortSword OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 301) eq 0 AND mainWeaponType hi 16 AND subWeapon != ShortSword",
+   "by_level": 50,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "SkillIndividualFlag",
+   "simplified": "SkillIndividualFlag",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "isDirectHit",
+   "formula": "0",
+   "simplified": "0",
+   "when": "SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND target.AvoidProbability le 99",
+   "by_level": 0,
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.AvoidProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "isDirectHit",
+   "formula": "(([PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), damageCount)+0x1c] ne 0 ? 1 : 0) & ([PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), damageCount)+0x1c] ne 3 ? 1 : 0))",
+   "simplified": "(A ≠ 0 ? 1 : 0) & (A ≠ 3 ? 1 : 0)",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND target.AvoidProbability gt 99",
+   "defs": [
+    [
+     "A",
+     "[PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), damageCount)+0x1c]"
+    ]
+   ],
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.templateToDamageData",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.AvoidProbability"
+   ],
+   "residual": [
+    "+0x1c]",
+    "+0x1c]"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "CalcStep.CorrectHitCheck",
+  "GetSubWeaponType.item",
+  "IMobStatusCalculator.get_AvoidProbability",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.templateToDamageData",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "SkillCalcTemplate.CheckStepResult",
+  "System.Math.Min",
+  "TryGetBuf.buf",
+  "target.AvoidProbability"
+ ],
+ "residual": [
+  {
+   "where": "calcPlayerToMobDamage:isDirectHit",
+   "tokens": [
+    "+0x1c]",
+    "+0x1c]"
+   ]
+  }
+ ]
+}

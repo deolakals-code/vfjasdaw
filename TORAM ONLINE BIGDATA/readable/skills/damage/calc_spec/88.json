@@ -1,0 +1,1154 @@
+{
+ "version": 1,
+ "uid": 88,
+ "name_th": "เจาะทะลุ",
+ "name_en": "Penetrator",
+ "tree": "ShootSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "PenetratorAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 88,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(24)",
+   "simplified": "MathUtil.DisplayMeterToDistance(24)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "0",
+   "simplified": "0",
+   "when": "hasBuff(AvoidStack)",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 25) + 1000) + (((baseSTR gt baseDEX ? baseSTR : baseDEX) lt 0 ? ((baseSTR gt baseDEX ? baseSTR : baseDEX) + 1) : (baseSTR gt baseDEX ? baseSTR : baseDEX)) >> 1))",
+   "simplified": "25 × Lv + max(baseSTR, baseDEX) ÷ 2 + 1000",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "600",
+   "simplified": "600",
+   "when": "always",
+   "by_level": 600
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackWidth",
+   "formula": "MathUtil.DisplayMeterToDistance(1)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "targetObject",
+   "formula": "target",
+   "simplified": "target",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "actorPlayerAction",
+   "formula": "actarAction",
+   "simplified": "actarAction",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isCombo",
+   "formula": "(?mvn & 1)",
+   "simplified": "?mvn & 1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "?mvn"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isAvoid",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!UnityEngine.Object.op_Inequality(actorPlayerAction) AND IsOtherPlayer ne 0 AND param eq 301 AND param gt 199 AND param ne 200 AND param ne 300 OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorPlayerAction), 0) AND IsOtherPlayer eq 0 AND param eq 301 AND param gt 199 AND param ne 200 AND param ne 300 OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorPlayerAction), 0) AND IsOtherPlayer ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND param eq 301 AND param gt 199 AND param ne 200 AND param ne 300",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "avoidEndMoveRotateStop",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorPlayerAction), 0) AND avoidEndMoveRotateStop eq 0 AND param eq 301 AND param gt 199 AND param ne 200 AND param ne 300 OR IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorPlayerAction), 0) AND avoidEndMoveRotateStop ne 0 AND param eq 301 AND param gt 199 AND param ne 200 AND param ne 300 OR IsOtherPlayer ne 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorPlayerAction), 0) AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND avoidEndMoveRotateStop eq 0 AND param eq 301 AND param gt 199 AND param ne 200 AND param ne 300",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isAvoidable",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!UnityEngine.Object.op_Inequality(actorPlayerAction) AND IsOtherPlayer eq 0 AND param eq 200 AND param gt 199 OR IAvoidAction.get_IsAvoid(isinst(actorPlayerAction.battleManager, typeof(IAvoidAction))) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo ne 0 AND param eq 200 AND param gt 199 OR !IAvoidAction.get_IsAvoid(isinst(actorPlayerAction.battleManager, typeof(IAvoidAction))) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo ne 0 AND param eq 200 AND param gt 199",
+   "by_level": 0,
+   "vars": [
+    "IAvoidAction.get_IsAvoid",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isAvoidable",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(actorPlayerAction) AND IsOtherPlayer eq 0 AND chargeEnd eq 0 AND isCombo eq 0 AND param eq 100 AND param le 199 OR !UnityEngine.Object.op_Inequality(actorPlayerAction) AND IsOtherPlayer ne 0 AND chargeEnd eq 0 AND isCombo eq 0 AND param eq 100 AND param le 199 OR IAvoidAction.get_IsAvoid(isinst(actorPlayerAction.battleManager, typeof(IAvoidAction))) AND IsOtherPlayer ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND chargeEnd eq 0 AND isCombo eq 0 AND param eq 100 AND param le 199",
+   "by_level": 1,
+   "vars": [
+    "IAvoidAction.get_IsAvoid",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "StopCharge",
+   "kind": "set",
+   "name": "isAvoidable",
+   "formula": "0",
+   "simplified": "0",
+   "when": "UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0",
+   "by_level": 0,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "StopCharge",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).x",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).x",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "StopCharge",
+   "kind": "set",
+   "name": "attackDir.y",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).y",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).y",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "StopCharge",
+   "kind": "set",
+   "name": "attackDir.z",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).z",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).z",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward"
+   ]
+  },
+  {
+   "method": "StopCharge",
+   "kind": "set",
+   "name": "chargeEnd",
+   "formula": "1",
+   "simplified": "1",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0",
+   "by_level": 1,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "StopCharge",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count + 1)",
+   "simplified": "(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count + 1)",
+   "when": "!CountBufferBase.get_Peak() AND (TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count + 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count le 4 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR !CountBufferBase.get_Peak() AND (TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count + 1) eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count le 4 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0",
+   "vars": [
+    "CountBufferBase.get_Peak",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "StopCharge",
+   "kind": "set",
+   "name": "isFireFailure",
+   "formula": "1",
+   "simplified": "1",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR CountBufferBase.get_Peak() AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR !CountBufferBase.get_Peak() AND (TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count + 1) eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count le 4 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0",
+   "by_level": 1,
+   "vars": [
+    "CountBufferBase.get_Peak",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "StopCharge",
+   "kind": "set",
+   "name": "maxAttackCount",
+   "formula": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count",
+   "simplified": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "oldChargeNum",
+   "formula": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count",
+   "simplified": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count",
+   "when": "!CountBufferBase.get_Peak() AND IsOtherPlayer eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count ne oldChargeNum AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND chargeEnd eq 0 AND isAvoid eq 0 OR !CountBufferBase.get_Peak() AND IsOtherPlayer eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count eq oldChargeNum AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND chargeEnd eq 0 AND isAvoid eq 0",
+   "vars": [
+    "CountBufferBase.get_Peak",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "chargeEnd",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND chargeEnd eq 0 AND isAvoid eq 0 AND isCombo eq 0",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "isFireFailure",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND chargeEnd eq 0 AND isAvoid eq 0 AND isCombo eq 0",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "AvoidMove",
+   "kind": "set",
+   "name": "isAvoidable",
+   "formula": "256",
+   "simplified": "256",
+   "when": "always",
+   "by_level": 256
+  },
+  {
+   "method": "AvoidMove",
+   "kind": "set",
+   "name": "oldChargeNum",
+   "formula": "[TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 88)+0x20]",
+   "simplified": "[TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 88)+0x20]",
+   "when": "!InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 OR InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0",
+   "vars": [
+    "InputManager.get_LeftInputKey",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ],
+   "residual": [
+    "+0x20]"
+   ]
+  },
+  {
+   "method": "AvoidMove",
+   "kind": "set",
+   "name": "charaDir",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "AvoidMove",
+   "kind": "set",
+   "name": "charaDir",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always",
+   "by_level": 2
+  },
+  {
+   "method": "AvoidMove",
+   "kind": "set",
+   "name": "charaDir",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "AvoidMove",
+   "kind": "set",
+   "name": "charaDir",
+   "formula": "3",
+   "simplified": "3",
+   "when": "always",
+   "by_level": 3
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isFirstAttack",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "nowAttackCount",
+   "formula": "(nowAttackCount + 1)",
+   "simplified": "nowAttackCount + 1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "targetExp",
+   "formula": "target.ExpDefSkill",
+   "simplified": "target.ExpDefSkill",
+   "when": "1 gt maxAttackCount AND 2 gt maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "vars": [
+    "CalcStep.HitCheck",
+    "PlayerAttackBase.HitReactionAssign",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.AvoidProbability",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "3",
+   "simplified": "3",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability gt 99 OR 1 le maxAttackCount AND 2 le maxAttackCount AND 3 le maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "CalcStep.HitCheck",
+    "PlayerAttackBase.HitReactionAssign",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.AvoidProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability gt 99",
+   "vars": [
+    "CalcStep.HitCheck",
+    "PlayerAttackBase.HitReactionAssign",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.AvoidProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability gt 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 gt maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "vars": [
+    "CalcStep.HitCheck",
+    "PlayerAttackBase.HitReactionAssign",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.AvoidProbability"
+   ]
+  },
+  {
+   "method": "LookTarget",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).x",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).x",
+   "when": "UnityEngine.Object.op_Inequality(actorPlayerAction) AND UnityEngine.Object.op_Inequality(targetObject) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x)))) gt 1e-05 OR UnityEngine.Object.op_Inequality(actorPlayerAction) AND UnityEngine.Object.op_Inequality(targetObject) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x)))) le 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "LookTarget",
+   "kind": "set",
+   "name": "attackDir.y",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).y",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).y",
+   "when": "UnityEngine.Object.op_Inequality(actorPlayerAction) AND UnityEngine.Object.op_Inequality(targetObject) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x)))) gt 1e-05 OR UnityEngine.Object.op_Inequality(actorPlayerAction) AND UnityEngine.Object.op_Inequality(targetObject) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x)))) le 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "LookTarget",
+   "kind": "set",
+   "name": "attackDir.z",
+   "formula": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).z",
+   "simplified": "UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actorPlayerAction)).z",
+   "when": "UnityEngine.Object.op_Inequality(actorPlayerAction) AND UnityEngine.Object.op_Inequality(targetObject) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x)))) gt 1e-05 OR UnityEngine.Object.op_Inequality(actorPlayerAction) AND UnityEngine.Object.op_Inequality(targetObject) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObject)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorPlayerAction)).x)))) le 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "actorPlayerAction",
+   "formula": "actarAction",
+   "simplified": "actarAction",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "targetObject",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "isCombo",
+   "formula": "(?mvn & 1)",
+   "simplified": "?mvn & 1",
+   "when": "always",
+   "residual": [
+    "?mvn"
+   ]
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "chargeEnd",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(System.Collections.Generic.Dictionary<int, int>.ContainsKey(values, 54) & 1) ne 0 AND (skillEventId & 0xffff) eq 101 AND System.Collections.Generic.Dictionary<int, int>.get_Item(values, 54) eq 0 OR (System.Collections.Generic.Dictionary<int, int>.ContainsKey(values, 54) & 1) ne 0 AND (skillEventId & 0xffff) eq 101 AND System.Collections.Generic.Dictionary<int, int>.get_Item(values, 54) ne 0 OR (System.Collections.Generic.Dictionary<int, int>.ContainsKey(values, 54) & 1) eq 0 AND (skillEventId & 0xffff) eq 101 AND maxAttackCount eq 0",
+   "by_level": 1
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "isFireFailure",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(System.Collections.Generic.Dictionary<int, int>.ContainsKey(values, 54) & 1) ne 0 AND (skillEventId & 0xffff) eq 101 AND System.Collections.Generic.Dictionary<int, int>.get_Item(values, 54) eq 0 OR (System.Collections.Generic.Dictionary<int, int>.ContainsKey(values, 54) & 1) eq 0 AND (skillEventId & 0xffff) eq 101 AND maxAttackCount eq 0",
+   "by_level": 1
+  },
+  {
+   "method": "OtherPlayerAvoidMove",
+   "kind": "set",
+   "name": "isAvoidable",
+   "formula": "256",
+   "simplified": "256",
+   "when": "always",
+   "by_level": 256
+  },
+  {
+   "method": "OtherPlayerAvoidMove",
+   "kind": "set",
+   "name": "charaDir",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OtherPlayerAvoidMove",
+   "kind": "set",
+   "name": "charaDir",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always",
+   "by_level": 2
+  },
+  {
+   "method": "OtherPlayerAvoidMove",
+   "kind": "set",
+   "name": "charaDir",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OtherPlayerAvoidMove",
+   "kind": "set",
+   "name": "charaDir",
+   "formula": "3",
+   "simplified": "3",
+   "when": "always",
+   "by_level": 3
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CalcStep.HitCheck",
+    "PlayerAttackBase.HitReactionAssign",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.AvoidProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "CalcStep.HitCheck",
+    "PlayerAttackBase.HitReactionAssign",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.AvoidProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "int(status.Lv)",
+   "simplified": "int(status.Lv)",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) hi status.Lv AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 gt maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) hi status.Lv AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 gt maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability gt 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) hi status.Lv AND 1 gt maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "BonusType.bPowerResistBreaker",
+    "CalcStep.CorrectHitCheck",
+    "CalcStep.HitCheck",
+    "IMobStatusCalculator.CalcDef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerStatusBase.GetBonusValueWithBuf",
+    "SkillCalcTemplate.CheckStepResult",
+    "status.Lv",
+    "target.AvoidProbability",
+    "target.Def"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "CalcStep.HitCheck",
+    "PlayerAttackBase.HitReactionAssign",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.AvoidProbability",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "int((0.75 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))))",
+   "simplified": "int(0.75 × IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.75 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.75 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) ls status.Lv AND 1 gt maxAttackCount AND 2 gt maxAttackCount AND 3 le maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.75 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.75 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) ls status.Lv AND 1 gt maxAttackCount AND 2 gt maxAttackCount AND 3 le maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability gt 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) hi status.Lv AND (((0.75 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.75 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) ls status.Lv AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 le maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "BonusType.bPowerResistBreaker",
+    "CalcStep.CorrectHitCheck",
+    "CalcStep.HitCheck",
+    "IMobStatusCalculator.CalcDef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerStatusBase.GetBonusValueWithBuf",
+    "SkillCalcTemplate.CheckStepResult",
+    "status.Lv",
+    "target.AvoidProbability",
+    "target.Def"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "int((0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))))",
+   "simplified": "int(0.5 × IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) ls status.Lv AND 1 gt maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) ls status.Lv AND 1 gt maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability gt 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) hi status.Lv AND (((0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) ls status.Lv AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "BonusType.bPowerResistBreaker",
+    "CalcStep.CorrectHitCheck",
+    "CalcStep.HitCheck",
+    "IMobStatusCalculator.CalcDef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerStatusBase.GetBonusValueWithBuf",
+    "SkillCalcTemplate.CheckStepResult",
+    "status.Lv",
+    "target.AvoidProbability",
+    "target.Def"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "int((0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))))",
+   "simplified": "int(0.25 × IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) ls status.Lv AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 gt maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) ls status.Lv AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 gt maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability gt 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) AND (((0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.25 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) ls status.Lv AND (((0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))) - ((1 - (PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker) / 100)) * target.Def)) - (0.5 * IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)))) hi status.Lv AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "BonusType.bPowerResistBreaker",
+    "CalcStep.CorrectHitCheck",
+    "CalcStep.HitCheck",
+    "IMobStatusCalculator.CalcDef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerStatusBase.GetBonusValueWithBuf",
+    "SkillCalcTemplate.CheckStepResult",
+    "status.Lv",
+    "target.AvoidProbability",
+    "target.Def"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(88)",
+   "simplified": "RemoveSelfBuffer(88)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "PenetratorBuf..ctor",
+   "formula": ".ctor(Lv, (WeaponType eq 12 ? 1 : 0), targetMobAction)",
+   "simplified": ".ctor(Lv, (WeaponType eq 12 ? 1 : 0), targetMobAction)",
+   "when": "IAvoidAction.get_IsAvoid(isinst(actorPlayerAction.battleManager, typeof(IAvoidAction))) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND WeaponType eq 13 AND chargeEnd eq 0 AND isCombo eq 0 AND param eq 100 AND param le 199 OR !IAvoidAction.get_IsAvoid(isinst(actorPlayerAction.battleManager, typeof(IAvoidAction))) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND WeaponType eq 13 AND chargeEnd eq 0 AND isCombo eq 0 AND param eq 100 AND param le 199 OR IAvoidAction.get_IsAvoid(isinst(actorPlayerAction.battleManager, typeof(IAvoidAction))) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND WeaponType ne 13 AND chargeEnd eq 0 AND isCombo eq 0 AND param eq 100 AND param le 199",
+   "vars": [
+    "IAvoidAction.get_IsAvoid",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new PenetratorBuf, Id)",
+   "simplified": "AddSelfBuffer(new, PenetratorBuf, Id)",
+   "when": "IAvoidAction.get_IsAvoid(isinst(actorPlayerAction.battleManager, typeof(IAvoidAction))) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND WeaponType eq 13 AND chargeEnd eq 0 AND isCombo eq 0 AND param eq 100 AND param le 199 OR !IAvoidAction.get_IsAvoid(isinst(actorPlayerAction.battleManager, typeof(IAvoidAction))) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND WeaponType eq 13 AND chargeEnd eq 0 AND isCombo eq 0 AND param eq 100 AND param le 199 OR IAvoidAction.get_IsAvoid(isinst(actorPlayerAction.battleManager, typeof(IAvoidAction))) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND WeaponType ne 13 AND chargeEnd eq 0 AND isCombo eq 0 AND param eq 100 AND param le 199",
+   "vars": [
+    "IAvoidAction.get_IsAvoid",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "StopCharge",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(88)",
+   "simplified": "RemoveSelfBuffer(88)",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count ne 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count eq 0 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0 OR !CountBufferBase.get_Peak() AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 85) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 88).Count gt 4 AND UnityEngine.Object.op_Inequality(actorPlayerAction) AND isCombo eq 0",
+   "vars": [
+    "CountBufferBase.get_Peak",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 le maxAttackCount AND 3 gt maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND 1 le maxAttackCount AND 2 gt maxAttackCount AND 3 le maxAttackCount AND isFireFailure eq 0 AND target.AvoidProbability le 99",
+   "vars": [
+    "CalcStep.HitCheck",
+    "PlayerAttackBase.HitReactionAssign",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.AvoidProbability"
+   ]
+  },
+  {
+   "method": "<ActionPreparation>b__44_0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(88)",
+   "simplified": "RemoveSelfBuffer(88)",
+   "when": "(cancel & 1) ne 0"
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "PenetratorBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool isBow, MobActionManagerBase mobActionManager",
+     "fields": {
+      "flag": [
+       {
+        "formula": "0x2202",
+        "when": "always",
+        "by_level": 8706
+       }
+      ],
+      "isBow": [
+       {
+        "formula": "(isBow & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "targetMobAction": [
+       {
+        "formula": "mobActionManager",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "5"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "!CountBufferBase.get_Peak() AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND activeCharge ne 0 OR !CountBufferBase.get_Peak() AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeCharge ne 0"
+     },
+     {
+      "method": "UpdateIntervalTime",
+      "formula": "(MobActionManagerBase.get_AbnormalStateManager(targetMobAction).IsActionLock eq 0 ? 1.5 : 0.5)",
+      "when": "!MobActionManagerBase.get_IsDeadOrLocalDead(targetMobAction)"
+     },
+     {
+      "method": "UpdateIntervalTime",
+      "formula": "1.5",
+      "when": "MobActionManagerBase.get_IsDeadOrLocalDead(targetMobAction)"
+     }
+    ],
+    "activeCharge": [
+     {
+      "method": "ActiveCharge",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "InactiveCharge",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "Avoid",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "ActiveCharge",
+    "Avoid",
+    "InactiveCharge",
+    "UpdateIntervalTime",
+    "get_BufEffectTakeId"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "PenetratorBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "5"
+    }
+   },
+   "attached_via": "caller2:PenetratorBuf$$.ctor<-PenetratorAction$$ActionSkillEvent",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PenetratorAction.AvoidMove",
+  "PenetratorAction.OnInitialize"
+ ],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "BonusType.bPowerResistBreaker",
+  "CalcStep.CorrectHitCheck",
+  "CalcStep.HitCheck",
+  "CountBufferBase.get_Peak",
+  "IAvoidAction.get_IsAvoid",
+  "IMobStatusCalculator.CalcDef",
+  "IMobStatusCalculator.get_AvoidProbability",
+  "IMobStatusCalculator.get_Def",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "IPlayerStatusCalculator.get_Lv",
+  "InputManager.get_LeftInputKey",
+  "MathUtil.CheckPercent",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_IsDeadOrLocalDead",
+  "MobActionManagerBase.get_MobBattleStatus",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.HitReactionAssign",
+  "PlayerAttackBase.IsBlank",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.GetBonusValueWithBuf",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "Singleton.get_Instance",
+  "SkillActionBase.op_Inequality",
+  "SkillBufferId.Count",
+  "SkillCalcTemplate.CheckStepResult",
+  "SkillComboState.GetThirdEyeValue",
+  "System.Collections.Generic.Dictionary.ContainsKey",
+  "System.Collections.Generic.Dictionary.get_Item",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuf.buf",
+  "TryGetBuf.out2",
+  "TryGetBuff.buff",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_forward",
+  "UnityEngine.Transform.get_position",
+  "status.Lv",
+  "target.AvoidProbability",
+  "target.Def",
+  "target.ExpDefSkill"
+ ],
+ "residual": [
+  {
+   "where": "ActionPreparation:isCombo",
+   "tokens": [
+    "?mvn"
+   ]
+  },
+  {
+   "where": "AvoidMove:oldChargeNum",
+   "tokens": [
+    "+0x20]"
+   ]
+  },
+  {
+   "where": "ActionStartOthers:isCombo",
+   "tokens": [
+    "?mvn"
+   ]
+  }
+ ]
+}

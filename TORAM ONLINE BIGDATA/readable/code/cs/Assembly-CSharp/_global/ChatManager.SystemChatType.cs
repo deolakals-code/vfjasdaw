@@ -1,0 +1,74 @@
+// Assembly: Assembly-CSharp.dll
+// Namespace: 
+public enum ChatManager.SystemChatType // TypeDefIndex: 1752
+{
+	// Fields
+	public int value__; // 0x0
+	public const ChatManager.SystemChatType NotMpCost = 0;
+	public const ChatManager.SystemChatType LevelUp = 1;
+	public const ChatManager.SystemChatType NotFindTarget = 2;
+	public const ChatManager.SystemChatType ChatBase = 3;
+	public const ChatManager.SystemChatType ChatTalkError = 4;
+	public const ChatManager.SystemChatType QuestReceive = 5;
+	public const ChatManager.SystemChatType QuestClear = 6;
+	public const ChatManager.SystemChatType QuestDestroy = 7;
+	public const ChatManager.SystemChatType MissionReceive = 8;
+	public const ChatManager.SystemChatType MissionClear = 9;
+	public const ChatManager.SystemChatType MissionDestroy = 10;
+	public const ChatManager.SystemChatType ClearTrophy = 11;
+	public const ChatManager.SystemChatType ClearDailyTrophy = 12;
+	public const ChatManager.SystemChatType ItemUse = 13;
+	public const ChatManager.SystemChatType ItemDelay = 14;
+	public const ChatManager.SystemChatType ChangeMap = 15;
+	public const ChatManager.SystemChatType FilterChatError = 16;
+	public const ChatManager.SystemChatType GemUsedUser = 17;
+	public const ChatManager.SystemChatType DungeonEventEnterMessage = 18;
+	public const ChatManager.SystemChatType DungeonEventEnterMessage2 = 19;
+	public const ChatManager.SystemChatType DungeonBeat = 20;
+	public const ChatManager.SystemChatType DungeonAreaBeat = 21;
+	public const ChatManager.SystemChatType DungeonMonthOver = 22;
+	public const ChatManager.SystemChatType ClearWeekyTrophy = 23;
+	public const ChatManager.SystemChatType ChatNGWordError = 24;
+	public const ChatManager.SystemChatType ChallengeNotUseItem = 25;
+	public const ChatManager.SystemChatType HouseItemErrField = 26;
+	public const ChatManager.SystemChatType LeaveOtherHouse = 27;
+	public const ChatManager.SystemChatType MobExpWarning = 28;
+	public const ChatManager.SystemChatType LotteryRecruitApplicant = 29;
+	public const ChatManager.SystemChatType LotteryRecruitApplicantId = 30;
+	public const ChatManager.SystemChatType LotteryRecruitApplicantErr = 31;
+	public const ChatManager.SystemChatType LotteryRecruitCancel = 32;
+	public const ChatManager.SystemChatType LotteryRecruitEnd = 33;
+	public const ChatManager.SystemChatType ExpPotionLevelup = 34;
+	public const ChatManager.SystemChatType ChatTalkCountError = 35;
+	public const ChatManager.SystemChatType GuildStaffGotoSellShop = 36;
+	public const ChatManager.SystemChatType GuildStaffGotoStorageShop = 37;
+	public const ChatManager.SystemChatType GuildStaffGotoMaterialShop = 38;
+	public const ChatManager.SystemChatType HouseLotteryRecruitApplicant = 39;
+	public const ChatManager.SystemChatType HouseLotteryRecruitCancel = 40;
+	public const ChatManager.SystemChatType HouseLotteryRecruitEnd = 41;
+	public const ChatManager.SystemChatType NewWaveNotUseItem = 42;
+	public const ChatManager.SystemChatType TreasureHuntNotUseItem = 43;
+	public const ChatManager.SystemChatType ScoreAttackNotUseItem = 44;
+	public const ChatManager.SystemChatType AbnormalItemDisabled = 45;
+	public const ChatManager.SystemChatType GuildRaidOverKill = 46;
+	public const ChatManager.SystemChatType PCPurchaseSuccess = 47;
+	public const ChatManager.SystemChatType PCPurchaseFailed = 48;
+	public const ChatManager.SystemChatType AutoItemDelete = 49;
+	public const ChatManager.SystemChatType CollectsBagFull = 50;
+	public const ChatManager.SystemChatType ConsumesBagFull = 51;
+	public const ChatManager.SystemChatType EquipsBagFull = 52;
+	public const ChatManager.SystemChatType MobaOtherPlayerSubjugated = 53;
+	public const ChatManager.SystemChatType MobaAreaDamage = 54;
+	public const ChatManager.SystemChatType MobaPlayerSubjugated = 55;
+	public const ChatManager.SystemChatType MobaKillLog = 56;
+	public const ChatManager.SystemChatType DebuffBonusfoodPoisoning = 57;
+	public const ChatManager.SystemChatType GuildLinkChatOn = 58;
+	public const ChatManager.SystemChatType GuildLinkChatStart = 59;
+	public const ChatManager.SystemChatType GuildLinkChatOff = 60;
+	public const ChatManager.SystemChatType GuildAllianceStart = 61;
+	public const ChatManager.SystemChatType GuildAllianceInvite = 62;
+	public const ChatManager.SystemChatType GuildAllianceEnd = 63;
+	public const ChatManager.SystemChatType MacroDice = 64;
+	public const ChatManager.SystemChatType MacroOverLength = 65;
+	public const ChatManager.SystemChatType ReleaseAbandonedMonster = 66;
+}

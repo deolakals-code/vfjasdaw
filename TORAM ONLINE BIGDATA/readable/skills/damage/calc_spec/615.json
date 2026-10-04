@@ -1,0 +1,688 @@
+{
+ "version": 1,
+ "uid": 615,
+ "name_th": "มากาดาจิ",
+ "name_en": "CutOffTheDisaster",
+ "tree": "MononofuSkill",
+ "category": "Special",
+ "max_level": 30,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment",
+  "changes attack pattern (motion / combo chain; heuristic)",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "CutOffTheDisasterAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 615,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetSubWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetSubWeaponType.item(actarAction))",
+   "when": "mainWeapon == Bow",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 30) + 200)",
+   "simplified": "30 × Lv + 200",
+   "when": "always",
+   "by_level": [
+    230,
+    260,
+    290,
+    320,
+    350,
+    380,
+    410,
+    440,
+    470,
+    500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "heavenlyStarFixAddDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "heavenlyStarSkillRate",
+   "formula": "(int(((CountBufferBase.GetParam(20) * ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1) * 25) + 150)) * 0.5)) + 1300)",
+   "simplified": "int(0.5 × CountBufferBase.GetParam(20) × (25 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1) + 150)) + 1300",
+   "when": "always",
+   "vars": [
+    "CountBufferBase.GetParam",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.HeavenlyStar",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 2)",
+   "simplified": "SkillParam | 2",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "mainWeapon != Bow",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "max((mpRecovery - 100), 0)",
+   "simplified": "max(mpRecovery - 100, 0)",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.IsNotCombo) AND (SkillParam & 16) eq 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.IsNotCombo) AND (SkillParam & 16) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "mainDamageData",
+   "formula": "PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 1)",
+   "simplified": "PlayerAttackBase.templateToDamageData(this, new, SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), 1)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.templateToDamageData"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "((SkillIndividualFlag | 1) | 2)",
+   "simplified": "SkillIndividualFlag | 1 | 2",
+   "when": "PlayerAttackBase.checkCriticalPercent(this, status.Critical, mobAction)",
+   "vars": [
+    "PlayerAttackBase.checkCriticalPercent",
+    "status.Critical"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "heavenlyStarDamageData",
+   "formula": "PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 1)",
+   "simplified": "PlayerAttackBase.templateToDamageData(this, new, SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), 1)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.templateToDamageData"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[BufferConstantDamage]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "op": "SetConstant",
+   "step": "BufferConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "heavenlyStarFixAddDamage",
+   "simplified": "heavenlyStarFixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(heavenlyStarSkillRate / 100)",
+   "simplified": "heavenlyStarSkillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamage"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "(PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamageRate"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "CutOffTheDisasterAction.<>c__DisplayClass30_0..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.IsNotCombo) AND (SkillParam & 16) eq 0 OR (SkillParam & 16) eq 0 AND PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.IsNotCombo) OR !PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.IsNotCombo) AND (SkillParam & 16) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(615, Lv, Id)",
+   "simplified": "AddSelfBuffer(615, Lv, Id)",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.IsNotCombo) AND (SkillParam & 16) eq 0 OR (SkillParam & 16) eq 0 AND PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.IsNotCombo)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "CutOffTheDisasterAction.<>c__DisplayClass31_0..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) OR UnityEngine.Object.op_Inequality(actarAction) AND param ne 100 OR IsOtherPlayer ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InvokeDamageCut",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(615)",
+   "simplified": "RemoveSelfBuffer(615)",
+   "when": "always"
+  },
+  {
+   "method": "DamageCut",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(0)",
+   "simplified": "SetAbnormalType(0)",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) lt 20 AND SkillActionBase.get_AttackType() eq 2 AND SkillActionBase.op_Inequality(skillAction) OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) lt 20 AND SkillActionBase.get_AttackType() ne 2 AND SkillActionBase.op_Inequality(skillAction) OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ge 20 AND PlayerStatusBase.get_GameStatus().localHp le damageData._damage AND SkillActionBase.get_AttackType() eq 2 AND SkillActionBase.op_Inequality(skillAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetHpPercent",
+    "PlayerStatusBase.get_GameStatus",
+    "SkillActionBase.get_AttackType",
+    "SkillActionBase.op_Inequality"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(615)",
+   "simplified": "RemoveSelfBuffer(615)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass31_1::<ActionSkillEvent>b__1",
+   "kind": "call",
+   "name": "HeavenlyStarBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1))",
+   "when": "(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1) & 255) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue!PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 620, (this + 16))",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.HeavenlyStar",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass31_1::<ActionSkillEvent>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new HeavenlyStarBuf)",
+   "simplified": "AddSelfBuffer(new, HeavenlyStarBuf)",
+   "when": "(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HeavenlyStar, 1) & 255) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue!PlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 620, (this + 16))",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.HeavenlyStar",
+    "SkillManager.GetSkillLv"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "HeavenlyStarBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "isExpDefFluctuate": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "10",
+        "when": "always",
+        "by_level": 10
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "4"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Reset",
+      "formula": "30",
+      "when": "always"
+     },
+     {
+      "method": "IllusionarySceneReset",
+      "formula": "(EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? (((count + (count << 2)) << 1) + 10) : ((count + (count << 2)) << 1))",
+      "when": "LeftTime mi (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? (((count + (count << 2)) << 1) + 10) : ((count + (count << 2)) << 1)) OR LeftTime mi (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? (((count + (count << 2)) << 1) + 10) : ((count + (count << 2)) << 1)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 627) ne 0"
+     }
+    ],
+    "Count": [
+     {
+      "method": "Reset",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "IllusionarySceneReset",
+      "formula": "max((((illusionarySceneParry & 1) + count) + ([TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 627)+0x20] ge 50 ? 0xfffffffe : 0xfffffffd)), 0)",
+      "when": "LeftTime mi (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? (((count + (count << 2)) << 1) + 10) : ((count + (count << 2)) << 1)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 627) ne 0 OR LeftTime pl (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? (((count + (count << 2)) << 1) + 10) : ((count + (count << 2)) << 1)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 627) ne 0"
+     },
+     {
+      "method": "IllusionarySceneReset",
+      "formula": "max((((illusionarySceneParry & 1) + count) + 0xfffffffd), 0)",
+      "when": "LeftTime mi (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? (((count + (count << 2)) << 1) + 10) : ((count + (count << 2)) << 1)) OR LeftTime pl (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? (((count + (count << 2)) << 1) + 10) : ((count + (count << 2)) << 1))"
+     }
+    ],
+    "prevSkillId": [
+     {
+      "method": "Reset",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "IllusionarySceneReset",
+      "formula": "0",
+      "when": "LeftTime mi (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? (((count + (count << 2)) << 1) + 10) : ((count + (count << 2)) << 1)) OR LeftTime pl (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? (((count + (count << 2)) << 1) + 10) : ((count + (count << 2)) << 1)) OR LeftTime mi (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 ? (((count + (count << 2)) << 1) + 10) : ((count + (count << 2)) << 1)) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 627) ne 0"
+     },
+     {
+      "method": "SetAttackSkillId",
+      "formula": "skillId",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckExpDefFluctuate",
+    "IllusionarySceneReset",
+    "Reset",
+    "SetAttackSkillId"
+   ],
+   "kind": "timed"
+  },
+  {
+   "class": "CutOffTheDisasterBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "IsDamageCancel": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "HeavenlyStarBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "4"
+    }
+   },
+   "attached_via": "caller2:HeavenlyStarBuf$$.ctor<-CutOffTheDisasterAction.<>c__DisplayClass31_1$$<ActionSkillEvent>b__1",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "CutOffTheDisasterAction.ActionSkillEvent",
+  "MercenaryActionManager.Damaged",
+  "PlayerActionManager.Damaged"
+ ],
+ "variables": [
+  "CountBufferBase.GetParam",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "GetSubWeaponType.item",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Critical",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerAttackBase.checkCriticalPercent",
+  "PlayerAttackBase.templateToDamageData",
+  "PlayerStatusBase.GetHpPercent",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_GameStatus",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.get_AttackType",
+  "SkillActionBase.op_Inequality",
+  "SkillBufferId.Count",
+  "SkillId.HeavenlyStar",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuf.buf",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "status.Critical"
+ ],
+ "residual": []
+}

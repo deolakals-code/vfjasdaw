@@ -1,0 +1,184 @@
+{
+ "version": 1,
+ "uid": 117,
+ "name_th": "เมจิคไนฟ์",
+ "name_en": "MagicKnife",
+ "tree": "MagicSkill",
+ "category": "Object",
+ "max_level": 30,
+ "roles": [
+  "attack (deals damage)",
+  "placed object / trap / summon"
+ ],
+ "class": "MagicKnifeAction",
+ "proration": {
+  "slot": "Normal",
+  "mode": "custom_check",
+  "attack_type": "SkillNormal",
+  "action_id": 117,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "System.Math.Min(((Lv * 10) + 60), 150)",
+   "simplified": "System.Math.Min(10 × Lv + 60, 150)",
+   "when": "always",
+   "vars": [
+    "System.Math.Min"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "effectAngle",
+   "formula": "45",
+   "simplified": "45",
+   "when": "always",
+   "by_level": 45
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackTake",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "attackTake",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)))",
+   "simplified": "int(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)))",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_Size"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "effectAngle",
+   "formula": "(effectAngle + 90)",
+   "simplified": "effectAngle + 90",
+   "when": "param eq 101 AND param ne 102"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "effectAngle",
+   "formula": "45",
+   "simplified": "45",
+   "when": "Lv eq 10 AND param eq 102",
+   "by_level": 45
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "Lv eq 10"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "Lv ne 10"
+  },
+  {
+   "method": "ActionSkillReceiveEffect",
+   "kind": "set",
+   "name": "effectAngle",
+   "formula": "(effectAngle + 90)",
+   "simplified": "effectAngle + 90",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Size",
+  "System.Math.Min",
+  "UnityEngine.GameObject.GetComponent"
+ ],
+ "residual": []
+}

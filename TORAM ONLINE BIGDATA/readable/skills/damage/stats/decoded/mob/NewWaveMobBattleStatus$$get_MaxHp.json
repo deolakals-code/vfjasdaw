@@ -1,0 +1,1 @@
+{"name": "NewWaveMobBattleStatus$$get_MaxHp", "rva": "0x1f3e7ac", "addr": "0x1f3e7ac", "params": [], "static": false, "returns": "int", "truncated": false, "npaths": 1, "cases": [{"value": "int((((((Lv / 100) + 1) * (((Lv * Lv) / 2.4) + (Lv + 100))) * statusMaster.maxHp) * 0.01))", "common": [], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

@@ -1,0 +1,52 @@
+{
+ "version": 1,
+ "uid": 165,
+ "name_th": "ฟิซิคัลการ์ด",
+ "name_en": "PhysicalGuard",
+ "tree": "GuardSkill",
+ "category": "Mastery",
+ "max_level": 180,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "PhysicalGuard",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "PhysicalGuard",
+  "bonuses": {
+   "Trigger": {
+    "id": 0,
+    "expr": "((Lv << 2) + 10)",
+    "by_level": [
+     14,
+     18,
+     22,
+     26,
+     30,
+     34,
+     38,
+     42,
+     46,
+     50
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

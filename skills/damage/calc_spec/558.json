@@ -1,0 +1,995 @@
+{
+ "version": 1,
+ "uid": 558,
+ "name_th": "[N]มัลติเพิลฮันท์[W]วูปสไนเปอร์[H]สไนเปอร์วอลเลย์[G]วันแฮนด์ช็อต[S]ชาร์ปชูตเตอร์[N]",
+ "name_en": "MultipleHunt",
+ "tree": "HunterSkill",
+ "category": "Attack",
+ "max_level": 205,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "MultipleHuntAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 558,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "mode",
+   "simplified": "mode",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "mode",
+   "formula": "skillIndividualFlag",
+   "simplified": "skillIndividualFlag",
+   "when": "always"
+  },
+  {
+   "method": "InitializeWolfAssault",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeWolfAssault",
+   "kind": "set",
+   "name": "mode",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeWolfAssault",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeWolfAssault",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(SkillMasteryBase.GetMasteryParam(MasteryId.SkillRate) + (status.Agi + ((Lv * 50) + 500)))",
+   "simplified": "SkillMasteryBase.GetMasteryParam(MasteryId.SkillRate) + status.Agi + 50 × Lv + 500",
+   "when": "always",
+   "vars": [
+    "MasteryId.SkillRate",
+    "SkillMasteryBase.GetMasteryParam",
+    "status.Agi"
+   ]
+  },
+  {
+   "method": "InitializeWolfAssault",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "InitializeWolfAssault",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(status.Agi + ((Lv * 50) + 500))",
+   "simplified": "status.Agi + 50 × Lv + 500",
+   "when": "always",
+   "vars": [
+    "status.Agi"
+   ]
+  },
+  {
+   "method": "InitializeHighRainSnipe",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always",
+   "by_level": 2
+  },
+  {
+   "method": "InitializeHighRainSnipe",
+   "kind": "set",
+   "name": "mode",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeHighRainSnipe",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(Lv * 75)",
+   "simplified": "75 × Lv",
+   "when": "always",
+   "by_level": [
+    75,
+    150,
+    225,
+    300,
+    375,
+    450,
+    525,
+    600,
+    675,
+    750
+   ]
+  },
+  {
+   "method": "InitializeHighRainSnipe",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeHighRainSnipe",
+   "kind": "set",
+   "name": "secondSkillRate",
+   "formula": "((Lv * 25) + 500)",
+   "simplified": "25 × Lv + 500",
+   "when": "always",
+   "by_level": [
+    525,
+    550,
+    575,
+    600,
+    625,
+    650,
+    675,
+    700,
+    725,
+    750
+   ]
+  },
+  {
+   "method": "InitializeHighRainSnipe",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "InitializeHighRainSnipe",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeHighRainSnipe",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "(((baseDEX // 10) + (Lv + (Lv << 2))) + (status.Int // 5))",
+   "simplified": "baseDEX // 10 + 5 × Lv + status.Int // 5",
+   "when": "always",
+   "vars": [
+    "status.Int"
+   ]
+  },
+  {
+   "method": "InitializeChasseGarde",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeChasseGarde",
+   "kind": "set",
+   "name": "mode",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always",
+   "by_level": 2
+  },
+  {
+   "method": "InitializeChasseGarde",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeChasseGarde",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(SkillMasteryBase.GetMasteryParam(MasteryId.SkillRate) + (status.Vit + ((Lv * 25) + 750)))",
+   "simplified": "SkillMasteryBase.GetMasteryParam(MasteryId.SkillRate) + status.Vit + 25 × Lv + 750",
+   "when": "always",
+   "vars": [
+    "MasteryId.SkillRate",
+    "SkillMasteryBase.GetMasteryParam",
+    "status.Vit"
+   ]
+  },
+  {
+   "method": "InitializeChasseGarde",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "InitializeChasseGarde",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(status.Vit + ((Lv * 25) + 750))",
+   "simplified": "status.Vit + 25 × Lv + 750",
+   "when": "always",
+   "vars": [
+    "status.Vit"
+   ]
+  },
+  {
+   "method": "InitializeSharpSnipe",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeSharpSnipe",
+   "kind": "set",
+   "name": "mode",
+   "formula": "3",
+   "simplified": "3",
+   "when": "always",
+   "by_level": 3
+  },
+  {
+   "method": "InitializeSharpSnipe",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(16)",
+   "simplified": "MathUtil.DisplayMeterToDistance(16)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeSharpSnipe",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(SkillMasteryBase.GetMasteryParam(MasteryId.SkillRate) + (((Lv * 30) + 700) + ((baseDEX lt 0 ? (baseDEX + 1) : baseDEX) >> 1)))",
+   "simplified": "SkillMasteryBase.GetMasteryParam(MasteryId.SkillRate) + 30 × Lv + baseDEX ÷ 2 + 700",
+   "when": "always",
+   "vars": [
+    "MasteryId.SkillRate",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  },
+  {
+   "method": "InitializeSharpSnipe",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "InitializeSharpSnipe",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "(10 + (BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) << 1))",
+   "simplified": "2 × BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) + 10",
+   "when": "always",
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "PlayerStatusBase.get_BonusManager"
+   ]
+  },
+  {
+   "method": "InitializeSharpSnipe",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "1.5",
+   "simplified": "1.5",
+   "when": "always",
+   "by_level": 1.5
+  },
+  {
+   "method": "InitializeSharpSnipe",
+   "kind": "set",
+   "name": "critical",
+   "formula": "(SkillMasteryBase.GetMasteryParam(MasteryId.Crt) + critical)",
+   "simplified": "SkillMasteryBase.GetMasteryParam(MasteryId.Crt) + critical",
+   "when": "PlayerAttackBase.ExistWeaponType(playerAction, ItemType.Arrow)",
+   "vars": [
+    "ItemType.Arrow",
+    "MasteryId.Crt",
+    "PlayerAttackBase.ExistWeaponType",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  },
+  {
+   "method": "InitializeSharpSnipe",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 30) + 700) + ((baseDEX lt 0 ? (baseDEX + 1) : baseDEX) >> 1))",
+   "simplified": "30 × Lv + baseDEX ÷ 2 + 700",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND mode eq 3",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "target",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "calcDamageWolfAssault",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcDamageHighRainSnipe",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcDamageChasseGarde",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcDamageSharpSnipe",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "hitCount",
+   "formula": "(hitCount + 1)",
+   "simplified": "hitCount + 1",
+   "when": "always"
+  },
+  {
+   "method": "GetLocalizeKey",
+   "kind": "set",
+   "name": "mode",
+   "formula": "mode",
+   "simplified": "mode",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcDamageWolfAssault",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcDamageWolfAssault",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcDamageHighRainSnipe",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "hitCount ne 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcDamageHighRainSnipe",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(secondSkillRate / 100)",
+   "simplified": "secondSkillRate / 100",
+   "when": "hitCount ne 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcDamageHighRainSnipe",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcDamageHighRainSnipe",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "hitCount eq 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, abnormalPercent, playerAction) AND hitCount eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, abnormalPercent, playerAction) AND hitCount eq 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalType.Stop",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcDamageHighRainSnipe",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "hitCount ne 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  },
+  {
+   "method": "calcDamageChasseGarde",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcDamageChasseGarde",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcDamageSharpSnipe",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcDamageSharpSnipe",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(558, Lv)",
+   "simplified": "AddSelfBuffer(558, Lv)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND mode eq 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND mode eq 2 AND mode ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcDamageHighRainSnipe",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(12, abnormalPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(12, abnormalPercent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, abnormalPercent, playerAction) AND hitCount eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, abnormalPercent, playerAction) AND hitCount eq 0",
+   "vars": [
+    "AbnormalType.Stop",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcDamageHighRainSnipe",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(12)",
+   "simplified": "SetAbnormalType(12)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, abnormalPercent, playerAction) AND hitCount eq 0",
+   "vars": [
+    "AbnormalType.Stop",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcDamageSharpSnipe",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(558, Lv)",
+   "simplified": "AddSelfBuffer(558, Lv)",
+   "when": "always"
+  },
+  {
+   "method": "calcDamageSharpSnipe",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(10, abnormalPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(10, abnormalPercent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcDamageSharpSnipe",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(10)",
+   "simplified": "SetAbnormalType(10)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, abnormalPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Breaking",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcDamageSharpSnipe",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(558)",
+   "simplified": "RemoveSelfBuffer(558)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "MultipleHuntBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int mode",
+     "fields": {
+      "flag": [
+       {
+        "formula": "1024",
+        "when": "mode eq 3 OR mode eq 0 AND mode ne 2 AND mode ne 3 OR mode ne 0 AND mode ne 2 AND mode ne 3",
+        "by_level": 1024
+       },
+       {
+        "formula": "1536",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND Lv hi 9 AND mode eq 2 AND mode ne 3 OR Lv hi 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3 OR !UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND ((11 - Lv) - 1) le 1 AND Lv ls 9 AND mode eq 2 AND mode ne 3",
+        "by_level": 1536
+       }
+      ],
+      "guardEffectId": [
+       {
+        "formula": "0x9ec0a3",
+        "when": "mode eq 3 OR mode eq 0 AND mode ne 2 AND mode ne 3 OR mode ne 0 AND mode ne 2 AND mode ne 3",
+        "by_level": 10404003
+       }
+      ],
+      "healCheckList": [
+       {
+        "formula": "new System.Collections.Generic.Dictionary<PlayerAttackBase, int>",
+        "when": "mode eq 3 OR mode eq 0 AND mode ne 2 AND mode ne 3 OR mode ne 0 AND mode ne 2 AND mode ne 3",
+        "by_level": null
+       }
+      ],
+      "skillMode": [
+       {
+        "formula": "mode",
+        "when": "mode eq 3 OR mode eq 0 AND mode ne 2 AND mode ne 3 OR mode ne 0 AND mode ne 2 AND mode ne 3",
+        "by_level": null
+       }
+      ],
+      "shortRangeRate": [
+       {
+        "formula": "10",
+        "when": "mode eq 0 AND mode ne 2 AND mode ne 3",
+        "by_level": 10
+       }
+      ],
+      "bufferType": [
+       {
+        "formula": "13",
+        "when": "mode eq 3 OR mode eq 0 AND mode ne 2 AND mode ne 3 OR !UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND Lv hi 9 AND mode eq 2 AND mode ne 3",
+        "by_level": 13
+       }
+      ],
+      "actionManager": [
+       {
+        "formula": "PlayerDataManager.get_PlayerActionManager(PlayerDataManager.GetPlayerDataManager())",
+        "when": "Lv hi 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3 OR ((11 - Lv) - 1) le 1 AND Lv ls 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3 OR (((11 - Lv) - 1) - 1) le 1 AND ((11 - Lv) - 1) gt 1 AND Lv ls 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3",
+        "by_level": null
+       }
+      ],
+      "takeController": [
+       {
+        "formula": "UnityEngine.Component.GetComponent<TakeController>(PlayerDataManager.get_PlayerActionManager(PlayerDataManager.GetPlayerDataManager()))",
+        "when": "Lv hi 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3 OR ((11 - Lv) - 1) le 1 AND Lv ls 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3 OR (((11 - Lv) - 1) - 1) le 1 AND ((11 - Lv) - 1) gt 1 AND Lv ls 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3",
+        "by_level": null
+       }
+      ],
+      "isSkillEnd": [
+       {
+        "formula": "0",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND Lv hi 9 AND mode eq 2 AND mode ne 3 OR Lv hi 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3 OR !UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND ((11 - Lv) - 1) le 1 AND Lv ls 9 AND mode eq 2 AND mode ne 3",
+        "by_level": null
+       }
+      ],
+      "damageCut": [
+       {
+        "formula": "72",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND ((11 - Lv) - 1) le 1 AND Lv ls 9 AND mode eq 2 AND mode ne 3 OR ((11 - Lv) - 1) le 1 AND Lv ls 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3",
+        "by_level": 72
+       },
+       {
+        "formula": "57",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (((11 - Lv) - 1) - 1) le 1 AND ((11 - Lv) - 1) gt 1 AND Lv ls 9 AND mode eq 2 AND mode ne 3 OR (((11 - Lv) - 1) - 1) le 1 AND ((11 - Lv) - 1) gt 1 AND Lv ls 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3",
+        "by_level": 57
+       },
+       {
+        "formula": "45",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND ((((11 - Lv) - 1) - 1) - 1) le 1 AND (((11 - Lv) - 1) - 1) gt 1 AND ((11 - Lv) - 1) gt 1 AND Lv ls 9 AND mode eq 2 AND mode ne 3 OR ((((11 - Lv) - 1) - 1) - 1) le 1 AND (((11 - Lv) - 1) - 1) gt 1 AND ((11 - Lv) - 1) gt 1 AND Lv ls 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3",
+        "by_level": 45
+       },
+       {
+        "formula": "90",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND Lv hi 9 AND mode eq 2 AND mode ne 3 OR Lv hi 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3 OR !UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND ((((11 - Lv) - 1) - 1) - 1) gt 1 AND (((11 - Lv) - 1) - 1) gt 1 AND ((11 - Lv) - 1) gt 1 AND Lv ls 9 AND mode eq 2 AND mode ne 3",
+        "by_level": 90
+       }
+      ],
+      "hpHealRate": [
+       {
+        "formula": "Lv",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND Lv hi 9 AND mode eq 2 AND mode ne 3 OR Lv hi 9 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND mode eq 2 AND mode ne 3 OR !UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND ((11 - Lv) - 1) le 1 AND Lv ls 9 AND mode eq 2 AND mode ne 3",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "critical": [
+       {
+        "formula": "(35 - lv)",
+        "when": "mode eq 3",
+        "by_level": [
+         34,
+         33,
+         32,
+         31,
+         30,
+         29,
+         28,
+         27,
+         26,
+         25
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "NextAttackBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "ShortRangeRate",
+     "bonus_id": 66,
+     "formula": "shortRangeRate",
+     "simplified": "shortRangeRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MagicDmgCut",
+     "bonus_id": 22,
+     "formula": "damageResist",
+     "simplified": "damageResist",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "PowerDmgCut",
+     "bonus_id": 21,
+     "formula": "damageResist",
+     "simplified": "damageResist",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "-critical",
+     "simplified": "-critical",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateUnique",
+     "bonus_id": 5,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isSkillEnd ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateUnique",
+     "bonus_id": 5,
+     "formula": "damageCut",
+     "simplified": "damageCut",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isSkillEnd eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "isSkillEnd": [
+     {
+      "method": "StartSkill",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "SkillEnd",
+      "formula": "1",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND skillMode eq 2 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND isSkillEnd ne 0 AND skillMode eq 2 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND isSkillEnd eq 0 AND skillMode eq 2"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND isSkillEnd ne 0 AND skillMode eq 2 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND isSkillEnd eq 0 AND skillMode eq 2"
+     },
+     {
+      "method": "SkillEnd",
+      "formula": "10",
+      "when": "(cancel & 1) eq 0"
+     }
+    ],
+    "damageResist": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND isSkillEnd ne 0 AND skillMode eq 2 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND isSkillEnd eq 0 AND skillMode eq 2"
+     },
+     {
+      "method": "SkillEnd",
+      "formula": "((ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) lo 15 ? (ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) : 15)",
+      "when": "(cancel & 1) eq 0"
+     }
+    ],
+    "bufferType": [
+     {
+      "method": "Updata",
+      "formula": "13",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND isSkillEnd ne 0 AND skillMode eq 2 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND isSkillEnd eq 0 AND skillMode eq 2"
+     },
+     {
+      "method": "SkillEnd",
+      "formula": "7",
+      "when": "(cancel & 1) eq 0"
+     }
+    ],
+    "isDamaged": [
+     {
+      "method": "ApplyDamageCut",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "DamageFunction",
+      "formula": "0",
+      "when": "UnityEngine.Object.op_Inequality(takeController) AND isDamaged ne 0 AND skillMode eq 2 OR !UnityEngine.Object.op_Inequality(takeController) AND isDamaged ne 0 AND skillMode eq 2"
+     }
+    ]
+   },
+   "hooks": [
+    "ApplyDamageCut",
+    "AttackSkillEnd",
+    "CheckMode",
+    "DamageFunction",
+    "GetHealValue",
+    "SkillEnd",
+    "StartSkill"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "BCollaboBossActionManager.Damaged",
+  "EnemyMobActionManagerBase.Damaged",
+  "MobAttackBase.CalcLastDamage",
+  "MultipleHuntAction.<>c__DisplayClass37_0.<ActionStart>b__0",
+  "MultipleHuntAction.ActionStart",
+  "PlayerActionManager.Damaged",
+  "PlayerAttackBase.ActionStart",
+  "PlayerAttackBase.CalcCostMp"
+ ],
+ "variables": [
+  "AbnormalType.Breaking",
+  "AbnormalType.Stop",
+  "BonusManager.GetBonusValue",
+  "BonusType.bPowerResistBreaker",
+  "EquipItemData.get_SubWeapon",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "IPlayerStatusCalculator.get_Agi",
+  "IPlayerStatusCalculator.get_Int",
+  "IPlayerStatusCalculator.get_Vit",
+  "ItemData.get_Refine",
+  "ItemType.Arrow",
+  "MasteryId.Crt",
+  "MasteryId.SkillRate",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.ExistWeaponType",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_PlayerActionManager",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_BonusManager",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.MagicDmgCut",
+  "SkillBufferId.MobLastDamageRateUnique",
+  "SkillBufferId.PowerDmgCut",
+  "SkillBufferId.ShortRangeRate",
+  "SkillMasteryBase.GetMasteryParam",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "status.Agi",
+  "status.Int",
+  "status.Vit",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

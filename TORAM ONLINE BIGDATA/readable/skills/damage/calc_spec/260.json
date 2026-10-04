@@ -1,0 +1,413 @@
+{
+ "version": 1,
+ "uid": 260,
+ "name_th": "ชีลด์แคนนอน",
+ "name_en": "ShieldCannon",
+ "tree": "ShieldSkill",
+ "category": "Attack",
+ "max_level": 50,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "ShieldCannonAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 260,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Shield"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "5",
+   "simplified": "5",
+   "when": "always",
+   "by_level": 5
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance((int((Lv * 1.5)) + 5))",
+   "simplified": "MathUtil.DisplayMeterToDistance(int(1.5 × Lv) + 5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) << 1) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + 50) / 100)",
+   "simplified": "(10 × Lv + 50) / 100",
+   "when": "always",
+   "by_level": [
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0,
+    1.1,
+    1.2,
+    1.3,
+    1.4,
+    1.5
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "stunPercent",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate * (((ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) ne 0 ? ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) : 1) & 255))",
+   "simplified": "skillRate × ((A & 255 ≠ 0 ? A : 1) & 255)",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND !PlayerAttackBase.CheckMobActionUnobstructable(this, mobAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!MobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 3) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "defs": [
+    [
+     "A",
+     "ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()))"
+    ]
+   ],
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Stun",
+    "CalcStep.HitCheck",
+    "EquipItemData.get_SubWeapon",
+    "ItemData.get_Refine",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.CheckMobActionUnobstructable",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.get_EquipItemData",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(int(((((ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) / 5) + 1) * baseVIT)) + fixAddDamage)",
+   "simplified": "int(((ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) / 5 + 1) × baseVIT) + fixAddDamage",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND !PlayerAttackBase.CheckMobActionUnobstructable(this, mobAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!MobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 3) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Stun",
+    "CalcStep.HitCheck",
+    "EquipItemData.get_SubWeapon",
+    "ItemData.get_Refine",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.CheckMobActionUnobstructable",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.get_EquipItemData",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND !PlayerAttackBase.CheckMobActionUnobstructable(this, mobAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!MobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 3) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "by_level": 1,
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Stun",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.CheckMobActionUnobstructable",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Stun",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Stun",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate * (((ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) ne 0 ? ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) : 1) & 255))",
+   "simplified": "skillRate × ((A & 255 ≠ 0 ? A : 1) & 255)",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND !PlayerAttackBase.CheckMobActionUnobstructable(this, mobAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!MobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 3) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "defs": [
+    [
+     "A",
+     "ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()))"
+    ]
+   ],
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Stun",
+    "CalcStep.HitCheck",
+    "EquipItemData.get_SubWeapon",
+    "ItemData.get_Refine",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.CheckMobActionUnobstructable",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.get_EquipItemData",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "(int(((((ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) / 5) + 1) * baseVIT)) + fixAddDamage)",
+   "simplified": "int(((ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) / 5 + 1) × baseVIT) + fixAddDamage",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND !PlayerAttackBase.CheckMobActionUnobstructable(this, mobAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!MobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 3) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Stun",
+    "CalcStep.HitCheck",
+    "EquipItemData.get_SubWeapon",
+    "ItemData.get_Refine",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.CheckMobActionUnobstructable",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.get_EquipItemData",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(3, stunPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(3, stunPercent, playerAction)",
+   "when": "!PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND PlayerAttackBase.CheckMobActionUnobstructable(this, mobAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Stun",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.CheckMobActionUnobstructable",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(3)",
+   "simplified": "SetAbnormalType(3)",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND !PlayerAttackBase.CheckMobActionUnobstructable(this, mobAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyMobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 3) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Stun) AND !PlayerAttackBase.CheckMobActionUnobstructable(this, mobAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!MobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 3) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Stun",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.CheckMobActionUnobstructable",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "AbnormalType.Stun",
+  "CalcStep.HitCheck",
+  "EquipItemData.get_SubWeapon",
+  "ItemData.get_Refine",
+  "MathUtil.CheckPercent",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.CheckMobActionUnobstructable",
+  "PlayerAttackBase.HitReactionAssign",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.vit",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillActionBase.op_Inequality",
+  "SkillCalcTemplate.CheckStepResult",
+  "SkillComboState.GetThirdEyeValue",
+  "System.Collections.Generic.Dictionary.ContainsKeyMobActionManagerBase.get_AbnormalStateManager",
+  "System.Math.Max",
+  "TryGetBuff.buff"
+ ],
+ "residual": []
+}

@@ -1,0 +1,241 @@
+{
+ "version": 1,
+ "uid": 232,
+ "name_th": "ไฮไซเคิล",
+ "name_en": "HighCycle",
+ "tree": "SupportSkill",
+ "category": "Circle",
+ "max_level": 70,
+ "roles": [
+  "buff (self)",
+  "circle / song area"
+ ],
+ "class": "HighCycleAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 232,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "SkillUtil.CalcCastTime(2, PlayerStatusBase.get_BattleStatus())",
+   "simplified": "SkillUtil.CalcCastTime(2, PlayerStatusBase.get_BattleStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_BattleStatus",
+    "SkillUtil.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "range",
+   "formula": "int(MathUtil.DisplayMeterToDistance(((Lv >> 1) + 5)))",
+   "simplified": "int(MathUtil.DisplayMeterToDistance(Lv ÷ 2 + 5))",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "checkPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(232, Lv, Id)",
+   "simplified": "AddSelfBuffer(232, Lv, Id)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "HighCycleBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, float time",
+     "fields": {
+      "range": [
+       {
+        "formula": "int(MathUtil.DisplayMeterToDistance((?ubfx + 5)))",
+        "when": "(self & 1) ne 0",
+        "by_level": null
+       }
+      ],
+      "IsDamageCancel": [
+       {
+        "formula": "1",
+        "when": "(self & 1) ne 0",
+        "by_level": 1
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CircleBufferBase",
+      "args": [
+       "lv",
+       "(self & 1)",
+       "time"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "time"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "CspdUpRate",
+     "bonus_id": 31,
+     "formula": "(Lv * 25)",
+     "simplified": "25 × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MpRecoveryUp",
+     "bonus_id": 17,
+     "formula": "(((Lv * -2.5) + 50.5) eq -inf ? 0x80000000 : int(-((Lv * -2.5) + 50.5)))",
+     "simplified": "50.5 - 2.5 × Lv = -inf ? 0x80000000 : int(-(50.5 - 2.5 × Lv))",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "MpRecoveryUp",
+     "bonus_id": 17,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUpRate",
+     "bonus_id": 34,
+     "formula": "(((Lv * -1.5) + 90.5) eq -inf ? 0x80000000 : int(-((Lv * -1.5) + 90.5)))",
+     "simplified": "90.5 - 1.5 × Lv = -inf ? 0x80000000 : int(-(90.5 - 1.5 × Lv))",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUpRate",
+     "bonus_id": 34,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0"
+     ]
+    },
+    {
+     "id": "CspdUp",
+     "bonus_id": 32,
+     "formula": "((Lv * 50) + 50)",
+     "simplified": "50 × Lv + 50",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PlayerSecondaryStatus.CalcMpRecovery"
+ ],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerStatusBase.get_BattleStatus",
+  "SkillBufferId.AttackMprecoveryUpRate",
+  "SkillBufferId.CspdUp",
+  "SkillBufferId.CspdUpRate",
+  "SkillBufferId.MpRecoveryUp",
+  "SkillUtil.CalcCastTime",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

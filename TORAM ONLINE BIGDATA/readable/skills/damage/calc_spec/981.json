@@ -1,0 +1,507 @@
+{
+ "version": 1,
+ "uid": 981,
+ "name_th": "ไลท์นิ่งเฮล",
+ "name_en": "LightningHail",
+ "tree": "HalberdSkill",
+ "category": "Object",
+ "max_level": 150,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "placed object / trap / summon"
+ ],
+ "class": "LightningHailAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 981,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(18)",
+   "simplified": "MathUtil.DisplayMeterToDistance(18)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((status.Int // 10) + ((int((Lv * 0.5)) * 20) + 75))",
+   "simplified": "status.Int // 10 + 20 × int(0.5 × Lv) + 75",
+   "when": "always",
+   "vars": [
+    "status.Int"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackNum",
+   "formula": "(int((Lv * 0.5)) + 3)",
+   "simplified": "int(0.5 × Lv) + 3",
+   "when": "always",
+   "by_level": [
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(int((Lv * 0.5)) + 3)",
+   "simplified": "int(0.5 × Lv) + 3",
+   "when": "always",
+   "by_level": [
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "nowAttackCount",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(0.6)",
+   "simplified": "MathUtil.DisplayMeterToDistance(0.6)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "targetPos",
+   "formula": "castTime",
+   "simplified": "castTime",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(LoopParam + 100)",
+   "simplified": "LoopParam + 100",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND AbnormalStateManager.Contains(EnemyMobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target)), AbnormalType.Paralysis) AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND attackNum ge 1 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND AbnormalStateManager.Contains(EnemyMobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target)), AbnormalType.Paralysis) AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND attackNum lt 1 OR !PlayerAttackBase.IsBlank(this) AND (SkillBufferManager.TryGetBuf<LightningHailBuf>!PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND AbnormalStateManager.Contains(EnemyMobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target)), AbnormalType.Paralysis) AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND attackNum ge 1",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Paralysis",
+    "EnemyMobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "lightningHailBuf",
+   "formula": "new LightningHailBuf",
+   "simplified": "new LightningHailBuf",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND (SkillBufferManager.TryGetBuf<LightningHailBuf>!PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND UnityEngine.Object.op_Inequality(actarAction) AND attackNum ge 1 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND (SkillBufferManager.TryGetBuf<LightningHailBuf>!PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND UnityEngine.Object.op_Inequality(actarAction) AND attackNum lt 1 OR !PlayerAttackBase.IsBlank(this) AND (SkillBufferManager.TryGetBuf<LightningHailBuf>!PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND AbnormalStateManager.Contains(EnemyMobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target)), AbnormalType.Paralysis) AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND attackNum ge 1",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Paralysis",
+    "EnemyMobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "attackNum",
+   "formula": "(LoopParam - ((LoopParam // 100) * 100))",
+   "simplified": "LoopParam - 100 × LoopParam // 100",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "nowAttackCount",
+   "formula": "(nowAttackCount + 1)",
+   "simplified": "nowAttackCount + 1",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEventPreparation",
+   "kind": "set",
+   "name": "startNum",
+   "formula": "(startNum + 1)",
+   "simplified": "startNum + 1",
+   "when": "param eq 100 AND startNum lo attackPosList.Length"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "endNum",
+   "formula": "(endNum + 1)",
+   "simplified": "endNum + 1",
+   "when": "endNum ge attackPosList.Length AND isThorHammer ne 0 AND param eq 101 AND param ne 102 OR endNum lo attackPosList.Length AND endNum lt attackPosList.Length AND isThorHammer ne 0 AND param eq 101 AND param ne 102"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefMagic"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "LightningHailBuf..ctor",
+   "formula": ".ctor(Lv, Element, actarAction)",
+   "simplified": ".ctor(Lv, Element, actarAction)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND (SkillBufferManager.TryGetBuf<LightningHailBuf>!PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND UnityEngine.Object.op_Inequality(actarAction) AND attackNum ge 1 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND (SkillBufferManager.TryGetBuf<LightningHailBuf>!PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND UnityEngine.Object.op_Inequality(actarAction) AND attackNum lt 1 OR !PlayerAttackBase.IsBlank(this) AND (SkillBufferManager.TryGetBuf<LightningHailBuf>!PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND AbnormalStateManager.Contains(EnemyMobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target)), AbnormalType.Paralysis) AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND attackNum ge 1",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Paralysis",
+    "EnemyMobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new LightningHailBuf, Id)",
+   "simplified": "AddSelfBuffer(new, LightningHailBuf, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND (SkillBufferManager.TryGetBuf<LightningHailBuf>!PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND UnityEngine.Object.op_Inequality(actarAction) AND attackNum ge 1 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND (SkillBufferManager.TryGetBuf<LightningHailBuf>!PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND UnityEngine.Object.op_Inequality(actarAction) AND attackNum lt 1 OR !PlayerAttackBase.IsBlank(this) AND (SkillBufferManager.TryGetBuf<LightningHailBuf>!PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND AbnormalStateManager.Contains(EnemyMobActionManagerBase.get_AbnormalStateManager(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target)), AbnormalType.Paralysis) AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND attackNum ge 1",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Paralysis",
+    "EnemyMobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(987, 0)",
+   "simplified": "AddSelfBuffer(987, 0)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(987)",
+   "simplified": "RemoveSelfBuffer(987)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "LightningHailBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int element, PlayerActionManagerBase playerAction",
+     "fields": {
+      "takeList": [
+       {
+        "formula": "new System.Collections.Generic.Dictionary<int, Vector3>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "bufEffectTakeId": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "effectPos": [
+       {
+        "formula": "UnityEngine.Vector3.static+0x0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "effectPos.z": [
+       {
+        "formula": "UnityEngine.Vector3.static+0x8",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "playerAction": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "(int((Lv * 0.5)) + 3)",
+     "simplified": "int(0.5 × Lv) + 3",
+     "when": []
+    }
+   ],
+   "state": {
+    "bufEffectTakeId": [
+     {
+      "method": "AddEffect",
+      "formula": "0x11e69c74",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "AddEffect",
+    "ClearEffect",
+    "GetEffect",
+    "RemoveEffect",
+    "get_BufEffectTakeId",
+    "get_takeCount"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "LightningHailBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:LightningHailBuf$$.ctor<-LightningHailAction$$ActionStart",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Paralysis",
+  "EnemyMobActionManagerBase.get_AbnormalStateManager",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "IPlayerStatusCalculator.get_Int",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferId.Count",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality",
+  "status.Int",
+  "target.ExpDefMagic"
+ ],
+ "residual": []
+}

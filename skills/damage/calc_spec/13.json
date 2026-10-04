@@ -1,0 +1,73 @@
+{
+ "version": 1,
+ "uid": 13,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "utility / system action"
+ ],
+ "class": "PetBlankMpHeel",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 13,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnPetSkillInitialize",
+   "kind": "set",
+   "name": "Delay",
+   "formula": "5",
+   "simplified": "5",
+   "when": "always",
+   "by_level": 5
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "GetTakeClip",
+   "kind": "call",
+   "name": "TakeModel..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "always"
+  },
+  {
+   "method": "GetTakeClip",
+   "kind": "call",
+   "name": "TakeAnimationClip..ctor",
+   "formula": ".ctor(0)",
+   "simplified": ".ctor(0)",
+   "when": "always"
+  },
+  {
+   "method": "GetTakeClip",
+   "kind": "call",
+   "name": "TakeEvent..ctor",
+   "formula": ".ctor(12)",
+   "simplified": ".ctor(12)",
+   "when": "always"
+  },
+  {
+   "method": "GetTakeClip",
+   "kind": "call",
+   "name": "TakeEvent..ctor",
+   "formula": ".ctor(4)",
+   "simplified": ".ctor(4)",
+   "when": "always"
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

@@ -1,0 +1,320 @@
+{
+ "version": 1,
+ "uid": 65,
+ "name_th": "พาวเวอร์ชู้ต",
+ "name_en": "PowerShoot",
+ "tree": "ShootSkill",
+ "category": "Attack",
+ "max_level": 10,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "PowerShootAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 65,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun",
+  "Arrow"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(16)",
+   "simplified": "MathUtil.DisplayMeterToDistance(16)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "crtUpRate",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "always",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv << 3) + 50)",
+   "simplified": "8 × Lv + 50",
+   "when": "always",
+   "by_level": [
+    58,
+    66,
+    74,
+    82,
+    90,
+    98,
+    106,
+    114,
+    122,
+    130
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "tumblePercent",
+   "formula": "(((Lv + (Lv << 1)) + 20) + 40)",
+   "simplified": "3 × Lv + 60",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon != Bowgun AND mainWeapon == Bow",
+   "by_level": [
+    63,
+    66,
+    69,
+    72,
+    75,
+    78,
+    81,
+    84,
+    87,
+    90
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 5) + 125)",
+   "simplified": "5 × Lv + 125",
+   "when": "always",
+   "by_level": [
+    130,
+    135,
+    140,
+    145,
+    150,
+    155,
+    160,
+    165,
+    170,
+    175
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "tumblePercent",
+   "formula": "((Lv + (Lv << 1)) + 20)",
+   "simplified": "3 × Lv + 20",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon != Bow AND subWeapon != Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon != Bow AND mainWeapon != Bowgun",
+   "by_level": [
+    23,
+    26,
+    29,
+    32,
+    35,
+    38,
+    41,
+    44,
+    47,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "tumblePercent",
+   "formula": "(((Lv + (Lv << 1)) + 20) - 40)",
+   "simplified": "3 × Lv - 20",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon == Bowgun",
+   "by_level": [
+    -17,
+    -14,
+    -11,
+    -8,
+    -5,
+    -2,
+    1,
+    4,
+    7,
+    10
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + gemCart(103[4]))",
+   "simplified": "skillRate + gemCart(103, [4])",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, tumblePercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, tumblePercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "AbnormalType.Tumble",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((skillRate + gemCart(103[4])) / 100)",
+   "simplified": "(skillRate + gemCart(103, [4])) / 100",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, tumblePercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, tumblePercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "AbnormalType.Tumble",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, tumblePercent, playerAction) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "AbnormalType.Tumble",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(2, tumblePercent, playerAction)",
+   "simplified": "checkAbnormalPercent(2, tumblePercent, playerAction)",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, tumblePercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, tumblePercent, playerAction) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, tumblePercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "AbnormalType.Tumble",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, tumblePercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, tumblePercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "AbnormalType.Tumble",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Slow",
+  "AbnormalType.Tumble",
+  "CalcStep.HitCheck",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "SkillCalcTemplate.CheckStepResult"
+ ],
+ "residual": []
+}

@@ -1,0 +1,480 @@
+{
+ "version": 1,
+ "uid": 300,
+ "name_th": "[N]ฟินเชอร์ไนฟ์[F]ไนฟ์สไตล์[N]",
+ "name_en": "FlinchKnife",
+ "tree": "KnifeSkill",
+ "category": "Attack",
+ "max_level": 110,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment",
+  "changes attack pattern (motion / combo chain; heuristic)",
+  "boosts normal-attack damage"
+ ],
+ "class": "FlinchKnifeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 300,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 20) + 200) + ((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function >> 15)) >> 1))",
+   "simplified": "(((Lv * 20) + 200) + ((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function >> 15)) >> 1))",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 18",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(Lv * 30)",
+   "simplified": "30 × Lv",
+   "when": "always",
+   "by_level": [
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 20) + 200)",
+   "simplified": "20 × Lv + 200",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 18",
+   "by_level": [
+    220,
+    240,
+    260,
+    280,
+    300,
+    320,
+    340,
+    360,
+    380,
+    400
+   ],
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isFightingKnife",
+   "formula": "1",
+   "simplified": "1",
+   "when": "UnityEngine.Object.op_Inequality(MobActionManagerBase.get_Target(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), UnityEngine.Component.get_gameObject(actarAction))",
+   "by_level": 1,
+   "vars": [
+    "MobActionManagerBase.get_Target",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "UnityEngine.Object.op_Inequality(MobActionManagerBase.get_Target(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), UnityEngine.Component.get_gameObject(actarAction))",
+   "by_level": 1,
+   "vars": [
+    "MobActionManagerBase.get_Target",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate << 1)",
+   "simplified": "2 × skillRate",
+   "when": "UnityEngine.Object.op_Inequality(MobActionManagerBase.get_Target(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), UnityEngine.Component.get_gameObject(actarAction)) OR !UnityEngine.Object.op_Inequality(MobActionManagerBase.get_Target(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), UnityEngine.Component.get_gameObject(actarAction)) AND isFightingKnife ne 0",
+   "vars": [
+    "MobActionManagerBase.get_Target",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "physicsResist",
+   "formula": "(Lv * Lv)",
+   "simplified": "Lv × Lv",
+   "when": "UnityEngine.Object.op_Inequality(MobActionManagerBase.get_Target(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), UnityEngine.Component.get_gameObject(actarAction)) OR !UnityEngine.Object.op_Inequality(MobActionManagerBase.get_Target(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), UnityEngine.Component.get_gameObject(actarAction)) AND isFightingKnife ne 0",
+   "by_level": [
+    1,
+    4,
+    9,
+    16,
+    25,
+    36,
+    49,
+    64,
+    81,
+    100
+   ],
+   "vars": [
+    "MobActionManagerBase.get_Target",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "flinchPercent",
+   "formula": "(((Lv + (Lv << 2)) << 2) lo 100 ? ((Lv + (Lv << 2)) << 2) : 100)",
+   "simplified": "20 × Lv < 100 ? 20 × Lv : 100",
+   "when": "!UnityEngine.Object.op_Inequality(MobActionManagerBase.get_Target(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)), UnityEngine.Component.get_gameObject(actarAction)) AND isFightingKnife eq 0",
+   "by_level": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100
+   ],
+   "vars": [
+    "MobActionManagerBase.get_Target",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "GetLocalizeKey",
+   "kind": "set",
+   "name": "isFightingKnife",
+   "formula": "isFightingKnife",
+   "simplified": "isFightingKnife",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "KnifeCombatBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1), actarAction)",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1), actarAction)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) & 255) ne 0 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 OR !PlayerAttackBase.IsBlank(this) AND (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) & 255) ne 0 AND (System.Linq.Enumerable.Any<SkillBufferDataBase>!SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000), FlinchKnifeAction.<>c.<>9__29_0) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) ge 1 OR !PlayerAttackBase.IsBlank(this) AND (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) & 255) ne 0 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillId.KnifeCombat",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new KnifeCombatBuf)",
+   "simplified": "AddSelfBuffer(new, KnifeCombatBuf)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) & 255) ne 0 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 OR !PlayerAttackBase.IsBlank(this) AND (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) & 255) ne 0 AND (System.Linq.Enumerable.Any<SkillBufferDataBase>!SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000), FlinchKnifeAction.<>c.<>9__29_0) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) ge 1 OR !PlayerAttackBase.IsBlank(this) AND (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) & 255) ne 0 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillId.KnifeCombat",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(1, flinchPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(1, flinchPercent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Flinch",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "KnifeCombatBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "actionManager": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "takeController": [
+       {
+        "formula": "UnityEngine.Component.GetComponent<TakeController>(playerAction)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "normalAtkRate",
+     "simplified": "normalAtkRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "(100 - avoidStackRegist)",
+     "simplified": "100 - avoidStackRegist",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "atkMpRecovery",
+     "simplified": "atkMpRecovery",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "crtUp",
+     "simplified": "crtUp",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [
+    "<TakeEvent>b__19_0",
+    "CheckTake",
+    "IsBattleActive",
+    "TakeEvent",
+    "TakeStop",
+    "get_KnifeTakeId"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "KnifeCombatBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:KnifeCombatBuf$$.ctor<-FlinchKnifeAction$$ActionStart",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Flinch",
+  "EquipItemData.get_SubWeapon",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Target",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.NormalAttackRate",
+  "SkillBufferId.Value",
+  "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+  "SkillId.KnifeCombat",
+  "SkillManager.GetSkillLv",
+  "TryGetBuf.out2",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

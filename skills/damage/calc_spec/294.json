@@ -1,0 +1,34 @@
+{
+ "version": 1,
+ "uid": 294,
+ "name_th": "อเมซซิ่งโธร์ว",
+ "name_en": "ThreateningThorwArts",
+ "tree": "KnifeSkill",
+ "category": "Mastery",
+ "max_level": 110,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "ThreateningThorwArts",
+ "proration": null,
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "ThreateningThorwArts",
+  "bonuses": {
+   "Trigger": {
+    "id": 0,
+    "expr": "(id ne 26 ? (Lv + (Lv << 1)) : 1)",
+    "by_level": null
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

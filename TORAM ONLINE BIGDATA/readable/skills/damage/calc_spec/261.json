@@ -1,0 +1,93 @@
+{
+ "version": 1,
+ "uid": 261,
+ "name_th": "เมจิกคัลชีลด์",
+ "name_en": "MagicalShield",
+ "tree": "ShieldSkill",
+ "category": "Mastery",
+ "max_level": 50,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "MagicalShield",
+ "proration": null,
+ "eq_limit": [
+  "Shield"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "MagicalShield",
+  "bonuses": {
+   "CutDmgRate": {
+    "id": 25,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   },
+   "MdefRate": {
+    "id": 18,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   },
+   "Mdef": {
+    "id": 17,
+    "expr": "(int((Lv * 1.5)) + 5)",
+    "by_level": [
+     6,
+     8,
+     9,
+     11,
+     12,
+     14,
+     15,
+     17,
+     18,
+     20
+    ]
+   },
+   "MaxHp": {
+    "id": 12,
+    "expr": "(Lv * 50)",
+    "by_level": [
+     50,
+     100,
+     150,
+     200,
+     250,
+     300,
+     350,
+     400,
+     450,
+     500
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

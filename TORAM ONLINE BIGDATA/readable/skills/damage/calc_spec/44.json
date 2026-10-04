@@ -1,0 +1,465 @@
+{
+ "version": 1,
+ "uid": 44,
+ "name_th": "เมเทโอเบรคเกอร์",
+ "name_en": "MeteorBreaker",
+ "tree": "BladeSkill",
+ "category": "Attack",
+ "max_level": 150,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "MeteoBreakerAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 44,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "targetFixAddDamage",
+   "formula": "((Lv * 20) + 400)",
+   "simplified": "20 × Lv + 400",
+   "when": "always",
+   "by_level": [
+    420,
+    440,
+    460,
+    480,
+    500,
+    520,
+    540,
+    560,
+    580,
+    600
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "targetSkillRate",
+   "formula": "((Lv * 20) + 400)",
+   "simplified": "20 × Lv + 400",
+   "when": "mainWeapon != OneHandSword AND mainWeapon != TwoHandSword OR mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword OR mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "by_level": [
+    420,
+    440,
+    460,
+    480,
+    500,
+    520,
+    540,
+    560,
+    580,
+    600
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "(((Lv * 50) + 100) + ((baseDEX lt 0 ? (baseDEX + 1) : baseDEX) >> 1))",
+   "simplified": "50 × Lv + baseDEX ÷ 2 + 100",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "range",
+   "formula": "MathUtil.DisplayMeterToDistance(((int((Lv * 0.3)) * 0.5) + 2))",
+   "simplified": "MathUtil.DisplayMeterToDistance(0.5 × int(0.3 × Lv) + 2)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "((int((Lv * 0.5)) + (Lv << 1)) + 75)",
+   "simplified": "int(0.5 × Lv) + 2 × Lv + 75",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword OR mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "by_level": [
+    77,
+    80,
+    82,
+    85,
+    87,
+    90,
+    92,
+    95,
+    97,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "((Lv * 50) + 100)",
+   "simplified": "50 × Lv + 100",
+   "when": "mainWeapon == TwoHandSword OR mainWeapon != OneHandSword AND mainWeapon != TwoHandSword OR mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "by_level": [
+    150,
+    200,
+    250,
+    300,
+    350,
+    400,
+    450,
+    500,
+    550,
+    600
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "(int((Lv * 0.5)) + (Lv << 1))",
+   "simplified": "int(0.5 × Lv) + 2 × Lv",
+   "when": "mainWeapon == TwoHandSword OR mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "by_level": [
+    2,
+    5,
+    7,
+    10,
+    12,
+    15,
+    17,
+    20,
+    22,
+    25
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "targetSkillRate",
+   "formula": "(((Lv * 20) + 400) + ((baseSTR // 10) + 200))",
+   "simplified": "20 × Lv + baseSTR // 10 + 600",
+   "when": "mainWeapon == TwoHandSword"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetAction",
+   "formula": "UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isFirstAttack",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "targetExpRegister",
+   "formula": "target.ExpDefSkill",
+   "simplified": "target.ExpDefSkill",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, abnormalPercent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, abnormalPercent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "MobActionManagerBase.get_gameObject",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(targetSkillRate / 100)",
+   "simplified": "targetSkillRate / 100",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, abnormalPercent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "MobActionManagerBase.get_gameObject",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "targetFixAddDamage",
+   "simplified": "targetFixAddDamage",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, abnormalPercent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "MobActionManagerBase.get_gameObject",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(rangeSkillRate / 100)",
+   "simplified": "rangeSkillRate / 100",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack eq 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack eq 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack eq 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack eq 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister / 100)",
+   "simplified": "targetExpRegister / 100",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 2)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), 2)",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack eq 0",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "PlayerAttackBase.TemplateAssignment",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(14, abnormalPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(14, abnormalPercent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, abnormalPercent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, abnormalPercent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, abnormalPercent, playerAction) AND isFirstAttack ne 0",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "MobActionManagerBase.get_gameObject",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(14)",
+   "simplified": "SetAbnormalType(14)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, abnormalPercent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND isFirstAttack ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_gameObject(mobAction), UnityEngine.Component.get_gameObject(targetAction)) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Dizzy, abnormalPercent, playerAction) AND isFirstAttack ne 0",
+   "vars": [
+    "AbnormalType.Dizzy",
+    "MobActionManagerBase.get_gameObject",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Dizzy",
+  "GetWeaponType.item",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_gameObject",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.GetEquipElement",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

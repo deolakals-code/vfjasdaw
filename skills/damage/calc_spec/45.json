@@ -1,0 +1,373 @@
+{
+ "version": 1,
+ "uid": 45,
+ "name_th": "บัสตาร์ดเบลด",
+ "name_en": "BusterBlade",
+ "tree": "BladeSkill",
+ "category": "Attack",
+ "max_level": 150,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "BusterBladeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 45,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(7)",
+   "simplified": "MathUtil.DisplayMeterToDistance(7)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(Lv * 30)",
+   "simplified": "30 × Lv",
+   "when": "always",
+   "by_level": [
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 75) + ((baseDEX lt 0 ? (baseDEX + 1) : baseDEX) >> 1)) + (((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) << 2)) << 2) + ((baseDEX lt 0 ? (baseDEX + 1) : baseDEX) >> 1)))",
+   "simplified": "75 × Lv + 2 × (baseDEX ÷ 2) + 20 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) ge 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword AND subWeapon == Shield OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) ge 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword AND subWeapon != Shield",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.AuraBlade",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "healHp",
+   "formula": "(((baseVIT << 1) + 1000) + GetSubWeaponType.item(actarAction).Function)",
+   "simplified": "(((baseVIT << 1) + 1000) + GetSubWeaponType.item(actarAction).Function)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) ge 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword AND subWeapon == Shield OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) lt 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword AND subWeapon == Shield",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.AuraBlade",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "shildRefine",
+   "formula": "(ItemData.get_Refine(GetSubWeaponType.item(actarAction)) & 255)",
+   "simplified": "ItemData.get_Refine(GetSubWeaponType.item(actarAction)) & 255",
+   "when": "mainWeapon == TwoHandSword AND subWeapon == Shield OR mainWeapon != OneHandSword AND mainWeapon != TwoHandSword AND subWeapon == Shield OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) ge 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword AND subWeapon == Shield",
+   "vars": [
+    "GetSubWeaponType.item",
+    "ItemData.get_Refine",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.AuraBlade",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 75) + ((baseDEX lt 0 ? (baseDEX + 1) : baseDEX) >> 1))",
+   "simplified": "75 × Lv + baseDEX ÷ 2",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) lt 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword AND subWeapon == Shield OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) lt 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword AND subWeapon != Shield",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.AuraBlade",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "healHp",
+   "formula": "((baseVIT << 1) + 1000)",
+   "simplified": "2 × baseVIT + 1000",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) ge 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) lt 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) ge 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword AND subWeapon != Shield",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.AuraBlade",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 75) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) << 2)) << 2))",
+   "simplified": "75 × Lv + 20 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) ge 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.AuraBlade",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(Lv * 75)",
+   "simplified": "75 × Lv",
+   "when": "mainWeapon != OneHandSword AND mainWeapon != TwoHandSword AND subWeapon == Shield OR mainWeapon != OneHandSword AND mainWeapon != TwoHandSword AND subWeapon != Shield OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AuraBlade, 1) lt 1 AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "by_level": [
+    75,
+    150,
+    225,
+    300,
+    375,
+    450,
+    525,
+    600,
+    675,
+    750
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.AuraBlade",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "healHp",
+   "formula": "(1000 + GetSubWeaponType.item(actarAction).Function)",
+   "simplified": "(1000 + GetSubWeaponType.item(actarAction).Function)",
+   "when": "mainWeapon == TwoHandSword AND subWeapon == Shield OR mainWeapon != OneHandSword AND mainWeapon != TwoHandSword AND subWeapon == Shield",
+   "vars": [
+    "GetSubWeaponType.item"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "healHp",
+   "formula": "1000",
+   "simplified": "1000",
+   "when": "mainWeapon == TwoHandSword AND subWeapon != Shield OR mainWeapon != OneHandSword AND mainWeapon != TwoHandSword AND subWeapon != Shield",
+   "by_level": 1000
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 75) + baseSTR)",
+   "simplified": "75 × Lv + baseSTR",
+   "when": "mainWeapon == TwoHandSword AND subWeapon == Shield OR mainWeapon == TwoHandSword AND subWeapon != Shield"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": ".<>c__DisplayClass22_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(45, [<>c__DisplayClass22_0.<>4__this+0x14])",
+   "simplified": "AddSelfBuffer(45, [<>c__DisplayClass22_0.<>4__this+0x14])",
+   "when": "!hasBuff(FirstAttackRate) AND (cancel & 1) eq 0 OR !hasBuff(FirstAttackRate) AND (cancel & 1) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 50) ne 0 OR !hasBuff(FirstAttackRate) AND (cancel & 1) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 50) eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ],
+   "residual": [
+    "+0x14]"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "BusterBladeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int shildRefine",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "10",
+        "when": "always",
+        "by_level": 10
+       }
+      ],
+      "eqAtkRate": [
+       {
+        "formula": "((Lv + shildRefine) lt 25 ? (Lv + shildRefine) : 25)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "EqAtkUpRate",
+     "bonus_id": 8,
+     "formula": "eqAtkRate",
+     "simplified": "eqAtkRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "EqAtkUpRate",
+     "bonus_id": 8,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "BusterBladeAction.<>c__DisplayClass22_0.<ActionStart>b__0",
+  "BusterBladeAction.ActionStart",
+  "TwinBusterBladeAction.<>c__DisplayClass39_0.<ActionStart>b__0",
+  "TwinBusterBladeAction.ActionStart"
+ ],
+ "variables": [
+  "GetSubWeaponType.item",
+  "ItemData.get_Refine",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.str",
+  "PlayerPrimaryStatus.vit",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.EqAtkUpRate",
+  "SkillId.AuraBlade",
+  "SkillManager.GetSkillLv",
+  "TryGetBuf.buf",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": [
+  {
+   "where": ".<>c__DisplayClass22_0::<ActionStart>b__0:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "+0x14]"
+   ]
+  }
+ ]
+}

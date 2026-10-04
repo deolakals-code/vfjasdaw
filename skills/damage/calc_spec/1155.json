@@ -1,0 +1,457 @@
+{
+ "version": 1,
+ "uid": 1155,
+ "name_th": "กลอเรียเทคชอต",
+ "name_en": "GoliathTakeShot",
+ "tree": "CrusherSkill",
+ "category": "Attack",
+ "max_level": 90,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "GoliathTakeShotAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1155,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseSkillRate",
+   "formula": "800",
+   "simplified": "800",
+   "when": "always",
+   "by_level": 800
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "chargeSkillRate",
+   "formula": "((Lv * 10) + 300)",
+   "simplified": "10 × Lv + 300",
+   "when": "always",
+   "by_level": [
+    310,
+    320,
+    330,
+    340,
+    350,
+    360,
+    370,
+    380,
+    390,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "500",
+   "simplified": "500",
+   "when": "always",
+   "by_level": 500
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "(hasBuff(1155) ? 0 : 500)",
+   "simplified": "hasBuff(1155) ? 0 : 500",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "GoliathTakeShotBuf.GetParam(50)",
+   "simplified": "GoliathTakeShotBuf.GetParam(50)",
+   "when": "always",
+   "vars": [
+    "GoliathTakeShotBuf.GetParam"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "chargeLevel",
+   "formula": "GoliathTakeShotBuf.GetParam(50)",
+   "simplified": "GoliathTakeShotBuf.GetParam(50)",
+   "when": "always",
+   "vars": [
+    "GoliathTakeShotBuf.GetParam"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "chargeLevel",
+   "formula": "SkillIndividualFlag",
+   "simplified": "SkillIndividualFlag",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "target",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "baseSkillRate",
+   "formula": "(baseSkillRate + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1158], SkillBufferId.Value))",
+   "simplified": "(baseSkillRate + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1158], SkillBufferId.Value))",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR IsInstanceOf(actarAction, MercenaryActionManager) eq 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Value",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "chargeSkillRate",
+   "formula": "(chargeSkillRate + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1158], SkillBufferId.Value))",
+   "simplified": "(chargeSkillRate + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1158], SkillBufferId.Value))",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR IsInstanceOf(actarAction, MercenaryActionManager) eq 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Value",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((baseSkillRate + (chargeSkillRate * chargeLevel)) * 0.01)",
+   "simplified": "0.01 × baseSkillRate + 0.01 × chargeSkillRate × chargeLevel",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1155)",
+   "simplified": "RemoveSelfBuffer(1155)",
+   "when": "IsInstanceOf(actarAction, MercenaryActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR IsInstanceOf(actarAction, MercenaryActionManager) eq 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "GoliathTakeShotBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int archetypeType",
+     "fields": {
+      "maxChargeLevel": [
+       {
+        "formula": "5",
+        "when": "(archetypeType & 255) ne 0 OR !UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 0 OR (archetypeType & 255) eq 0 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0)",
+        "by_level": 5
+       }
+      ],
+      "chargeTime": [
+       {
+        "formula": "((((Lv - 1) // 3) * -0.5) + 2.5)",
+        "when": "(archetypeType & 255) ne 0 OR !UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 0 OR (archetypeType & 255) eq 0 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0)",
+        "by_level": [
+         2.5,
+         2.5,
+         2.5,
+         2.0,
+         2.0,
+         2.0,
+         1.5,
+         1.5,
+         1.5,
+         1.0
+        ]
+       }
+      ],
+      "archetypeType": [
+       {
+        "formula": "archetypeType",
+        "when": "(archetypeType & 255) ne 0 OR !UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 0 OR (archetypeType & 255) eq 0 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0)",
+        "by_level": null
+       }
+      ],
+      "playerDataManager": [
+       {
+        "formula": "PlayerDataManager.GetPlayerDataManager()",
+        "when": "!UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 0 OR (archetypeType & 255) eq 0 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0)",
+        "by_level": null
+       }
+      ],
+      "isMaxChargeEnd": [
+       {
+        "formula": "0",
+        "when": "(archetypeType & 255) ne 0 OR !UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) AND (archetypeType & 255) eq 0 OR (archetypeType & 255) eq 0 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0)",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "5"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "chargeLevel",
+     "simplified": "chargeLevel",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "chargeTime": [
+     {
+      "method": "Updata",
+      "formula": "(chargeTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(chargeTime - UnityEngine.Time.get_deltaTime()) hi 0 AND chargeLevel ne 1 OR (chargeTime - UnityEngine.Time.get_deltaTime()) ls 0 AND chargeLevel ne 1 OR (chargeTime - UnityEngine.Time.get_deltaTime()) hi 0 AND chargeLevel eq 1 AND isMaxChargeEnd eq 0"
+     },
+     {
+      "method": "RecieveIncapacitatedAbnormal",
+      "formula": "(chargeTime + add)",
+      "when": "isMaxChargeEnd eq 0"
+     },
+     {
+      "method": "Charge",
+      "formula": "(Lv + 2)",
+      "when": "System.Math.Min((chargeLevel + 1), maxChargeLevel) eq maxChargeLevel AND isMaxChargeEnd eq 0"
+     },
+     {
+      "method": "NextChargeLevel",
+      "formula": "6",
+      "when": "isMaxChargeEnd ne 0"
+     },
+     {
+      "method": "NextChargeLevel",
+      "formula": "(Lv + 2)",
+      "when": "System.Math.Min((chargeLevel + 1), maxChargeLevel) eq maxChargeLevel AND isMaxChargeEnd eq 0"
+     },
+     {
+      "method": "NextChargeLevel",
+      "formula": "((((Lv - 1) // 3) * -0.5) + 2.5)",
+      "when": "System.Math.Min((chargeLevel + 1), maxChargeLevel) ne maxChargeLevel AND isMaxChargeEnd eq 0"
+     }
+    ],
+    "comboType": [
+     {
+      "method": "SetComboParam",
+      "formula": "type",
+      "when": "always"
+     }
+    ],
+    "comboRate": [
+     {
+      "method": "SetComboParam",
+      "formula": "rate",
+      "when": "always"
+     }
+    ],
+    "isMaxChargeEnd": [
+     {
+      "method": "RecieveWeakAbnormal",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "Charge",
+      "formula": "1",
+      "when": "System.Math.Min((chargeLevel + 1), maxChargeLevel) eq maxChargeLevel AND isMaxChargeEnd eq 0"
+     },
+     {
+      "method": "NextChargeLevel",
+      "formula": "1",
+      "when": "System.Math.Min((chargeLevel + 1), maxChargeLevel) eq maxChargeLevel AND isMaxChargeEnd eq 0"
+     }
+    ],
+    "Count": [
+     {
+      "method": "RecieveWeakAbnormal",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "Charge",
+      "formula": "System.Math.Min((chargeLevel + 1), maxChargeLevel)",
+      "when": "System.Math.Min((chargeLevel + 1), maxChargeLevel) eq maxChargeLevel AND isMaxChargeEnd eq 0 OR System.Math.Min((chargeLevel + 1), maxChargeLevel) ne maxChargeLevel AND isMaxChargeEnd eq 0"
+     },
+     {
+      "method": "NextChargeLevel",
+      "formula": "System.Math.Max((chargeLevel - 1), 1)",
+      "when": "isMaxChargeEnd ne 0"
+     },
+     {
+      "method": "NextChargeLevel",
+      "formula": "System.Math.Min((chargeLevel + 1), maxChargeLevel)",
+      "when": "System.Math.Min((chargeLevel + 1), maxChargeLevel) eq maxChargeLevel AND isMaxChargeEnd eq 0 OR System.Math.Min((chargeLevel + 1), maxChargeLevel) ne maxChargeLevel AND isMaxChargeEnd eq 0"
+     }
+    ],
+    "chargeLevel": [
+     {
+      "method": "RecieveWeakAbnormal",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "Charge",
+      "formula": "System.Math.Min((chargeLevel + 1), maxChargeLevel)",
+      "when": "System.Math.Min((chargeLevel + 1), maxChargeLevel) eq maxChargeLevel AND isMaxChargeEnd eq 0 OR System.Math.Min((chargeLevel + 1), maxChargeLevel) ne maxChargeLevel AND isMaxChargeEnd eq 0"
+     },
+     {
+      "method": "NextChargeLevel",
+      "formula": "System.Math.Max((chargeLevel - 1), 1)",
+      "when": "isMaxChargeEnd ne 0"
+     },
+     {
+      "method": "NextChargeLevel",
+      "formula": "System.Math.Min((chargeLevel + 1), maxChargeLevel)",
+      "when": "System.Math.Min((chargeLevel + 1), maxChargeLevel) eq maxChargeLevel AND isMaxChargeEnd eq 0 OR System.Math.Min((chargeLevel + 1), maxChargeLevel) ne maxChargeLevel AND isMaxChargeEnd eq 0"
+     }
+    ]
+   },
+   "hooks": [
+    "Charge",
+    "ChargeAura",
+    "GetComboParam",
+    "NextChargeLevel",
+    "RecieveIncapacitatedAbnormal",
+    "RecieveWeakAbnormal",
+    "SetComboParam"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "GoliathTakeShotAction.OnInitialize",
+  "GoliathTakeShotAction.ReceivedAbnormal",
+  "MobaPlayerActionManager.GetSkillTargetType",
+  "PlayerActionManager.GetSkillTargetType"
+ ],
+ "variables": [
+  "GetWeaponType.item",
+  "GoliathTakeShotBuf.GetParam",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Value",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

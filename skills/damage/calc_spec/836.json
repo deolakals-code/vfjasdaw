@@ -1,0 +1,276 @@
+{
+ "version": 1,
+ "uid": 836,
+ "name_th": "โฮลี่ไลท์",
+ "name_en": "HollyLight",
+ "tree": "PriestSkill",
+ "category": "Attack",
+ "max_level": 35,
+ "roles": [
+  "attack (deals damage)",
+  "heal / recovery"
+ ],
+ "class": "HolyLightActin",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 836,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "5",
+   "simplified": "5",
+   "when": "always",
+   "by_level": 5
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "always",
+   "by_level": 200
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv << 4) - Lv) + 100)",
+   "simplified": "15 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    115,
+    130,
+    145,
+    160,
+    175,
+    190,
+    205,
+    220,
+    235,
+    250
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "maxHpRecovery",
+   "formula": "((baseINT * 10) + (Lv * 100))",
+   "simplified": "10 × baseINT + 100 × Lv",
+   "when": "(mainWeapon==Magictool & 1) ne 0"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "maxHpRecovery",
+   "formula": "(Lv * 100)",
+   "simplified": "100 × Lv",
+   "when": "always",
+   "by_level": [
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900,
+    1000
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv << 4) - Lv) + 100) + ((status.Int << 1) + 100))",
+   "simplified": "15 × Lv + 2 × status.Int + 200",
+   "when": "always",
+   "vars": [
+    "status.Int"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "hpRecovery",
+   "formula": "int(((status.MaxHp * 0.25) gt maxHpRecovery ? maxHpRecovery : (status.MaxHp * 0.25)))",
+   "simplified": "int(min(0.25 × status.MaxHp, maxHpRecovery))",
+   "when": "always",
+   "vars": [
+    "status.MaxHp"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0",
+   "by_level": 200
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv << 4) - Lv) + 100)",
+   "simplified": "15 × Lv + 100",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0",
+   "by_level": [
+    115,
+    130,
+    145,
+    160,
+    175,
+    190,
+    205,
+    220,
+    235,
+    250
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "maxHpRecovery",
+   "formula": "((baseINT * 10) + (Lv * 100))",
+   "simplified": "10 × baseINT + 100 × Lv",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0"
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "maxHpRecovery",
+   "formula": "(Lv * 100)",
+   "simplified": "100 × Lv",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0",
+   "by_level": [
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900,
+    1000
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerBattleManager.StartHolyBiblePursuitAttack",
+  "PlayerBattleManager.StartHolyBiblePursuitAttack"
+ ],
+ "variables": [
+  "IPlayerStatusCalculator.get_Int",
+  "IPlayerStatusCalculator.get_MaxHp",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerPrimaryStatus.int",
+  "status.Int",
+  "status.MaxHp"
+ ],
+ "residual": []
+}

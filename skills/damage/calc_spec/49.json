@@ -1,0 +1,455 @@
+{
+ "version": 1,
+ "uid": 49,
+ "name_th": "ลูนาร์สแลช",
+ "name_en": "MoonSlash",
+ "tree": "BladeSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "MoonSlashAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 49,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "firstSkillRate",
+   "formula": "1000",
+   "simplified": "1000",
+   "when": "always",
+   "by_level": 1000
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "firstFixAddDamage",
+   "formula": "400",
+   "simplified": "400",
+   "when": "always",
+   "by_level": 400
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondSkillRate",
+   "formula": "((((status.Str * Lv) + ((status.Str * Lv) << 2)) << 1) * 0.01)",
+   "simplified": "0.1 × status.Str × Lv",
+   "when": "always",
+   "vars": [
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondFixAddDamage",
+   "formula": "((baseINT lt 0 ? (baseINT + 1) : baseINT) >> 1)",
+   "simplified": "baseINT ÷ 2",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(((((Lv + (Lv << 2)) + (baseDEX // 10)) - 1) lt 0 ? ((((Lv + (Lv << 2)) + (baseDEX // 10)) - 1) + 1) : (((Lv + (Lv << 2)) + (baseDEX // 10)) - 1)) >> 1)",
+   "simplified": "(5 × Lv + baseDEX // 10 - 1) ÷ 2",
+   "when": "mainWeapon == OneHandSword AND subWeapon == OneHandSword"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(((Lv + (Lv << 2)) + (baseDEX // 10)) - 1)",
+   "simplified": "5 × Lv + baseDEX // 10 - 1",
+   "when": "mainWeapon != OneHandSword OR mainWeapon == OneHandSword AND subWeapon != OneHandSword"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "SetCurrentSkillCombo",
+   "kind": "set",
+   "name": "_currentSkillCombo",
+   "formula": "combo",
+   "simplified": "combo",
+   "when": "always"
+  },
+  {
+   "method": "SetCurrentSkillCombo",
+   "kind": "set",
+   "name": "conboIndex",
+   "formula": "combo.index",
+   "simplified": "combo.index",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "addBuf",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(conboIndex + 1) lt 1 AND MobaMode eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 11 AND addBuf eq 0 OR (conboIndex + 1) lt 1 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND MobaMode ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 11 AND addBuf eq 0 OR (conboIndex + 1) ge 1 AND 1 ge (conboIndex + 1) AND MobaMode eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 11 AND addBuf eq 0",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcSecondDamageData",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(firstSkillRate / 100)",
+   "simplified": "firstSkillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcFirstDamageData",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "firstFixAddDamage",
+   "simplified": "firstFixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "CalcSecondDamageData",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(secondSkillRate / 100)",
+   "simplified": "secondSkillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcSecondDamageData",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "secondFixAddDamage",
+   "simplified": "secondFixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(49)",
+   "simplified": "RemoveSelfBuffer(49)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "MoonSlashBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "(conboIndex + 1) lt 1 AND MobaMode eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 11 AND addBuf eq 0 OR (conboIndex + 1) lt 1 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND MobaMode ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 11 AND addBuf eq 0 OR (conboIndex + 1) ge 1 AND 1 ge (conboIndex + 1) AND MobaMode eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 11 AND addBuf eq 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new MoonSlashBuf, Id)",
+   "simplified": "AddSelfBuffer(new, MoonSlashBuf, Id)",
+   "when": "(conboIndex + 1) lt 1 AND MobaMode eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 11 AND addBuf eq 0 OR (conboIndex + 1) lt 1 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND MobaMode ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 11 AND addBuf eq 0 OR (conboIndex + 1) ge 1 AND 1 ge (conboIndex + 1) AND MobaMode eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType eq 11 AND addBuf eq 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(23, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(23, percent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(23)",
+   "simplified": "SetAbnormalType(23)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tiredness, percent, playerAction)",
+   "vars": [
+    "AbnormalType.Tiredness",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "ReceiveMobaAttack",
+   "kind": "call",
+   "name": "MoonSlashBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MoonSlash, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MoonSlash, 1))",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MoonSlash, 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(response.AppendData, 49)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.MoonSlash",
+    "SkillManager.GetSkillLv",
+    "Toram.Common.Actions.ActionAppendData.Contains"
+   ]
+  },
+  {
+   "method": "ReceiveMobaAttack",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new MoonSlashBuf)",
+   "simplified": "AddSelfBuffer(new, MoonSlashBuf)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.MoonSlash, 1) ge 1 AND Toram.Common.Actions.ActionAppendData.Contains(response.AppendData, 49)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.MoonSlash",
+    "SkillManager.GetSkillLv",
+    "Toram.Common.Actions.ActionAppendData.Contains"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "MoonSlashBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "9"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "Count": [
+     {
+      "method": "Expend",
+      "formula": "max((Count - 1), 0)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Expend"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "MoonSlashBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "9"
+    }
+   },
+   "attached_via": "caller2:MoonSlashBuf$$.ctor<-MoonSlashAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MoonSlashAction.ReceiveMobaAttack"
+ ],
+ "variables": [
+  "AbnormalType.Tiredness",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Str",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.int",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.Count",
+  "SkillId.MoonSlash",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "System.Math.Min",
+  "Toram.Common.Actions.ActionAppendData.Contains",
+  "UnityEngine.Object.op_Inequality",
+  "status.Str"
+ ],
+ "residual": []
+}

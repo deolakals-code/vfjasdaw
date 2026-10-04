@@ -1,0 +1,456 @@
+{
+ "version": 1,
+ "uid": 660,
+ "name_th": "ฮอร์ริซอนคัท",
+ "name_en": "HorizontalCut",
+ "tree": "DualSword",
+ "category": "Attack",
+ "max_level": 250,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "HorizontalCutAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "Physics",
+  "action_id": 660,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(14)",
+   "simplified": "MathUtil.DisplayMeterToDistance(14)",
+   "when": "SkillActionBase.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.Component.get_transform(actarAction), 0.1) AND SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0) ne 0 AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "SkillActionBase.CheckRangeHit",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManager.get_PlaceSkilList",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((((Lv * 10) + status.Dex) + 900) lt 0 ? ((((Lv * 10) + status.Dex) + 900) + 1) : (((Lv * 10) + status.Dex) + 900)) >> 1)",
+   "simplified": "(10 × Lv + status.Dex + 900) ÷ 2",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR !SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0) eq 0 AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword",
+   "vars": [
+    "SkillActionBase.op_Inequality",
+    "SkillActionManager.get_PlaceSkilList",
+    "UnityEngine.Object.op_Inequality",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 60) >> 1)",
+   "simplified": "60 × Lv ÷ 2",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR !SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0) eq 0 AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword",
+   "by_level": [
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300
+   ],
+   "vars": [
+    "SkillActionBase.op_Inequality",
+    "SkillActionManager.get_PlaceSkilList",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isDualSword",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR !SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0) eq 0 AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword",
+   "by_level": 1,
+   "vars": [
+    "SkillActionBase.op_Inequality",
+    "SkillActionManager.get_PlaceSkilList",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondSkillRate",
+   "formula": "((Lv * 50) + (((baseSTR gt baseAGI ? baseSTR : baseAGI) lt 0 ? ((baseSTR gt baseAGI ? baseSTR : baseAGI) + 1) : (baseSTR gt baseAGI ? baseSTR : baseAGI)) >> 1))",
+   "simplified": "50 × Lv + max(baseSTR, baseAGI) ÷ 2",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR !SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0) eq 0 AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword",
+   "vars": [
+    "SkillActionBase.op_Inequality",
+    "SkillActionManager.get_PlaceSkilList",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondFixDamage",
+   "formula": "(Lv * 30)",
+   "simplified": "30 × Lv",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR !SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0) eq 0 AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword",
+   "by_level": [
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300
+   ],
+   "vars": [
+    "SkillActionBase.op_Inequality",
+    "SkillActionManager.get_PlaceSkilList",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(SkillIndividualFlag | 1)",
+   "simplified": "SkillIndividualFlag | 1",
+   "when": "SkillActionBase.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.Component.get_transform(actarAction), 0.1) AND SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0) ne 0 AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword",
+   "vars": [
+    "SkillActionBase.CheckRangeHit",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManager.get_PlaceSkilList",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isLongRangeAttack",
+   "formula": "1",
+   "simplified": "1",
+   "when": "SkillActionBase.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), UnityEngine.Component.get_transform(actarAction), 0.1) AND SkillActionBase.op_Inequality(System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0), 0) AND System.Linq.Enumerable.FirstOrDefault<SkillActionBase>(SkillActionManager.get_PlaceSkilList(actarAction.battleManager.skillActManager), HorizontalCutAction.<>c.<>9__28_0) ne 0 AND UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword",
+   "by_level": 1,
+   "vars": [
+    "SkillActionBase.CheckRangeHit",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManager.get_PlaceSkilList",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager) AND subWeapon == OneHandSword OR isDualSword ne 0 AND subWeapon != OneHandSword OR isDualSword eq 0 AND subWeapon != OneHandSword",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + status.Dex) + 900)",
+   "simplified": "10 × Lv + status.Dex + 900",
+   "when": "isDualSword ne 0 AND subWeapon != OneHandSword OR isDualSword eq 0 AND subWeapon != OneHandSword",
+   "vars": [
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(Lv * 60)",
+   "simplified": "60 × Lv",
+   "when": "isDualSword ne 0 AND subWeapon != OneHandSword OR isDualSword eq 0 AND subWeapon != OneHandSword",
+   "by_level": [
+    60,
+    120,
+    180,
+    240,
+    300,
+    360,
+    420,
+    480,
+    540,
+    600
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "isDualSword",
+   "formula": "(IOtherPlayerActionManager.get_SubWeapon(actarAction) eq 10 ? 1 : 0)",
+   "simplified": "IOtherPlayerActionManager.get_SubWeapon(actarAction) = 10 ? 1 : 0",
+   "when": "always",
+   "vars": [
+    "IOtherPlayerActionManager.get_SubWeapon"
+   ]
+  },
+  {
+   "method": "ChangeMpDuringCombo",
+   "kind": "set",
+   "name": "baseMp",
+   "formula": "(combo.index eq (SkillComboLine.get_Count(combo.comboLine) - 1) ? 0 : 300)",
+   "simplified": "combo.index = SkillComboLine.get_Count(combo.comboLine) - 1 ? 0 : 300",
+   "when": "combo.index eq (SkillComboLine.get_Count(combo.comboLine) - 1) OR combo.index eq 0 AND combo.index ne (SkillComboLine.get_Count(combo.comboLine) - 1)",
+   "vars": [
+    "SkillComboLine.get_Count"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "ActionRange",
+   "simplified": "ActionRange",
+   "when": "always"
+  },
+  {
+   "method": "calcFirstDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcSecondDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcFirstDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcFirstDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcSecondDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(secondSkillRate / 100)",
+   "simplified": "secondSkillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcSecondDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "secondFixDamage",
+   "simplified": "secondFixDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(660, Lv, Id)",
+   "simplified": "AddSelfBuffer(660, Lv, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "!CharacterActionManagerBase.AddAbnormalState(actor, 2, AbnormalStateManager.GetDefaultAnbormalStateTime(AbnormalType.Tumble), 0, 0, 0, 1) AND !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND !SkillActionBase.op_Inequality(action) AND (damageData.AbnormalType - 1) hs 4 AND SkillActionBase.get_ActionID() eq 660 AND damageData.AbnormalType ne 43 OR !CharacterActionManagerBase.AddAbnormalState(actor, 2, AbnormalStateManager.GetDefaultAnbormalStateTime(AbnormalType.Tumble), 0, 0, 0, 1) AND !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND (damageData.AbnormalType - 1) hs 4 AND IsInstanceOf(action, MobEventScriptAttack) ne 1 AND SkillActionBase.get_ActionID() eq 660 AND SkillActionBase.op_Inequality(action) AND damageData.AbnormalType ne 43 OR !CharacterActionManagerBase.AddAbnormalState(actor, 2, AbnormalStateManager.GetDefaultAnbormalStateTime(AbnormalType.Tumble), 0, 0, 0, 1) AND !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND (damageData.AbnormalType - 1) hs 4 AND IsInstanceOf(action, MobEventScriptAttack) eq 1 AND SkillActionBase.get_ActionID() eq 660 AND SkillActionBase.op_Inequality(action) AND damageData.AbnormalType ne 43",
+   "vars": [
+    "AbnormalStateManager.GetDefaultAnbormalStateTime",
+    "AbnormalType.Tumble",
+    "CharacterActionManagerBase.AddAbnormalState",
+    "SkillActionBase.get_ActionID",
+    "SkillActionBase.op_Equality",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND !SkillActionBase.op_Inequality(action) AND (!MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) | hasBuff(CrtDamageUp)) AND (damageData.AbnormalType - 1) hs 4 AND CharacterActionManagerBase.AddAbnormalState(actor, 2, AbnormalStateManager.GetDefaultAnbormalStateTime(AbnormalType.Tumble), 0, 0, 0, 1) AND SkillActionBase.get_ActionID() eq 660 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND damageData.AbnormalType ne 43 AND hasGemCart(401) OR !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND !SkillActionBase.op_Inequality(action) AND (MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) | hasBuff(CrtDamageUp)) AND (damageData.AbnormalType - 1) hs 4 AND CharacterActionManagerBase.AddAbnormalState(actor, 2, AbnormalStateManager.GetDefaultAnbormalStateTime(AbnormalType.Tumble), 0, 0, 0, 1) AND SkillActionBase.get_ActionID() eq 660 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND damageData.AbnormalType ne 43 AND hasGemCart(401) OR !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND (!MathUtil.CheckPercent(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) << 2)) << 1)) | hasBuff(CrtDamageUp)) AND (damageData.AbnormalType - 1) hs 4 AND CharacterActionManagerBase.AddAbnormalState(actor, 2, AbnormalStateManager.GetDefaultAnbormalStateTime(AbnormalType.Tumble), 0, 0, 0, 1) AND IsInstanceOf(action, MobEventScriptAttack) ne 1 AND SkillActionBase.get_ActionID() eq 660 AND SkillActionBase.op_Inequality(action) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Berserk, 1) ge 1 AND damageData.AbnormalType ne 43 AND hasGemCart(401)",
+   "vars": [
+    "AbnormalStateManager.GetDefaultAnbormalStateTime",
+    "AbnormalType.Tumble",
+    "CharacterActionManagerBase.AddAbnormalState",
+    "MathUtil.CheckPercent",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.get_ActionID",
+    "SkillActionBase.op_Equality",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "SkillId.Berserk",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(41)",
+   "simplified": "RemoveSelfBuffer(41)",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND !SkillActionBase.op_Inequality(action) AND !hasGemCart(401) AND ((0 | hasBuff(CrtDamageUp)) & 1) eq 0 AND (damageData.AbnormalType - 1) hs 4 AND CharacterActionManagerBase.AddAbnormalState(actor, 2, AbnormalStateManager.GetDefaultAnbormalStateTime(AbnormalType.Tumble), 0, 0, 0, 1) AND SkillActionBase.get_ActionID() eq 660 AND damageData.AbnormalType ne 43 OR !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND !hasGemCart(401) AND ((0 | hasBuff(CrtDamageUp)) & 1) eq 0 AND (damageData.AbnormalType - 1) hs 4 AND CharacterActionManagerBase.AddAbnormalState(actor, 2, AbnormalStateManager.GetDefaultAnbormalStateTime(AbnormalType.Tumble), 0, 0, 0, 1) AND IsInstanceOf(action, MobEventScriptAttack) ne 1 AND SkillActionBase.get_ActionID() eq 660 AND SkillActionBase.op_Inequality(action) AND damageData.AbnormalType ne 43 OR !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND !hasGemCart(401) AND ((0 | hasBuff(CrtDamageUp)) & 1) eq 0 AND (damageData.AbnormalType - 1) hs 4 AND CharacterActionManagerBase.AddAbnormalState(actor, 2, AbnormalStateManager.GetDefaultAnbormalStateTime(AbnormalType.Tumble), 0, 0, 0, 1) AND IsInstanceOf(action, MobEventScriptAttack) eq 1 AND SkillActionBase.get_ActionID() eq 660 AND SkillActionBase.op_Inequality(action) AND damageData.AbnormalType ne 43",
+   "vars": [
+    "AbnormalStateManager.GetDefaultAnbormalStateTime",
+    "AbnormalType.Tumble",
+    "CharacterActionManagerBase.AddAbnormalState",
+    "SkillActionBase.get_ActionID",
+    "SkillActionBase.op_Equality",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "HorizontalCutBuf",
+   "ctors": [
+    {
+     "sig": "",
+     "fields": {},
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PlayerAttackBase.RemoveAfterSkillBuf"
+ ],
+ "variables": [
+  "AbnormalStateManager.GetDefaultAnbormalStateTime",
+  "AbnormalType.Tumble",
+  "CharacterActionManagerBase.AddAbnormalState",
+  "GetWeaponType.item",
+  "IOtherPlayerActionManager.get_SubWeapon",
+  "IPlayerStatusCalculator.get_Dex",
+  "MathUtil.CheckPercent",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerPrimaryStatus.agi",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.CheckRangeHit",
+  "SkillActionBase.get_ActionID",
+  "SkillActionBase.op_Equality",
+  "SkillActionBase.op_Inequality",
+  "SkillActionManager.get_PlaceSkilList",
+  "SkillActionManagerBase.get_CurrentSkill",
+  "SkillComboLine.get_Count",
+  "SkillId.Berserk",
+  "SkillManager.GetSkillLv",
+  "System.Linq.Enumerable.FirstOrDefault",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "status.Dex"
+ ],
+ "residual": []
+}

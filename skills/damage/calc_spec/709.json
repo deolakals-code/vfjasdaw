@@ -1,0 +1,321 @@
+{
+ "version": 1,
+ "uid": 709,
+ "name_th": "เอนฮานซ์",
+ "name_en": "Enhance",
+ "tree": "SpriteSkill",
+ "category": "Support",
+ "max_level": 170,
+ "roles": [
+  "buff (self)",
+  "buff (party / others)",
+  "changes attack pattern (motion / combo chain; heuristic)"
+ ],
+ "class": "EnhanceAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 709,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "AddEnhanceBuf",
+   "kind": "call",
+   "name": "EnhanceBuf..ctor",
+   "formula": ".ctor(skillLv, type)",
+   "simplified": ".ctor(skillLv, type)",
+   "when": "UnityEngine.Object.op_Inequality(BattleMemberData.get_ActionManager(member), 0) AND member._isMine ne 0 OR !UnityEngine.Object.op_Inequality(BattleMemberData.get_ActionManager(member), 0) AND member._isMine ne 0 OR UnityEngine.Object.op_Inequality(BattleMemberData.get_ActionManager(member), 0) AND member._isMine eq 0",
+   "vars": [
+    "BattleMemberData.get_ActionManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "AddEnhanceBuf",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(new EnhanceBuf)",
+   "simplified": "AddBuffer(new, EnhanceBuf)",
+   "when": "UnityEngine.Object.op_Inequality(BattleMemberData.get_ActionManager(member), 0) AND member._isMine ne 0",
+   "vars": [
+    "BattleMemberData.get_ActionManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "AddEnhanceBuf",
+   "kind": "call",
+   "name": "AbnormalStateManager.RemoveAbnormalState",
+   "formula": "RemoveAbnormalState(251)",
+   "simplified": "RemoveAbnormalState(251)",
+   "when": "UnityEngine.Object.op_Inequality(BattleMemberData.get_ActionManager(member), 0) AND member._isMine eq 0",
+   "vars": [
+    "BattleMemberData.get_ActionManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "EnhanceBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int type",
+     "fields": {
+      "type": [
+       {
+        "formula": "type",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((Lv * 10) + 20)",
+        "when": "always",
+        "by_level": [
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100,
+         110,
+         120
+        ]
+       }
+      ],
+      "playerAction": [
+       {
+        "formula": "PlayerDataManager.get_PlayerActionManager(PlayerDataManager.GetPlayerDataManager())",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "0"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AtkUp",
+     "bonus_id": 54,
+     "formula": "atkUp",
+     "simplified": "atkUp",
+     "when": []
+    },
+    {
+     "id": "MatkUp",
+     "bonus_id": 55,
+     "formula": "matkUp",
+     "simplified": "matkUp",
+     "when": []
+    },
+    {
+     "id": "LastDmgUpRate",
+     "bonus_id": 3,
+     "formula": "Lv",
+     "simplified": "Lv",
+     "when": []
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND IsEnd ne 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND 0 eq matkUp AND 0 ne atkUp AND IsEnd eq 0 AND LeftTime gt 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target) OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND 0 eq matkUp AND 0 ne atkUp AND IsEnd eq 0 AND LeftTime gt 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target)"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND IsEnd ne 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND 0 eq matkUp AND 0 ne atkUp AND IsEnd eq 0 AND LeftTime gt 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target) OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND 0 eq matkUp AND 0 ne atkUp AND IsEnd eq 0 AND LeftTime gt 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target)"
+     }
+    ],
+    "mobDef": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "0 eq matkUp AND 0 ne atkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target) OR 0 eq matkUp AND 0 ne atkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target) OR 0 ne atkUp AND 0 ne matkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target)"
+     },
+     {
+      "method": "Updata",
+      "formula": "target.Def",
+      "when": "!UnityEngine.Object.op_Inequality(target) AND (type & 1) ne 0 AND (type & 2) eq 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.Def)), target.Level) ne atkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND matkUp eq matkUp AND mobDef ne target.Def OR !UnityEngine.Object.op_Inequality(target) AND (type & 1) ne 0 AND (type & 2) eq 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.Def)), target.Level) ne atkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND matkUp eq matkUp AND mobDef ne target.Def OR !UnityEngine.Object.op_Inequality(target) AND (type & 1) ne 0 AND (type & 2) eq 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.Def)), target.Level) ne atkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND matkUp ne matkUp AND mobDef ne target.Def"
+     }
+    ],
+    "mobMdef": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "0 eq matkUp AND 0 ne atkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target) OR 0 eq matkUp AND 0 ne atkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target) OR 0 ne atkUp AND 0 ne matkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target)"
+     },
+     {
+      "method": "Updata",
+      "formula": "target.MagicDef",
+      "when": "!UnityEngine.Object.op_Inequality(target) AND (type & 1) eq 0 AND (type & 2) ne 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.MagicDef)), target.Level) eq matkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND atkUp ne atkUp AND mobMdef ne target.MagicDef OR !UnityEngine.Object.op_Inequality(target) AND (type & 1) eq 0 AND (type & 2) ne 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.MagicDef)), target.Level) eq matkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND atkUp ne atkUp AND mobMdef ne target.MagicDef OR !UnityEngine.Object.op_Inequality(target) AND (type & 1) eq 0 AND (type & 2) ne 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.MagicDef)), target.Level) ne matkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND atkUp ne atkUp AND mobMdef ne target.MagicDef"
+     }
+    ],
+    "atkUp": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "0 eq matkUp AND 0 ne atkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target) OR 0 eq matkUp AND 0 ne atkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target) OR 0 ne atkUp AND 0 ne matkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target)"
+     },
+     {
+      "method": "Updata",
+      "formula": "System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.Def)), target.Level)",
+      "when": "!UnityEngine.Object.op_Inequality(target) AND (type & 1) ne 0 AND (type & 2) eq 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.Def)), target.Level) ne atkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND matkUp eq matkUp AND mobDef ne target.Def OR !UnityEngine.Object.op_Inequality(target) AND (type & 1) ne 0 AND (type & 2) eq 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.Def)), target.Level) ne atkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND matkUp eq matkUp AND mobDef ne target.Def OR !UnityEngine.Object.op_Inequality(target) AND (type & 1) ne 0 AND (type & 2) eq 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.Def)), target.Level) ne atkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND matkUp ne matkUp AND mobDef ne target.Def"
+     },
+     {
+      "method": "Updata",
+      "formula": "atkUp",
+      "when": "!UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND !UnityEngine.Object.op_Inequality(target) AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND atkUp ne atkUp AND matkUp eq matkUp OR !UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND !UnityEngine.Object.op_Inequality(target) AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND atkUp ne atkUp AND matkUp eq matkUp OR !UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND !UnityEngine.Object.op_Inequality(target) AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND atkUp ne atkUp AND matkUp ne matkUp"
+     }
+    ],
+    "matkUp": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "0 ne atkUp AND 0 ne matkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target) OR 0 ne atkUp AND 0 ne matkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target) OR 0 eq atkUp AND 0 ne matkUp AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Equality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(target)"
+     },
+     {
+      "method": "Updata",
+      "formula": "System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.MagicDef)), target.Level)",
+      "when": "!UnityEngine.Object.op_Inequality(target) AND (type & 1) eq 0 AND (type & 2) ne 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.MagicDef)), target.Level) ne matkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND atkUp ne atkUp AND mobMdef ne target.MagicDef OR !UnityEngine.Object.op_Inequality(target) AND (type & 1) eq 0 AND (type & 2) ne 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.MagicDef)), target.Level) ne matkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND atkUp ne atkUp AND mobMdef ne target.MagicDef OR !UnityEngine.Object.op_Inequality(target) AND (type & 1) eq 0 AND (type & 2) ne 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND System.Math.Min(int((((Lv + (Lv << 2)) / 100) * target.MagicDef)), target.Level) ne matkUp AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND atkUp eq atkUp AND mobMdef ne target.MagicDef"
+     },
+     {
+      "method": "Updata",
+      "formula": "matkUp",
+      "when": "!UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND !UnityEngine.Object.op_Inequality(target) AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND atkUp ne atkUp AND matkUp ne matkUp OR !UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND !UnityEngine.Object.op_Inequality(target) AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND atkUp ne atkUp AND matkUp ne matkUp OR !UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND !UnityEngine.Object.op_Inequality(target) AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND atkUp eq atkUp AND matkUp ne matkUp"
+     }
+    ],
+    "target": [
+     {
+      "method": "Updata",
+      "formula": "playerAction.battleManager.mainTargetData.Target",
+      "when": "!UnityEngine.Object.op_Inequality(target) AND (type & 1) eq 0 AND (type & 2) eq 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND atkUp ne atkUp AND matkUp eq matkUp OR !UnityEngine.Object.op_Inequality(target) AND (type & 1) eq 0 AND (type & 2) eq 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) lt 1 AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND atkUp ne atkUp AND matkUp eq matkUp OR !UnityEngine.Object.op_Inequality(target) AND (type & 1) eq 0 AND (type & 2) eq 0 AND IsEnd eq 0 AND LeftTime le 0 AND System.Collections.Generic.Dictionary<short, int>.get_Count(new System.Collections.Generic.Dictionary<short, int>, meta(0x39a9eb0, Method$System.Collections.Generic.Dictionary<short, int>.get_Count())) ge 1 AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(playerAction.battleManager.mainTargetData.Target, target) AND atkUp ne atkUp AND matkUp ne matkUp"
+     }
+    ],
+    "isViewSelfIcon": [
+     {
+      "method": "SetViewSelfIcon",
+      "formula": "(flag & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsEnhanceAtk",
+    "get_IsEnhanceMatk"
+   ],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "EnhanceBuf": {
+     "lv": "lv",
+     "self": "0"
+    }
+   },
+   "attached_via": "caller2:EnhanceBuf$$.ctor<-EnhanceAction$$AddEnhanceBuf",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "BattleMemberData.get_ActionManager",
+  "IMobStatusCalculator.get_Def",
+  "IMobStatusCalculator.get_Level",
+  "IMobStatusCalculator.get_MagicDef",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_PlayerActionManager",
+  "SkillBufferId.AtkUp",
+  "SkillBufferId.LastDmgUpRate",
+  "SkillBufferId.MatkUp",
+  "System.Collections.Generic.Dictionary.get_Count",
+  "System.Math.Min",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

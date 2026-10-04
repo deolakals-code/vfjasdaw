@@ -1,0 +1,35 @@
+{
+ "version": 1,
+ "uid": 1228,
+ "name_th": "ศาสตร์แห่งนินจูตสึ II",
+ "name_en": "NinjutsuTraining2",
+ "tree": "NinjaSkill",
+ "category": "Mastery",
+ "max_level": 200,
+ "roles": [
+  "passive mastery",
+  "no client action class (system / production / unreleased)"
+ ],
+ "class": null,
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "NinjaSkillBase.GetNinjutsuTraining"
+ ],
+ "variables": [],
+ "residual": []
+}

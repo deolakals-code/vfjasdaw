@@ -1,0 +1,359 @@
+{
+ "version": 1,
+ "uid": 518,
+ "name_th": "ไบด์สไตร์ค",
+ "name_en": "BindStrike",
+ "tree": "KnightSkill",
+ "category": "Attack",
+ "max_level": 125,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "BindStrikeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 518,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 5) + 450) + (status.Vit + 150))",
+   "simplified": "5 × Lv + status.Vit + 600",
+   "when": "mainWeapon == TwoHandSword AND subWeapon == Shield OR mainWeapon != TwoHandSword AND subWeapon == Shield",
+   "vars": [
+    "status.Vit"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv * 10) + 50) + 150)",
+   "simplified": "10 × Lv + 200",
+   "when": "mainWeapon == TwoHandSword AND subWeapon == Shield OR mainWeapon != TwoHandSword AND subWeapon == Shield",
+   "by_level": [
+    210,
+    220,
+    230,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "range",
+   "formula": "MathUtil.DisplayMeterToDistance((floor((Lv * 0.1)) + (floor((Lv * 0.175)) + 3)))",
+   "simplified": "MathUtil.DisplayMeterToDistance(floor(0.1 × Lv) + floor(0.175 × Lv) + 3)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isEquipShield",
+   "formula": "1",
+   "simplified": "1",
+   "when": "mainWeapon == TwoHandSword AND subWeapon == Shield OR mainWeapon != TwoHandSword AND subWeapon == Shield",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 5) + 450)",
+   "simplified": "5 × Lv + 450",
+   "when": "mainWeapon == TwoHandSword AND subWeapon != Shield OR mainWeapon != TwoHandSword AND subWeapon != Shield",
+   "by_level": [
+    455,
+    460,
+    465,
+    470,
+    475,
+    480,
+    485,
+    490,
+    495,
+    500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 50)",
+   "simplified": "10 × Lv + 50",
+   "when": "mainWeapon == TwoHandSword AND subWeapon != Shield OR mainWeapon != TwoHandSword AND subWeapon != Shield",
+   "by_level": [
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "target",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + KnightWill.GetParam(PlayerStatusBase.get_SkillManager().SkillMasteryList[520], BonusType.BindStrikeSkillRate, (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) eq 17 ? 1 : 0)))",
+   "simplified": "(skillRate + KnightWill.GetParam(PlayerStatusBase.get_SkillManager().SkillMasteryList[520], BonusType.BindStrikeSkillRate, (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) eq 17 ? 1 : 0)))",
+   "when": "(+0x109 & 2) ne 0 AND Lv eq 10 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusType.BindStrikeSkillRate",
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "KnightWill.GetParam",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((skillRate + status.Vit) / 100)",
+   "simplified": "(skillRate + status.Vit) / 100",
+   "when": "UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEquipShield ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_transform(mobAction), target) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND hasGemCart(1021) AND isEquipShield ne 0 OR !hasGemCart(1021) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEquipShield ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalType.Stop",
+    "MobActionManagerBase.get_Target",
+    "MobActionManagerBase.get_transform",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "status.Vit"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "isEquipShield eq 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEquipShield ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_transform(mobAction), target) AND hasGemCart(1021) AND isEquipShield eq 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_Target",
+    "MobActionManagerBase.get_transform",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(3, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(3, percent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_transform(mobAction), target) AND hasGemCart(1021) AND isEquipShield eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_transform(mobAction), target) AND hasGemCart(1021) AND isEquipShield eq 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_transform(mobAction), target) AND hasGemCart(1021) AND isEquipShield ne 0",
+   "vars": [
+    "AbnormalType.Stun",
+    "MobActionManagerBase.get_Target",
+    "MobActionManagerBase.get_transform",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(3, ?stack)",
+   "simplified": "SetAbnormalType(3, ?stack)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_transform(mobAction), target) AND hasGemCart(1021) AND isEquipShield eq 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_transform(mobAction), target) AND hasGemCart(1021) AND isEquipShield ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_transform(mobAction), target) AND hasGemCart(1021) AND isEquipShield ne 0",
+   "vars": [
+    "AbnormalType.Stun",
+    "MobActionManagerBase.get_Target",
+    "MobActionManagerBase.get_transform",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ],
+   "residual": [
+    "?stack"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(12, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(12, percent, playerAction)",
+   "when": "!hasGemCart(1021) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, percent, playerAction) AND isEquipShield eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, percent, playerAction) AND !hasGemCart(1021) AND isEquipShield eq 0 OR !hasGemCart(1021) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEquipShield ne 0",
+   "vars": [
+    "AbnormalType.Stop",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(12)",
+   "simplified": "SetAbnormalType(12)",
+   "when": "!hasGemCart(1021) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, percent, playerAction) AND isEquipShield eq 0 OR !hasGemCart(1021) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, percent, playerAction) AND UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEquipShield ne 0 OR !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND !hasGemCart(1021) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, percent, playerAction) AND isEquipShield ne 0",
+   "vars": [
+    "AbnormalType.Stop",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Stop",
+  "AbnormalType.Stun",
+  "BonusType.BindStrikeSkillRate",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Vit",
+  "KnightWill.GetParam",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Target",
+  "MobActionManagerBase.get_transform",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillManager",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "status.Vit"
+ ],
+ "residual": [
+  {
+   "where": "calcPlayerToMobDamage:SkillDamageData.SetAbnormalType",
+   "tokens": [
+    "?stack"
+   ]
+  }
+ ]
+}

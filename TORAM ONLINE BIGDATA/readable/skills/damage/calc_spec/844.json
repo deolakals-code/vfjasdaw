@@ -1,0 +1,695 @@
+{
+ "version": 1,
+ "uid": 844,
+ "name_th": "เนเมซิส",
+ "name_en": "Nemesis",
+ "tree": "PriestSkill",
+ "category": "Attack",
+ "max_level": 205,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "changes attack pattern (motion / combo chain; heuristic)"
+ ],
+ "class": "NemesisAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 844,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "Rod",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "5",
+   "simplified": "5",
+   "when": "always",
+   "by_level": 5
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SubElement",
+   "formula": "PlayerStatusBase.GetEquipSubWeaponElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipSubWeaponElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "hasBuff(844) AND subWeapon == Magictool",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipSubWeaponElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "IsValidDualElement",
+   "formula": "1",
+   "simplified": "1",
+   "when": "hasBuff(844) AND subWeapon == Magictool",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "isInstallation",
+   "formula": "((skillIndividualFlag & 15) ne 0 ? 1 : 0)",
+   "simplified": "skillIndividualFlag & 15 ≠ 0 ? 1 : 0",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "targetSkillRate",
+   "formula": "min((1000 + status.Str), 1500)",
+   "simplified": "min(status.Str + 1000, 1500)",
+   "when": "always",
+   "vars": [
+    "status.Str"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(Lv * 60)",
+   "simplified": "60 × Lv",
+   "when": "always",
+   "by_level": [
+    60,
+    120,
+    180,
+    240,
+    300,
+    360,
+    420,
+    480,
+    540,
+    600
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "placeSkillRate",
+   "formula": "min(((status.Int * 0.5) + 500), 750)",
+   "simplified": "min(0.5 × status.Int + 500, 750)",
+   "when": "always",
+   "vars": [
+    "status.Int"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "placeFixDamage",
+   "formula": "(Lv * 30)",
+   "simplified": "30 × Lv",
+   "when": "always",
+   "by_level": [
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isFirst",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "SkillBufferDataBase.GetParam(CheckNemesisBuf.buf((this + 312), actarAction), SkillBufferId.Count)",
+   "simplified": "SkillBufferDataBase.GetParam(CheckNemesisBuf.buf(this + 312, actarAction), SkillBufferId.Count)",
+   "when": "always",
+   "vars": [
+    "CheckNemesisBuf.buf",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "targetSkillRate",
+   "formula": "1000",
+   "simplified": "1000",
+   "when": "always",
+   "by_level": 1000
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "criticalAttackCount",
+   "formula": "(SkillActionBase.get_AttackCount(this) & 255)",
+   "simplified": "SkillActionBase.get_AttackCount(this) & 255",
+   "when": "criticalAttackCount eq -1 AND criticalAttackCount ge 1 AND criticalAttackCount lt SkillActionBase.get_AttackCount(this) AND isFirst eq 0 OR PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount eq -1 AND criticalAttackCount lt 1 AND isFirst eq 0 OR PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount eq -1 AND criticalAttackCount ge 1 AND criticalAttackCount ge SkillActionBase.get_AttackCount(this) AND isFirst eq 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isFirst",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(targetSkillRate / 100)",
+   "simplified": "targetSkillRate / 100",
+   "when": "isFirst ne 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "isFirst ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "!PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount lt 1 AND isFirst eq 0 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount ge 1 AND criticalAttackCount ge SkillActionBase.get_AttackCount(this) AND isFirst eq 0 OR criticalAttackCount eq -1 AND criticalAttackCount ge 1 AND criticalAttackCount lt SkillActionBase.get_AttackCount(this) AND isFirst eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "SkillActionBase.get_AttackCount",
+    "target.ExpDefMagic"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(((isFirst eq 0 ? 1 : 0) ne 0 ? placeSkillRate : targetSkillRate) / 100)",
+   "simplified": "((isFirst = 0 ? 1 : 0) ≠ 0 ? placeSkillRate : targetSkillRate) / 100",
+   "when": "!PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount lt 1 AND isFirst eq 0 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount ge 1 AND criticalAttackCount ge SkillActionBase.get_AttackCount(this) AND isFirst eq 0 OR criticalAttackCount eq -1 AND criticalAttackCount ge 1 AND criticalAttackCount lt SkillActionBase.get_AttackCount(this) AND isFirst eq 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "((isFirst eq 0 ? 1 : 0) ne 0 ? placeFixDamage : fixAddDamage)",
+   "simplified": "(isFirst = 0 ? 1 : 0) ≠ 0 ? placeFixDamage : fixAddDamage",
+   "when": "!PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount lt 1 AND isFirst eq 0 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount ge 1 AND criticalAttackCount ge SkillActionBase.get_AttackCount(this) AND isFirst eq 0 OR criticalAttackCount eq -1 AND criticalAttackCount ge 1 AND criticalAttackCount lt SkillActionBase.get_AttackCount(this) AND isFirst eq 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "!PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount lt 1 AND isFirst eq 0 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount ge 1 AND criticalAttackCount ge SkillActionBase.get_AttackCount(this) AND isFirst eq 0 OR criticalAttackCount eq -1 AND criticalAttackCount ge 1 AND criticalAttackCount lt SkillActionBase.get_AttackCount(this) AND isFirst eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "SkillActionBase.get_AttackCount"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(844)",
+   "simplified": "RemoveSelfBuffer(844)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isInstallation ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), (LoopParam + 1))",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), LoopParam + 1)",
+   "when": "isFirst ne 0 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount lt 1 AND isFirst eq 0 OR !PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) AND criticalAttackCount ge 1 AND criticalAttackCount ge SkillActionBase.get_AttackCount(this) AND isFirst eq 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "NemesisBuf..ctor",
+   "formula": ".ctor(Lv, target, actarAction)",
+   "simplified": ".ctor(Lv, target, actarAction)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND isInstallation eq 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new NemesisBuf, Id)",
+   "simplified": "AddSelfBuffer(new, NemesisBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND isInstallation eq 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "NemesisBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, GameObject target, PlayerActionManagerBase player",
+     "fields": {
+      "range": [
+       {
+        "formula": "MathUtil.DisplayMeterToDistance(16)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "playerAttackIdList": [
+       {
+        "formula": "new System.Collections.Generic.List<int>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((((Lv << 2) + lv) << 1) + (((Lv << 2) + lv) << 1))",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17",
+        "by_level": [
+         20,
+         40,
+         60,
+         80,
+         100,
+         120,
+         140,
+         160,
+         180,
+         200
+        ]
+       },
+       {
+        "formula": "(((Lv << 2) + lv) << 1)",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 17",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ],
+      "target": [
+       {
+        "formula": "target",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "playerAction": [
+       {
+        "formula": "player",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "mobAction": [
+       {
+        "formula": "UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "20"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeStack eq 0 OR !UnityEngine.Object.op_Inequality(lineEffect) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeStack ne 0 OR !NemesisBuf.CheckBufferLineConnect(this) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND UnityEngine.Object.op_Inequality(lineEffect) AND activeStack ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND activeStack eq 0 OR !UnityEngine.Object.op_Inequality(lineEffect) AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND activeStack ne 0 OR !NemesisBuf.CheckBufferLineConnect(this) AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND UnityEngine.Object.op_Inequality(lineEffect) AND activeStack ne 0"
+     }
+    ],
+    "Count": [
+     {
+      "method": "CountReset",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "lineEffect": [
+     {
+      "method": "OnCall",
+      "formula": "UnityEngine.GameObject.AddComponent<NemesisBuf.NemesisLineEffect>(UnityEngine.Component.get_gameObject([[Singleton<TakeManager>.get_Instance()+0x20]+0x30][takeUid]))",
+      "when": "UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponentInChildren<SkinnedMeshRenderer>(target), 0) AND UnityEngine.Object.op_Inequality(target) AND UnityEngine.Transform.Find(UnityEngine.Component.get_transform(playerAction), meta(0x3974210, 'Player')) eq 0 OR !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponentInChildren<SkinnedMeshRenderer>(target), 0) AND UnityEngine.Object.op_Inequality(target) AND UnityEngine.Transform.Find(UnityEngine.Component.get_transform(playerAction), meta(0x3974210, 'Player')) eq 0 OR UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<SkinnedMeshRenderer>(UnityEngine.Transform.Find(UnityEngine.Component.get_transform(playerAction), meta(0x3974210, 'Player'))), 0) AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponentInChildren<SkinnedMeshRenderer>(target), 0) AND UnityEngine.Object.op_Inequality(target) AND UnityEngine.Transform.Find(UnityEngine.Component.get_transform(playerAction), meta(0x3974210, 'Player')) ne 0"
+     }
+    ]
+   },
+   "hooks": [
+    "ChangeHyperMode",
+    "CheckBufferLineConnect",
+    "CheckPlayerAttackDamaged",
+    "CountReset",
+    "MobAttackDamaged",
+    "OnCall",
+    "PlayerAttackDamaged",
+    "get_BufEffectTakeId"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "NemesisBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "20"
+    }
+   },
+   "attached_via": "caller2:NemesisBuf$$.ctor<-NemesisAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "BCollaboBossActionManager.Damaged",
+  "EnemyMobActionManagerBase.Damaged",
+  "EnemyMobActionManagerBase.SetHyperModeStatus",
+  "ExorcismAction.ActionStart",
+  "GuildRaidBossMobActionManager.Damaged",
+  "MindimageSenjuAttackAction.ActionStart",
+  "MobaOtherPlayerActionManager.Damaged",
+  "MobaPlayerActionManager.AddAbnormalState",
+  "MobaPlayerActionManager.ReceiveAttack",
+  "MobaPlayerBattleManager.StartHolyBiblePursuitAttack",
+  "NemesisAction.Damaged",
+  "NemesisAction.OnInitialize",
+  "PlayerActionManager.AddAbnormalState",
+  "PlayerBattleManager.StartHolyBiblePursuitAttack",
+  "ScoreAttackBossActionManager.Damaged"
+ ],
+ "variables": [
+  "CheckNemesisBuf.buf",
+  "EquipItemData.get_SubWeapon",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "IPlayerStatusCalculator.get_Int",
+  "IPlayerStatusCalculator.get_Str",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "NemesisBuf.CheckBufferLineConnect",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CheckMagicCritical",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerStatusBase.GetEquipSubWeaponElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "Singleton.get_Instance",
+  "SkillActionBase.get_AttackCount",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.AddComponent",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.GetComponentInChildren",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.Find",
+  "status.Int",
+  "status.Str",
+  "target.ExpDefMagic"
+ ],
+ "residual": []
+}

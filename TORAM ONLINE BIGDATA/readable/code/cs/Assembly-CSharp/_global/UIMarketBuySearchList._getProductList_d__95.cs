@@ -1,0 +1,44 @@
+// Assembly: Assembly-CSharp.dll
+// Namespace: 
+[CompilerGenerated]
+private sealed class UIMarketBuySearchList.<getProductList>d__95 : IEnumerator<object>, IEnumerator, IDisposable // TypeDefIndex: 8416
+{
+	// Fields
+	private int <>1__state; // 0x10
+	private object <>2__current; // 0x18
+	public UIMarketBuySearchList <>4__this; // 0x20
+	public MarketType marketType; // 0x28
+	public int itemid; // 0x2C
+	public ItemType type; // 0x30
+	public MarketOrderType orderType; // 0x34
+	public int petId; // 0x38
+
+	// Properties
+	private object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+	private object System.Collections.IEnumerator.Current { get; }
+
+	// Methods
+
+	[DebuggerHidden]
+	// RVA: 0x1D593F4 Offset: 0x1D553F4 VA: 0x1D593F4
+	public void .ctor(int <>1__state) { }
+
+	[DebuggerHidden]
+	// RVA: 0x1D5941C Offset: 0x1D5541C VA: 0x1D5941C Slot: 5
+	private void System.IDisposable.Dispose() { }
+
+	// RVA: 0x1D59420 Offset: 0x1D55420 VA: 0x1D59420 Slot: 6
+	private bool MoveNext() { }
+
+	[DebuggerHidden]
+	// RVA: 0x1D599C8 Offset: 0x1D559C8 VA: 0x1D599C8 Slot: 4
+	private object System.Collections.Generic.IEnumerator<System.Object>.get_Current() { }
+
+	[DebuggerHidden]
+	// RVA: 0x1D599D0 Offset: 0x1D559D0 VA: 0x1D599D0 Slot: 8
+	private void System.Collections.IEnumerator.Reset() { }
+
+	[DebuggerHidden]
+	// RVA: 0x1D59A08 Offset: 0x1D55A08 VA: 0x1D59A08 Slot: 7
+	private object System.Collections.IEnumerator.get_Current() { }
+}

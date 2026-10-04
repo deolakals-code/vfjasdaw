@@ -1,0 +1,71 @@
+{
+ "version": 1,
+ "uid": 711,
+ "name_th": "เรเซอร์เรคชั่น",
+ "name_en": "Resurrection",
+ "tree": "SpriteSkill",
+ "category": "Support",
+ "max_level": 250,
+ "roles": [
+  "utility / system action"
+ ],
+ "class": "ResurrectionAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 711,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(16)",
+   "simplified": "MathUtil.DisplayMeterToDistance(16)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "((((ResurrectionAction.get_BaseMp() - PlayerAttackBase.CalcCostMp(this, actarAction)) // 100) * 0.5) + PlayerAttackBase.CalcCastTime(this, (10 - (Lv * 0.5)), PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "0.5 × (ResurrectionAction.get_BaseMp() - PlayerAttackBase.CalcCostMp(this, actarAction)) // 100 + PlayerAttackBase.CalcCastTime(this, 10 - 0.5 × Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerAttackBase.CalcCostMp",
+    "ResurrectionAction.get_BaseMp"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CalcCostMp",
+  "ResurrectionAction.get_BaseMp"
+ ],
+ "residual": []
+}

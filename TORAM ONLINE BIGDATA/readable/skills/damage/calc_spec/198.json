@@ -1,0 +1,68 @@
+{
+ "version": 1,
+ "uid": 198,
+ "name_th": "เร่ง HP",
+ "name_en": "HpBoost",
+ "tree": "SurvivalSkill",
+ "category": "Mastery",
+ "max_level": 20,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "HpBoost",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "HpBoost",
+  "bonuses": {
+   "MaxHp": {
+    "id": 12,
+    "expr": "(Lv * 100)",
+    "by_level": [
+     100,
+     200,
+     300,
+     400,
+     500,
+     600,
+     700,
+     800,
+     900,
+     1000
+    ]
+   },
+   "MaxHpRate": {
+    "id": 13,
+    "expr": "(Lv << 1)",
+    "by_level": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14,
+     16,
+     18,
+     20
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

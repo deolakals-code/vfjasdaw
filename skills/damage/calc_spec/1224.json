@@ -1,0 +1,284 @@
+{
+ "version": 1,
+ "uid": 1224,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "EarthStyleAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1224,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseMp",
+   "formula": "NinjaSkillBase.CalcNinjaSkillBaseMp(this, 600, actarAction)",
+   "simplified": "NinjaSkillBase.CalcNinjaSkillBaseMp(this, 600, actarAction)",
+   "when": "always",
+   "vars": [
+    "NinjaSkillBase.CalcNinjaSkillBaseMp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "otherSkillEnd",
+   "formula": "(skillEventId & 0xffff)",
+   "simplified": "skillEventId & 65535",
+   "when": "(skillEventId & 0xffff) eq 1"
+  },
+  {
+   "method": "CreateTake",
+   "kind": "set",
+   "name": "nextEffect",
+   "formula": "SkillLinkedTake.CreateNextTake(new SkillLinkedTake, 0x11e67949, 0x11e6794b)",
+   "simplified": "SkillLinkedTake.CreateNextTake(new, SkillLinkedTake, 0x11e67949, 0x11e6794b)",
+   "when": "always",
+   "vars": [
+    "SkillLinkedTake.CreateNextTake"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "EarthStyleBuf..ctor",
+   "formula": ".ctor(Lv, actarAction, Id)",
+   "simplified": ".ctor(Lv, actarAction, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new EarthStyleBuf, Id)",
+   "simplified": "AddSelfBuffer(new, EarthStyleBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "EarthStyleBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase actarAction, byte skillLocalId",
+     "fields": {
+      "actarAction": [
+       {
+        "formula": "actarAction",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "(int(((((Max - Count) * (Max - Count)) / 2.5) + 10)) lt 50 ? int(((((Max - Count) * (Max - Count)) / 2.5) + 10)) : 50)",
+     "simplified": "min(int((Max - Count) × (Max - Count) / 2.5 + 10), 50)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "!UnityEngine.Object.op_Inequality(actarAction) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) eq 1 AND LeftTime gt 0 AND UnityEngine.Object.op_Inequality(actarAction) OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND IsInstanceOf(actarAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) ne 1 AND LeftTime gt 0 AND UnityEngine.Object.op_Inequality(actarAction)"
+     }
+    ]
+   },
+   "hooks": [
+    "Damage"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "EarthStyleBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:EarthStyleBuf$$.ctor<-EarthStyleAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "EarthStyleAction.ActionSkillEndCheck",
+  "EarthStyleAction.Damaged",
+  "MobaPlayerActionManager.ReceiveDamaged"
+ ],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "NinjaSkillBase.CalcNinjaSkillBaseMp",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.GetEquipElement",
+  "SkillBufferId.Count",
+  "SkillBufferId.MobLastDamageRateBuf",
+  "SkillLinkedTake.CreateNextTake",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

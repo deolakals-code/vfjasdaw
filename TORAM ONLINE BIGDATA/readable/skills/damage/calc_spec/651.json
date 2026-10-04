@@ -1,0 +1,118 @@
+{
+ "version": 1,
+ "uid": 651,
+ "name_th": "ชาโดว์สเต็ป",
+ "name_en": "WrapAround",
+ "tree": "DualSword",
+ "category": "Attack",
+ "max_level": 90,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "WrapAroundAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 651,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance((Lv eq 10 ? 12 : (int((Lv * 0.5)) + 4)))",
+   "simplified": "MathUtil.DisplayMeterToDistance(Lv = 10 ? 12 : int(0.5 × Lv) + 4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "((4 - int(((Lv * 0.25) + 0.25))) * 100)",
+   "simplified": "400 - 100 × int(0.25 × Lv + 0.25)",
+   "when": "always",
+   "by_level": [
+    400,
+    400,
+    300,
+    300,
+    300,
+    300,
+    200,
+    200,
+    200,
+    200
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int((CharacterActionManagerBase.get_Size() * 1.5))",
+   "simplified": "int(1.5 × CharacterActionManagerBase.get_Size())",
+   "when": "UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target), 0)",
+   "vars": [
+    "CharacterActionManagerBase.get_Size",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(651, Lv, Id)",
+   "simplified": "AddSelfBuffer(651, Lv, Id)",
+   "when": "always"
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "LunaDitherStarAction.ActionSkillEvent"
+ ],
+ "variables": [
+  "CharacterActionManagerBase.get_Size",
+  "MathUtil.DisplayMeterToDistance",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

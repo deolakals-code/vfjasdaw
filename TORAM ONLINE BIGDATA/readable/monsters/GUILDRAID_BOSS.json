@@ -1,0 +1,5567 @@
+{
+ "note": "Scaled by raid level L (server) and HP gauge count G; rows assume L = 4G. Formulas: calc Reverse/guild_raid/formula.md",
+ "records": [
+  {
+   "boss_no": 1,
+   "boss_name_system": "เบลซซิ่งเซลไดท์",
+   "map": 100100,
+   "map_name": "",
+   "record_id": 1,
+   "uuid": 916,
+   "name_th": "เบลซซิ่งเซลไดท์",
+   "name_jp": "赫灼のセルディテ",
+   "role": "boss",
+   "element": "Fire",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 100,
+    "exp": 0,
+    "def": 125,
+    "mdef": 125,
+    "necessary_hit": 75,
+    "resist_physical": 20,
+    "resist_magic": 10,
+    "guard": 6,
+    "avoid": 2,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Fire",
+    "move_speed": 17
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      1,
+      0,
+      0,
+      50,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 5 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      0,
+      0,
+      150,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 15 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      8,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะติดไฟ: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      9,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแช่แข็ง: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      13,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      19,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเลือดไหล: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      37,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสถานะ#37: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 6,
+     "values": [
+      10,
+      0,
+      0,
+      0,
+      0
+     ],
+     "type_name": "CriticalResist",
+     "desc_th": "[code] ลดอัตราคริของผู้เล่น 10 แต้ม (ลดครึ่งเมื่อมอนติดบางสถานะ)"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 45,
+     "def": 50,
+     "mdef": 50,
+     "resist_physical": 24,
+     "resist_magic": 14,
+     "gauge": 10,
+     "damage_percent": 1.769,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(1.769 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 176",
+     "necessary_flee_percent": 0.6,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 17
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 90,
+     "def": 100,
+     "mdef": 100,
+     "resist_physical": 28,
+     "resist_magic": 18,
+     "gauge": 20,
+     "damage_percent": 6.9432,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(6.9432 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 694",
+     "necessary_flee_percent": 1.2,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 17
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 135,
+     "def": 150,
+     "mdef": 150,
+     "resist_physical": 32,
+     "resist_magic": 22,
+     "gauge": 30,
+     "damage_percent": 16.5834,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.5834 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,658",
+     "necessary_flee_percent": 1.8,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 17
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 180,
+     "def": 200,
+     "mdef": 200,
+     "resist_physical": 36,
+     "resist_magic": 26,
+     "gauge": 40,
+     "damage_percent": 31.7504,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(31.7504 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 3,175",
+     "necessary_flee_percent": 2.4,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 17
+    },
+    {
+     "lv": 200,
+     "hp": 63551250,
+     "necessary_hit": 225,
+     "def": 250,
+     "mdef": 250,
+     "resist_physical": 40,
+     "resist_magic": 30,
+     "gauge": 50,
+     "damage_percent": 53.5005,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(53.5005 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 5,350",
+     "necessary_flee_percent": 3.0,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 17
+    },
+    {
+     "lv": 240,
+     "hp": 112946724,
+     "necessary_hit": 270,
+     "def": 300,
+     "mdef": 300,
+     "resist_physical": 44,
+     "resist_magic": 34,
+     "gauge": 60,
+     "damage_percent": 82.8982,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(82.8982 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 8,289",
+     "necessary_flee_percent": 3.6,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 17
+    },
+    {
+     "lv": 280,
+     "hp": 189641034,
+     "necessary_hit": 315,
+     "def": 350,
+     "mdef": 350,
+     "resist_physical": 48,
+     "resist_magic": 38,
+     "gauge": 70,
+     "damage_percent": 121.0096,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(121.0096 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 12,100",
+     "necessary_flee_percent": 4.2,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 17
+    },
+    {
+     "lv": 320,
+     "hp": 304397556,
+     "necessary_hit": 360,
+     "def": 400,
+     "mdef": 400,
+     "resist_physical": 52,
+     "resist_magic": 42,
+     "gauge": 80,
+     "damage_percent": 168.8853,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(168.8853 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 16,888",
+     "necessary_flee_percent": 4.8,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 17
+    }
+   ]
+  },
+  {
+   "boss_no": 1,
+   "boss_name_system": "เบลซซิ่งเซลไดท์",
+   "map": 100100,
+   "map_name": "",
+   "record_id": 1001,
+   "uuid": 917,
+   "name_th": "ชูเน่กันไฟ",
+   "name_jp": "防火シュネー",
+   "role": "add (inferred)",
+   "element": "Water",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 100,
+    "exp": 0,
+    "def": 0,
+    "mdef": 0,
+    "necessary_hit": 0,
+    "resist_physical": 0,
+    "resist_magic": 0,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Water",
+    "move_speed": 0
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      1,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      4,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกระเด็น: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 5,
+     "values": [
+      1,
+      9999,
+      0,
+      0,
+      0
+     ],
+     "type_name": "DamageLimit",
+     "desc_th": "[code] จำกัดดาเมจต่อฮิต 1-9999"
+    },
+    {
+     "type": 17,
+     "values": [
+      1,
+      48,
+      -16711681,
+      0,
+      0
+     ],
+     "type_name": "EventCircle",
+     "desc_th": "[code] วงเหตุการณ์ใต้ตัว: script flag 1, รัศมี 48, สี ff00ffff"
+    },
+    {
+     "type": 18,
+     "values": [
+      0,
+      -27640,
+      48,
+      100,
+      0
+     ],
+     "type_name": "ScreenEffect",
+     "desc_th": "[code] เอฟเฟกต์หน้าจอแบบ 0, สี ffff9408, รัศมีใน 48 นอก 100"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 4,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 8,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 12,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 16,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 200,
+     "hp": 63551248,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 20,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 240,
+     "hp": 112946720,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 24,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 280,
+     "hp": 189641040,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 28,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 320,
+     "hp": 304397568,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 32,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    }
+   ]
+  },
+  {
+   "boss_no": 1,
+   "boss_name_system": "เบลซซิ่งเซลไดท์",
+   "map": 100100,
+   "map_name": "",
+   "record_id": 1101,
+   "uuid": 837,
+   "name_th": "อิกนิทรัส",
+   "name_jp": "イグニトゥル",
+   "role": "add (inferred)",
+   "element": "Fire",
+   "flags": [
+    "Boss",
+    "InvalidSuction"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 300,
+    "exp": 0,
+    "def": 100,
+    "mdef": 150,
+    "necessary_hit": 50,
+    "resist_physical": 5,
+    "resist_magic": 40,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Fire",
+    "move_speed": 3
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      8,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะติดไฟ: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      13,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      37,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสถานะ#37: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 4093974,
+     "necessary_hit": 30,
+     "def": 40,
+     "mdef": 60,
+     "resist_physical": 9,
+     "resist_magic": 44,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 3
+    },
+    {
+     "lv": 80,
+     "hp": 17403012,
+     "necessary_hit": 60,
+     "def": 80,
+     "mdef": 120,
+     "resist_physical": 13,
+     "resist_magic": 48,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 3
+    },
+    {
+     "lv": 120,
+     "hp": 46098232,
+     "necessary_hit": 90,
+     "def": 120,
+     "mdef": 180,
+     "resist_physical": 17,
+     "resist_magic": 52,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 3
+    },
+    {
+     "lv": 160,
+     "hp": 99340960,
+     "necessary_hit": 120,
+     "def": 160,
+     "mdef": 240,
+     "resist_physical": 21,
+     "resist_magic": 56,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 3
+    },
+    {
+     "lv": 200,
+     "hp": 190653744,
+     "necessary_hit": 150,
+     "def": 200,
+     "mdef": 300,
+     "resist_physical": 25,
+     "resist_magic": 60,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 3
+    },
+    {
+     "lv": 240,
+     "hp": 338840160,
+     "necessary_hit": 180,
+     "def": 240,
+     "mdef": 360,
+     "resist_physical": 29,
+     "resist_magic": 64,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 3
+    },
+    {
+     "lv": 280,
+     "hp": 568923136,
+     "necessary_hit": 210,
+     "def": 280,
+     "mdef": 420,
+     "resist_physical": 33,
+     "resist_magic": 68,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 3
+    },
+    {
+     "lv": 320,
+     "hp": 913192704,
+     "necessary_hit": 240,
+     "def": 320,
+     "mdef": 480,
+     "resist_physical": 37,
+     "resist_magic": 72,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 3
+    }
+   ]
+  },
+  {
+   "boss_no": 2,
+   "boss_name_system": "ไบซันศิลาน้ำแข็ง",
+   "map": 100200,
+   "map_name": "",
+   "record_id": 1,
+   "uuid": 741,
+   "name_th": "โกรเลอร์ไบซัน",
+   "name_jp": "氷岩のバイソン",
+   "role": "boss",
+   "element": "Water",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction",
+    "HeightLimit",
+    "TargetSize"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 100,
+    "exp": 0,
+    "def": 150,
+    "mdef": 75,
+    "necessary_hit": 100,
+    "resist_physical": 25,
+    "resist_magic": 0,
+    "guard": 10,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Water",
+    "move_speed": 16
+   },
+   "properties": [
+    {
+     "type": 13,
+     "values": [
+      10,
+      250,
+      9,
+      5,
+      0
+     ],
+     "type_name": "FootAttack",
+     "desc_th": "[data] ท่าเหยียบ/โจมตีเท้า A=10 B=250 C=9 D=5"
+    },
+    {
+     "type": 1,
+     "values": [
+      6,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะอัมพาต: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      9,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแช่แข็ง: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      11,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะช้า: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      12,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะหยุด: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      20,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะหลับ: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      1,
+      0,
+      0,
+      5,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0.5 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      0,
+      0,
+      18,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 1.8 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 60,
+     "def": 60,
+     "mdef": 30,
+     "resist_physical": 29,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 1.769,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(1.769 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 176",
+     "necessary_flee_percent": 0.6,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 16
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 120,
+     "def": 120,
+     "mdef": 60,
+     "resist_physical": 33,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 6.9432,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(6.9432 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 694",
+     "necessary_flee_percent": 1.2,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 16
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 180,
+     "def": 180,
+     "mdef": 90,
+     "resist_physical": 37,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 16.5834,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.5834 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,658",
+     "necessary_flee_percent": 1.8,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 16
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 240,
+     "def": 240,
+     "mdef": 120,
+     "resist_physical": 41,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 31.7504,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(31.7504 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 3,175",
+     "necessary_flee_percent": 2.4,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 16
+    },
+    {
+     "lv": 200,
+     "hp": 63551250,
+     "necessary_hit": 300,
+     "def": 300,
+     "mdef": 150,
+     "resist_physical": 45,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 53.5005,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(53.5005 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 5,350",
+     "necessary_flee_percent": 3.0,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 16
+    },
+    {
+     "lv": 240,
+     "hp": 112946724,
+     "necessary_hit": 360,
+     "def": 360,
+     "mdef": 180,
+     "resist_physical": 49,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 82.8982,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(82.8982 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 8,289",
+     "necessary_flee_percent": 3.6,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 16
+    },
+    {
+     "lv": 280,
+     "hp": 189641034,
+     "necessary_hit": 420,
+     "def": 420,
+     "mdef": 210,
+     "resist_physical": 53,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 121.0096,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(121.0096 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 12,100",
+     "necessary_flee_percent": 4.2,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 16
+    },
+    {
+     "lv": 320,
+     "hp": 304397556,
+     "necessary_hit": 480,
+     "def": 480,
+     "mdef": 240,
+     "resist_physical": 57,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 168.8853,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(168.8853 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 16,888",
+     "necessary_flee_percent": 4.8,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 16
+    }
+   ]
+  },
+  {
+   "boss_no": 2,
+   "boss_name_system": "ไบซันศิลาน้ำแข็ง",
+   "map": 100200,
+   "map_name": "",
+   "record_id": 1001,
+   "uuid": 517,
+   "name_th": "อเคลนิกซ์",
+   "name_jp": "アケルニクス",
+   "role": "add (inferred)",
+   "element": "Water",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 50,
+    "exp": 0,
+    "def": 100,
+    "mdef": 100,
+    "necessary_hit": 50,
+    "resist_physical": 0,
+    "resist_magic": 0,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Water",
+    "move_speed": 0
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      1,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      4,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกระเด็น: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      9,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแช่แข็ง: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      13,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      15,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะอ่อนแอ: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      23,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเหนื่อย: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 2,
+     "values": [
+      8,
+      500,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะติดไฟ อยู่ ดาเมจที่ได้รับ +500%"
+    },
+    {
+     "type": 2,
+     "values": [
+      5,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะพิษ อยู่ ดาเมจที่ได้รับ +250%"
+    },
+    {
+     "type": 2,
+     "values": [
+      16,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะทรุด อยู่ ดาเมจที่ได้รับ +250%"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 682329,
+     "necessary_hit": 30,
+     "def": 40,
+     "mdef": 40,
+     "resist_physical": 4,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 80,
+     "hp": 2900502,
+     "necessary_hit": 60,
+     "def": 80,
+     "mdef": 80,
+     "resist_physical": 8,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 120,
+     "hp": 7683039,
+     "necessary_hit": 90,
+     "def": 120,
+     "mdef": 120,
+     "resist_physical": 12,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 160,
+     "hp": 16556826,
+     "necessary_hit": 120,
+     "def": 160,
+     "mdef": 160,
+     "resist_physical": 16,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 200,
+     "hp": 31775624,
+     "necessary_hit": 150,
+     "def": 200,
+     "mdef": 200,
+     "resist_physical": 20,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 240,
+     "hp": 56473360,
+     "necessary_hit": 180,
+     "def": 240,
+     "mdef": 240,
+     "resist_physical": 24,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 280,
+     "hp": 94820520,
+     "necessary_hit": 210,
+     "def": 280,
+     "mdef": 280,
+     "resist_physical": 28,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 320,
+     "hp": 152198784,
+     "necessary_hit": 240,
+     "def": 320,
+     "mdef": 320,
+     "resist_physical": 32,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    }
+   ]
+  },
+  {
+   "boss_no": 2,
+   "boss_name_system": "ไบซันศิลาน้ำแข็ง",
+   "map": 100200,
+   "map_name": "",
+   "record_id": 1011,
+   "uuid": 517,
+   "name_th": "อเคลนิกซ์",
+   "name_jp": "アケルニクス",
+   "role": "add (inferred)",
+   "element": "Water",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 25,
+    "exp": 0,
+    "def": 100,
+    "mdef": 100,
+    "necessary_hit": 50,
+    "resist_physical": 0,
+    "resist_magic": 0,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Water",
+    "move_speed": 24
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      1,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      4,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกระเด็น: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      9,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแช่แข็ง: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      13,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      15,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะอ่อนแอ: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      23,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเหนื่อย: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 2,
+     "values": [
+      8,
+      500,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะติดไฟ อยู่ ดาเมจที่ได้รับ +500%"
+    },
+    {
+     "type": 2,
+     "values": [
+      5,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะพิษ อยู่ ดาเมจที่ได้รับ +250%"
+    },
+    {
+     "type": 2,
+     "values": [
+      16,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะทรุด อยู่ ดาเมจที่ได้รับ +250%"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 341164,
+     "necessary_hit": 30,
+     "def": 40,
+     "mdef": 40,
+     "resist_physical": 4,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 24
+    },
+    {
+     "lv": 80,
+     "hp": 1450251,
+     "necessary_hit": 60,
+     "def": 80,
+     "mdef": 80,
+     "resist_physical": 8,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 24
+    },
+    {
+     "lv": 120,
+     "hp": 3841519,
+     "necessary_hit": 90,
+     "def": 120,
+     "mdef": 120,
+     "resist_physical": 12,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 24
+    },
+    {
+     "lv": 160,
+     "hp": 8278413,
+     "necessary_hit": 120,
+     "def": 160,
+     "mdef": 160,
+     "resist_physical": 16,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 24
+    },
+    {
+     "lv": 200,
+     "hp": 15887812,
+     "necessary_hit": 150,
+     "def": 200,
+     "mdef": 200,
+     "resist_physical": 20,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 24
+    },
+    {
+     "lv": 240,
+     "hp": 28236680,
+     "necessary_hit": 180,
+     "def": 240,
+     "mdef": 240,
+     "resist_physical": 24,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 24
+    },
+    {
+     "lv": 280,
+     "hp": 47410260,
+     "necessary_hit": 210,
+     "def": 280,
+     "mdef": 280,
+     "resist_physical": 28,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 24
+    },
+    {
+     "lv": 320,
+     "hp": 76099392,
+     "necessary_hit": 240,
+     "def": 320,
+     "mdef": 320,
+     "resist_physical": 32,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 24
+    }
+   ]
+  },
+  {
+   "boss_no": 2,
+   "boss_name_system": "ไบซันศิลาน้ำแข็ง",
+   "map": 100200,
+   "map_name": "",
+   "record_id": 1021,
+   "uuid": 517,
+   "name_th": "อเคลนิกซ์",
+   "name_jp": "アケルニクス",
+   "role": "add (inferred)",
+   "element": "Water",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 10,
+    "exp": 0,
+    "def": 100,
+    "mdef": 100,
+    "necessary_hit": 50,
+    "resist_physical": 0,
+    "resist_magic": 0,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Water",
+    "move_speed": 0
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      1,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      4,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกระเด็น: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      9,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแช่แข็ง: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      13,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      15,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะอ่อนแอ: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      23,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเหนื่อย: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 2,
+     "values": [
+      8,
+      500,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะติดไฟ อยู่ ดาเมจที่ได้รับ +500%"
+    },
+    {
+     "type": 2,
+     "values": [
+      5,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะพิษ อยู่ ดาเมจที่ได้รับ +250%"
+    },
+    {
+     "type": 2,
+     "values": [
+      16,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะทรุด อยู่ ดาเมจที่ได้รับ +250%"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 136465,
+     "necessary_hit": 30,
+     "def": 40,
+     "mdef": 40,
+     "resist_physical": 4,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 80,
+     "hp": 580100,
+     "necessary_hit": 60,
+     "def": 80,
+     "mdef": 80,
+     "resist_physical": 8,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 120,
+     "hp": 1536607,
+     "necessary_hit": 90,
+     "def": 120,
+     "mdef": 120,
+     "resist_physical": 12,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 160,
+     "hp": 3311365,
+     "necessary_hit": 120,
+     "def": 160,
+     "mdef": 160,
+     "resist_physical": 16,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 200,
+     "hp": 6355125,
+     "necessary_hit": 150,
+     "def": 200,
+     "mdef": 200,
+     "resist_physical": 20,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 240,
+     "hp": 11294672,
+     "necessary_hit": 180,
+     "def": 240,
+     "mdef": 240,
+     "resist_physical": 24,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 280,
+     "hp": 18964104,
+     "necessary_hit": 210,
+     "def": 280,
+     "mdef": 280,
+     "resist_physical": 28,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 320,
+     "hp": 30439758,
+     "necessary_hit": 240,
+     "def": 320,
+     "mdef": 320,
+     "resist_physical": 32,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    }
+   ]
+  },
+  {
+   "boss_no": 2,
+   "boss_name_system": "ไบซันศิลาน้ำแข็ง",
+   "map": 100200,
+   "map_name": "",
+   "record_id": 1022,
+   "uuid": 517,
+   "name_th": "อเคลนิกซ์",
+   "name_jp": "アケルニクス",
+   "role": "add (inferred)",
+   "element": "Water",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 10,
+    "exp": 0,
+    "def": 100,
+    "mdef": 100,
+    "necessary_hit": 50,
+    "resist_physical": 0,
+    "resist_magic": 0,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Water",
+    "move_speed": 0
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      1,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      4,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกระเด็น: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      9,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแช่แข็ง: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      13,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      15,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะอ่อนแอ: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      23,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเหนื่อย: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 2,
+     "values": [
+      8,
+      500,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะติดไฟ อยู่ ดาเมจที่ได้รับ +500%"
+    },
+    {
+     "type": 2,
+     "values": [
+      5,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะพิษ อยู่ ดาเมจที่ได้รับ +250%"
+    },
+    {
+     "type": 2,
+     "values": [
+      16,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalDamageIncrease",
+     "desc_th": "[code] ถ้ามอนติดสถานะทรุด อยู่ ดาเมจที่ได้รับ +250%"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 136465,
+     "necessary_hit": 30,
+     "def": 40,
+     "mdef": 40,
+     "resist_physical": 4,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 80,
+     "hp": 580100,
+     "necessary_hit": 60,
+     "def": 80,
+     "mdef": 80,
+     "resist_physical": 8,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 120,
+     "hp": 1536607,
+     "necessary_hit": 90,
+     "def": 120,
+     "mdef": 120,
+     "resist_physical": 12,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 160,
+     "hp": 3311365,
+     "necessary_hit": 120,
+     "def": 160,
+     "mdef": 160,
+     "resist_physical": 16,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 200,
+     "hp": 6355125,
+     "necessary_hit": 150,
+     "def": 200,
+     "mdef": 200,
+     "resist_physical": 20,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 240,
+     "hp": 11294672,
+     "necessary_hit": 180,
+     "def": 240,
+     "mdef": 240,
+     "resist_physical": 24,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 280,
+     "hp": 18964104,
+     "necessary_hit": 210,
+     "def": 280,
+     "mdef": 280,
+     "resist_physical": 28,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 320,
+     "hp": 30439758,
+     "necessary_hit": 240,
+     "def": 320,
+     "mdef": 320,
+     "resist_physical": 32,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    }
+   ]
+  },
+  {
+   "boss_no": 3,
+   "boss_name_system": "ไรโกเทพอัสนี",
+   "map": 100300,
+   "map_name": "",
+   "record_id": 1,
+   "uuid": 802,
+   "name_th": "ไรโกเทพอัสนี",
+   "name_jp": "轟雷のングルマ",
+   "role": "boss",
+   "element": "Wind",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction",
+    "HeightLimit",
+    "TargetSize"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 100,
+    "exp": 0,
+    "def": 100,
+    "mdef": 25,
+    "necessary_hit": 200,
+    "resist_physical": 15,
+    "resist_magic": 15,
+    "guard": 0,
+    "avoid": 5,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Wind",
+    "move_speed": 16
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      6,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะอัมพาต: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      7,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะตาบอด: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      33,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแฟลช: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      20,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะหลับ: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 120,
+     "def": 40,
+     "mdef": 10,
+     "resist_physical": 19,
+     "resist_magic": 19,
+     "gauge": 10,
+     "damage_percent": 1.769,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(1.769 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 176",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 5,
+     "move_speed": 16
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 240,
+     "def": 80,
+     "mdef": 20,
+     "resist_physical": 23,
+     "resist_magic": 23,
+     "gauge": 20,
+     "damage_percent": 6.9432,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(6.9432 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 694",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 5,
+     "move_speed": 16
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 360,
+     "def": 120,
+     "mdef": 30,
+     "resist_physical": 27,
+     "resist_magic": 27,
+     "gauge": 30,
+     "damage_percent": 16.5834,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.5834 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,658",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 5,
+     "move_speed": 16
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 480,
+     "def": 160,
+     "mdef": 40,
+     "resist_physical": 31,
+     "resist_magic": 31,
+     "gauge": 40,
+     "damage_percent": 31.7504,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(31.7504 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 3,175",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 5,
+     "move_speed": 16
+    },
+    {
+     "lv": 200,
+     "hp": 63551250,
+     "necessary_hit": 600,
+     "def": 200,
+     "mdef": 50,
+     "resist_physical": 35,
+     "resist_magic": 35,
+     "gauge": 50,
+     "damage_percent": 53.5005,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(53.5005 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 5,350",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 5,
+     "move_speed": 16
+    },
+    {
+     "lv": 240,
+     "hp": 112946724,
+     "necessary_hit": 720,
+     "def": 240,
+     "mdef": 60,
+     "resist_physical": 39,
+     "resist_magic": 39,
+     "gauge": 60,
+     "damage_percent": 82.8982,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(82.8982 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 8,289",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 5,
+     "move_speed": 16
+    },
+    {
+     "lv": 280,
+     "hp": 189641034,
+     "necessary_hit": 840,
+     "def": 280,
+     "mdef": 70,
+     "resist_physical": 43,
+     "resist_magic": 43,
+     "gauge": 70,
+     "damage_percent": 121.0096,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(121.0096 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 12,100",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 5,
+     "move_speed": 16
+    },
+    {
+     "lv": 320,
+     "hp": 304397556,
+     "necessary_hit": 960,
+     "def": 320,
+     "mdef": 80,
+     "resist_physical": 47,
+     "resist_magic": 47,
+     "gauge": 80,
+     "damage_percent": 168.8853,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(168.8853 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 16,888",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 5,
+     "move_speed": 16
+    }
+   ]
+  },
+  {
+   "boss_no": 3,
+   "boss_name_system": "ไรโกเทพอัสนี",
+   "map": 100300,
+   "map_name": "",
+   "record_id": 1001,
+   "uuid": 227,
+   "name_th": "โฟบอส",
+   "name_jp": "フォボス",
+   "role": "add (inferred)",
+   "element": "Wind",
+   "flags": [
+    "Boss"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 100,
+    "exp": 0,
+    "def": 75,
+    "mdef": 200,
+    "necessary_hit": 25,
+    "resist_physical": 0,
+    "resist_magic": 25,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Wind",
+    "move_speed": 8
+   },
+   "properties": [],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 15,
+     "def": 30,
+     "mdef": 80,
+     "resist_physical": 4,
+     "resist_magic": 29,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 30,
+     "def": 60,
+     "mdef": 160,
+     "resist_physical": 8,
+     "resist_magic": 33,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 45,
+     "def": 90,
+     "mdef": 240,
+     "resist_physical": 12,
+     "resist_magic": 37,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 60,
+     "def": 120,
+     "mdef": 320,
+     "resist_physical": 16,
+     "resist_magic": 41,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 200,
+     "hp": 63551248,
+     "necessary_hit": 75,
+     "def": 150,
+     "mdef": 400,
+     "resist_physical": 20,
+     "resist_magic": 45,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 240,
+     "hp": 112946720,
+     "necessary_hit": 90,
+     "def": 180,
+     "mdef": 480,
+     "resist_physical": 24,
+     "resist_magic": 49,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 280,
+     "hp": 189641040,
+     "necessary_hit": 105,
+     "def": 210,
+     "mdef": 560,
+     "resist_physical": 28,
+     "resist_magic": 53,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 320,
+     "hp": 304397568,
+     "necessary_hit": 120,
+     "def": 240,
+     "mdef": 640,
+     "resist_physical": 32,
+     "resist_magic": 57,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    }
+   ]
+  },
+  {
+   "boss_no": 3,
+   "boss_name_system": "ไรโกเทพอัสนี",
+   "map": 100300,
+   "map_name": "",
+   "record_id": 1002,
+   "uuid": 5,
+   "name_th": "คิจิมู",
+   "name_jp": "キジムー",
+   "role": "add (inferred)",
+   "element": "Wind",
+   "flags": [
+    "Boss"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 25,
+    "exp": 0,
+    "def": 75,
+    "mdef": 200,
+    "necessary_hit": 25,
+    "resist_physical": 0,
+    "resist_magic": 25,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Wind",
+    "move_speed": 4
+   },
+   "properties": [],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 341164,
+     "necessary_hit": 15,
+     "def": 30,
+     "mdef": 80,
+     "resist_physical": 4,
+     "resist_magic": 29,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 80,
+     "hp": 1450251,
+     "necessary_hit": 30,
+     "def": 60,
+     "mdef": 160,
+     "resist_physical": 8,
+     "resist_magic": 33,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 120,
+     "hp": 3841519,
+     "necessary_hit": 45,
+     "def": 90,
+     "mdef": 240,
+     "resist_physical": 12,
+     "resist_magic": 37,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 160,
+     "hp": 8278413,
+     "necessary_hit": 60,
+     "def": 120,
+     "mdef": 320,
+     "resist_physical": 16,
+     "resist_magic": 41,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 200,
+     "hp": 15887812,
+     "necessary_hit": 75,
+     "def": 150,
+     "mdef": 400,
+     "resist_physical": 20,
+     "resist_magic": 45,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 240,
+     "hp": 28236680,
+     "necessary_hit": 90,
+     "def": 180,
+     "mdef": 480,
+     "resist_physical": 24,
+     "resist_magic": 49,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 280,
+     "hp": 47410260,
+     "necessary_hit": 105,
+     "def": 210,
+     "mdef": 560,
+     "resist_physical": 28,
+     "resist_magic": 53,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 320,
+     "hp": 76099392,
+     "necessary_hit": 120,
+     "def": 240,
+     "mdef": 640,
+     "resist_physical": 32,
+     "resist_magic": 57,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    }
+   ]
+  },
+  {
+   "boss_no": 4,
+   "boss_name_system": "คิเมร่าชินอิวาโอะ",
+   "map": 100400,
+   "map_name": "",
+   "record_id": 1,
+   "uuid": 830,
+   "name_th": "ไมตี้คิเมร่า",
+   "name_jp": "震巌のキマイラ",
+   "role": "boss",
+   "element": "Earth",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction",
+    "HeightLimit",
+    "TargetSize"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 1000000,
+    "exp": 0,
+    "def": 200,
+    "mdef": 100,
+    "necessary_hit": 25,
+    "resist_physical": 10,
+    "resist_magic": 20,
+    "guard": 8,
+    "avoid": 1,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Earth",
+    "move_speed": 16
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      1,
+      0,
+      0,
+      45,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 4.5 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      0,
+      0,
+      100,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 10 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      0,
+      0,
+      125,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 12.5 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      5,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะพิษ: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      11,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะช้า: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      23,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเหนื่อย: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      43,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลายเป็นหิน: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      32,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะคำสาป: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 6,
+     "values": [
+      25,
+      0,
+      0,
+      0,
+      0
+     ],
+     "type_name": "CriticalResist",
+     "desc_th": "[code] ลดอัตราคริของผู้เล่น 25 แต้ม (ลดครึ่งเมื่อมอนติดบางสถานะ)"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 15,
+     "def": 80,
+     "mdef": 40,
+     "resist_physical": 14,
+     "resist_magic": 24,
+     "gauge": 10,
+     "damage_percent": 1.769,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(1.769 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 176",
+     "necessary_flee_percent": 0.6,
+     "guard": 8,
+     "avoid": 1,
+     "move_speed": 16
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 30,
+     "def": 160,
+     "mdef": 80,
+     "resist_physical": 18,
+     "resist_magic": 28,
+     "gauge": 20,
+     "damage_percent": 6.9432,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(6.9432 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 694",
+     "necessary_flee_percent": 1.2,
+     "guard": 8,
+     "avoid": 1,
+     "move_speed": 16
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 45,
+     "def": 240,
+     "mdef": 120,
+     "resist_physical": 22,
+     "resist_magic": 32,
+     "gauge": 30,
+     "damage_percent": 16.5834,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.5834 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,658",
+     "necessary_flee_percent": 1.8,
+     "guard": 8,
+     "avoid": 1,
+     "move_speed": 16
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 60,
+     "def": 320,
+     "mdef": 160,
+     "resist_physical": 26,
+     "resist_magic": 36,
+     "gauge": 40,
+     "damage_percent": 31.7504,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(31.7504 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 3,175",
+     "necessary_flee_percent": 2.4,
+     "guard": 8,
+     "avoid": 1,
+     "move_speed": 16
+    },
+    {
+     "lv": 200,
+     "hp": 63551250,
+     "necessary_hit": 75,
+     "def": 400,
+     "mdef": 200,
+     "resist_physical": 30,
+     "resist_magic": 40,
+     "gauge": 50,
+     "damage_percent": 53.5005,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(53.5005 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 5,350",
+     "necessary_flee_percent": 3.0,
+     "guard": 8,
+     "avoid": 1,
+     "move_speed": 16
+    },
+    {
+     "lv": 240,
+     "hp": 112946724,
+     "necessary_hit": 90,
+     "def": 480,
+     "mdef": 240,
+     "resist_physical": 34,
+     "resist_magic": 44,
+     "gauge": 60,
+     "damage_percent": 82.8982,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(82.8982 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 8,289",
+     "necessary_flee_percent": 3.6,
+     "guard": 8,
+     "avoid": 1,
+     "move_speed": 16
+    },
+    {
+     "lv": 280,
+     "hp": 189641034,
+     "necessary_hit": 105,
+     "def": 560,
+     "mdef": 280,
+     "resist_physical": 38,
+     "resist_magic": 48,
+     "gauge": 70,
+     "damage_percent": 121.0096,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(121.0096 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 12,100",
+     "necessary_flee_percent": 4.2,
+     "guard": 8,
+     "avoid": 1,
+     "move_speed": 16
+    },
+    {
+     "lv": 320,
+     "hp": 304397556,
+     "necessary_hit": 120,
+     "def": 640,
+     "mdef": 320,
+     "resist_physical": 42,
+     "resist_magic": 52,
+     "gauge": 80,
+     "damage_percent": 168.8853,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(168.8853 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 16,888",
+     "necessary_flee_percent": 4.8,
+     "guard": 8,
+     "avoid": 1,
+     "move_speed": 16
+    }
+   ]
+  },
+  {
+   "boss_no": 4,
+   "boss_name_system": "คิเมร่าชินอิวาโอะ",
+   "map": 100400,
+   "map_name": "",
+   "record_id": 1001,
+   "uuid": 0,
+   "name_th": "unknown",
+   "name_jp": "unknown",
+   "role": "add (inferred)",
+   "element": "Earth",
+   "flags": [
+    "Boss",
+    "UnableToTarget",
+    "HeightLimit"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 100,
+    "exp": 0,
+    "def": 0,
+    "mdef": 0,
+    "necessary_hit": 0,
+    "resist_physical": 0,
+    "resist_magic": 0,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 0,
+    "proration_physical": 0,
+    "proration_magic": 0,
+    "element_name": "Earth",
+    "move_speed": 0
+   },
+   "properties": [],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 4,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 8,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 12,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 16,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 200,
+     "hp": 63551248,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 20,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 240,
+     "hp": 112946720,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 24,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 280,
+     "hp": 189641040,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 28,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 320,
+     "hp": 304397568,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 32,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    }
+   ]
+  },
+  {
+   "boss_no": 4,
+   "boss_name_system": "คิเมร่าชินอิวาโอะ",
+   "map": 100400,
+   "map_name": "",
+   "record_id": 1011,
+   "uuid": 0,
+   "name_th": "unknown",
+   "name_jp": "unknown",
+   "role": "add (inferred)",
+   "element": "Earth",
+   "flags": [
+    "Boss",
+    "UnableToTarget",
+    "HeightLimit"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 100,
+    "exp": 0,
+    "def": 0,
+    "mdef": 0,
+    "necessary_hit": 0,
+    "resist_physical": 0,
+    "resist_magic": 0,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 0,
+    "proration_physical": 0,
+    "proration_magic": 0,
+    "element_name": "Earth",
+    "move_speed": 0
+   },
+   "properties": [],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 4,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 8,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 12,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 16,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 200,
+     "hp": 63551248,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 20,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 240,
+     "hp": 112946720,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 24,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 280,
+     "hp": 189641040,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 28,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 320,
+     "hp": 304397568,
+     "necessary_hit": 0,
+     "def": 0,
+     "mdef": 0,
+     "resist_physical": 32,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    }
+   ]
+  },
+  {
+   "boss_no": 5,
+   "boss_name_system": "เทพทรงกลดโซเทเรีย",
+   "map": 100500,
+   "map_name": "",
+   "record_id": 1,
+   "uuid": 1195,
+   "name_th": "เทพทรงกลดโซเทเรีย",
+   "name_jp": "暈天のソテリア",
+   "role": "boss",
+   "element": "Light",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction",
+    "HeightLimit",
+    "TargetSize",
+    "NearNotRoomEntreeStagingClear"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 1000000,
+    "exp": 0,
+    "def": 175,
+    "mdef": 350,
+    "necessary_hit": 75,
+    "resist_physical": 15,
+    "resist_magic": 30,
+    "guard": 10,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Light",
+    "move_speed": 14
+   },
+   "properties": [
+    {
+     "type": 23,
+     "values": [
+      97,
+      170,
+      170,
+      30,
+      0
+     ],
+     "type_name": "AreaHate",
+     "desc_th": "[data] AreaHate A=97 B=170 C=170 D=30"
+    },
+    {
+     "type": 90,
+     "values": [
+      20,
+      150,
+      0,
+      0,
+      0
+     ],
+     "type_name": "LifeReduceDamage",
+     "desc_th": "[code] Guild raid คู่มอน: ลดดาเมจสุดท้าย (A=20 B=150)"
+    },
+    {
+     "type": 6,
+     "values": [
+      10,
+      0,
+      0,
+      0,
+      0
+     ],
+     "type_name": "CriticalResist",
+     "desc_th": "[code] ลดอัตราคริของผู้เล่น 10 แต้ม (ลดครึ่งเมื่อมอนติดบางสถานะ)"
+    },
+    {
+     "type": 1,
+     "values": [
+      6,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะอัมพาต: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      7,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะตาบอด: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      13,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      14,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเวียนหัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      20,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะหลับ: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      32,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะคำสาป: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      33,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแฟลช: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      19,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเลือดไหล: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      1,
+      0,
+      0,
+      170,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 17 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      0,
+      0,
+      330,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 33 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      0,
+      0,
+      350,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 35 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [
+    "#1->#101 DamageTime=90"
+   ],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 45,
+     "def": 70,
+     "mdef": 140,
+     "resist_physical": 19,
+     "resist_magic": 34,
+     "gauge": 10,
+     "damage_percent": 1.769,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(1.769 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 176",
+     "necessary_flee_percent": 0.6,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 90,
+     "def": 140,
+     "mdef": 280,
+     "resist_physical": 23,
+     "resist_magic": 38,
+     "gauge": 20,
+     "damage_percent": 6.9432,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(6.9432 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 694",
+     "necessary_flee_percent": 1.2,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 135,
+     "def": 210,
+     "mdef": 420,
+     "resist_physical": 27,
+     "resist_magic": 42,
+     "gauge": 30,
+     "damage_percent": 16.5834,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.5834 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,658",
+     "necessary_flee_percent": 1.8,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 180,
+     "def": 280,
+     "mdef": 560,
+     "resist_physical": 31,
+     "resist_magic": 46,
+     "gauge": 40,
+     "damage_percent": 31.7504,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(31.7504 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 3,175",
+     "necessary_flee_percent": 2.4,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 200,
+     "hp": 63551250,
+     "necessary_hit": 225,
+     "def": 350,
+     "mdef": 700,
+     "resist_physical": 35,
+     "resist_magic": 50,
+     "gauge": 50,
+     "damage_percent": 53.5005,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(53.5005 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 5,350",
+     "necessary_flee_percent": 3.0,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 240,
+     "hp": 112946724,
+     "necessary_hit": 270,
+     "def": 420,
+     "mdef": 840,
+     "resist_physical": 39,
+     "resist_magic": 54,
+     "gauge": 60,
+     "damage_percent": 82.8982,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(82.8982 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 8,289",
+     "necessary_flee_percent": 3.6,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 280,
+     "hp": 189641034,
+     "necessary_hit": 315,
+     "def": 490,
+     "mdef": 980,
+     "resist_physical": 43,
+     "resist_magic": 58,
+     "gauge": 70,
+     "damage_percent": 121.0096,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(121.0096 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 12,100",
+     "necessary_flee_percent": 4.2,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 320,
+     "hp": 304397556,
+     "necessary_hit": 360,
+     "def": 560,
+     "mdef": 1120,
+     "resist_physical": 47,
+     "resist_magic": 62,
+     "gauge": 80,
+     "damage_percent": 168.8853,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(168.8853 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 16,888",
+     "necessary_flee_percent": 4.8,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    }
+   ]
+  },
+  {
+   "boss_no": 5,
+   "boss_name_system": "เทพทรงกลดโซเทเรีย",
+   "map": 100500,
+   "map_name": "",
+   "record_id": 2,
+   "uuid": 1195,
+   "name_th": "เทพทรงกลดโซเทเรีย",
+   "name_jp": "暈天のソテリア",
+   "role": "boss",
+   "element": "Light",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction",
+    "HeightLimit",
+    "TargetSize",
+    "NearNotRoomEntreeStagingClear"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 1000000,
+    "exp": 0,
+    "def": 300,
+    "mdef": 125,
+    "necessary_hit": 175,
+    "resist_physical": 30,
+    "resist_magic": 15,
+    "guard": 0,
+    "avoid": 10,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Light",
+    "move_speed": 18
+   },
+   "properties": [
+    {
+     "type": 23,
+     "values": [
+      30,
+      170,
+      103,
+      30,
+      0
+     ],
+     "type_name": "AreaHate",
+     "desc_th": "[data] AreaHate A=30 B=170 C=103 D=30"
+    },
+    {
+     "type": 90,
+     "values": [
+      20,
+      150,
+      0,
+      0,
+      0
+     ],
+     "type_name": "LifeReduceDamage",
+     "desc_th": "[code] Guild raid คู่มอน: ลดดาเมจสุดท้าย (A=20 B=150)"
+    },
+    {
+     "type": 6,
+     "values": [
+      10,
+      0,
+      0,
+      0,
+      0
+     ],
+     "type_name": "CriticalResist",
+     "desc_th": "[code] ลดอัตราคริของผู้เล่น 10 แต้ม (ลดครึ่งเมื่อมอนติดบางสถานะ)"
+    },
+    {
+     "type": 1,
+     "values": [
+      6,
+      0,
+      90,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะอัมพาต: โอกาสติด x10% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      7,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะตาบอด: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      13,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      14,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเวียนหัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      20,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะหลับ: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      32,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะคำสาป: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      33,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแฟลช: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      19,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเลือดไหล: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      1,
+      0,
+      0,
+      170,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 17 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      0,
+      0,
+      330,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 33 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      0,
+      0,
+      350,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 35 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [
+    "#2->#102 DamageTime=90"
+   ],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 105,
+     "def": 120,
+     "mdef": 50,
+     "resist_physical": 34,
+     "resist_magic": 19,
+     "gauge": 10,
+     "damage_percent": 1.769,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(1.769 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 176",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 210,
+     "def": 240,
+     "mdef": 100,
+     "resist_physical": 38,
+     "resist_magic": 23,
+     "gauge": 20,
+     "damage_percent": 6.9432,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(6.9432 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 694",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 315,
+     "def": 360,
+     "mdef": 150,
+     "resist_physical": 42,
+     "resist_magic": 27,
+     "gauge": 30,
+     "damage_percent": 16.5834,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.5834 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,658",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 420,
+     "def": 480,
+     "mdef": 200,
+     "resist_physical": 46,
+     "resist_magic": 31,
+     "gauge": 40,
+     "damage_percent": 31.7504,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(31.7504 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 3,175",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 200,
+     "hp": 63551250,
+     "necessary_hit": 525,
+     "def": 600,
+     "mdef": 250,
+     "resist_physical": 50,
+     "resist_magic": 35,
+     "gauge": 50,
+     "damage_percent": 53.5005,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(53.5005 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 5,350",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 240,
+     "hp": 112946724,
+     "necessary_hit": 630,
+     "def": 720,
+     "mdef": 300,
+     "resist_physical": 54,
+     "resist_magic": 39,
+     "gauge": 60,
+     "damage_percent": 82.8982,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(82.8982 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 8,289",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 280,
+     "hp": 189641034,
+     "necessary_hit": 735,
+     "def": 840,
+     "mdef": 350,
+     "resist_physical": 58,
+     "resist_magic": 43,
+     "gauge": 70,
+     "damage_percent": 121.0096,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(121.0096 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 12,100",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 320,
+     "hp": 304397556,
+     "necessary_hit": 840,
+     "def": 960,
+     "mdef": 400,
+     "resist_physical": 62,
+     "resist_magic": 47,
+     "gauge": 80,
+     "damage_percent": 168.8853,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(168.8853 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 16,888",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    }
+   ]
+  },
+  {
+   "boss_no": 5,
+   "boss_name_system": "เทพทรงกลดโซเทเรีย",
+   "map": 100500,
+   "map_name": "",
+   "record_id": 101,
+   "uuid": 1195,
+   "name_th": "เทพทรงกลดโซเทเรีย",
+   "name_jp": "暈天のソテリア",
+   "role": "boss",
+   "element": "Light",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction",
+    "HeightLimit",
+    "TargetSize",
+    "NearNotRoomEntreeStagingClear"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 1000000,
+    "exp": 0,
+    "def": 175,
+    "mdef": 350,
+    "necessary_hit": 75,
+    "resist_physical": 15,
+    "resist_magic": 30,
+    "guard": 10,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Light",
+    "move_speed": 14
+   },
+   "properties": [
+    {
+     "type": 23,
+     "values": [
+      97,
+      170,
+      170,
+      30,
+      0
+     ],
+     "type_name": "AreaHate",
+     "desc_th": "[data] AreaHate A=97 B=170 C=170 D=30"
+    },
+    {
+     "type": 90,
+     "values": [
+      20,
+      150,
+      0,
+      0,
+      0
+     ],
+     "type_name": "LifeReduceDamage",
+     "desc_th": "[code] Guild raid คู่มอน: ลดดาเมจสุดท้าย (A=20 B=150)"
+    },
+    {
+     "type": 6,
+     "values": [
+      10,
+      0,
+      0,
+      0,
+      0
+     ],
+     "type_name": "CriticalResist",
+     "desc_th": "[code] ลดอัตราคริของผู้เล่น 10 แต้ม (ลดครึ่งเมื่อมอนติดบางสถานะ)"
+    },
+    {
+     "type": 1,
+     "values": [
+      6,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะอัมพาต: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      7,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะตาบอด: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      13,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      14,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเวียนหัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      20,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะหลับ: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      32,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะคำสาป: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      33,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแฟลช: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      19,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเลือดไหล: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      1,
+      0,
+      0,
+      170,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 17 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      0,
+      0,
+      330,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 33 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      0,
+      0,
+      350,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 35 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [
+    "#1->#101 DamageTime=90"
+   ],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 45,
+     "def": 70,
+     "mdef": 140,
+     "resist_physical": 19,
+     "resist_magic": 34,
+     "gauge": 10,
+     "damage_percent": 1.769,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(1.769 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 176",
+     "necessary_flee_percent": 0.6,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 90,
+     "def": 140,
+     "mdef": 280,
+     "resist_physical": 23,
+     "resist_magic": 38,
+     "gauge": 20,
+     "damage_percent": 6.9432,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(6.9432 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 694",
+     "necessary_flee_percent": 1.2,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 135,
+     "def": 210,
+     "mdef": 420,
+     "resist_physical": 27,
+     "resist_magic": 42,
+     "gauge": 30,
+     "damage_percent": 16.5834,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.5834 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,658",
+     "necessary_flee_percent": 1.8,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 180,
+     "def": 280,
+     "mdef": 560,
+     "resist_physical": 31,
+     "resist_magic": 46,
+     "gauge": 40,
+     "damage_percent": 31.7504,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(31.7504 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 3,175",
+     "necessary_flee_percent": 2.4,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 200,
+     "hp": 63551250,
+     "necessary_hit": 225,
+     "def": 350,
+     "mdef": 700,
+     "resist_physical": 35,
+     "resist_magic": 50,
+     "gauge": 50,
+     "damage_percent": 53.5005,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(53.5005 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 5,350",
+     "necessary_flee_percent": 3.0,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 240,
+     "hp": 112946724,
+     "necessary_hit": 270,
+     "def": 420,
+     "mdef": 840,
+     "resist_physical": 39,
+     "resist_magic": 54,
+     "gauge": 60,
+     "damage_percent": 82.8982,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(82.8982 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 8,289",
+     "necessary_flee_percent": 3.6,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 280,
+     "hp": 189641034,
+     "necessary_hit": 315,
+     "def": 490,
+     "mdef": 980,
+     "resist_physical": 43,
+     "resist_magic": 58,
+     "gauge": 70,
+     "damage_percent": 121.0096,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(121.0096 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 12,100",
+     "necessary_flee_percent": 4.2,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    },
+    {
+     "lv": 320,
+     "hp": 304397556,
+     "necessary_hit": 360,
+     "def": 560,
+     "mdef": 1120,
+     "resist_physical": 47,
+     "resist_magic": 62,
+     "gauge": 80,
+     "damage_percent": 168.8853,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(168.8853 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 16,888",
+     "necessary_flee_percent": 4.8,
+     "guard": 10,
+     "avoid": 0,
+     "move_speed": 14
+    }
+   ]
+  },
+  {
+   "boss_no": 5,
+   "boss_name_system": "เทพทรงกลดโซเทเรีย",
+   "map": 100500,
+   "map_name": "",
+   "record_id": 102,
+   "uuid": 1195,
+   "name_th": "เทพทรงกลดโซเทเรีย",
+   "name_jp": "暈天のソテリア",
+   "role": "boss",
+   "element": "Light",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction",
+    "HeightLimit",
+    "TargetSize",
+    "NearNotRoomEntreeStagingClear"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 1000000,
+    "exp": 0,
+    "def": 300,
+    "mdef": 125,
+    "necessary_hit": 175,
+    "resist_physical": 30,
+    "resist_magic": 15,
+    "guard": 0,
+    "avoid": 10,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Light",
+    "move_speed": 18
+   },
+   "properties": [
+    {
+     "type": 23,
+     "values": [
+      30,
+      170,
+      103,
+      30,
+      0
+     ],
+     "type_name": "AreaHate",
+     "desc_th": "[data] AreaHate A=30 B=170 C=103 D=30"
+    },
+    {
+     "type": 90,
+     "values": [
+      20,
+      150,
+      0,
+      0,
+      0
+     ],
+     "type_name": "LifeReduceDamage",
+     "desc_th": "[code] Guild raid คู่มอน: ลดดาเมจสุดท้าย (A=20 B=150)"
+    },
+    {
+     "type": 6,
+     "values": [
+      10,
+      0,
+      0,
+      0,
+      0
+     ],
+     "type_name": "CriticalResist",
+     "desc_th": "[code] ลดอัตราคริของผู้เล่น 10 แต้ม (ลดครึ่งเมื่อมอนติดบางสถานะ)"
+    },
+    {
+     "type": 1,
+     "values": [
+      6,
+      0,
+      90,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะอัมพาต: โอกาสติด x10% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      7,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะตาบอด: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      13,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      14,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเวียนหัว: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      20,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะหลับ: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      32,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะคำสาป: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      33,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะแฟลช: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      19,
+      100,
+      100,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเลือดไหล: โอกาสติด x0% แล้ว -100 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      1,
+      0,
+      0,
+      170,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะสะดุ้ง: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 17 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      2,
+      0,
+      0,
+      330,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะล้ม: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 33 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      3,
+      0,
+      0,
+      350,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะมึน: โอกาสติด x100% แล้ว -0 แต้ม, ติดแล้วกันซ้ำเพิ่ม 35 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [
+    "#2->#102 DamageTime=90"
+   ],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 105,
+     "def": 120,
+     "mdef": 50,
+     "resist_physical": 34,
+     "resist_magic": 19,
+     "gauge": 10,
+     "damage_percent": 1.769,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(1.769 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 176",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 210,
+     "def": 240,
+     "mdef": 100,
+     "resist_physical": 38,
+     "resist_magic": 23,
+     "gauge": 20,
+     "damage_percent": 6.9432,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(6.9432 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 694",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 315,
+     "def": 360,
+     "mdef": 150,
+     "resist_physical": 42,
+     "resist_magic": 27,
+     "gauge": 30,
+     "damage_percent": 16.5834,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.5834 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,658",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 420,
+     "def": 480,
+     "mdef": 200,
+     "resist_physical": 46,
+     "resist_magic": 31,
+     "gauge": 40,
+     "damage_percent": 31.7504,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(31.7504 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 3,175",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 200,
+     "hp": 63551250,
+     "necessary_hit": 525,
+     "def": 600,
+     "mdef": 250,
+     "resist_physical": 50,
+     "resist_magic": 35,
+     "gauge": 50,
+     "damage_percent": 53.5005,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(53.5005 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 5,350",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 240,
+     "hp": 112946724,
+     "necessary_hit": 630,
+     "def": 720,
+     "mdef": 300,
+     "resist_physical": 54,
+     "resist_magic": 39,
+     "gauge": 60,
+     "damage_percent": 82.8982,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(82.8982 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 8,289",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 280,
+     "hp": 189641034,
+     "necessary_hit": 735,
+     "def": 840,
+     "mdef": 350,
+     "resist_physical": 58,
+     "resist_magic": 43,
+     "gauge": 70,
+     "damage_percent": 121.0096,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(121.0096 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 12,100",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    },
+    {
+     "lv": 320,
+     "hp": 304397556,
+     "necessary_hit": 840,
+     "def": 960,
+     "mdef": 400,
+     "resist_physical": 62,
+     "resist_magic": 47,
+     "gauge": 80,
+     "damage_percent": 168.8853,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(168.8853 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 16,888",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 10,
+     "move_speed": 18
+    }
+   ]
+  },
+  {
+   "boss_no": 6,
+   "boss_name_system": "ปีศาจกระดูกมังกร",
+   "map": 100600,
+   "map_name": "",
+   "record_id": 1,
+   "uuid": 742,
+   "name_th": "เดมอนนิคสคัลดราก้อน",
+   "name_jp": "竜骨の魔人",
+   "role": "boss",
+   "element": "Dark",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction",
+    "HeightLimit",
+    "TargetSize"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 100,
+    "exp": 0,
+    "def": 75,
+    "mdef": 150,
+    "necessary_hit": 100,
+    "resist_physical": 0,
+    "resist_magic": 25,
+    "guard": 6,
+    "avoid": 2,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Dark",
+    "move_speed": 16
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      13,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      14,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเวียนหัว: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      19,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเลือดไหล: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      32,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะคำสาป: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      20,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะหลับ: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 60,
+     "def": 30,
+     "mdef": 60,
+     "resist_physical": 4,
+     "resist_magic": 29,
+     "gauge": 10,
+     "damage_percent": 1.769,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(1.769 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 176",
+     "necessary_flee_percent": 0.6,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 16
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 120,
+     "def": 60,
+     "mdef": 120,
+     "resist_physical": 8,
+     "resist_magic": 33,
+     "gauge": 20,
+     "damage_percent": 6.9432,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(6.9432 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 694",
+     "necessary_flee_percent": 1.2,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 16
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 180,
+     "def": 90,
+     "mdef": 180,
+     "resist_physical": 12,
+     "resist_magic": 37,
+     "gauge": 30,
+     "damage_percent": 16.5834,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.5834 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,658",
+     "necessary_flee_percent": 1.8,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 16
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 240,
+     "def": 120,
+     "mdef": 240,
+     "resist_physical": 16,
+     "resist_magic": 41,
+     "gauge": 40,
+     "damage_percent": 31.7504,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(31.7504 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 3,175",
+     "necessary_flee_percent": 2.4,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 16
+    },
+    {
+     "lv": 200,
+     "hp": 63551250,
+     "necessary_hit": 300,
+     "def": 150,
+     "mdef": 300,
+     "resist_physical": 20,
+     "resist_magic": 45,
+     "gauge": 50,
+     "damage_percent": 53.5005,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(53.5005 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 5,350",
+     "necessary_flee_percent": 3.0,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 16
+    },
+    {
+     "lv": 240,
+     "hp": 112946724,
+     "necessary_hit": 360,
+     "def": 180,
+     "mdef": 360,
+     "resist_physical": 24,
+     "resist_magic": 49,
+     "gauge": 60,
+     "damage_percent": 82.8982,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(82.8982 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 8,289",
+     "necessary_flee_percent": 3.6,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 16
+    },
+    {
+     "lv": 280,
+     "hp": 189641034,
+     "necessary_hit": 420,
+     "def": 210,
+     "mdef": 420,
+     "resist_physical": 28,
+     "resist_magic": 53,
+     "gauge": 70,
+     "damage_percent": 121.0096,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(121.0096 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 12,100",
+     "necessary_flee_percent": 4.2,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 16
+    },
+    {
+     "lv": 320,
+     "hp": 304397556,
+     "necessary_hit": 480,
+     "def": 240,
+     "mdef": 480,
+     "resist_physical": 32,
+     "resist_magic": 57,
+     "gauge": 80,
+     "damage_percent": 168.8853,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(168.8853 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 16,888",
+     "necessary_flee_percent": 4.8,
+     "guard": 6,
+     "avoid": 2,
+     "move_speed": 16
+    }
+   ]
+  },
+  {
+   "boss_no": 6,
+   "boss_name_system": "ปีศาจกระดูกมังกร",
+   "map": 100600,
+   "map_name": "",
+   "record_id": 1001,
+   "uuid": 13,
+   "name_th": "สเกลตัน",
+   "name_jp": "スケルトン",
+   "role": "add (inferred)",
+   "element": "Dark",
+   "flags": [
+    "Boss"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 5,
+    "exp": 0,
+    "def": 100,
+    "mdef": 100,
+    "necessary_hit": 50,
+    "resist_physical": 0,
+    "resist_magic": 0,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Dark",
+    "move_speed": 8
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      13,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      19,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเลือดไหล: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      32,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะคำสาป: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 68232,
+     "necessary_hit": 30,
+     "def": 40,
+     "mdef": 40,
+     "resist_physical": 4,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 80,
+     "hp": 290050,
+     "necessary_hit": 60,
+     "def": 80,
+     "mdef": 80,
+     "resist_physical": 8,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 120,
+     "hp": 768303,
+     "necessary_hit": 90,
+     "def": 120,
+     "mdef": 120,
+     "resist_physical": 12,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 160,
+     "hp": 1655682,
+     "necessary_hit": 120,
+     "def": 160,
+     "mdef": 160,
+     "resist_physical": 16,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 200,
+     "hp": 3177562,
+     "necessary_hit": 150,
+     "def": 200,
+     "mdef": 200,
+     "resist_physical": 20,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 240,
+     "hp": 5647336,
+     "necessary_hit": 180,
+     "def": 240,
+     "mdef": 240,
+     "resist_physical": 24,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 280,
+     "hp": 9482052,
+     "necessary_hit": 210,
+     "def": 280,
+     "mdef": 280,
+     "resist_physical": 28,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    },
+    {
+     "lv": 320,
+     "hp": 15219879,
+     "necessary_hit": 240,
+     "def": 320,
+     "mdef": 320,
+     "resist_physical": 32,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 8
+    }
+   ]
+  },
+  {
+   "boss_no": 6,
+   "boss_name_system": "ปีศาจกระดูกมังกร",
+   "map": 100600,
+   "map_name": "",
+   "record_id": 1101,
+   "uuid": 165,
+   "name_th": "โคลอนซอมบี้",
+   "name_jp": "コロンゾンビ",
+   "role": "add (inferred)",
+   "element": "Dark",
+   "flags": [
+    "Boss",
+    "InvalidSuction",
+    "TargetSize"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 1000,
+    "exp": 0,
+    "def": 100,
+    "mdef": 100,
+    "necessary_hit": 50,
+    "resist_physical": 0,
+    "resist_magic": 0,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Dark",
+    "move_speed": 4
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      13,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      19,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเลือดไหล: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      32,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะคำสาป: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 13646580,
+     "necessary_hit": 30,
+     "def": 40,
+     "mdef": 40,
+     "resist_physical": 4,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 80,
+     "hp": 58010040,
+     "necessary_hit": 60,
+     "def": 80,
+     "mdef": 80,
+     "resist_physical": 8,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 120,
+     "hp": 153660784,
+     "necessary_hit": 90,
+     "def": 120,
+     "mdef": 120,
+     "resist_physical": 12,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 160,
+     "hp": 331136512,
+     "necessary_hit": 120,
+     "def": 160,
+     "mdef": 160,
+     "resist_physical": 16,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 200,
+     "hp": 635512448,
+     "necessary_hit": 150,
+     "def": 200,
+     "mdef": 200,
+     "resist_physical": 20,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 240,
+     "hp": 1129467136,
+     "necessary_hit": 180,
+     "def": 240,
+     "mdef": 240,
+     "resist_physical": 24,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 280,
+     "hp": 1896410368,
+     "necessary_hit": 210,
+     "def": 280,
+     "mdef": 280,
+     "resist_physical": 28,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    },
+    {
+     "lv": 320,
+     "hp": 3043975680,
+     "necessary_hit": 240,
+     "def": 320,
+     "mdef": 320,
+     "resist_physical": 32,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 4
+    }
+   ]
+  },
+  {
+   "boss_no": 6,
+   "boss_name_system": "ปีศาจกระดูกมังกร",
+   "map": 100600,
+   "map_name": "",
+   "record_id": 1201,
+   "uuid": 654,
+   "name_th": "สแตบ",
+   "name_jp": "スタップ",
+   "role": "add (inferred)",
+   "element": "Dark",
+   "flags": [
+    "Boss",
+    "InvalidKnockBack",
+    "InvalidSuction",
+    "UnableToTarget"
+   ],
+   "base": {
+    "lv": 100,
+    "hp": 100,
+    "exp": 0,
+    "def": 100,
+    "mdef": 100,
+    "necessary_hit": 50,
+    "resist_physical": 0,
+    "resist_magic": 0,
+    "guard": 0,
+    "avoid": 0,
+    "proration_normal": 1,
+    "proration_physical": 1,
+    "proration_magic": 1,
+    "element_name": "Dark",
+    "move_speed": 0
+   },
+   "properties": [
+    {
+     "type": 1,
+     "values": [
+      13,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะกลัว: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      19,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะเลือดไหล: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    },
+    {
+     "type": 1,
+     "values": [
+      32,
+      250,
+      0,
+      0,
+      0
+     ],
+     "type_name": "AbnormalResist",
+     "desc_th": "[code] ต้านสถานะคำสาป: โอกาสติด x100% แล้ว -250 แต้ม, ติดแล้วกันซ้ำเพิ่ม 0 วิ"
+    }
+   ],
+   "drops": [],
+   "phases": [],
+   "levels": [
+    {
+     "lv": 40,
+     "hp": 1364658,
+     "necessary_hit": 30,
+     "def": 40,
+     "mdef": 40,
+     "resist_physical": 4,
+     "resist_magic": 4,
+     "gauge": 10,
+     "damage_percent": 0.56,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(0.56 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 56",
+     "necessary_flee_percent": 0.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 80,
+     "hp": 5801004,
+     "necessary_hit": 60,
+     "def": 80,
+     "mdef": 80,
+     "resist_physical": 8,
+     "resist_magic": 8,
+     "gauge": 20,
+     "damage_percent": 2.02,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(2.02 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 202",
+     "necessary_flee_percent": 1.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 120,
+     "hp": 15366078,
+     "necessary_hit": 90,
+     "def": 120,
+     "mdef": 120,
+     "resist_physical": 12,
+     "resist_magic": 12,
+     "gauge": 30,
+     "damage_percent": 4.36,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(4.36 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 436",
+     "necessary_flee_percent": 1.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 160,
+     "hp": 33113652,
+     "necessary_hit": 120,
+     "def": 160,
+     "mdef": 160,
+     "resist_physical": 16,
+     "resist_magic": 16,
+     "gauge": 40,
+     "damage_percent": 7.58,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(7.58 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 758",
+     "necessary_flee_percent": 2.4,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 200,
+     "hp": 63551248,
+     "necessary_hit": 150,
+     "def": 200,
+     "mdef": 200,
+     "resist_physical": 20,
+     "resist_magic": 20,
+     "gauge": 50,
+     "damage_percent": 11.68,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(11.68 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,168",
+     "necessary_flee_percent": 3.0,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 240,
+     "hp": 112946720,
+     "necessary_hit": 180,
+     "def": 240,
+     "mdef": 240,
+     "resist_physical": 24,
+     "resist_magic": 24,
+     "gauge": 60,
+     "damage_percent": 16.67,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(16.67 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 1,667",
+     "necessary_flee_percent": 3.6,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 280,
+     "hp": 189641040,
+     "necessary_hit": 210,
+     "def": 280,
+     "mdef": 280,
+     "resist_physical": 28,
+     "resist_magic": 28,
+     "gauge": 70,
+     "damage_percent": 22.55,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(22.55 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,255",
+     "necessary_flee_percent": 4.2,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    },
+    {
+     "lv": 320,
+     "hp": 304397568,
+     "necessary_hit": 240,
+     "def": 320,
+     "mdef": 320,
+     "resist_physical": 32,
+     "resist_magic": 32,
+     "gauge": 80,
+     "damage_percent": 29.3,
+     "damage_percent_desc": "ค่าพลังโจมตีของมอน (ATK): ดาเมจ = เลเวลมอน + int(29.3 × พลังท่า) − เลเวลผู้เล่น แล้วหักตาม DEF ผู้เล่น (MobNormalAttack/MobMagicAttack.calcMobToPlayerDamage); ท่าพลัง 100 ≈ 2,930",
+     "necessary_flee_percent": 4.8,
+     "guard": 0,
+     "avoid": 0,
+     "move_speed": 0
+    }
+   ]
+  }
+ ]
+}

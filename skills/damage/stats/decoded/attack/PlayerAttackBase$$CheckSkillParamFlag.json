@@ -1,0 +1,1 @@
+{"name": "PlayerAttackBase$$CheckSkillParamFlag", "rva": "0x206d2fc", "addr": "0x206d2fc", "params": [["SkillParamFlag", "flag"]], "static": false, "returns": "bool", "truncated": false, "npaths": 1, "cases": [{"value": "((SkillParam & flag) ne 0 ? 1 : 0)", "common": [], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

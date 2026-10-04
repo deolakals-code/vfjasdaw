@@ -1,0 +1,75 @@
+{
+ "version": 1,
+ "uid": 965,
+ "name_th": "ควิกออร่า",
+ "name_en": "QuickAura",
+ "tree": "HalberdSkill",
+ "category": "Buffer",
+ "max_level": 10,
+ "roles": [
+  "buff (party / others)"
+ ],
+ "class": "QuickAuraAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 965,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "time",
+   "formula": "(mainWeapon == Halberd ? 300 : 180)",
+   "simplified": "mainWeapon = Halberd ? 300 : 180",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(965, Lv, time)",
+   "simplified": "AddBuffer(965, Lv, time)",
+   "when": "always"
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

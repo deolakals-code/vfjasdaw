@@ -1,0 +1,418 @@
+{
+ "version": 1,
+ "uid": 967,
+ "name_th": "วานิชเรย์",
+ "name_en": "PunishRay",
+ "tree": "HalberdSkill",
+ "category": "Attack",
+ "max_level": 30,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "PunishRayAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 967,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((mainWeapon == Halberd ? (((Lv * Lv) + 25) + ((Lv * Lv) + 25)) : ((Lv * Lv) + 25)) / 100)",
+   "simplified": "(mainWeapon = Halberd ? 2 × Lv × Lv + 50 : Lv × Lv + 25) / 100",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "(((status.Int lt 0 ? (status.Int + 3) : status.Int) >> 2) / 100)",
+   "simplified": "(status.Int ÷ 4) / 100",
+   "when": "always",
+   "vars": [
+    "status.Int"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Atk",
+   "simplified": "status.Atk",
+   "when": "always",
+   "vars": [
+    "status.Atk"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "isHit",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "(isPlayer & 1) ne 0",
+   "by_level": -1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[BaseDamage]",
+   "formula": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, 1, [skillMaster+0x24], (PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) & 1))",
+   "simplified": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, 1, [skillMaster+0x24], PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) & 1)",
+   "when": "always",
+   "op": "SetConstant",
+   "step": "BaseDamage",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CheckMagicCritical",
+    "PlayerAttackBase.calcBaseDamage"
+   ],
+   "residual": [
+    "+0x24]"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "bonusSkillRate",
+   "simplified": "bonusSkillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "PunishRayBuf..ctor",
+   "formula": ".ctor(Lv, 15)",
+   "simplified": ".ctor(Lv, 15)",
+   "when": "PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND isHit ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new PunishRayBuf, Id)",
+   "simplified": "AddSelfBuffer(new, PunishRayBuf, Id)",
+   "when": "PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.EnchantedSpellSkill) AND isHit ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "PunishRayBuf..ctor",
+   "formula": ".ctor(Lv, EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator))",
+   "simplified": ".ctor(Lv, EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator))",
+   "when": "IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isHit ne 0 AND param eq 100",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new PunishRayBuf, Id)",
+   "simplified": "AddSelfBuffer(new, PunishRayBuf, Id)",
+   "when": "IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND isHit ne 0 AND param eq 100",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "PunishRayBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int itemType",
+     "fields": {
+      "temporaryCount": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "3"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "critical[max(Count)]",
+     "simplified": "critical[max(Count)]",
+     "when": [
+      "BuffEffectActive ne 0",
+      "max(Count) lo critical.Length"
+     ]
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "BusterLanceReset",
+      "formula": "-1",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "BusterLanceReset"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "PunishRayBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "3"
+    }
+   },
+   "attached_via": "caller2:PunishRayBuf$$.ctor<-PunishRayAction$$ActionSkillEvent",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerActionManager.ReceiveAttack"
+ ],
+ "variables": [
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "IPlayerStatusCalculator.get_Atk",
+  "IPlayerStatusCalculator.get_Int",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CheckMagicCritical",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.calcBaseDamage",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.Count",
+  "SkillBufferId.CrtUp",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Object.op_Inequality",
+  "status.Atk",
+  "status.Int"
+ ],
+ "residual": [
+  {
+   "where": "calcPlayerToMobDamage:SetConstant[BaseDamage]",
+   "tokens": [
+    "+0x24]"
+   ]
+  }
+ ]
+}

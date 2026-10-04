@@ -1,0 +1,449 @@
+{
+ "version": 1,
+ "uid": 73,
+ "name_th": "สไนป์",
+ "name_en": "Sniping",
+ "tree": "ShootSkill",
+ "category": "Attack",
+ "max_level": 70,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "SnipingAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 73,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun",
+  "Arrow"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(16)",
+   "simplified": "MathUtil.DisplayMeterToDistance(16)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 300)",
+   "simplified": "10 × Lv + 300",
+   "when": "always",
+   "by_level": [
+    310,
+    320,
+    330,
+    340,
+    350,
+    360,
+    370,
+    380,
+    390,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "breakingPercent",
+   "formula": "(((Lv << 1) + 50) + 30)",
+   "simplified": "2 × Lv + 80",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon != Bowgun AND mainWeapon == Bow",
+   "by_level": [
+    82,
+    84,
+    86,
+    88,
+    90,
+    92,
+    94,
+    96,
+    98,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + 700) + 200)",
+   "simplified": "10 × Lv + 900",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon != Bowgun AND mainWeapon == Bow",
+   "by_level": [
+    910,
+    920,
+    930,
+    940,
+    950,
+    960,
+    970,
+    980,
+    990,
+    1000
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "int((((Lv - (Lv hi 5 ? 1 : 0)) * -0.5) + 5.5))",
+   "simplified": "int(0.5 × (Lv > 5 ? 1 : 0) - 0.5 × Lv + 5.5)",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon != Bowgun AND mainWeapon == Bow OR (mainWeaponType & 0xfffffffe) ne 12 AND subWeapon != Bow AND subWeapon != Bowgun AND subWeapon == Arrow",
+   "by_level": [
+    5,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    1
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "breakingPercent",
+   "formula": "((Lv << 1) + 50)",
+   "simplified": "2 × Lv + 50",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon != Bow AND subWeapon != Bowgun AND subWeapon == Arrow OR (mainWeaponType & 0xfffffffe) ne 12 AND subWeapon != Arrow AND subWeapon != Bow AND subWeapon != Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon != Bow AND mainWeapon != Bowgun AND mainWeapon == Arrow",
+   "by_level": [
+    52,
+    54,
+    56,
+    58,
+    60,
+    62,
+    64,
+    66,
+    68,
+    70
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 10) + 700)",
+   "simplified": "10 × Lv + 700",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon != Bow AND subWeapon != Bowgun AND subWeapon == Arrow OR (mainWeaponType & 0xfffffffe) ne 12 AND subWeapon != Arrow AND subWeapon != Bow AND subWeapon != Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon != Bow AND mainWeapon != Bowgun AND mainWeapon == Arrow",
+   "by_level": [
+    710,
+    720,
+    730,
+    740,
+    750,
+    760,
+    770,
+    780,
+    790,
+    800
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "breakingPercent",
+   "formula": "(((Lv << 1) + 50) - 60)",
+   "simplified": "2 × Lv - 10",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon == Bowgun",
+   "by_level": [
+    -8,
+    -6,
+    -4,
+    -2,
+    0,
+    2,
+    4,
+    6,
+    8,
+    10
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + 700) + 300)",
+   "simplified": "10 × Lv + 1000",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon == Bowgun",
+   "by_level": [
+    1010,
+    1020,
+    1030,
+    1040,
+    1050,
+    1060,
+    1070,
+    1080,
+    1090,
+    1100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "(int((((Lv - (Lv hi 5 ? 1 : 0)) * -0.5) + 5.5)) + -0.5)",
+   "simplified": "int(0.5 × (Lv > 5 ? 1 : 0) - 0.5 × Lv + 5.5) - 0.5",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND mainWeapon == Bowgun",
+   "by_level": [
+    4.5,
+    3.5,
+    3.5,
+    2.5,
+    2.5,
+    2.5,
+    1.5,
+    1.5,
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(73, Lv)",
+   "simplified": "AddSelfBuffer(73, Lv)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(10, breakingPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(10, breakingPercent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(10)",
+   "simplified": "SetAbnormalType(10)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Breaking, breakingPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Breaking",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(73)",
+   "simplified": "RemoveSelfBuffer(73)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SnipingBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int weaponType",
+     "fields": {
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "weaponType eq 13 OR weaponType eq 12 AND weaponType ne 13 OR weaponType ne 12 AND weaponType ne 13",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "weaponType eq 13 OR weaponType eq 12 AND weaponType ne 13 OR weaponType ne 12 AND weaponType ne 13",
+        "by_level": 1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "weaponType eq 13 OR weaponType eq 12 AND weaponType ne 13 OR weaponType ne 12 AND weaponType ne 13",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "weaponType eq 13 OR weaponType eq 12 AND weaponType ne 13 OR weaponType ne 12 AND weaponType ne 13",
+        "by_level": -1
+       }
+      ],
+      "critical": [
+       {
+        "formula": "(10 - Lv)",
+        "when": "weaponType eq 12 AND weaponType ne 13",
+        "by_level": [
+         9,
+         8,
+         7,
+         6,
+         5,
+         4,
+         3,
+         2,
+         1,
+         0
+        ]
+       },
+       {
+        "formula": "(35 - lv)",
+        "when": "weaponType eq 13 OR weaponType ne 12 AND weaponType ne 13",
+        "by_level": [
+         34,
+         33,
+         32,
+         31,
+         30,
+         29,
+         28,
+         27,
+         26,
+         25
+        ]
+       }
+      ],
+      "stable": [
+       {
+        "formula": "0",
+        "when": "weaponType eq 12 AND weaponType ne 13 OR weaponType ne 12 AND weaponType ne 13",
+        "by_level": null
+       },
+       {
+        "formula": "20",
+        "when": "weaponType eq 13",
+        "by_level": 20
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "-critical",
+     "simplified": "-critical",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Stable",
+     "bonus_id": 41,
+     "formula": "stable",
+     "simplified": "stable",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Breaking",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.Stable"
+ ],
+ "residual": []
+}

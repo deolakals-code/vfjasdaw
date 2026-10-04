@@ -1,0 +1,118 @@
+{
+ "version": 1,
+ "uid": 298,
+ "name_th": "เมลเบรคเกอร์",
+ "name_en": "MailBreaker",
+ "tree": "KnifeSkill",
+ "category": "Mastery",
+ "max_level": 110,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "MailBreaker",
+ "proration": null,
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "MailBreakerBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "critical": [
+       {
+        "formula": "75",
+        "when": "always",
+        "by_level": 75
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "critical",
+     "simplified": "critical",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUpRate",
+     "bonus_id": 34,
+     "formula": "100",
+     "simplified": "100",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "MailBreaker",
+  "bonuses": {
+   "Trigger": {
+    "id": 0,
+    "expr": "((Lv << 2) + 10)",
+    "by_level": [
+     14,
+     18,
+     22,
+     26,
+     30,
+     34,
+     38,
+     42,
+     46,
+     50
+    ]
+   },
+   "Percent": {
+    "id": 27,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [
+  "SkillBufferId.AttackMprecoveryUpRate",
+  "SkillBufferId.CrtUp"
+ ],
+ "residual": []
+}

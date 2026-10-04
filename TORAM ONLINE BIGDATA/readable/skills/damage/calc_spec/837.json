@@ -1,0 +1,37 @@
+{
+ "version": 1,
+ "uid": 837,
+ "name_th": "เอนเชนส์เบลส",
+ "name_en": "BlessStrengthen",
+ "tree": "PriestSkill",
+ "category": "Mastery",
+ "max_level": 125,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "BlessStrengthen",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "BlessStrengthen",
+  "bonuses": {}
+ },
+ "hooks": [
+  "BlessAction.OnInitialize"
+ ],
+ "variables": [],
+ "residual": []
+}

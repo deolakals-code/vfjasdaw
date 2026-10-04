@@ -1,0 +1,332 @@
+{
+ "version": 1,
+ "uid": 657,
+ "name_th": "อาร์คเซเบอร์",
+ "name_en": "ArkSaber",
+ "tree": "DualSword",
+ "category": "Buffer",
+ "max_level": 250,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "ArkSaberAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 657,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "level",
+   "formula": "[TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 654)+0x20]",
+   "simplified": "[TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 654)+0x20]",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 654) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "+0x20]"
+   ]
+  },
+  {
+   "method": "LunaDitherStartInterruptableInitialize",
+   "kind": "set",
+   "name": "change",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(654)",
+   "simplified": "RemoveSelfBuffer(654)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 654) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "ArkSaberBuf..ctor",
+   "formula": ".ctor(Lv, level)",
+   "simplified": ".ctor(Lv, level)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 654) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ArkSaberBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ArkSaberBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 654) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ArkSaberBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int count",
+     "fields": {
+      "count": [
+       {
+        "formula": "count",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "critical": [
+       {
+        "formula": "(((Lv << 2) + lv) << 1)",
+        "when": "always",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((count + (count << 1)) gt 10 ? (count + (count << 1)) : 10)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "barrierValue": [
+       {
+        "formula": "80",
+        "when": "always",
+        "by_level": 80
+       }
+      ],
+      "atkMpRecovery": [
+       {
+        "formula": "(Lv << 1)",
+        "when": "always",
+        "by_level": [
+         2,
+         4,
+         6,
+         8,
+         10,
+         12,
+         14,
+         16,
+         18,
+         20
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "barrierValue",
+     "simplified": "barrierValue",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "atkMpRecovery",
+     "simplified": "atkMpRecovery",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "count",
+     "simplified": "count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "critical",
+     "simplified": "critical",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "BufferEnd",
+    "get_BufEffectTakeId"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "ArkSaberBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:ArkSaberBuf$$.ctor<-ArkSaberAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "ArkSaber",
+  "bonuses": {}
+ },
+ "hooks": [
+  "ArkSaber.CalcConstantDamage",
+  "ArkSaberAction.ConverterArkSaberSkillId",
+  "MobAttackBase.CalcLastDamage",
+  "MobaPlayerActionManager.SupportReserve",
+  "MobaPlayerSecondaryStatus.GetCrtConstant",
+  "PlayerAttackBase.CalcCostMp",
+  "PlayerAttackBase.RemoveAfterSkillBuf",
+  "PlayerDataManager.OnSkillBuffEnd",
+  "PlayerSecondaryStatus.GetCrtConstant",
+  "SaberAuraAction.ActionHit"
+ ],
+ "variables": [
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.Count",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.Value",
+  "TryGetBuf.buf",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": [
+  {
+   "where": "ActionStart:level",
+   "tokens": [
+    "+0x20]"
+   ]
+  }
+ ]
+}

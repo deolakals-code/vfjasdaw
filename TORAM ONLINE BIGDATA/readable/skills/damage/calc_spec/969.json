@@ -1,0 +1,494 @@
+{
+ "version": 1,
+ "uid": 969,
+ "name_th": "ไดฟ์อิมแพ็ค",
+ "name_en": "DiveImpact",
+ "tree": "HalberdSkill",
+ "category": "Object",
+ "max_level": 70,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment",
+  "placed object / trap / summon"
+ ],
+ "class": "DiveImpactAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 969,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fristSkillRate",
+   "formula": "(((status.Str / 2.5) + ((Lv * 20) + 200)) / 100)",
+   "simplified": "(status.Str / 2.5 + 20 × Lv + 200) / 100",
+   "when": "always",
+   "vars": [
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondSkillRate",
+   "formula": "((((Lv * 40) + status.Int) + 200) / 100)",
+   "simplified": "(40 × Lv + status.Int + 200) / 100",
+   "when": "always",
+   "vars": [
+    "status.Int"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 20) + 200)",
+   "simplified": "20 × Lv + 200",
+   "when": "always",
+   "by_level": [
+    220,
+    240,
+    260,
+    280,
+    300,
+    320,
+    340,
+    360,
+    380,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fristRadius",
+   "formula": "MathUtil.DisplayMeterToDistance(int(((Lv * 0.25) + 2.5)))",
+   "simplified": "MathUtil.DisplayMeterToDistance(int(0.25 × Lv + 2.5))",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondRadius",
+   "formula": "MathUtil.DisplayMeterToDistance(int(((Lv * 0.25) + 4.5)))",
+   "simplified": "MathUtil.DisplayMeterToDistance(int(0.25 × Lv + 4.5))",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "flashPercent",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isFirstAttck",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "gemCartBuf",
+   "formula": "GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 306)",
+   "simplified": "GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 306)",
+   "when": "always",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerStatusBase.get_GemCartBuffManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isEquipConvergenceGemCart",
+   "formula": "(GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 306) ne 0 ? 1 : 0)",
+   "simplified": "GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 306) ≠ 0 ? 1 : 0",
+   "when": "always",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerStatusBase.get_GemCartBuffManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 306) ne 0 ? 1 : 0)",
+   "simplified": "GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 306) ≠ 0 ? 1 : 0",
+   "when": "always",
+   "vars": [
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerStatusBase.get_GemCartBuffManager"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "targetPos",
+   "formula": "castTime",
+   "simplified": "castTime",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "isEquipConvergenceGemCart",
+   "formula": "(SkillIndividualFlag ne 0 ? 1 : 0)",
+   "simplified": "SkillIndividualFlag ≠ 0 ? 1 : 0",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int((((SkillActionBase.get_MotionSpeed(this) / 100) + (SkillActionBase.get_MotionSpeed(this) / 100)) * 10))",
+   "simplified": "int(20 × SkillActionBase.get_MotionSpeed(this) / 100)",
+   "when": "always",
+   "vars": [
+    "SkillActionBase.get_MotionSpeed"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0 OR PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0 OR PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0 OR PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetManager",
+   "formula": "UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(target)",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0 OR PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart eq 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart eq 0 OR PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart eq 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart eq 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart eq 0 OR PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart eq 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart eq 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart eq 0 OR PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isEquipConvergenceGemCart eq 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isFirstAttck",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isRangeBonus",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "isEquipConvergenceGemCart ne 0 AND isFirstAttck ne 0 OR isEquipConvergenceGemCart eq 0 AND isFirstAttck ne 0 OR isEquipConvergenceGemCart ne 0 AND isFirstAttck eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(isFirstAttck eq 0 ? secondSkillRate : fristSkillRate)",
+   "simplified": "isFirstAttck = 0 ? secondSkillRate : fristSkillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "isEquipConvergenceGemCart ne 0 AND isFirstAttck ne 0 OR isEquipConvergenceGemCart eq 0 AND isFirstAttck ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "isEquipConvergenceGemCart ne 0 AND isFirstAttck eq 0 OR isEquipConvergenceGemCart eq 0 AND isFirstAttck eq 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND isEquipConvergenceGemCart ne 0 AND isFirstAttck eq 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalType.Flash",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "isEquipConvergenceGemCart ne 0 AND isFirstAttck ne 0 OR isEquipConvergenceGemCart eq 0 AND isFirstAttck ne 0 OR isEquipConvergenceGemCart ne 0 AND isFirstAttck eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 2)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), 2)",
+   "when": "isEquipConvergenceGemCart ne 0 AND isFirstAttck ne 0 OR isEquipConvergenceGemCart eq 0 AND isFirstAttck ne 0 OR isEquipConvergenceGemCart ne 0 AND isFirstAttck eq 0",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(33, flashPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(33, flashPercent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND isEquipConvergenceGemCart ne 0 AND isFirstAttck eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND isEquipConvergenceGemCart ne 0 AND isFirstAttck eq 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND isEquipConvergenceGemCart eq 0 AND isFirstAttck eq 0",
+   "vars": [
+    "AbnormalType.Flash",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(33)",
+   "simplified": "SetAbnormalType(33)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND isEquipConvergenceGemCart ne 0 AND isFirstAttck eq 0 OR PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flash, flashPercent, playerAction) AND isEquipConvergenceGemCart eq 0 AND isFirstAttck eq 0",
+   "vars": [
+    "AbnormalType.Flash",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Flash",
+  "GemCartBufferManager.GetGemCartBuffer",
+  "GetWeaponType.item",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "IPlayerStatusCalculator.get_Int",
+  "IPlayerStatusCalculator.get_Str",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "SkillActionBase.get_MotionSpeed",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "status.Int",
+  "status.Str",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

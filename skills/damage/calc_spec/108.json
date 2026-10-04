@@ -1,0 +1,442 @@
+{
+ "version": 1,
+ "uid": 108,
+ "name_th": "เวทมนตร์: ไฟนอล",
+ "name_en": "MagicFinaw",
+ "tree": "MagicSkill",
+ "category": "Attack",
+ "max_level": 150,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "MagicFinawAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 108,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "max(((13 - Lv) + ((max(status.Cspd, 0) lt 0x2710 ? max(status.Cspd) : 0x2710) / -10000)))",
+   "simplified": "max((max(status.Cspd, 0) < 10000 ? max(status.Cspd) : 10000) / -10000 - Lv + 13)",
+   "when": "(mainWeapon==Rod & 1) ne 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0",
+   "vars": [
+    "status.Cspd"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "(13 - Lv)",
+   "simplified": "13 - Lv",
+   "when": "(mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 OR (mainWeapon==Magictool & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0",
+   "by_level": [
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "SetTargetMobOthers",
+   "kind": "set",
+   "name": "targetObj",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "max((CastTime + -1), 0)",
+   "simplified": "max(CastTime - 1, 0)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 17 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116).effective ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116).isBreak eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 17 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116).effective ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116).isBreak eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 17 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116).effective ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116).isBreak eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetObj",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "CastTime",
+   "simplified": "CastTime",
+   "when": "PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND PlayerAttackBase.IsBlank(this) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND PlayerAttackBase.IsBlank(this) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND !UnityEngine.Object.op_Inequality(actarAction) AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "addHate",
+   "formula": "1",
+   "simplified": "1",
+   "when": "param eq 1 AND param ne 100 AND param ne 2",
+   "by_level": 1
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "addHate",
+   "formula": "0",
+   "simplified": "0",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 2 AND param ne 100 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND param eq 2 AND param ne 100 OR IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 2 AND param ne 100",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).y",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 2 AND param ne 100 OR IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 2 AND param ne 100 OR IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 2 AND param ne 100",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).z",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 2 AND param ne 100 OR IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 2 AND param ne 100 OR IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(targetObj) AND param eq 2 AND param ne 100",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "attackPos.y",
+   "simplified": "attackPos.y",
+   "when": "!UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND param eq 2 AND param ne 100 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND param eq 2 AND param ne 100 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND param eq 2 AND param ne 100",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "attackPos.z",
+   "simplified": "attackPos.z",
+   "when": "!UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND param eq 2 AND param ne 100 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND param eq 2 AND param ne 100 OR !UnityEngine.Object.op_Inequality(targetObj) AND IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND param eq 2 AND param ne 100",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "enchantedBurstStack",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND addHate eq 0 AND enchantedBurstStack eq 0 OR !hasBuff(873) AND UnityEngine.Object.op_Inequality(actarAction) AND addHate eq 0 AND enchantedBurstStack eq 0 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND UnityEngine.Object.op_Inequality(actarAction) AND addHate eq 0 AND enchantedBurstStack eq 0 AND hasBuff(873)",
+   "by_level": 1,
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "(damageCount + 1)",
+   "simplified": "damageCount + 1",
+   "when": "addHate eq 0"
+  },
+  {
+   "method": "calcFinawData",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 0x2000)",
+   "simplified": "SkillParam | 8192",
+   "when": "always"
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "lastUsedSkill",
+   "formula": "lastUsedSkill",
+   "simplified": "lastUsedSkill",
+   "when": "always"
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).y",
+   "when": "UnityEngine.Object.op_Inequality(targetObj)",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(targetObj)).z",
+   "when": "UnityEngine.Object.op_Inequality(targetObj)",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "attackPos.y",
+   "simplified": "attackPos.y",
+   "when": "!UnityEngine.Object.op_Inequality(targetObj)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "attackPos.z",
+   "simplified": "attackPos.z",
+   "when": "!UnityEngine.Object.op_Inequality(targetObj)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcFinawData",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "damageCount hs skillRate.Length OR damageCount lo fixAddDamage.Length AND damageCount lo skillRate.Length OR damageCount hs fixAddDamage.Length AND damageCount lo skillRate.Length",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefMagic"
+   ]
+  },
+  {
+   "method": "calcFinawData",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate[damageCount]",
+   "simplified": "skillRate[damageCount]",
+   "when": "damageCount lo fixAddDamage.Length AND damageCount lo skillRate.Length OR damageCount hs fixAddDamage.Length AND damageCount lo skillRate.Length",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcFinawData",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[damageCount]",
+   "simplified": "fixAddDamage[damageCount]",
+   "when": "damageCount lo fixAddDamage.Length AND damageCount lo skillRate.Length",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcFinawData",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "damageCount hs skillRate.Length OR damageCount lo fixAddDamage.Length AND damageCount lo skillRate.Length OR damageCount hs fixAddDamage.Length AND damageCount lo skillRate.Length",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "EnchantedBurstAction.AddLocalStack",
+   "formula": "AddLocalStack(PlayerAttackBase.get_ActionID(), Id)",
+   "simplified": "AddLocalStack(PlayerAttackBase.get_ActionID(), Id)",
+   "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND UnityEngine.Object.op_Inequality(actarAction) AND addHate eq 0 AND enchantedBurstStack eq 0 AND hasBuff(873)",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcDummyData",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(254)",
+   "simplified": "SetAbnormalType(254)",
+   "when": "always"
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "EquipItemData.get_SubWeaponItemType",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "IPlayerStatusCalculator.get_Cspd",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "TryGetBuf.out2",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "status.Cspd",
+  "target.ExpDefMagic"
+ ],
+ "residual": []
+}

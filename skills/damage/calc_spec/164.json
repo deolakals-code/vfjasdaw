@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "uid": 164,
+ "name_th": "แอดวานซ์อีวาชั่น",
+ "name_en": "AdvanceFlee",
+ "tree": "GuardSkill",
+ "category": "Mastery",
+ "max_level": 120,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "AdvanceFlee",
+ "proration": null,
+ "eq_limit": [
+  "LightArmor"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "AdvanceFlee",
+  "bonuses": {
+   "Avoid": {
+    "id": 11,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

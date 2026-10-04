@@ -1,0 +1,82 @@
+{
+ "version": 1,
+ "uid": 958,
+ "name_th": "การการโจมตีปกติ (กายภาพ)",
+ "name_en": "PetPhysicalAttack",
+ "tree": "PetSkill",
+ "category": "Attack",
+ "max_level": 0,
+ "roles": [
+  "utility / system action"
+ ],
+ "class": "PetNormalAttackAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 958,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Delay",
+   "formula": "IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_SecondaryStatus())",
+   "simplified": "IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_SecondaryStatus())",
+   "when": "always",
+   "vars": [
+    "IPlayerStatusCalculator.GetNextAtkTime",
+    "PlayerStatusBase.get_SecondaryStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.GetNextAtkTime",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SecondaryStatus"
+ ],
+ "residual": []
+}

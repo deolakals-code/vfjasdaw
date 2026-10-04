@@ -1,0 +1,198 @@
+{
+ "version": 1,
+ "uid": 868,
+ "name_th": "เอเลเม้นต์สแลช",
+ "name_en": "ElementSlash",
+ "tree": "MagicBladeSkill",
+ "category": "Attack",
+ "max_level": 60,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "ElementSlashAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 868,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "conversion",
+   "formula": "(hasBuff(867) & 1)",
+   "simplified": "hasBuff(867) & 1",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()))",
+   "when": "always",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerAttackBase.GetWeaponRange",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 50) + 100) + (((baseSTR gt baseINT ? baseSTR : baseINT) / 12.5) * Lv))",
+   "simplified": "50 × Lv + max(baseSTR, baseINT) / 12.5 × Lv + 100",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "(((Lv << 4) - Lv) + 50)",
+   "simplified": "15 × Lv + 50",
+   "when": "always",
+   "by_level": [
+    65,
+    80,
+    95,
+    110,
+    125,
+    140,
+    155,
+    170,
+    185,
+    200
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "SkillUtil.GetWeakElement(target.Element)",
+   "simplified": "SkillUtil.GetWeakElement(target.Element)",
+   "when": "always",
+   "vars": [
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(16, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(16, percent, playerAction)",
+   "when": "ElementSlashAction.get_AttackType() eq 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, percent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, percent, playerAction) AND ElementSlashAction.get_AttackType() eq 2 OR ElementSlashAction.get_AttackType() ne 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, percent, playerAction)",
+   "vars": [
+    "AbnormalType.Collapse",
+    "ElementSlashAction.get_AttackType",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(16)",
+   "simplified": "SetAbnormalType(16)",
+   "when": "ElementSlashAction.get_AttackType() eq 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, percent, playerAction) OR ElementSlashAction.get_AttackType() ne 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, percent, playerAction)",
+   "vars": [
+    "AbnormalType.Collapse",
+    "ElementSlashAction.get_AttackType",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Collapse",
+  "ElementSlashAction.get_AttackType",
+  "EquipItemData.get_SubWeapon",
+  "IMobStatusCalculator.get_Element",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.int",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillUtil.GetWeakElement",
+  "target.Element"
+ ],
+ "residual": []
+}

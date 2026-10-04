@@ -1,0 +1,359 @@
+{
+ "version": 1,
+ "uid": 658,
+ "name_th": "แอร์สไลเซอร์",
+ "name_en": "AirSlicer",
+ "tree": "DualSword",
+ "category": "Attack",
+ "max_level": 250,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "AirSlicerAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "every_hit + class check",
+  "attack_type": "Physics",
+  "action_id": 658,
+  "is_exp_def_fluctuate": "conditional",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "3",
+   "simplified": "3",
+   "when": "always",
+   "by_level": 3
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "firstSkillRate",
+   "formula": "((((gemCart(210[4]) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AirSlide, 1) << 1) + 30)) + ((gemCart(210[4]) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AirSlide, 1) << 1) + 30)) << 1)) + (gemCart(210[4]) + (int((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AirSlide, 1) * 2.5)) + 125))) + ((baseDEX // 10) * Lv))",
+   "simplified": "4 × gemCart(210, [4]) + 6 × A + int(2.5 × A) + baseDEX // 10 × Lv + 215",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AirSlide, 1)"
+    ]
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.AirSlide",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "percent",
+   "formula": "(int((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AirSlide, 1) * 2.5)) + 15)",
+   "simplified": "int(2.5 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AirSlide, 1)) + 15",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.AirSlide",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "firstFixAddDamage",
+   "formula": "((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AirSlide, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AirSlide, 1) << 2)) + 50)",
+   "simplified": "5 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.AirSlide, 1) + 50",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.AirSlide",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondSkillRate",
+   "formula": "((Lv * 100) + 500)",
+   "simplified": "100 × Lv + 500",
+   "when": "always",
+   "by_level": [
+    600,
+    700,
+    800,
+    900,
+    1000,
+    1100,
+    1200,
+    1300,
+    1400,
+    1500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondSkillRateBonus",
+   "formula": "baseSTR",
+   "simplified": "baseSTR",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "secondFixAddDamage",
+   "formula": "((Lv + (Lv << 2)) << 2)",
+   "simplified": "20 × Lv",
+   "when": "always",
+   "by_level": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140,
+    160,
+    180,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "criticalDamageUp",
+   "formula": "((((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.TwinSlash, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.TwinSlash, 1) << 2)) + 50) lt 0 ? ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.TwinSlash, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.TwinSlash, 1) << 2)) + 51) : ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.TwinSlash, 1) + (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.TwinSlash, 1) << 2)) + 50)) >> 1)",
+   "simplified": "(A < 0 ? 5 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.TwinSlash, 1) + 51 : A) ÷ 2",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "5 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.TwinSlash, 1) + 50"
+    ]
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.TwinSlash",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "target",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "CalcFirstDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcSecondDamage",
+   "kind": "set",
+   "name": "secondSkillRateBonus",
+   "formula": "max(((secondSkillRateBonus * (((max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) + (max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) << 2)) << 2) lt 100 ? (100 - ((max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) + (max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) << 2)) << 2)) : 0)) / 100), 0)",
+   "simplified": "max(secondSkillRateBonus × (A < 100 ? 100 - A : 0) / 100, 0)",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "20 × max(int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7, 0)"
+    ]
+   ],
+   "vars": [
+    "MathUtil.DistanceToDisplayMeter"
+   ]
+  },
+  {
+   "method": "CalcSecondDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "exp",
+   "formula": "1",
+   "simplified": "1",
+   "when": "param eq 101",
+   "by_level": 1
+  },
+  {
+   "method": "ExpDefFluctuated",
+   "kind": "set",
+   "name": "exp",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "otherChange",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(skillEventId & 0xffff) eq 101",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "CalcFirstDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(firstSkillRate / 100)",
+   "simplified": "firstSkillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcFirstDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "firstFixAddDamage",
+   "simplified": "firstFixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "CalcSecondDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((max(((secondSkillRateBonus * (((max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) + (max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) << 2)) << 2) lt 100 ? (100 - ((max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) + (max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) << 2)) << 2)) : 0)) / 100), 0) + secondSkillRate) / 100)",
+   "simplified": "(max(secondSkillRateBonus × (A < 100 ? 100 - A : 0) / 100, 0) + secondSkillRate) / 100",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "20 × max(int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7, 0)"
+    ]
+   ],
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MathUtil.DistanceToDisplayMeter"
+   ]
+  },
+  {
+   "method": "CalcSecondDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "secondFixAddDamage",
+   "simplified": "secondFixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "CalcSecondDamage",
+   "kind": "tpl",
+   "name": "AddRate[CriticalRate]",
+   "formula": "(max(((criticalDamageUp << (AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Blindness) & 1)) - (((max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) + (max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) << 2)) << 1) lt 50 ? ((max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) + (max((int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7), 0) << 2)) << 1) : 50)), 0) / 100)",
+   "simplified": "max((criticalDamageUp << (AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Blindness) & 1)) - min(10 × max(int(MathUtil.DistanceToDisplayMeter(startTargetDist)) - 7, 0), 50), 0) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "CriticalRate",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Blindness",
+    "MathUtil.DistanceToDisplayMeter",
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(7, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(7, percent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(7)",
+   "simplified": "SetAbnormalType(7)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Blindness, percent, playerAction)",
+   "vars": [
+    "AbnormalType.Blindness",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.CreateNextDamage",
+   "formula": "CreateNextDamage()",
+   "simplified": "CreateNextDamage()",
+   "when": "MaxFirstAttackCount lt 2 OR 2 ge MaxFirstAttackCount AND MaxFirstAttackCount ge 2 OR 2 ge MaxFirstAttackCount AND 2 lt MaxFirstAttackCount AND MaxFirstAttackCount ge 2"
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Blindness",
+  "MathUtil.DisplayMeterToDistance",
+  "MathUtil.DistanceToDisplayMeter",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillId.AirSlide",
+  "SkillId.TwinSlash",
+  "SkillManager.GetSkillLv"
+ ],
+ "residual": []
+}

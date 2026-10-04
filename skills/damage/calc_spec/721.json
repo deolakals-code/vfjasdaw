@@ -1,0 +1,111 @@
+{
+ "version": 1,
+ "uid": 721,
+ "name_th": "คาตาลาโบมัส",
+ "name_en": "Catarabomos",
+ "tree": "SpriteSkill",
+ "category": "Attack",
+ "max_level": 300,
+ "roles": [
+  "utility / system action"
+ ],
+ "class": "CatarabomosAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "None",
+  "action_id": 721,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalTime",
+   "formula": "(Lv + 2)",
+   "simplified": "Lv + 2",
+   "when": "always",
+   "by_level": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(32, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(32, 100, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "AddAbnormalEffect",
+   "kind": "call",
+   "name": "CatarabomosDebuff..ctor",
+   "formula": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), skill.Level, status.Stable)",
+   "simplified": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), skill.Level, status.Stable)",
+   "when": "abnormalType eq 32",
+   "vars": [
+    "Toram.Common.ArchetypeUid.get_Id",
+    "status.Stable"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IPlayerStatusCalculator.get_Stable",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "Toram.Common.ArchetypeUid.get_Id",
+  "status.Stable"
+ ],
+ "residual": []
+}

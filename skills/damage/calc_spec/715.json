@@ -1,0 +1,186 @@
+{
+ "version": 1,
+ "uid": 715,
+ "name_th": "อิกนิชั่น",
+ "name_en": "Ignition",
+ "tree": "SpriteSkill",
+ "category": "Attack",
+ "max_level": 50,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "IgnitionAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 715,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "System.Math.Min(((Lv * 60) + status.EqAtk), 1200)",
+   "simplified": "System.Math.Min(60 × Lv + status.EqAtk, 1200)",
+   "when": "always",
+   "vars": [
+    "System.Math.Min",
+    "status.EqAtk"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnomalParcent",
+   "formula": "((SkillManager.GetSkillTreeLv(PlayerStatusBase.get_SkillManager(), SkillTreeType.SpriteSkill, 0) + (SkillManager.GetSkillTreeLv(PlayerStatusBase.get_SkillManager(), SkillTreeType.SpriteSkill, 0) << 2)) + ((baseDEX // 10) + ((Lv << 1) + (Lv >> 1))))",
+   "simplified": "5 × SkillManager.GetSkillTreeLv(PlayerStatusBase.get_SkillManager(), SkillTreeType.SpriteSkill, 0) + baseDEX // 10 + 2 × Lv + Lv ÷ 2",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillManager.GetSkillTreeLv",
+    "SkillTreeType.SpriteSkill"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[StableRate]",
+   "formula": "PlayerAttackBase.CalcStable(IgnitionAction.get_AttackType(), int((status.Stable + (status.Stable * -0.6))), (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) & 1), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcStable(IgnitionAction.get_AttackType(), int(0.4 × status.Stable), SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) & 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "op": "SetRate",
+   "step": "StableRate",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "IgnitionAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcStable",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult",
+    "status.Stable"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(16, abnomalParcent, playerAction)",
+   "simplified": "checkAbnormalPercent(16, abnomalParcent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(16, 0)",
+   "simplified": "SetAbnormalType(16, 0)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, abnomalParcent, playerAction)",
+   "vars": [
+    "AbnormalType.Collapse",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Collapse",
+  "CalcStep.CorrectHitCheck",
+  "IPlayerStatusCalculator.get_EqAtk",
+  "IPlayerStatusCalculator.get_Stable",
+  "IgnitionAction.get_AttackType",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcStable",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillCalcTemplate.CheckStepResult",
+  "SkillManager.GetSkillTreeLv",
+  "SkillTreeType.SpriteSkill",
+  "System.Math.Min",
+  "status.EqAtk",
+  "status.Stable"
+ ],
+ "residual": []
+}

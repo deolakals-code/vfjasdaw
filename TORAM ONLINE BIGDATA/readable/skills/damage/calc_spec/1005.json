@@ -1,0 +1,38 @@
+{
+ "version": 1,
+ "uid": 1005,
+ "name_th": "เคล็ดลับลอบสังหาร",
+ "name_en": "AssassinationSecrets",
+ "tree": "AssassinSkill",
+ "category": "Mastery",
+ "max_level": 285,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "AssassinationSecrets",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "AssassinationSecrets",
+  "bonuses": {}
+ },
+ "hooks": [
+  "AssassinStubAction.ActionPreparation",
+  "FuneVinteAction.ActionPreparation"
+ ],
+ "variables": [],
+ "residual": []
+}

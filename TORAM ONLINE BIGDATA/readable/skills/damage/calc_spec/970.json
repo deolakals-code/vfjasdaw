@@ -1,0 +1,282 @@
+{
+ "version": 1,
+ "uid": 970,
+ "name_th": "สไตร์คสเต็ป",
+ "name_en": "StrikeStub",
+ "tree": "HalberdSkill",
+ "category": "Attack",
+ "max_level": 70,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "StrikeStubAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 970,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "mainWeapon != OneHandSword AND mainWeapon == Halberd",
+   "by_level": 200
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + 190) / 100)",
+   "simplified": "(Lv + 190) / 100",
+   "when": "always",
+   "by_level": [
+    1.91,
+    1.92,
+    1.93,
+    1.94,
+    1.95,
+    1.96,
+    1.97,
+    1.98,
+    1.99,
+    2.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "criticalPercent",
+   "formula": "(100 - (Lv + (Lv << 2)))",
+   "simplified": "100 - 5 × Lv",
+   "when": "mainWeapon != OneHandSword AND mainWeapon == Halberd OR mainWeapon != Halberd AND mainWeapon != OneHandSword",
+   "by_level": [
+    95,
+    90,
+    85,
+    80,
+    75,
+    70,
+    65,
+    60,
+    55,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "((((Lv + (Lv << 2)) << 1) + ((Lv + (Lv << 2)) << 1)) / 100)",
+   "simplified": "20 × Lv / 100",
+   "when": "mainWeapon != OneHandSword AND mainWeapon == Halberd",
+   "by_level": [
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1.0,
+    1.2,
+    1.4,
+    1.6,
+    1.8,
+    2.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "((status.Str // 5) / 100)",
+   "simplified": "status.Str // 5 / 100",
+   "when": "always",
+   "vars": [
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "mainWeapon == OneHandSword OR mainWeapon != Halberd AND mainWeapon != OneHandSword",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "(((Lv + (Lv << 2)) << 1) / 100)",
+   "simplified": "10 × Lv / 100",
+   "when": "mainWeapon == OneHandSword OR mainWeapon != Halberd AND mainWeapon != OneHandSword",
+   "by_level": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "criticalPercent",
+   "formula": "((100 - (Lv + (Lv << 2))) * 0.5)",
+   "simplified": "50 - 2.5 × Lv",
+   "when": "mainWeapon == OneHandSword",
+   "by_level": [
+    47.5,
+    45.0,
+    42.5,
+    40.0,
+    37.5,
+    35.0,
+    32.5,
+    30.0,
+    27.5,
+    25.0
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + abnormalRate)",
+   "simplified": "skillRate + abnormalRate",
+   "when": "AbnormalStateManager.get_AbnormalCount(MobActionManagerBase.get_AbnormalStateManager(mobAction)) ge 1 AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND damageCount lt 1 OR AbnormalStateManager.get_AbnormalCount(MobActionManagerBase.get_AbnormalStateManager(mobAction)) ge 1 AND IsInstanceOf(playerAction, PlayerActionManager) eq 1 AND damageCount lt 1 OR 1 ge damageCount AND AbnormalStateManager.get_AbnormalCount(MobActionManagerBase.get_AbnormalStateManager(mobAction)) ge 1 AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND damageCount ge 1",
+   "vars": [
+    "AbnormalStateManager.get_AbnormalCount",
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate + abnormalRate)",
+   "simplified": "skillRate + abnormalRate",
+   "when": "AbnormalStateManager.get_AbnormalCount(MobActionManagerBase.get_AbnormalStateManager(mobAction)) ge 1 AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND damageCount lt 1 OR AbnormalStateManager.get_AbnormalCount(MobActionManagerBase.get_AbnormalStateManager(mobAction)) ge 1 AND IsInstanceOf(playerAction, PlayerActionManager) eq 1 AND damageCount lt 1 OR 1 ge damageCount AND AbnormalStateManager.get_AbnormalCount(MobActionManagerBase.get_AbnormalStateManager(mobAction)) ge 1 AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND damageCount ge 1",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.get_AbnormalCount",
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "bonusSkillRate",
+   "simplified": "bonusSkillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "AbnormalStateManager.get_AbnormalCount(MobActionManagerBase.get_AbnormalStateManager(mobAction)) lt 1 AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND damageCount lt 1 OR AbnormalStateManager.get_AbnormalCount(MobActionManagerBase.get_AbnormalStateManager(mobAction)) lt 1 AND IsInstanceOf(playerAction, PlayerActionManager) eq 1 AND damageCount lt 1 OR 1 ge damageCount AND AbnormalStateManager.get_AbnormalCount(MobActionManagerBase.get_AbnormalStateManager(mobAction)) lt 1 AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND damageCount ge 1",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.get_AbnormalCount",
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.get_AbnormalCount",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Str",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerStatusBase.GetEquipElement",
+  "status.Str"
+ ],
+ "residual": []
+}

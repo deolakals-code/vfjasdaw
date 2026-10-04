@@ -1,0 +1,169 @@
+{
+ "version": 1,
+ "uid": 877,
+ "name_th": "เดรนรีคอล",
+ "name_en": "DrainRecall",
+ "tree": "MagicBladeSkill",
+ "category": "Mastery",
+ "max_level": 120,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "DrainRecall",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "DrainRecallBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int totalMpHealValue, int mainWeapon, int subWeapon",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "(Lv << 1)",
+        "when": "always",
+        "by_level": [
+         2,
+         4,
+         6,
+         8,
+         10,
+         12,
+         14,
+         16,
+         18,
+         20
+        ]
+       }
+      ],
+      "mpHeal": [
+       {
+        "formula": "(mainWeapon eq 14 ? ((((Lv + (Lv << 2)) + ((totalMpHealValue lt 0 ? (totalMpHealValue + 1) : totalMpHealValue) >> 1)) lt 0 ? (((Lv + (Lv << 2)) + ((totalMpHealValue lt 0 ? (totalMpHealValue + 1) : totalMpHealValue) >> 1)) + 1) : ((Lv + (Lv << 2)) + ((totalMpHealValue lt 0 ? (totalMpHealValue + 1) : totalMpHealValue) >> 1))) >> 1) : ((Lv + (Lv << 2)) + ((totalMpHealValue lt 0 ? (totalMpHealValue + 1) : totalMpHealValue) >> 1)))",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "mpHeal",
+     "simplified": "mpHeal",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "name",
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "DrainRecallBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:DrainRecallBuf$$.ctor<-DrainRecall$$AddBuf",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "DrainRecall",
+  "bonuses": {}
+ },
+ "hooks": [
+  "DrainRecall.AddBuf"
+ ],
+ "variables": [
+  "SkillBufferId.Value",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

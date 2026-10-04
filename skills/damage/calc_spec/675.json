@@ -1,0 +1,712 @@
+{
+ "version": 1,
+ "uid": 675,
+ "name_th": "[N]LบูมเมอแรงIII[N2]เลเพจบูมเมอแรงIII[N]",
+ "name_en": "L_Boomerang3",
+ "tree": "PartisanSkill",
+ "category": "Object",
+ "max_level": 250,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "placed object / trap / summon"
+ ],
+ "class": "L_Boomerang3Action",
+ "proration": {
+  "slot": "Normal",
+  "mode": "first_hit_per_target",
+  "attack_type": "SkillNormal",
+  "action_id": 675,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "moveDist",
+   "formula": "MathUtil.DisplayMeterToDistance(10)",
+   "simplified": "MathUtil.DisplayMeterToDistance(10)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(10)",
+   "simplified": "MathUtil.DisplayMeterToDistance(10)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(1)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) * 25) + (((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang, 1) * 25) + (baseDEX + ((Lv * 25) + 200))) + 200)) + 200)",
+   "simplified": "25 × SkillManager.GetSkillLv(A, SkillId.L_Boomerang2, 1) + 25 × SkillManager.GetSkillLv(A, SkillId.L_Boomerang, 1) + baseDEX + 25 × Lv + 600",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) ge 1",
+   "defs": [
+    [
+     "A",
+     "PlayerStatusBase.get_SkillManager()"
+    ]
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.L_Boomerang",
+    "SkillId.L_Boomerang2",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "400",
+   "simplified": "400",
+   "when": "always",
+   "by_level": 400
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "critical",
+   "formula": "(Lv * 10)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicalResist",
+   "formula": "(Lv * 5)",
+   "simplified": "5 × Lv",
+   "when": "always",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang, 1) * 25) + (baseDEX + ((Lv * 25) + 200))) + 200)",
+   "simplified": "25 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang, 1) + baseDEX + 25 × Lv + 400",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang, 1) ge 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) lt 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.L_Boomerang",
+    "SkillId.L_Boomerang2",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) * 25) + (baseDEX + ((Lv * 25) + 200))) + 200)",
+   "simplified": "25 × SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) + baseDEX + 25 × Lv + 400",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang, 1) lt 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.L_Boomerang",
+    "SkillId.L_Boomerang2",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(baseDEX + ((Lv * 25) + 200))",
+   "simplified": "baseDEX + 25 × Lv + 200",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang, 1) lt 1 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.L_Boomerang2, 1) lt 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.L_Boomerang",
+    "SkillId.L_Boomerang2",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isMpHeal",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(673)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(673)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isMpHeal",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !hasBuff(673) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "moveVec.y",
+   "formula": "(0 / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "simplified": "(0 / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isPlace ne 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "moveVec",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isPlace ne 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "moveVec.z",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isPlace ne 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "moveVec.y",
+   "formula": "0",
+   "simplified": "0",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND isPlace ne 0",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "moveVec",
+   "formula": "UnityEngine.Vector3.static+0x0",
+   "simplified": "UnityEngine.Vector3.static",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND isPlace ne 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "moveVec.z",
+   "formula": "UnityEngine.Vector3.static+0x8",
+   "simplified": "UnityEngine.Vector3.static + 8",
+   "when": "fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND isPlace ne 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "moveDist",
+   "formula": "MathUtil.DisplayMeterToDistance(10)",
+   "simplified": "MathUtil.DisplayMeterToDistance(10)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "moveVec.y",
+   "formula": "(0 / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "simplified": "(0 / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "when": "SkillIndividualFlag eq 1 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "moveVec",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "when": "SkillIndividualFlag eq 1 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "moveVec.z",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))))",
+   "when": "SkillIndividualFlag eq 1 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "moveVec.y",
+   "formula": "0",
+   "simplified": "0",
+   "when": "SkillIndividualFlag eq 1 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "moveVec",
+   "formula": "UnityEngine.Vector3.static+0x0",
+   "simplified": "UnityEngine.Vector3.static",
+   "when": "SkillIndividualFlag eq 1 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "moveVec.z",
+   "formula": "UnityEngine.Vector3.static+0x8",
+   "simplified": "UnityEngine.Vector3.static + 8",
+   "when": "SkillIndividualFlag eq 1 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillReceiveEffect",
+   "kind": "set",
+   "name": "beforePos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(effect)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(effect)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillReceiveEffect",
+   "kind": "set",
+   "name": "beforePos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(effect)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(effect)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillReceiveEffect",
+   "kind": "set",
+   "name": "beforePos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(effect)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(effect)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "isHit",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(SkillActionBase.GetMainTarget(this), 0) AND !UnityEngine.Object.op_Equality(skillPosition) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.get_gameObject(SkillActionBase.GetMainTarget(this)), UnityEngine.Component.get_gameObject(targetTransform)) AND (((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z)) + ((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x))) ls ((Radius + size) * (Radius + size)) AND isHit eq 0",
+   "by_level": 1,
+   "vars": [
+    "SkillActionBase.GetMainTarget",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isHit",
+   "formula": "0",
+   "simplified": "0",
+   "when": "isTurn eq 0 AND param eq 102 AND param ne 104",
+   "by_level": 0
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isTurn",
+   "formula": "1",
+   "simplified": "1",
+   "when": "isTurn eq 0 AND param eq 102 AND param ne 104",
+   "by_level": 1
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "moveDist",
+   "formula": "(moveDist - fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))))",
+   "simplified": "(moveDist - fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))))",
+   "when": "!UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) gt 1e-05 OR !UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) le 1e-05",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "moveVec",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))))",
+   "when": "!UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) gt 1e-05",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "moveVec.y",
+   "formula": "(0 / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))))",
+   "simplified": "(0 / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))))",
+   "when": "!UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) gt 1e-05",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "moveVec.z",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))))",
+   "when": "!UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) gt 1e-05",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "beforePos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x",
+   "when": "!UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) gt 1e-05 OR !UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) le 1e-05",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "beforePos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).y",
+   "when": "!UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) gt 1e-05 OR !UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) le 1e-05",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "beforePos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z",
+   "when": "!UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) gt 1e-05 OR !UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) le 1e-05",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "moveVec",
+   "formula": "UnityEngine.Vector3.static+0x0",
+   "simplified": "UnityEngine.Vector3.static",
+   "when": "!UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) le 1e-05",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "moveVec.y",
+   "formula": "UnityEngine.Vector3.static+0x4",
+   "simplified": "UnityEngine.Vector3.static + 4",
+   "when": "!UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) le 1e-05",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "moveVec.z",
+   "formula": "UnityEngine.Vector3.static+0x8",
+   "simplified": "UnityEngine.Vector3.static + 8",
+   "when": "!UnityEngine.Object.op_Equality(skillPosition) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x - beforePos)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z - beforePos.z)))) le 1e-05",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(MobActionManagerBase.get_MobStatus(mobAction).localExpDefNormal / 100)",
+   "simplified": "(MobActionManagerBase.get_MobStatus(mobAction).localExpDefNormal / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_MobStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpList[mobAction] / 100)",
+   "simplified": "(targetExpList[mobAction] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(673)",
+   "simplified": "RemoveBuffer(673)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(673)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass32_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(673, 0)",
+   "simplified": "AddSelfBuffer(673, 0)",
+   "when": "always"
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "L_Boomerang2Action.OnInitialize",
+  "L_BoomerangAction.OnInitialize"
+ ],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_MobStatus",
+  "MobStatus.localExpDefNormal",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.GetMainTarget",
+  "SkillId.L_Boomerang",
+  "SkillId.L_Boomerang2",
+  "SkillManager.GetSkillLv",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

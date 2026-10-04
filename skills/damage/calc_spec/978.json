@@ -1,0 +1,48 @@
+{
+ "version": 1,
+ "uid": 978,
+ "name_th": "ออลไมทีวีลด์",
+ "name_en": "GodSpearHandling",
+ "tree": "HalberdSkill",
+ "category": "Mastery",
+ "max_level": 240,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "GodSpearHandlingMastary",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "GodSpearHandlingMastary",
+  "bonuses": {
+   "LastDmgRate": {
+    "id": 8,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "GodSpearHandling1Action.IsFailure",
+  "GodSpearHandling2Action.IsFailure",
+  "GodSpearHandling3Action.IsFailure",
+  "SkillManager.GetAvailableSkill"
+ ],
+ "variables": [],
+ "residual": []
+}

@@ -1,0 +1,328 @@
+{
+ "version": 1,
+ "uid": 290,
+ "name_th": "สไปก์ดาร์ต",
+ "name_en": "SpikeDart",
+ "tree": "KnifeSkill",
+ "category": "Attack",
+ "max_level": 20,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "SpikeDartAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 290,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "0.75",
+   "simplified": "0.75",
+   "when": "1 hs Lv AND Lv ne 0",
+   "by_level": 0.75
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "1",
+   "simplified": "1",
+   "when": "1 hs Lv AND Lv ne 0",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(Lv + 10)",
+   "simplified": "Lv + 10",
+   "when": "Lv eq 0 OR 1 hs Lv AND Lv ne 0 OR 1 lo Lv AND 2 hs Lv AND Lv ne 0",
+   "by_level": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "((baseDEX // (20 - Lv)) / 100)",
+   "simplified": "baseDEX // (20 - Lv) / 100",
+   "when": "Lv eq 0 OR 1 hs Lv AND Lv ne 0 OR 1 lo Lv AND 2 hs Lv AND Lv ne 0"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusFixAddDamage",
+   "formula": "(status.SubEqAtk // 5)",
+   "simplified": "status.SubEqAtk // 5",
+   "when": "Lv eq 0 OR 1 hs Lv AND Lv ne 0 OR 1 lo Lv AND 2 hs Lv AND Lv ne 0",
+   "vars": [
+    "status.SubEqAtk"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "slowPercent",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "Lv eq 0 OR 1 hs Lv AND Lv ne 0 OR 1 lo Lv AND 2 hs Lv AND Lv ne 0",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "0.42",
+   "simplified": "0.42",
+   "when": "1 lo Lv AND 2 hs Lv AND Lv ne 0",
+   "by_level": 0.42
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "2",
+   "simplified": "2",
+   "when": "1 lo Lv AND 2 hs Lv AND Lv ne 0 OR 1 lo Lv AND 2 lo Lv AND 3 hs Lv AND Lv ne 0 OR 1 lo Lv AND 2 lo Lv AND 3 lo Lv AND Lv ne 0",
+   "by_level": 2
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "0.47",
+   "simplified": "0.47",
+   "when": "1 lo Lv AND 2 lo Lv AND 3 hs Lv AND Lv ne 0",
+   "by_level": 0.47
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "47",
+   "simplified": "47",
+   "when": "1 lo Lv AND 2 lo Lv AND 3 lo Lv AND Lv ne 0",
+   "by_level": 47
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "0.65",
+   "simplified": "0.65",
+   "when": "Lv eq 0",
+   "by_level": 0.65
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "addExcetraDamage",
+   "formula": "System.Delegate.Combine(addExcetraDamage, new System.Action)",
+   "simplified": "System.Delegate.Combine(addExcetraDamage, new, System.Action)",
+   "when": "MobaMode ne 0 AND damageCount lt 1 OR 1 ge damageCount AND MobaMode ne 0 AND damageCount ge 1 OR MobaMode ne 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND damageCount lt 1",
+   "vars": [
+    "AbnormalType.Slow",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "System.Delegate.Combine"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 8)",
+   "simplified": "SkillParam | 8",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND damageCount lt 1 OR (SkillParam & 32) eq 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND damageCount lt 1 OR (SkillParam & 32) ne 0 AND 1 ge damageCount AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND damageCount ge 1",
+   "vars": [
+    "MasteryId.Trigger",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "bonusSkillRate",
+   "simplified": "bonusSkillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "bonusFixAddDamage",
+   "simplified": "bonusFixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), SpikeDartAction.get_AttackType())",
+   "simplified": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), SpikeDartAction.get_AttackType())",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND damageCount lt 1 OR (SkillParam & 32) ne 0 AND 1 ge damageCount AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND damageCount ge 1 OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 AND damageCount lt 1",
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "MasteryId.Trigger",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcLastDamageRate",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam",
+    "SpikeDartAction.get_AttackType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[LastDamageRate]",
+   "formula": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "simplified": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 AND damageCount lt 1 OR (SkillParam & 32) ne 0 AND 1 ge damageCount AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 AND damageCount ge 1 OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 AND damageCount lt 1",
+   "op": "AddRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "AbnormalType.Slow",
+    "MasteryId.Trigger",
+    "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(11, slowPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(11, slowPercent, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND damageCount lt 1 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND damageCount lt 1 OR 1 ge damageCount AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND damageCount ge 1",
+   "vars": [
+    "AbnormalType.Slow",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(11)",
+   "simplified": "SetAbnormalType(11)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND damageCount lt 1 OR 1 ge damageCount AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND damageCount ge 1 OR MobaMode ne 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND damageCount lt 1",
+   "vars": [
+    "AbnormalType.Slow",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Slow",
+  "IPlayerStatusCalculator.get_SubEqAtk",
+  "MasteryId.Trigger",
+  "MathUtil.DisplayMeterToDistance",
+  "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcLastDamageRate",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.dex",
+  "SkillActionBase.checkPercent",
+  "SkillMasteryBase.GetMasteryParam",
+  "SpikeDartAction.get_AttackType",
+  "System.Delegate.Combine",
+  "TryGetProperties.out2",
+  "status.SubEqAtk"
+ ],
+ "residual": []
+}

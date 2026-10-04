@@ -1,0 +1,285 @@
+{
+ "version": 1,
+ "uid": 1064,
+ "name_th": "อีเทอนอลไนท์แมร์",
+ "name_en": "EternalNightmare",
+ "tree": "DarkPowerSkill",
+ "category": "Object",
+ "max_level": 180,
+ "roles": [
+  "buff (self)",
+  "placed object / trap / summon"
+ ],
+ "class": "EternalNightmareAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1064,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "range",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "EternalNightmareBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int val, short localId",
+     "fields": {
+      "SkillLocalId": [
+       {
+        "formula": "localId",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    },
+    {
+     "sig": "byte lv, int val",
+     "fields": {
+      "SkillLocalId": [
+       {
+        "formula": "0xffff",
+        "when": "always",
+        "by_level": 65535
+       }
+      ],
+      "activeDefDown": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ]
+     }
+    },
+    {
+     "sig": "byte lv, int val, bool isSelf",
+     "fields": {
+      "mobList": [
+       {
+        "formula": "new System.Collections.Generic.List<CharacterActionManagerBase>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "activeDefDown": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "(IsSelfAction eq 0 ? 3 : 300)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "allDarkPowerSkillLevel": [
+       {
+        "formula": "val",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(isSelf & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MaxHpUpRate",
+     "bonus_id": 62,
+     "formula": "(Lv << 1)",
+     "simplified": "2 × Lv",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "TargetDefDown",
+     "bonus_id": 82,
+     "formula": "((((allDarkPowerSkillLevel * Lv) lt 0 ? ((allDarkPowerSkillLevel * Lv) + 1) : (allDarkPowerSkillLevel * Lv)) >> 1) lt 400 ? (((allDarkPowerSkillLevel * Lv) lt 0 ? ((allDarkPowerSkillLevel * Lv) + 1) : (allDarkPowerSkillLevel * Lv)) >> 1) : 400)",
+     "simplified": "min(allDarkPowerSkillLevel × Lv ÷ 2, 400)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0",
+      "activeDefDown ne 0"
+     ]
+    },
+    {
+     "id": "TargetMdefDown",
+     "bonus_id": 83,
+     "formula": "((((allDarkPowerSkillLevel * Lv) lt 0 ? ((allDarkPowerSkillLevel * Lv) + 1) : (allDarkPowerSkillLevel * Lv)) >> 1) lt 400 ? (((allDarkPowerSkillLevel * Lv) lt 0 ? ((allDarkPowerSkillLevel * Lv) + 1) : (allDarkPowerSkillLevel * Lv)) >> 1) : 400)",
+     "simplified": "min(allDarkPowerSkillLevel × Lv ÷ 2, 400)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0",
+      "activeDefDown ne 0"
+     ]
+    },
+    {
+     "id": "ReceiveLightElementDmgRate",
+     "bonus_id": 79,
+     "formula": "0xfffffffb",
+     "simplified": "0xfffffffb",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "ReceiveDarkElementDmgRate",
+     "bonus_id": 80,
+     "formula": "Lv",
+     "simplified": "Lv",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "TargetDefDown",
+     "bonus_id": 82,
+     "formula": "((((allDarkPowerSkillLevel * Lv) lt 0 ? ((allDarkPowerSkillLevel * Lv) + 1) : (allDarkPowerSkillLevel * Lv)) >> 1) lt 400 ? (((allDarkPowerSkillLevel * Lv) lt 0 ? ((allDarkPowerSkillLevel * Lv) + 1) : (allDarkPowerSkillLevel * Lv)) >> 1) : 400)",
+     "simplified": "min(allDarkPowerSkillLevel × Lv ÷ 2, 400)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0",
+      "activeDefDown ne 0"
+     ]
+    },
+    {
+     "id": "TargetMdefDown",
+     "bonus_id": 83,
+     "formula": "((((allDarkPowerSkillLevel * Lv) lt 0 ? ((allDarkPowerSkillLevel * Lv) + 1) : (allDarkPowerSkillLevel * Lv)) >> 1) lt 400 ? (((allDarkPowerSkillLevel * Lv) lt 0 ? ((allDarkPowerSkillLevel * Lv) + 1) : (allDarkPowerSkillLevel * Lv)) >> 1) : 400)",
+     "simplified": "min(allDarkPowerSkillLevel × Lv ÷ 2, 400)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0",
+      "activeDefDown ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "SkillLocalId": [
+     {
+      "method": "set_SkillLocalId",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "activeDefDown": [
+     {
+      "method": "ActiveDefDown",
+      "formula": "(active & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "ActiveDefDown",
+    "PlayEffect",
+    "get_SkillLocalId",
+    "set_SkillLocalId"
+   ],
+   "attached_via": "name",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "BlackFlameEvilEyeAction.ActionPreparation",
+  "EnchantingEvilEyeAction.calcPlayerToMobDamage",
+  "IntimidatingEvilEyeAction.ActionPreparation",
+  "ReceiveSupportResult.OnActionPlayerSupport"
+ ],
+ "variables": [
+  "MathUtil.DisplayMeterToDistance",
+  "SkillBufferId.MaxHpUpRate",
+  "SkillBufferId.ReceiveDarkElementDmgRate",
+  "SkillBufferId.ReceiveLightElementDmgRate",
+  "SkillBufferId.TargetDefDown",
+  "SkillBufferId.TargetMdefDown",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

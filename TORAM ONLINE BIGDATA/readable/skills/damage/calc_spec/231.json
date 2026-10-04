@@ -1,0 +1,304 @@
+{
+ "version": 1,
+ "uid": 231,
+ "name_th": "รีคัฟเวอรี่",
+ "name_en": "Recovery",
+ "tree": "SupportSkill",
+ "category": "Heal",
+ "max_level": 30,
+ "roles": [
+  "buff (self)",
+  "heal / recovery"
+ ],
+ "class": "RecoveryAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 231,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "48",
+   "simplified": "48",
+   "when": "always",
+   "by_level": 48
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "hpHeal",
+   "formula": "((gemCart(1006[2]) * [SkillFactory.CreateSkill(SkillId.PetitHeal)+0x120]) // 100)",
+   "simplified": "gemCart(1006, [2]) × [SkillFactory.CreateSkill(SkillId.PetitHeal)+0x120] // 100",
+   "when": "SkillActionBase.op_Inequality(SkillFactory.CreateSkill(SkillId.PetitHeal), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PetitHeal, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.op_Inequality",
+    "SkillFactory.CreateSkill",
+    "SkillId.PetitHeal",
+    "SkillManager.GetSkillLv"
+   ],
+   "residual": [
+    "+0x120]"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "((gemCart(1006[2]) * [SkillFactory.CreateSkill(SkillId.PetitHeal)+0x120]) // 100)",
+   "simplified": "gemCart(1006, [2]) × [SkillFactory.CreateSkill(SkillId.PetitHeal)+0x120] // 100",
+   "when": "SkillActionBase.op_Inequality(SkillFactory.CreateSkill(SkillId.PetitHeal), 0) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PetitHeal, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillActionBase.op_Inequality",
+    "SkillFactory.CreateSkill",
+    "SkillId.PetitHeal",
+    "SkillManager.GetSkillLv"
+   ],
+   "residual": [
+    "+0x120]"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "(isPlayer & 1) ne 0",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "RecoveryAction.AddRecovery",
+   "formula": "AddRecovery(PartyManager.GetPartyMemberDataUseArcheType(Singleton<PartyManager>.get_Instance(), Toram.Common.ArchetypeUid.get_Type(out), Toram.Common.ArchetypeUid.get_Id(out)).MemberActionManager)",
+   "simplified": "AddRecovery(PartyManager.GetPartyMemberDataUseArcheType(Singleton<PartyManager>.get_Instance(), Toram.Common.ArchetypeUid.get_Type(out), Toram.Common.ArchetypeUid.get_Id(out)).MemberActionManager)",
+   "when": "PartyManager.get_IsParty(Singleton<PartyManager>.get_Instance(actarAction, target)) AND System.Linq.Enumerable.Count<AbnormalData>(System.Linq.Enumerable.Where<AbnormalData>(System.Linq.Enumerable.ToList<AbnormalData>(AbnormalStateManager.get_AbnormalList(OtherPlayerActionManager.get_AbnormalStatusManager())), RecoveryAction.<>c.<>9__24_0)) eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<OtherPlayer>(target), 0)",
+   "vars": [
+    "AbnormalStateManager.get_AbnormalList",
+    "OtherPlayerActionManager.get_AbnormalStatusManager",
+    "PartyManager.GetPartyMemberDataUseArcheType",
+    "PartyManager.get_IsParty",
+    "Toram.Common.ArchetypeUid.get_Id",
+    "Toram.Common.ArchetypeUid.get_Type",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "RecoveryAction.AddRecovery",
+   "formula": "AddRecovery(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, target)))",
+   "simplified": "AddRecovery(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, target)))",
+   "when": "!UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<OtherPlayer>(target), 0) AND PartyManager.get_IsParty(Singleton<PartyManager>.get_Instance(actarAction, target)) AND System.Linq.Enumerable.Count<AbnormalData>(System.Linq.Enumerable.Where<AbnormalData>(System.Linq.Enumerable.ToList<AbnormalData>(AbnormalStateManager.get_AbnormalList(PlayerActionManagerBase.get_AbnormalStatusManager())), RecoveryAction.<>c.<>9__24_1)) eq 0 AND TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, target) ne 0",
+   "vars": [
+    "AbnormalStateManager.get_AbnormalList",
+    "PartyManager.get_IsParty",
+    "PlayerActionManagerBase.get_AbnormalStatusManager",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerObjectBase.get_ActionManager",
+    "TryGetAutoMember.automember",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "AddRecovery",
+   "kind": "call",
+   "name": "AbnormalStateManager.RemoveAbnormalState",
+   "formula": "RemoveAbnormalState(255)",
+   "simplified": "RemoveAbnormalState(255)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "RecoveryBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool isSelf, RecoveryBuf.EffectType effectType",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "(isSelf & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "effectType": [
+       {
+        "formula": "effectType",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "(Lv * Lv)",
+     "simplified": "Lv × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "CreateAspisSeoulBuf",
+    "CreateDefaultBuf",
+    "CreateVenomSnatchBuf",
+    "get_Effect",
+    "get_IsMpHeal"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "AspisSeoul.ReceiveSupportEvent",
+  "AutoMemberActionManager.AddAbnormalState",
+  "MercenaryActionManager.AddAbnormalState",
+  "OtherPlayerActionManager.AddAbnormalState",
+  "PetMemberActionManager.AddAbnormalState"
+ ],
+ "variables": [
+  "AbnormalStateManager.get_AbnormalList",
+  "OtherPlayerActionManager.get_AbnormalStatusManager",
+  "PartyManager.GetPartyMemberDataUseArcheType",
+  "PartyManager.get_IsParty",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerObjectBase.get_ActionManager",
+  "PlayerStatusBase.get_SkillManager",
+  "Singleton.get_Instance",
+  "SkillActionBase.op_Inequality",
+  "SkillBufferId.Value",
+  "SkillFactory.CreateSkill",
+  "SkillId.PetitHeal",
+  "SkillManager.GetSkillLv",
+  "System.Linq.Enumerable.Count",
+  "System.Linq.Enumerable.ToList",
+  "System.Linq.Enumerable.Where",
+  "Toram.Common.ArchetypeUid.get_Id",
+  "Toram.Common.ArchetypeUid.get_Type",
+  "TryGetAutoMember.automember",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": [
+  {
+   "where": "OnInitialize:hpHeal",
+   "tokens": [
+    "+0x120]"
+   ]
+  },
+  {
+   "where": "OnInitialize:SkillIndividualFlag",
+   "tokens": [
+    "+0x120]"
+   ]
+  }
+ ]
+}

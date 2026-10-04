@@ -1,0 +1,578 @@
+﻿uid,name_th,name_en,tree,class,state,reason,buffs,consumers,consumer_effects
+33,ฮาร์ดฮิต,HardHit,BladeSkill,HardHitAction,complete,,0,0,0
+34,แอสทิวท์,Astute,BladeSkill,AstuteAction,complete,,1,2,1
+35,โซนิคเบรด,AccelBlade,BladeSkill,AccelBladeAction,complete,,1,1,1
+36,ซอร์ดมาสเตอรี่,BladeMastery,BladeSkill,BladeMastery,complete,,0,0,0
+37,ควิกสแลช,SpeedyBladeMastery,BladeSkill,SpeedyBladeMastery,complete,,0,0,0
+38,ทริกเกอร์สแลช,TriggerSlash,BladeSkill,TriggerSlashAction,complete,,1,0,0
+39,สไปรัลแอร์,SpiralAir,BladeSkill,SpiralAirAction,complete,,1,3,3
+40,ซอร์ดเทคนิก,BladeMasterMastery,BladeSkill,BladeMasterMastery,complete,,0,0,0
+41,รัมเพจ,Rampage,BladeSkill,RampageAction,complete,,2,4,4
+42,ซอร์ดเทมเพสต์,SwordTempest,BladeSkill,SwordTempestAction,complete,,0,0,0
+43,วอร์คราย,WarCry,BladeSkill,WarCryAction,complete,,1,1,1
+44,เมเทโอเบรคเกอร์,MeteorBreaker,BladeSkill,MeteoBreakerAction,complete,,0,0,0
+45,บัสตาร์ดเบลด,BusterBlade,BladeSkill,BusterBladeAction,complete,,1,5,4
+46,เบอร์เซิร์ก,Berserk,BladeSkill,BerserkAction,complete,,1,11,7
+47,ฟาสต์แอคแทค,FastAttack,BladeSkill,FastAttackAction,complete,,1,2,2
+48,ชัทเอาท์,ShutOut,BladeSkill,ShutOutAction,complete,,0,0,0
+49,ลูนาร์สแลช,MoonSlash,BladeSkill,MoonSlashAction,complete,,2,2,1
+50,ออร่าเบลด,AuraBlade,BladeSkill,AuraBladeAction,complete,,2,6,5
+51,แกลดดีเอท,Gladiate,BladeSkill,GladiateAction,complete,,2,1,1
+52,แฮมเมอร์สแลม,HammerDown,BladeSkill,HammerDownAction,complete,,2,3,3
+53,คลีฟวิงแอคแทค,CleaveAttack,BladeSkill,CleaveAttackAction,complete,,0,0,0
+54,สตรอมเบลซ,StormBlazer,BladeSkill,StormBlazerAction,complete,,2,1,1
+55,การ์ดเบลด,GuardyBlade,BladeSkill,GuardyBladeAction,complete,,2,2,1
+56,ออร์คสแลช,Orgaslash,BladeSkill,OrgaslashAction,complete,,2,3,2
+65,พาวเวอร์ชู้ต,PowerShoot,ShootSkill,PowerShootAction,complete,,0,0,0
+66,บูลส์อาย,OneWheel,ShootSkill,OneWheelAction,complete,,0,0,0
+67,มีบาช็อต,MeebaShot,ShootSkill,MeebaShotAction,complete,,0,1,1
+68,ชู้ตมาสเตอรี่,ShootMastary,ShootSkill,ShootMastary,complete,,0,0,0
+69,สเนคแอคแทค,HideAttack,ShootSkill,HideAttackAction,complete,,2,1,1
+70,แอร์โรว์เรน,ArrowRain,ShootSkill,ArrowRainAction,complete,,0,0,0
+71,พาราไลซิสช็อต,ParalysisShot,ShootSkill,ParalysisShotAction,complete,,1,2,1
+72,ลองเรนจ์,LongRangeMastary,ShootSkill,LongRangeMastary,complete,,0,0,0
+73,สไนป์,Sniping,ShootSkill,SnipingAction,complete,,1,0,0
+74,สโมคดัส,SmokeDust,ShootSkill,SmokeDustAction,complete,,1,2,1
+75,ควิกดรอ,QuickDraw,ShootSkill,QuickDraw,complete,,0,0,0
+76,ครอสสเฟียร์,CrossFire,ShootSkill,CrossFireAction,complete,,1,4,3
+77,อาร์มเบรค,ArmBreak,ShootSkill,ArmBreakAction,complete,,0,1,1
+78,เดคอยชูตเตอร์,DecoyShooter,ShootSkill,DecoyShooterAction,complete,,0,2,2
+79,เดสทอลก์ช็อต,DeathTorqueShot,ShootSkill,DeathTorqueShotAction,complete,,2,0,0
+80,รีโทรเกรดชอท,JumpbackShot,ShootSkill,JumpbackShotAction,complete,,3,6,3
+81,พาราโบลาแคนนอน,ParabolaCannon,ShootSkill,ParabolaCannonAction,complete,,0,0,0
+82,ทวินสตอร์ม,TwinStorm,ShootSkill,TwinStormAction,complete,,2,6,5
+83,ซามูไรอาร์เชอรี,SamuraiArchery,ShootSkill,SamuraiArchery,complete,,0,5,5
+84,แวนควิชเชอร์,Conquester,ShootSkill,ConquesterAction,complete,,0,0,0
+85,ควิกโหลดเดอร์,QuickLoader,ShootSkill,QuickLoaderAction,complete,,3,1,1
+86,เอเลเมนท์สตาร์ทเตอร์,ElementReach,ShootSkill,ElementReach,complete,,2,6,6
+87,คู่หูนักล่า,HuntingOne,ShootSkill,HuntingOneAction,complete,,1,6,1
+88,เจาะทะลุ,Penetrator,ShootSkill,PenetratorAction,complete,,2,2,2
+89,ไวด์สเปรด,WideSpread,ShootSkill,WideSpreadAction,complete,,1,0,0
+97,[N]เวทมนตร์:แอร์โรว์[F]ธนูไฟ[A]ธนูน้ำ[W]ธนูลม[E]ธนูดิน[L]ธนูแสง[D]ธนูมืด[N],MagicArrow,MagicSkill,MagicArrowAction,complete,,0,0,0
+98,[N]เวทมนตร์:แจฟลิน[F]หอกเพลิง[A]หอกน้ำแข็ง[W]หอกวายุ[E]หอกศิลา[L]หอกศักดิ์สิทธิ์[D]หอกอนธการ[N],MagicJabelin,MagicSkill,MagicJabelinAction,complete,,0,0,0
+99,[N]เวทมนตร์:กำแพง[F]กำแพงอัคคี[A]ม่านวารี[W]กำแพงวายุ[E]เขตแดนปฐพี[L]เขตแดนศักดิ์สิทธิ์[D]ประตูอสูร[N],MagicWall,MagicSkill,MagicWallAction,complete,,0,0,0
+100,เมจิกมาสเตอรี่,MagicMastary,MagicSkill,MagicMastary,complete,,0,0,0
+101,ชาร์จ MP,Charging,MagicSkill,ChargingAction,complete,,1,4,3
+102,[N]เวทมนตร์:แลนซ์ [F]วัลแคน [A]ไอซ์ซิเคิล[W]สลาตัน[E]ปืนใหญ่ศิลา[L]แสงสังหาร[D]สุริยคราส[N],MagicLancer,MagicSkill,MagicLancerAction,complete,,0,0,0
+103,[N]เวทมนตร์:บลาส[F]เอ็กซ์โพลชั่น [A]แอบโซลูทซีโร่[W]แอร์โรว์บลาส[E]จีโออิมแพ็ค[L]ไชน์นิ่งบลาส[D]อีวิลบลาส[N],MagicBlast,MagicSkill,MagicBlastAction,complete,,0,0,0
+104,เชนแคสต์,ChainCast,MagicSkill,ChainCast,complete,,2,0,0
+105,เวทมนตร์:อิมแพ็ค,MagicImpact,MagicSkill,MagicImpactAction,complete,,1,2,2
+106,[N]เวทมนตร์:สตรอม[F]ไฟเออร์สตรอม[A]โฟรเซนไซโคลน[W]ธันเดอร์สตรอม[E]แซนด์สตรอม[L]ลักซ์วอร์เทคซ์[D]อีวิวเทมเพสต์[N],MagicStorm,MagicSkill,MagicStormAction,complete,,0,0,0
+107,พาวเวอร์เวฟ,PowerWave,MagicSkill,PowerWave,complete,,0,2,1
+108,เวทมนตร์: ไฟนอล,MagicFinaw,MagicSkill,MagicFinawAction,complete,,0,0,0
+109,[N]เวทมนตร์: บลาส[F]เฮลอินเฟรูโน่[A]อีเทอนอลบลิซซาร์ด[W]ฟอร์สเทมเพสต์[E]เทิร์นกราวิตี้[L]พันนิชเมนท์[D]อีคลิปส์[N],MagicBurst,MagicSkill,MagicBurstAction,complete,,2,1,1
+110,แม็กซ์ไมเซอร์,Maximuyzer,MagicSkill,MaximuyzerAction,complete,,0,2,2
+111,เวทมนตร์:อีเกล,MagicEgel,MagicSkill,MagicEgelAction,complete,,2,0,0
+112,เวทมนตร์:เมจิกแคนนอน,MagicCannon,MagicSkill,MagicCannonAction,complete,,0,8,7
+113,[N]เวทมนตร์:แครช[F]เมเทโอเรน[A]เฮล[W]ฟลูกูไรต์[E]ร็อคฟอล[L]เมเทโอไลท์[D]คอสมอส[N],MagicFall,MagicSkill,MagicFallAction,complete,,0,0,0
+114,โครนอสชิฟท์,ChronosShift,MagicSkill,ChronosShiftAction,complete,,1,7,6
+115,แรพพิดชาร์จ,RapidCharge,MagicSkill,RapidCharge,complete,,1,1,1
+116,เอนชานท์บาเรีย,MagicProtection,MagicSkill,MagicProtectionAction,complete,,2,5,5
+117,เมจิคไนฟ์,MagicKnife,MagicSkill,MagicKnifeAction,complete,,0,0,0
+118,คาดาร์เอเล็คซิโอ,KadarElexio,MagicSkill,KadarElexioAction,complete,,2,9,8
+119,สเปลทูนนิ่ง,SpellTurning,MagicSkill,,consumer-only,no action class; effect applied in consumer code (see page),0,5,2
+120,เวทมนตร์:เรเซอร์,MagicLazer,MagicSkill,MagicLazerAction,complete,,1,1,1
+129,สแมช,Smash,MarshallSkill,SmashAction,complete,,0,0,0
+130,บาช,Bash,MarshallSkill,BashAction,complete,,0,0,0
+131,โซนิคเวฟ,SonicWave,MarshallSkill,SonicWaveAction,complete,,0,0,0
+132,มาร์เชียลมาสเตอรี่,MarshallMastary,MarshallSkill,MarshallMastary,complete,,0,0,0
+133,แอกราเวท,OneChance,MarshallSkill,OneChance,complete,,0,0,0
+134,เชลเบรค,ShellBreak,MarshallSkill,ShellBreakAction,complete,,0,0,0
+135,เอิร์ธไบด์,EarthBind,MarshallSkill,EarthBindAction,complete,,0,0,0
+136,อัดกระแทก,StrongChase,MarshallSkill,StrongChase,complete,,0,0,0
+137,เฮวี่สแมช,HeavySmash,MarshallSkill,HeavySmashAction,complete,,0,0,0
+138,ทริปเปิ้ลคิก,TryArts,MarshallSkill,TryArtsAction,complete,,0,0,0
+139,มาร์เชียลดิสซิพลิน,UnarmedTecnique,MarshallSkill,UnarmedTecnique,complete,,0,0,0
+140,เชอริออต,Chariot,MarshallSkill,ChariotAction,complete,,0,0,0
+141,รัช,Rush,MarshallSkill,RushAction,complete,,1,0,0
+142,จักรา,Chakra,MarshallSkill,ChakraAction,complete,,0,1,1
+143,สไลด์ดิ้ง,Sliding,MarshallSkill,SlidingAction,complete,,1,1,1
+144,แอบสแตรกต์อาร์ม,MindimageSenju,MarshallSkill,MindimageSenju,complete,,0,8,6
+145,อาชูร่าออร่า,AshuraAura,MarshallSkill,AshuraAuraAction,complete,,2,25,24
+146,เฟลชบลิงค์,FlashArts,MarshallSkill,FlashArtsAction,complete,,2,0,0
+147,เอเนอร์จี้คอนโทรล,Kakei,MarshallSkill,KakeiAction,complete,,4,4,4
+148,แนบพิงภูเขา,Thieshankai,MarshallSkill,ThieshankaiAction,complete,,1,1,1
+149,กระทืบพสุธา,Shinkyaku,MarshallSkill,ShinkyakuAction,complete,,0,0,0
+150,[N]หมุนปัด[N2]ขากงจักร[N],Senfutsu,MarshallSkill,SenfutsuAction,complete,,1,3,0
+161,เฮวี่อาร์เมอร์มาสเตอรี่,HeavyArmorMastary,GuardSkill,HeavyArmorMastary,complete,,0,0,0
+162,ไลท์อาร์เมอร์มาสเตอรี่,LightArmorMastary,GuardSkill,LightArmorMastary,complete,,0,0,0
+163,แอดวานซ์การ์ด,AdvanceGuard,GuardSkill,AdvanceGuard,complete,,0,0,0
+164,แอดวานซ์อีวาชั่น,AdvanceFlee,GuardSkill,AdvanceFlee,complete,,0,0,0
+165,ฟิซิคัลการ์ด,PhysicalGuard,GuardSkill,PhysicalGuard,complete,,0,0,0
+166,มิราจอีวาชั่น,MirageStep,GuardSkill,MirageStep,complete,,1,2,0
+192,#ガードスキル,,GuardSkill,,no-client-code,"tree-header placeholder: no SkillId enum entry (enum jumps 168 -> 193), max_level 0, no text/icon",0,0,0
+193,แกล้งตาย,ActDead,SurvivalSkill,ActDead,complete,,0,0,0
+194,เพิ่ม Exp,ExpUp,SurvivalSkill,ExpUp,complete,,0,0,0
+195,เพิ่มอัตราดรอป,DropUp,SurvivalSkill,DropUp,complete,,0,0,0
+196,พักอย่างปลอดภัย,SafetyRest,SurvivalSkill,SafetyRest,complete,,0,0,0
+197,พักสั้นๆ,SmallBreather,SurvivalSkill,SmallBreather,complete,,0,0,0
+198,เร่ง HP,HpBoost,SurvivalSkill,HpBoost,complete,,0,0,0
+199,เร่ง HP ต่อเนื่อง,LeewayBattle,SurvivalSkill,LeewayBattle,complete,,0,0,0
+200,เร่ง MP,MpBoost,SurvivalSkill,MpBoost,complete,,0,0,0
+201,เร่ง MP ต่อเนื่อง,CoolBattlePlan,SurvivalSkill,CoolBattlePlan,complete,,0,0,0
+225,ปฐมพยาบาล,FirstAidMastary,SupportSkill,FirstAidMastary,complete,,0,0,0
+226,ไลฟ์รีคัฟเวอรี่,LifeRecovery,SupportSkill,LifeRecoveryAction,complete,,2,2,2
+227,มานารีชาร์จ,ManaRecharge,SupportSkill,ManaRechargeAction,complete,,2,2,2
+228,มินิฮีล,PetitHeal,SupportSkill,PutitHealAction,complete,,0,1,1
+229,เบรฟออร่า,BraveAura,SupportSkill,BraveAuraAction,complete,,1,0,0
+230,เมจิกบาเรีย,MagicBarrier,SupportSkill,MagicBarrierAction,complete,,1,0,0
+231,รีคัฟเวอรี่,Recovery,SupportSkill,RecoveryAction,complete,,1,5,5
+232,ไฮไซเคิล,HighCycle,SupportSkill,HighCycleAction,complete,,1,1,1
+233,อิมมูนิตี้,DiseasetSeal,SupportSkill,DiseasetSealAction,complete,,1,0,0
+234,แซงจูรี่,Sanctuary,SupportSkill,SanctuaryAction,complete,,1,0,0
+235,ควิกโมชั่น,QuickMotion,SupportSkill,QuickMotionAction,complete,,1,0,0
+236,ฟาสต์รีเอคชั่น,HighReaction,SupportSkill,HighReactionAction,complete,,1,0,0
+237,ฮีล,Heal,SupportSkill,HealAction,complete,,0,0,0
+257,ชีลด์มาสเตอรี่,ShieldMastary,ShieldSkill,ShieldMastary,complete,,0,0,0
+258,ชีลด์บาช,ShieldBash,ShieldSkill,ShieldBashAction,complete,,0,0,0
+259,ฟอร์ชชีลด์,ForceShield,ShieldSkill,ForceShield,complete,,0,0,0
+260,ชีลด์แคนนอน,ShieldCannon,ShieldSkill,ShieldCannonAction,complete,,0,0,0
+261,เมจิกคัลชีลด์,MagicalShield,ShieldSkill,MagicalShield,complete,,0,0,0
+262,การ์ดสไตร์ค,GuardStrike,ShieldSkill,GuardStrikeAction,complete,,0,0,0
+263,โพรเทคชั่น,Protection,ShieldSkill,ProtectionAction,complete,,3,1,1
+264,อีจิส,Aegis,ShieldSkill,AegisAction,complete,,3,1,1
+265,การ์เดียน,Guardian,ShieldSkill,GuardianAction,complete,,1,1,1
+266,ชีลด์อัปเปอร์คัต,ShieldUpper,ShieldSkill,ShieldUpperAction,complete,,1,1,1
+267,ดูอัลชีลด์,PairOfShields,ShieldSkill,PairOfShieldsAction,complete,,1,9,7
+268,รีแพร์ชีลด์,ShieldRepair,ShieldSkill,ShieldRepairAction,complete,,0,0,0
+269,บาลาเกรุง,Beragelung,ShieldSkill,BeragelungAction,complete,,2,0,0
+270,[N]ラスティール[N2]ラースバーン[N],,ShieldSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+290,สไปก์ดาร์ต,SpikeDart,KnifeSkill,SpikeDartAction,complete,,0,0,0
+291,พอยซั่นแดกเกอร์,PoisonDagger,KnifeSkill,PoisonDaggerAction,complete,,0,0,0
+292,แกตติ้งไนฟ์,GatlingKnife,KnifeSkill,GatlingKnifeAction,complete,,0,0,0
+293,ดับเบิ้ลสแทบ,DoubleThrow,KnifeSkill,DoubleThrow,complete,,0,3,1
+294,อเมซซิ่งโธร์ว,ThreateningThorwArts,KnifeSkill,ThreateningThorwArts,complete,,0,0,0
+295,โธร์วไนฟ์,Throwing,KnifeSkill,ThrowingAction,complete,,0,0,0
+296,แซคเคิลอาร์ม,SecondArm,KnifeSkill,SecondArm,complete,,0,0,0
+297,อินเทนซีฟไนฟ์,IntenseKnife,KnifeSkill,IntenseKnife,complete,,0,0,0
+298,เมลเบรคเกอร์,MailBreaker,KnifeSkill,MailBreaker,complete,,1,0,0
+299,ไนฟ์คอมแบท,KnifeCombat,KnifeSkill,KnifeCombatAction,complete,,2,10,8
+300,[N]ฟินเชอร์ไนฟ์[F]ไนฟ์สไตล์[N],FlinchKnife,KnifeSkill,FlinchKnifeAction,complete,,2,0,0
+301,เครซี่แดกเกอร์,CrazyDagger,KnifeSkill,CrazyDaggerAction,complete,,2,6,5
+302,วีลไบต์,WheelBite,KnifeSkill,WheelBiteAction,complete,,3,2,2
+321,มาร์เก็ต,Market,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+322,ต่อราคา,,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+323,เพิ่มราคา,,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+324,แผงขายส่วนตัว,,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+325,จัดหาโกดัง,,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+326,พาวเวอร์ออฟเพย์,,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+327,แคชโฟร์,,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+328,เจ้าพ่อการเงิน,,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+329,รีไรเซชั่น,,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+330,อินชัวรันซ์,,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+331,รีเพย์เมนต์,,MerchantSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+353,แปรรูปวัตถุดิบ,MaterialCraft,SmithSkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,2,0
+354,ทั่งตีเหล็กส่วนตัว,BeginnerAnvil,SmithSkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,1,1
+355,ทั่งช่างฝีมือ,CraftsmanAnvil,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+356,ทั่งช่างตีเหล็ก,BlacksmithAnvil,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+357,ทั่งมาสเตอร์,MasterAnvil,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+358,ถลุงอุปกรณ์,RefiningEquipment,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+359,ถลุงระดับกลาง,IntermediateRefining,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+360,ถลุงระดับสูง,AdvancedRefining,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+361,ถลุงระดับมืออาชีพ,MastersRefining,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+362,สร้างอุปกรณ์,EquipmentProduction,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+363,สร้างอย่างระวัง,,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+364,สร้างแบบมืออาชีพ,,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+365,อัพเกรดอุปกรณ์,EnhanceEquipment,SmithSkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,3,2
+366,อัพเกรดอย่างเที่ยงตรง,ExactEnhance,SmithSkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,3,3
+367,อัพเกรดแบบมืออาชีพ,MastersEnhance,SmithSkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,3,3
+368,ทั่งมาสเตอร์II,MasterAnvil2,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+369,อัพเกรดแบบมืออาชีพII,MastersEnhance2,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+370,ความเข้าใจโลหะ,MetalUnderstand,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+371,ความเข้าใจผ้า,ClothUnderstand,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+372,ความเข้าอสูร,BeastUnderstand,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+373,ความเข้าไม้,WoodUnderstand,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+374,ความเข้ายา,DrugUnderstand,SmithSkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+375,ความเข้ามานา,MagicUnderstand,SmithSkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,1,0
+385,,,AlchemySkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+386,ขวดยามือใหม่,BeginnersPhial,AlchemySkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+387,ขวดยาช่างฝีมือ,CraftsmanPhial,AlchemySkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+388,ขวดยาช่างผสมของ,AlchemyPhial,AlchemySkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+389,ขวดยามาสเตอร์,MasterPhial,AlchemySkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+390,ผสมไอเท็ม,CreateMedicine,AlchemySkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+391,ผสมระดับกลาง,IntermediateMedicine,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,1,0
+392,ผสมระดับสูง,AdvancedMedicine,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,1,0
+393,ผสมระดับมืออาชีพ,MastersMedicine,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,1,0
+394,ผสมอุปกรณ์,SynthesizeEquip,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,2,1
+395,เทคนิคการผสม I,SynthesisTechnologyImprovement1,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,3,1
+396,เทคนิคการผสม II,SynthesisTechnologyImprovement2,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,2,1
+400,ขวดยามาสเตอร์II,MasterPhial2,AlchemySkill,,no-client-code,crafting/merchant: effect is server-side (text only),0,0,0
+401,ผสมระดับมืออาชีพII,MastersMedicine2,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,1,1
+402,เทคนิคการผสมIII,SynthesisTechnologyImprovement3,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,2,1
+403,การสังเคราะห์สี,ColorSynthesis,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,1,0
+404,คู่มือการผสมสี,ColorSynthesisGuide1,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,2,0
+405,คู่มือการผสมสีII,ColorSynthesisGuide2,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,1,0
+406,คู่มือการผสมสีIII,ColorSynthesisGuide3,AlchemySkill,,consumer-only,"crafting skill read by client code (rate/limit/unlock, see page)",0,1,0
+417,シールドランサー,,LuckSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+418,ガードピアース,,LuckSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+419,アサルトランス,,LuckSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+420,ドラゴンリープ,,LuckSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+421,リボルバーシールド,,LuckSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+422,パワードチャージ,,LuckSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+423,サバイブアーマー,,LuckSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+424,ランパート,,LuckSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+425,ファトゥム,,LuckSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+449,จับสัตว์,Taming,TamerSkill,TamingAction,complete,,0,2,0
+450,เทคนิคจับสัตว์ I,CaptureTechnicI,TamerSkill,CaptureTechnicI,complete,,0,0,0
+451,จับอย่างเชี่ยวชาญ,GoodTame,TamerSkill,GoodTame,complete,,0,0,0
+452,เพ็ทฮีล,PetHeal,TamerSkill,PetHealAction,complete,,0,0,0
+453,เทคนิคจับสัตว์ II,CaptureTechnicII,TamerSkill,CaptureTechnicII,complete,,0,0,0
+454,จับอย่างละม่อม,CarefulCapture,TamerSkill,CarefulCapture,complete,,0,0,0
+455,เพ็ท MP ชาร์จ,PetCharge,TamerSkill,PetChargeAction,complete,,0,0,0
+481,เพิ่มพลังโจมตี,AtkUp,BattleSkill,AtkUp,complete,,0,0,0
+482,เพิ่มพลังเวท,MatkUp,BattleSkill,MatkUp,complete,,0,0,0
+483,เพิ่มพลังป้องกัน,DefUp,BattleSkill,DefUp,complete,,0,0,0
+484,เต็มแรง,HeavyBlow,BattleSkill,HeavyBlow,complete,,0,0,0
+485,สมาธิ,Concentration,BattleSkill,Concentration,complete,,0,0,0
+486,เพิ่มการหลบหลีก,FleeUp,BattleSkill,FleeUp,complete,,0,0,0
+487,เพิ่มคริติคอล,CrtUp,BattleSkill,CrtUp,complete,,0,0,0
+488,ต่อต้านเต็มกำลัง,DesperateResistance,BattleSkill,DesperateResistance,complete,,0,0,0
+489,เพิ่มความแม่นยำ,HitUp,BattleSkill,HitUp,complete,,0,0,0
+490,พลังขู่ขวัญ,ThreateningPower,BattleSkill,ThreateningPower,complete,,0,0,0
+491,เพิ่มพลังเวทขั้นสูง,FurtherMagic,BattleSkill,FurtherMagic,complete,,0,0,0
+492,ดีเฟ้นส์มาสเตอรี่,KnowledgeOfDefense,BattleSkill,KnowledgeOfDefense,complete,,0,0,0
+493,แก่นแท้แห่งการโจมตี,ThePursuitOfPursuit,BattleSkill,ThePursuitOfPursuit,complete,,0,0,0
+494,สเปลเบิสต์,SpellBurst,BattleSkill,SpellBurst,complete,,0,0,0
+495,ซุปเปอร์กริป,SuperGrip,BattleSkill,SuperGrip,complete,,0,0,0
+513,แอสเซาต์แอคแทค,AssaultAttack,KnightSkill,AssaultAttackAction,complete,,0,0,0
+514,โพรโวค,Provoke,KnightSkill,ProvokeAction,complete,,0,0,0
+515,แพรี่,Parry,KnightSkill,Parry,complete,,0,0,0
+516,เรจซอร์ด,RageSword,KnightSkill,RageSwordAction,complete,,1,2,2
+517,N$Pดีเฟนส์$F$เพอร์เฟกต์ดีเฟนส์,P_Deffence,KnightSkill,P_DeffenceAction,complete,,2,7,4
+518,ไบด์สไตร์ค,BindStrike,KnightSkill,BindStrikeAction,complete,,0,0,0
+519,ฟาเรส,Fearless,KnightSkill,FearlessAction,complete,,2,1,1
+520,ไนท์วีล,KnightWill,KnightSkill,KnightWill,complete,,0,4,4
+521,ไนท์สแตนซ์,KnightStance,KnightSkill,KnightStanceAction,complete,,2,10,9
+522,โซนิคทรัสต์,SonicThrust,KnightSkill,SonicThrustAction,complete,,0,0,0
+523,เรเวอเนีย,Levenir,KnightSkill,LevenirAction,complete,,2,7,3
+524,ไนท์ฮีล,KnightHeal,KnightSkill,KnightHeal,complete,,0,1,1
+525,อาฟเตอร์ชีลด์,AfterShield,KnightSkill,AfterShield,complete,,2,1,1
+526,บลิงค์ซอร์ด,BlinkSword,KnightSkill,BlinkSwordAction,complete,,2,1,1
+527,ไนท์เพลดจ์,KnightPledge,KnightSkill,KnightPledgeAction,complete,,1,1,1
+545,แตะ,KickBack,HunterSkill,KickBackAction,complete,,0,0,0
+546,ซันไรส์แอร์โรว์,SunriseArrow,HunterSkill,SunriseArrowAction,complete,,0,0,0
+547,เมจิคแอร์โรว์,ForceArrow,HunterSkill,ForceArrow,complete,,2,0,0
+548,แซทเทิลไลท์แอร์โรว์,SatelliteArrow,HunterSkill,SatelliteArrowAction,complete,,0,0,0
+549,กับดักนิทรา,SleepTrap,HunterSkill,SleepTrapAction,complete,,0,0,0
+550,กับดักล่าสัตว์,SteelTrap,HunterSkill,SteelTrapAction,complete,,0,0,0
+551,ทุ่นระเบิด,Explossive,HunterSkill,ExplossiveAction,complete,,0,0,0
+552,กับดักความมืด,BlankTrap,HunterSkill,BlankTrapAction,complete,,0,0,0
+553,ดีเทคชั่น,Detection,HunterSkill,DetectionAction,complete,,1,7,7
+554,โฮมมิ่งช็อต,HomingShot,HunterSkill,HomingShotAction,complete,,0,0,0
+555,เวอร์ติคัลแอร์,VerticalAir,HunterSkill,VerticalAirAction,complete,,0,0,0
+556,ไซโคลนแอร์โรว์,CycloneArrow,HunterSkill,CycloneArrowAction,complete,,0,0,0
+557,ฮันเตอร์ครอสโบ,BowgunHunter,HunterSkill,BowgunHunter,complete,,0,0,0
+558,[N]มัลติเพิลฮันท์[W]วูปสไนเปอร์[H]สไนเปอร์วอลเลย์[G]วันแฮนด์ช็อต[S]ชาร์ปชูตเตอร์[N],MultipleHunt,HunterSkill,MultipleHuntAction,complete,,1,8,7
+559,แคมฟลาจ,Camouflage,HunterSkill,CamouflageAction,complete,,2,2,2
+560,ความรู้ของนักล่า,HuntersKnowledge,HunterSkill,HuntersKnowledge,complete,,0,0,0
+561,โฟกัส,Focus,HunterSkill,FocusAction,complete,,2,1,1
+577,อัญเชิญโกเล็ม,CallGolem,GolemSkill,CallGolemAction,complete,,1,13,5
+578,แลนเซอร์พลัส,LancerTypeImproved,GolemSkill,LancerTypeImproved,complete,,0,0,0
+579,ชีลด์พลัส,ShieldTypeImproved,GolemSkill,ShieldTypeImproved,complete,,0,0,0
+580,บัสเตอร์พลัส,BusterTypeImproved,GolemSkill,BusterTypeImproved,complete,,0,0,0
+581,เสริมพลังโจมตี,AttackPerformanceImprovement,GolemSkill,AttackPerformanceImprovement,complete,,0,1,0
+582,เสริมพลังป้องกัน,ShieldPerformanceImprovement,GolemSkill,ShieldPerformanceImprovement,complete,,0,0,0
+583,เสริมความเร็ว,SpeedPerformanceImprovement,GolemSkill,SpeedPerformanceImprovement,complete,,0,0,0
+584,ระเบิดเวทมนตร์,MagicGrenade,GolemSkill,MagicGrenadeAction,complete,,0,3,3
+585,ระเบิดเยือกแข็ง,FreezeGrenade,GolemSkill,FreezeGrenadeAction,complete,,0,0,0
+586,ระเบิดแสง,FlashGrenade,GolemSkill,FlashGrenadeAction,complete,,0,0,0
+587,บาเรียสกรีน,BarrierScreen,GolemSkill,BarrierScreenAction,complete,,2,0,0
+588,เสริมบาเรีย,BarrierScreenPerformanceImprovement,GolemSkill,,consumer-only,no action class; effect applied in consumer code (see page),0,2,1
+609,เฟลช,FlashDrawnSword,MononofuSkill,FlashDrawnSwordAction,complete,,0,0,0
+610,ปอมเมลสไตร์ค,StrikeBackOfSword,MononofuSkill,StrikeBackOfSwordAction,complete,,0,0,0
+611,[N]พัลส์เบลด[N2]สวิฟต์พัลส์เบลด[N],WaveBlade,MononofuSkill,WaveBladeAction,complete,,1,0,0
+612,บุชิโด,Bushido,MononofuSkill,Bushido,complete,,0,0,0
+613,ทูแฮนด์,WeaponInBothHands,MononofuSkill,WeaponInBothHands,complete,,0,0,0
+614,ทริปเปิ้ลทรัสต์,ThreeStageThrust,MononofuSkill,ThreeStageThrustAction,complete,,2,1,0
+615,มากาดาจิ,CutOffTheDisaster,MononofuSkill,CutOffTheDisasterAction,complete,,3,3,0
+616,เมเคียวชิซุย,ClearAndSerene,MononofuSkill,ClearAndSereneAction,complete,,0,2,2
+617,ฮัซโซฮัปปะ,Okaranman,MononofuSkill,HassohappaAction,complete,,1,0,0
+618,ซังเทเซตเท็ตสึ,Zanteisettetsu,MononofuSkill,ZanteisettetsuAction,complete,,3,5,3
+619,ชูคุจิ,Shukuchi,MononofuSkill,ShukuchiAction,complete,,1,15,11
+620,เท็นริวรันเซ,HeavenlyStar,MononofuSkill,HeavenlyStarAction,complete,,2,11,7
+621,การิวเท็นเซ,FinishingTouch,MononofuSkill,FinishingTouchAction,complete,,2,10,7
+622,ไคริกิรันชิน,WeirdnessOfGod,MononofuSkill,WeirdnessOfGodAction,complete,,1,3,1
+623,คมดาบมายา,RepelBlade,MononofuSkill,RepelBladeAction,complete,,2,1,0
+624,[N]คาสุมิเซ็ตสึเก็คคะ[N2]เท็นริวรันเซ:ซันยุ[N],IllusionaryScene,MononofuSkill,IllusionarySceneAction,complete,,4,5,5
+625,ชาโดว์เลสสแลช,ShadowlessSlash,MononofuSkill,ShadowlessSlashAction,complete,,2,1,1
+626,นุคิอุจิเซ็นโนเซ็น,UnannouncedDestination,MononofuSkill,UnannouncedDestination,complete,,0,6,4
+627,ดอนท์เลส,Inflexibility,MononofuSkill,Inflexibility,complete,,1,7,6
+628,ลมมงคล,Mizukaze,MononofuSkill,Mizukaze,complete,,2,1,1
+629,[N]ลมกระโชก[N2]ลมสงบนิ่ง[N3]ลมเหนือ[N4]ลมตะวันออก[N5]ลมตะวันตก[N6]ลมใต้[N7]สี่ฤดูกาล[N],Ichijhinnokaze,MononofuSkill,IchijhinnokazeAction,complete,,2,8,7
+630,ลมกรด,Hayate,MononofuSkill,HayateAction,complete,,0,0,0
+631,ลมกระโชกแรง,IchijhinnokazeAratame,MononofuSkill,IchijhinnokazeAratame,complete,,1,1,1
+641,ดูเอลมาสเตอรี่,DualMastery,DualSword,DualMastery,complete,,0,4,2
+642,ทวินสแลช,TwinSlash,DualSword,TwinSlashAction,complete,,0,1,0
+643,ครอสแพรี่,ParryingSword,DualSword,ParryingSwordAction,complete,,1,2,2
+644,รีเฟล็กซ์,StepReactor,DualSword,StepReactorAction,complete,,1,0,0
+645,ควบคุมดาบคู่,DualSwordTechnique,DualSword,DualSwordTechnique,complete,,0,0,0
+646,สปินนิ่งสแลช,AirSlide,DualSword,AirSlideAction,complete,,0,1,0
+647,ชาร์จจิ้งสแลช,DragoonSword,DualSword,DragoonSwordAction,complete,,0,0,0
+648,เร็วดุจเทพ,GodspeedLocus,DualSword,GodspeedLocus,complete,,0,0,0
+649,[N]แฟนทอมสแลช[N2]แฟนทอมอิคลิพส์[N],PhantomRave,DualSword,PhantomRaveAction,complete,,1,0,0
+650,แฟลชบลาส,PhiloEclair,DualSword,PhiloEclairAction,complete,,1,1,1
+651,ชาโดว์สเต็ป,WrapAround,DualSword,WrapAroundAction,complete,,0,1,1
+652,[N]ไชน์นิ่งครอส[N2]เบลซซิ่งไชน์นิ่งครอส[N],ShiningCloth,DualSword,ShiningClothAction,complete,,1,0,0
+653,[N]สตอร์มรีปเปอร์[N2]ออร์บิทรีปเปอร์[N],SturmLeaper,DualSword,SturmLeaperAction,complete,,2,0,0
+654,เซเบอร์ออร่า,SaberAura,DualSword,SaberAuraAction,complete,,1,12,7
+655,ลูนาดิธเธอร์สตาร์,LunaDitherStar,DualSword,LunaDitherStarAction,complete,,2,1,1
+656,ทวินบัสตาร์ดเบลด,TwinBusterBlade,DualSword,TwinBusterBladeAction,complete,,0,0,0
+657,อาร์คเซเบอร์,ArkSaber,DualSword,ArkSaberAction,complete,,2,15,9
+658,แอร์สไลเซอร์,AirSlicer,DualSword,AirSlicerAction,complete,,0,0,0
+659,เอเลียสลีย์,ArialSlay,DualSword,ArialSlayAction,complete,,2,2,2
+660,ฮอร์ริซอนคัท,HorizontalCut,DualSword,HorizontalCutAction,complete,,1,1,1
+661,เบลดสตริงเกอร์,BladeStinger,DualSword,BladeStingerAction,complete,,0,0,0
+673,[N]Lบูมเมอแรง[N2]เลเพจบูมเมอแรง[N],L_Boomerang,PartisanSkill,L_BoomerangAction,complete,,1,6,5
+674,[N]LบูมเมอแรงII[N2]เลเพจบูมเมอแรงII[N],L_Boomerang2,PartisanSkill,L_Boomerang2Action,complete,,0,2,2
+675,[N]LบูมเมอแรงIII[N2]เลเพจบูมเมอแรงIII[N],L_Boomerang3,PartisanSkill,L_Boomerang3Action,complete,,0,2,1
+676,[N]Nดราก้อนทูธ[N2]นีโน่ดราก้อนทูธ[N],N_DragonTooth,PartisanSkill,N_DragonToothAction,complete,,1,0,0
+677,ฮีลลิ่งช็อต,HealingShot,PartisanSkill,HealingShotAction,complete,,3,0,0
+678,ลับคมลูกศร,ArrowSharpening,PartisanSkill,ArrowSharpeningAction,complete,,2,6,6
+679,สัญชาตญาณการอยู่รอด,SurvivalInstinct,PartisanSkill,,consumer-only,no action class; effect applied in consumer code (see page),1,1,1
+680,ค้ำจุนแนวหน้า,MaintainingTheFront,PartisanSkill,MaintainingTheFrontAction,complete,,1,6,6
+681,ค้ำจุนแนวหน้าII,MaintainingTheFront2,PartisanSkill,MaintainingTheFrontMastery,complete,,0,1,1
+705,ออโต้ดีไวซ์,AutoDevice,SpriteSkill,AutoDeviceAction,complete,,2,2,2
+706,เอ็กเพรสเอด,RushAid,SpriteSkill,RushAidMastery,complete,,1,4,4
+707,เคาน์เตอร์ฟอร์ส,CounterForce,SpriteSkill,CounterForceAction,complete,,2,11,6
+708,ไมโครฮีล,ClineHeal,SpriteSkill,ClineHealAction,complete,,0,0,0
+709,เอนฮานซ์,Enhance,SpriteSkill,EnhanceAction,complete,,2,0,0
+710,แอสเทิลแลนซ์,AstralLance,SpriteSkill,AstralLanceAction,complete,,2,9,8
+711,เรเซอร์เรคชั่น,Resurrection,SpriteSkill,ResurrectionAction,complete,,0,0,0
+712,สเตบิไลซ์,Stabilis,SpriteSkill,StabilisAction,complete,,1,7,7
+713,สไปรท์ชีลด์,SpriteShield,SpriteSkill,SpriteShieldAction,complete,,3,6,4
+714,เมจิกวัลแคน,MagicBalkan,SpriteSkill,MagicBalkanAction,complete,,2,0,0
+715,อิกนิชั่น,Ignition,SpriteSkill,IgnitionAction,complete,,0,0,0
+716,อาร์เดดราค,Aldedrak,SpriteSkill,AldedrakAction,complete,,0,0,0
+717,แฟกทิสอาร์ม,FacticeArme,SpriteSkill,FacticeArmeAction,complete,,1,0,0
+718,สแลชรีปเปอร์,SlashReaper,SpriteSkill,SlashReaperAction,complete,,0,1,1
+719,สไปรท์อัพเกรด,EnhanceSprite,SpriteSkill,EnhanceSprite,complete,,0,0,0
+720,รีเทค,Retake,SpriteSkill,Retake,complete,,1,1,0
+721,คาตาลาโบมัส,Catarabomos,SpriteSkill,CatarabomosAction,complete,,0,0,0
+722,เลเบนส์กลานซ์,LebenGlanz,SpriteSkill,LebenGlanzAction,complete,,2,0,0
+769,บทเพลงแห่งการเยียวยา,HealingSong,Minstrel,HealingSongAction,complete,,2,16,11
+770,บทเพลงแห่งภูตพราย,FairySong,Minstrel,FairySongAction,complete,,2,1,1
+771,บทเพลงแห่งชีวิต,SongOfLife,Minstrel,SongOfLifeAction,complete,,2,0,0
+772,บทเพลงแห่งมายา,PhantomSong,Minstrel,PhantomSongAction,complete,,2,0,0
+773,แอดลิบ,ImprovisationSong,Minstrel,ImprovisationSongAction,complete,,5,1,1
+774,บทเพลงแห่งความเร่าร้อน,EnthusiasticSong,Minstrel,EnthusiasticSongAction,complete,,2,1,1
+775,บทเพลงแห่งภูมิปัญญา,KnowledgeSong,Minstrel,KnowledgeSongAction,complete,,2,2,2
+776,บีทบลาสต์,BeatBlast,Minstrel,BeatBlastAction,complete,,0,1,1
+777,ซาวนด์เวล,SoundVeil,Minstrel,SoundVeil,complete,,0,0,0
+778,แบทเทิลโน้ต,BattleNotes,Minstrel,BattleNotes,complete,,0,1,1
+801,การร่ายรำแห่งภูตพราย,FairyDance,DancerSkill,FairyDanceAction,complete,,1,0,0
+802,การร่ายรำอันรุนแรง,PassionDance,DancerSkill,PassionDanceAction,complete,,1,0,0
+803,การร่ายรำให้กำลังใจ,SupportDance,DancerSkill,SupportDanceAction,complete,,1,0,0
+804,การร่ายรำอันเฉียบคม,SharpDance,DancerSkill,SharpDanceAction,complete,,1,4,1
+805,ตั้งรับอย่างสง่างาม,ElegantStance,DancerSkill,ElegantStanceAction,complete,,2,3,1
+806,การร่ายรำอันทรงเสน่ห์,EnchantedDance,DancerSkill,EnchantedDanceAction,complete,,1,0,0
+807,วิจิตรธรรมชาติ,BeautiesOfNature,DancerSkill,BeautiesOfNatureAction,complete,,2,0,0
+833,เบลส,Bless,PriestSkill,BlessAction,complete,,2,0,0
+834,โฮลี่ฟิสท์,HollyFist,PriestSkill,HolyFistAction,complete,,0,0,0
+835,กลอเรีย,Gloria,PriestSkill,GloriaAction,complete,,2,1,1
+836,โฮลี่ไลท์,HollyLight,PriestSkill,HolyLightActin,complete,,0,2,2
+837,เอนเชนส์เบลส,BlessStrengthen,PriestSkill,BlessStrengthen,complete,,0,1,1
+838,อีเธอร์บาเรีย,EtherCoat,PriestSkill,EtherCoatAction,complete,,2,0,0
+839,ไฮเนสฮีล,HighnessHeal,PriestSkill,HighnessHealAction,complete,,0,0,0
+840,พรีเอล,Priere,PriestSkill,PriereAction,complete,,1,0,0
+841,ร็อดสทับ,RodStub,PriestSkill,RodStubAction,complete,,0,0,0
+842,เอ็กซอร์ซิสต์,Exorcism,PriestSkill,ExorcismAction,complete,,1,2,2
+843,โฮลี่ไบเบิ้ล,HolyBible,PriestSkill,HolyBibleAction,complete,,1,4,4
+844,เนเมซิส,Nemesis,PriestSkill,NemesisAction,complete,,2,15,11
+845,แอสพิสโซล,AspisSeoul,PriestSkill,AspisSeoul,complete,,1,2,2
+846,คำสอนศักดิ์สิทธิ์,SacredTeachings,PriestSkill,SacredTeachings,complete,,2,1,1
+847,โฮลี่เกรซ,HolyGrace,PriestSkill,HolyGraceAction,complete,,4,2,2
+865,เมจิกวอริเออร์มาสเตอรี่,KnowledgeOfMagicWarriorMastary,MagicBladeSkill,KnowledgeOfMagicWarriorMastary,complete,,0,1,0
+866,อีเทอร์แฟลร์,EtherFlare,MagicBladeSkill,EtherFlareAction,complete,,2,0,0
+867,คอนเวอร์ชั่น,Conversion,MagicBladeSkill,ConversionAction,complete,,2,7,2
+868,เอเลเม้นต์สแลช,ElementSlash,MagicBladeSkill,ElementSlashAction,complete,,0,0,0
+869,เรโซแนนซ์,Resonance,MagicBladeSkill,ResonanceAction,complete,,1,0,0
+870,[N]เอนชานท์ซอร์ด[N2]เอนชานท์บลาสซอร์ด[N],EnchantedSword,MagicBladeSkill,EnchantedSwordAction,complete,,1,0,0
+871,เอนชานท์สเปล,EnchantedSpell,MagicBladeSkill,EnchantedSpell,complete,,1,3,2
+872,[N]เอนชานท์บลาส[N2]เอนชานท์อกรา[N],EnchantedBurst,MagicBladeSkill,EnchantedBurstAction,complete,,3,5,5
+873,ดูอัลบริงเกอร์,DualBringer,MagicBladeSkill,DualBringerAction,complete,,2,5,5
+874,[N]ยูเนียนซอร์ด[N2]รียูเนียนซอร์ด[N],UnionSword,MagicBladeSkill,UnionSwordAction,complete,,1,1,1
+875,เดรนบาเรีย,DrainBarrier,MagicBladeSkill,DrainBarrierAction,complete,,4,0,0
+876,เทเลพอร์ต,Teleport,MagicBladeSkill,TeleportAction,complete,,0,0,0
+877,เดรนรีคอล,DrainRecall,MagicBladeSkill,DrainRecall,complete,,2,1,1
+878,โฟรทแดช,FloatDash,MagicBladeSkill,FloatDashAction,complete,,2,10,6
+879,เมจิกสกิน,MagicSkin,MagicBladeSkill,MagicSkin,complete,,2,3,3
+897,,NpcFirstAid,28,NpcFirstAidAction,complete,,1,0,0
+898,,NpcHeal,28,NpcHealAction,complete,,0,0,0
+899,,FlashOfTheWarGod,28,FlashOfTheWarGodAction,complete,,0,0,0
+900,,JudgmentOfTheDarkGod,28,JudgmentOfTheDarkGodAction,complete,,1,0,0
+901,,WarProvoke,28,WarProvokeAction,complete,,1,0,0
+902,,Hiding,28,HidingAction,complete,,0,0,0
+929,บาสต์แอคแทค,BusterAttack,PetSkill,BusterAttack,complete,,0,0,0
+930,HP อัพ,PetHpUp,PetSkill,PetHpUp,complete,,0,0,0
+931,ดูดซับ MP,MPDrain,PetSkill,,no-client-code,"pet passive slot, client-inert: SkillId const + UI IsPassive bit only; no CreateMasterySkill case, no SkillId 931 constant/switch consumer in the binary",0,0,0
+932,ซ่อนตัว,PetHide,PetSkill,PetHide,complete,,0,0,0
+933,เมจิกแลนซ์,SorciereLance,PetSkill,SorcielLance,complete,,0,0,0
+934,คริติคอลอัพ,PetCriticalUp,PetSkill,PetCriticalUp,complete,,1,0,0
+935,เฮวี่แอคแทค,HeavyAttack,PetSkill,HeavyAttack,complete,,0,0,0
+936,ลอบโจมตี,SneakAttack,PetSkill,SneakAttack,complete,,0,0,0
+937,เมจิกชอต,MagicShot,PetSkill,MagicShot,complete,,0,0,0
+938,บลาสต์แฟลร์,BlastFlare,PetSkill,BlastFlare,complete,,0,0,0
+939,เซอร์เคิลฮีล,KreisHeel,PetSkill,KreisHeel,complete,,0,0,0
+940,กระตุ้นพลัง,BraveUp,PetSkill,BraveUp,complete,,1,0,0
+941,ปฐมพยาบาล,PetFirstAid,PetSkill,PetFirstAid,complete,,1,0,0
+942,เพิ่มกำลังใจ,MindUp,PetSkill,MindUp,complete,,1,0,0
+943,ฟื้นฟู,PetHealing,PetSkill,PetHealing,complete,,0,0,0
+944,สวีปแอคแทค,SweepAttack,PetSkill,SweepAttack,complete,,0,0,0
+945,คลีนฮิต,DownBlow,PetSkill,DownBlow,complete,,0,0,0
+946,เรจแอคแทค,RageAttack,PetSkill,RageAttack,complete,,0,0,0
+947,บลายอิ้งแชโดว์,BlindEye,PetSkill,BlindEye,complete,,0,0,0
+948,เพิ่มแรงต้านทาน,CutUp,PetSkill,CutUp,complete,,1,0,0
+949,สตันแอคแทค,StanAttack,PetSkill,StanAttack,complete,,0,0,0
+950,ปกป้อง,PetProtect,PetSkill,PetProtect,complete,,0,0,0
+951,ดูดซับ HP,HPDrain,PetSkill,,no-client-code,"pet passive slot, client-inert: SkillId const + UI IsPassive bit only; no CreateMasterySkill case, no SkillId 951 constant/switch consumer in the binary",0,0,0
+952,MP อัพ,PetMpUp,PetSkill,PetMpUp,complete,,0,0,0
+953,ชีลเบรคเกอร์,SealBreaker,PetSkill,SealBreaker,complete,,0,0,0
+958,การการโจมตีปกติ (กายภาพ),PetPhysicalAttack,PetSkill,PetNormalAttackAction,complete,,0,0,0
+959,การโจมตีปกติ (เวทมนตร์),PetMagicAttack,PetSkill,PetNormalMagicAction,complete,,0,0,0
+961,เฟลชสเต็ป,FlashStub,HalberdSkill,FlashStubAction,complete,,0,0,0
+962,แคนนอนสเปียร์,CannonSpear,HalberdSkill,CannonSpearAction,complete,,0,0,0
+963,เดดลี่สเปียร์,DeadlySpear,HalberdSkill,DeadlySpearAction,complete,,1,3,2
+964,ฮัลเบิร์ทมาสเตอรี่,HalberdMastery,HalberdSkill,HalberdMastery,complete,,0,0,0
+965,ควิกออร่า,QuickAura,HalberdSkill,QuickAuraAction,complete,,0,0,0
+966,ดราก้อนเทล,DragonTail,HalberdSkill,DragonTailAction,complete,,2,0,0
+967,วานิชเรย์,PunishRay,HalberdSkill,PunishRayAction,complete,,2,1,0
+968,วอร์ครายสทรักเกิ้ล,AdversityRoar,HalberdSkill,AdversityRoarAction,complete,,0,0,0
+969,ไดฟ์อิมแพ็ค,DiveImpact,HalberdSkill,DiveImpactAction,complete,,0,0,0
+970,สไตร์คสเต็ป,StrikeStub,HalberdSkill,StrikeStubAction,complete,,0,0,0
+971,คริติคอลสเปียร์,HandlingSatisfaction,HalberdSkill,HandlingSatisfactionMastary,complete,,0,0,0
+972,ดราก้อนทูธ,DragonTooth,HalberdSkill,DragonToothAction,complete,,0,1,0
+973,โครนอสไดรฟ์,CronosDrive,HalberdSkill,CronosDriveAction,complete,,1,2,1
+974,เทพลมกรด,HandlingerOfGodspeed,HalberdSkill,HandlingerOfGodspeedAction,complete,,1,9,6
+975,[N]บัสเตอร์แลนซ์[P]แพนิกบัสเตอร์แลนซ์[N],BusterLunce,HalberdSkill,BusterLanceAction,complete,,0,0,0
+976,ดราโกนิกชาร์จ,DragonicCharge,HalberdSkill,DragonicChargeAction,complete,,1,4,3
+977,อินฟิไนท์ไดเมนชัน,DimensionTill,HalberdSkill,DimensionTillAction,complete,,0,0,0
+978,ออลไมทีวีลด์,GodSpearHandling,HalberdSkill,GodSpearHandlingMastary,complete,,0,6,4
+979,ทอร์นาโดแลนซ์,TornadoLance,HalberdSkill,TornadoLanceMastary,complete,,1,10,10
+980,บลิทซ์ไปก์,BlitzPike,HalberdSkill,BlitzPikeAction,complete,,2,1,1
+981,ไลท์นิ่งเฮล,LightningHail,HalberdSkill,LightningHailAction,complete,,2,0,0
+982,ธอร์แฮมเมอร์,ThorHammer,HalberdSkill,ThorHammerAction,complete,,1,4,3
+993,[N]แอสแซสซินสแทบ[F]ฟรอนท์สแทบ[S]ไซด์สแทบ[B]แบ็คสแทบ[N],AssassinStub,AssassinSkill,AssassinStubAction,complete,,2,1,1
+994,อีเวชัน,Evolution,AssassinSkill,EvolutionAction,complete,,2,0,0
+995,แบ็คสเต็ป,Backstep,AssassinSkill,BackstepAction,complete,,2,0,0
+996,เซียรัม,Sierram,AssassinSkill,SierramAction,complete,,1,0,0
+997,ฟูเนวินเด,FuneVinte,AssassinSkill,FuneVinteAction,complete,,2,1,1
+998,ละทิ้ง,Abandonment,AssassinSkill,Abandonment,complete,,0,0,0
+999,ซิคาเรียส,Seekerius,AssassinSkill,Seekerius,complete,,1,0,0
+1000,ชาโดว์วอล์ค,ShadowWalk,AssassinSkill,ShadowWalkAction,complete,,2,1,1
+1001,เวนอมอินเจค,VenomInject,AssassinSkill,VenomInjectAction,complete,,2,2,2
+1002,พิษกัดกร่อน,CorrosivePoison,AssassinSkill,CorrosivePoison,complete,,0,1,1
+1003,เวนอมสแนทช,VenomSnatch,AssassinSkill,VenomSnatchAction,complete,,2,2,2
+1004,เดธรีเซฟชัน,DeathReception,AssassinSkill,DeathReceptionAction,complete,,0,2,2
+1005,เคล็ดลับลอบสังหาร,AssassinationSecrets,AssassinSkill,AssassinationSecrets,complete,,0,2,2
+1006,แอสเซาท์เชส,AssaultChase,AssassinSkill,AssaultChaseAction,complete,,2,1,1
+1007,นักปรุงยาพิษ,PoisonMixer,AssassinSkill,PoisonMixer,complete,,0,1,1
+1025,แฟมิเรีย,Familia,WizardSkill,FamiliaAction,complete,,1,12,9
+1026,มานาคริสตัล,ManaCrystal,WizardSkill,ManaCrystalAction,complete,,1,5,4
+1027,ไลท์นิ่ง,Lightning,WizardSkill,LightningAction,complete,,0,0,0
+1028,บลิซซาร์ด,Blizzard,WizardSkill,BlizzardAction,complete,,0,0,0
+1029,เมเทโอสตอร์มสไตร์ค,MeteorStrike,WizardSkill,MeteorStrikeAction,complete,,0,0,0
+1030,สโตนสกิล,StoneSkin,WizardSkill,StoneSkinAction,complete,,1,0,0
+1031,[N]อิมพีเรียลเรย์[PN]อิมพีเรียลบลาสท์[PF]อิมพีเรียลไฟร์[PA]อิมพีเรียลฟรีซ[PW]อิมพีเรียลโกลม[PE]อิมพีเรียลเปตรา[PL]อิมพีเรียลโฮลี่[PD]อิมพีเรียลชาโดว์[N],ImperialRay,WizardSkill,ImperialRayAction,complete,,1,2,0
+1032,ไฮแฟมิเรีย,HighFamilia,WizardSkill,HighFamiliaAction,complete,,1,12,7
+1033,คาสต์มาสเตอรี่,CastMastery,WizardSkill,CastMastery,complete,,0,0,0
+1034,คริสตัลเลเซอร์,CrystalLaser,WizardSkill,CrystalLaserAction,complete,,0,0,0
+1035,โอเวอร์ลิมิต,OverLimit,WizardSkill,OverLimitAction,complete,,1,0,0
+1036,ซอร์ดเซอรีไกด์,MagicalGuidance,WizardSkill,MagicalGuidance,complete,,0,0,0
+1037,ของที่แมวทำหล่น,CatsDropItem,WizardSkill,CatsDropItem,complete,,0,0,0
+1038,การวิจัยเวทมนตร์,MagicResearch,WizardSkill,MagicResearch,complete,,0,0,0
+1039,ชิฟท์,Shift,WizardSkill,ShiftAction,complete,,3,17,16
+1057,บลัดดี้ไบท์,BloodBite,DarkPowerSkill,BloodBiteAction,complete,,0,0,0
+1058,แซครีไฟซ์,Sacrifice,DarkPowerSkill,SacrificeAction,complete,,2,0,0
+1059,ดาร์คสตริงเกอร์,DarkStinger,DarkPowerSkill,DarkStingerAction,complete,,3,0,0
+1060,เดมอนคลอว์,DemonCrowe,DarkPowerSkill,DemonCroweAction,complete,,0,0,0
+1061,เรดเทีย,RedTear,DarkPowerSkill,RedTearAction,complete,,1,1,1
+1062,รีเกรทเลส,Regret,DarkPowerSkill,RegretAction,complete,,1,8,1
+1063,[N]โซลฮันเตอร์[N2]เดธรีปเปอร์[N],SoulHunt_Deathscythe,DarkPowerSkill,SoulHuntAction,complete,,2,10,5
+1064,อีเทอนอลไนท์แมร์,EternalNightmare,DarkPowerSkill,EternalNightmareAction,complete,,1,4,1
+1065,เนตรมารข่มขวัญ,IntimidatingEvilEye,DarkPowerSkill,IntimidatingEvilEyeAction,complete,,0,0,0
+1066,เนตรมารเสน่หา,EnchantingEvilEye,DarkPowerSkill,EnchantingEvilEyeAction,complete,,0,0,0
+1067,เนตรมารเพลิงทมิฬ,BlackFlameEvilEye,DarkPowerSkill,BlackFlameEvilEyeAction,complete,,2,0,0
+1068,เนตรมารโกลาหล,ChaosEvilEye,DarkPowerSkill,ChaosEvilEyeAction,complete,,0,0,0
+1089,ความชำนาญการสู้มือเปล่า,BarehandMastery,BareHandSkill,BarehandMastery,complete,,1,2,2
+1090,ชาร์จพลังชี่กง,CollectQigong,BareHandSkill,CollectQigongAction,complete,,1,2,2
+1091,ซีซ่าแสลชเชอร์,FuriousEfforts,BareHandSkill,FuriousEffortsAction,complete,,2,11,9
+1092,วายุโหมคลื่นกระหน่ำ,StormAndUrge,BareHandSkill,StormAndUrgeAction,complete,,1,8,5
+1093,ชี่กงฟื้นฟู,HealQigong,BareHandSkill,HealQigongAction,complete,,2,8,4
+1094,ชาร์จพลังชี่กงอัลติมา,CollectQigongExtreme,BareHandSkill,CollectQigongExtreme,complete,,0,0,0
+1095,ซีซ่าแสลชเชอร์อัลติมา,FuriousEffortsExtreme,BareHandSkill,FuriousEffortsExtreme,complete,,2,0,0
+1096,วายุโหมคลื่นกระหน่ำอัลติมา,StormAndUrgeExtreme,BareHandSkill,StormAndUrgeExtreme,complete,,1,2,0
+1097,การปะทะของจิตวิญญาณ,CollisionOfFightingSpirit,BareHandSkill,CollisionOfFightingSpirit,complete,,0,0,0
+1098,สะเทือนโลกา,EarthShattering,BareHandSkill,EarthShatteringAction,complete,,4,13,11
+1099,ฟื้นคืนชีพ,Revival,BareHandSkill,Revival,complete,,2,1,1
+1100,ซ่อนเร้นตัวตน,SelfDisclosure,BareHandSkill,SelfDisclosure,complete,,0,1,0
+1121,เกรฟดิกเกอร์,GlaiveTigger,NecromancerSkill,GlaiveTiggerAction,complete,,2,12,11
+1122,ทูม,Tomb,NecromancerSkill,TombAction,complete,,0,0,0
+1123,แฟนทอมมิสไซล์,PhantomMissile,NecromancerSkill,PhantomMissileAction,complete,,0,0,0
+1124,พลั่วชั้นดี,GoodQualityShovel,NecromancerSkill,GoodQualityShovel,complete,,0,0,0
+1125,สกัลเชคเกอร์,SkullShaker,NecromancerSkill,SkullShakerAction,complete,,0,0,0
+1126,บลัดสตีล,BloodSteel,NecromancerSkill,BloodSteelAction,complete,,2,1,1
+1127,ซัมมอนสเกเลตัน,SummonSkeleton,NecromancerSkill,SummonSkeletonAction,complete,,0,3,1
+1128,ฮาร์เวสต์,Harvest,NecromancerSkill,Harvest,complete,,0,0,0
+1129,เดนเจอร์เชค,DengerShake,NecromancerSkill,DengerShakeAction,complete,,2,1,1
+1130,โซลสตรีม,SoulStream,NecromancerSkill,SoulStreamAction,complete,,0,0,0
+1131,ซัมมอนเดโมนิก,SummonDemonic,NecromancerSkill,SummonDemonicAction,complete,,1,23,14
+1132,แผนตลบหลัง,MatchPump,NecromancerSkill,MatchPump,complete,,0,0,0
+1153,กำปั้นผดุงคุณธรรม,ForefistPunch,CrusherSkill,ForefistPunchAction,complete,,1,0,0
+1154,วิธีการหายใจ,BreathingMethod,CrusherSkill,BreathingMethodAction,complete,,0,4,3
+1155,กลอเรียเทคชอต,GoliathTakeShot,CrusherSkill,GoliathTakeShotAction,complete,,1,4,3
+1156,ฟลายอิ้งคิก,FloatingKick,CrusherSkill,FloatingKickAction,complete,,0,0,0
+1157,คอมบิเนชั่น,Combination,CrusherSkill,CombinationAction,complete,,0,0,0
+1158,ก็อดแฮนด์,GodHand,CrusherSkill,GodHandAction,complete,,1,8,7
+1159,ผู้ทำลายล้าง,Destroyer,CrusherSkill,DestroyerAction,complete,,2,9,7
+1160,เทอราบลาสต์,GeoImpact,CrusherSkill,GeoImpactAction,complete,,2,1,1
+1161,ร่างแกร่งดุจเทพ,GodRigidBody,CrusherSkill,GodRigidBodyMastery,complete,,0,3,2
+1162,กีย์เซอร์ชู้ต,GazerShoot,CrusherSkill,GazerShootAction,complete,,2,0,0
+1185,,,37,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1186,,,37,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1187,,,37,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1188,,,37,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1189,,,37,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1190,,,37,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1191,,,37,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1192,,,37,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1217,นินจาสปิริต,ShinobiWay,NinjaSkill,ShinobiWay,complete,,0,0,0
+1218,นินจูตสึ,Ninjutsu,NinjaSkill,NinjutsuAction,complete,,0,4,0
+1227,ศาสตร์แห่งนินจูตสึ I,NinjutsuTraining1,NinjaSkill,,consumer-only,no action class; effect applied in consumer code (see page),0,1,1
+1228,ศาสตร์แห่งนินจูตสึ II,NinjutsuTraining2,NinjaSkill,,consumer-only,no action class; effect applied in consumer code (see page),0,1,1
+1249,ท่อเหล็ก,IronPipe,EventSkill,IronPipeAction,complete,,0,0,0
+1250,เรโทรโบว์กัน,RetroBowgun,EventSkill,RetroBowgunAction,complete,,0,0,0
+1251,แม็กนั่ม,Magnum,EventSkill,MagnumAction,complete,,1,3,2
+1281,เอ็กซ์โพชั่น,Explosion,AvatarSkill_1,ExplosionAction,complete,,0,0,0
+1282,ไลท์ออฟเซเบอร์,LightOfSaber,AvatarSkill_1,LightOfSaberAction,complete,,0,0,0
+1283,Morning Star,MorningStar,AvatarSkill_1,MorningStarAction,complete,,2,0,0
+1284,,DivaCheering,AvatarSkill_1,,consumer-only,no action class; effect applied in consumer code (see page),1,1,1
+1285,[N]ดราก้อนสเลฟ[N2]ดราก้อนสเลฟ[N],DragSlave,AvatarSkill_1,DragSlaveAction,complete,,0,0,0
+1345,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1346,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1347,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1348,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1349,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1350,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1351,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1352,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1353,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1354,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1355,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1356,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1357,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1358,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1359,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1360,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1361,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1362,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1363,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1364,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1365,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1366,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1367,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1368,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1369,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1370,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1371,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1372,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0
+1373,,,DebugSkill,,no-client-code,flag CanNotUse (system/unreleased),0,0,0

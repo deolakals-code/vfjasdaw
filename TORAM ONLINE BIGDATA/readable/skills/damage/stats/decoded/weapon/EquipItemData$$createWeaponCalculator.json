@@ -1,0 +1,1 @@
+{"name": "EquipItemData$$createWeaponCalculator", "rva": "0x18f1fa8", "addr": "0x18f1fa8", "params": [["ItemData", "item"]], "static": false, "returns": "WeaponTypeCalculatorBase", "truncated": false, "npaths": 2, "cases": [{"value": "new EquipItemData.HundCalculator", "common": ["(item.Type - 8) hi 15"], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

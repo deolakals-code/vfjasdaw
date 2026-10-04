@@ -1,0 +1,807 @@
+{
+ "version": 1,
+ "uid": 1098,
+ "name_th": "สะเทือนโลกา",
+ "name_en": "EarthShattering",
+ "tree": "BareHandSkill",
+ "category": "Buffer",
+ "max_level": 250,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "EarthShatteringAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1098,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "bufCondition",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(hasBuff(1098) ? 2 : 1)",
+   "simplified": "hasBuff(1098) ? 2 : 1",
+   "when": "!UnityEngine.Object.op_Equality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(LoopParam | 8)",
+   "simplified": "LoopParam | 8",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1093)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(((LoopParam | 2) | 4) | 1)",
+   "simplified": "LoopParam | 2 | 4 | 1",
+   "when": "!hasBuff(1093) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1091) AND hasBuff(1092) AND hasBuff(1098)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "((LoopParam | 2) | 4)",
+   "simplified": "LoopParam | 2 | 4",
+   "when": "!hasBuff(1093) AND !hasBuff(1098) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1091) AND hasBuff(1092)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "((LoopParam | 2) | 1)",
+   "simplified": "LoopParam | 2 | 1",
+   "when": "!hasBuff(1092) AND !hasBuff(1093) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1091) AND hasBuff(1098)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(LoopParam | 2)",
+   "simplified": "LoopParam | 2",
+   "when": "!hasBuff(1092) AND !hasBuff(1093) AND !hasBuff(1098) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1091)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "((LoopParam | 4) | 1)",
+   "simplified": "LoopParam | 4 | 1",
+   "when": "!hasBuff(1091) AND !hasBuff(1093) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1092) AND hasBuff(1098)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(LoopParam | 4)",
+   "simplified": "LoopParam | 4",
+   "when": "!hasBuff(1091) AND !hasBuff(1093) AND !hasBuff(1098) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1092)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(LoopParam | 1)",
+   "simplified": "LoopParam | 1",
+   "when": "!hasBuff(1091) AND !hasBuff(1092) AND !hasBuff(1093) AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1098)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(1098)",
+   "simplified": "RemoveBuffer(1098)",
+   "when": "IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1098) OR IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 2) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1098) OR IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 3) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1098)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(2)",
+   "simplified": "RemoveSelfBuffer(2)",
+   "when": "EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 2), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 2) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1098) OR EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 2), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 2) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 3) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1098) OR EquipPhysicalBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 2), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1091) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 2) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1098)",
+   "vars": [
+    "EquipPhysicalBarrierBuf.GetBarrierValue",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(3)",
+   "simplified": "RemoveSelfBuffer(3)",
+   "when": "EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 3), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 3) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1098) OR EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 3), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1091) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 3) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1098) OR EquipMagicBarrierBuf.GetBarrierValue(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 3), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1091) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 3) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1098)",
+   "vars": [
+    "EquipMagicBarrierBuf.GetBarrierValue",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1089, PlayerStatusBase.get_SkillManager().SkillMasteryList[1089].skillData.Level, 0)",
+   "simplified": "AddSelfBuffer(1089, PlayerStatusBase.get_SkillManager().SkillMasteryList[1089].skillData.Level, 0)",
+   "when": "!hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(SkillBufferManager.AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.BarehandMastery, PlayerStatusBase.get_SkillManager().SkillMasteryList[1089].skillData.Level, 0), TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND PlayerStatusBase.get_SkillManager().SkillMasteryList[1089].skillData.Level lo 10 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND IsInstanceOf(SkillBufferManager.AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.BarehandMastery, PlayerStatusBase.get_SkillManager().SkillMasteryList[1089].skillData.Level, 0), TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND PlayerStatusBase.get_SkillManager().SkillMasteryList[1089].skillData.Level lo 10 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgUpRate) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(SkillBufferManager.AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.BarehandMastery, PlayerStatusBase.get_SkillManager().SkillMasteryList[1089].skillData.Level, 0), TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND PlayerStatusBase.get_SkillManager().SkillMasteryList[1089].skillData.Level lo 10 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgDownRate)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferManager.AddSelfBuffer",
+    "SkillId.BarehandMastery",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(1119)",
+   "simplified": "RemoveBuffer(1119)",
+   "when": "!hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgUpRate) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgDownRate)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "EarthShatteringBuf..ctor",
+   "formula": ".ctor(Lv, SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119), SkillBufferId.Count), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119), SkillBufferId.Count), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "!hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgUpRate) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgDownRate)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new EarthShatteringBuf, Id)",
+   "simplified": "AddSelfBuffer(new, EarthShatteringBuf, Id)",
+   "when": "!hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgUpRate) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgDownRate)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "EquipPhysicalBarrierBuf..ctor",
+   "formula": ".ctor(0)",
+   "simplified": ".ctor(0)",
+   "when": "!hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgUpRate) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new EquipPhysicalBarrierBuf, Id)",
+   "simplified": "AddSelfBuffer(new, EquipPhysicalBarrierBuf, Id)",
+   "when": "!hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgUpRate) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new EquipMagicBarrierBuf, Id)",
+   "simplified": "AddSelfBuffer(new, EquipMagicBarrierBuf, Id)",
+   "when": "!hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgDownRate) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "EquipMagicBarrierBuf..ctor",
+   "formula": ".ctor(0)",
+   "simplified": ".ctor(0)",
+   "when": "!hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgDownRate) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) eq 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgDownRate) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1089], TakeQigongBuf) ne 1 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1119) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgDownRate)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "EarthShatteringBuf..ctor",
+   "formula": ".ctor(Lv, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "!hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgDownRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgUpRate) OR !hasBuff(1093) AND !hasBuff(1098) AND !hasBuff(LastDmgUpRate) AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(LastDmgDownRate)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "EarthShatteringBuf..ctor",
+   "formula": ".ctor(bufCondition)",
+   "simplified": ".ctor(bufCondition)",
+   "when": "(bufCondition & 1) eq 0 AND (bufCondition & 8) eq 0 AND IsInstanceOf(actarAction, OtherPlayerActionManager) eq 1 OR (bufCondition & 1) eq 0 AND (bufCondition & 8) eq 0 AND IsInstanceOf(actarAction, MobaOtherPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "EarthShatteringBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int stack, PlayerStatusBase status",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "0x7fffffff",
+        "when": "always",
+        "by_level": 2147483647
+       }
+      ],
+      "stable": [
+       {
+        "formula": "Lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "powerResist": [
+       {
+        "formula": "(((Lv hi 5 ? Lv : 5) + lv) - 5)",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         7,
+         9,
+         11,
+         13,
+         15
+        ]
+       }
+      ],
+      "element": [
+       {
+        "formula": "((status.Lv // 10) + (Lv << 1))",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "playerStatus": [
+       {
+        "formula": "status",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    },
+    {
+     "sig": "int condition",
+     "fields": {
+      "otherPlayer": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "bufCondition": [
+       {
+        "formula": "condition",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "0x7fffffff",
+        "when": "always",
+        "by_level": 2147483647
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Percent",
+     "bonus_id": 52,
+     "formula": "element",
+     "simplified": "element",
+     "when": []
+    },
+    {
+     "id": "PowerResistBreaker",
+     "bonus_id": 72,
+     "formula": "powerResist",
+     "simplified": "powerResist",
+     "when": []
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "barrier",
+     "simplified": "barrier",
+     "when": []
+    },
+    {
+     "id": "Stable",
+     "bonus_id": 41,
+     "formula": "stable",
+     "simplified": "stable",
+     "when": []
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {},
+   "hooks": [
+    "get_BufEffectTakeId"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "EquipMagicBarrierBuf",
+   "ctors": [
+    {
+     "sig": "int value",
+     "fields": {
+      "coolTime": [
+       {
+        "formula": "30",
+        "when": "always",
+        "by_level": 30
+       }
+      ],
+      "Value": [
+       {
+        "formula": "value",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Timer": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "0",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "Value",
+     "simplified": "Value",
+     "when": []
+    }
+   ],
+   "state": {
+    "Timer": [
+     {
+      "method": "set_Timer",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Updata",
+      "formula": "(Timer - UnityEngine.Time.get_deltaTime())",
+      "when": "(Timer - UnityEngine.Time.get_deltaTime()) ls 0 AND BuffEffectActive eq 0 OR (Timer - UnityEngine.Time.get_deltaTime()) hi 0 AND BuffEffectActive eq 0"
+     },
+     {
+      "method": "Calc",
+      "formula": "EquipBuffManager.CalcBuff(PlayerStatusBase.get_EquipBuffManager(), BonusType.bBarrierSpeed, int(coolTime))",
+      "when": "BuffEffectActive ne 0 AND IsInstanceOf(playerAct, PlayerActionManager) eq 1 OR BuffEffectActive ne 0 AND IsInstanceOf(playerAct, MobaPlayerActionManager) eq 1 AND IsInstanceOf(playerAct, PlayerActionManager) ne 1 OR BuffEffectActive ne 0 AND IsInstanceOf(playerAct, MobaPlayerActionManager) ne 1 AND IsInstanceOf(playerAct, PlayerActionManager) ne 1"
+     },
+     {
+      "method": "UpdateBufData",
+      "formula": "[buf+0x24]",
+      "when": "IsInstanceOf(buf, EquipMagicBarrierBuf) eq 1"
+     }
+    ],
+    "BuffEffectActive": [
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "(Timer - UnityEngine.Time.get_deltaTime()) ls 0 AND BuffEffectActive eq 0"
+     },
+     {
+      "method": "Calc",
+      "formula": "0",
+      "when": "BuffEffectActive ne 0 AND IsInstanceOf(playerAct, PlayerActionManager) eq 1 OR BuffEffectActive ne 0 AND IsInstanceOf(playerAct, MobaPlayerActionManager) eq 1 AND IsInstanceOf(playerAct, PlayerActionManager) ne 1 OR BuffEffectActive ne 0 AND IsInstanceOf(playerAct, MobaPlayerActionManager) ne 1 AND IsInstanceOf(playerAct, PlayerActionManager) ne 1"
+     },
+     {
+      "method": "UpdateBufData",
+      "formula": "buf.BuffEffectActive",
+      "when": "IsInstanceOf(buf, EquipMagicBarrierBuf) eq 1"
+     }
+    ]
+   },
+   "hooks": [
+    "Calc",
+    "CheckTakeOver",
+    "GetBarrierValue",
+    "UpdateBufData",
+    "get_IsDataStack",
+    "get_Timer",
+    "set_Timer"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "EquipPhysicalBarrierBuf",
+   "ctors": [
+    {
+     "sig": "int value",
+     "fields": {
+      "coolTime": [
+       {
+        "formula": "30",
+        "when": "always",
+        "by_level": 30
+       }
+      ],
+      "Value": [
+       {
+        "formula": "value",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Timer": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "0",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "Value",
+     "simplified": "Value",
+     "when": []
+    }
+   ],
+   "state": {
+    "Timer": [
+     {
+      "method": "set_Timer",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Updata",
+      "formula": "(Timer - UnityEngine.Time.get_deltaTime())",
+      "when": "(Timer - UnityEngine.Time.get_deltaTime()) ls 0 AND BuffEffectActive eq 0 OR (Timer - UnityEngine.Time.get_deltaTime()) hi 0 AND BuffEffectActive eq 0"
+     },
+     {
+      "method": "Calc",
+      "formula": "EquipBuffManager.CalcBuff(PlayerStatusBase.get_EquipBuffManager(), BonusType.bBarrierSpeed, int(coolTime))",
+      "when": "BuffEffectActive ne 0 AND IsInstanceOf(playerAct, PlayerActionManager) eq 1 OR BuffEffectActive ne 0 AND IsInstanceOf(playerAct, MobaPlayerActionManager) eq 1 AND IsInstanceOf(playerAct, PlayerActionManager) ne 1 OR BuffEffectActive ne 0 AND IsInstanceOf(playerAct, MobaPlayerActionManager) ne 1 AND IsInstanceOf(playerAct, PlayerActionManager) ne 1"
+     },
+     {
+      "method": "UpdateBufData",
+      "formula": "[buf+0x24]",
+      "when": "IsInstanceOf(buf, EquipPhysicalBarrierBuf) eq 1"
+     }
+    ],
+    "BuffEffectActive": [
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "(Timer - UnityEngine.Time.get_deltaTime()) ls 0 AND BuffEffectActive eq 0"
+     },
+     {
+      "method": "Calc",
+      "formula": "0",
+      "when": "BuffEffectActive ne 0 AND IsInstanceOf(playerAct, PlayerActionManager) eq 1 OR BuffEffectActive ne 0 AND IsInstanceOf(playerAct, MobaPlayerActionManager) eq 1 AND IsInstanceOf(playerAct, PlayerActionManager) ne 1 OR BuffEffectActive ne 0 AND IsInstanceOf(playerAct, MobaPlayerActionManager) ne 1 AND IsInstanceOf(playerAct, PlayerActionManager) ne 1"
+     },
+     {
+      "method": "UpdateBufData",
+      "formula": "buf.BuffEffectActive",
+      "when": "IsInstanceOf(buf, EquipPhysicalBarrierBuf) eq 1"
+     }
+    ]
+   },
+   "hooks": [
+    "Calc",
+    "CheckTakeOver",
+    "GetBarrierValue",
+    "UpdateBufData",
+    "get_IsDataStack",
+    "get_Timer",
+    "set_Timer"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "EarthShatteringBuf": {
+     "lv": "1",
+     "self": "1"
+    },
+    "EquipMagicBarrierBuf": {
+     "lv": "0",
+     "self": "1"
+    },
+    "EquipPhysicalBarrierBuf": {
+     "lv": "0",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:EarthShatteringBuf$$.ctor<-EarthShatteringAction$$ActionSkillEvent",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "EarthShatteringAction.ActionPreparation",
+  "EarthShatteringAction.ActionSkillEvent",
+  "EarthShatteringAction.ActionStart",
+  "EquipMagicBarrierBuf.CheckTakeOver",
+  "EquipMagicBarrierBuf.GetBarrierValue",
+  "EquipPhysicalBarrierBuf.CheckTakeOver",
+  "EquipPhysicalBarrierBuf.GetBarrierValue",
+  "MagicBarrier.Calc",
+  "NormalAttackAction.ActionPreparation",
+  "PhysicalBarrier.Calc",
+  "ReceiveSupportResult.OnActionPlayerSupport",
+  "SkillBufferManager.Update"
+ ],
+ "variables": [
+  "BonusType.bBarrierSpeed",
+  "EquipBuffManager.CalcBuff",
+  "EquipMagicBarrierBuf.GetBarrierValue",
+  "EquipPhysicalBarrierBuf.GetBarrierValue",
+  "IPlayerStatusCalculator.get_Lv",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.get_EquipBuffManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "SkillBufferId.Percent",
+  "SkillBufferId.PowerResistBreaker",
+  "SkillBufferId.Stable",
+  "SkillBufferId.Value",
+  "SkillBufferManager.AddSelfBuffer",
+  "SkillId.BarehandMastery",
+  "TryGetBuf.buf",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

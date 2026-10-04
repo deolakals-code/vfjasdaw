@@ -1,0 +1,18 @@
+// Assembly: Assembly-CSharp.dll
+// Namespace: GemCartBuffer
+public class AccelBladeExtensionBuff : GemCartBufferBase // TypeDefIndex: 9147
+{
+	// Properties
+	public override GemCartId Id { get; }
+
+	// Methods
+
+	// RVA: 0x1EB40F4 Offset: 0x1EB00F4 VA: 0x1EB40F4 Slot: 4
+	public override GemCartId get_Id() { }
+
+	// RVA: 0x1EB40FC Offset: 0x1EB00FC VA: 0x1EB40FC
+	public void .ctor(short lv) { }
+
+	// RVA: 0x1EB4104 Offset: 0x1EB0104 VA: 0x1EB4104 Slot: 10
+	protected override int OnGetValue(GemCartBufferId id) { }
+}

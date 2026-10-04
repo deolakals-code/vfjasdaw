@@ -1,0 +1,107 @@
+{
+ "version": 1,
+ "uid": 799,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "utility / system action"
+ ],
+ "class": "SetlistAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 799,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "useSongSkill",
+   "formula": "SkillFactory.CreateSkill(SetlistAction.GetSkillId(), SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SetlistAction.GetSkillId(), 1), actarAction)",
+   "simplified": "SkillFactory.CreateSkill(A, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), A, 1), actarAction)",
+   "when": "SetlistAction.GetSkillId() ge 1 AND SkillActionBase.op_Inequality(SkillFactory.CreateSkill(SetlistAction.GetSkillId(), SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SetlistAction.GetSkillId(), 1), actarAction), 0)",
+   "defs": [
+    [
+     "A",
+     "SetlistAction.GetSkillId()"
+    ]
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SetlistAction.GetSkillId",
+    "SkillActionBase.op_Inequality",
+    "SkillFactory.CreateSkill",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "SkillFactory.CreateSkill(SetlistAction.GetSkillId(), SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SetlistAction.GetSkillId(), 1), actarAction).Element",
+   "simplified": "SkillFactory.CreateSkill(SetlistAction.GetSkillId(), SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SetlistAction.GetSkillId(), 1), actarAction).Element",
+   "when": "SetlistAction.GetSkillId() ge 1 AND SkillActionBase.op_Inequality(SkillFactory.CreateSkill(SetlistAction.GetSkillId(), SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SetlistAction.GetSkillId(), 1), actarAction), 0)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SetlistAction.GetSkillId",
+    "SkillActionBase.op_Inequality",
+    "SkillFactory.CreateSkill",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "SongActionBase.CalcBaseCostMp(SkillFactory.CreateSkill(SetlistAction.GetSkillId(), SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SetlistAction.GetSkillId(), 1), actarAction), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "SongActionBase.CalcBaseCostMp(SkillFactory.CreateSkill(A, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), A, 1), actarAction), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "SetlistAction.GetSkillId() ge 1 AND SkillActionBase.op_Inequality(SkillFactory.CreateSkill(SetlistAction.GetSkillId(), SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SetlistAction.GetSkillId(), 1), actarAction), 0)",
+   "defs": [
+    [
+     "A",
+     "SetlistAction.GetSkillId()"
+    ]
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillManager",
+    "SetlistAction.GetSkillId",
+    "SkillActionBase.op_Inequality",
+    "SkillFactory.CreateSkill",
+    "SkillManager.GetSkillLv",
+    "SongActionBase.CalcBaseCostMp"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.get_SkillManager",
+  "SetlistAction.GetSkillId",
+  "SkillActionBase.op_Inequality",
+  "SkillFactory.CreateSkill",
+  "SkillManager.GetSkillLv",
+  "SongActionBase.CalcBaseCostMp"
+ ],
+ "residual": []
+}

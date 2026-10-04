@@ -1,0 +1,353 @@
+{
+ "version": 1,
+ "uid": 1068,
+ "name_th": "เนตรมารโกลาหล",
+ "name_en": "ChaosEvilEye",
+ "tree": "DarkPowerSkill",
+ "category": "Attack",
+ "max_level": 180,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "ChaosEvilEyeAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1068,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 100) + 500)",
+   "simplified": "100 × Lv + 500",
+   "when": "always",
+   "by_level": [
+    600,
+    700,
+    800,
+    900,
+    1000,
+    1100,
+    1200,
+    1300,
+    1400,
+    1500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "(Lv * 50)",
+   "simplified": "50 × Lv",
+   "when": "always",
+   "by_level": [
+    50,
+    100,
+    150,
+    200,
+    250,
+    300,
+    350,
+    400,
+    450,
+    500
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(Toram.Common.ProgramUtil.ShiftLeftBitByByte(abnormalType) | isEffectiveAbnormal)",
+   "simplified": "Toram.Common.ProgramUtil.ShiftLeftBitByByte(abnormalType) | isEffectiveAbnormal",
+   "when": "always",
+   "vars": [
+    "Toram.Common.ProgramUtil.ShiftLeftBitByByte"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "SkillUtil.GetWeakElement(target.Element)",
+   "simplified": "SkillUtil.GetWeakElement(target.Element)",
+   "when": "always",
+   "vars": [
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "isEffectiveAbnormal",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal gt target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal le target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefSkill AND target.ExpDefMagic le target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal lt target.ExpDefSkill",
+   "by_level": 1,
+   "vars": [
+    "CalcStep.AvoidCheck",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefMagic",
+    "target.ExpDefNormal",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "faulireEffectiveAbnormalDamage",
+   "formula": "PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 1)",
+   "simplified": "PlayerAttackBase.templateToDamageData(this, new, SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), 1)",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal gt target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal le target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefSkill AND target.ExpDefMagic le target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal lt target.ExpDefSkill",
+   "vars": [
+    "CalcStep.AvoidCheck",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerAttackBase.templateToDamageData",
+    "SkillCalcTemplate.CheckStepResult",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefMagic",
+    "target.ExpDefNormal",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal ne 0 AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal gt target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal eq 0 AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal gt target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal ne 0 AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal le target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefMagic",
+    "target.ExpDefNormal",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((skillRate * 1.5) / 100)",
+   "simplified": "1.5 × skillRate / 100",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal gt target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal le target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefSkill AND target.ExpDefMagic le target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal lt target.ExpDefSkill",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CalcStep.AvoidCheck",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefMagic",
+    "target.ExpDefNormal",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefNormal / 100)",
+   "simplified": "target.ExpDefNormal / 100",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal ne 0 AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal ge target.ExpDefSkill AND target.ExpDefNormal gt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal eq 0 AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal ge target.ExpDefSkill AND target.ExpDefNormal gt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal ne 0 AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal ge target.ExpDefSkill AND target.ExpDefNormal le target.ExpDefSkill",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefMagic",
+    "target.ExpDefNormal",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal ne 0 AND target.ExpDefMagic ge target.ExpDefNormal AND target.ExpDefMagic ge target.ExpDefSkill AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefNormal gt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal eq 0 AND target.ExpDefMagic ge target.ExpDefNormal AND target.ExpDefMagic ge target.ExpDefSkill AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefNormal gt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal ne 0 AND target.ExpDefMagic ge target.ExpDefNormal AND target.ExpDefMagic ge target.ExpDefSkill AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefNormal le target.ExpDefSkill",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefMagic",
+    "target.ExpDefNormal",
+    "target.ExpDefSkill"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(abnormalType, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(abnormalType, 100, playerAction)",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal gt target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal le target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.AvoidCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, 100, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND target.ExpDefMagic gt target.ExpDefSkill AND target.ExpDefMagic le target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal lt target.ExpDefSkill",
+   "vars": [
+    "CalcStep.AvoidCheck",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefMagic",
+    "target.ExpDefNormal",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(abnormalType)",
+   "simplified": "SetAbnormalType(abnormalType)",
+   "when": "!SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal ne 0 AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal gt target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal ne 0 AND target.ExpDefMagic gt target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal le target.ExpDefSkill AND target.ExpDefNormal lt target.ExpDefSkill OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) AND !UnityEngine.Object.op_Equality(MobActionManagerBase.get_Target(mobAction), UnityEngine.Component.get_gameObject(playerAction)) AND isEffectiveAbnormal ne 0 AND target.ExpDefMagic gt target.ExpDefSkill AND target.ExpDefMagic le target.ExpDefNormal AND target.ExpDefMagic lt target.ExpDefNormal AND target.ExpDefNormal lt target.ExpDefSkill",
+   "vars": [
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_Target",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality",
+    "target.ExpDefMagic",
+    "target.ExpDefNormal",
+    "target.ExpDefSkill"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "CalcStep.AvoidCheck",
+  "CalcStep.HitCheck",
+  "IMobStatusCalculator.get_Element",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "IMobStatusCalculator.get_ExpDefNormal",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Target",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.templateToDamageData",
+  "SkillCalcTemplate.CheckStepResult",
+  "SkillUtil.GetWeakElement",
+  "Toram.Common.ProgramUtil.ShiftLeftBitByByte",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Object.op_Equality",
+  "target.Element",
+  "target.ExpDefMagic",
+  "target.ExpDefNormal",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

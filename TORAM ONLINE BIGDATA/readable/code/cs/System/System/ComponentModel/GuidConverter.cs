@@ -1,0 +1,21 @@
+// Assembly: System.dll
+// Namespace: System.ComponentModel
+public class GuidConverter : TypeConverter // TypeDefIndex: 14207
+{
+	// Methods
+
+	// RVA: 0x34AB4A0 Offset: 0x34A74A0 VA: 0x34AB4A0 Slot: 4
+	public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) { }
+
+	// RVA: 0x34AB568 Offset: 0x34A7568 VA: 0x34AB568 Slot: 5
+	public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType) { }
+
+	// RVA: 0x34AB630 Offset: 0x34A7630 VA: 0x34AB630 Slot: 6
+	public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value) { }
+
+	// RVA: 0x34AB710 Offset: 0x34A7710 VA: 0x34AB710 Slot: 7
+	public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType) { }
+
+	// RVA: 0x34ABA48 Offset: 0x34A7A48 VA: 0x34ABA48
+	public void .ctor() { }
+}

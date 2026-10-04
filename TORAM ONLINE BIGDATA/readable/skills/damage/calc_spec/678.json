@@ -1,0 +1,221 @@
+{
+ "version": 1,
+ "uid": 678,
+ "name_th": "ลับคมลูกศร",
+ "name_en": "ArrowSharpening",
+ "tree": "PartisanSkill",
+ "category": "Buffer",
+ "max_level": 160,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "ArrowSharpeningAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 678,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "ArrowSharpeningBuf..ctor",
+   "formula": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ArrowSharpeningBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ArrowSharpeningBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ArrowSharpeningBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase status",
+     "fields": {
+      "playerStatus": [
+       {
+        "formula": "status",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "PowerResistBreaker",
+     "bonus_id": 72,
+     "formula": "(int(((baseSTR / 50) * Lv)) gt Lv ? int(((baseSTR / 50) * Lv)) : Lv)",
+     "simplified": "max(int(baseSTR / 50 × Lv), Lv)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtDamageUpRate",
+     "bonus_id": 47,
+     "formula": "(int(((baseDEX / 25) * Lv)) gt Lv ? int(((baseDEX / 25) * Lv)) : Lv)",
+     "simplified": "max(int(baseDEX / 25 × Lv), Lv)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtUpRate",
+     "bonus_id": 43,
+     "formula": "(int(((baseDEX / 10) * Lv)) gt Lv ? int(((baseDEX / 10) * Lv)) : Lv)",
+     "simplified": "max(int(baseDEX / 10 × Lv), Lv)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MotionSpeed",
+     "bonus_id": 0,
+     "formula": "(int(((baseAGI / 100) * Lv)) gt Lv ? int(((baseAGI / 100) * Lv)) : Lv)",
+     "simplified": "max(int(baseAGI / 100 × Lv), Lv)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "ArrowSharpeningBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:ArrowSharpeningBuf$$.ctor<-ArrowSharpeningAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerSecondaryStatus.GetCrtRate",
+  "MobaPlayerSecondaryStatus.GetMotionSpeed",
+  "MobaPlayerSecondaryStatus.get_CriticalDmg",
+  "PlayerSecondaryStatus.CalcCriticalDmg",
+  "PlayerSecondaryStatus.GetCalcMotionSpeed",
+  "PlayerSecondaryStatus.GetCrtRate"
+ ],
+ "variables": [
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerPrimaryStatus.agi",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.str",
+  "SkillBufferId.CrtDamageUpRate",
+  "SkillBufferId.CrtUpRate",
+  "SkillBufferId.MotionSpeed",
+  "SkillBufferId.PowerResistBreaker",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

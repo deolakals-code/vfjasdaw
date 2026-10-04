@@ -1,0 +1,246 @@
+{
+ "version": 1,
+ "uid": 869,
+ "name_th": "เรโซแนนซ์",
+ "name_en": "Resonance",
+ "tree": "MagicBladeSkill",
+ "category": "Buffer",
+ "max_level": 120,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "ResonanceAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 869,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "refine",
+   "formula": "(ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255)",
+   "simplified": "ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255",
+   "when": "always",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "ItemData.get_Refine",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "SupportStartReceive",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "skillIndividualFlag",
+   "simplified": "skillIndividualFlag",
+   "when": "always"
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "ResonanceBuf..ctor",
+   "formula": ".ctor(Lv, SkillIndividualFlag, refine)",
+   "simplified": ".ctor(Lv, SkillIndividualFlag, refine)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ResonanceBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ResonanceBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ResonanceBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int type, int refine, float resist",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "type eq 2 OR type eq 1 AND type ne 2 OR type eq 0 AND type ne 1 AND type ne 2",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "type eq 2 OR type eq 1 AND type ne 2 OR type eq 0 AND type ne 1 AND type ne 2",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "type eq 2 OR type eq 1 AND type ne 2 OR type eq 0 AND type ne 1 AND type ne 2",
+        "by_level": 1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "30",
+        "when": "type eq 2 OR type eq 1 AND type ne 2 OR type eq 0 AND type ne 1 AND type ne 2",
+        "by_level": 30
+       }
+      ],
+      "atk": [
+       {
+        "formula": "int((((refine + lv) << 1) * resist))",
+        "when": "type eq 0 AND type ne 1 AND type ne 2",
+        "by_level": null
+       }
+      ],
+      "matk": [
+       {
+        "formula": "int((((refine + lv) << 1) * resist))",
+        "when": "type eq 0 AND type ne 1 AND type ne 2",
+        "by_level": null
+       }
+      ],
+      "aspd": [
+       {
+        "formula": "int((((refine * 50) + (Lv * 25)) * resist))",
+        "when": "type eq 1 AND type ne 2",
+        "by_level": null
+       }
+      ],
+      "cspd": [
+       {
+        "formula": "int((((refine * 50) + (Lv * 25)) * resist))",
+        "when": "type eq 1 AND type ne 2",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AtkUp",
+     "bonus_id": 54,
+     "formula": "atk",
+     "simplified": "atk",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MatkUp",
+     "bonus_id": 55,
+     "formula": "matk",
+     "simplified": "matk",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "HitUp",
+     "bonus_id": 42,
+     "formula": "hit",
+     "simplified": "hit",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Aspd",
+     "bonus_id": 35,
+     "formula": "aspd",
+     "simplified": "aspd",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CspdUp",
+     "bonus_id": 32,
+     "formula": "cspd",
+     "simplified": "cspd",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "critical",
+     "simplified": "critical",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "EquipItemData.get_SubWeapon",
+  "ItemData.get_Refine",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.Aspd",
+  "SkillBufferId.AtkUp",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.CspdUp",
+  "SkillBufferId.HitUp",
+  "SkillBufferId.MatkUp",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

@@ -1,0 +1,698 @@
+{
+ "version": 1,
+ "uid": 872,
+ "name_th": "[N]เอนชานท์บลาส[N2]เอนชานท์อกรา[N]",
+ "name_en": "EnchantedBurst",
+ "tree": "MagicBladeSkill",
+ "category": "Attack",
+ "max_level": 180,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "EnchantedBurstAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 872,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "conversion",
+   "formula": "(hasBuff(867) & 1)",
+   "simplified": "hasBuff(867) & 1",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "stackCollapseTime",
+   "formula": "(((Lv - 1) // 3) + 2)",
+   "simplified": "(Lv - 1) // 3 + 2",
+   "when": "always",
+   "by_level": [
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "flag",
+   "formula": "(flag | (EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0))",
+   "simplified": "flag | (EnchantedBurstAction.get_AttackType() = 1 ? 1 : 0)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) OR !PlayerAttackBase.IsBlank(this) AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "bufStack",
+   "formula": "EnchantedBurstBuf.GetPayStack(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872))",
+   "simplified": "EnchantedBurstBuf.GetPayStack(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((flag | EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((flag | EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() ne 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType hi 16",
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "EnchantedBurstBuf.GetPayStack",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "!PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((flag | EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 100,
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "EquipItemData.get_SubWeapon",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 50) + 1000)",
+   "simplified": "50 × Lv + 1000",
+   "when": "!PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((flag | EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType hi 16",
+   "by_level": [
+    1050,
+    1100,
+    1150,
+    1200,
+    1250,
+    1300,
+    1350,
+    1400,
+    1450,
+    1500
+   ],
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(?bfi | (flag | (EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)))",
+   "simplified": "?bfi | flag | (EnchantedBurstAction.get_AttackType() = 1 ? 1 : 0)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((flag | EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "EquipItemData.get_SubWeapon",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "?bfi"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "(((int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function / 2.5)) lt 300 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function / 2.5)) : 300) * EnchantedBurstBuf.GetPayStack(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872))) + 100)",
+   "simplified": "(((int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function / 2.5)) lt 300 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function / 2.5)) : 300) * EnchantedBurstBuf.GetPayStack(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872))) + 100)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((flag | EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872).IsEnd ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((flag | EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872).IsEnd eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872).IsEnd ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType hi 16",
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "EnchantedBurstBuf.GetPayStack",
+    "EquipItemData.get_SubWeapon",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "(((int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function / 2.5)) lt 300 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function / 2.5)) : 300) * bufStack) + 100)",
+   "simplified": "(((int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function / 2.5)) lt 300 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function / 2.5)) : 300) * bufStack) + 100)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872).IsEnd ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872).IsEnd eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "EquipItemData.get_SubWeapon",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "SkillUtil.GetWeakElement(target.Element)",
+   "simplified": "SkillUtil.GetWeakElement(target.Element)",
+   "when": "always",
+   "vars": [
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "EnchantedBurstSwordBuf..ctor",
+   "formula": ".ctor(Lv, EnchantedBurstBuf.GetPayStack(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872)), 1)",
+   "simplified": ".ctor(Lv, EnchantedBurstBuf.GetPayStack(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872)), 1)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((1 << WeaponType) & 0x12400) ne 0 AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND SubWeaponType eq 15 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 894) eq 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ls 16 OR !PlayerAttackBase.IsBlank(this) AND ((1 << WeaponType) & 0x12400) ne 0 AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND SubWeaponType eq 15 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ls 16 OR !PlayerAttackBase.IsBlank(this) AND ((1 << WeaponType) & 0x12400) ne 0 AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() ne 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND SubWeaponType eq 15 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ls 16",
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "EnchantedBurstBuf.GetPayStack",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(894)",
+   "simplified": "RemoveSelfBuffer(894)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((1 << WeaponType) & 0x12400) ne 0 AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND SubWeaponType eq 15 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 894) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 894).LeftTime mi new EnchantedBurstSwordBuf.LeftTime AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ls 16 OR !PlayerAttackBase.IsBlank(this) AND ((1 << WeaponType) & 0x12400) ne 0 AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() ne 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND SubWeaponType eq 15 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 894) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 894).LeftTime mi new EnchantedBurstSwordBuf.LeftTime AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ls 16 OR !PlayerAttackBase.IsBlank(this) AND ((1 << WeaponType) & 0x12400) ne 0 AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND SubWeaponType eq 15 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 894) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 894).LeftTime mi new EnchantedBurstSwordBuf.LeftTime AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872).IsEnd ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ls 16",
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "EquipItemData.get_SubWeapon",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new EnchantedBurstSwordBuf, Id)",
+   "simplified": "AddSelfBuffer(new, EnchantedBurstSwordBuf, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((1 << WeaponType) & 0x12400) ne 0 AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND SubWeaponType eq 15 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ls 16 OR !PlayerAttackBase.IsBlank(this) AND ((1 << WeaponType) & 0x12400) ne 0 AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() ne 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND SubWeaponType eq 15 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ls 16 OR !PlayerAttackBase.IsBlank(this) AND ((1 << WeaponType) & 0x12400) ne 0 AND ((flag | !EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() eq 1 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND SubWeaponType eq 15 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 894) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 894).LeftTime mi new EnchantedBurstSwordBuf.LeftTime AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ls 16",
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(872)",
+   "simplified": "RemoveSelfBuffer(872)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872).IsEnd ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872).IsEnd ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((flag | EnchantedBurstAction.get_AttackType() eq 1 ? 1 : 0)) AND EnchantedBurstAction.get_AttackType() ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND GameManager.get_IsConnect(Singleton<GameManager>.get_Instance()) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 872).IsEnd ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EnchantedBurstAction.get_AttackType",
+    "EquipItemData.get_SubWeapon",
+    "GameManager.get_IsConnect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "EnchantedBurstBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "!hasBuff(1159) AND !hasBuff(147) AND (flag & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new EnchantedBurstBuf, Id)",
+   "simplified": "AddSelfBuffer(new, EnchantedBurstBuf, Id)",
+   "when": "!hasBuff(1159) AND !hasBuff(147) AND (flag & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(16, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(16, 100, playerAction)",
+   "when": "(bufStack * stackCollapseTime) ge 1 AND EnchantedBurstAction.get_AttackType() eq 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) AND (bufStack * stackCollapseTime) ge 1 AND EnchantedBurstAction.get_AttackType() eq 2 OR (bufStack * stackCollapseTime) ge 1 AND EnchantedBurstAction.get_AttackType() ne 1 AND EnchantedBurstAction.get_AttackType() ne 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction)",
+   "vars": [
+    "AbnormalType.Collapse",
+    "EnchantedBurstAction.get_AttackType",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(16)",
+   "simplified": "SetAbnormalType(16)",
+   "when": "(bufStack * stackCollapseTime) ge 1 AND EnchantedBurstAction.get_AttackType() eq 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) OR (bufStack * stackCollapseTime) ge 1 AND EnchantedBurstAction.get_AttackType() ne 1 AND EnchantedBurstAction.get_AttackType() ne 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction)",
+   "vars": [
+    "AbnormalType.Collapse",
+    "EnchantedBurstAction.get_AttackType",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "AddLocalStack",
+   "kind": "call",
+   "name": "EnchantedBurstBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1))",
+   "when": "!hasBuff(1159) AND !hasBuff(147) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.EnchantedBurst",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "AddLocalStack",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new EnchantedBurstBuf)",
+   "simplified": "AddSelfBuffer(new, EnchantedBurstBuf)",
+   "when": "!hasBuff(1159) AND !hasBuff(147) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.EnchantedBurst",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "AddDebuff",
+   "kind": "call",
+   "name": "EnchantAgaralDebuff..ctor",
+   "formula": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), skill.Level)",
+   "simplified": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), skill.Level)",
+   "when": "!SkillActionBase.op_Equality(skill) AND SkillActionBase.get_AttackType() eq 1 AND damageData.HitType ne 0",
+   "vars": [
+    "SkillActionBase.get_AttackType",
+    "SkillActionBase.op_Equality",
+    "Toram.Common.ArchetypeUid.get_Id"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "EnchantedBurstBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "flag": [
+       {
+        "formula": "2050",
+        "when": "always",
+        "by_level": 2050
+       }
+      ],
+      "addStackSkillIdDataList": [
+       {
+        "formula": "new System.Collections.Generic.List<SkillIdData>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "9",
+        "when": "always",
+        "by_level": 9
+       }
+      ],
+      "localCount": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "flag": [
+     {
+      "method": "Next",
+      "formula": "(flag & 0xfffff7ff)",
+      "when": "Count ge 1 AND localCount ge (Max lt (Count + 1) ? Max : (Count + 1)) OR Count ge 1 AND localCount lt (Max lt (Count + 1) ? Max : (Count + 1))"
+     }
+    ],
+    "Count": [
+     {
+      "method": "PayStack",
+      "formula": "(Count lt 3 ? 0 : (Count - 3))",
+      "when": "always"
+     }
+    ],
+    "localCount": [
+     {
+      "method": "LocalNext",
+      "formula": "(Max lt (localCount + 1) ? Max : (localCount + 1))",
+      "when": "(System.Linq.Enumerable.Any<SkillIdData>(addStackSkillIdDataList, new System.Func<SkillIdData, bool>, meta(0x39a9e50, Method$System.Linq.Enumerable.Any<SkillIdData>())) & 1) eq 0"
+     }
+    ]
+   },
+   "hooks": [
+    "AddStack",
+    "GetPayStack",
+    "LocalNext",
+    "Next",
+    "PayStack"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "EnchantedBurstSwordBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, byte stack, bool validBufferEffectTake",
+     "fields": {
+      "validBufferTake": [
+       {
+        "formula": "(validBufferEffectTake & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "(((stack & 255) * (stack & 255)) * (Lv + 4))",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "UseUnionSword",
+      "formula": "(LeftTime + -30)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "UseUnionSword",
+    "get_BufEffectTakeId"
+   ],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "EnchantedBurstBuf": {
+     "lv": "lv",
+     "self": "1"
+    },
+    "EnchantedBurstSwordBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:EnchantedBurstSwordBuf$$.ctor<-EnchantedBurstAction$$ActionPreparation",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "DrainBarrierAction.DamageFunction",
+  "EnchantedBurstAction.AddLocalStack",
+  "EnchantedSwordAction.ActionHit",
+  "EnchantedSwordAction.ReceiveAttackResult",
+  "PhotonListener.OnActionMobAttack"
+ ],
+ "variables": [
+  "AbnormalType.Collapse",
+  "EnchantedBurstAction.get_AttackType",
+  "EnchantedBurstBuf.GetPayStack",
+  "EquipItemData.get_SubWeapon",
+  "GameManager.get_IsConnect",
+  "IMobStatusCalculator.get_Element",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "Singleton.get_Instance",
+  "SkillActionBase.get_AttackType",
+  "SkillActionBase.op_Equality",
+  "SkillBufferId.Count",
+  "SkillId.EnchantedBurst",
+  "SkillManager.GetSkillLv",
+  "SkillUtil.GetWeakElement",
+  "System.Linq.Enumerable.Any",
+  "Toram.Common.ArchetypeUid.get_Id",
+  "TryGetBuf.buf",
+  "TryGetBuf.out2",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "target.Element"
+ ],
+ "residual": [
+  {
+   "where": "ActionPreparation:SkillIndividualFlag",
+   "tokens": [
+    "?bfi"
+   ]
+  }
+ ]
+}

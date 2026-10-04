@@ -1,0 +1,11 @@
+// Assembly: Newtonsoft.Json.dll
+// Namespace: Newtonsoft.Json.Utilities
+internal enum ParserTimeZone // TypeDefIndex: 15890
+{
+	// Fields
+	public int value__; // 0x0
+	public const ParserTimeZone Unspecified = 0;
+	public const ParserTimeZone Utc = 1;
+	public const ParserTimeZone LocalWestOfUtc = 2;
+	public const ParserTimeZone LocalEastOfUtc = 3;
+}

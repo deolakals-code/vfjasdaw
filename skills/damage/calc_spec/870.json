@@ -1,0 +1,398 @@
+{
+ "version": 1,
+ "uid": 870,
+ "name_th": "[N]เอนชานท์ซอร์ด[N2]เอนชานท์บลาสซอร์ด[N]",
+ "name_en": "EnchantedSword",
+ "tree": "MagicBladeSkill",
+ "category": "Attack",
+ "max_level": 120,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "EnchantedSwordAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 870,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword",
+  "Bowgun",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "conversion",
+   "formula": "(hasBuff(867) & 1)",
+   "simplified": "hasBuff(867) & 1",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "critical",
+   "formula": "Lv",
+   "simplified": "Lv",
+   "when": "always",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "magicResistBreaker",
+   "formula": "Lv",
+   "simplified": "Lv",
+   "when": "always",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "(PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) mi MathUtil.DisplayMeterToDistance(6) ? PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) : MathUtil.DisplayMeterToDistance(6))",
+   "simplified": "(PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) mi MathUtil.DisplayMeterToDistance(6) ? PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction)) : MathUtil.DisplayMeterToDistance(6))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 60) + 400)",
+   "simplified": "60 × Lv + 400",
+   "when": "always",
+   "by_level": [
+    460,
+    520,
+    580,
+    640,
+    700,
+    760,
+    820,
+    880,
+    940,
+    1000
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "enchantedBurstStack",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !hasBuff(894) AND (WeaponType - 10) ls 6 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(147) OR !PlayerAttackBase.IsBlank(this) AND !hasBuff(894) AND (WeaponType - 10) hi 6 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(147) OR !PlayerAttackBase.IsBlank(this) AND !hasBuff(147) AND !hasBuff(894) AND (WeaponType - 10) ls 6 AND UnityEngine.Object.op_Inequality(actarAction) AND hasBuff(1159)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND (WeaponType - 10) ls 6 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ne 11 AND hasBuff(147) AND hasBuff(894) OR !PlayerAttackBase.IsBlank(this) AND (WeaponType - 10) hi 6 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ne 11 AND hasBuff(147) AND hasBuff(894) OR !PlayerAttackBase.IsBlank(this) AND !hasBuff(147) AND (WeaponType - 10) ls 6 AND UnityEngine.Object.op_Inequality(actarAction) AND WeaponType ne 11 AND hasBuff(1159) AND hasBuff(894)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "SkillUtil.GetWeakElement(target.Element)",
+   "simplified": "SkillUtil.GetWeakElement(target.Element)",
+   "when": "always",
+   "vars": [
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "1 ge attackCount AND EnchantedSwordAction.get_AttackType() eq 2 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1 OR 1 ge attackCount AND EnchantedSwordAction.get_AttackType() ne 2 AND IsInstanceOf(PlayerStatusBase.get_BattleStatus(), PlayerSecondaryStatus) ne 1 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1 OR 1 ge attackCount AND EnchantedSwordAction.get_AttackType() ne 2 AND IsInstanceOf(PlayerStatusBase.get_BattleStatus(), PlayerSecondaryStatus) eq 1 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1",
+   "vars": [
+    "EnchantedSwordAction.get_AttackType",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_BattleStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "1 lt attackCount AND 2 ge attackCount AND EnchantedSwordAction.get_AttackType() eq 2 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1 OR 1 lt attackCount AND 2 ge attackCount AND EnchantedSwordAction.get_AttackType() ne 2 AND IsInstanceOf(PlayerStatusBase.get_BattleStatus(), PlayerSecondaryStatus) ne 1 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1 OR 1 lt attackCount AND 2 ge attackCount AND EnchantedSwordAction.get_AttackType() ne 2 AND IsInstanceOf(PlayerStatusBase.get_BattleStatus(), PlayerSecondaryStatus) eq 1 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1",
+   "vars": [
+    "EnchantedSwordAction.get_AttackType",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_BattleStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "3",
+   "simplified": "3",
+   "when": "1 lt attackCount AND 2 lt attackCount AND 3 ge attackCount AND EnchantedSwordAction.get_AttackType() eq 2 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1 OR 1 lt attackCount AND 2 lt attackCount AND 3 lt attackCount AND EnchantedSwordAction.get_AttackType() eq 2 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1 OR 1 lt attackCount AND 2 lt attackCount AND 3 ge attackCount AND EnchantedSwordAction.get_AttackType() ne 2 AND IsInstanceOf(PlayerStatusBase.get_BattleStatus(), PlayerSecondaryStatus) ne 1 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1",
+   "vars": [
+    "EnchantedSwordAction.get_AttackType",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_BattleStatus"
+   ]
+  },
+  {
+   "method": "CalcDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "enchantedBurstStack",
+   "formula": "1",
+   "simplified": "1",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0",
+   "by_level": 1,
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.EnchantedBurst",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "1 ge attackCount AND EnchantedSwordAction.get_AttackType() eq 2 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1 OR 1 lt attackCount AND 2 ge attackCount AND EnchantedSwordAction.get_AttackType() eq 2 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1 OR 1 ge attackCount AND EnchantedSwordAction.get_AttackType() ne 2 AND IsInstanceOf(PlayerStatusBase.get_BattleStatus(), PlayerSecondaryStatus) ne 1 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "EnchantedSwordAction.get_AttackType",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_BattleStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "1 ge attackCount AND EnchantedSwordAction.get_AttackType() eq 2 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1 OR 1 lt attackCount AND 2 ge attackCount AND EnchantedSwordAction.get_AttackType() eq 2 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1 OR 1 ge attackCount AND EnchantedSwordAction.get_AttackType() ne 2 AND IsInstanceOf(PlayerStatusBase.get_BattleStatus(), PlayerSecondaryStatus) ne 1 AND PlayerAttackBase.CheckSkillIndividualFlag(this, 1) AND WeaponType eq 10 AND attackCount ge 1",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "EnchantedSwordAction.get_AttackType",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_BattleStatus"
+   ]
+  },
+  {
+   "method": "CalcDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "CalcDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(872, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1), 0)",
+   "simplified": "AddSelfBuffer(872, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1), 0)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EnchantedBurst, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND enchantedBurstStack eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.EnchantedBurst",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "EnchantedSwordBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "Lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "name",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "EnchantedSwordAction.get_AttackType",
+  "GetWeaponType.item",
+  "IMobStatusCalculator.get_Element",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CheckSkillIndividualFlag",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_BattleStatus",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillId.EnchantedBurst",
+  "SkillManager.GetSkillLv",
+  "SkillUtil.GetWeakElement",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "target.Element"
+ ],
+ "residual": []
+}

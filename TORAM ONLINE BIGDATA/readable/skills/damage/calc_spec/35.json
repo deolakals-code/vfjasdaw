@@ -1,0 +1,432 @@
+{
+ "version": 1,
+ "uid": 35,
+ "name_th": "โซนิคเบรด",
+ "name_en": "AccelBlade",
+ "tree": "BladeSkill",
+ "category": "Attack",
+ "max_level": 10,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "AccelBladeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 35,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rank",
+   "formula": "1",
+   "simplified": "1",
+   "when": "hasBuff(Aspd) AND mainWeapon == TwoHandSword OR hasBuff(Aspd) AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword OR hasBuff(Aspd) AND mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) + 100)",
+   "simplified": "5 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    105,
+    110,
+    115,
+    120,
+    125,
+    130,
+    135,
+    140,
+    145,
+    150
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "critical",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "hasBuff(Aspd) AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword OR !hasBuff(Aspd) AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword OR hasBuff(Aspd) AND mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + (Lv << 2)) + 100)",
+   "simplified": "5 × Lv + 100",
+   "when": "hasBuff(Aspd) AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword OR !hasBuff(Aspd) AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword OR hasBuff(Aspd) AND mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "by_level": [
+    105,
+    110,
+    115,
+    120,
+    125,
+    130,
+    135,
+    140,
+    145,
+    150
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance((((frintp((Lv / 3)) * 4) + 4) + 4))",
+   "simplified": "MathUtil.DisplayMeterToDistance(4 × frintp(Lv / 3) + 8)",
+   "when": "hasBuff(Aspd) AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword OR !hasBuff(Aspd) AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeRad",
+   "formula": "MathUtil.DisplayMeterToDistance(2)",
+   "simplified": "MathUtil.DisplayMeterToDistance(2)",
+   "when": "hasBuff(Aspd) AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword OR hasBuff(Aspd) AND mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rankUpReceptionTime",
+   "formula": "(5 + gemCart(102[2]))",
+   "simplified": "gemCart(102, [2]) + 5",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rank",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!hasBuff(Aspd) AND mainWeapon == TwoHandSword OR !hasBuff(Aspd) AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword OR !hasBuff(Aspd) AND mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeRad",
+   "formula": "MathUtil.DisplayMeterToDistance(1)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1)",
+   "when": "!hasBuff(Aspd) AND mainWeapon != TwoHandSword AND mainWeapon == OneHandSword OR !hasBuff(Aspd) AND mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(((frintp((Lv / 3)) * 4) + 4))",
+   "simplified": "MathUtil.DisplayMeterToDistance(4 × frintp(Lv / 3) + 4)",
+   "when": "hasBuff(Aspd) AND mainWeapon == TwoHandSword OR !hasBuff(Aspd) AND mainWeapon == TwoHandSword OR hasBuff(Aspd) AND mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "critical",
+   "formula": "(((Lv + (Lv << 2)) << 1) // 10)",
+   "simplified": "10 × Lv // 10",
+   "when": "hasBuff(Aspd) AND mainWeapon == TwoHandSword OR !hasBuff(Aspd) AND mainWeapon == TwoHandSword",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv + (Lv << 2)) + 100) + 50)",
+   "simplified": "5 × Lv + 150",
+   "when": "hasBuff(Aspd) AND mainWeapon == TwoHandSword OR !hasBuff(Aspd) AND mainWeapon == TwoHandSword",
+   "by_level": [
+    155,
+    160,
+    165,
+    170,
+    175,
+    180,
+    185,
+    190,
+    195,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeRad",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "hasBuff(Aspd) AND mainWeapon == TwoHandSword",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeRad",
+   "formula": "MathUtil.DisplayMeterToDistance(3)",
+   "simplified": "MathUtil.DisplayMeterToDistance(3)",
+   "when": "!hasBuff(Aspd) AND mainWeapon == TwoHandSword",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "startPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "startPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + min(((((MathUtil.DistanceToDisplayMeter(ActionRange) mi MathUtil.DisplayDistance(0, ?mi, UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) ? MathUtil.DistanceToDisplayMeter(ActionRange) : MathUtil.DisplayDistance(0, ?mi, UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + -8) + 1) * 10), 170))",
+   "simplified": "(skillRate + min(((((MathUtil.DistanceToDisplayMeter(ActionRange) mi MathUtil.DisplayDistance(0, ?mi, UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) ? MathUtil.DistanceToDisplayMeter(ActionRange) : MathUtil.DisplayDistance(0, ?mi, UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + -8) + 1) * 10), 170))",
+   "when": "ActionRange eq inf AND PlayerAttackBase.IsBlank(this) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)))) gt 1e-05 AND rank ne 0 OR !PlayerAttackBase.IsBlank(this) AND ActionRange eq inf AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)))) gt 1e-05 AND rank ne 0 OR ActionRange eq inf AND PlayerAttackBase.IsBlank(this) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)))) le 1e-05 AND rank ne 0",
+   "vars": [
+    "MathUtil.DisplayDistance",
+    "MathUtil.DistanceToDisplayMeter",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ],
+   "residual": [
+    "?mi",
+    "?mi"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "GetLocalizeKey",
+   "kind": "set",
+   "name": "rank",
+   "formula": "rank",
+   "simplified": "rank",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(35, Lv, rankUpReceptionTime)",
+   "simplified": "AddSelfBuffer(35, Lv, rankUpReceptionTime)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ActionRange eq inf AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)))) gt 1e-05 AND rank ne 0 OR !PlayerAttackBase.IsBlank(this) AND ActionRange eq inf AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)))) le 1e-05 AND rank ne 0 OR !PlayerAttackBase.IsBlank(this) AND ActionRange eq inf AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)))) gt 1e-05 AND rank eq 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "AccelBladeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, float time",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "time",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "AccelBladeAction.OnInitialize"
+ ],
+ "variables": [
+  "MathUtil.DisplayDistance",
+  "MathUtil.DisplayMeterToDistance",
+  "MathUtil.DistanceToDisplayMeter",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.GetEquipElement",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": [
+  {
+   "where": "ActionStart:skillRate",
+   "tokens": [
+    "?mi",
+    "?mi"
+   ]
+  }
+ ]
+}

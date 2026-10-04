@@ -1,0 +1,196 @@
+{
+ "version": 1,
+ "uid": 19,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "ImperialRayPursuitAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "Magic",
+  "action_id": 19,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 150) + 500) + SkillMasteryBase.GetMasteryParam(MasteryId.Value))",
+   "simplified": "150 × Lv + SkillMasteryBase.GetMasteryParam(MasteryId.Value) + 500",
+   "when": "always",
+   "vars": [
+    "MasteryId.Value",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 300)",
+   "simplified": "10 × Lv + 300",
+   "when": "always",
+   "by_level": [
+    310,
+    320,
+    330,
+    340,
+    350,
+    360,
+    370,
+    380,
+    390,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 150) + 500)",
+   "simplified": "150 × Lv + 500",
+   "when": "always",
+   "by_level": [
+    650,
+    800,
+    950,
+    1100,
+    1250,
+    1400,
+    1550,
+    1700,
+    1850,
+    2000
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Matk",
+   "simplified": "status.Matk",
+   "when": "always",
+   "vars": [
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "SetParameter",
+   "kind": "set",
+   "name": "critical",
+   "formula": "(critical & 1)",
+   "simplified": "critical & 1",
+   "when": "always"
+  },
+  {
+   "method": "SetParameter",
+   "kind": "set",
+   "name": "Element",
+   "formula": "element",
+   "simplified": "element",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(16, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(16, 100, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) AND SkillUtil.CheckWeakElemet(Element, target.Element) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) AND SkillUtil.CheckWeakElemet(Element, target.Element) OR !SkillUtil.CheckWeakElemet(Element, target.Element) AND Element eq 7 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) AND target.Element eq 7",
+   "vars": [
+    "AbnormalType.Collapse",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(16)",
+   "simplified": "SetAbnormalType(16)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) AND SkillUtil.CheckWeakElemet(Element, target.Element) OR !SkillUtil.CheckWeakElemet(Element, target.Element) AND Element eq 7 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Collapse, 100, playerAction) AND target.Element eq 7",
+   "vars": [
+    "AbnormalType.Collapse",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "target.Element"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Collapse",
+  "IMobStatusCalculator.get_Element",
+  "IPlayerStatusCalculator.get_Matk",
+  "MasteryId.Value",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "SkillMasteryBase.GetMasteryParam",
+  "SkillUtil.CheckWeakElemet",
+  "status.Matk",
+  "target.Element"
+ ],
+ "residual": []
+}

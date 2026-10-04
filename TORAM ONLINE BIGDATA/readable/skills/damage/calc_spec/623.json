@@ -1,0 +1,474 @@
+{
+ "version": 1,
+ "uid": 623,
+ "name_th": "คมดาบมายา",
+ "name_en": "RepelBlade",
+ "tree": "MononofuSkill",
+ "category": "Special",
+ "max_level": 70,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "RepelBladeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 623,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 20) + 200)",
+   "simplified": "20 × Lv + 200",
+   "when": "always",
+   "by_level": [
+    220,
+    240,
+    260,
+    280,
+    300,
+    320,
+    340,
+    360,
+    380,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "(PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamageRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamage"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "RepelBladeBuf..ctor",
+   "formula": ".ctor(Lv, status.EqAtk)",
+   "simplified": ".ctor(Lv, status.EqAtk)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Equality",
+    "status.EqAtk"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new RepelBladeBuf, Id)",
+   "simplified": "AddSelfBuffer(new, RepelBladeBuf, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(0)",
+   "simplified": "SetAbnormalType(0)",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND (1 & ((PlayerStatusBase.get_GameStatus().serverExHp + PlayerStatusBase.get_GameStatus().serverHp) gt damageData._damage ? 1 : 0)) ne 0 AND (damageData.AbnormalType - 1) ls 2 AND (damageData.AbnormalType | 16) ne 20 AND IsInstanceOf(playerAction, MobaPlayerActionManager) ne 1 AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND PlayerStatusBase.get_SkillBufferManager().skillBufList[623].IsHolding ne 0 OR !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND (1 & ((PlayerStatusBase.get_GameStatus().serverExHp + PlayerStatusBase.get_GameStatus().serverHp) gt damageData._damage ? 1 : 0)) ne 0 AND (SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().skillBufList[623], SkillBufferId.Value) * damageData._damage) ge 100 AND (damageData.AbnormalType - 1) ls 2 AND (damageData.AbnormalType | 16) ne 20 AND IsInstanceOf(playerAction, PlayerActionManager) eq 1 AND PlayerStatusBase.get_SkillBufferManager().skillBufList[623].IsHolding ne 0 OR !SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND (1 & ((PlayerStatusBase.get_GameStatus().serverExHp + PlayerStatusBase.get_GameStatus().serverHp) gt damageData._damage ? 1 : 0)) ne 0 AND (SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().skillBufList[623], SkillBufferId.Value) * damageData._damage) lt 100 AND (damageData.AbnormalType - 1) ls 2 AND (damageData.AbnormalType | 16) ne 20 AND IsInstanceOf(playerAction, PlayerActionManager) eq 1 AND PlayerStatusBase.get_SkillBufferManager().skillBufList[623].IsHolding ne 0",
+   "vars": [
+    "PlayerStatusBase.get_GameStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillActionBase.op_Equality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Value"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(623)",
+   "simplified": "RemoveSelfBuffer(623)",
+   "when": "PlayerStatusBase.get_SkillBufferManager().skillBufList[623].IsReelSuccess eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionStart>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(621, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1), 0)",
+   "simplified": "AddSelfBuffer(621, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1), 0)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.FinishingTouch",
+    "SkillManager.GetSkillLv"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "RepelBladeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int eqAtk",
+     "fields": {
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "IsHolding": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "hitRate": [
+       {
+        "formula": "((((Lv << 1) + 5) * eqAtk) // 100)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "hpHealRate": [
+       {
+        "formula": "(((Lv << 2) + lv) << 1)",
+        "when": "always",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "HitRate",
+     "bonus_id": 11,
+     "formula": "hitRate",
+     "simplified": "hitRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsReelSuccess ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "hpHealRate",
+     "simplified": "hpHealRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsReelSuccess ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "IsHolding": [
+     {
+      "method": "set_IsHolding",
+      "formula": "(value & 1)",
+      "when": "always"
+     },
+     {
+      "method": "Parry",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "IsReelSuccess": [
+     {
+      "method": "set_IsReelSuccess",
+      "formula": "(value & 1)",
+      "when": "always"
+     },
+     {
+      "method": "Parry",
+      "formula": "(succsess & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Parry",
+    "get_IsHolding",
+    "get_IsReelSuccess",
+    "set_IsHolding",
+    "set_IsReelSuccess"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SwordMoveBuf",
+   "ctors": [
+    {
+     "sig": "bool damageInvalid",
+     "fields": {
+      "Level": [
+       {
+        "formula": "257",
+        "when": "always",
+        "by_level": 257
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "damageInvalid": [
+       {
+        "formula": "(damageInvalid & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "damageInvalid",
+     "simplified": "damageInvalid",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "damageInvalid": [
+     {
+      "method": "DamageInvalid",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "EndSwordMove",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckDamageInvalid",
+    "DamageInvalid",
+    "EndSwordMove"
+   ],
+   "attached_via": "caller2:SwordMove$$AddBuf<-RepelBladeAction$$ActionSkillEvent",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PlayerAttackBase.CalcCostMp"
+ ],
+ "variables": [
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_EqAtk",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerStatusBase.get_GameStatus",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.op_Equality",
+  "SkillActionManagerBase.get_CurrentSkill",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.HitRate",
+  "SkillBufferId.Value",
+  "SkillId.FinishingTouch",
+  "SkillManager.GetSkillLv",
+  "UnityEngine.Object.op_Equality",
+  "status.EqAtk"
+ ],
+ "residual": []
+}

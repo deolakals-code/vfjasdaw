@@ -1,0 +1,390 @@
+{
+ "version": 1,
+ "uid": 1222,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "ThunderStyleAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1222,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseMp",
+   "formula": "NinjaSkillBase.CalcNinjaSkillBaseMp(this, 600, actarAction)",
+   "simplified": "NinjaSkillBase.CalcNinjaSkillBaseMp(this, 600, actarAction)",
+   "when": "always",
+   "vars": [
+    "NinjaSkillBase.CalcNinjaSkillBaseMp"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 20) + 200)",
+   "simplified": "20 × Lv + 200",
+   "when": "always",
+   "by_level": [
+    220,
+    240,
+    260,
+    280,
+    300,
+    320,
+    340,
+    360,
+    380,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv * 10) + 100) + NinjaSkillBase.GetNinko(this, PlayerActionManagerBase.get_PlayerStatus())) + (NinjaSkillBase.GetNinjutsuTraining(this, PlayerActionManagerBase.get_PlayerStatus()) * 30))",
+   "simplified": "10 × Lv + NinjaSkillBase.GetNinko(this, A) + 30 × NinjaSkillBase.GetNinjutsuTraining(this, A) + 100",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "vars": [
+    "NinjaSkillBase.GetNinjutsuTraining",
+    "NinjaSkillBase.GetNinko",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "change",
+   "formula": "1",
+   "simplified": "1",
+   "when": "mainWeapon == Katana",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "mainWeapon == Katana",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 2)",
+   "simplified": "SkillParam | 2",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Matk",
+   "simplified": "status.Matk",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND status.Atk lt status.Matk",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "status.Atk",
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int((MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) * 1.5))",
+   "simplified": "int(1.5 × MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)))",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_Size"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Atk",
+   "simplified": "status.Atk",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND status.Atk ge status.Matk",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "status.Atk",
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "timer",
+   "formula": "UnityEngine.Time.get_realtimeSinceStartup()",
+   "simplified": "UnityEngine.Time.get_realtimeSinceStartup()",
+   "when": "param eq 100 AND param ne 101",
+   "vars": [
+    "UnityEngine.Time.get_realtimeSinceStartup"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "IsSwordMoveStart",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND ISwordMove.CheckSwordMoveStart(actarAction, this) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND SwordMove.AddBuf(this, actarAction) AND param eq 101 OR !SwordMove.AddBuf(this, actarAction) AND !UnityEngine.Object.op_Equality(actarAction) AND ISwordMove.CheckSwordMoveStart(actarAction, this) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND param eq 101",
+   "by_level": 1,
+   "vars": [
+    "ISwordMove.CheckSwordMoveStart",
+    "InputManager.get_LeftInputKey",
+    "SwordMove.AddBuf",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "GetLocalizeKey",
+   "kind": "set",
+   "name": "change",
+   "formula": "change",
+   "simplified": "change",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "(PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamageRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamage"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "SwordMoveBuf",
+   "ctors": [
+    {
+     "sig": "bool damageInvalid",
+     "fields": {
+      "Level": [
+       {
+        "formula": "257",
+        "when": "always",
+        "by_level": 257
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "damageInvalid": [
+       {
+        "formula": "(damageInvalid & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "damageInvalid",
+     "simplified": "damageInvalid",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "damageInvalid": [
+     {
+      "method": "DamageInvalid",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "EndSwordMove",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckDamageInvalid",
+    "DamageInvalid",
+    "EndSwordMove"
+   ],
+   "attached_via": "caller2:SwordMove$$AddBuf<-ThunderStyleAction$$ActionSkillEvent",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IPlayerStatusCalculator.get_Atk",
+  "IPlayerStatusCalculator.get_Matk",
+  "ISwordMove.CheckSwordMoveStart",
+  "InputManager.get_LeftInputKey",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Size",
+  "NinjaSkillBase.CalcNinjaSkillBaseMp",
+  "NinjaSkillBase.GetNinjutsuTraining",
+  "NinjaSkillBase.GetNinko",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerStatusBase.GetEquipElement",
+  "Singleton.get_Instance",
+  "SkillBufferId.Value",
+  "SwordMove.AddBuf",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_realtimeSinceStartup",
+  "status.Atk",
+  "status.Matk"
+ ],
+ "residual": []
+}

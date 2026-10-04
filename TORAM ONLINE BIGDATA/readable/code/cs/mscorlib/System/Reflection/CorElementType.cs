@@ -1,0 +1,80 @@
+// Assembly: mscorlib.dll
+// Namespace: System.Reflection
+[Serializable]
+internal enum CorElementType // TypeDefIndex: 10635
+{
+	// Fields
+	public byte value__; // 0x0
+	public const CorElementType End = 0;
+	public const CorElementType Void = 1;
+	public const CorElementType Boolean = 2;
+	public const CorElementType Char = 3;
+	public const CorElementType I1 = 4;
+	public const CorElementType U1 = 5;
+	public const CorElementType I2 = 6;
+	public const CorElementType U2 = 7;
+	public const CorElementType I4 = 8;
+	public const CorElementType U4 = 9;
+	public const CorElementType I8 = 10;
+	public const CorElementType U8 = 11;
+	public const CorElementType R4 = 12;
+	public const CorElementType R8 = 13;
+	public const CorElementType String = 14;
+	public const CorElementType Ptr = 15;
+	public const CorElementType ByRef = 16;
+	public const CorElementType ValueType = 17;
+	public const CorElementType Class = 18;
+	public const CorElementType Var = 19;
+	public const CorElementType Array = 20;
+	public const CorElementType GenericInst = 21;
+	public const CorElementType TypedByRef = 22;
+	public const CorElementType I = 24;
+	public const CorElementType U = 25;
+	public const CorElementType FnPtr = 27;
+	public const CorElementType Object = 28;
+	public const CorElementType SzArray = 29;
+	public const CorElementType MVar = 30;
+	public const CorElementType CModReqd = 31;
+	public const CorElementType CModOpt = 32;
+	public const CorElementType Internal = 33;
+	public const CorElementType Max = 34;
+	public const CorElementType Modifier = 64;
+	public const CorElementType Sentinel = 65;
+	public const CorElementType Pinned = 69;
+	public const CorElementType ELEMENT_TYPE_END = 0;
+	public const CorElementType ELEMENT_TYPE_VOID = 1;
+	public const CorElementType ELEMENT_TYPE_BOOLEAN = 2;
+	public const CorElementType ELEMENT_TYPE_CHAR = 3;
+	public const CorElementType ELEMENT_TYPE_I1 = 4;
+	public const CorElementType ELEMENT_TYPE_U1 = 5;
+	public const CorElementType ELEMENT_TYPE_I2 = 6;
+	public const CorElementType ELEMENT_TYPE_U2 = 7;
+	public const CorElementType ELEMENT_TYPE_I4 = 8;
+	public const CorElementType ELEMENT_TYPE_U4 = 9;
+	public const CorElementType ELEMENT_TYPE_I8 = 10;
+	public const CorElementType ELEMENT_TYPE_U8 = 11;
+	public const CorElementType ELEMENT_TYPE_R4 = 12;
+	public const CorElementType ELEMENT_TYPE_R8 = 13;
+	public const CorElementType ELEMENT_TYPE_STRING = 14;
+	public const CorElementType ELEMENT_TYPE_PTR = 15;
+	public const CorElementType ELEMENT_TYPE_BYREF = 16;
+	public const CorElementType ELEMENT_TYPE_VALUETYPE = 17;
+	public const CorElementType ELEMENT_TYPE_CLASS = 18;
+	public const CorElementType ELEMENT_TYPE_VAR = 19;
+	public const CorElementType ELEMENT_TYPE_ARRAY = 20;
+	public const CorElementType ELEMENT_TYPE_GENERICINST = 21;
+	public const CorElementType ELEMENT_TYPE_TYPEDBYREF = 22;
+	public const CorElementType ELEMENT_TYPE_I = 24;
+	public const CorElementType ELEMENT_TYPE_U = 25;
+	public const CorElementType ELEMENT_TYPE_FNPTR = 27;
+	public const CorElementType ELEMENT_TYPE_OBJECT = 28;
+	public const CorElementType ELEMENT_TYPE_SZARRAY = 29;
+	public const CorElementType ELEMENT_TYPE_MVAR = 30;
+	public const CorElementType ELEMENT_TYPE_CMOD_REQD = 31;
+	public const CorElementType ELEMENT_TYPE_CMOD_OPT = 32;
+	public const CorElementType ELEMENT_TYPE_INTERNAL = 33;
+	public const CorElementType ELEMENT_TYPE_MAX = 34;
+	public const CorElementType ELEMENT_TYPE_MODIFIER = 64;
+	public const CorElementType ELEMENT_TYPE_SENTINEL = 65;
+	public const CorElementType ELEMENT_TYPE_PINNED = 69;
+}

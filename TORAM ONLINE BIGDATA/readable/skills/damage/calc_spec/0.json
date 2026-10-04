@@ -1,0 +1,3841 @@
+{
+ "version": 1,
+ "uid": 0,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "modifies normal-attack behaviour",
+  "boosts normal-attack damage"
+ ],
+ "class": "NormalAttackAction",
+ "proration": {
+  "slot": "Normal",
+  "mode": "first_hit_per_target if class check passes",
+  "attack_type": "Physics",
+  "action_id": 0,
+  "is_exp_def_fluctuate": "conditional",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "checkUnannouncedDestination",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(PlayerAttackBase.IsBlank(this) & 1) eq 0 AND (UnityEngine.Object.op_Inequality(actarAction, 0) & 1) ne 0 AND (UnannouncedDestination.CheckMinimumBehavior(PlayerActionManagerBase.get_PlayerStatus(), (new NormalAttackAction.<>c__DisplayClass72_1 + 16)) & 1) ne 0 AND (SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.UnannouncedDestination, (new NormalAttackAction.<>c__DisplayClass72_1 + 24)) & 1) ne 0 AND (UnannouncedDestinationBuf.CheckActive(new NormalAttackAction.<>c__DisplayClass72_1.unannouncedDestinationBuf) & 1) ne 0 AND (SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.Shukuchi) & 1) ne 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.Shukuchi",
+    "SkillId.UnannouncedDestination",
+    "UnannouncedDestination.CheckMinimumBehavior",
+    "UnannouncedDestinationBuf.CheckActive",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(SkillIndividualFlag | 64)",
+   "simplified": "SkillIndividualFlag | 64",
+   "when": "(PlayerAttackBase.IsBlank(this) & 1) eq 0 AND (UnityEngine.Object.op_Inequality(actarAction, 0) & 1) ne 0 AND (UnannouncedDestination.CheckMinimumBehavior(PlayerActionManagerBase.get_PlayerStatus(), (new NormalAttackAction.<>c__DisplayClass72_1 + 16)) & 1) ne 0 AND (SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.UnannouncedDestination, (new NormalAttackAction.<>c__DisplayClass72_1 + 24)) & 1) ne 0 AND (UnannouncedDestinationBuf.CheckActive(new NormalAttackAction.<>c__DisplayClass72_1.unannouncedDestinationBuf) & 1) ne 0 AND (SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.Shukuchi) & 1) ne 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.Shukuchi",
+    "SkillId.UnannouncedDestination",
+    "UnannouncedDestination.CheckMinimumBehavior",
+    "UnannouncedDestinationBuf.CheckActive",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(PlayerAttackBase.IsBlank(this) & 1) eq 0 AND (UnityEngine.Object.op_Inequality(actarAction, 0) & 1) ne 0 AND (UnannouncedDestination.CheckMinimumBehavior(PlayerActionManagerBase.get_PlayerStatus(), (new NormalAttackAction.<>c__DisplayClass72_1 + 16)) & 1) ne 0 AND checkIchijhinnokaze eq 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "UnannouncedDestination.CheckMinimumBehavior",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "2",
+   "simplified": "2",
+   "when": "(_t1178 & 1) ne 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff694eca)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff694eca)",
+   "when": "(_t1178 & 1) ne 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff45c3dd)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff45c3dd)",
+   "when": "(_t1178 & 1) ne 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CastTime>k__BackingField",
+   "formula": "TwinStormBuf.GetParam(20)",
+   "simplified": "TwinStormBuf.GetParam(20)",
+   "when": "(_t1178 & 1) ne 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(_t1178 & 1) ne 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181)"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(_t1183 | 8)",
+   "simplified": "_t1183 | 8",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181)"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "2",
+   "simplified": "2",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode ne 0"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode ne 0"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "2",
+   "simplified": "2",
+   "when": "(_t1178 & 1) eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff694eca)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff694eca)",
+   "when": "(_t1178 & 1) eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff45c3dd)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff45c3dd)",
+   "when": "(_t1178 & 1) eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CastTime>k__BackingField",
+   "formula": "TwinStormBuf.GetParam(20)",
+   "simplified": "TwinStormBuf.GetParam(20)",
+   "when": "(_t1178 & 1) eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(_t1178 & 1) eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB((0x18baae8(0) & 0xffffffff))",
+   "simplified": "MathUtil.Color32ToInt32RGB((0x18baae8(0) & 0xffffffff))",
+   "when": "always",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB((0x18baae8(0) & 0xffffffff))",
+   "simplified": "MathUtil.Color32ToInt32RGB((0x18baae8(0) & 0xffffffff))",
+   "when": "always",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CastTime>k__BackingField",
+   "formula": "_t1184",
+   "simplified": "_t1184",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB(0xffff9934)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xffff9934)",
+   "when": "always",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff45ffa1)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff45ffa1)",
+   "when": "always",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CastTime>k__BackingField",
+   "formula": "TwinStormBuf.GetParam(20)",
+   "simplified": "TwinStormBuf.GetParam(20)",
+   "when": "always",
+   "vars": [
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB(0xffcd8066)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xffcd8066)",
+   "when": "always",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff45ebb5)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff45ebb5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff9b6798)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff9b6798)",
+   "when": "always",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff45d7c9)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff45d7c9)",
+   "when": "always",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "6",
+   "simplified": "6",
+   "when": "(PlayerAttackBase.CheckSkillIndividualFlag(this, 1024) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(PlayerAttackBase.CheckSkillIndividualFlag(this, 1024) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "3",
+   "simplified": "3",
+   "when": "(SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.EarthShattering) & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillId.EarthShattering"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(_t1188 | 0x4000)",
+   "simplified": "_t1188 | 16384",
+   "when": "(SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.EarthShattering) & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillId.EarthShattering"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<UnmanagedHitTake>k__BackingField",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.EarthShattering) & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillId.EarthShattering"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "2",
+   "simplified": "2",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff694eca)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff694eca)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff45c3dd)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff45c3dd)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CastTime>k__BackingField",
+   "formula": "TwinStormBuf.GetParam(20)",
+   "simplified": "TwinStormBuf.GetParam(20)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) gt 60",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB((0x18baae8(0) & 0xffffffff))",
+   "simplified": "MathUtil.Color32ToInt32RGB((0x18baae8(0) & 0xffffffff))",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB((0x18baae8(0) & 0xffffffff))",
+   "simplified": "MathUtil.Color32ToInt32RGB((0x18baae8(0) & 0xffffffff))",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CastTime>k__BackingField",
+   "formula": "_t1189",
+   "simplified": "_t1189",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB(0xffff9934)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xffff9934)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) le 30",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff45ffa1)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff45ffa1)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) le 30",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CastTime>k__BackingField",
+   "formula": "TwinStormBuf.GetParam(20)",
+   "simplified": "TwinStormBuf.GetParam(20)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) le 30",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) le 30",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB(0xffcd8066)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xffcd8066)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) le 45",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff45ebb5)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff45ebb5)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) le 45",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CastTime>k__BackingField",
+   "formula": "TwinStormBuf.GetParam(20)",
+   "simplified": "TwinStormBuf.GetParam(20)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) le 45",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) le 45",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorR",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff9b6798)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff9b6798)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) le 60",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "twinStormEffectColorG",
+   "formula": "MathUtil.Color32ToInt32RGB(0xff45d7c9)",
+   "simplified": "MathUtil.Color32ToInt32RGB(0xff45d7c9)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) le 60",
+   "vars": [
+    "MathUtil.Color32ToInt32RGB",
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CastTime>k__BackingField",
+   "formula": "TwinStormBuf.GetParam(20)",
+   "simplified": "TwinStormBuf.GetParam(20)",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) le 60",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND (SkillBufferManager.TryGetBuf<TwinStormBuf>(PlayerStatusBase.get_SkillBufferManager(), 82, out) & 1) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND TwinStormBuf.GetParam(20) gt 15 AND TwinStormBuf.GetParam(20) gt 30 AND TwinStormBuf.GetParam(20) gt 45 AND TwinStormBuf.GetParam(20) le 60",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TwinStormBuf.GetParam"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "6",
+   "simplified": "6",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 1024) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 1024) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "3",
+   "simplified": "3",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.EarthShattering) & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillId.EarthShattering"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "((_t1183 | 8) | 0x4000)",
+   "simplified": "_t1183 | 8 | 16384",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.EarthShattering) & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillId.EarthShattering"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "<UnmanagedHitTake>k__BackingField",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.EarthShattering) & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillId.EarthShattering"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "set",
+   "name": "checkSamuraiArchery",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(MobActionManagerBase.get_IsDead(mobActionManager) & 1) eq 0 AND (SkillIndividualFlag & 8) ne 0 AND (_t1205 & 1) ne 0 AND checkSamuraiArchery eq 0",
+   "vars": [
+    "MobActionManagerBase.get_IsDead"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "set",
+   "name": "checkTwinStorm",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(MobActionManagerBase.get_IsDead(mobActionManager) & 1) eq 0 AND (PlayerAttackBase.CheckSkillIndividualFlag(this, 16) & 1) ne 0 AND checkTwinStorm eq 0",
+   "vars": [
+    "MobActionManagerBase.get_IsDead",
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<Element>k__BackingField",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<WeaponType>k__BackingField",
+   "formula": "mainWeaponType",
+   "simplified": "mainWeaponType",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "subWeaponType",
+   "formula": "subWeaponType",
+   "simplified": "subWeaponType",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetSubWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<ActionRange>k__BackingField",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(SkillIndividualFlag | 2)",
+   "simplified": "SkillIndividualFlag | 2",
+   "when": "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Rampage, out) & 1) ne 0 AND (PlayerAttackBase.GetWeaponType(actarAction, out) & 0xfffffffe) eq 10 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Rampage) ne 0 AND SkillBufferDataBase.GetParam(50) eq 1 AND (GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 302) & 1) eq 0",
+   "vars": [
+    "GemCartBufferManager.ContainsBuffer",
+    "PlayerAttackBase.GetWeaponType",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.Rampage",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(SkillIndividualFlag | 1)",
+   "simplified": "SkillIndividualFlag | 1",
+   "when": "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Rampage, out) & 1) ne 0 AND (PlayerAttackBase.GetWeaponType(actarAction, out) & 0xfffffffe) eq 10 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Rampage) ne 0",
+   "vars": [
+    "PlayerAttackBase.GetWeaponType",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.Rampage",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(_t1207 | 16)",
+   "simplified": "_t1207 | 16",
+   "when": "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.TwinStorm, out) & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.TwinStorm) ne 0 AND [TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.TwinStorm)+0x48] ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.TwinStorm",
+    "TryGetBuf.buf"
+   ],
+   "residual": [
+    "+0x48]"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(_t1208 | 1024)",
+   "simplified": "_t1208 | 1024",
+   "when": "(SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.KnifeCombat) & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillId.KnifeCombat"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<ActionRange>k__BackingField",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "(SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.KnifeCombat) & 1) ne 0",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillId.KnifeCombat"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<ActionRange>k__BackingField",
+   "formula": "_t1209",
+   "simplified": "_t1209",
+   "when": "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.PairOfShields, out) & 1) ne 0 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 17",
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.PairOfShields"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "((!SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.KnifeCombat) ? _t1208 : (_t1208 | 1024)) | 0x2000)",
+   "simplified": "(!SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.KnifeCombat) ? _t1208 : _t1208 | 1024) | 8192",
+   "when": "(SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.PairOfShields, out) & 1) ne 0 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 17",
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.KnifeCombat",
+    "SkillId.PairOfShields"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "sheatheMove",
+   "formula": "new SheatheMove",
+   "simplified": "new SheatheMove",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 8",
+   "vars": [
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<ChangeCriticalHitTake>k__BackingField",
+   "formula": "257",
+   "simplified": "257",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 8",
+   "vars": [
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<ChangeCriticalHitTake>k__BackingField",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(PlayerAttackBase.CheckSkillIndividualFlag(this, 0x2000) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "3",
+   "simplified": "3",
+   "when": "(PlayerAttackBase.CheckSkillIndividualFlag(this, 0x2000) & 1) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "powerWaveMastery",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0",
+   "vars": [
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "+0x13c",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0",
+   "vars": [
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "powerWaveEnable",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0",
+   "vars": [
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "defaultRange",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0",
+   "vars": [
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "powerWaveRate",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0",
+   "vars": [
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "checkIchijhinnokaze",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0",
+   "vars": [
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isUnsheatheMode",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0",
+   "vars": [
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<ActionRange>k__BackingField",
+   "formula": "PlayerAttackBase.GetWeaponRange(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()))",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0 AND PlayerAttackBase.GetWeaponType(actarAction, out) ne 8 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) eq 8",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "EquipItemData.get_SubWeapon",
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.GetWeaponRange",
+    "PlayerAttackBase.GetWeaponType",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(_t1210 & 0xfffffe7f)",
+   "simplified": "_t1210 & 0xfffffe7f",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0 AND PlayerAttackBase.GetWeaponType(actarAction, out) ne 8 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) eq 8",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.GetWeaponType",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<ActionRange>k__BackingField",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0",
+   "vars": [
+    "GetWeaponType.item",
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(_t1210 & 0xfffffe7f)",
+   "simplified": "_t1210 & 0xfffffe7f",
+   "when": "(IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze(PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)) & 1) ne 0",
+   "vars": [
+    "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "3",
+   "simplified": "3",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) eq 10",
+   "vars": [
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isInterruptable",
+   "formula": "0",
+   "simplified": "0",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) eq 10",
+   "vars": [
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) eq 10",
+   "vars": [
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "_motionSpeed",
+   "formula": "PlayerAttackBase.CalcMotionSpeed(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcMotionSpeed(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) eq 10",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcMotionSpeed",
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "3",
+   "simplified": "3",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) ne 10",
+   "vars": [
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isInterruptable",
+   "formula": "0",
+   "simplified": "0",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) ne 10",
+   "vars": [
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) ne 10",
+   "vars": [
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "_motionSpeed",
+   "formula": "PlayerAttackBase.CalcMotionSpeed(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcMotionSpeed(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) ne 10",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcMotionSpeed",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<LoopParam>k__BackingField",
+   "formula": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).dbData.Range",
+   "simplified": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).dbData.Range",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) ne 10 AND PlayerAttackBase.GetWeaponType(actarAction, out) eq 12 AND PlayerAttackBase.GetSubWeaponType(actarAction) eq 8",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "3",
+   "simplified": "3",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) ne 10",
+   "vars": [
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isInterruptable",
+   "formula": "0",
+   "simplified": "0",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) ne 10",
+   "vars": [
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "<CurrentTake>k__BackingField",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) ne 10",
+   "vars": [
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "_motionSpeed",
+   "formula": "PlayerAttackBase.CalcMotionSpeed(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcMotionSpeed(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) ne 10",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcMotionSpeed",
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "PowerWaveCheck",
+   "kind": "set",
+   "name": "powerWaveEnable",
+   "formula": "((_t1211 + _t1212) gt ((defaultRange + CharacterActionManagerBase.get_Size()) * (defaultRange + CharacterActionManagerBase.get_Size())) ? 1 : 0)",
+   "simplified": "_t1211 + _t1212 > A × A ? 1 : 0",
+   "when": "always",
+   "vars": [
+    "CharacterActionManagerBase.get_Size"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "calcTemplate",
+   "formula": "new SkillCalcTemplate",
+   "simplified": "new SkillCalcTemplate",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "<Delay>k__BackingField",
+   "formula": "IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_BattleStatus())",
+   "simplified": "IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_BattleStatus())",
+   "when": "always",
+   "vars": [
+    "IPlayerStatusCalculator.GetNextAtkTime",
+    "PlayerStatusBase.get_BattleStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(SkillIndividualFlag | 2048)",
+   "simplified": "SkillIndividualFlag | 2048",
+   "when": "_t1224 ne 0 AND _t1225 ne 1 AND (NormalAttackAction.CheckOneChance(this, playerAction) & 1) ne 0",
+   "vars": [
+    "NormalAttackAction.CheckOneChance"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "((!NormalAttackAction.CheckOneChance(this, playerAction) ? ?undef : (SkillIndividualFlag | 2048)) | 0x1000)",
+   "simplified": "(!NormalAttackAction.CheckOneChance(this, playerAction) ? ?undef : SkillIndividualFlag | 2048) | 4096",
+   "when": "_t1224 ne 0 AND _t1225 ne 1 AND (NormalAttackAction.CheckSecondArm(this, playerAction) & 1) ne 0",
+   "vars": [
+    "NormalAttackAction.CheckOneChance"
+   ],
+   "residual": [
+    "?undef"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(SkillIndividualFlag | 2048)",
+   "simplified": "SkillIndividualFlag | 2048",
+   "when": "_t1224 ne 0 AND WeaponType eq 10 AND subWeaponType eq 10 AND powerWaveEnable eq 0 AND _t1225 ne 1 AND (NormalAttackAction.CheckOneChance(this, playerAction) & 1) ne 0",
+   "vars": [
+    "NormalAttackAction.CheckOneChance"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "((!NormalAttackAction.CheckOneChance(this, playerAction) ? ?undef : (SkillIndividualFlag | 2048)) | 0x1000)",
+   "simplified": "(!NormalAttackAction.CheckOneChance(this, playerAction) ? ?undef : SkillIndividualFlag | 2048) | 4096",
+   "when": "_t1224 ne 0 AND WeaponType eq 10 AND subWeaponType eq 10 AND powerWaveEnable eq 0 AND _t1225 ne 1 AND (NormalAttackAction.CheckSecondArm(this, playerAction) & 1) ne 0",
+   "vars": [
+    "NormalAttackAction.CheckOneChance"
+   ],
+   "residual": [
+    "?undef"
+   ]
+  },
+  {
+   "method": "RampageHitCheck",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(SkillIndividualFlag | 2)",
+   "simplified": "SkillIndividualFlag | 2",
+   "when": "(WeaponType & 0xfffffffe) eq 10 AND (_t2047 & 1) ne 0 AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[SkillId.Rampage].BuffEffectActive ne 0 AND RampageBuf.GetParam(50) eq 1 AND (GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 302) & 1) eq 0",
+   "vars": [
+    "GemCartBufferManager.ContainsBuffer",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.Rampage"
+   ]
+  },
+  {
+   "method": "RampageHitCheck",
+   "kind": "set",
+   "name": "<SkillIndividualFlag>k__BackingField",
+   "formula": "(SkillIndividualFlag | 1)",
+   "simplified": "SkillIndividualFlag | 1",
+   "when": "(WeaponType & 0xfffffffe) eq 10 AND (_t2047 & 1) ne 0 AND PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[SkillId.Rampage].BuffEffectActive ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.Rampage"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCheck[HitCheck]",
+   "formula": "NormalAttackAction.get_ActionID()",
+   "simplified": "NormalAttackAction.get_ActionID()",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "SetCheck",
+   "step": "HitCheck",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[BaseDamage]",
+   "formula": "_t1227",
+   "simplified": "_t1227",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddConstant",
+   "step": "BaseDamage",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "SkillBufferManager.GetSkillBufferParam(PlayerStatusBase.get_SkillBufferManager(), SkillBufferId.NormalAttackConstantDamage)",
+   "simplified": "SkillBufferManager.GetSkillBufferParam(PlayerStatusBase.get_SkillBufferManager(), SkillBufferId.NormalAttackConstantDamage)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferId.NormalAttackConstantDamage",
+    "SkillBufferManager.GetSkillBufferParam"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "NormalAttackAction.calcRampageConstantDamage(this_tpl(), playerAction)",
+   "simplified": "NormalAttackAction.calcRampageConstantDamage(this_tpl(), playerAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "NormalAttackAction.calcRampageConstantDamage",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "((ArkSaber.CalcConstantDamage(playerAction, mobAction) lt 0 ? (ArkSaber.CalcConstantDamage(playerAction, mobAction) + 1) : ArkSaber.CalcConstantDamage(playerAction, mobAction)) >> 1)",
+   "simplified": "ArkSaber.CalcConstantDamage(playerAction, mobAction) ÷ 2",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "ArkSaber.CalcConstantDamage",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "UnannouncedDestination.CalcNormalAttackConstantDamage(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "UnannouncedDestination.CalcNormalAttackConstantDamage(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND checkUnannouncedDestination ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "UnannouncedDestination.CalcNormalAttackConstantDamage"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "IchijhinnokazeBuf.GetNormalAttackConstantDamage(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "IchijhinnokazeBuf.GetNormalAttackConstantDamage(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND checkUnannouncedDestination ne 0 AND checkIchijhinnokaze ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "IchijhinnokazeBuf.GetNormalAttackConstantDamage",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "IchijhinnokazeBuf.GetNormalAttackConstantDamage(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "IchijhinnokazeBuf.GetNormalAttackConstantDamage(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND checkUnannouncedDestination eq 0 AND checkIchijhinnokaze ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "IchijhinnokazeBuf.GetNormalAttackConstantDamage",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.calcFastAttackDamage"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[Def]",
+   "formula": "-NormalAttackAction.CalcDef(this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "simplified": "-NormalAttackAction.CalcDef(this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0",
+   "op": "AddConstant",
+   "step": "Def",
+   "vars": [
+    "MobActionManagerBase.get_MobBattleStatus",
+    "NormalAttackAction.CalcDef",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCheck[CriticalCheck]",
+   "formula": "-NormalAttackAction.CalcDef(this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "simplified": "-NormalAttackAction.CalcDef(this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "op": "SetCheck",
+   "step": "CriticalCheck",
+   "vars": [
+    "MobActionManagerBase.get_MobBattleStatus",
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.CalcDef",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[CriticalRate]",
+   "formula": "(status.CriticalDmg / 100)",
+   "simplified": "status.CriticalDmg / 100",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "op": "AddRate",
+   "step": "CriticalRate",
+   "vars": [
+    "IPlayerStatusCalculator.get_CriticalDmg",
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent",
+    "PlayerStatusBase.get_BattleStatus",
+    "status.CriticalDmg"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "(PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.calcFastAttackDamageRate",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[ElementBonusRate]",
+   "formula": "PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element)",
+   "simplified": "PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "op": "AddRate",
+   "step": "ElementBonusRate",
+   "vars": [
+    "IMobStatusCalculator.get_Element",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcElementBonus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[NormalElementDamageResistRate]",
+   "formula": "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate(PlayerActionManagerBase.get_PlayerStatus(), mobAction)",
+   "simplified": "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate(PlayerActionManagerBase.get_PlayerStatus(), mobAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "op": "AddRate",
+   "step": "NormalElementDamageResistRate",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[NormalAttackPowerWave]",
+   "formula": "powerWaveRate",
+   "simplified": "powerWaveRate",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2 AND powerWaveEnable ne 0",
+   "op": "AddRate",
+   "step": "NormalAttackPowerWave",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[Def]",
+   "formula": "-NormalAttackAction.CalcDef(this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "simplified": "-NormalAttackAction.CalcDef(this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0",
+   "op": "AddConstant",
+   "step": "Def",
+   "vars": [
+    "MobActionManagerBase.get_MobBattleStatus",
+    "NormalAttackAction.CalcDef",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCheck[CriticalCheck]",
+   "formula": "-NormalAttackAction.CalcDef(this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "simplified": "-NormalAttackAction.CalcDef(this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "op": "SetCheck",
+   "step": "CriticalCheck",
+   "vars": [
+    "MobActionManagerBase.get_MobBattleStatus",
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.CalcDef",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[CriticalRate]",
+   "formula": "(status.CriticalDmg / 100)",
+   "simplified": "status.CriticalDmg / 100",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "op": "AddRate",
+   "step": "CriticalRate",
+   "vars": [
+    "IPlayerStatusCalculator.get_CriticalDmg",
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent",
+    "PlayerStatusBase.get_BattleStatus",
+    "status.CriticalDmg"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "1",
+   "simplified": "1",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[ElementBonusRate]",
+   "formula": "PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element)",
+   "simplified": "PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "op": "AddRate",
+   "step": "ElementBonusRate",
+   "vars": [
+    "IMobStatusCalculator.get_Element",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcElementBonus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[NormalElementDamageResistRate]",
+   "formula": "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate(PlayerActionManagerBase.get_PlayerStatus(), mobAction)",
+   "simplified": "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate(PlayerActionManagerBase.get_PlayerStatus(), mobAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "op": "AddRate",
+   "step": "NormalElementDamageResistRate",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[NormalAttackPowerWave]",
+   "formula": "powerWaveRate",
+   "simplified": "powerWaveRate",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2 AND powerWaveEnable ne 0",
+   "op": "AddRate",
+   "step": "NormalAttackPowerWave",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[CriticalRate]",
+   "formula": "1",
+   "simplified": "1",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "CriticalRate",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "_t1228",
+   "simplified": "_t1228",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[ElementBonusRate]",
+   "formula": "PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element)",
+   "simplified": "PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "ElementBonusRate",
+   "vars": [
+    "IMobStatusCalculator.get_Element",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcElementBonus",
+    "PlayerAttackBase.CalcHitReaction",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[NormalElementDamageResistRate]",
+   "formula": "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate(PlayerActionManagerBase.get_PlayerStatus(), mobAction)",
+   "simplified": "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate(PlayerActionManagerBase.get_PlayerStatus(), mobAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "NormalElementDamageResistRate",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[NormalAttackPowerWave]",
+   "formula": "powerWaveRate",
+   "simplified": "powerWaveRate",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND powerWaveEnable ne 0",
+   "op": "AddRate",
+   "step": "NormalAttackPowerWave",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(checkIchijhinnokaze eq 0 ? (!PlayerAttackBase.CheckSkillIndividualFlag(this, 1024) ? _t1243 : _t1244) : _t1245)",
+   "simplified": "checkIchijhinnokaze = 0 ? (!PlayerAttackBase.CheckSkillIndividualFlag(this, 1024) ? _t1243 : _t1244) : _t1245",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[StableRate]",
+   "formula": "PlayerAttackBase.CalcStable(3, status.Stable, _t1226, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcStable(3, status.Stable, _t1226, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "StableRate",
+   "vars": [
+    "IPlayerStatusCalculator.get_Stable",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CalcStable",
+    "PlayerStatusBase.get_BattleStatus",
+    "status.Stable"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[ExpRate]",
+   "formula": "(target.ExpDefNormal / 100)",
+   "simplified": "target.ExpDefNormal / 100",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "ExpRate",
+   "vars": [
+    "IMobStatusCalculator.get_ExpDefNormal",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "target.ExpDefNormal"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[LastDamageRate]",
+   "formula": "_t1246",
+   "simplified": "_t1246",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[DistanceResistRate]",
+   "formula": "PlayerAttackBase.CalcDistanceResistRate(playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.CalcDistanceResistRate(playerAction, mobAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "DistanceResistRate",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcDistanceResistRate",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[GemDamageRate]",
+   "formula": "PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "GemDamageRate",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[AbnormalDamageIncreaseRate]",
+   "formula": "CheckAbnormalDamageIncrease.out2(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "CheckAbnormalDamageIncrease.out2(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "AbnormalDamageIncreaseRate",
+   "vars": [
+    "CheckAbnormalDamageIncrease.out2",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCheck[GuardCheck]",
+   "formula": "((_t1247 * _t1250) / 100)",
+   "simplified": "_t1247 × _t1250 / 100",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) eq 2",
+   "op": "SetCheck",
+   "step": "GuardCheck",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "_t1247",
+   "simplified": "_t1247",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) eq 2",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[NormalAttackTreasureHuntLastDamageRate]",
+   "formula": "BonusManager.GetTreasureHuntLastDmgRateBonus(PlayerStatusBase.get_BonusManager())",
+   "simplified": "BonusManager.GetTreasureHuntLastDmgRateBonus(PlayerStatusBase.get_BonusManager())",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "NormalAttackTreasureHuntLastDamageRate",
+   "vars": [
+    "BonusManager.GetTreasureHuntLastDmgRateBonus",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_BonusManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[DamageLimit]",
+   "formula": "(int((target.MaxHp / 100)) gt 1 ? int((target.MaxHp / 100)) : 1)",
+   "simplified": "max(int(target.MaxHp / 100), 1)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND (GemCartBufferManager.ContainsBuffer(PlayerStatusBase.get_GemCartBuffManager(), 69) & 1) ne 0",
+   "op": "SetConstant",
+   "step": "DamageLimit",
+   "vars": [
+    "GemCartBufferManager.ContainsBuffer",
+    "IMobStatusCalculator.get_MaxHp",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "target.MaxHp"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[MinDamage]",
+   "formula": "CheckDamageLimit.min(this, mobAction)",
+   "simplified": "CheckDamageLimit.min(this, mobAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND (PlayerAttackBase.CheckDamageLimit(this, mobAction, out, out) & 1) ne 0 AND CheckDamageLimit.min(this, mobAction) ne -1",
+   "op": "AddConstant",
+   "step": "MinDamage",
+   "vars": [
+    "CheckDamageLimit.min",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckDamageLimit"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[MaxDamage]",
+   "formula": "CheckDamageLimit.max(this, mobAction)",
+   "simplified": "CheckDamageLimit.max(this, mobAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND (PlayerAttackBase.CheckDamageLimit(this, mobAction, out, out) & 1) ne 0 AND CheckDamageLimit.max(this, mobAction) ne -1",
+   "op": "AddConstant",
+   "step": "MaxDamage",
+   "vars": [
+    "CheckDamageLimit.max",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckDamageLimit"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SpecificWeaponLastDamage]",
+   "formula": "PlayerAttackBase.GetSpecificWeaponLastDamageRate(playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetSpecificWeaponLastDamageRate(playerAction, mobAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "AddRate",
+   "step": "SpecificWeaponLastDamage",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.GetSpecificWeaponLastDamageRate"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "UnannouncedDestination$$CheckMinimumBehavior",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), (new NormalAttackAction.<>c__DisplayClass72_1 + 16)",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), (new NormalAttackAction.<>c__DisplayClass72_1 + 16)",
+   "when": "(PlayerAttackBase.IsBlank(this) & 1) eq 0 AND (UnityEngine.Object.op_Inequality(actarAction, 0) & 1) ne 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "UnannouncedDestinationBuf$$CheckActive",
+   "formula": "new NormalAttackAction.<>c__DisplayClass72_1.unannouncedDestinationBuf",
+   "simplified": "new NormalAttackAction.<>c__DisplayClass72_1.unannouncedDestinationBuf",
+   "when": "(PlayerAttackBase.IsBlank(this) & 1) eq 0 AND (UnityEngine.Object.op_Inequality(actarAction, 0) & 1) ne 0 AND (UnannouncedDestination.CheckMinimumBehavior(PlayerActionManagerBase.get_PlayerStatus(), (new NormalAttackAction.<>c__DisplayClass72_1 + 16)) & 1) ne 0 AND (SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.UnannouncedDestination, (new NormalAttackAction.<>c__DisplayClass72_1 + 24)) & 1) ne 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.UnannouncedDestination",
+    "UnannouncedDestination.CheckMinimumBehavior",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "NormalAttackAction$$SetPowerWaveTake",
+   "formula": "this, EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type, EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type",
+   "simplified": "this, EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type, EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type",
+   "when": "(_t1178 & 1) ne 0",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "EquipItemData.get_Weapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillActionBase$$AddHitTakeAppendParam",
+   "formula": "this, TakeParameterType.TargetSize, int(!MobActionManagerBase.get_Size(((UnityEngine.Object.op_Inequality(target, 0) ? 0 : UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))) * 1.5))",
+   "simplified": "this, TakeParameterType.TargetSize, int(!MobActionManagerBase.get_Size(((UnityEngine.Object.op_Inequality(target, 0) ? 0 : UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))) * 1.5))",
+   "when": "(_t1178 & 1) ne 0",
+   "vars": [
+    "MobActionManagerBase.get_Size",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 16",
+   "simplified": "this, 16",
+   "when": "(_t1178 & 1) ne 0"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 16",
+   "simplified": "this, 16",
+   "when": "(_t1178 & 1) eq 0"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 1024",
+   "simplified": "this, 1024",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "NormalAttackAction$$SetEarthShatteringTake",
+   "formula": "this",
+   "simplified": "this",
+   "when": "(SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.EarthShattering) & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillId.EarthShattering"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 16",
+   "simplified": "this, 16",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 1024",
+   "simplified": "this, 1024",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "NormalAttackAction$$SetEarthShatteringTake",
+   "formula": "this",
+   "simplified": "this",
+   "when": "(_t1178 & 1) eq 0 AND WeaponType eq 12 AND subWeaponType eq 8 AND checkIchijhinnokaze eq 0 AND ((_t1179 * _t1179) + (_t1180 * _t1180)) ls (_t1181 * _t1181) AND isUnsheatheMode eq 0 AND (SkillBufferManager.ContainsBuffer(PlayerStatusBase.get_SkillBufferManager(), SkillId.EarthShattering) & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.ContainsBuffer",
+    "SkillId.EarthShattering"
+   ]
+  },
+  {
+   "method": "CalcBaseDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 16",
+   "simplified": "this, 16",
+   "when": "always"
+  },
+  {
+   "method": "CalcBaseDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSpecificWeaponBaseDamageRate",
+   "formula": "playerAction, mobAction, (hitType ne 2 ? (!PlayerAttackBase.CheckSkillIndividualFlag(this, 16) ? PlayerAttackBase.CheckSkillIndividualFlag(this, 16) : _t1195) : _t1199)",
+   "simplified": "playerAction, mobAction, (hitType ne 2 ? (!PlayerAttackBase.CheckSkillIndividualFlag(this, 16) ? PlayerAttackBase.CheckSkillIndividualFlag(this, 16) : _t1195) : _t1199)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CheckSkillIndividualFlag"
+   ]
+  },
+  {
+   "method": "CalcDef",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcPowerResistDamage",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcDef(mobBattleStatus), 1",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcDef(mobBattleStatus), 1",
+   "when": "PlayerStatusBase.GetWeaponTypeToEquipLimit(PlayerActionManagerBase.get_PlayerStatus()) gt 32 AND PlayerStatusBase.GetWeaponTypeToEquipLimit(PlayerActionManagerBase.get_PlayerStatus()) gt 128 AND PlayerStatusBase.GetWeaponTypeToEquipLimit(PlayerActionManagerBase.get_PlayerStatus()) ne 8 AND PlayerStatusBase.GetWeaponTypeToEquipLimit(PlayerActionManagerBase.get_PlayerStatus()) ne 128 AND PlayerStatusBase.GetWeaponTypeToEquipLimit(PlayerActionManagerBase.get_PlayerStatus()) eq 256",
+   "vars": [
+    "IMobStatusCalculator.CalcDef",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetWeaponTypeToEquipLimit"
+   ]
+  },
+  {
+   "method": "CalcDef",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcPowerResistDamage",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcDef(mobBattleStatus), 0",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcDef(mobBattleStatus), 0",
+   "when": "PlayerStatusBase.GetWeaponTypeToEquipLimit(PlayerActionManagerBase.get_PlayerStatus()) le 32 AND PlayerStatusBase.GetWeaponTypeToEquipLimit(PlayerActionManagerBase.get_PlayerStatus()) gt 8 AND PlayerStatusBase.GetWeaponTypeToEquipLimit(PlayerActionManagerBase.get_PlayerStatus()) ne 16 AND PlayerStatusBase.GetWeaponTypeToEquipLimit(PlayerActionManagerBase.get_PlayerStatus()) ne 32",
+   "vars": [
+    "IMobStatusCalculator.CalcDef",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetWeaponTypeToEquipLimit"
+   ]
+  },
+  {
+   "method": "CalcDef",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcMagicResistDamage",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcMdef(mobBattleStatus), _t1200",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcMdef(mobBattleStatus), _t1200",
+   "when": "always",
+   "vars": [
+    "IMobStatusCalculator.CalcMdef",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "CalcDef",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcPowerResistDamage",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcDef(mobBattleStatus), _t1202",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcDef(mobBattleStatus), _t1202",
+   "when": "always",
+   "vars": [
+    "IMobStatusCalculator.CalcDef",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillBufferManager$$AddSelfBuffer",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), new SamuraiArcheryBuf, 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), new SamuraiArcheryBuf, 0",
+   "when": "(MobActionManagerBase.get_IsDead(mobActionManager) & 1) eq 0 AND (SkillIndividualFlag & 8) ne 0 AND (_t1205 & 1) ne 0 AND checkSamuraiArchery eq 0 AND (SkillBufferManager.TryGetBuf(PlayerStatusBase.get_SkillBufferManager(), SkillId.SamuraiArchery, out) & 1) eq 0",
+   "vars": [
+    "MobActionManagerBase.get_IsDead",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.TryGetBuf",
+    "SkillId.SamuraiArchery"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 16",
+   "simplified": "this, 16",
+   "when": "(MobActionManagerBase.get_IsDead(mobActionManager) & 1) eq 0",
+   "vars": [
+    "MobActionManagerBase.get_IsDead"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "StormBlazerAction$$StackStormBlazer",
+   "formula": "playerActionManager, ((SkillIndividualFlag & 1) ne 0 ? 2 : 1)",
+   "simplified": "playerActionManager, ((SkillIndividualFlag & 1) ne 0 ? 2 : 1)",
+   "when": "(MobActionManagerBase.get_IsDead(mobActionManager) & 1) eq 0 AND (isFirstAttack & 1) ne 0 AND damageData.HitType ne 0",
+   "vars": [
+    "MobActionManagerBase.get_IsDead"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 0x2000",
+   "simplified": "this, 0x2000",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "call",
+   "name": "IchijhinnokazeBuf$$CheckNormalAttackIchijhinnokaze",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), (this + 376), (this + 380)",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcMotionSpeed",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus()",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus()",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) eq 10",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "call",
+   "name": "SkillBufferManager$$SetBufferEffectActive",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) eq 10",
+   "vars": [
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.ArrowSharpening"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcMotionSpeed",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus()",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus()",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) ne 10",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "call",
+   "name": "SkillBufferManager$$SetBufferEffectActive",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) ne 10",
+   "vars": [
+    "PlayerAttackBase.GetWeaponType",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.ArrowSharpening"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcMotionSpeed",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus()",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus()",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) ne 10",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "call",
+   "name": "SkillBufferManager$$SetBufferEffectActive",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "when": "PlayerAttackBase.GetWeaponType(actarAction, out) eq 10 AND PlayerAttackBase.GetSubWeaponType(actarAction) ne 10",
+   "vars": [
+    "PlayerAttackBase.GetSubWeaponType",
+    "PlayerAttackBase.GetWeaponType",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.ArrowSharpening"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$SetBufferEffectActive",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 1",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 1",
+   "when": "(SkillIndividualFlag & 2) eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.ArrowSharpening"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerSecondaryStatus$$CalcCritical",
+   "formula": "PlayerStatusBase.get_SecondaryStatus(), PlayerSecondaryStatus.GetCrtRate(PlayerStatusBase.get_SecondaryStatus()), PlayerSecondaryStatus.GetCrtConstant(PlayerStatusBase.get_SecondaryStatus(), ((SkillIndividualFlag & 2) eq 0 ? 1 : 0))",
+   "simplified": "PlayerStatusBase.get_SecondaryStatus(), PlayerSecondaryStatus.GetCrtRate(PlayerStatusBase.get_SecondaryStatus()), PlayerSecondaryStatus.GetCrtConstant(PlayerStatusBase.get_SecondaryStatus(), ((SkillIndividualFlag & 2) eq 0 ? 1 : 0))",
+   "when": "always",
+   "vars": [
+    "PlayerSecondaryStatus.GetCrtConstant",
+    "PlayerSecondaryStatus.GetCrtRate",
+    "PlayerStatusBase.get_SecondaryStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$RemoveBuffer",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.Sliding",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.Sliding",
+   "when": "(_t1214 & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.Sliding"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$RemoveBuffer",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.RepelBlade",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.RepelBlade",
+   "when": "(_t1215 & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.RepelBlade"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$AddSelfBuffer",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.Sliding], 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.Sliding], 0",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.Sliding"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$AddSelfBuffer",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.RepelBlade], 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.RepelBlade], 0",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.RepelBlade"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 2",
+   "simplified": "this, 2",
+   "when": "(AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) & 1) ne 0",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcHitReaction",
+   "formula": "this, NormalAttackAction.get_AttackType(), playerAction, mobAction, out",
+   "simplified": "this, NormalAttackAction.get_AttackType(), playerAction, mobAction, out",
+   "when": "always",
+   "vars": [
+    "NormalAttackAction.get_AttackType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "NormalAttackAction$$CalcBaseDamage",
+   "formula": "this, playerAction, mobAction, (MobActionManagerBase.get_SystemInvincible(mobAction) ? 0 : ((_t1216 & 1) eq 0 ? (PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) ? 2 : 1) : 2))",
+   "simplified": "this, playerAction, mobAction, (MobActionManagerBase.get_SystemInvincible(mobAction) ? 0 : ((_t1216 & 1) eq 0 ? (PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) ? 2 : 1) : 2))",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "ArkSaber$$CalcConstantDamage",
+   "formula": "playerAction, mobAction",
+   "simplified": "playerAction, mobAction",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "UnannouncedDestination$$CalcNormalAttackConstantDamage",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus()",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus()",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND checkUnannouncedDestination ne 0",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "NormalAttackAction$$CalcDef",
+   "formula": "this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction)",
+   "simplified": "this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0",
+   "vars": [
+    "MobActionManagerBase.get_MobBattleStatus",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcElementBonus",
+   "formula": "this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element, out",
+   "simplified": "this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element, out",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "vars": [
+    "IMobStatusCalculator.get_Element",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcNormalElementWeaponDamageResistRate",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), mobAction",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), mobAction",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode ne 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "NormalAttackAction$$CalcDef",
+   "formula": "this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction)",
+   "simplified": "this, playerAction, MobActionManagerBase.get_MobBattleStatus(mobAction)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0",
+   "vars": [
+    "MobActionManagerBase.get_MobBattleStatus",
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcElementBonus",
+   "formula": "this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element, out",
+   "simplified": "this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element, out",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "vars": [
+    "IMobStatusCalculator.get_Element",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcNormalElementWeaponDamageResistRate",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), mobAction",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), mobAction",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND isUnsheatheMode eq 0 AND ((MobActionManagerBase.get_SystemInvincible(mobAction) & 1) ne 0 ? 0 : ((_t1216 & 1) eq 0 ? ((PlayerAttackBase.checkCriticalPercent(this, _t1219, mobAction) & 1) ne 0 ? 2 : 1) : 2)) eq 2",
+   "vars": [
+    "MobActionManagerBase.get_SystemInvincible",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.checkCriticalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcElementBonus",
+   "formula": "this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element, out",
+   "simplified": "this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), target.Element, out",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "IMobStatusCalculator.get_Element",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcNormalElementWeaponDamageResistRate",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), mobAction",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), mobAction",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "NormalAttackAction$$CalcMercenaryDamage",
+   "formula": "this_tpl(), playerAction, _t1242",
+   "simplified": "this_tpl(), playerAction, _t1242",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 1024",
+   "simplified": "this, 1024",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$RemoveSelfBuffer",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.Shukuchi",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.Shukuchi",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND (_t1222 & 1) ne 0",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.Shukuchi"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 16",
+   "simplified": "this, 16",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$RemoveBuffer",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.SturmLeaper",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.SturmLeaper",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND (_t1223 & 1) ne 0",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.SturmLeaper"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcBufferLastDamageRate",
+   "formula": "this, PlayerActionManagerBase.get_PlayerStatus()",
+   "simplified": "this, PlayerActionManagerBase.get_PlayerStatus()",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "MobPropertyLifeReduceDamage$$CalcReduceLastDamageRate",
+   "formula": "TryGetProperties<object>.out2(mobAction, 90)",
+   "simplified": "TryGetProperties<object>.out2(mobAction, 90)",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND (EnemyMobActionManagerBase.TryGetProperties<MobPropertyLifeReduceDamage>(mobAction, 90, out) & 1) ne 0 AND TryGetProperties<object>.out2(mobAction, 90) ne 0",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$AddSelfBuffer",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.SturmLeaper], 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.SturmLeaper], 0",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.SturmLeaper"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcDistanceResistRate",
+   "formula": "playerAction, mobAction",
+   "simplified": "playerAction, mobAction",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcGemLastDamageRate",
+   "formula": "this, PlayerActionManagerBase.get_PlayerStatus()",
+   "simplified": "this, PlayerActionManagerBase.get_PlayerStatus()",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckAbnormalDamageIncrease",
+   "formula": "this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckDamageLimit",
+   "formula": "this, mobAction, out, out",
+   "simplified": "this, mobAction, out, out",
+   "when": "PlayerAttackBase.CalcHitReaction(this, NormalAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "vars": [
+    "NormalAttackAction.get_AttackType",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "NormalAttackAction$$CheckOneChance",
+   "formula": "this, playerAction",
+   "simplified": "this, playerAction",
+   "when": "_t1224 ne 0 AND _t1225 ne 1"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "NormalAttackAction$$CheckSecondArm",
+   "formula": "this, playerAction",
+   "simplified": "this, playerAction",
+   "when": "_t1224 ne 0 AND _t1225 ne 1"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "VenomInjectAction$$CalcPercent",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), (_t1224 eq 2 ? 1 : 0), _t1226",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), (_t1224 eq 2 ? 1 : 0), _t1226",
+   "when": "_t1224 ne 0 AND _t1225 ne 1 AND (SkillBufferManager.TryGetBuf<VenomInjectBuf>(PlayerStatusBase.get_SkillBufferManager(), 1001, out) & 1) ne 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData$$SetAbnormalType",
+   "formula": "new SkillActionBase.DamageData.CurrentSkillDamage, AbnormalType.Poison, 0",
+   "simplified": "new SkillActionBase.DamageData.CurrentSkillDamage, AbnormalType.Poison, 0",
+   "when": "_t1224 ne 0 AND _t1225 ne 1 AND (SkillBufferManager.TryGetBuf<VenomInjectBuf>(PlayerStatusBase.get_SkillBufferManager(), 1001, out) & 1) ne 0 AND (PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, VenomInjectAction.CalcPercent(PlayerActionManagerBase.get_PlayerStatus(), (_t1224 eq 2 ? 1 : 0), _t1226), playerAction) & 1) ne 0",
+   "vars": [
+    "AbnormalType.Poison",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "VenomInjectAction.CalcPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PoisonMixer$$CheckActive",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), out",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), out",
+   "when": "_t1224 ne 0 AND _t1225 ne 1 AND (SkillBufferManager.TryGetBuf<VenomInjectBuf>(PlayerStatusBase.get_SkillBufferManager(), 1001, out) & 1) ne 0 AND (PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, VenomInjectAction.CalcPercent(PlayerActionManagerBase.get_PlayerStatus(), (_t1224 eq 2 ? 1 : 0), _t1226), playerAction) & 1) ne 0",
+   "vars": [
+    "AbnormalType.Poison",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "VenomInjectAction.CalcPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$SetBufferEffectActive",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "when": "[targetDamageData+0x18] lo [[targetDamageData+0x10]+0x18]",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.ArrowSharpening"
+   ],
+   "residual": [
+    "+0x18]",
+    "+0x10]",
+    "+0x18]"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$SetBufferEffectActive",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "when": "[targetDamageData+0x18] hs [[targetDamageData+0x10]+0x18]",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.ArrowSharpening"
+   ],
+   "residual": [
+    "+0x18]",
+    "+0x10]",
+    "+0x18]"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "NormalAttackAction$$CheckOneChance",
+   "formula": "this, playerAction",
+   "simplified": "this, playerAction",
+   "when": "_t1224 ne 0 AND WeaponType eq 10 AND subWeaponType eq 10 AND powerWaveEnable eq 0 AND _t1225 ne 1"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "NormalAttackAction$$CheckSecondArm",
+   "formula": "this, playerAction",
+   "simplified": "this, playerAction",
+   "when": "_t1224 ne 0 AND WeaponType eq 10 AND subWeaponType eq 10 AND powerWaveEnable eq 0 AND _t1225 ne 1"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "VenomInjectAction$$CalcPercent",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), (_t1224 eq 2 ? 1 : 0), _t1226",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), (_t1224 eq 2 ? 1 : 0), _t1226",
+   "when": "_t1224 ne 0 AND WeaponType eq 10 AND subWeaponType eq 10 AND powerWaveEnable eq 0 AND _t1225 ne 1 AND (SkillBufferManager.TryGetBuf<VenomInjectBuf>(PlayerStatusBase.get_SkillBufferManager(), 1001, out) & 1) ne 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData$$SetAbnormalType",
+   "formula": "[NormalAttackAction.calcDualSwordDamageDate(this, _t1258, _t1261, damageCount)+0x38], AbnormalType.Poison, 0",
+   "simplified": "[NormalAttackAction.calcDualSwordDamageDate(this, _t1258, _t1261, damageCount)+0x38], AbnormalType.Poison, 0",
+   "when": "_t1224 ne 0 AND WeaponType eq 10 AND subWeaponType eq 10 AND powerWaveEnable eq 0 AND _t1225 ne 1 AND (SkillBufferManager.TryGetBuf<VenomInjectBuf>(PlayerStatusBase.get_SkillBufferManager(), 1001, out) & 1) ne 0 AND (PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, VenomInjectAction.CalcPercent(PlayerActionManagerBase.get_PlayerStatus(), (_t1224 eq 2 ? 1 : 0), _t1226), playerAction) & 1) ne 0",
+   "vars": [
+    "AbnormalType.Poison",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "VenomInjectAction.CalcPercent"
+   ],
+   "residual": [
+    "+0x38]"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PoisonMixer$$CheckActive",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), out",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), out",
+   "when": "_t1224 ne 0 AND WeaponType eq 10 AND subWeaponType eq 10 AND powerWaveEnable eq 0 AND _t1225 ne 1 AND (SkillBufferManager.TryGetBuf<VenomInjectBuf>(PlayerStatusBase.get_SkillBufferManager(), 1001, out) & 1) ne 0 AND (PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, VenomInjectAction.CalcPercent(PlayerActionManagerBase.get_PlayerStatus(), (_t1224 eq 2 ? 1 : 0), _t1226), playerAction) & 1) ne 0",
+   "vars": [
+    "AbnormalType.Poison",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "VenomInjectAction.CalcPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$SetBufferEffectActive",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "when": "_t1224 ne 0 AND WeaponType eq 10 AND subWeaponType eq 10 AND powerWaveEnable eq 0 AND [targetDamageData+0x18] lo [[targetDamageData+0x10]+0x18]",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.ArrowSharpening"
+   ],
+   "residual": [
+    "+0x18]",
+    "+0x10]",
+    "+0x18]"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$SetBufferEffectActive",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening, 0",
+   "when": "_t1224 ne 0 AND WeaponType eq 10 AND subWeaponType eq 10 AND powerWaveEnable eq 0 AND [targetDamageData+0x18] hs [[targetDamageData+0x10]+0x18]",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.ArrowSharpening"
+   ],
+   "residual": [
+    "+0x18]",
+    "+0x10]",
+    "+0x18]"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSpecificWeaponBaseDamageRate",
+   "formula": "playerAct, mobAct, MobActionManagerBase.get_MobBattleStatus(mobAct)",
+   "simplified": "playerAct, mobAct, MobActionManagerBase.get_MobBattleStatus(mobAct)",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_MobBattleStatus"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcPowerResistDamage",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAct)), 0",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAct)), 0",
+   "when": "isUnsheatheMode ne 0",
+   "vars": [
+    "IMobStatusCalculator.CalcDef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcPowerResistDamage",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAct)), 0",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAct)), 0",
+   "when": "isUnsheatheMode eq 0",
+   "vars": [
+    "IMobStatusCalculator.CalcDef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcElementBonus",
+   "formula": "this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), BonusManager.GetEquipElement(PlayerStatusBase.get_BonusManager(), EquipType.SubWeapon), target.Element, subElementWeak",
+   "simplified": "this, PlayerActionManagerBase.get_PlayerStatus(), NormalAttackAction.get_AttackType(), BonusManager.GetEquipElement(PlayerStatusBase.get_BonusManager(), EquipType.SubWeapon), target.Element, subElementWeak",
+   "when": "always",
+   "vars": [
+    "BonusManager.GetEquipElement",
+    "IMobStatusCalculator.get_Element",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "NormalAttackAction.get_AttackType",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_BonusManager",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcNormalElementWeaponDamageResistRate",
+   "formula": "PlayerActionManagerBase.get_PlayerStatus(), mobAct",
+   "simplified": "PlayerActionManagerBase.get_PlayerStatus(), mobAct",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "SkillActionBase$$CalcStablePercent",
+   "formula": "int((((correctHit & 1) ne 0 ? 0.5 : 1) * status.Stable))",
+   "simplified": "int((correctHit & 1 ≠ 0 ? 0.5 : 1) × status.Stable)",
+   "when": "always",
+   "vars": [
+    "IPlayerStatusCalculator.get_Stable",
+    "PlayerStatusBase.get_BattleStatus",
+    "status.Stable"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$RemoveBuffer",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), SkillId.SturmLeaper",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), SkillId.SturmLeaper",
+   "when": "(_t2049 & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.SturmLeaper"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcBufferLastDamageRate",
+   "formula": "this, PlayerActionManagerBase.get_PlayerStatus()",
+   "simplified": "this, PlayerActionManagerBase.get_PlayerStatus()",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "MobPropertyLifeReduceDamage$$CalcReduceLastDamageRate",
+   "formula": "TryGetProperties<object>.out2(mobAct, 90)",
+   "simplified": "TryGetProperties<object>.out2(mobAct, 90)",
+   "when": "IsInstanceOf(mobAct, GuildRaidBossMobActionManager) eq 1 AND (EnemyMobActionManagerBase.TryGetProperties<MobPropertyLifeReduceDamage>(mobAct, 90, out) & 1) ne 0 AND TryGetProperties<object>.out2(mobAct, 90) ne 0"
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "SkillBufferManager$$AddSelfBuffer",
+   "formula": "PlayerStatusBase.get_SkillBufferManager(), PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.SturmLeaper], 0",
+   "simplified": "PlayerStatusBase.get_SkillBufferManager(), PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.SturmLeaper], 0",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillId.SturmLeaper"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcDistanceResistRate",
+   "formula": "playerAct, mobAct",
+   "simplified": "playerAct, mobAct",
+   "when": "always"
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcGemLastDamageRate",
+   "formula": "this, PlayerActionManagerBase.get_PlayerStatus()",
+   "simplified": "this, PlayerActionManagerBase.get_PlayerStatus()",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckAbnormalDamageIncrease",
+   "formula": "this, mobAct, _t2058",
+   "simplified": "this, mobAct, _t2058",
+   "when": "always"
+  },
+  {
+   "method": "calcDualSwordDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CalcPlayerDamageUpLimit",
+   "formula": "this, _t2059, playerAct, mobAct",
+   "simplified": "this, _t2059, playerAct, mobAct",
+   "when": "always"
+  },
+  {
+   "method": "get_IsKnifeCombat",
+   "kind": "call",
+   "name": "PlayerAttackBase$$CheckSkillIndividualFlag",
+   "formula": "this, 1024",
+   "simplified": "this, 1024",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SamuraiArcheryBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "temporaryCount": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "10"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "HitRate",
+     "bonus_id": 11,
+     "formula": "(Count * Lv)",
+     "simplified": "Count × Lv",
+     "when": []
+    }
+   ],
+   "state": {},
+   "hooks": [
+    "CountUp",
+    "Next",
+    "get_Peak"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "UnannouncedDestinationBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool shortcut",
+     "fields": {
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv)) hi 0 OR ((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv)) ls 0",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "0",
+        "when": "((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv)) hi 0",
+        "by_level": null
+       },
+       {
+        "formula": "1",
+        "when": "((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv)) ls 0",
+        "by_level": 1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv)) hi 0 OR ((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv)) ls 0",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv)) hi 0 OR ((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv)) ls 0",
+        "by_level": -1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv))",
+        "when": "((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv)) hi 0 OR ((shortcut & 1) ne 0 ? ((12 - lv) + -2) : (12 - lv)) ls 0",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "BuffEffectActive": [
+     {
+      "method": "Active",
+      "formula": "1",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Active",
+    "CheckActive"
+   ],
+   "kind": "timed"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "SamuraiArcheryBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "10"
+    }
+   },
+   "attached_via": "caller2:SamuraiArcheryBuf$$.ctor<-NormalAttackAction$$Damaged",
+   "kind": "counter"
+  },
+  {
+   "class": "ShukuchiBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "400",
+     "simplified": "400",
+     "when": [
+      "BuffEffectActive ne 0",
+      "unannouncedDestination ne 0"
+     ]
+    },
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "(Lv + (Lv << 2))",
+     "simplified": "5 × Lv",
+     "when": [
+      "BuffEffectActive ne 0",
+      "unannouncedDestination eq 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "((Lv * Lv) >> 1)",
+     "simplified": "Lv × Lv ÷ 2",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "unannouncedDestination": [
+     {
+      "method": "ValidUnannouncedDestination",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "InvalidUnannouncedDestination",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "InvalidUnannouncedDestination",
+    "ValidUnannouncedDestination"
+   ],
+   "attached_via": "caller2:IchijhinnokazeAratame$$InvokeShukuchi<-NormalAttackAction$$calcPlayerToMobDamage",
+   "kind": "flag/param"
+  },
+  {
+   "class": "SwordMoveBuf",
+   "ctors": [
+    {
+     "sig": "bool damageInvalid",
+     "fields": {
+      "Level": [
+       {
+        "formula": "257",
+        "when": "always",
+        "by_level": 257
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "damageInvalid": [
+       {
+        "formula": "(damageInvalid & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "damageInvalid",
+     "simplified": "damageInvalid",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "damageInvalid": [
+     {
+      "method": "DamageInvalid",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "EndSwordMove",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckDamageInvalid",
+    "DamageInvalid",
+    "EndSwordMove"
+   ],
+   "attached_via": "caller2:SwordMove$$AddBuf<-NormalAttackAction$$ActionSkillEvent",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "AbnormalType.Poison",
+  "ArkSaber.CalcConstantDamage",
+  "BonusManager.GetEquipElement",
+  "BonusManager.GetTreasureHuntLastDmgRateBonus",
+  "CharacterActionManagerBase.get_Size",
+  "CheckAbnormalDamageIncrease.out2",
+  "CheckDamageLimit.max",
+  "CheckDamageLimit.min",
+  "EnemyMobActionManagerBase.TryGetProperties",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "EquipItemData.get_SubWeapon",
+  "EquipItemData.get_SubWeaponItemType",
+  "EquipItemData.get_Weapon",
+  "GemCartBufferManager.ContainsBuffer",
+  "GemCartBufferManager.GetNormalAttackRate",
+  "GetWeaponType.item",
+  "IMobStatusCalculator.CalcDef",
+  "IMobStatusCalculator.CalcMdef",
+  "IMobStatusCalculator.get_CutAttack",
+  "IMobStatusCalculator.get_Element",
+  "IMobStatusCalculator.get_ExpDefNormal",
+  "IMobStatusCalculator.get_Level",
+  "IMobStatusCalculator.get_MaxHp",
+  "IMobStatusCalculator.get_NecessaryHit",
+  "IPlayerStatusCalculator.GetNextAtkTime",
+  "IPlayerStatusCalculator.get_Atk",
+  "IPlayerStatusCalculator.get_CriticalDmg",
+  "IPlayerStatusCalculator.get_Lv",
+  "IPlayerStatusCalculator.get_Matk",
+  "IPlayerStatusCalculator.get_Stable",
+  "IPlayerStatusCalculator.get_SubAtk",
+  "ISwordMove.CheckSwordMoveStart",
+  "ISwordMove.get_IsSwordMoveStart",
+  "IchijhinnokazeAratame.GetNormalAttackSkillRateBonus",
+  "IchijhinnokazeBuf.CheckNormalAttackIchijhinnokaze",
+  "IchijhinnokazeBuf.GetNormalAttackConstantDamage",
+  "IchijhinnokazeBuf.GetNormalAttackSkillRate",
+  "MasteryId.AtkRate",
+  "MasteryId.SkillRate",
+  "MasteryId.Trigger",
+  "MathUtil.Color32ToInt32RGB",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "MobActionManagerBase.get_IsDead",
+  "MobActionManagerBase.get_MobBattleStatus",
+  "MobActionManagerBase.get_Size",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobActionManagerBase.get_transform",
+  "MobBuffBase.GetValue",
+  "MobBuffManager.TryGetBuff",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+  "NormalAttackAction.CalcBaseDamage",
+  "NormalAttackAction.CalcDef",
+  "NormalAttackAction.CalcMercenaryDamage",
+  "NormalAttackAction.CheckOneChance",
+  "NormalAttackAction.PowerWaveCheck",
+  "NormalAttackAction.RampageHitCheck",
+  "NormalAttackAction.calcDualSwordDamage",
+  "NormalAttackAction.calcRampageConstantDamage",
+  "NormalAttackAction.calcRampageSkillRate",
+  "NormalAttackAction.get_AttackType",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcBufferLastDamageRate",
+  "PlayerAttackBase.CalcDistanceResistRate",
+  "PlayerAttackBase.CalcElementBonus",
+  "PlayerAttackBase.CalcGemLastDamageRate",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.CalcMotionSpeed",
+  "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate",
+  "PlayerAttackBase.CalcPlayerDamageUpLimit",
+  "PlayerAttackBase.CalcPowerResistDamage",
+  "PlayerAttackBase.CalcStable",
+  "PlayerAttackBase.CheckAbnormalDamageIncrease",
+  "PlayerAttackBase.CheckDamageLimit",
+  "PlayerAttackBase.CheckHit",
+  "PlayerAttackBase.CheckSkillIndividualFlag",
+  "PlayerAttackBase.GetLimitDamage",
+  "PlayerAttackBase.GetSpecificWeaponLastDamageRate",
+  "PlayerAttackBase.GetSubWeaponType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.GetWeaponType",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.calcBaseDamage",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.checkCriticalPercent",
+  "PlayerAttackBase.get_Mp",
+  "PlayerSecondaryStatus.CalcCritical",
+  "PlayerSecondaryStatus.GetCrtConstant",
+  "PlayerSecondaryStatus.GetCrtRate",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.GetWeaponTypeToEquipLimit",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_BattleStatus",
+  "PlayerStatusBase.get_BonusManager",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "PlayerStatusBase.get_SecondaryStatus",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.CalcStablePercent",
+  "SkillActionBase.checkPercent",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "SkillBufferId.HitRate",
+  "SkillBufferId.NormalAttackConstantDamage",
+  "SkillBufferId.NormalAttackRate",
+  "SkillBufferId.Value",
+  "SkillBufferId.Value2",
+  "SkillBufferManager.ContainsBuffer",
+  "SkillBufferManager.GetSkillBufferParam",
+  "SkillBufferManager.TryGetBuf",
+  "SkillId.ArrowSharpening",
+  "SkillId.EarthShattering",
+  "SkillId.FinishingTouch",
+  "SkillId.KnifeCombat",
+  "SkillId.PairOfShields",
+  "SkillId.Rampage",
+  "SkillId.RepelBlade",
+  "SkillId.SamuraiArchery",
+  "SkillId.ShinobiWay",
+  "SkillId.Shukuchi",
+  "SkillId.Sliding",
+  "SkillId.SturmLeaper",
+  "SkillId.SwordMove",
+  "SkillId.Thieshankai",
+  "SkillId.TwinStorm",
+  "SkillId.UnannouncedDestination",
+  "SkillManager.GetSkillLv",
+  "SkillMasteryBase.GetMasteryParam",
+  "SwordMove.AddBuf",
+  "System.Collections.Generic.Dictionary.TryGetValue",
+  "System.Collections.Generic.Dictionary.TryGetValuePlayerStatusBase.get_SkillBufferManager",
+  "System.Collections.Generic.Dictionary.TryGetValuePlayerStatusBase.get_SkillManager",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuf.buf",
+  "TryGetBuff.buff",
+  "TryGetProperties.out2",
+  "TwinStormBuf.GetParam",
+  "UnannouncedDestination.CalcNormalAttackConstantDamage",
+  "UnannouncedDestination.CheckMinimumBehavior",
+  "UnannouncedDestinationBuf.CheckActive",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_position",
+  "VenomInjectAction.CalcPercent",
+  "status.Atk",
+  "status.CriticalDmg",
+  "status.Lv",
+  "status.Matk",
+  "status.Stable",
+  "status.SubAtk",
+  "target.CutAttack",
+  "target.Element",
+  "target.ExpDefNormal",
+  "target.Level",
+  "target.MaxHp",
+  "target.NecessaryHit"
+ ],
+ "residual": [
+  {
+   "where": "OnInitialize:<SkillIndividualFlag>k__BackingField",
+   "tokens": [
+    "+0x48]"
+   ]
+  },
+  {
+   "where": "calcPlayerToMobDamage:<SkillIndividualFlag>k__BackingField",
+   "tokens": [
+    "?undef"
+   ]
+  },
+  {
+   "where": "calcPlayerToMobDamage:<SkillIndividualFlag>k__BackingField",
+   "tokens": [
+    "?undef"
+   ]
+  },
+  {
+   "where": "calcPlayerToMobDamage:SkillBufferManager$$SetBufferEffectActive",
+   "tokens": [
+    "+0x18]",
+    "+0x10]",
+    "+0x18]"
+   ]
+  },
+  {
+   "where": "calcPlayerToMobDamage:SkillBufferManager$$SetBufferEffectActive",
+   "tokens": [
+    "+0x18]",
+    "+0x10]",
+    "+0x18]"
+   ]
+  },
+  {
+   "where": "calcPlayerToMobDamage:SkillDamageData$$SetAbnormalType",
+   "tokens": [
+    "+0x38]"
+   ]
+  },
+  {
+   "where": "calcPlayerToMobDamage:SkillBufferManager$$SetBufferEffectActive",
+   "tokens": [
+    "+0x18]",
+    "+0x10]",
+    "+0x18]"
+   ]
+  },
+  {
+   "where": "calcPlayerToMobDamage:SkillBufferManager$$SetBufferEffectActive",
+   "tokens": [
+    "+0x18]",
+    "+0x10]",
+    "+0x18]"
+   ]
+  }
+ ]
+}

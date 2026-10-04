@@ -1,0 +1,617 @@
+{
+ "version": 1,
+ "uid": 621,
+ "name_th": "การิวเท็นเซ",
+ "name_en": "FinishingTouch",
+ "tree": "MononofuSkill",
+ "category": "Attack",
+ "max_level": 150,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "FinishingTouchAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 621,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetSubWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetSubWeaponType.item(actarAction))",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND mainWeapon == Bow OR IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND mainWeapon == Bow",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "critical",
+   "formula": "((Lv * 0xfffffff6) + 110)",
+   "simplified": "0xfffffff6 × Lv + 110",
+   "when": "always",
+   "by_level": [
+    100,
+    90,
+    80,
+    70,
+    60,
+    50,
+    40,
+    30,
+    20,
+    10
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + (Lv << 2)) << 2)",
+   "simplified": "20 × Lv",
+   "when": "always",
+   "by_level": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140,
+    160,
+    180,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND mainWeapon != Bow OR IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND mainWeapon != Bow",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((skillRate + ((PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[621].Count + (PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[621].Count << 2)) << 1)) * PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[621].Count)",
+   "simplified": "((skillRate + ((PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[621].Count + (PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[621].Count << 2)) << 1)) * PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[621].Count)",
+   "when": "PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[621].Count ge 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(fixAddDamage * 10)",
+   "simplified": "10 × fixAddDamage",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Breaking",
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "resist",
+   "formula": "WeirdnessOfGodBuf.GetParam(50)",
+   "simplified": "WeirdnessOfGodBuf.GetParam(50)",
+   "when": "always",
+   "vars": [
+    "WeirdnessOfGodBuf.GetParam"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "critical",
+   "formula": "(critical - WeirdnessOfGodBuf.GetParam(50))",
+   "simplified": "critical - WeirdnessOfGodBuf.GetParam(50)",
+   "when": "always",
+   "vars": [
+    "WeirdnessOfGodBuf.GetParam"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "(fixAddDamage * 10)",
+   "simplified": "10 × fixAddDamage",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking)",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Breaking",
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Breaking)",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Breaking",
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "AddSwordSoul",
+   "kind": "call",
+   "name": "FinishingTouchBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1))",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.FinishingTouch",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "AddSwordSoul",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new FinishingTouchBuf)",
+   "simplified": "AddSelfBuffer(new, FinishingTouchBuf)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.FinishingTouch",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass23_0::<ActionPreparation>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(621)",
+   "simplified": "RemoveSelfBuffer(621)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass23_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(622)",
+   "simplified": "RemoveSelfBuffer(622)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "FinishingTouchBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "countType": [
+       {
+        "formula": "2",
+        "when": "always",
+        "by_level": 2
+       }
+      ],
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "10",
+        "when": "always",
+        "by_level": 10
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "lastDamageRate",
+     "simplified": "lastDamageRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "FirstAttackRate",
+     "bonus_id": 45,
+     "formula": "firstAttackRate",
+     "simplified": "firstAttackRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "atkMpRecovery",
+     "simplified": "atkMpRecovery",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "damageCut",
+     "simplified": "damageCut",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "ActiveFinishingTouch",
+      "formula": "Count",
+      "when": "always"
+     },
+     {
+      "method": "ActiveTenjhoTengeMusouSword",
+      "formula": "Count",
+      "when": "always"
+     },
+     {
+      "method": "OnEnd",
+      "formula": "0",
+      "when": "Count ne 0"
+     }
+    ],
+    "lastDamageRate": [
+     {
+      "method": "Next",
+      "formula": "(Count << 1)",
+      "when": "isActiveBuffer eq 0"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "(Count << 1)",
+      "when": "isActiveBuffer eq 0"
+     },
+     {
+      "method": "ActiveFinishingTouch",
+      "formula": "20",
+      "when": "always"
+     },
+     {
+      "method": "OnEnd",
+      "formula": "(Count << 1)",
+      "when": "Count ne 0"
+     }
+    ],
+    "isActiveBuffer": [
+     {
+      "method": "ActiveFinishingTouch",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "ActiveTenjhoTengeMusouSword",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "OnEnd",
+      "formula": "0",
+      "when": "Count ne 0"
+     }
+    ],
+    "firstAttackRate": [
+     {
+      "method": "ActiveFinishingTouch",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "ActiveTenjhoTengeMusouSword",
+      "formula": "(((status.Dex + status.Str) // 51) lt 20 ? ((status.Dex + status.Str) // 51) : 20)",
+      "when": "always"
+     }
+    ],
+    "atkMpRecovery": [
+     {
+      "method": "ActiveFinishingTouch",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "ActiveTenjhoTengeMusouSword",
+      "formula": "20",
+      "when": "always"
+     }
+    ],
+    "Count": [
+     {
+      "method": "ActiveFinishingTouch",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "ActiveTenjhoTengeMusouSword",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "ActiveResetIchijhinnokaze",
+      "formula": "0",
+      "when": "isActiveBuffer ne 0"
+     }
+    ],
+    "countType": [
+     {
+      "method": "ActiveFinishingTouch",
+      "formula": "5",
+      "when": "always"
+     },
+     {
+      "method": "ActiveTenjhoTengeMusouSword",
+      "formula": "5",
+      "when": "always"
+     },
+     {
+      "method": "OnEnd",
+      "formula": "2",
+      "when": "Count ne 0"
+     }
+    ],
+    "damageCut": [
+     {
+      "method": "ActiveFinishingTouch",
+      "formula": "(Count + (Count << 2))",
+      "when": "always"
+     },
+     {
+      "method": "ActiveTenjhoTengeMusouSword",
+      "formula": "(Count + (Count << 2))",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "ActiveFinishingTouch",
+    "ActiveResetIchijhinnokaze",
+    "ActiveTenjhoTengeMusouSword",
+    "Next",
+    "NextSkip",
+    "OnEnd"
+   ],
+   "kind": "counter"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "FinishingTouchBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:FinishingTouchBuf$$.ctor<-FinishingTouchAction$$AddSwordSoul",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "FinishingTouchAction.AddSwordSoul",
+  "IchijhinnokazeAttackAction.<>c__DisplayClass117_0.<AddMotionEndFinishingTouchBuf>b__0",
+  "NormalAttackAction.<>c__DisplayClass81_0.<calcPlayerToMobDamage>b__0",
+  "PlayerAttackBase.<>c__DisplayClass113_0.<ActionStart>b__1",
+  "PlayerAttackBase.CalcBufferLastDamageRate",
+  "RepelBladeAction.<>c__DisplayClass30_0.<ActionStart>b__1",
+  "ShadowlessSlashAction.ActionSkillEvent",
+  "TenjhoTengeMusouSwordAction.ActionStart",
+  "TenjhoTengeMusouSwordAction.CheckActive"
+ ],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Breaking",
+  "GetSubWeaponType.item",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Dex",
+  "IPlayerStatusCalculator.get_Str",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.Count",
+  "SkillBufferId.FirstAttackRate",
+  "SkillBufferId.MobLastDamageRateBuf",
+  "SkillBufferId.Value",
+  "SkillId.FinishingTouch",
+  "SkillManager.GetSkillLv",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "WeirdnessOfGodBuf.GetParam"
+ ],
+ "residual": []
+}

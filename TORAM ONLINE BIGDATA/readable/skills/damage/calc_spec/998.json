@@ -1,0 +1,68 @@
+{
+ "version": 1,
+ "uid": 998,
+ "name_th": "ละทิ้ง",
+ "name_en": "Abandonment",
+ "tree": "AssassinSkill",
+ "category": "Mastery",
+ "max_level": 125,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "Abandonment",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "Abandonment",
+  "bonuses": {
+   "LastDmgRate": {
+    "id": 8,
+    "expr": "(Lv + (Lv << 2))",
+    "by_level": [
+     5,
+     10,
+     15,
+     20,
+     25,
+     30,
+     35,
+     40,
+     45,
+     50
+    ]
+   },
+   "Hit": {
+    "id": 20,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

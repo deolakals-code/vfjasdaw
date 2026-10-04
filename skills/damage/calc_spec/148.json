@@ -1,0 +1,368 @@
+{
+ "version": 1,
+ "uid": 148,
+ "name_th": "แนบพิงภูเขา",
+ "name_en": "Thieshankai",
+ "tree": "MarshallSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "ThieshankaiAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 148,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(7)",
+   "simplified": "MathUtil.DisplayMeterToDistance(7)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 25) + 750) / 100)",
+   "simplified": "(25 × Lv + 750) / 100",
+   "when": "mainWeapon == Knuckle",
+   "by_level": [
+    7.75,
+    8.0,
+    8.25,
+    8.5,
+    8.75,
+    9.0,
+    9.25,
+    9.5,
+    9.75,
+    10.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "500",
+   "simplified": "500",
+   "when": "always",
+   "by_level": 500
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "stunPercent",
+   "formula": "100",
+   "simplified": "100",
+   "when": "mainWeapon == Knuckle",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv * 25) + 750) + System.Math.Max(status.Agi, status.Dex)) / 100)",
+   "simplified": "(25 × Lv + System.Math.Max(status.Agi, status.Dex) + 750) / 100",
+   "when": "mainWeapon != Knuckle AND mainWeapon == Null OR mainWeapon != Knuckle AND mainWeapon != Null",
+   "vars": [
+    "System.Math.Max",
+    "status.Agi",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "stunPercent",
+   "formula": "(((Lv << 3) - Lv) + 30)",
+   "simplified": "7 × Lv + 30",
+   "when": "mainWeapon != Knuckle AND mainWeapon == Null",
+   "by_level": [
+    37,
+    44,
+    51,
+    58,
+    65,
+    72,
+    79,
+    86,
+    93,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "stunPercent",
+   "formula": "((Lv << 3) - Lv)",
+   "simplified": "7 × Lv",
+   "when": "mainWeapon != Knuckle AND mainWeapon != Null",
+   "by_level": [
+    7,
+    14,
+    21,
+    28,
+    35,
+    42,
+    49,
+    56,
+    63,
+    70
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(3, stunPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(3, stunPercent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(3, 0)",
+   "simplified": "SetAbnormalType(3, 0)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Stun",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "OnFailedAddAbnormalState",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(PlayerAttackBase.get_ActionID(), Lv, (AbnormalStateManager.GetEffectTime(MobActionManagerBase.get_AbnormalStateManager(mobActionManager), AbnormalType.Stun) + AbnormalStateManager.GetResistTime(MobActionManagerBase.get_AbnormalStateManager(mobActionManager), AbnormalType.Stun)))",
+   "simplified": "AddSelfBuffer(PlayerAttackBase.get_ActionID(), Lv, AbnormalStateManager.GetEffectTime(A, AbnormalType.Stun) + AbnormalStateManager.GetResistTime(A, AbnormalType.Stun))",
+   "when": "(AbnormalStateManager.GetEffectTime(MobActionManagerBase.get_AbnormalStateManager(mobActionManager), AbnormalType.Stun) + AbnormalStateManager.GetResistTime(MobActionManagerBase.get_AbnormalStateManager(mobActionManager), AbnormalType.Stun)) hi 0 AND type eq 3 OR (AbnormalStateManager.GetEffectTime(MobActionManagerBase.get_AbnormalStateManager(mobActionManager), AbnormalType.Stun) + AbnormalStateManager.GetResistTime(MobActionManagerBase.get_AbnormalStateManager(mobActionManager), AbnormalType.Stun)) hi TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), PlayerAttackBase.get_ActionID()).LeftTime AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), PlayerAttackBase.get_ActionID()) ne 0 AND type eq 3",
+   "defs": [
+    [
+     "A",
+     "MobActionManagerBase.get_AbnormalStateManager(mobActionManager)"
+    ]
+   ],
+   "vars": [
+    "AbnormalStateManager.GetEffectTime",
+    "AbnormalStateManager.GetResistTime",
+    "AbnormalType.Stun",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ThieshankaiBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, float second, bool isMainKnuckle",
+     "fields": {
+      "triggerRate": [
+       {
+        "formula": "((isMainKnuckle & 1) ne 0 ? 200 : 150)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "second",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "Max": [
+       {
+        "formula": "int((500 / Lv))",
+        "when": "always",
+        "by_level": [
+         500,
+         250,
+         166,
+         125,
+         100,
+         83,
+         71,
+         62,
+         55,
+         50
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "(self & 1)",
+       "500"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "((Count * Lv) lt 500 ? (Count * Lv) : 500)",
+     "simplified": "min(Count × Lv, 500)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value2",
+     "bonus_id": 51,
+     "formula": "triggerRate",
+     "simplified": "triggerRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "name",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "NormalAttackAction.CheckOneChance"
+ ],
+ "variables": [
+  "AbnormalStateManager.GetEffectTime",
+  "AbnormalStateManager.GetResistTime",
+  "AbnormalType.Stun",
+  "IPlayerStatusCalculator.get_Agi",
+  "IPlayerStatusCalculator.get_Dex",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferId.Count",
+  "SkillBufferId.Value",
+  "SkillBufferId.Value2",
+  "System.Math.Max",
+  "TryGetBuf.out2",
+  "UnityEngine.Time.get_deltaTime",
+  "status.Agi",
+  "status.Dex"
+ ],
+ "residual": []
+}

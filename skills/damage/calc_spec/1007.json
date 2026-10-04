@@ -1,0 +1,30 @@
+{
+ "version": 1,
+ "uid": 1007,
+ "name_th": "นักปรุงยาพิษ",
+ "name_en": "PoisonMixer",
+ "tree": "AssassinSkill",
+ "category": "Mastery",
+ "max_level": 285,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "PoisonMixer",
+ "proration": null,
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "PoisonMixer",
+  "bonuses": {}
+ },
+ "hooks": [
+  "DeathReceptionAction.ActionPreparation"
+ ],
+ "variables": [],
+ "residual": []
+}

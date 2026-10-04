@@ -1,0 +1,115 @@
+{
+ "note": "item stat lines that move no Details row (missing-data/09 items 3 and 4); Code, not checked in game",
+ "lines": {
+  "bDamageLimit": {
+   "id": 193,
+   "kind": "value",
+   "detailsRow": null,
+   "summary": "NOT a condition marker (gear.json limitRules `unknown` was wrong). It is a number: `EnemyMobActionManagerBase.GemDamageLimit(damage, playerActionManager)` clamps one hit on a High Raid subjugation target.",
+   "formula": "if value != 0 and FieldManager.RoomType == 28 (FieldRoomType.HighRaid) and HighRaidRoomData.CheckSubjugationTarget(target mob unique id, the parent mob when the target is a dummy): damage = min(damage, int(value / 10 / 100 * target MaxHp))",
+   "inputs": [
+    "BonusManager.GetBonusValue(bDamageLimit) = sum of the lines",
+    "room type High Raid",
+    "target is a subjugation target",
+    "target MaxHp"
+   ],
+   "reader": "EnemyMobActionManagerBase.GemDamageLimit",
+   "via": "BonusManager.GetBonusValue(w1 = 193)",
+   "label": "Code",
+   "calculator": "no gear condition to evaluate: drop `limit_assumed`; the line is a per-hit damage cap (fraction value/1000 of the target's Max HP) that only exists in High Raid",
+   "accessorReaders": [
+    "EnemyMobActionManagerBase$$GemDamageLimit -> GetBonusValue(w1)"
+   ]
+  },
+  "bElement": {
+   "id": 65,
+   "kind": "value (element id of the weapon)",
+   "detailsRow": "MaxMp (only when the main weapon element is Mana 8, see mastery_reach.json weaponElement) ",
+   "summary": "Read through BonusManager.GetEquipElement(slot) = the value of the slot's bElement line (player_status/bonus_overrides.py). Consumers: the element of every attack and of the damage resist (PlayerAttackBase.InitializeElement / GetWeaponElementType / CalcNormalElementWeaponDamageResistRate), skill OnInitialize of ~150 action classes (PlayerStatusBase.GetEquipElement), ElementReach.TryGetWeaponElement, ChargingAction.CalcChargingCastTime, NormalAttackAction.calcDualSwordDamage and PlayerSecondaryStatus.CalcBaseMaxMp.",
+   "reader": "BonusManager.GetEquipElement",
+   "via": "BonusManager.GetEquipElement(slot) (not an accessor with a BonusType argument, so bonus_readers.py shows none)",
+   "label": "Code",
+   "calculator": "already an input (weaponElement / subWeaponElement); no further Details row",
+   "accessorReaders": []
+  },
+  "bItemDelay": {
+   "id": 140,
+   "kind": "equipment buffer (class ItemDelay, cap 500)",
+   "detailsRow": null,
+   "summary": "Item use delay: `MainPlayer.CalcItemDelay(time, bonus)` (and MobaPlayer.CalcItemDelay): with bonus=true and the buffer present, itemDelay = nowItemDelayTime = max(time * (1 + GetParam(140) / -10 / 100), 5); otherwise time. GetParam returns Value, the summed line value capped at 500, so value 100 = -10 % delay.",
+   "formula": "max(time * (1 - value / 1000), 5)",
+   "reader": "MainPlayer.CalcItemDelay",
+   "via": "EquipBuffManager.IsEquipBuff / GetParam (w1 = 140)",
+   "label": "Code",
+   "calculator": "a result section 'item delay' could show time * (1 - min(sum, 500) / 1000); the item base delay (`time`) comes from the item master",
+   "accessorReaders": [
+    "MainPlayer$$CalcItemDelay -> GetParam(w1)",
+    "MainPlayer$$CalcItemDelay -> IsEquipBuff(w1)",
+    "MobaPlayer$$CalcItemDelay -> GetParam(w1)",
+    "MobaPlayer$$CalcItemDelay -> IsEquipBuff(w1)"
+   ]
+  },
+  "bHelpMaster": {
+   "id": 143,
+   "kind": "equipment buffer (class HelpMaster, cap 10)",
+   "detailsRow": null,
+   "summary": "In PlayerBattleManager.OnSkillActionStart: when EquipBuffManager.IsVilidEquipBuff(143), value = GetParam(143) (the summed line value capped at 10) is converted to float and passed to FirstAidBuf.ValidInvincible(time), which sets LeftTime = time and the invincible flag (_flag |= 0x1000) on the First Aid buff that the same function adds with SkillBufferManager.AddSelfBuffer.",
+   "formula": "First Aid buff invincibility time = min(sum of lines, 10) (seconds, Inferred unit: LeftTime is seconds everywhere else)",
+   "reader": "PlayerBattleManager.OnSkillActionStart",
+   "via": "EquipBuffManager.IsVilidEquipBuff / GetParam (w1 = 143)",
+   "label": "Code (trigger condition of the surrounding branch: Inferred)",
+   "calculator": "a result section can show 'First Aid invincibility: min(sum, 10) s'",
+   "accessorReaders": [
+    "PlayerBattleManager$$OnSkillActionStart -> GetParam(w1)",
+    "PlayerBattleManager$$OnSkillActionStart -> IsVilidEquipBuff(w1)"
+   ]
+  },
+  "bGemDustDropRate": {
+   "id": 177,
+   "kind": "value",
+   "detailsRow": null,
+   "summary": "No function in libil2cpp reads it: not through any BonusManager / EquipBuffManager accessor with the constant 177 (bonus_readers.py), and the neighbouring drop lines bGemDropFixing (190) have none either. bExpRate (PlayerSecondaryStatus.GetExpBonus) and bDropRate (GetDropBonus) are read by the client for display; the gem dust drop roll is a drop rate, which PROJECT.md 'Hard limits' lists as server-side.",
+   "reader": null,
+   "via": null,
+   "label": "Code (absence); consumer = server: Inferred",
+   "calculator": "show the line value only; no client formula exists",
+   "accessorReaders": []
+  },
+  "bMagicBarrier": {
+   "id": 160,
+   "kind": "equipment buffer (class MagicBarrier)",
+   "detailsRow": "none as a stat; the Details panel lists a running barrier (UIPlayerStatusDetailPanel.AddBarrierStatus reads skill buffers 2 / 3)",
+   "summary": "Creates the barrier skill buffer 3 (SkillBufferManager.TryGetBuf(.., 3)). It absorbs damage of MobMagicAttack in MobAttackBase.CalcBarrier(damage, playerAction, mobAction); MobAttackBase.GetBarrierType maps the attack class to the line (MobNormalAttack -> 159, MobMagicAttack -> 160, MobMaxHPRateAttack / MobCurrentHPRateAttack -> 161) and GetBarrierBuf to the buffer (2, 3, 4). Also read in MobAttackPlayerSelfDestruct.calcMobToPlayerDamage via EquipBuffManager.CalcBuff.",
+   "reader": "MobAttackBase.CalcBarrier / GetBarrierBuf / GetBarrierType",
+   "via": "EquipBuffManager.CalcBuff(160) (self-destruct) and the skill buffer",
+   "label": "Code (absorb rule: the buffer's remaining value is returned by a virtual slot, summary Inferred)",
+   "calculator": "barrier pools; only act when a mob attack hits",
+   "accessorReaders": [
+    "MobAttackPlayerSelfDestruct$$calcMobToPlayerDamage -> CalcBuff(w1)",
+    "MobAttackPlayerSelfDestruct$$calcMobToPlayerDamage -> IsEquipBuff(w1)"
+   ]
+  },
+  "bPhysicalBarrier": {
+   "id": 159,
+   "kind": "equipment buffer (class PhysicalBarrier)",
+   "detailsRow": "none as a stat (see bMagicBarrier)",
+   "summary": "Same mechanism as bMagicBarrier for MobNormalAttack: skill buffer 2, CalcBarrier / GetBarrierBuf / GetBarrierType (159). No constant-id accessor read exists; the equipment buffer's Calc hook creates / refreshes the skill buffer (equip_buffers.json id 159, hook Calc reads TryGetBuf(1098)).",
+   "reader": "MobAttackBase.CalcBarrier",
+   "via": "SkillBufferManager.TryGetBuf(2)",
+   "label": "Code",
+   "calculator": "barrier pool; acts when hit",
+   "accessorReaders": []
+  },
+  "bRateBarrier": {
+   "id": 161,
+   "kind": "equipment buffer (rate barrier)",
+   "detailsRow": "none as a stat (see bMagicBarrier)",
+   "summary": "Same mechanism for MobMaxHPRateAttack and MobCurrentHPRateAttack: skill buffer 4, selected by MobAttackBase.GetBarrierType (161).",
+   "reader": "MobAttackBase.CalcBarrier",
+   "via": "SkillBufferManager.TryGetBuf(4)",
+   "label": "Code",
+   "calculator": "barrier pool; acts when hit",
+   "accessorReaders": []
+  }
+ }
+}

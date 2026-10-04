@@ -1,0 +1,268 @@
+{
+ "version": 1,
+ "uid": 1006,
+ "name_th": "แอสเซาท์เชส",
+ "name_en": "AssaultChase",
+ "tree": "AssassinSkill",
+ "category": "Buffer",
+ "max_level": 285,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "AssaultChaseAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1006,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "AssaultChaseBuf..ctor",
+   "formula": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new AssaultChaseBuf, Id)",
+   "simplified": "AddSelfBuffer(new, AssaultChaseBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "AssaultChaseBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase status",
+     "fields": {
+      "shortRangeRate": [
+       {
+        "formula": "0",
+        "when": "EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 18 OR EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 23 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 18 OR EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 18 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 23",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "180",
+        "when": "EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 18 OR EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 23 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 18 OR EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 18 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 23",
+        "by_level": 180
+       }
+      ],
+      "isShortRangeRateBonus": [
+       {
+        "formula": "1",
+        "when": "EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 18 OR EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 23 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 18",
+        "by_level": 1
+       },
+       {
+        "formula": "0",
+        "when": "EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 18 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 23",
+        "by_level": null
+       }
+      ],
+      "avoidConsumptionReductionValue": [
+       {
+        "formula": "int((((Lv * 2.5) + 25) * 100))",
+        "when": "EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 18 OR EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 23 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 18",
+        "by_level": [
+         2750,
+         3000,
+         3250,
+         3500,
+         3750,
+         4000,
+         4250,
+         4500,
+         4750,
+         5000
+        ]
+       },
+       {
+        "formula": "int(((Lv * 2.5) * 100))",
+        "when": "EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 18 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 23",
+        "by_level": [
+         250,
+         500,
+         750,
+         1000,
+         1250,
+         1500,
+         1750,
+         2000,
+         2250,
+         2500
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "avoidConsumptionReductionValue",
+     "simplified": "avoidConsumptionReductionValue",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "ShortRangeRate",
+     "bonus_id": 66,
+     "formula": "shortRangeRate",
+     "simplified": "shortRangeRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "shortRangeRate": [
+     {
+      "method": "AvoidSuccess",
+      "formula": "(((isShortRangeRateBonus ne 0 ? 2 : 1) + shortRangeRate) lt 10 ? ((isShortRangeRateBonus ne 0 ? 2 : 1) + shortRangeRate) : 10)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "AvoidSuccess"
+   ],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "AssaultChaseBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:AssaultChaseBuf$$.ctor<-AssaultChaseAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "AssaultChaseAction.CheckAssaultChase"
+ ],
+ "variables": [
+  "EquipItemData.get_SubWeaponItemType",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.ShortRangeRate",
+  "SkillBufferId.Value",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

@@ -1,0 +1,840 @@
+{
+ "version": 1,
+ "uid": 105,
+ "name_th": "เวทมนตร์:อิมแพ็ค",
+ "name_en": "MagicImpact",
+ "tree": "MagicSkill",
+ "category": "Attack",
+ "max_level": 70,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "MagicImpactAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 105,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isGemCart",
+   "formula": "(hasGemCart(403) & 1)",
+   "simplified": "hasGemCart(403) & 1",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isUseMagicImpact",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND hasBuff(105) OR (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND hasBuff(105) OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND hasBuff(105)",
+   "by_level": 1,
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "Lv",
+   "simplified": "Lv",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND hasBuff(105) OR (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND hasBuff(105) OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND hasBuff(105)",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND hasBuff(105) OR (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND hasBuff(105) OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND hasBuff(105)",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) << 1) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND hasBuff(105) OR (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND hasBuff(105) OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND hasBuff(105)",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int((MathUtil.DisplayMeterToDistance(rad) * 10))",
+   "simplified": "int(10 × MathUtil.DisplayMeterToDistance(rad))",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND hasBuff(105) OR (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND hasBuff(105) OR !hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 3 - int(0.25 × Lv + 0.5), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND hasBuff(105) OR (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND hasBuff(105) OR !hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isEnchantStartMotion",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND hasBuff(105) OR !hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND hasBuff(105)",
+   "by_level": 0,
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 25) + 250) + 250)",
+   "simplified": "25 × Lv + 500",
+   "when": "!hasBuff(105) AND (ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) & 256) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR !hasBuff(105) AND (ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) & 256) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+   "by_level": [
+    525,
+    550,
+    575,
+    600,
+    625,
+    650,
+    675,
+    700,
+    725,
+    750
+   ],
+   "vars": [
+    "ExSkillSpellTuning.GetEnabledConfig",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "!hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) eq 0 OR !hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 OR !hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "(((Lv + (Lv << 2)) + 15) + 35)",
+   "simplified": "5 × Lv + 50",
+   "when": "!hasBuff(105) AND (ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) & 256) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR !hasBuff(105) AND (ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) & 256) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR !hasBuff(105) AND (ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) & 256) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ],
+   "vars": [
+    "ExSkillSpellTuning.GetEnabledConfig",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int((MathUtil.DisplayMeterToDistance((rad + 1)) * 10))",
+   "simplified": "int(10 × MathUtil.DisplayMeterToDistance(rad + 1))",
+   "when": "!hasBuff(105) AND (ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) & 256) ne 0 AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR !hasBuff(105) AND (ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) & 256) ne 0 AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR !hasBuff(105) AND (ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) & 256) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+   "vars": [
+    "ExSkillSpellTuning.GetEnabledConfig",
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 25) + 250)",
+   "simplified": "25 × Lv + 250",
+   "when": "!hasBuff(105) AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) eq 0 OR !hasBuff(105) AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 OR !hasBuff(105) AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0",
+   "by_level": [
+    275,
+    300,
+    325,
+    350,
+    375,
+    400,
+    425,
+    450,
+    475,
+    500
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "((Lv + (Lv << 2)) + 15)",
+   "simplified": "5 × Lv + 15",
+   "when": "!hasBuff(105) AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) eq 0 OR !hasBuff(105) AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 OR !hasBuff(105) AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0",
+   "by_level": [
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(Lv * 25)",
+   "simplified": "25 × Lv",
+   "when": "!hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) eq 0 OR !hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 OR !hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0",
+   "by_level": [
+    25,
+    50,
+    75,
+    100,
+    125,
+    150,
+    175,
+    200,
+    225,
+    250
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "(((Lv + (Lv << 2)) + 40) + 35)",
+   "simplified": "5 × Lv + 75",
+   "when": "!hasBuff(105) AND (ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) & 256) ne 0 AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 OR !hasBuff(105) AND (ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) & 256) ne 0 AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+   "by_level": [
+    80,
+    85,
+    90,
+    95,
+    100,
+    105,
+    110,
+    115,
+    120,
+    125
+   ],
+   "vars": [
+    "ExSkillSpellTuning.GetEnabledConfig",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "((Lv + (Lv << 2)) + 40)",
+   "simplified": "5 × Lv + 40",
+   "when": "!hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) eq 0 OR !hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) gt 0 OR !hasBuff(105) AND (mainWeapon==Rod & 1) ne 0 AND PlayerAttackBase.CalcCastTime(this, (3 - int(((Lv * 0.25) + 0.5))), PlayerActionManagerBase.get_PlayerStatus()) le 0",
+   "by_level": [
+    45,
+    50,
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager"
+   ]
+  },
+  {
+   "method": "WriteIndividualFlag",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int((rad * 10))",
+   "simplified": "int(10 × rad)",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "PlayerAttackBase.CheckSkillParamFlag(this, 0x2000)",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackPosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "param eq 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "param eq 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "param eq 0",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 0x2000)",
+   "simplified": "SkillParam | 8192",
+   "when": "always"
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "lastUsedSkill",
+   "formula": "lastUsedSkill",
+   "simplified": "lastUsedSkill",
+   "when": "always"
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND isUseMagicImpact ne 0 OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND isUseMagicImpact eq 0 OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND isUseMagicImpact ne 0",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND isUseMagicImpact ne 0 OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND isUseMagicImpact ne 0",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) << 1) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND isUseMagicImpact ne 0 OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND isUseMagicImpact ne 0",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "Lv",
+   "simplified": "Lv",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND isUseMagicImpact ne 0 OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND isUseMagicImpact ne 0",
+   "by_level": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int((rad * 10))",
+   "simplified": "int(10 × rad)",
+   "when": "always"
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 25) + 250)",
+   "simplified": "25 × Lv + 250",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND isUseMagicImpact eq 0",
+   "by_level": [
+    275,
+    300,
+    325,
+    350,
+    375,
+    400,
+    425,
+    450,
+    475,
+    500
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND isUseMagicImpact eq 0 OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND isUseMagicImpact eq 0",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "abnormalRate",
+   "formula": "((Lv + (Lv << 2)) + 15)",
+   "simplified": "5 × Lv + 15",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) ne 0 AND isUseMagicImpact eq 0 OR (isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND isUseMagicImpact eq 0",
+   "by_level": [
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65
+   ]
+  },
+  {
+   "method": "InitializeEnchantedSpell",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(Lv * 25)",
+   "simplified": "25 × Lv",
+   "when": "(isPlayer & 1) ne 0 AND (mainWeapon==Magictool & 1) eq 0 AND isUseMagicImpact eq 0",
+   "by_level": [
+    25,
+    50,
+    75,
+    100,
+    125,
+    150,
+    175,
+    200,
+    225,
+    250
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(2, abnormalRate, playerAction)",
+   "simplified": "checkAbnormalPercent(2, abnormalRate, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "AbnormalStateManager.GetDefaultAnbormalStateTime",
+   "formula": "GetDefaultAnbormalStateTime()",
+   "simplified": "GetDefaultAnbormalStateTime()",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, abnormalRate, playerAction)",
+   "vars": [
+    "AbnormalType.Tumble",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(105, Lv)",
+   "simplified": "AddSelfBuffer(105, Lv)",
+   "when": "(SkillParam & 16) eq 0 AND PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (SkillParam & 16) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "MagicImpactBuf",
+   "ctors": [
+    {
+     "sig": "bool isEnchantSpell",
+     "fields": {
+      "IsMpHalving": [
+       {
+        "formula": "256",
+        "when": "(isEnchantSpell & 1) eq 0 AND ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 105) AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0",
+        "by_level": 256
+       },
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "IsMpHalving": [
+     {
+      "method": "set_IsMpHalving",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsMotionSpeedUp": [
+     {
+      "method": "set_IsMotionSpeedUp",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_IsMotionSpeedUp",
+    "get_IsMpHalving",
+    "set_IsMotionSpeedUp",
+    "set_IsMpHalving"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MagicImpactAction.OnInitialize",
+  "PlayerAttackBase.RemoveAfterSkillBuf"
+ ],
+ "variables": [
+  "AbnormalType.Tumble",
+  "ExSkillSpellTuning.GetEnabledConfig",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_ExSkillManager",
+  "TryGetExSkillData.out2",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

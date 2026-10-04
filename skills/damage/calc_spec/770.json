@@ -1,0 +1,377 @@
+{
+ "version": 1,
+ "uid": 770,
+ "name_th": "บทเพลงแห่งภูตพราย",
+ "name_en": "FairySong",
+ "tree": "Minstrel",
+ "category": "Circle",
+ "max_level": 1,
+ "roles": [
+  "buff (self)",
+  "circle / song area"
+ ],
+ "class": "FairySongAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 770,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "song_buff_lv",
+   "formula": "SongActionBase.CalcBaseCostMp(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "SongActionBase.CalcBaseCostMp(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "SongActionBase.CalcBaseCostMp"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "FairySongBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, PlayerActionManagerBase actorAction, int archetypeId, byte skillLocalId",
+     "fields": {
+      "hit": [
+       {
+        "formula": "(Lv * 10)",
+        "when": "always",
+        "by_level": 10
+       }
+      ],
+      "hitRate": [
+       {
+        "formula": "(Lv * 5)",
+        "when": "always",
+        "by_level": 5
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "FleeRate",
+     "bonus_id": 12,
+     "formula": "IsValidBuff",
+     "simplified": "IsValidBuff",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0"
+     ]
+    },
+    {
+     "id": "FleeRate",
+     "bonus_id": 12,
+     "formula": "int(((isBattleActive * 0.25) * IsValidBuff))",
+     "simplified": "int(0.25 × isBattleActive × IsValidBuff)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "HitRate",
+     "bonus_id": 11,
+     "formula": "ValidSongBuffLvUp",
+     "simplified": "ValidSongBuffLvUp",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0"
+     ]
+    },
+    {
+     "id": "HitRate",
+     "bonus_id": 11,
+     "formula": "int(((isBattleActive * 0.25) * ValidSongBuffLvUp))",
+     "simplified": "int(0.25 × isBattleActive × ValidSongBuffLvUp)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "HitUp",
+     "bonus_id": 42,
+     "formula": "guitaristSavingTime",
+     "simplified": "guitaristSavingTime",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0"
+     ]
+    },
+    {
+     "id": "HitUp",
+     "bonus_id": 42,
+     "formula": "int(((isBattleActive * 0.25) * guitaristSavingTime))",
+     "simplified": "int(0.25 × isBattleActive × guitaristSavingTime)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "Flee",
+     "bonus_id": 13,
+     "formula": "int(((isBattleActive * 0.25) * UseArcheTypeId))",
+     "simplified": "int(0.25 × isBattleActive × UseArcheTypeId)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction ne 0"
+     ]
+    },
+    {
+     "id": "Flee",
+     "bonus_id": 13,
+     "formula": "UseArcheTypeId",
+     "simplified": "UseArcheTypeId",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsSelfAction eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND +0x1d eq 0 AND IsEnd ne 0 AND IsSelfAction eq 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND +0x1d eq 0 AND IsEnd eq 0 AND IsSelfAction eq 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND +0x1d eq 0 AND IsEnd ne 0 AND IsSelfAction eq 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND +0x1d eq 0 AND IsEnd eq 0 AND IsSelfAction eq 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "CreateOtherBuf",
+    "CreateSelfBuf",
+    "get_EmotionType"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  },
+  {
+   "class": "SongBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, PlayerActionManagerBase actorAction, int archetypeId, byte skillLocalId",
+     "fields": {
+      "suspendedTimer": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "playTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "isChangeSongMotion": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "sendSupportTimer": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "partyMemberNum": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "actorAction": [
+       {
+        "formula": "actorAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "takeController": [
+       {
+        "formula": "actorAction.TakeController",
+        "when": "UnityEngine.Object.op_Inequality(actorAction)",
+        "by_level": null
+       }
+      ],
+      "ArchetypeId": [
+       {
+        "formula": "archetypeId",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "SkillLocalId": [
+       {
+        "formula": "skillLocalId",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "IsSensory": [
+     {
+      "method": "set_IsSensory",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsSuspendSong": [
+     {
+      "method": "set_IsSuspendSong",
+      "formula": "(value & 1)",
+      "when": "always"
+     },
+     {
+      "method": "UpdateMotionSwitch",
+      "formula": "1",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(actorAction) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsEnd eq 0 AND IsSelfAction ne 0 AND SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SongBufferBase.CheckTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND isChangeSongMotion eq 0"
+     }
+    ],
+    "ArchetypeId": [
+     {
+      "method": "set_ArchetypeId",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "SkillLocalId": [
+     {
+      "method": "set_SkillLocalId",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSendSupport": [
+     {
+      "method": "set_IsSendSupport",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "isChangeSongMotion": [
+     {
+      "method": "UpdateMotionSwitch",
+      "formula": "(PlayerActionManagerBase.get_IsBattleActive(actorAction) & 1)",
+      "when": "!UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND PlayerActionManagerBase.get_IsBattleActive(actorAction) AND SongBufferBase.CheckTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 OR !PlayerActionManagerBase.get_IsBattleActive(actorAction) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND SongBufferBase.CheckTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND isChangeSongMotion ne 0 OR !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND PlayerActionManagerBase.get_IsBattleActive(actorAction) AND SongBufferBase.CheckTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0"
+     },
+     {
+      "method": "UpdateMotionSwitch",
+      "formula": "1",
+      "when": "!SongBufferBase.CheckTake(this) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND PlayerActionManagerBase.get_IsBattleActive(actorAction) AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 OR !PlayerActionManagerBase.get_IsBattleActive(actorAction) AND !SongBufferBase.CheckTake(this) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND isChangeSongMotion ne 0 OR !SongBufferBase.CheckTake(this) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND IsEnd eq 0 AND IsSelfAction ne 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND PlayerActionManagerBase.get_IsBattleActive(actorAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0"
+     }
+    ],
+    "suspendedTimer": [
+     {
+      "method": "UpdateMotionSwitch",
+      "formula": "10",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(actorAction) AND !UnityEngine.Object.op_Equality(actorAction) AND !UnityEngine.Object.op_Equality(takeController) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND IsEnd eq 0 AND IsSelfAction ne 0 AND SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SongBufferBase.CheckTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND isChangeSongMotion eq 0"
+     }
+    ]
+   },
+   "hooks": [
+    "UpdateMotionSwitch",
+    "get_ArchetypeId",
+    "get_IsSendSupport",
+    "get_IsSensory",
+    "get_IsSuspendSong",
+    "get_SkillLocalId",
+    "set_ArchetypeId",
+    "set_IsSendSupport",
+    "set_IsSensory",
+    "set_IsSuspendSong",
+    "set_SkillLocalId"
+   ],
+   "attached_via": "caller2:FairySongBuf$$CreateSelfBuf<-FairySongAction$$EffectiveSongBuffer",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PetStatus.get_Hit"
+ ],
+ "variables": [
+  "InputManager.get_LeftInputKey",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_IsBattleActive",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.GetEquipElement",
+  "Singleton.get_Instance",
+  "SkillActionBase.op_Equality",
+  "SkillActionManagerBase.get_CurrentSkill",
+  "SkillBufferId.Flee",
+  "SkillBufferId.FleeRate",
+  "SkillBufferId.HitRate",
+  "SkillBufferId.HitUp",
+  "SongActionBase.CalcBaseCostMp",
+  "SongBufferBase.CheckTake",
+  "TakeController.get_MainPlayer",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

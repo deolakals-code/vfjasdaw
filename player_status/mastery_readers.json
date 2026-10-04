@@ -1,0 +1,1919 @@
+{
+ "36": {
+  "class": "BladeMastery",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.OneHundSwordCalculator$$CalcSubAtk",
+   "weapon/EquipItemData.OneHundSwordCalculator$$calcAtkParam",
+   "weapon/EquipItemData.TwoHundSwordCalculator$$calcAtkParam"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.OneHundSwordCalculator$$CalcSubAtk",
+   "EquipItemData.OneHundSwordCalculator$$calcAtkParam",
+   "EquipItemData.OneHundSwordCalculator$$calcEqAtkBonus",
+   "EquipItemData.TwoHundSwordCalculator$$calcAtkParam",
+   "EquipItemData.TwoHundSwordCalculator$$calcEqAtkBonus"
+  ]
+ },
+ "37": {
+  "class": "SpeedyBladeMastery",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.OneHundSwordCalculator$$calcAspdParam",
+   "weapon/EquipItemData.TwoHundSwordCalculator$$calcAspdParam"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.OneHundSwordCalculator$$calcAspdParam",
+   "EquipItemData.TwoHundSwordCalculator$$calcAspdParam"
+  ]
+ },
+ "40": {
+  "class": "BladeMasterMastery",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate"
+  ]
+ },
+ "68": {
+  "class": "ShootMastary",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.BowCalculator$$calcAtkParam",
+   "weapon/EquipItemData.BowgunCalculator$$calcAtkParam"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.BowCalculator$$calcAtkParam",
+   "EquipItemData.BowCalculator$$calcEqAtkBonus",
+   "EquipItemData.BowgunCalculator$$calcAtkParam",
+   "EquipItemData.BowgunCalculator$$calcEqAtkBonus"
+  ]
+ },
+ "72": {
+  "class": "LongRangeMastary",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PhantomRaveAction$$CalcPhantomRaveLastDamageRate",
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate"
+  ]
+ },
+ "75": {
+  "class": "QuickDraw",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "83": {
+  "class": "SamuraiArchery",
+  "level": [
+   "ElementReach$$CheckActiveSamuraiArcherySubElement",
+   "ElementReach$$SetSubElement",
+   "GameManager$$PlayerSkillUpdate",
+   "PlayerStatusBase$$SetEquip"
+  ],
+  "buff": [
+   "NormalAttackAction$$Damaged"
+  ],
+  "stat": [
+   "weapon/EquipItemData.BowCalculator$$calcAtkParam"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.BowCalculator$$CalcStable",
+   "EquipItemData.BowCalculator$$calcAtkParam",
+   "NormalAttackAction$$Damaged"
+  ]
+ },
+ "86": {
+  "class": "ElementReach",
+  "level": [
+   "GameManager$$PlayerSkillUpdate",
+   "PlayerStatusBase$$SetEquip"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "BCollaboBossActionManager$$Damaged -> EnemyDamage",
+   "EnemyMobActionManagerBase$$Damaged -> EnemyDamage",
+   "GameManager$$PlayerSkillUpdate -> ResetShootSkill",
+   "GameManager$$ReceiveSkillLevelUp -> SetSubElement",
+   "GuildRaidBossMobActionManager$$Damaged -> EnemyDamage",
+   "MobaPlayerActionManager$$Damaged -> ActorDamaged",
+   "PlayerActionManager$$Damaged -> ActorDamaged",
+   "PlayerAttackBase$$InitializeElement -> CheckActiveElementReach",
+   "PlayerAttackBase$$InitializeElement -> CheckActiveSamuraiArcherySubElement",
+   "PlayerAttackBase$$TemplateAssignment -> CheckActiveElementReach",
+   "PlayerAttackBase$$TemplateAssignment -> TryGetWeaponElement",
+   "ScoreAttackBossActionManager$$Damaged -> EnemyDamage",
+   "WideSpreadAction$$OnInitialize -> TryGetWeaponElement"
+  ],
+  "dict": []
+ },
+ "100": {
+  "class": "MagicMastary",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.MagictoolCalculator$$calcMatkParam",
+   "weapon/EquipItemData.RodCalculator$$calcMatkParam"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.MagictoolCalculator$$calcEqAtkBonus",
+   "EquipItemData.MagictoolCalculator$$calcMatkParam",
+   "EquipItemData.RodCalculator$$calcEqAtkBonus",
+   "EquipItemData.RodCalculator$$calcMatkParam",
+   "ModelManager.<MergeLoadModel>d__61$$MoveNext"
+  ]
+ },
+ "104": {
+  "class": "ChainCast",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "BCollaboBossActionManager$$Damaged",
+   "EnemyMobActionManagerBase$$Damaged",
+   "GuildRaidBossMobActionManager$$Damaged",
+   "MagicArrowAction$$ActionSkillEvent",
+   "PlayerAttackBase$$ActionStartMagicSkill",
+   "ScoreAttackBossActionManager$$Damaged"
+  ]
+ },
+ "107": {
+  "class": "PowerWave",
+  "level": [
+   "GemCartBuffer.PowerWaveChangeBuff$$OnGetValue",
+   "UIRegistletMainManager$$GetDescriptionValueText"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "AutoDeviceAttackAction$$ActionPreparation",
+   "MergeMaterial$$CreateMergeMaterial",
+   "NormalAttackAction$$OnInitialize"
+  ]
+ },
+ "115": {
+  "class": "RapidCharge",
+  "level": [
+   "ReceiveSupportResult$$OnActionPlayerSupport"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "ChargingAction$$CalcChargingCastTime -> CalcShortenedTime",
+   "MindimageSenjuSupportAction$$InitializeCharging -> CalcShortenedTime"
+  ],
+  "dict": [
+   "ChargingAction$$CalcChargingCastTime",
+   "MindimageSenjuSupportAction$$InitializeCharging"
+  ]
+ },
+ "132": {
+  "class": "MarshallMastary",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.KnuckleCalculator$$calcAtkParam"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.KnuckleCalculator$$calcAtkParam",
+   "EquipItemData.KnuckleCalculator$$calcEqAtkBonus"
+  ]
+ },
+ "133": {
+  "class": "OneChance",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$get_AtkMpRecovery"
+  ],
+  "extern": [],
+  "dict": [
+   "NormalAttackAction$$CheckOneChance",
+   "NormalAttackAction$$attachOneChanceDamage",
+   "PlayerSecondaryStatus$$get_AtkMpRecovery"
+  ]
+ },
+ "136": {
+  "class": "StrongChase",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$get_Hit"
+  ],
+  "extern": [],
+  "dict": [
+   "NormalAttackAction$$attachOneChanceDamage",
+   "PlayerSecondaryStatus$$get_Hit"
+  ]
+ },
+ "139": {
+  "class": "UnarmedTecnique",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.KnuckleCalculator$$calcAspdParam"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.KnuckleCalculator$$calcAspdParam",
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate"
+  ]
+ },
+ "144": {
+  "class": "MindimageSenju",
+  "level": [
+   "AvoidActionManager$$CheckMindimageSenju",
+   "MindimageSenjuAttackAction.<>c__DisplayClass82_0$$<ActionStart>b__0",
+   "MindimageSenjuSkillBase$$CheckInheritance",
+   "MindimageSenjuSupportAction.<>c__DisplayClass57_0$$<ActionStart>b__0",
+   "MobaPlayerBattleManager$$StartMindimageSenju",
+   "PlayerBattleManager$$StartMindimageSenju"
+  ],
+  "buff": [
+   "AvoidActionManager$$CheckMindimageSenju",
+   "MindimageSenjuSkillBase$$CheckInheritance"
+  ],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "161": {
+  "class": "HeavyArmorMastary",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$GetbGuardSpeed",
+   "player/PlayerSecondaryStatus$$get_GuardSpeed"
+  ],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$get_GuardSpeed",
+   "PetStatus$$get_GuardDelay",
+   "PlayerSecondaryStatus$$GetbGuardSpeed",
+   "PlayerSecondaryStatus$$get_GuardSpeed"
+  ]
+ },
+ "162": {
+  "class": "LightArmorMastary",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$GetbAvoid",
+   "player/PlayerSecondaryStatus$$get_AvoidSpeed"
+  ],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$get_AvoidSpeed",
+   "PetStatus$$get_AvoidSpeed",
+   "PlayerSecondaryStatus$$GetbAvoid",
+   "PlayerSecondaryStatus$$get_AvoidSpeed"
+  ]
+ },
+ "163": {
+  "class": "AdvanceGuard",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$GetbGuardPower",
+   "player/PlayerSecondaryStatus$$GetbGuardSpeed",
+   "player/PlayerSecondaryStatus$$get_GuardPower",
+   "player/PlayerSecondaryStatus$$get_GuardSpeed"
+  ],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$get_GuardPower",
+   "MobaPlayerSecondaryStatus$$get_GuardSpeed",
+   "PetStatus$$get_GuardDelay",
+   "PetStatus$$get_GuardPower",
+   "PlayerSecondaryStatus$$GetbGuardPower",
+   "PlayerSecondaryStatus$$GetbGuardSpeed",
+   "PlayerSecondaryStatus$$get_GuardPower",
+   "PlayerSecondaryStatus$$get_GuardSpeed"
+  ]
+ },
+ "164": {
+  "class": "AdvanceFlee",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$GetbAvoid",
+   "player/PlayerSecondaryStatus$$get_AvoidSpeed"
+  ],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$get_AvoidSpeed",
+   "PetStatus$$get_AvoidSpeed",
+   "PlayerSecondaryStatus$$GetbAvoid",
+   "PlayerSecondaryStatus$$get_AvoidSpeed"
+  ]
+ },
+ "165": {
+  "class": "PhysicalGuard",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "MobAttackBase$$SetAbnormalEffect"
+  ]
+ },
+ "166": {
+  "class": "MirageStep",
+  "level": [
+   "AvoidActionManager$$AvoidMove",
+   "AvoidActionManager$$AvoidStart"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "AvoidActionManager$$CheckActivateMirageStep"
+  ]
+ },
+ "193": {
+  "class": "ActDead",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "194": {
+  "class": "ExpUp",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$GetExpBonus"
+  ],
+  "extern": [],
+  "dict": [
+   "PlayerSecondaryStatus$$GetExpBonus"
+  ]
+ },
+ "195": {
+  "class": "DropUp",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$GetDropBonus"
+  ],
+  "extern": [],
+  "dict": [
+   "PlayerSecondaryStatus$$GetDropBonus"
+  ]
+ },
+ "196": {
+  "class": "SafetyRest",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcHpRecovery"
+  ],
+  "extern": [],
+  "dict": [
+   "PlayerSecondaryStatus$$CalcHpRecovery"
+  ]
+ },
+ "197": {
+  "class": "SmallBreather",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcMpRecovery"
+  ],
+  "extern": [],
+  "dict": [
+   "PlayerSecondaryStatus$$CalcMpRecovery"
+  ]
+ },
+ "198": {
+  "class": "HpBoost",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcBaseMaxHp"
+  ],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$get_MaxHp",
+   "PlayerSecondaryStatus$$CalcBaseMaxHp"
+  ]
+ },
+ "199": {
+  "class": "LeewayBattle",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcHpRecovery"
+  ],
+  "extern": [],
+  "dict": [
+   "PlayerSecondaryStatus$$CalcHpRecovery"
+  ]
+ },
+ "200": {
+  "class": "MpBoost",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcBaseMaxMp"
+  ],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$get_MaxMp",
+   "PlayerSecondaryStatus$$CalcBaseMaxMp"
+  ]
+ },
+ "201": {
+  "class": "CoolBattlePlan",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcMpRecovery"
+  ],
+  "extern": [],
+  "dict": [
+   "PlayerSecondaryStatus$$CalcMpRecovery"
+  ]
+ },
+ "225": {
+  "class": "FirstAidMastary",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "257": {
+  "class": "ShieldMastary",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.WeaponTypeCalculatorBase$$CalcAspd"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcAspd"
+  ]
+ },
+ "259": {
+  "class": "ForceShield",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcBaseMaxHp",
+   "weapon/EquipItemData$$CalcDef"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData$$CalcDef",
+   "MobEventScriptAttack$$CalcResist",
+   "MobNormalAttack$$CalcTemporaryDamage",
+   "MobNormalAttack$$calcMobToPlayerDamage",
+   "MobaPlayerSecondaryStatus$$get_MaxHp",
+   "PlayerSecondaryStatus$$CalcBaseMaxHp",
+   "UIPlayerStatusDetailPanel$$CalcPowerDmgCutValue"
+  ]
+ },
+ "261": {
+  "class": "MagicalShield",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcBaseMaxHp",
+   "weapon/EquipItemData$$CalcMdef"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData$$CalcMdef",
+   "MobAttackPlayerSelfDestruct$$calcMobToPlayerDamage",
+   "MobEventScriptAttack$$CalcResist",
+   "MobMagicAttack$$CalcTemporaryDamage",
+   "MobMagicAttack$$calcMobToPlayerDamage",
+   "MobaPlayerSecondaryStatus$$get_MaxHp",
+   "PlayerSecondaryStatus$$CalcBaseMaxHp",
+   "UIPlayerStatusDetailPanel$$CalcMagicDmgCutValue"
+  ]
+ },
+ "262": {
+  "class": "GuardStrike",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "MobaPlayerBattleManager$$GuardStrikeAction",
+   "PlayerBattleManager$$GuardStrikeAction"
+  ]
+ },
+ "289": {
+  "class": "KnifeMastery",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "293": {
+  "class": "DoubleThrow",
+  "level": [
+   "AvoidActionManager$$DoubleThrowAvoid"
+  ],
+  "buff": [
+   "AvoidActionManager$$DoubleThrowAvoid",
+   "PlayerBattleManager$$OnSkillActionDamaged"
+  ],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PlayerAttackBase$$CalcDoubleThrowLastDamageRate"
+  ]
+ },
+ "294": {
+  "class": "ThreateningThorwArts",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "CrazyDaggerAction$$ActionPreparation",
+   "CrazyDaggerAction$$calcPlayerToMobDamage",
+   "GatlingKnifeAction$$calcPlayerToMobDamage",
+   "KnifeCombatAction$$calcPlayerToMobDamage",
+   "NormalAttackAction$$attachSecondArmDamage",
+   "PoisonDaggerAction$$calcPlayerToMobDamage",
+   "SpikeDartAction$$calcPlayerToMobDamage",
+   "ThrowingAction$$calcPlayerToMobDamage"
+  ]
+ },
+ "296": {
+  "class": "SecondArm",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "NormalAttackAction$$CheckSecondArm",
+   "NormalAttackAction$$attachSecondArmDamage",
+   "NormalAttackAction$$calcPlayerToMobDamage"
+  ]
+ },
+ "297": {
+  "class": "IntenseKnife",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "NormalAttackAction$$CheckSecondArm",
+   "NormalAttackAction$$attachSecondArmDamage",
+   "NormalAttackAction$$calcPlayerToMobDamage"
+  ]
+ },
+ "298": {
+  "class": "MailBreaker",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "NormalAttackAction$$CalcDef",
+   "NormalAttackAction$$attachSecondArmDamage"
+  ]
+ },
+ "450": {
+  "class": "CaptureTechnicI",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "CaptureTarget$$.ctor",
+   "CaptureTargetFactory$$CheckCaptureType"
+  ]
+ },
+ "451": {
+  "class": "GoodTame",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "453": {
+  "class": "CaptureTechnicII",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "CaptureTarget$$.ctor",
+   "CaptureTargetFactory$$CheckCaptureType"
+  ]
+ },
+ "454": {
+  "class": "CarefulCapture",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "481": {
+  "class": "AtkUp",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.KatanaCalculator$$CalcSubAtk",
+   "weapon/EquipItemData.OneHundSwordCalculator$$CalcSubAtk",
+   "weapon/EquipItemData.WeaponTypeCalculatorBase$$CalcAtk"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.KatanaCalculator$$CalcSubAtk",
+   "EquipItemData.OneHundSwordCalculator$$CalcSubAtk",
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcAtk"
+  ]
+ },
+ "482": {
+  "class": "MatkUp",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.WeaponTypeCalculatorBase$$CalcMatk"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcMatk"
+  ]
+ },
+ "483": {
+  "class": "DefUp",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData$$CalcDef",
+   "weapon/EquipItemData$$CalcMdef"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData$$CalcDef",
+   "EquipItemData$$CalcMdef"
+  ]
+ },
+ "484": {
+  "class": "HeavyBlow",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PhantomRaveAction$$CalcPhantomRaveLastDamageRate",
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate"
+  ]
+ },
+ "485": {
+  "class": "Concentration",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate"
+  ]
+ },
+ "486": {
+  "class": "FleeUp",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "EquipItemData$$CalcFlee"
+  ]
+ },
+ "487": {
+  "class": "CrtUp",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcCriticalDmg",
+   "player/PlayerSecondaryStatus$$GetCrtConstant"
+  ],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$GetCrtConstant",
+   "MobaPlayerSecondaryStatus$$get_CriticalDmg",
+   "PetStatus$$CalcBaseCriticalDamage",
+   "PetStatus$$get_Critical",
+   "PlayerSecondaryStatus$$CalcCriticalDmg",
+   "PlayerSecondaryStatus$$GetCrtConstant"
+  ]
+ },
+ "488": {
+  "class": "DesperateResistance",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "MobaPlayerActionManager$$Damaged -> DamageReduction"
+  ],
+  "dict": [
+   "AutoMemberActionManager$$Damaged",
+   "DesperateResistance$$DamageReduction",
+   "MercenaryActionManager$$Damaged",
+   "PetMemberActionManager$$Damaged",
+   "PlayerActionManager$$Damaged"
+  ]
+ },
+ "489": {
+  "class": "HitUp",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$get_Hit"
+  ],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$get_Hit",
+   "PlayerSecondaryStatus$$get_Hit"
+  ]
+ },
+ "490": {
+  "class": "ThreateningPower",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.KatanaCalculator$$CalcSubAtk",
+   "weapon/EquipItemData.OneHundSwordCalculator$$CalcSubAtk",
+   "weapon/EquipItemData.WeaponTypeCalculatorBase$$CalcAtk"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.KatanaCalculator$$CalcSubAtk",
+   "EquipItemData.OneHundSwordCalculator$$CalcSubAtk",
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcAtk"
+  ]
+ },
+ "491": {
+  "class": "FurtherMagic",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.WeaponTypeCalculatorBase$$CalcMatk"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcMatk"
+  ]
+ },
+ "492": {
+  "class": "KnowledgeOfDefense",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData$$CalcDef",
+   "weapon/EquipItemData$$CalcMdef"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData$$CalcDef",
+   "EquipItemData$$CalcMdef"
+  ]
+ },
+ "493": {
+  "class": "ThePursuitOfPursuit",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "MagicPursuit$$Calc",
+   "PhysicalPursuit$$Calc",
+   "PlayerBattleManager$$PursuitAttack"
+  ]
+ },
+ "494": {
+  "class": "SpellBurst",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcMagicCritical",
+   "player/PlayerSecondaryStatus$$get_CriticalMagicDmg"
+  ],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$get_CriticalMagicDmg",
+   "PetStatus$$get_CriticalMagicDmg",
+   "PlayerAttackBase$$CheckMagicCritical",
+   "PlayerSecondaryStatus$$CalcMagicCritical",
+   "PlayerSecondaryStatus$$get_CriticalMagicDmg"
+  ]
+ },
+ "495": {
+  "class": "SuperGrip",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "MobaPlayerActionManager$$ApparentDeath",
+   "PlayerActionManager$$ApparentDeath"
+  ]
+ },
+ "515": {
+  "class": "Parry",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "attack/MobAttackBase$$CalcLastDamage"
+  ],
+  "extern": [],
+  "dict": [
+   "MobAttackBase$$CalcLastDamage"
+  ]
+ },
+ "520": {
+  "class": "KnightWill",
+  "level": [
+   "CallGolemNormalAttackAction$$ActionPreparation",
+   "HuntingOneNormalAttackAction$$ActionPreparation",
+   "PlayerAttackBase$$ActionPreparation",
+   "WarCryAction$$ActionPreparation"
+  ],
+  "buff": [],
+  "stat": [
+   "attack/MobAttackBase$$CalcLastDamage",
+   "player/PlayerSecondaryStatus$$GetDisplayBonusCalcHate"
+  ],
+  "extern": [
+   "AssaultAttackAction$$ActionPreparation -> GetParam",
+   "BindStrikeAction$$ActionPreparation -> GetParam",
+   "MobAttackBase$$CalcLastDamage -> GetParam",
+   "P_DeffenceAction$$ActionPreparation -> GetParam",
+   "PlayerSecondaryStatus$$GetDisplayBonusCalcHate -> GetParam",
+   "RageSwordAction$$ActionPreparation -> GetParam"
+  ],
+  "dict": [
+   "AssaultAttackAction$$ActionPreparation",
+   "BindStrikeAction$$ActionPreparation",
+   "MobAttackBase$$CalcLastDamage",
+   "P_DeffenceAction$$ActionPreparation",
+   "PlayerSecondaryStatus$$GetDisplayBonusCalcHate",
+   "RageSwordAction$$ActionPreparation"
+  ]
+ },
+ "524": {
+  "class": "KnightHeal",
+  "level": [
+   "KnightStanceAction$$ActionHit"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "MobaPlayerActionManager$$Damaged -> Damaged"
+  ],
+  "dict": [
+   "KnightHeal$$Damaged",
+   "PlayerActionManager$$DamagedKnightHeal"
+  ]
+ },
+ "525": {
+  "class": "AfterShield",
+  "level": [],
+  "buff": [
+   "MobAttackBase$$CalcLastDamage"
+  ],
+  "stat": [],
+  "extern": [
+   "P_DeffenceAction$$ActionPreparation -> CheckActive",
+   "PlayerActionManager$$Damaged -> InvalidDamage",
+   "PlayerStatusBase$$GetBonusValueWithBuf -> GetNormalResist"
+  ],
+  "dict": [
+   "AfterShield$$CheckActive",
+   "AfterShield$$GetNormalResist"
+  ]
+ },
+ "557": {
+  "class": "BowgunHunter",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.BowgunCalculator$$calcAtkParam"
+  ],
+  "extern": [],
+  "dict": [
+   "BlankTrapAction$$OnInitialize",
+   "DetectionBuf$$GetHateBonus",
+   "EquipItemData.BowgunCalculator$$calcAtkParam",
+   "ExplossiveAction$$OnInitialize",
+   "ForceArrow$$ActionHit",
+   "ForceArrowBuf$$GetParam",
+   "HomingShotAction$$OnInitialize",
+   "SatelliteArrowAction$$OnInitialize",
+   "SleepTrapAction$$OnInitialize",
+   "SteelTrapAction$$OnInitialize",
+   "SunriseArrowAction$$OnInitialize"
+  ]
+ },
+ "559": {
+  "class": "CamouflageMastery",
+  "level": [],
+  "buff": [
+   "MobaPlayerSecondaryStatus$$GetCrtConstant",
+   "PlayerSecondaryStatus$$GetCrtConstant"
+  ],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$GetCrtConstant",
+   "PlayerSecondaryStatus$$GetCrtConstant",
+   "SkillManager$$UpdateSkillLv"
+  ]
+ },
+ "560": {
+  "class": "HuntersKnowledge",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "MultipleHuntAction$$InitializeChasseGarde",
+   "MultipleHuntAction$$InitializeHighRainSnipe",
+   "MultipleHuntAction$$InitializeSharpSnipe",
+   "MultipleHuntAction$$InitializeWolfAssault"
+  ]
+ },
+ "578": {
+  "class": "LancerTypeImproved",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "CallGolemNormalAttackAction$$InitBusterAttack",
+   "CallGolemNormalAttackAction$$InitLancerAttack",
+   "CallGolemNormalAttackAction$$InitShieldAttack"
+  ]
+ },
+ "579": {
+  "class": "ShieldTypeImproved",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "CallGolemBuf$$.ctor",
+   "CallGolemBuf$$GetDamageResistRate"
+  ]
+ },
+ "580": {
+  "class": "BusterTypeImproved",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "CallGolemNormalAttackAction$$InitBusterAttack",
+   "CallGolemNormalAttackAction$$InitLancerAttack",
+   "CallGolemNormalAttackAction$$InitShieldAttack"
+  ]
+ },
+ "581": {
+  "class": "AttackPerformanceImprovement",
+  "level": [
+   "CallGolemNormalAttackAction$$OnInitialize"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "CallGolemAction$$EnchantEnd",
+   "CallGolemNormalAttackAction$$OnInitialize"
+  ]
+ },
+ "582": {
+  "class": "ShieldPerformanceImprovement",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "CallGolemBuf$$GetDamageResistRate"
+  ]
+ },
+ "583": {
+  "class": "SpeedPerformanceImprovement",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "CallGolemNormalAttackAction$$OnInitialize"
+  ]
+ },
+ "612": {
+  "class": "Bushido",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$CalcBaseMaxHp",
+   "player/PlayerSecondaryStatus$$CalcBaseMaxMp",
+   "player/PlayerSecondaryStatus$$get_Hit",
+   "weapon/EquipItemData.KatanaCalculator$$calcAtkParam"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.KatanaCalculator$$calcAtkParam",
+   "EquipItemData.KatanaCalculator$$calcEqAtkBonus",
+   "MobaPlayerSecondaryStatus$$get_Hit",
+   "MobaPlayerSecondaryStatus$$get_MaxHp",
+   "MobaPlayerSecondaryStatus$$get_MaxMp",
+   "PlayerSecondaryStatus$$CalcBaseMaxHp",
+   "PlayerSecondaryStatus$$CalcBaseMaxMp",
+   "PlayerSecondaryStatus$$get_Hit"
+  ]
+ },
+ "613": {
+  "class": "WeaponInBothHands",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$GetCrtConstant",
+   "player/PlayerSecondaryStatus$$get_Hit",
+   "player/PlayerSecondaryStatus$$get_Stable",
+   "weapon/EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk",
+   "MobaPlayerSecondaryStatus$$GetCrtConstant",
+   "MobaPlayerSecondaryStatus$$get_Hit",
+   "MobaPlayerSecondaryStatus$$get_Stable",
+   "NormalAttackAction$$CalcBaseDamage",
+   "PlayerAttackBase$$calcBaseDamage",
+   "PlayerSecondaryStatus$$GetCrtConstant",
+   "PlayerSecondaryStatus$$get_Hit",
+   "PlayerSecondaryStatus$$get_Stable",
+   "RapidAquaVortexAction$$calcBaseDamage",
+   "ThunderStyleAction$$calcBaseDamage",
+   "WindStyleAction$$calcBaseDamage"
+  ]
+ },
+ "619": {
+  "class": "Shukuchi",
+  "level": [
+   "CloningTechniqueAction$$ActionStart",
+   "IchijhinnokazeAratame$$InvokeShukuchi",
+   "IchijhinnokazeAttackAction$$ActionPreparation",
+   "MobaPlayerBattleManager.<ShukuchiMoveWait>d__93$$MoveNext",
+   "PlayerBattleManager.<ShukuchiMoveWait>d__54$$MoveNext",
+   "ShukuchiAction$$CanActivated"
+  ],
+  "buff": [
+   "IchijhinnokazeAratame$$InvokeShukuchi",
+   "IchijhinnokazeBuf$$Updata",
+   "MobaPlayerBattleManager$$AbnormalFear",
+   "MobaPlayerBattleManager$$OnBattleEnd",
+   "NormalAttackAction$$ActionPreparation",
+   "NormalAttackAction$$calcPlayerToMobDamage",
+   "PlayerBattleManager$$AbnormalFear",
+   "PlayerBattleManager$$OnBattleEnd",
+   "PlayerSecondaryStatus$$get_AtkMpRecovery"
+  ],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PlayerAttackBase$$ActionStart"
+  ]
+ },
+ "626": {
+  "class": "UnannouncedDestination",
+  "level": [
+   "IchijhinnokazeAttackAction$$CheckSetunakenran"
+  ],
+  "buff": [
+   "IchijhinnokazeAttackAction$$CheckSetunakenran",
+   "NormalAttackAction$$ActionPreparation",
+   "ShukuchiAction$$OnInitialize",
+   "WaveBladeAction$$ActionPreparation"
+  ],
+  "stat": [],
+  "extern": [
+   "MobaPlayerActionManager$$OnEnterField -> CheckMinimumBehavior",
+   "NormalAttackAction$$ActionPreparation -> CheckMinimumBehavior",
+   "NormalAttackAction$$calcPlayerToMobDamage -> CalcNormalAttackConstantDamage",
+   "PlayerActionManager$$OnEnterField -> CheckMinimumBehavior",
+   "PlayerAttackBase$$RemoveUnannouncedDestinationBuf -> CheckMinimumBehavior",
+   "ShukuchiAction$$OnInitialize -> CheckMinimumBehavior"
+  ],
+  "dict": []
+ },
+ "627": {
+  "class": "Inflexibility",
+  "level": [],
+  "buff": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk",
+   "HeavenlyStarBuf$$IllusionarySceneReset",
+   "MobaPlayerSecondaryStatus$$GetMotionSpeed",
+   "PlayerAttackBase$$CalcCostMp",
+   "PlayerSecondaryStatus$$GetCalcMotionSpeed",
+   "SwordMove$$AddBuf"
+  ],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "628": {
+  "class": "Mizukaze",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "GameManager$$ReceiveSkillLevelUp -> UpdateSkillTree",
+   "PlayerActionManager$$Damaged -> CheckActive",
+   "PlayerActionManager$$Damaged -> UpdateBuf",
+   "PlayerBattleManager$$OnSkillActionDamaged -> CheckActive",
+   "PlayerBattleManager$$OnSkillActionDamaged -> UpdateBuf",
+   "PlayerBattleManager$$OnSkillActionRangeDamaged -> CheckActive",
+   "PlayerBattleManager$$OnSkillActionRangeDamaged -> UpdateBuf"
+  ],
+  "dict": [
+   "Mizukaze$$CheckActive"
+  ]
+ },
+ "631": {
+  "class": "IchijhinnokazeAratame",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "IchijhinnokazeAttackAction$$InitializeArahae -> GetArahaeBonus",
+   "IchijhinnokazeAttackAction$$InitializeHibari -> GetHibariBonus",
+   "IchijhinnokazeAttackAction$$InitializeIbuki -> GetIbukiBonus",
+   "IchijhinnokazeAttackAction$$InitializeKariwatashi -> GetKariwatashiBonus",
+   "IchijhinnokazeAttackAction$$InitializeNagi -> GetNagiBonus",
+   "NormalAttackAction$$calcPlayerToMobDamage -> GetNormalAttackSkillRateBonus",
+   "NormalAttackAction$$calcPlayerToMobDamage -> InvokeShukuchi"
+  ],
+  "dict": [
+   "IchijhinnokazeAratame$$GetArahaeBonus",
+   "IchijhinnokazeAratame$$GetHibariBonus",
+   "IchijhinnokazeAratame$$GetIbukiBonus",
+   "IchijhinnokazeAratame$$GetKariwatashiBonus",
+   "IchijhinnokazeAratame$$GetNagiBonus",
+   "IchijhinnokazeAratame$$GetNormalAttackSkillRateBonus"
+  ]
+ },
+ "641": {
+  "class": "DualMastery",
+  "level": [
+   "EquipItemData.OneHundSwordCalculator$$CalcSubAtk",
+   "EquipItemData.OneHundSwordCalculator$$SubCalcStable",
+   "EquipItemData.OneHundSwordCalculator$$calcAtkParam",
+   "SkillManager$$GetEquipEnableSkillList"
+  ],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$GetCrtRate",
+   "player/PlayerSecondaryStatus$$get_Hit"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.OneHundSwordCalculator$$CalcSubEqAtk",
+   "MainPlayer$$EquipPurgeDisableSkill",
+   "MobaPlayer$$EquipPurgeDisableSkill",
+   "MobaPlayerSecondaryStatus$$GetCrtRate",
+   "MobaPlayerSecondaryStatus$$get_Hit",
+   "PetStatus$$get_Critical",
+   "PlayerDataManager$$EquipPurgeDisableSkill",
+   "PlayerSecondaryStatus$$GetCrtRate",
+   "PlayerSecondaryStatus$$get_Hit",
+   "UIEquipItemPanel$$SelectedEquipType",
+   "UIGuildStaffEquipPanel$$SelectedEquipType",
+   "UIMobaEditWeaponPanel$$GetSubWeaponList"
+  ]
+ },
+ "645": {
+  "class": "DualSwordTechnique",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$GetCrtRate",
+   "player/PlayerSecondaryStatus$$get_Hit",
+   "weapon/EquipItemData.WeaponTypeCalculatorBase$$CalcAspd"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcAspd",
+   "MobaPlayerSecondaryStatus$$GetCrtRate",
+   "MobaPlayerSecondaryStatus$$get_Hit",
+   "PetStatus$$get_Critical",
+   "PlayerSecondaryStatus$$GetCrtRate",
+   "PlayerSecondaryStatus$$get_Hit"
+  ]
+ },
+ "648": {
+  "class": "GodspeedLocus",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$get_Agi"
+  ],
+  "extern": [
+   "PlayerStatusBase$$GetFirstAttackRate -> CalcFirstAttackRate"
+  ],
+  "dict": [
+   "GodspeedLocus$$CalcFirstAttackRate",
+   "MobaPlayerSecondaryStatus$$get_Agi",
+   "PlayerAttackBase$$calcFastAttackDamageRate",
+   "PlayerSecondaryStatus$$get_Agi"
+  ]
+ },
+ "657": {
+  "class": "ArkSaber",
+  "level": [
+   "ArkSaberAction$$ConverterArkSaberSkillId",
+   "MobaPlayerActionManager$$SupportReserve",
+   "UIActiveBaseShortcutButton$$SkillButton",
+   "UIGLShortcutButton$$LabelUpdate",
+   "UIShortcutListButton$$OnSkillCostCheck",
+   "UIShortcutListButton$$SetSkillButton"
+  ],
+  "buff": [
+   "MobAttackBase$$CalcLastDamage",
+   "MobaPlayerSecondaryStatus$$GetCrtConstant",
+   "PlayerAttackBase$$CalcCostMp",
+   "PlayerAttackBase$$RemoveAfterSkillBuf",
+   "PlayerDataManager$$OnSkillBuffEnd",
+   "PlayerSecondaryStatus$$GetCrtConstant",
+   "SaberAuraAction$$ActionHit",
+   "UIShortcutListButton$$OnSkillCostCheck"
+  ],
+  "stat": [],
+  "extern": [
+   "NormalAttackAction$$calcPlayerToMobDamage -> CalcConstantDamage",
+   "PlayerAttackBase$$TemplateAssignment -> CalcConstantDamage"
+  ],
+  "dict": []
+ },
+ "681": {
+  "class": "MaintainingTheFrontMastery",
+  "level": [
+   "MaintainingTheFrontBuf$$.ctor"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$get_MaxHp",
+   "PlayerSecondaryStatus$$CalcBaseMaxHp"
+  ]
+ },
+ "706": {
+  "class": "RushAidMastery",
+  "level": [],
+  "buff": [
+   "MobAttackBase$$CalcLastDamage",
+   "PlayerActionManager$$Damaged",
+   "PlayerActionManager$$get_MoveSpeed",
+   "PlayerBattleManager.<>c__DisplayClass53_0$$<checkAssistMove>b__0"
+  ],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PlayerBattleManager$$checkAssistMove"
+  ]
+ },
+ "719": {
+  "class": "EnhanceSprite",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "AstralLanceBuf$$.ctor -> GetEnhanceParam",
+   "AutoDeviceAction$$ActionHit -> GetEnhanceParam",
+   "CounterForceBuf$$.ctor -> GetEnhanceParam",
+   "StabilisAction$$ActionHit -> GetEnhanceParam"
+  ],
+  "dict": [
+   "AstralLanceBuf$$.ctor",
+   "AutoDeviceAction$$ActionHit",
+   "CounterForceBuf$$.ctor",
+   "StabilisAction$$ActionHit"
+  ]
+ },
+ "720": {
+  "class": "Retake",
+  "level": [],
+  "buff": [
+   "PlayerActionManager$$Damaged"
+  ],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "777": {
+  "class": "SoundVeil",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "MobAttackBase$$CalcLastDamage -> GetReduceDamageRateValue"
+  ],
+  "dict": [
+   "SoundVeil$$GetReduceDamageRateValue"
+  ]
+ },
+ "778": {
+  "class": "BattleNotes",
+  "level": [
+   "PlayerBattleManager$$StartBattleNotesAttack"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "BattleNotesAttackAction$$ActionPreparation -> Attacked",
+   "PlayerActionManager$$Update -> CheckAttack"
+  ],
+  "dict": [
+   "BattleNotes$$CheckAttack",
+   "BattleNotesAttackAction$$ActionPreparation"
+  ]
+ },
+ "837": {
+  "class": "BlessStrengthen",
+  "level": [
+   "BlessAction$$OnInitialize"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "845": {
+  "class": "AspisSeoul",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "MobAttackBase$$CalcLastDamage -> GetRateDamageResist",
+   "ReceiveSupportResult$$OnEventPlayerSupport -> ReceiveSupportEvent"
+  ],
+  "dict": []
+ },
+ "846": {
+  "class": "SacredTeachings",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "ReceiveSupportResult$$OnActionPlayerSupport -> ReceiveHpHeal",
+   "ReceiveSupportResult$$OnEventPlayerSupport -> ReceiveEventSupport",
+   "ReceiveSupportResult$$OnEventPlayerSupport -> ReceiveHpHeal",
+   "ReceiveSupportResult$$OnEventPlayerSupport -> ReceiveOtherHpHeal"
+  ],
+  "dict": []
+ },
+ "865": {
+  "class": "KnowledgeOfMagicWarriorMastary",
+  "level": [
+   "UIExSkillManager$$ExSkillList"
+  ],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$get_Cspd",
+   "weapon/EquipItemData.WeaponTypeCalculatorBase$$CalcAtk",
+   "weapon/EquipItemData.WeaponTypeCalculatorBase$$CalcMatk"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcAtk",
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcMatk",
+   "MobaPlayerSecondaryStatus$$get_Cspd",
+   "PlayerSecondaryStatus$$get_Cspd"
+  ]
+ },
+ "871": {
+  "class": "EnchantedSpell",
+  "level": [
+   "PlayerAttackBase$$CheckEnchantedSpellMpLessInvoke",
+   "ReceiveSupportResult$$OnEventPlayerSupport",
+   "UIMagicBladeExSkillManager.<<Initialized>g__LoadExSkillData|33_0>d$$MoveNext"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "ReceiveSupportResult$$OnEventPlayerSupport"
+  ]
+ },
+ "877": {
+  "class": "DrainRecall",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "DrainBarrierAction.<>c__DisplayClass21_0$$<ActionStart>b__0 -> AddBuf",
+   "DrainBarrierAction.<>c__DisplayClass21_0$$<ActionStart>b__1 -> AddBuf"
+  ],
+  "dict": []
+ },
+ "879": {
+  "class": "MagicSkin",
+  "level": [
+   "EquipItemData$$CalcEqDef"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "MobAttackBase$$CalcLastDamage -> GetMobAttackLastDamageRate",
+   "PlayerActionManager$$Damaged -> DamageAdjustment"
+  ],
+  "dict": [
+   "MagicSkin$$DamageAdjustment",
+   "MagicSkin$$GetMobAttackLastDamageRate",
+   "MobaPlayerActionManager$$ReceiveDamaged"
+  ]
+ },
+ "930": {
+  "class": "PetHpUp",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PetStatus$$get_MaxHp"
+  ]
+ },
+ "932": {
+  "class": "PetHide",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PetMemberActionManager$$DamageTransfer"
+  ]
+ },
+ "950": {
+  "class": "PetProtect",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PlayerActionManager$$DamageTransfer"
+  ]
+ },
+ "952": {
+  "class": "PetMpUp",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PetStatus$$get_MaxMp"
+  ]
+ },
+ "964": {
+  "class": "HalberdMastery",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "weapon/EquipItemData.HalberdCalculator$$calcAtkParam"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData.HalberdCalculator$$calcAtkParam",
+   "EquipItemData.HalberdCalculator$$calcEqAtkBonus"
+  ]
+ },
+ "971": {
+  "class": "HandlingSatisfactionMastary",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "MobaPlayerSecondaryStatus$$GetCrtConstant",
+   "MobaPlayerSecondaryStatus$$GetCrtRate",
+   "PlayerSecondaryStatus$$GetCrtConstant",
+   "PlayerSecondaryStatus$$GetCrtRate"
+  ]
+ },
+ "978": {
+  "class": "GodSpearHandlingMastary",
+  "level": [
+   "GodSpearHandling1Action$$IsFailure",
+   "GodSpearHandling2Action$$IsFailure",
+   "GodSpearHandling3Action$$IsFailure",
+   "SkillManager$$GetAvailableSkill",
+   "UIComboWindow$$Initialize",
+   "UIComboWindow$$SetSkillTreeButton"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "HandlingerOfGodspeedBuf$$DamageFunction -> CheckEffectiveIveinvincible",
+   "HandlingerOfGodspeedBuf$$DamageFunction -> EffectiveIveinvincible",
+   "HandlingerOfGodspeedBuf$$GetGodSpearHandlingParam -> GetParam",
+   "ShortcutManager$$LoadShortcut -> CheckAvailable",
+   "ShortcutManager$$ShortcutChatPanelOpen -> CheckAvailable",
+   "ShortcutManager$$ShortcutChatTargetOpen -> CheckAvailable",
+   "ShortcutManager$$ShortcutPanelOpen -> CheckAvailable",
+   "SkillManager$$updateAvailableSkill -> GetSkill",
+   "UIActiveBaseShortcutButton$$SkillButton -> CheckAvailable",
+   "UIComboPanelManager$$IsComboNG -> CheckAvailable",
+   "UIComboWindow$$OnPushSkillTree -> GetSkill",
+   "UIComboWindow$$OnSwitchSkillList -> GetSkill",
+   "UIComboWindow$$SetSkillTreeButton -> GetSkill",
+   "UIShortcutCustomManager$$SetLowerShortcutLabel -> CheckAvailable",
+   "UIShortcutCustomSkill$$SetSkillDataList -> GetSkill"
+  ],
+  "dict": [
+   "HandlingerOfGodspeedBuf$$DamageFunction",
+   "HandlingerOfGodspeedBuf$$GetGodSpearHandlingParam",
+   "PlayerAttackBase$$CalcSkillMasteryLastDamageRate",
+   "SkillManager$$GetAvailableSkill",
+   "SkillManager$$updateAvailableSkill"
+  ]
+ },
+ "979": {
+  "class": "TornadoLanceMastary",
+  "level": [
+   "ReceiveBattleResult$$AttackMobaMob"
+  ],
+  "buff": [
+   "MagicPursuit$$Calc",
+   "MobAttackBase$$CalcHit",
+   "MobEventScriptAttack$$CalcHit",
+   "MobaPlayerSecondaryStatus$$get_CriticalDmg",
+   "PhysicalPursuit$$Calc",
+   "PlayerAttackBase$$CalcStable",
+   "PlayerAttackBase$$ChackCorrectHit",
+   "PlayerSecondaryStatus$$CalcCriticalDmg",
+   "PlayerSecondaryStatus$$get_CurrectHit"
+  ],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "BCollaboBossActionManager$$Damaged",
+   "EnemyMobActionManagerBase$$Damaged",
+   "GuildRaidBossMobActionManager$$Damaged",
+   "ScoreAttackBossActionManager$$Damaged"
+  ]
+ },
+ "998": {
+  "class": "Abandonment",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "AssassinStubAction$$calcPlayerToMobDamage",
+   "MobAttackBase$$CalcHit",
+   "MobEventScriptAttack$$CalcHit"
+  ]
+ },
+ "999": {
+  "class": "Seekerius",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "AssassinStubAction$$<ActionPreparation>b__28_0",
+   "AssassinStubAction$$calcPlayerToMobDamage",
+   "MobAttackBase$$CalcLastDamage"
+  ]
+ },
+ "1002": {
+  "class": "CorrosivePoison",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "EnemyMobActionManagerBase$$DamagedAddAbnormal -> CalcCorrosivePoison"
+  ],
+  "dict": []
+ },
+ "1005": {
+  "class": "AssassinationSecrets",
+  "level": [
+   "AssassinStubAction$$ActionPreparation",
+   "FuneVinteAction$$ActionPreparation"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "AssassinStubAction$$ActionPreparation -> GetAssassinStubSkillRate",
+   "FuneVinteAction$$ActionPreparation -> GetFuneVinteMpSkillRate"
+  ],
+  "dict": []
+ },
+ "1007": {
+  "class": "PoisonMixer",
+  "level": [
+   "DeathReceptionAction$$ActionPreparation"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "DeathReceptionAction$$ActionPreparation -> GetDeathReceptionRangeAttackSkillRate",
+   "DeathReceptionAction$$ActionPreparation -> GetDeathReceptionSingleAttackSkillRate",
+   "DragonicChargeAction$$calcPlayerToMobDamage -> CheckActive",
+   "DragonicChargeAction$$calcPlayerToMobDamage -> EffectiveAbnormalPoison",
+   "NormalAttackAction$$calcPlayerToMobDamage -> CheckActive",
+   "NormalAttackAction$$calcPlayerToMobDamage -> EffectiveAbnormalPoison",
+   "PoisonDaggerAction$$calcPlayerToMobDamage -> CheckActive",
+   "PoisonDaggerAction$$calcPlayerToMobDamage -> EffectiveAbnormalPoison"
+  ],
+  "dict": [
+   "PoisonMixer$$CheckActive"
+  ]
+ },
+ "1033": {
+  "class": "CastMastery",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$get_Cspd",
+   "weapon/EquipItemData.MagictoolCalculator$$calcAtkParam",
+   "weapon/EquipItemData.RodCalculator$$calcAtkParam"
+  ],
+  "extern": [
+   "PlayerSecondaryStatus$$get_Cspd -> SetSkillLearnData"
+  ],
+  "dict": [
+   "EquipItemData.MagictoolCalculator$$calcAtkParam",
+   "EquipItemData.RodCalculator$$calcAtkParam",
+   "PlayerAttackBase$$calcBaseDamage",
+   "PlayerSecondaryStatus$$get_Cspd"
+  ]
+ },
+ "1036": {
+  "class": "MagicalGuidance",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "OverLimitBuf$$GetParam"
+  ]
+ },
+ "1037": {
+  "class": "CatsDropItem",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PlayerBattleManager$$StartCatsDropItem"
+  ]
+ },
+ "1038": {
+  "class": "MagicResearch",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "FamiliaBlizzardAction$$OnInitialize",
+   "FamiliaLightningAction$$OnInitialize",
+   "FamiliaMeteorStrikeAction$$OnInitialize",
+   "FamiliaStoneSkinAction$$OnInitialize",
+   "ImperialRayAction$$OnInitialize",
+   "ImperialRayPursuitAction$$OnInitialize"
+  ]
+ },
+ "1089": {
+  "class": "BarehandMastery",
+  "level": [],
+  "buff": [
+   "Revival$$CheckRevival",
+   "Revival$$OnActionMobDamage"
+  ],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "EarthShatteringAction$$ActionSkillEvent",
+   "EquipItemData.HundCalculator$$calcEqAtkBonus",
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk",
+   "FuriousEffortsAction$$ActionStart",
+   "GameManager$$CheckChangeBarehandQigong",
+   "HealQigongAction$$ActionStart",
+   "HealQigongBuf$$CheckCutDamageByQigong",
+   "HealQigongBuf$$DamageFunction",
+   "MobaPlayerActionManager$$ReceiveDamaged",
+   "ReceiveSupportResult$$OnActionPlayerSupport",
+   "Revival$$OnActionMobDamage",
+   "StormAndUrgeAction$$ActionStart"
+  ]
+ },
+ "1094": {
+  "class": "CollectQigongExtreme",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$get_AtkMpRecovery"
+  ],
+  "extern": [],
+  "dict": [
+   "GameManager$$CheckChangeBarehandQigong",
+   "PlayerSecondaryStatus$$get_AtkMpRecovery"
+  ]
+ },
+ "1095": {
+  "class": "FuriousEffortsExtreme",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "MobaPlayerActionManager$$ReceiveAttack -> Damaged"
+  ],
+  "dict": [
+   "BCollaboBossActionManager$$Damaged",
+   "EnemyMobActionManagerBase$$Damaged",
+   "FuriousEffortsBuf$$.ctor",
+   "FuriousEffortsExtreme$$Damaged",
+   "GuildRaidBossMobActionManager$$Damaged",
+   "PlayerAttackBase$$ActionPreparation",
+   "ScoreAttackBossActionManager$$Damaged"
+  ]
+ },
+ "1096": {
+  "class": "StormAndUrgeExtreme",
+  "level": [
+   "StormAndUrgeAction$$ActionSkillEvent"
+  ],
+  "buff": [
+   "PlayerAttackBase$$CalcCostMp"
+  ],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "PhysicalPursuit$$Calc",
+   "PlayerAttackBase$$RemoveAfterSkillBuf"
+  ]
+ },
+ "1097": {
+  "class": "CollisionOfFightingSpirit",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "attack/MobAttackBase$$CalcLastDamage"
+  ],
+  "extern": [],
+  "dict": [
+   "HealQigongBuf$$.ctor",
+   "HealQigongBuf$$CheckCollisionOfFightingSpirit",
+   "MobAttackBase$$CalcLastDamage"
+  ]
+ },
+ "1099": {
+  "class": "Revival",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [
+   "PhotonListener$$OnActionMobAttack -> OnActionMobDamage",
+   "PlayerActionManager$$Damaged -> CheckRevival"
+  ],
+  "dict": [
+   "PlayerActionManager$$Damaged",
+   "Revival$$OnActionMobDamage"
+  ]
+ },
+ "1100": {
+  "class": "SelfDisclosure",
+  "level": [
+   "UIExSkillManager$$ExSkillList"
+  ],
+  "buff": [],
+  "stat": [
+   "player/PlayerSecondaryStatus$$get_AvoidSpeed",
+   "player/PlayerSecondaryStatus$$get_AvoidStack"
+  ],
+  "extern": [
+   "ExSkillManager.UpdateExSkillConfig$$OnSuccess -> UpdateCristaBonus",
+   "PhotonListener$$OnItemDiscard -> UpdateCristaBonus",
+   "ReceiveSupportResult$$OnActionPlayerSupport -> SetCristBonus",
+   "Revival$$OnActionMobDamage -> SetCristBonus"
+  ],
+  "dict": [
+   "AvoidActionManager$$CheckAvoidEquip",
+   "ExSkillManager.UpdateExSkillConfig$$OnSuccess",
+   "GameManager$$CheckChangeBarehandQigong",
+   "GuardActionManager$$CheckGuardEquip",
+   "MobaPlayerSecondaryStatus$$get_AvoidSpeed",
+   "MobaPlayerSecondaryStatus$$get_AvoidStack",
+   "MobaPlayerSecondaryStatus$$get_GuardPower",
+   "MobaPlayerSecondaryStatus$$get_GuardSpeed",
+   "PhotonListener$$OnItemDiscard",
+   "PlayerSecondaryStatus$$get_AvoidSpeed",
+   "PlayerSecondaryStatus$$get_AvoidStack",
+   "PlayerSecondaryStatus$$get_GuardPower",
+   "PlayerSecondaryStatus$$get_GuardSpeed",
+   "ReceiveSupportResult$$OnActionPlayerSupport",
+   "Revival$$OnActionMobDamage",
+   "SkillManager$$UpdateSkillLv"
+  ]
+ },
+ "1124": {
+  "class": "GoodQualityShovel",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "GlaiveTiggerAction$$ActionStart",
+   "GlaiveTiggerAction.<>c__DisplayClass24_0$$<ActionStart>b__0"
+  ]
+ },
+ "1128": {
+  "class": "Harvest",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "1132": {
+  "class": "MatchPump",
+  "level": [],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": []
+ },
+ "1161": {
+  "class": "GodRigidBodyMastery",
+  "level": [
+   "GodHandBuf$$DeathExemption",
+   "GodHandBuf$$Initalize",
+   "GoliathTakeShotAction$$EnemyDamage"
+  ],
+  "buff": [],
+  "stat": [],
+  "extern": [],
+  "dict": [
+   "GodHandAction$$OnInitialize",
+   "GodHandBuf$$GetParam",
+   "GodHandBuf$$get_IsGodRigidBodyMastery",
+   "PlayerActionManager$$Damaged"
+  ]
+ },
+ "1217": {
+  "class": "ShinobiWay",
+  "level": [],
+  "buff": [],
+  "stat": [
+   "normal/NormalAttackAction$$CalcBaseDamage",
+   "player/PlayerSecondaryStatus$$GetCrtConstant",
+   "player/PlayerSecondaryStatus$$GetDisplayBonusCalcHate",
+   "player/PlayerSecondaryStatus$$get_Hit",
+   "player/PlayerSecondaryStatus$$get_Stable",
+   "weapon/EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk"
+  ],
+  "extern": [],
+  "dict": [
+   "EquipItemData$$CalcFlee",
+   "EquipItemData.WeaponTypeCalculatorBase$$CalcEqAtk",
+   "MobAttackBase$$CalcHit",
+   "MobEventScriptAttack$$CalcHit",
+   "MobaPlayerSecondaryStatus$$GetCrtConstant",
+   "MobaPlayerSecondaryStatus$$get_Hit",
+   "MobaPlayerSecondaryStatus$$get_Stable",
+   "NormalAttackAction$$CalcBaseDamage",
+   "PlayerAttackBase$$calcBaseDamage",
+   "PlayerSecondaryStatus$$GetCrtConstant",
+   "PlayerSecondaryStatus$$GetDisplayBonusCalcHate",
+   "PlayerSecondaryStatus$$get_Hit",
+   "PlayerSecondaryStatus$$get_Stable",
+   "RapidAquaVortexAction$$calcBaseDamage",
+   "ThunderStyleAction$$calcBaseDamage",
+   "WindStyleAction$$calcBaseDamage"
+  ]
+ }
+}

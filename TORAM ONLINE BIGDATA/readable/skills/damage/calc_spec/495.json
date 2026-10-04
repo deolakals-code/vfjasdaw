@@ -1,0 +1,52 @@
+{
+ "version": 1,
+ "uid": 495,
+ "name_th": "ซุปเปอร์กริป",
+ "name_en": "SuperGrip",
+ "tree": "BattleSkill",
+ "category": "Mastery",
+ "max_level": 180,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "SuperGrip",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "SuperGrip",
+  "bonuses": {
+   "Percent": {
+    "id": 27,
+    "expr": "int((Lv * 7.5))",
+    "by_level": [
+     7,
+     15,
+     22,
+     30,
+     37,
+     45,
+     52,
+     60,
+     67,
+     75
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

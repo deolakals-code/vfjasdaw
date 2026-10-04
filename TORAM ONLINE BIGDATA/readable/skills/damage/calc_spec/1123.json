@@ -1,0 +1,632 @@
+{
+ "version": 1,
+ "uid": 1123,
+ "name_th": "แฟนทอมมิสไซล์",
+ "name_en": "PhantomMissile",
+ "tree": "NecromancerSkill",
+ "category": "Object",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)",
+  "placed object / trap / summon"
+ ],
+ "class": "PhantomMissileAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1123,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(24)",
+   "simplified": "MathUtil.DisplayMeterToDistance(24)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0.5, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0.5, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "500",
+   "simplified": "500",
+   "when": "always",
+   "by_level": 500
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "System.Math.Min(SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count), 10)",
+   "simplified": "System.Math.Min(SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count), 10)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "System.Math.Min",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(System.Math.Min(SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count), 10) - 1)",
+   "simplified": "System.Math.Min(SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count), 10) - 1",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "System.Math.Min",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "target",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "target",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 10) + skillRate)",
+   "simplified": "10 × Lv + skillRate",
+   "when": "(LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND (LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 10) + ((Lv * 10) + skillRate))",
+   "simplified": "20 × Lv + skillRate",
+   "when": "(LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "(LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 ge (LoopParam + 1) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 10) + ((Lv * 10) + ((Lv * 10) + skillRate)))",
+   "simplified": "30 × Lv + skillRate",
+   "when": "(LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 lt (LoopParam + 1) AND 3 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 lt (LoopParam + 1) AND 3 lt (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 lt (LoopParam + 1) AND 3 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "3",
+   "simplified": "3",
+   "when": "(LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 lt (LoopParam + 1) AND 3 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 lt (LoopParam + 1) AND 3 lt (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 lt (LoopParam + 1) AND 3 ge (LoopParam + 1) AND targetMagicExp eq 0",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": ".MoveEffect::Update",
+   "kind": "set",
+   "name": "moveSpeed",
+   "formula": "(MoveEffect.moveSpeed * 0.9)",
+   "simplified": "0.9 × MoveEffect.moveSpeed",
+   "when": "MoveEffect.isEnd ne 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05 OR MoveEffect.isEnd ne 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) le 1e-05"
+  },
+  {
+   "method": ".MoveEffect::Update",
+   "kind": "set",
+   "name": "moveSpeed.y",
+   "formula": "(moveSpeed.y * 0.9)",
+   "simplified": "0.9 × moveSpeed.y",
+   "when": "MoveEffect.isEnd ne 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05 OR MoveEffect.isEnd ne 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) le 1e-05"
+  },
+  {
+   "method": ".MoveEffect::Update",
+   "kind": "set",
+   "name": "moveSpeed.z",
+   "formula": "(moveSpeed.z * 0.9)",
+   "simplified": "0.9 × moveSpeed.z",
+   "when": "MoveEffect.isEnd ne 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05 OR MoveEffect.isEnd ne 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) le 1e-05"
+  },
+  {
+   "method": ".MoveEffect::Update",
+   "kind": "set",
+   "name": "moveSpeed.z",
+   "formula": "(moveSpeed.z + ((PhantomMissileAction.MoveEffect.get_accelDir(this).z * 75) * UnityEngine.Time.get_deltaTime()))",
+   "simplified": "(moveSpeed.z + ((PhantomMissileAction.MoveEffect.get_accelDir(this).z * 75) * UnityEngine.Time.get_deltaTime()))",
+   "when": "MoveEffect.isEnd eq 0 AND MoveEffect.isHit eq 0 AND MoveEffect.isHitCheck ne 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05 OR MoveEffect.isEnd eq 0 AND MoveEffect.isHit ne 0 AND MoveEffect.isHitCheck ne 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05 OR !PhantomMissileAction.MoveEffect.HitCheck(this) AND MoveEffect.isEnd eq 0 AND MoveEffect.isHitCheck eq 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05",
+   "vars": [
+    "PhantomMissileAction.MoveEffect.HitCheck",
+    "PhantomMissileAction.MoveEffect.get_accelDir",
+    "UnityEngine.Time.get_deltaTime"
+   ]
+  },
+  {
+   "method": ".MoveEffect::Update",
+   "kind": "set",
+   "name": "isHit",
+   "formula": "(PhantomMissileAction.MoveEffect.HitCheck(this) & 1)",
+   "simplified": "PhantomMissileAction.MoveEffect.HitCheck(this) & 1",
+   "when": "MoveEffect.isEnd eq 0 AND MoveEffect.isHit eq 0 AND MoveEffect.isHitCheck ne 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05 OR MoveEffect.isEnd eq 0 AND MoveEffect.isHit eq 0 AND MoveEffect.isHitCheck ne 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) le 1e-05",
+   "vars": [
+    "PhantomMissileAction.MoveEffect.HitCheck"
+   ]
+  },
+  {
+   "method": ".MoveEffect::Update",
+   "kind": "set",
+   "name": "hitCheckOffTimer",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!PhantomMissileAction.MoveEffect.HitCheck(this) AND MoveEffect.isEnd eq 0 AND MoveEffect.isHitCheck eq 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05 OR !PhantomMissileAction.MoveEffect.HitCheck(this) AND MoveEffect.isEnd eq 0 AND MoveEffect.isHitCheck eq 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) le 1e-05 OR (MoveEffect.hitCheckOffTimer + UnityEngine.Time.get_deltaTime()) gt 1 AND MoveEffect.isEnd eq 0 AND MoveEffect.isHitCheck eq 0 AND PhantomMissileAction.MoveEffect.HitCheck(this) AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05",
+   "by_level": 0,
+   "vars": [
+    "PhantomMissileAction.MoveEffect.HitCheck",
+    "UnityEngine.Time.get_deltaTime"
+   ]
+  },
+  {
+   "method": ".MoveEffect::Update",
+   "kind": "set",
+   "name": "isHitCheck",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PhantomMissileAction.MoveEffect.HitCheck(this) AND MoveEffect.isEnd eq 0 AND MoveEffect.isHitCheck eq 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05 OR !PhantomMissileAction.MoveEffect.HitCheck(this) AND MoveEffect.isEnd eq 0 AND MoveEffect.isHitCheck eq 0 AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) le 1e-05 OR (MoveEffect.hitCheckOffTimer + UnityEngine.Time.get_deltaTime()) gt 1 AND MoveEffect.isEnd eq 0 AND MoveEffect.isHitCheck eq 0 AND PhantomMissileAction.MoveEffect.HitCheck(this) AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05",
+   "by_level": 1,
+   "vars": [
+    "PhantomMissileAction.MoveEffect.HitCheck",
+    "UnityEngine.Time.get_deltaTime"
+   ]
+  },
+  {
+   "method": ".MoveEffect::Update",
+   "kind": "set",
+   "name": "hitCheckOffTimer",
+   "formula": "(MoveEffect.hitCheckOffTimer + UnityEngine.Time.get_deltaTime())",
+   "simplified": "MoveEffect.hitCheckOffTimer + UnityEngine.Time.get_deltaTime()",
+   "when": "(MoveEffect.hitCheckOffTimer + UnityEngine.Time.get_deltaTime()) le 1 AND MoveEffect.isEnd eq 0 AND MoveEffect.isHitCheck eq 0 AND PhantomMissileAction.MoveEffect.HitCheck(this) AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) gt 1e-05 OR (MoveEffect.hitCheckOffTimer + UnityEngine.Time.get_deltaTime()) le 1 AND MoveEffect.isEnd eq 0 AND MoveEffect.isHitCheck eq 0 AND PhantomMissileAction.MoveEffect.HitCheck(this) AND fsqrt(((moveSpeed.z * moveSpeed.z) + ((MoveEffect.moveSpeed * MoveEffect.moveSpeed) + (moveSpeed.y * moveSpeed.y)))) le 1e-05",
+   "vars": [
+    "PhantomMissileAction.MoveEffect.HitCheck",
+    "UnityEngine.Time.get_deltaTime"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "state",
+   "formula": "state",
+   "simplified": "state",
+   "when": "always"
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "isHit",
+   "formula": "0",
+   "simplified": "0",
+   "when": "MoveEffect.bounceCount ne 0 AND state eq 0 AND state ne 1 OR MoveEffect.bounceCount eq 0 AND state eq 0 AND state ne 1",
+   "by_level": 0
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "isHitCheck",
+   "formula": "0",
+   "simplified": "0",
+   "when": "MoveEffect.bounceCount ne 0 AND state eq 0 AND state ne 1",
+   "by_level": 0
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "isEnd",
+   "formula": "1",
+   "simplified": "1",
+   "when": "MoveEffect.bounceCount ge MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) gt 1e-05 AND state eq 1 OR MoveEffect.bounceCount ge MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) le 1e-05 AND state eq 1",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed",
+   "formula": "(0 - (10 * ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "simplified": "(0 - (10 * ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "when": "MoveEffect.bounceCount ge MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) gt 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed.y",
+   "formula": "(moveSpeed.y - (10 * (0 / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "simplified": "(moveSpeed.y - (10 * (0 / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "when": "MoveEffect.bounceCount ge MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) gt 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed.z",
+   "formula": "(0 - (10 * ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "simplified": "(0 - (10 * ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "when": "MoveEffect.bounceCount ge MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) gt 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "bounceCount",
+   "formula": "(MoveEffect.bounceCount + 1)",
+   "simplified": "MoveEffect.bounceCount + 1",
+   "when": "MoveEffect.bounceCount ge MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) gt 1e-05 AND state eq 1 OR MoveEffect.bounceCount ge MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) le 1e-05 AND state eq 1 OR MoveEffect.bounceCount lt MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) gt 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed",
+   "formula": "(0 - (10 * UnityEngine.Vector3.static+0x0))",
+   "simplified": "-(10 × UnityEngine.Vector3.static)",
+   "when": "MoveEffect.bounceCount ge MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) le 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed.y",
+   "formula": "(moveSpeed.y - (10 * UnityEngine.Vector3.static+0x4))",
+   "simplified": "moveSpeed.y - 10 × UnityEngine.Vector3.static - 4",
+   "when": "MoveEffect.bounceCount ge MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) le 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed.z",
+   "formula": "(0 - (10 * UnityEngine.Vector3.static+0x8))",
+   "simplified": "-(10 × UnityEngine.Vector3.static) - 8",
+   "when": "MoveEffect.bounceCount ge MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) le 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed",
+   "formula": "(0 - ((MoveEffect.isEnd eq 0 ? 25 : 10) * ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "simplified": "(0 - ((MoveEffect.isEnd eq 0 ? 25 : 10) * ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "when": "MoveEffect.bounceCount lt MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) gt 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed.y",
+   "formula": "(moveSpeed.y - ((MoveEffect.isEnd eq 0 ? 25 : 10) * (0 / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "simplified": "(moveSpeed.y - ((MoveEffect.isEnd eq 0 ? 25 : 10) * (0 / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "when": "MoveEffect.bounceCount lt MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) gt 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed.z",
+   "formula": "(0 - ((MoveEffect.isEnd eq 0 ? 25 : 10) * ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "simplified": "(0 - ((MoveEffect.isEnd eq 0 ? 25 : 10) * ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) / fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))))))",
+   "when": "MoveEffect.bounceCount lt MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) gt 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed",
+   "formula": "(0 - ((MoveEffect.isEnd eq 0 ? 25 : 10) * UnityEngine.Vector3.static+0x0))",
+   "simplified": "-((MoveEffect.isEnd = 0 ? 25 : 10) × UnityEngine.Vector3.static)",
+   "when": "MoveEffect.bounceCount lt MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) le 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed.y",
+   "formula": "(moveSpeed.y - ((MoveEffect.isEnd eq 0 ? 25 : 10) * UnityEngine.Vector3.static+0x4))",
+   "simplified": "moveSpeed.y - (MoveEffect.isEnd = 0 ? 25 : 10) × UnityEngine.Vector3.static - 4",
+   "when": "MoveEffect.bounceCount lt MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) le 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": ".MoveEffect::ChangeState",
+   "kind": "set",
+   "name": "moveSpeed.z",
+   "formula": "(0 - ((MoveEffect.isEnd eq 0 ? 25 : 10) * UnityEngine.Vector3.static+0x8))",
+   "simplified": "-((MoveEffect.isEnd = 0 ? 25 : 10) × UnityEngine.Vector3.static) - 8",
+   "when": "MoveEffect.bounceCount lt MoveEffect.maxBounce AND fsqrt((((UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).z)) + ((UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x) * (UnityEngine.Transform.get_position(MoveEffect.targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(MoveEffect.effect)).x)))) le 1e-05 AND state eq 1",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "(LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND (LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult",
+    "target.ExpDefMagic"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "(LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND (LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "(LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND (LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(((Lv * 10) + skillRate) / 100)",
+   "simplified": "(10 × Lv + skillRate) / 100",
+   "when": "(LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 lt (LoopParam + 1) AND 3 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(((Lv * 10) + ((Lv * 10) + skillRate)) / 100)",
+   "simplified": "(20 × Lv + skillRate) / 100",
+   "when": "(LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 lt (LoopParam + 1) AND 3 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 lt (LoopParam + 1) AND 3 lt (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp eq 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 lt (LoopParam + 1) AND 3 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetMagicExp / 100)",
+   "simplified": "targetMagicExp / 100",
+   "when": "(LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0 OR !SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND (LoopParam + 1) ge 1 AND 1 ge (LoopParam + 1) AND targetMagicExp ne 0 OR (LoopParam + 1) ge 1 AND 1 lt (LoopParam + 1) AND 2 ge (LoopParam + 1) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CriticalCheck) AND targetMagicExp ne 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "CalcStep.CriticalCheck",
+    "PlayerAttackBase.TemplateAssignment",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "CalcStep.CriticalCheck",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "MathUtil.DisplayMeterToDistance",
+  "PhantomMissileAction.MoveEffect.HitCheck",
+  "PhantomMissileAction.MoveEffect.get_accelDir",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "SkillCalcTemplate.CheckStepResult",
+  "System.Math.Min",
+  "TryGetBuf.buf",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefMagic"
+ ],
+ "residual": []
+}

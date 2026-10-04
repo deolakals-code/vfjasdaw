@@ -1,0 +1,328 @@
+{
+ "version": 1,
+ "uid": 1062,
+ "name_th": "รีเกรทเลส",
+ "name_en": "Regret",
+ "tree": "DarkPowerSkill",
+ "category": "Buffer",
+ "max_level": 120,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "RegretAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1062,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1062)",
+   "simplified": "RemoveSelfBuffer(1062)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND status.MaxHp le 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "status.MaxHp"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1062, Lv, Id)",
+   "simplified": "AddSelfBuffer(1062, Lv, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND status.MaxHp le 0 OR UnityEngine.Object.op_Inequality(actarAction) AND status.MaxHp gt 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "status.MaxHp"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "RegretBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "30",
+        "when": "always",
+        "by_level": 30
+       }
+      ],
+      "stack": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MaxMpUp",
+     "bonus_id": 64,
+     "formula": "((stack lt 10 ? stack : 10) * maxMp)",
+     "simplified": "min(stack, 10) × maxMp",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MaxHpUpRate",
+     "bonus_id": 62,
+     "formula": "-(maxHp * stack)",
+     "simplified": "-(maxHp × stack)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MatkUp",
+     "bonus_id": 55,
+     "formula": "((stack lt 10 ? stack : 10) * matk)",
+     "simplified": "min(stack, 10) × matk",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AtkUp",
+     "bonus_id": 54,
+     "formula": "((stack lt 10 ? stack : 10) * atk)",
+     "simplified": "min(stack, 10) × atk",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "stack",
+     "simplified": "stack",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "((stack lt 10 ? stack : 10) * atkMpHeal)",
+     "simplified": "min(stack, 10) × atkMpHeal",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MagicDmgCut",
+     "bonus_id": 22,
+     "formula": "((stack lt 10 ? stack : 10) * magic)",
+     "simplified": "min(stack, 10) × magic",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "PowerDmgCut",
+     "bonus_id": 21,
+     "formula": "((stack lt 10 ? stack : 10) * physics)",
+     "simplified": "min(stack, 10) × physics",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Stack",
+      "formula": "max((30 - (stack << 1)), 0)",
+      "when": "always"
+     }
+    ],
+    "Level": [
+     {
+      "method": "Stack",
+      "formula": "lv",
+      "when": "always"
+     }
+    ],
+    "stack": [
+     {
+      "method": "Stack",
+      "formula": "(stack + 1)",
+      "when": "always"
+     }
+    ],
+    "atk": [
+     {
+      "method": "calc",
+      "formula": "(int(((Lv - 1) * 0.5)) + 1)",
+      "when": "always"
+     }
+    ],
+    "matk": [
+     {
+      "method": "calc",
+      "formula": "(int(((Lv - 1) * 0.5)) + 1)",
+      "when": "always"
+     }
+    ],
+    "physics": [
+     {
+      "method": "calc",
+      "formula": "Lv",
+      "when": "always"
+     }
+    ],
+    "magic": [
+     {
+      "method": "calc",
+      "formula": "Lv",
+      "when": "always"
+     }
+    ],
+    "atkMpHeal": [
+     {
+      "method": "calc",
+      "formula": "Lv",
+      "when": "always"
+     }
+    ],
+    "maxMp": [
+     {
+      "method": "calc",
+      "formula": "100",
+      "when": "always"
+     }
+    ],
+    "maxHp": [
+     {
+      "method": "calc",
+      "formula": "10",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Stack",
+    "calc"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerActionManager.Damaged",
+  "MobaPlayerActionManager.ReceiveDamaged",
+  "PlayerActionManager.Damaged",
+  "PlayerActionManager.EventDamaged",
+  "PlayerActionManager.abnormalActionLockCheck",
+  "SuppressionBonusGameManager.<>c__DisplayClass18_0.<Start>b__0",
+  "SuppressionBonusGameManager.<MenuLoadWait>d__21.MoveNext"
+ ],
+ "variables": [
+  "IPlayerStatusCalculator.get_MaxHp",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "SkillBufferId.AtkUp",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.MagicDmgCut",
+  "SkillBufferId.MatkUp",
+  "SkillBufferId.MaxHpUpRate",
+  "SkillBufferId.MaxMpUp",
+  "SkillBufferId.PowerDmgCut",
+  "SkillBufferId.Value",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "status.MaxHp"
+ ],
+ "residual": []
+}

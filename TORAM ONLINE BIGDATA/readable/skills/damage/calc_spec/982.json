@@ -1,0 +1,497 @@
+{
+ "version": 1,
+ "uid": 982,
+ "name_th": "ธอร์แฮมเมอร์",
+ "name_en": "ThorHammer",
+ "tree": "HalberdSkill",
+ "category": "Object",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment",
+  "placed object / trap / summon"
+ ],
+ "class": "ThorHammerAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 982,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "400",
+   "simplified": "400",
+   "when": "always",
+   "by_level": 400
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 50) + 1000)",
+   "simplified": "50 × Lv + 1000",
+   "when": "always",
+   "by_level": [
+    1050,
+    1100,
+    1150,
+    1200,
+    1250,
+    1300,
+    1350,
+    1400,
+    1450,
+    1500
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "nowAttackCount",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "pursuitSkillRate",
+   "formula": "((((TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)).Level >> 1) * 20) + (status.Int // 10)) + 75)",
+   "simplified": "((((TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)).Level >> 1) * 20) + (status.Int // 10)) + 75)",
+   "when": "(SkillBufferManager.TryGetBuf<LightningHailBuf>PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.TryGetBuf<LightningHailBuf>PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality",
+    "status.Int"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "pursuitFixDamage",
+   "formula": "((TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)).Level * 10) + 100)",
+   "simplified": "((TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)).Level * 10) + 100)",
+   "when": "(SkillBufferManager.TryGetBuf<LightningHailBuf>PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferManager.TryGetBuf<LightningHailBuf>PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "(SkillBufferDataBase.GetParam(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)), SkillBufferId.Count) + damageCount)",
+   "simplified": "SkillBufferDataBase.GetParam(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, this + 344), SkillBufferId.Count) + damageCount",
+   "when": "(SkillBufferManager.TryGetBuf<LightningHailBuf>PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "SkillBufferManager.TryGetBuf<LightningHailBuf>PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "(SkillBufferDataBase.GetParam(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)), SkillBufferId.Count) + damageCount)",
+   "simplified": "SkillBufferDataBase.GetParam(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, this + 344), SkillBufferId.Count) + damageCount",
+   "when": "(SkillBufferManager.TryGetBuf<LightningHailBuf>PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 981, (this + 344)) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "SkillBufferManager.TryGetBuf<LightningHailBuf>PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "pursuitHitCount",
+   "formula": "(pursuitHitCount hs 7 ? 8 : (pursuitHitCount + 1))",
+   "simplified": "pursuitHitCount ≥ 7 ? 8 : pursuitHitCount + 1",
+   "when": "nowAttackCount ge 1"
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "nowAttackCount",
+   "formula": "(nowAttackCount + 1)",
+   "simplified": "nowAttackCount + 1",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "split",
+   "formula": "(System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance(actarAction)), new System.Func<MobActionManagerBase, bool>) gt 1 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance(actarAction)), new System.Func<MobActionManagerBase, bool>) : 1)",
+   "simplified": "(System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance(actarAction)), new System.Func<MobActionManagerBase, bool>) gt 1 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance(actarAction)), new System.Func<MobActionManagerBase, bool>) : 1)",
+   "when": "param eq 100 AND param ne 101 AND param ne 103",
+   "vars": [
+    "MobManager.get_TargetableMobList"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "pursuitEnd",
+   "formula": "1",
+   "simplified": "1",
+   "when": "param eq 101 AND param ne 103 AND pursuitEnd eq 0",
+   "by_level": 1
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "pursuitUid",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "param eq 103",
+   "by_level": -1
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "pursuitEnd",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(skillEventId & 0xffff) eq 104",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefMagic / 100)",
+   "simplified": "target.ExpDefMagic / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefMagic"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(((pursuitHitCount + 1) * pursuitSkillRate) / 100)",
+   "simplified": "(pursuitHitCount + 1) × pursuitSkillRate / 100",
+   "when": "nowAttackCount ne 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "(nowAttackCount eq 0 ? fixAddDamage : pursuitFixDamage)",
+   "simplified": "nowAttackCount = 0 ? fixAddDamage : pursuitFixDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[BufferConstantDamage]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "nowAttackCount ne 0",
+   "op": "SetConstant",
+   "step": "BufferConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "nowAttackCount eq 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_CharacterActionManagerBase"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(987, 0)",
+   "simplified": "AddSelfBuffer(987, 0)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(987)",
+   "simplified": "RemoveSelfBuffer(987)",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEventPreparation",
+   "kind": "call",
+   "name": "ThorHammerBuf..ctor",
+   "formula": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "(damageCount - 1) ge 1 AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 102 OR (damageCount - 1) lt 1 AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 102",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEventPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ThorHammerBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ThorHammerBuf, Id)",
+   "when": "(damageCount - 1) ge 1 AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 102 OR (damageCount - 1) lt 1 AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 102",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ReceivedAbnormal",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(982)",
+   "simplified": "RemoveSelfBuffer(982)",
+   "when": "(abnormalType - 1) ls 2 AND hasBuff(982)"
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(0)",
+   "simplified": "SetAbnormalType(0)",
+   "when": "SkillActionBase.get_ActionID() eq 982 AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillDamageData.IsInactivityAbnormal(damageData)",
+   "vars": [
+    "SkillActionBase.get_ActionID",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "SkillDamageData.IsInactivityAbnormal"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass35_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(CharacterActionManagerBase.get_IsLocalDead(), [<>c__DisplayClass35_0.<>4__this+0x14], [<>c__DisplayClass35_0.<>4__this+0x10])",
+   "simplified": "AddSelfBuffer(CharacterActionManagerBase.get_IsLocalDead(), [<>c__DisplayClass35_0.<>4__this+0x14], [<>c__DisplayClass35_0.<>4__this+0x10])",
+   "when": "always",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead"
+   ],
+   "residual": [
+    "+0x14]",
+    "+0x10]"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ThorHammerBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase playerStatus",
+     "fields": {
+      "status": [
+       {
+        "formula": "playerStatus",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MagiclPursuitSkillRate",
+     "bonus_id": 86,
+     "formula": "((Lv + (Lv << 2)) << 1)",
+     "simplified": "10 × Lv",
+     "when": []
+    },
+    {
+     "id": "MagicResistBreaker",
+     "bonus_id": 73,
+     "formula": "(Lv << 1)",
+     "simplified": "2 × Lv",
+     "when": []
+    },
+    {
+     "id": "HitUp",
+     "bonus_id": 42,
+     "formula": "((baseINT * Lv) // 10)",
+     "simplified": "baseINT × Lv // 10",
+     "when": []
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId"
+   ],
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "BlitzPikeAction.OnInitialize",
+  "LightningHailAction.ActionStart",
+  "PlayerBattleManager.PursuitAttack",
+  "ThorHammerAction.ReceivedAbnormal"
+ ],
+ "variables": [
+  "CharacterActionManagerBase.get_IsLocalDead",
+  "IMobStatusCalculator.get_ExpDefMagic",
+  "IPlayerStatusCalculator.get_Int",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "MobManager.get_TargetableMobList",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerPrimaryStatus.int",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillActionBase.get_ActionID",
+  "SkillActionBase.op_Inequality",
+  "SkillActionManagerBase.get_CurrentSkill",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "SkillBufferId.HitUp",
+  "SkillBufferId.MagicResistBreaker",
+  "SkillBufferId.MagiclPursuitSkillRate",
+  "SkillBufferManager.TryGetBuf<LightningHailBuf>PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferManager.TryGetBufPlayerStatusBase.get_SkillBufferManager",
+  "SkillDamageData.IsInactivityAbnormal",
+  "System.Linq.Enumerable.Count",
+  "TargetableListManagerBase.get_Instance",
+  "TryGetBuf.out2",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "status.Int",
+  "target.ExpDefMagic"
+ ],
+ "residual": [
+  {
+   "where": ".<>c__DisplayClass35_0::<ActionStart>b__0:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "+0x14]",
+    "+0x10]"
+   ]
+  }
+ ]
+}

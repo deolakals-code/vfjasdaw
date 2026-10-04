@@ -1,0 +1,43 @@
+{
+ "version": 1,
+ "uid": 950,
+ "name_th": "ปกป้อง",
+ "name_en": "PetProtect",
+ "tree": "PetSkill",
+ "category": "Mastery",
+ "max_level": 1,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "PetProtect",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "PetProtect",
+  "bonuses": {
+   "DamageTransferRate": {
+    "id": 35,
+    "expr": "(55 - Lv)",
+    "by_level": [
+     54,
+     53,
+     52,
+     51,
+     50,
+     49,
+     48,
+     47,
+     46,
+     45
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

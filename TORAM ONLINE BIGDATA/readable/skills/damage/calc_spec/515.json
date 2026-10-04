@@ -1,0 +1,68 @@
+{
+ "version": 1,
+ "uid": 515,
+ "name_th": "แพรี่",
+ "name_en": "Parry",
+ "tree": "KnightSkill",
+ "category": "Mastery",
+ "max_level": 35,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "Parry",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "Parry",
+  "bonuses": {
+   "Trigger": {
+    "id": 0,
+    "expr": "(Lv hi 5 ? ((Lv + (Lv << 2)) - 20) : (Lv + (Lv << 2)))",
+    "by_level": [
+     5,
+     10,
+     15,
+     20,
+     25,
+     10,
+     15,
+     20,
+     25,
+     30
+    ]
+   },
+   "CutDmgRate": {
+    "id": 25,
+    "expr": "(Lv hi 5 ? 20 : 10)",
+    "by_level": [
+     10,
+     10,
+     10,
+     10,
+     10,
+     20,
+     20,
+     20,
+     20,
+     20
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

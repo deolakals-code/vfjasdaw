@@ -1,0 +1,136 @@
+{
+ "version": 1,
+ "uid": 86,
+ "name_th": "เอเลเมนท์สตาร์ทเตอร์",
+ "name_en": "ElementReach",
+ "tree": "ShootSkill",
+ "category": "Mastery",
+ "max_level": 240,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "ElementReach",
+ "proration": null,
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "ElementReachBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "99",
+        "when": "always",
+        "by_level": 99
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {},
+   "hooks": [],
+   "attached_via": "name",
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "ElementReachBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:ElementReachBuf$$.ctor<-ElementReach$$EnemyDamage",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "ElementReach",
+  "bonuses": {}
+ },
+ "hooks": [
+  "ElementReach.CheckActiveSamuraiArcherySubElement",
+  "ElementReach.EnemyDamage",
+  "ElementReach.SetSubElement",
+  "ElementReach.TryGetWeaponElement",
+  "GameManager.PlayerSkillUpdate",
+  "PlayerStatusBase.SetEquip"
+ ],
+ "variables": [],
+ "residual": []
+}

@@ -1,0 +1,215 @@
+{
+ "version": 1,
+ "uid": 706,
+ "name_th": "เอ็กเพรสเอด",
+ "name_en": "RushAid",
+ "tree": "SpriteSkill",
+ "category": "Mastery",
+ "max_level": 90,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "RushAidMastery",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "RushAidBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, BattleManagerBase battleManager, CharacterMove move, Action callBack, GameObject target",
+     "fields": {
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "resistCount": [
+       {
+        "formula": "((((Lv - 1) + (((Lv - 1) & 0xc000) >> 14)) >> 2) + 1)",
+        "when": "always",
+        "by_level": [
+         1,
+         1,
+         1,
+         1,
+         2,
+         2,
+         2,
+         2,
+         3,
+         3
+        ]
+       }
+      ],
+      "battleManager": [
+       {
+        "formula": "battleManager",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "charaMove": [
+       {
+        "formula": "move",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "endAction": [
+       {
+        "formula": "callBack",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "target": [
+       {
+        "formula": "target",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "((Lv + (Lv << 2)) << 1)",
+     "simplified": "10 × Lv",
+     "when": [
+      "resistCount ge 1"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "resistCount lt 1"
+     ]
+    }
+   ],
+   "state": {
+    "timer": [
+     {
+      "method": "Updata",
+      "formula": "(timer + UnityEngine.Time.get_deltaTime())",
+      "when": "(timer + UnityEngine.Time.get_deltaTime()) lt 1 AND charaMove.currentMoveType eq 19 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x)))) gt 1e-05 OR (timer + UnityEngine.Time.get_deltaTime()) lt 1 AND charaMove.currentMoveType eq 19 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x)))) le 1e-05 OR !SkillActionBase.op_Equality(battleManager.nextAction) AND (timer + UnityEngine.Time.get_deltaTime()) lt 1 AND charaMove.currentMoveType ne 19 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x)))) gt 1e-05"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "charaMove.currentMoveType eq 19 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x)))) gt 1e-05 OR charaMove.currentMoveType eq 19 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x)))) le 1e-05 OR !SkillActionBase.op_Equality(battleManager.nextAction) AND charaMove.currentMoveType ne 19 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(battleManager)).x)))) gt 1e-05"
+     }
+    ],
+    "resistCount": [
+     {
+      "method": "OnDamage",
+      "formula": "(resistCount - 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "EndFunction",
+    "OnDamage"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "RushAidMastery",
+  "bonuses": {
+   "CutDmgRate": {
+    "id": 25,
+    "expr": "((Lv + (Lv << 2)) << 1)",
+    "by_level": [
+     10,
+     20,
+     30,
+     40,
+     50,
+     60,
+     70,
+     80,
+     90,
+     100
+    ]
+   },
+   "Value": {
+    "id": 28,
+    "expr": "(Lv >> 2)",
+    "by_level": [
+     0,
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     2,
+     2,
+     2
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "MobAttackBase.CalcLastDamage",
+  "PlayerActionManager.Damaged",
+  "PlayerActionManager.get_MoveSpeed",
+  "PlayerBattleManager.<>c__DisplayClass53_0.<checkAssistMove>b__0"
+ ],
+ "variables": [
+  "SkillActionBase.op_Equality",
+  "SkillBufferId.MobLastDamageRateBuf",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

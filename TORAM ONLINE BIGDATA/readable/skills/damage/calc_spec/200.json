@@ -1,0 +1,52 @@
+{
+ "version": 1,
+ "uid": 200,
+ "name_th": "เร่ง MP",
+ "name_en": "MpBoost",
+ "tree": "SurvivalSkill",
+ "category": "Mastery",
+ "max_level": 20,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "MpBoost",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "MpBoost",
+  "bonuses": {
+   "MaxMp": {
+    "id": 14,
+    "expr": "(Lv * 30)",
+    "by_level": [
+     30,
+     60,
+     90,
+     120,
+     150,
+     180,
+     210,
+     240,
+     270,
+     300
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

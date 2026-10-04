@@ -1,0 +1,610 @@
+{
+ "version": 1,
+ "uid": 797,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "BattleNotesAttackAction",
+ "proration": {
+  "slot": "Normal",
+  "mode": "first_hit_per_target",
+  "attack_type": "SkillNormal",
+  "action_id": 797,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseSkillMaster",
+   "formula": "MasterSkillDataManager.GetSkillMaster(Singleton<MasterSkillDataManager>.get_Instance(), SkillId.BattleNotes)",
+   "simplified": "MasterSkillDataManager.GetSkillMaster(Singleton<MasterSkillDataManager>.get_Instance(), SkillId.BattleNotes)",
+   "when": "always",
+   "vars": [
+    "MasterSkillDataManager.GetSkillMaster",
+    "SkillId.BattleNotes"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam & 0xffffffef)",
+   "simplified": "SkillParam & 0xffffffef",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "Delay",
+   "formula": "IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_BattleStatus())",
+   "simplified": "IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_BattleStatus())",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "IPlayerStatusCalculator.GetNextAtkTime",
+    "PlayerStatusBase.get_BattleStatus",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Atk",
+   "simplified": "status.Atk",
+   "when": "always",
+   "vars": [
+    "status.Atk"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[BaseDamage]",
+   "formula": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, BattleNotesAttackAction.get_AttackType(), baseSkillMaster.EqLimit, (CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 ? 1 : 0))",
+   "simplified": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, BattleNotesAttackAction.get_AttackType(), baseSkillMaster.EqLimit, CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) = 2 ? 1 : 0)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "op": "SetConstant",
+   "step": "BaseDamage",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.calcBaseDamage"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[SkillConstantDamage]",
+   "formula": "buffParam(NormalAttackConstantDamage)",
+   "simplified": "buffParam(NormalAttackConstantDamage)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "op": "SetConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[Def]",
+   "formula": "-PlayerAttackBase.CalcRegistDamage(this, BattleNotesAttackAction.get_AttackType(), PlayerActionManagerBase.get_PlayerStatus(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "simplified": "-PlayerAttackBase.CalcRegistDamage(this, BattleNotesAttackAction.get_AttackType(), PlayerActionManagerBase.get_PlayerStatus(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "op": "SetConstant",
+   "step": "Def",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CalcRegistDamage"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[CriticalRate]",
+   "formula": "(status.CriticalDmg / 100)",
+   "simplified": "status.CriticalDmg / 100",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "op": "SetRate",
+   "step": "CriticalRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease",
+    "status.CriticalDmg"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ElementBonusRate]",
+   "formula": "PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), BattleNotesAttackAction.get_AttackType(), target.Element)",
+   "simplified": "PlayerAttackBase.CalcElementBonus(this, PlayerActionManagerBase.get_PlayerStatus(), BattleNotesAttackAction.get_AttackType(), target.Element)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "op": "SetRate",
+   "step": "ElementBonusRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcElementBonus",
+    "PlayerAttackBase.CalcHitReaction",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[NormalElementDamageResistRate]",
+   "formula": "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate(PlayerActionManagerBase.get_PlayerStatus(), mobAction)",
+   "simplified": "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate(PlayerActionManagerBase.get_PlayerStatus(), mobAction)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "op": "SetRate",
+   "step": "NormalElementDamageResistRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[SkillRate]",
+   "formula": "(((buffParam(NormalAttackRate) / 100) + 1) + (GemCartBufferManager.GetNormalAttackRate(PlayerStatusBase.get_GemCartBuffManager()) / 100))",
+   "simplified": "buffParam(NormalAttackRate) / 100 + GemCartBufferManager.GetNormalAttackRate(PlayerStatusBase.get_GemCartBuffManager()) / 100 + 1",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "op": "SetRate",
+   "step": "SkillRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "GemCartBufferManager.GetNormalAttackRate",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_GemCartBuffManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[StableRate]",
+   "formula": "PlayerAttackBase.CalcStable(3, status.Stable, CalcHit.correctHit(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcStable(3, status.Stable, CalcHit.correctHit(this, A, mobAction), A)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "op": "SetRate",
+   "step": "StableRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.correctHit",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CalcStable",
+    "status.Stable"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefNormal / 100)",
+   "simplified": "target.ExpDefNormal / 100",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcHitReaction",
+    "target.ExpDefNormal"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "(PlayerAttackBase.CalcBufferLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()) - MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90)))",
+   "simplified": "PlayerAttackBase.CalcBufferLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()) - MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 2 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 OR !PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) ne 0",
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcBufferLastDamageRate",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[DistanceResistRate]",
+   "formula": "PlayerAttackBase.CalcDistanceResistRate(playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.CalcDistanceResistRate(playerAction, mobAction)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 2 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR !PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "SetRate",
+   "step": "DistanceResistRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcDistanceResistRate",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[GemDamageRate]",
+   "formula": "PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 2 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR !PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "SetRate",
+   "step": "GemDamageRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[AbnormalDamageIncreaseRate]",
+   "formula": "CheckAbnormalDamageIncrease.out2(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "CheckAbnormalDamageIncrease.out2(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 2 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) ne 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "op": "SetRate",
+   "step": "AbnormalDamageIncreaseRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "CheckAbnormalDamageIncrease.out2",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "max((25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))), 0)",
+   "simplified": "max(25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)), 0)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 OR !PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) ne 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[NormalAttackTreasureHuntLastDamageRate]",
+   "formula": "BonusManager.GetTreasureHuntLastDmgRateBonus(PlayerStatusBase.get_BonusManager())",
+   "simplified": "BonusManager.GetTreasureHuntLastDmgRateBonus(PlayerStatusBase.get_BonusManager())",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 2 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR !PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "SetRate",
+   "step": "NormalAttackTreasureHuntLastDamageRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "BonusManager.GetTreasureHuntLastDmgRateBonus",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease",
+    "PlayerStatusBase.get_BonusManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[DamageLimit]",
+   "formula": "CheckPlayerDamageUpLimit.limitDamage(this, playerAction, mobAction)",
+   "simplified": "CheckPlayerDamageUpLimit.limitDamage(this, playerAction, mobAction)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 2 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR !PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "SetConstant",
+   "step": "DamageLimit",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "CheckPlayerDamageUpLimit.limitDamage",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[MinDamage]",
+   "formula": "CheckDamageLimit.min(this, mobAction)",
+   "simplified": "CheckDamageLimit.min(this, mobAction)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND CheckDamageLimit.max(this, mobAction) eq -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 2 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "op": "SetConstant",
+   "step": "MinDamage",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "CheckDamageLimit.max",
+    "CheckDamageLimit.min",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[MaxDamage]",
+   "formula": "CheckDamageLimit.max(this, mobAction)",
+   "simplified": "CheckDamageLimit.max(this, mobAction)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) eq -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND CheckDamageLimit.max(this, mobAction) ne -1 AND CheckDamageLimit.min(this, mobAction) ne -1 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 2 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "op": "SetConstant",
+   "step": "MaxDamage",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "CheckDamageLimit.max",
+    "CheckDamageLimit.min",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[SpecialLastDamageRate]",
+   "formula": "PlayerAttackBase.GetSpecificWeaponLastDamageRate(playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetSpecificWeaponLastDamageRate(playerAction, mobAction)",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 2 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR !PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "SetRate",
+   "step": "SpecialLastDamageRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease",
+    "PlayerAttackBase.GetSpecificWeaponLastDamageRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR !PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) ne 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "PlayerAttackBase.CalcBufferLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcBufferLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 2 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) OR !PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus())) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) eq 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1",
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcBufferLastDamageRate",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[CriticalRate]",
+   "formula": "1",
+   "simplified": "1",
+   "when": "CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND TryGetProperties<object>.out2(mobAction, 90) eq 0 OR CalcHit.hitType(this, PlayerActionManagerBase.get_PlayerStatus(), mobAction) ne 2 AND IsInstanceOf(mobAction, GuildRaidBossMobActionManager) eq 1 AND MobActionManagerBase.get_SystemInvincible(mobAction) AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, BattleNotesAttackAction.get_AttackType(), playerAction, mobAction) ne 1 AND PlayerAttackBase.CheckAbnormalDamageIncrease(this, mobAction, PlayerAttackBase.CalcGemLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()))",
+   "op": "SetRate",
+   "step": "CriticalRate",
+   "vars": [
+    "BattleNotesAttackAction.get_AttackType",
+    "CalcHit.hitType",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcGemLastDamageRate",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerAttackBase.CheckAbnormalDamageIncrease"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillActionBase.ApplyBufferData..ctor",
+   "formula": ".ctor(616, PlayerStatusBase.get_SkillBufferManager().skillBufList[616], PlayerStatusBase.get_SkillBufferManager().skillBufList[616].Count)",
+   "simplified": ".ctor(616, PlayerStatusBase.get_SkillBufferManager().skillBufList[616], PlayerStatusBase.get_SkillBufferManager().skillBufList[616].Count)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "BattleNotesAttackAction.get_AttackType",
+  "BonusManager.GetTreasureHuntLastDmgRateBonus",
+  "CalcHit.correctHit",
+  "CalcHit.hitType",
+  "CheckAbnormalDamageIncrease.out2",
+  "CheckDamageLimit.max",
+  "CheckDamageLimit.min",
+  "CheckPlayerDamageUpLimit.limitDamage",
+  "GemCartBufferManager.GetNormalAttackRate",
+  "GetWeaponType.item",
+  "IMobStatusCalculator.get_Element",
+  "IMobStatusCalculator.get_ExpDefNormal",
+  "IPlayerStatusCalculator.GetNextAtkTime",
+  "IPlayerStatusCalculator.get_Atk",
+  "IPlayerStatusCalculator.get_CriticalDmg",
+  "IPlayerStatusCalculator.get_Stable",
+  "MasterSkillDataManager.GetSkillMaster",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_MobBattleStatus",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcBufferLastDamageRate",
+  "PlayerAttackBase.CalcDistanceResistRate",
+  "PlayerAttackBase.CalcElementBonus",
+  "PlayerAttackBase.CalcGemLastDamageRate",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.CalcNormalElementWeaponDamageResistRate",
+  "PlayerAttackBase.CalcRegistDamage",
+  "PlayerAttackBase.CalcStable",
+  "PlayerAttackBase.CheckAbnormalDamageIncrease",
+  "PlayerAttackBase.GetSpecificWeaponLastDamageRate",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.calcBaseDamage",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_BattleStatus",
+  "PlayerStatusBase.get_BonusManager",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "Singleton.get_Instance",
+  "SkillId.BattleNotes",
+  "TryGetBuff.buff",
+  "TryGetProperties.out2",
+  "UnityEngine.Object.op_Inequality",
+  "status.Atk",
+  "status.CriticalDmg",
+  "status.Stable",
+  "target.Element",
+  "target.ExpDefNormal"
+ ],
+ "residual": []
+}

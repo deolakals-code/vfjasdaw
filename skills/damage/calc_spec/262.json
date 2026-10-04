@@ -1,0 +1,199 @@
+{
+ "version": 1,
+ "uid": 262,
+ "name_th": "การ์ดสไตร์ค",
+ "name_en": "GuardStrike",
+ "tree": "ShieldSkill",
+ "category": "Mastery",
+ "max_level": 110,
+ "roles": [
+  "attack (deals damage)",
+  "passive mastery"
+ ],
+ "class": "GuardStrikeAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "None",
+  "action_id": 262,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv + (Lv << 2)) << 1) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bGuardPower)) / 100)",
+   "simplified": "(10 × Lv + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bGuardPower)) / 100",
+   "when": "subWeapon == Shield",
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bGuardPower",
+    "PlayerStatusBase.get_BonusManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) << 1) + ((ItemData.get_Refine(GetSubWeaponType.item(actarAction)) & 255) * 60))",
+   "simplified": "10 × Lv + 60 × (ItemData.get_Refine(GetSubWeaponType.item(actarAction)) & 255)",
+   "when": "subWeapon == Shield",
+   "vars": [
+    "GetSubWeaponType.item",
+    "ItemData.get_Refine"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv + (Lv << 2)) << 1) / 100)",
+   "simplified": "10 × Lv / 100",
+   "when": "subWeapon != Shield",
+   "by_level": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "subWeapon != Shield",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam & 239)",
+   "simplified": "SkillParam & 239",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "SetRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "SetConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "GuardStrike",
+  "bonuses": {
+   "SkillAttackRate": {
+    "id": 34,
+    "expr": "((Lv + (Lv << 2)) << 1)",
+    "by_level": [
+     10,
+     20,
+     30,
+     40,
+     50,
+     60,
+     70,
+     80,
+     90,
+     100
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [
+  "BonusManager.GetBonusValue",
+  "BonusType.bGuardPower",
+  "GetSubWeaponType.item",
+  "ItemData.get_Refine",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerStatusBase.get_BonusManager"
+ ],
+ "residual": []
+}

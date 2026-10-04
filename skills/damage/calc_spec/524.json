@@ -1,0 +1,47 @@
+{
+ "version": 1,
+ "uid": 524,
+ "name_th": "ไนท์ฮีล",
+ "name_en": "KnightHeal",
+ "tree": "KnightSkill",
+ "category": "Mastery",
+ "max_level": 205,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "KnightHeal",
+ "proration": null,
+ "eq_limit": [
+  "OneHandSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "KnightHeal",
+  "bonuses": {
+   "Percent": {
+    "id": 27,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "KnightStanceAction.ActionHit"
+ ],
+ "variables": [],
+ "residual": []
+}

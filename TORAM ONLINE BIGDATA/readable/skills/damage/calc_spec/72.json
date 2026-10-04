@@ -1,0 +1,52 @@
+{
+ "version": 1,
+ "uid": 72,
+ "name_th": "ลองเรนจ์",
+ "name_en": "LongRangeMastary",
+ "tree": "ShootSkill",
+ "category": "Mastery",
+ "max_level": 30,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "LongRangeMastary",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "LongRangeMastary",
+  "bonuses": {
+   "LastDmgRate": {
+    "id": 8,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

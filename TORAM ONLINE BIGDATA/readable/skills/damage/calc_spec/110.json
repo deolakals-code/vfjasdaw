@@ -1,0 +1,174 @@
+{
+ "version": 1,
+ "uid": 110,
+ "name_th": "แม็กซ์ไมเซอร์",
+ "name_en": "Maximuyzer",
+ "tree": "MagicSkill",
+ "category": "Buffer",
+ "max_level": 150,
+ "roles": [
+  "utility / system action"
+ ],
+ "class": "MaximuyzerAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 110,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "((SkillIndividualFlag | 4) | 1)",
+   "simplified": "SkillIndividualFlag | 4 | 1",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "isEnchantStartMotion",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND ((20 - Lv) - max(((5 - Lv) * 0.5), 0)) ls 0 AND (mainWeapon==Rod & 1) ne 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "(((20 - Lv) - max(((5 - Lv) * 0.5), 0)) - TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101).Level)",
+   "simplified": "(((20 - Lv) - max(((5 - Lv) * 0.5), 0)) - TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101).Level)",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 116) eq 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (((20 - Lv) - max(((5 - Lv) * 0.5), 0)) - TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101).Level) ls 0 AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101) ne 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (((20 - Lv) - max(((5 - Lv) * 0.5), 0)) - TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101).Level) hi 0 AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101) ne 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(SkillIndividualFlag | 1)",
+   "simplified": "SkillIndividualFlag | 1",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND ((20 - Lv) - max(((5 - Lv) * 0.5), 0)) ls 0 AND (mainWeapon==Rod & 1) ne 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (((20 - Lv) - max(((5 - Lv) * 0.5), 0)) - TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101).Level) ls 0 AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101) ne 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND ((20 - Lv) - max(((5 - Lv) * 0.5), 0)) ls 0 AND (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0",
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "((20 - Lv) - max(((5 - Lv) * 0.5), 0))",
+   "simplified": "20 - Lv - max(2.5 - 0.5 × Lv, 0)",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 101) eq 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND (mainWeapon==Rod & 1) ne 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 116) eq 0 OR !PlayerAttackBase.CheckSkillParamFlag(this, 0x2000) AND ((20 - Lv) - max(((5 - Lv) * 0.5), 0)) ls 0 AND (mainWeapon==Rod & 1) ne 0",
+   "by_level": [
+    17.0,
+    16.5,
+    16.0,
+    15.5,
+    15.0,
+    14,
+    13,
+    12,
+    11,
+    10
+   ],
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 0x2000)",
+   "simplified": "SkillParam | 8192",
+   "when": "always"
+  },
+  {
+   "method": "InitializeChronosShift",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "ChargingAction.ActionSkillEvent",
+  "MindimageSenjuSupportAction.ActionSkillEvent"
+ ],
+ "variables": [
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "TryGetBuf.buf"
+ ],
+ "residual": []
+}

@@ -1,0 +1,343 @@
+{
+ "version": 1,
+ "uid": 1122,
+ "name_th": "ทูม",
+ "name_en": "Tomb",
+ "tree": "NecromancerSkill",
+ "category": "Attack",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "TombAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1122,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(7)",
+   "simplified": "MathUtil.DisplayMeterToDistance(7)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "250",
+   "simplified": "250",
+   "when": "always",
+   "by_level": 250
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "pursuitFixDamage",
+   "formula": "(Lv * 30)",
+   "simplified": "30 × Lv",
+   "when": "always",
+   "by_level": 30
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "pursuitRate",
+   "formula": "((Lv * 10) + 150)",
+   "simplified": "10 × Lv + 150",
+   "when": "always",
+   "by_level": 160
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "System.Math.Min((((baseVIT // 50) + ((baseVIT // 50) << 2)) << 2), 100)",
+   "simplified": "System.Math.Min(20 × baseVIT // 50, 100)",
+   "when": "always",
+   "vars": [
+    "System.Math.Min"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "System.Math.Min((SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count) // 3), 3)",
+   "simplified": "System.Math.Min(SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count) // 3, 3)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND System.Math.Min((SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count) // 3), 3) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND System.Math.Min((SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count) // 3), 3) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "System.Math.Min",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "System.Math.Min((SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count) // 3), 3)",
+   "simplified": "System.Math.Min(SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count) // 3, 3)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND System.Math.Min((SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count) // 3), 3) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND System.Math.Min((SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121), SkillBufferId.Count) // 3), 3) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1121) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "System.Math.Min",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "target",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(3)",
+   "simplified": "MathUtil.DisplayMeterToDistance(3)",
+   "when": "(((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z)) + ((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x))) le ((MathUtil.DisplayMeterToDistance(3) + size) * (MathUtil.DisplayMeterToDistance(3) + size)) AND (SkillActionBase.get_AttackCount(this) & 255) ne 0 AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).y), size) OR (((UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z) * (UnityEngine.Transform.get_position(targetTransform).z - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).z)) + ((UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x) * (UnityEngine.Transform.get_position(targetTransform).x - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).x))) gt ((MathUtil.DisplayMeterToDistance(3) + size) * (MathUtil.DisplayMeterToDistance(3) + size)) AND (SkillActionBase.get_AttackCount(this) & 255) ne 0 AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(skillPosition)).y), size)",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerAttackBase.checkRangeHeight",
+    "SkillActionBase.get_AttackCount",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(pursuitRate / 100)",
+   "simplified": "pursuitRate / 100",
+   "when": "(SkillActionBase.get_AttackCount(this) & 255) ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "pursuitFixDamage",
+   "simplified": "pursuitFixDamage",
+   "when": "(SkillActionBase.get_AttackCount(this) & 255) ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "(SkillActionBase.get_AttackCount(this) & 255) eq 0 OR (SkillActionBase.get_AttackCount(this) & 255) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, abnormalPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, abnormalPercent, playerAction) AND (SkillActionBase.get_AttackCount(this) & 255) eq 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalType.Tumble",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "(SkillActionBase.get_AttackCount(this) & 255) eq 0 OR (SkillActionBase.get_AttackCount(this) & 255) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, abnormalPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, abnormalPercent, playerAction) AND (SkillActionBase.get_AttackCount(this) & 255) eq 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalType.Tumble",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[mobAction] / 100)",
+   "simplified": "(targetExpRegister[mobAction] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), (LoopParam + 1))",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), LoopParam + 1)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(2, abnormalPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(2, abnormalPercent, playerAction)",
+   "when": "(SkillActionBase.get_AttackCount(this) & 255) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, abnormalPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, abnormalPercent, playerAction) AND (SkillActionBase.get_AttackCount(this) & 255) eq 0",
+   "vars": [
+    "AbnormalType.Tumble",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillActionBase.get_AttackCount"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(2)",
+   "simplified": "SetAbnormalType(2)",
+   "when": "(SkillActionBase.get_AttackCount(this) & 255) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tumble, abnormalPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Tumble",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillActionBase.get_AttackCount"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Tumble",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.checkRangeHeight",
+  "PlayerPrimaryStatus.vit",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillActionBase.get_AttackCount",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "System.Math.Min",
+  "TryGetBuf.buf",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

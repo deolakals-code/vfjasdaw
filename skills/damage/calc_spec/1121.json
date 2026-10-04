@@ -1,0 +1,460 @@
+{
+ "version": 1,
+ "uid": 1121,
+ "name_th": "เกรฟดิกเกอร์",
+ "name_en": "GlaiveTigger",
+ "tree": "NecromancerSkill",
+ "category": "Object",
+ "max_level": 1,
+ "roles": [
+  "buff (self)",
+  "placed object / trap / summon"
+ ],
+ "class": "GlaiveTiggerAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1121,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(3)",
+   "simplified": "MathUtil.DisplayMeterToDistance(3)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isNewPlace",
+   "formula": "(?mvn & 1)",
+   "simplified": "?mvn & 1",
+   "when": "UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "?mvn"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isNewPlace",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction.battleManager.skillActManager)",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace eq 0 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace eq 0 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace ne 0 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace eq 0 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "(Radius + MathUtil.DisplayMeterToDistance((SkillMasteryBase.GetMasteryParam(MasteryId.Value) / 10)))",
+   "simplified": "Radius + MathUtil.DisplayMeterToDistance(SkillMasteryBase.GetMasteryParam(MasteryId.Value) / 10)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace ne 0 AND mainWeapon == Rod OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND isNewPlace eq 0 AND mainWeapon == Rod",
+   "vars": [
+    "MasteryId.Value",
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerAttackBase.IsBlank",
+    "SkillMasteryBase.GetMasteryParam",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": ".<>c__DisplayClass24_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "GlaiveTiggerBuf..ctor",
+   "formula": ".ctor([<>c__DisplayClass24_0.<>4__this+0x14], <>c__DisplayClass24_0.playerAction)",
+   "simplified": ".ctor([<>c__DisplayClass24_0.<>4__this+0x14], <>c__DisplayClass24_0.playerAction)",
+   "when": "<>c__DisplayClass24_0.weaponType eq 14",
+   "residual": [
+    "+0x14]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass24_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new GlaiveTiggerBuf, [<>c__DisplayClass24_0.<>4__this+0x10])",
+   "simplified": "AddSelfBuffer(new, GlaiveTiggerBuf, [<>c__DisplayClass24_0.<>4__this+0x10])",
+   "when": "<>c__DisplayClass24_0.weaponType eq 14",
+   "residual": [
+    "+0x10]"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "GlaiveTiggerBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "bufferType": [
+       {
+        "formula": "(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SummonSkeleton, 1) gt 0 ? 12 : 3)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "skillActionManager": [
+       {
+        "formula": "playerAction.battleManager.skillActManager",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "playerStatus": [
+       {
+        "formula": "PlayerActionManagerBase.get_PlayerStatus()",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "99"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Percent",
+     "bonus_id": 52,
+     "formula": "int(((Lv * 0.1) * Count))",
+     "simplified": "int(0.1 × Lv × Count)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 14"
+     ]
+    },
+    {
+     "id": "Percent",
+     "bonus_id": 52,
+     "formula": "CountBufferBase.GetParam(this, id)",
+     "simplified": "CountBufferBase.GetParam(this, id)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 14"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "System.Linq.Enumerable.Count<SkillActionBase>(SkillActionManager.get_PlaceSkilList(skillActionManager), GlaiveTiggerBuf.<>c.<>9__11_0)",
+     "simplified": "System.Linq.Enumerable.Count<SkillActionBase>(SkillActionManager.get_PlaceSkilList(skillActionManager), GlaiveTiggerBuf.<>, c.<>, 9, __11_0)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "UnityEngine.Object.op_Inequality(skillActionManager)"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "!UnityEngine.Object.op_Inequality(skillActionManager)"
+     ]
+    },
+    {
+     "id": "AbnormalRegist",
+     "bonus_id": 37,
+     "formula": "int(((Lv * 0.05) * Count))",
+     "simplified": "int(0.05 × Lv × Count)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 14"
+     ]
+    },
+    {
+     "id": "AbnormalRegist",
+     "bonus_id": 37,
+     "formula": "CountBufferBase.GetParam(this, id)",
+     "simplified": "CountBufferBase.GetParam(this, id)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "EquipItemData.get_WeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 14"
+     ]
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "SetCount",
+      "formula": "(count lt 0 ? 0 : (Max lt count ? Max : count))",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Prev",
+    "PrevSkip",
+    "SetCount",
+    "SetCountValue"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "GlaiveTiggerBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "99"
+    }
+   },
+   "attached_via": "caller2:GlaiveTiggerBuf$$.ctor<-GlaiveTiggerAction.<>c__DisplayClass24_0$$<ActionStart>b__0",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "GlaiveTiggerAction.<>c__DisplayClass24_0.<ActionStart>b__0",
+  "GlaiveTiggerAction.InitializeOthers",
+  "GlaiveTiggerBuf.SetCountValue",
+  "MobaPlayerSecondaryStatus.get_AntiVirus",
+  "PhantomMissileAction.ActionPreparation",
+  "PhantomMissileAction.IsFailure",
+  "PlayerSecondaryStatus.CalcAntiVirus",
+  "PlayerSecondaryStatus.get_AtkMpRecovery",
+  "SummonSkeletonAction.ActionPreparation",
+  "SummonSkeletonAction.IsFailure",
+  "TombAction.ActionPreparation"
+ ],
+ "variables": [
+  "CountBufferBase.GetParam",
+  "EquipItemData.get_WeaponItemType",
+  "MasteryId.Value",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionManager.get_PlaceSkilList",
+  "SkillBufferId.AbnormalRegist",
+  "SkillBufferId.Count",
+  "SkillBufferId.Percent",
+  "SkillBufferId.Value",
+  "SkillId.SummonSkeleton",
+  "SkillManager.GetSkillLv",
+  "SkillMasteryBase.GetMasteryParam",
+  "System.Linq.Enumerable.Count",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": [
+  {
+   "where": "OnInitialize:isNewPlace",
+   "tokens": [
+    "?mvn"
+   ]
+  },
+  {
+   "where": ".<>c__DisplayClass24_0::<ActionStart>b__0:GlaiveTiggerBuf..ctor",
+   "tokens": [
+    "+0x14]"
+   ]
+  },
+  {
+   "where": ".<>c__DisplayClass24_0::<ActionStart>b__0:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "+0x10]"
+   ]
+  }
+ ]
+}

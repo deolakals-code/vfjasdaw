@@ -1,0 +1,119 @@
+{
+ "version": 1,
+ "uid": 946,
+ "name_th": "เรจแอคแทค",
+ "name_en": "RageAttack",
+ "tree": "PetSkill",
+ "category": "Attack",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "RageAttack",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 946,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "(status.Atk lt status.Matk ? 2 : 1)",
+   "simplified": "status.Atk < status.Matk ? 2 : 1",
+   "when": "always",
+   "vars": [
+    "status.Atk",
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Delay",
+   "formula": "(IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_BattleStatus()) * 5)",
+   "simplified": "5 × IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_BattleStatus())",
+   "when": "always",
+   "vars": [
+    "IPlayerStatusCalculator.GetNextAtkTime",
+    "PlayerStatusBase.get_BattleStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.GetNextAtkTime",
+  "IPlayerStatusCalculator.get_Atk",
+  "IPlayerStatusCalculator.get_Matk",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_BattleStatus",
+  "status.Atk",
+  "status.Matk"
+ ],
+ "residual": []
+}

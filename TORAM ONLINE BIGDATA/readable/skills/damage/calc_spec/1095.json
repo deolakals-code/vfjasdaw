@@ -1,0 +1,218 @@
+{
+ "version": 1,
+ "uid": 1095,
+ "name_th": "ซีซ่าแสลชเชอร์อัลติมา",
+ "name_en": "FuriousEffortsExtreme",
+ "tree": "BareHandSkill",
+ "category": "Mastery",
+ "max_level": 100,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "FuriousEffortsExtreme",
+ "proration": null,
+ "eq_limit": [
+  "Hand"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "FuriousEffortsExtremeBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "((((Lv << 2) + lv) lo 25 ? ((Lv << 2) + lv) : 25) + 5)"
+    }
+   },
+   "attached_via": "caller2:FuriousEffortsExtremeBuf$$.ctor<-FuriousEffortsExtreme$$Damaged",
+   "kind": "counter"
+  },
+  {
+   "class": "FuriousEffortsExtremeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "lastDamageRate": [
+       {
+        "formula": "(Lv hi 5 ? Lv : 5)",
+        "when": "always",
+        "by_level": [
+         5,
+         5,
+         5,
+         5,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "((((Lv << 2) + lv) lo 25 ? ((Lv << 2) + lv) : 25) + 5)"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "lastDamageRate",
+     "simplified": "lastDamageRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "CalcLastDamageRate",
+      "formula": "(Count - (Count lt 5 ? Count : 5))",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CalcLastDamageRate"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "FuriousEffortsExtreme",
+  "bonuses": {
+   "SkillRate": {
+    "id": 26,
+    "expr": "(Lv << 1)",
+    "by_level": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14,
+     16,
+     18,
+     20
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [
+  "SkillBufferId.Count",
+  "SkillBufferId.Value",
+  "System.Math.Max",
+  "System.Math.Min"
+ ],
+ "residual": []
+}

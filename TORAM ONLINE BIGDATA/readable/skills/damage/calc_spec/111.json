@@ -1,0 +1,297 @@
+{
+ "version": 1,
+ "uid": 111,
+ "name_th": "เวทมนตร์:อีเกล",
+ "name_en": "MagicEgel",
+ "tree": "MagicSkill",
+ "category": "Buffer",
+ "max_level": 70,
+ "roles": [
+  "buff (self)",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "MagicEgelAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 111,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 0x2000)",
+   "simplified": "SkillParam | 8192",
+   "when": "always"
+  },
+  {
+   "method": "UseChronosShift",
+   "kind": "set",
+   "name": "lastUsedSkill",
+   "formula": "lastUsedSkill",
+   "simplified": "lastUsedSkill",
+   "when": "always"
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "MagicEgelBuf..ctor",
+   "formula": ".ctor(Lv, actarAction)",
+   "simplified": ".ctor(Lv, actarAction)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new MagicEgelBuf)",
+   "simplified": "AddSelfBuffer(new, MagicEgelBuf)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "MagicEgelBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "active": [
+       {
+        "formula": "new System.Collections.Generic.Dictionary<int, MagicEgelBuf.TargetData>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "playerAction": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "battleManager": [
+       {
+        "formula": "playerAction.battleManager",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "(((mul64(((Lv eq 1 ? 2 : (Lv + 1)) - 2), ((Lv eq 1 ? 2 : (Lv + 1)) - 3)) >> 1) + ((Lv eq 1 ? 2 : (Lv + 1)) << 1)) - 3)",
+        "when": "Lv ne 0",
+        "by_level": null
+       },
+       {
+        "formula": "0",
+        "when": "Lv eq 0",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "Lv"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "EnableCounter": [
+     {
+      "method": "set_EnableCounter",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "counterInterval": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(counterInterval - UnityEngine.Time.get_deltaTime()) mi 0 AND counterInterval gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(counterInterval - UnityEngine.Time.get_deltaTime())",
+      "when": "(counterInterval - UnityEngine.Time.get_deltaTime()) pl 0 AND counterInterval gt 0"
+     },
+     {
+      "method": "Damaged",
+      "formula": "1",
+      "when": "!UnityEngine.Object.op_Equality(UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(enemy), 0) AND !UnityEngine.Object.op_Equality(enemy) AND ExSkillSpellTuning.GetEnabledConfig(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119), 111) AND PlayerBattleManager.CounterMagicEgleAttack(battleManager, UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(enemy), this) AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 119) ne 0 AND counterInterval le 0"
+     }
+    ]
+   },
+   "hooks": [
+    "Active",
+    "Damaged",
+    "IsActive",
+    "Reset",
+    "get_EnableCounter",
+    "set_EnableCounter"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "MagicEgelBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "Lv"
+    }
+   },
+   "attached_via": "caller2:MagicEgelBuf$$.ctor<-MagicEgelAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "ExSkillSpellTuning.GetEnabledConfig",
+  "PlayerBattleManager.CounterMagicEgleAttack",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_ExSkillManager",
+  "SkillBufferId.Count",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetExSkillData.out2",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

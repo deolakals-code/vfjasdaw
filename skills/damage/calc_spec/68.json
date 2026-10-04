@@ -1,0 +1,62 @@
+{
+ "version": 1,
+ "uid": 68,
+ "name_th": "ชู้ตมาสเตอรี่",
+ "name_en": "ShootMastary",
+ "tree": "ShootSkill",
+ "category": "Mastery",
+ "max_level": 10,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "ShootMastary",
+ "proration": null,
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "ShootMastary",
+  "bonuses": {
+   "EqAtkRate": {
+    "id": 1,
+    "expr": "(Lv + (Lv << 1))",
+    "by_level": [
+     3,
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ]
+   },
+   "AtkRate": {
+    "id": 3,
+    "expr": "(int(((Lv + -2) / 5)) + 1)",
+    "by_level": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     2,
+     2,
+     2,
+     2
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

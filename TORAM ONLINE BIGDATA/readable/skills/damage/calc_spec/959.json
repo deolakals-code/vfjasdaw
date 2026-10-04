@@ -1,0 +1,101 @@
+{
+ "version": 1,
+ "uid": 959,
+ "name_th": "การโจมตีปกติ (เวทมนตร์)",
+ "name_en": "PetMagicAttack",
+ "tree": "PetSkill",
+ "category": "Attack",
+ "max_level": 0,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "PetNormalMagicAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 959,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(9)",
+   "simplified": "MathUtil.DisplayMeterToDistance(9)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Delay",
+   "formula": "IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_SecondaryStatus())",
+   "simplified": "IPlayerStatusCalculator.GetNextAtkTime(PlayerStatusBase.get_SecondaryStatus())",
+   "when": "always",
+   "vars": [
+    "IPlayerStatusCalculator.GetNextAtkTime",
+    "PlayerStatusBase.get_SecondaryStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(PetNormalMagicAction.get_AttackType(), PetNormalMagicAction.get_ActionID(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "simplified": "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(PetNormalMagicAction.get_AttackType(), PetNormalMagicAction.get_ActionID(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PetNormalMagicAction.get_ActionID",
+    "PetNormalMagicAction.get_AttackType"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate",
+  "IPlayerStatusCalculator.GetNextAtkTime",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_MobBattleStatus",
+  "PetNormalMagicAction.get_ActionID",
+  "PetNormalMagicAction.get_AttackType",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SecondaryStatus"
+ ],
+ "residual": []
+}

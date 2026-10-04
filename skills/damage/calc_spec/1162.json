@@ -1,0 +1,448 @@
+{
+ "version": 1,
+ "uid": 1162,
+ "name_th": "กีย์เซอร์ชู้ต",
+ "name_en": "GazerShoot",
+ "tree": "CrusherSkill",
+ "category": "Attack",
+ "max_level": 250,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "GazerShootAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1162,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + 900) + ((status.Agi lt 0 ? (status.Agi + 1) : status.Agi) >> 1))",
+   "simplified": "10 × Lv + status.Agi ÷ 2 + 900",
+   "when": "always",
+   "vars": [
+    "status.Agi"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicsBreaker",
+   "formula": "(Lv << 1)",
+   "simplified": "2 × Lv",
+   "when": "always",
+   "by_level": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "((Lv * 10) + 200)",
+   "simplified": "10 × Lv + 200",
+   "when": "always",
+   "by_level": [
+    210,
+    220,
+    230,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "longBonusSkillRate",
+   "formula": "(Lv * 50)",
+   "simplified": "50 × Lv",
+   "when": "always",
+   "by_level": [
+    50,
+    100,
+    150,
+    200,
+    250,
+    300,
+    350,
+    400,
+    450,
+    500
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "longBonus",
+   "formula": "(SkillIndividualFlag ne 0 ? 1 : 0)",
+   "simplified": "SkillIndividualFlag ≠ 0 ? 1 : 0",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "startTime",
+   "formula": "UnityEngine.Time.get_realtimeSinceStartup()",
+   "simplified": "UnityEngine.Time.get_realtimeSinceStartup()",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Time.get_realtimeSinceStartup"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + SkillBufferDataBase.GetParam(50))",
+   "simplified": "skillRate + SkillBufferDataBase.GetParam(50)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1158) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "physicsBreaker",
+   "formula": "((physicsBreaker * SkillBufferDataBase.GetParam(20)) + physicsBreaker)",
+   "simplified": "physicsBreaker × SkillBufferDataBase.GetParam(20) + physicsBreaker",
+   "when": "!PlayerAttackBase.IsBlank(this) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1158) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "startTime",
+   "formula": "UnityEngine.Time.get_realtimeSinceStartup()",
+   "simplified": "UnityEngine.Time.get_realtimeSinceStartup()",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Time.get_realtimeSinceStartup"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "longBonus",
+   "formula": "(startTargetDist ge MathUtil.DisplayMeterToDistance(8) ? 1 : 0)",
+   "simplified": "startTargetDist ≥ MathUtil.DisplayMeterToDistance(8) ? 1 : 0",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "startTargetDist ge MathUtil.DisplayMeterToDistance(8)",
+   "by_level": 1,
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "longBonusSkillRate",
+   "formula": "0",
+   "simplified": "0",
+   "when": "startTargetDist lt MathUtil.DisplayMeterToDistance(8)",
+   "by_level": 0,
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(longBonusSkillRate / 100)",
+   "simplified": "longBonusSkillRate / 100",
+   "when": "startTargetDist ge MathUtil.DisplayMeterToDistance(8)",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "startTargetDist lt MathUtil.DisplayMeterToDistance(8)",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "BreathingMethodBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BreathingMethod, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BreathingMethod, 1))",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BreathingMethod, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND longBonus ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BreathingMethod",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new BreathingMethodBuf, Id)",
+   "simplified": "AddSelfBuffer(new, BreathingMethodBuf, Id)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BreathingMethod, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND longBonus ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BreathingMethod",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "BreathingMethodBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "nextHeal",
+     "simplified": "nextHeal",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "nextHeal": [
+     {
+      "method": "SetNextHeal",
+      "formula": "((heal lt 0 ? (heal + 1) : heal) >> 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "SetNextHeal"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "BreathingMethodBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:BreathingMethodBuf$$.ctor<-GazerShootAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IPlayerStatusCalculator.get_Agi",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Value",
+  "SkillId.BreathingMethod",
+  "SkillManager.GetSkillLv",
+  "TryGetBuf.buf",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_realtimeSinceStartup",
+  "status.Agi"
+ ],
+ "residual": []
+}

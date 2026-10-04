@@ -1,0 +1,417 @@
+{
+ "version": 1,
+ "uid": 85,
+ "name_th": "ควิกโหลดเดอร์",
+ "name_en": "QuickLoader",
+ "tree": "ShootSkill",
+ "category": "Buffer",
+ "max_level": 240,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "QuickLoaderAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 85,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "QuickLoaderBuf..ctor",
+   "formula": ".ctor(Lv, (WeaponType eq 13 ? 1 : 0))",
+   "simplified": ".ctor(Lv, (WeaponType eq 13 ? 1 : 0))",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HideAttack, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HideAttack, 1) lt 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.HideAttack",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new QuickLoaderBuf, Id)",
+   "simplified": "AddSelfBuffer(new, QuickLoaderBuf, Id)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HideAttack, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HideAttack, 1) lt 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.HideAttack",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "HideAttackBuf..ctor",
+   "formula": ".ctor((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HideAttack, 1) gt Lv ? Lv : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HideAttack, 1)), (hasGemCart(1029) & 1))",
+   "simplified": ".ctor((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HideAttack, 1) gt Lv ? Lv : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HideAttack, 1)), (hasGemCart(1029) & 1))",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HideAttack, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.HideAttack",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new HideAttackBuf)",
+   "simplified": "AddSelfBuffer(new, HideAttackBuf)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HideAttack, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.HideAttack",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "HideAttackBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool isGemCart",
+     "fields": {
+      "isGemCart": [
+       {
+        "formula": "(isGemCart & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "int((Lv * 1.5))",
+        "when": "(isGemCart & 1) ne 0",
+        "by_level": [
+         1,
+         3,
+         4,
+         6,
+         7,
+         9,
+         10,
+         12,
+         13,
+         15
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "Lv"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND CountBufferBase.get_Peak() AND LeftTime gt 0 OR !CountBufferBase.get_Peak() AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND CountBufferBase.get_Peak() AND LeftTime gt 0 OR !CountBufferBase.get_Peak() AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "Next"
+   ],
+   "kind": "timed"
+  },
+  {
+   "class": "QuickLoaderBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool isBowgun",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "((Lv * 0xfffffffa) + 120)",
+        "when": "always",
+        "by_level": [
+         114,
+         108,
+         102,
+         96,
+         90,
+         84,
+         78,
+         72,
+         66,
+         60
+        ]
+       }
+      ],
+      "motionSpeed": [
+       {
+        "formula": "((Lv << 2) + lv)",
+        "when": "always",
+        "by_level": [
+         5,
+         10,
+         15,
+         20,
+         25,
+         30,
+         35,
+         40,
+         45,
+         50
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "((isBowgun & 1) eq 0 ? 3 : 2)"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MotionSpeed",
+     "bonus_id": 0,
+     "formula": "motionSpeed",
+     "simplified": "motionSpeed",
+     "when": [
+      "BuffEffectActive ne 0",
+      "quickSpeed ne 0"
+     ]
+    },
+    {
+     "id": "MotionSpeed",
+     "bonus_id": 0,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "quickSpeed eq 0"
+     ]
+    },
+    {
+     "id": "MotionSpeed",
+     "bonus_id": 0,
+     "formula": "CountBufferBase.GetParam(this, id)",
+     "simplified": "CountBufferBase.GetParam(this, id)",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ],
+    "quickSpeed": [
+     {
+      "method": "ValidQuickSpeed",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "InvalidQuickSpeed",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "InvalidQuickSpeed",
+    "ValidQuickSpeed"
+   ],
+   "kind": "timed"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "HideAttackBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "Lv"
+    },
+    "QuickLoaderBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "((isBowgun & 1) eq 0 ? 3 : 2)"
+    }
+   },
+   "attached_via": "caller2:QuickLoaderBuf$$.ctor<-QuickLoaderAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PlayerAttackBase.RemoveAfterSkillBuf"
+ ],
+ "variables": [
+  "CountBufferBase.GetParam",
+  "CountBufferBase.get_Peak",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.Count",
+  "SkillBufferId.MotionSpeed",
+  "SkillId.HideAttack",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

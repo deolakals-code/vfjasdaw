@@ -1,0 +1,187 @@
+﻿uid,step,formula,unsupported_names
+0,SkillConstantDamage,ค่า NormalAttackConstantDamage รวมจากบัพทุกตัว,decoder-residual
+0,SkillConstantDamage,UnannouncedDestination.CalcNormalAttackConstantDamage(PlayerActionManagerBase.get_PlayerStatus()),PartnerStatus;PartnerStatus.MaxHp
+0,DistanceResistRate,"PlayerAttackBase.CalcDistanceResistRate(playerAction, mobAction)",Engine_UnityEngine_Transform_get_position;Engine_UnityEngine_Transform_get_position.x;decoder-residual;fsqrt
+7,SkillRate,"PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type eq 10 ? (((Lv * 15) + 50) + 50) : ((Lv * 15) + 50) %",decoder-residual
+21,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+21,SkillRate,(skillRate[damageCount]) * 100 %,decoder-residual
+21,SkillConstantDamage,fixAddDamage[damageCount],decoder-residual
+39,LastDamageRate,"100 × PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), SpiralAirAction.get_AttackType()) %",IsInstanceOf;PlayerStatusBase;PlayerStatusBase.get_SecondaryStatus;PlayerStatusBase.get_SkillBufferManager;SkillId;SkillId.DoubleThrow
+42,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+42,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+56,ExpRate,(targetExpList[mobAction] / 100),decoder-residual
+70,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+76,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+78,ExpRate,(MobActionManagerBase.get_MobStatus(mobAction).localExpDefNormal / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+88,SkillConstantDamage,int(0.75 × IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))),statusMaster;statusMaster.def
+88,SkillConstantDamage,int(0.5 × IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))),statusMaster;statusMaster.def
+88,SkillConstantDamage,int(0.25 × IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction))),statusMaster;statusMaster.def
+89,ExpRate,(targetExpList[mobAction].Exp / 100),decoder-residual
+99,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+106,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+108,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+108,SkillRate,(skillRate[damageCount]) * 100 %,decoder-residual
+108,SkillConstantDamage,fixAddDamage[damageCount],decoder-residual
+112,SkillRate,INT(ที่ลงเอง) + (((Lv + (Lv << 1))) * skillRate[0]) %,decoder-residual
+112,SkillRate,INT(ที่ลงเอง) + ((lastUsedSkill.baseSkillRate) * skillRate[0]) %,decoder-residual
+112,SkillRate,INT(ที่ลงเอง) + (((Lv + (Lv << 1))) * skillRate[1]) %,decoder-residual
+112,SkillRate,INT(ที่ลงเอง) + ((lastUsedSkill.baseSkillRate) * skillRate[1]) %,decoder-residual
+112,SkillRate,INT(ที่ลงเอง) + (((Lv + (Lv << 1))) * skillRate[2]) %,decoder-residual
+112,SkillRate,INT(ที่ลงเอง) + ((lastUsedSkill.baseSkillRate) * skillRate[2]) %,decoder-residual
+112,SkillRate,((Lv + (Lv << 1))) * skillRate[0] %,decoder-residual
+112,SkillRate,(lastUsedSkill.baseSkillRate) * skillRate[0] %,decoder-residual
+112,SkillRate,((Lv + (Lv << 1))) * skillRate[1] %,decoder-residual
+112,SkillRate,(lastUsedSkill.baseSkillRate) * skillRate[1] %,decoder-residual
+112,SkillRate,((Lv + (Lv << 1))) * skillRate[2] %,decoder-residual
+112,SkillRate,(lastUsedSkill.baseSkillRate) * skillRate[2] %,decoder-residual
+113,SkillRate,skillRate[(((((param & 0xffff) - (((param & 0xffff) ÷ 200) * 200))) - 1) ÷ 3)] %,decoder-residual
+113,ExpRate,(MobActionManagerBase.get_MobStatus(mobAction).localExpDefMagic / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+113,ExpRate,(targetExpList[mobAction] / 100),decoder-residual
+113,Percent,dizzyPercent[(((((param & 0xffff) - (((param & 0xffff) ÷ 200) * 200))) - 1) ÷ 3)],decoder-residual
+113,Percent,breakingPercent[(((((param & 0xffff) - (((param & 0xffff) ÷ 200) * 200))) - 1) ÷ 3)],decoder-residual
+134,SkillConstantDamage,(2 × IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)) - 2 × target.Level) > -101 ? min((2 × IMobStatusCalculator.CalcDef(MobActionMana…(ย่อ),statusMaster;statusMaster.def
+134,SkillRate,(2 × IMobStatusCalculator.CalcDef(MobActionManagerBase.get_MobBattleStatus(mobAction)) - 2 × target.Level) > -101 ? min((2 × IMobStatusCalculator.CalcDef(MobActionMana…(ย่อ) %,statusMaster;statusMaster.def
+150,SkillConstantDamage,"fixAddDamage[vtab(0x165da70(System.Collections.IEnumerator#1(System.Array.GetEnumerator(System.Enum.GetValues(System.Type.GetTypeFromHandle(meta(0x39a89c8, SenfutsuAct…(ย่อ)",SenfutsuAction;SenfutsuAction.STATE;System;System.Array.ArrayEnumerator;System.Collections.IEnumerator;decoder-residual
+150,SkillRate,"(skillRate[vtab(0x165da70(System.Collections.IEnumerator#1(System.Array.GetEnumerator(System.Enum.GetValues(System.Type.GetTypeFromHandle(meta(0x39a89c8, SenfutsuActio…(ย่อ) %",SenfutsuAction;SenfutsuAction.STATE;System;System.Array.ArrayEnumerator;System.Collections.IEnumerator;decoder-residual
+159,SkillConstantDamage,fixAddDamage[0],decoder-residual
+159,SkillRate,skillRate[0] %,decoder-residual
+159,SkillConstantDamage,fixAddDamage[0],decoder-residual
+159,SkillRate,skillRate[0] %,decoder-residual
+159,SkillConstantDamage,(target.Element eq 6 ? (fixAddDamage[0] + 100) : fixAddDamage[0]),decoder-residual
+159,SkillRate,target.Element eq 6 ? (skillRate[0] + 400) : skillRate[0] %,decoder-residual
+159,SkillConstantDamage,fixAddDamage[0],decoder-residual
+159,SkillRate,skillRate[0] %,decoder-residual
+159,SkillConstantDamage,fixAddDamage[1],decoder-residual
+159,SkillRate,skillRate[1] %,decoder-residual
+159,SkillConstantDamage,fixAddDamage[1],decoder-residual
+159,SkillConstantDamage,fixAddDamage[0],decoder-residual
+159,SkillRate,(skillRate[0] * 0.01) * 100 %,decoder-residual
+260,SkillConstantDamage,int(((ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) / 5 + 1) × VIT(ที่ลงเอง)) + 10 × Lv + 100,ItemData;ItemData.get_Refine;decoder-residual;equipItemProbe
+260,SkillRate,100 × (10 × Lv + 50) / 100 × (((ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()))) & 255 ≠ 0 ? (ItemData.get_Refine(EquipItemData.…(ย่อ) %,ItemData;ItemData.get_Refine;decoder-residual;equipItemProbe
+262,SkillConstantDamage,10 × Lv + 60 × (ItemData.get_Refine(GetSubWeaponType.item(actarAction)) & 255),ItemData;ItemData.get_Refine
+262,SkillRate,"10 × Lv + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bGuardPower) %",BonusType;BonusType.bGuardPower;allBonusList;allBonusList.Count;decoder-residual
+266,SkillRate,(ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) × Lv + 15 × Lv %,ItemData;ItemData.get_Refine;decoder-residual;equipItemProbe
+269,SkillConstantDamage,10 × Lv + ((ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255) ÷ 5 + 1) × VIT(ที่ลงเอง) + 100,ItemData;ItemData.get_Refine;decoder-residual;equipItemProbe
+269,ExpRate,(MobActionManagerBase.get_MobStatus(mobAction).localExpDefSkill / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+269,ExpRate,(targetExpList[mobAction] / 100),decoder-residual
+290,LastDamageRate,"100 × PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), SpikeDartAction.get_AttackType()) %",IsInstanceOf;PlayerStatusBase;PlayerStatusBase.get_SecondaryStatus;PlayerStatusBase.get_SkillBufferManager;SkillId;SkillId.DoubleThrow
+290,LastDamageRate,"-(100 × MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))) %",baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit;decoder-residual;pairMobActionManager;pairMobActionManager.HpGage
+291,LastDamageRate,"100 × PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), PoisonDaggerAction.get_AttackType()) %",IsInstanceOf;PlayerStatusBase;PlayerStatusBase.get_SecondaryStatus;PlayerStatusBase.get_SkillBufferManager;SkillId;SkillId.DoubleThrow
+291,LastDamageRate,"-(100 × MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))) %",baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit;decoder-residual;pairMobActionManager;pairMobActionManager.HpGage
+292,LastDamageRate,"100 × PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), GatlingKnifeAction.get_AttackType()) %",IsInstanceOf;PlayerStatusBase;PlayerStatusBase.get_SecondaryStatus;PlayerStatusBase.get_SkillBufferManager;SkillId;SkillId.DoubleThrow
+292,LastDamageRate,"-(100 × MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))) %",baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit;decoder-residual;pairMobActionManager;pairMobActionManager.HpGage
+292,LastDamageRate,"-(100 × MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))) %",baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit;decoder-residual;pairMobActionManager;pairMobActionManager.HpGage
+295,LastDamageRate,"100 × PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), ThrowingAction.get_AttackType()) %",IsInstanceOf;PlayerStatusBase;PlayerStatusBase.get_SecondaryStatus;PlayerStatusBase.get_SkillBufferManager;SkillId;SkillId.DoubleThrow
+295,LastDamageRate,"-(100 × MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))) %",baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit;decoder-residual;pairMobActionManager;pairMobActionManager.HpGage
+299,SkillRate,100 + EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function %,decoder-residual;equipItemProbe
+299,LastDamageRate,"100 × PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), KnifeCombatAction.get_AttackType()) %",IsInstanceOf;PlayerStatusBase;PlayerStatusBase.get_SecondaryStatus;PlayerStatusBase.get_SkillBufferManager;SkillId;SkillId.DoubleThrow
+299,LastDamageRate,"-(100 × MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))) %",baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit;decoder-residual;pairMobActionManager;pairMobActionManager.HpGage
+300,SkillRate,((Lv * 20) + 200) + ((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).F…(ย่อ) %,decoder-residual;equipItemProbe
+301,SkillRate,"((((Lv << 4) - Lv) + 50)) * System.Linq.Enumerable.Count<KeyValuePair<int, object>>(System.Linq.Enumerable.Where<KeyValuePair<int, object>>(targetList, new System.Func…(ย่อ) %",System;System.Func;System.Linq.Enumerable.Count;System.Linq.Enumerable.Where
+301,SkillRate,((((GetSubWeaponType.item(actarAction).Function ÷ 10) lt 50 ? (GetSubWeaponType.item(actarAction).Function ÷ 10) : 50) + (((Lv << 4) - Lv) + 50))) * System.Linq.Enumer…(ย่อ) %,Engine_GetSubWeaponType_item;Engine_GetSubWeaponType_item.Function;System;System.Func;System.Linq.Enumerable.Count;System.Linq.Enumerable.Where
+301,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+301,LastDamageRate,"100 × PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), CrazyDaggerAction.get_AttackType()) %",IsInstanceOf;PlayerStatusBase;PlayerStatusBase.get_SecondaryStatus;PlayerStatusBase.get_SkillBufferManager;SkillId;SkillId.DoubleThrow
+301,LastDamageRate,"-(100 × MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))) %",baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit;decoder-residual;pairMobActionManager;pairMobActionManager.HpGage
+302,SkillRate,(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function << 1) lt 1000 ? (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function…(ย่อ) %,decoder-residual;equipItemProbe
+319,SkillRate,"System.Math.Min(((GetSubWeaponType.item(actarAction).Function ÷ ((mul64(DEX(ที่ลงเอง), 0xae147ae1) >> 37) + 15)) + 50), 100) * SkillBufferDataBase.GetParam(TryGetBuf.b…(ย่อ) %",Engine_GetSubWeaponType_item;Engine_GetSubWeaponType_item.Function;mul64
+319,SkillRate,"System.Math.Min(((GetSubWeaponType.item(actarAction).Function ÷ ((mul64(DEX(ที่ลงเอง), 0xae147ae1) >> 37) + 15)) + 50), 100) %",Engine_GetSubWeaponType_item;Engine_GetSubWeaponType_item.Function;mul64
+319,SkillRate,"(System.Math.Min(((GetSubWeaponType.item(actarAction).Function ÷ ((mul64(DEX(ที่ลงเอง), 0xae147ae1) >> 37) + 15)) + 50), 100) + 50) * SkillBufferDataBase.GetParam(TryG…(ย่อ) %",Engine_GetSubWeaponType_item;Engine_GetSubWeaponType_item.Function;mul64
+319,SkillRate,"System.Math.Min(((GetSubWeaponType.item(actarAction).Function ÷ ((mul64(DEX(ที่ลงเอง), 0xae147ae1) >> 37) + 15)) + 50), 100) + 50 %",Engine_GetSubWeaponType_item;Engine_GetSubWeaponType_item.Function;mul64
+319,SkillRate,"System.Math.Min(((GetSubWeaponType.item(actarAction).Function ÷ ((mul64(DEX(ที่ลงเอง), 0xae147ae1) >> 37) + 15)) + 50), 100) * SkillBufferDataBase.GetParam(TryGetBuf.b…(ย่อ) %",Engine_GetSubWeaponType_item;Engine_GetSubWeaponType_item.Function;mul64
+319,SkillRate,"System.Math.Min(((GetSubWeaponType.item(actarAction).Function ÷ ((mul64(DEX(ที่ลงเอง), 0xae147ae1) >> 37) + 15)) + 50), 100) %",Engine_GetSubWeaponType_item;Engine_GetSubWeaponType_item.Function;mul64
+548,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+558,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+558,Percent,"2 × BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) + 10",BonusType;BonusType.bPowerResistBreaker;allBonusList;allBonusList.Count;decoder-residual
+558,Percent,"2 × BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) + 10",BonusType;BonusType.bPowerResistBreaker;allBonusList;allBonusList.Count;decoder-residual
+609,SkillConstantDamage,fixAddDamage[2],decoder-residual
+609,SkillRate,(skillRate[2]) * 100 %,decoder-residual
+611,SkillRate,skillRate[0] %,decoder-residual
+611,SkillRate,skillRate[1] %,decoder-residual
+611,SkillRate,skillRate[2] %,decoder-residual
+617,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+637,SkillRate,50 × Lv + IchijhinnokazeAratame.GetNagiBonus(PlayerActionManagerBase.get_PlayerStatus()) + 500 %,PlayerStatusBase;PlayerStatusBase.get_SkillManager;SkillId;SkillId.IchijhinnokazeAratame;decoder-residual
+637,SkillRate,IchijhinnokazeBuf.GetKariwatashiBonus((PlayerActionManagerBase.get_PlayerStatus())) + 20 × Lv + IchijhinnokazeAratame.GetKariwatashiBonus((PlayerActionManagerBase.get_…(ย่อ) %,Engine_TryGetBuf_object_out2;Engine_TryGetBuf_object_out2.NowAttackMode;PlayerStatusBase;PlayerStatusBase.get_SkillManager;SkillId;SkillId.IchijhinnokazeAratame
+637,SkillRate,IchijhinnokazeBuf.GetKariwatashiBonus(PlayerActionManagerBase.get_PlayerStatus()) + 20 × Lv + 400 %,Engine_TryGetBuf_object_out2;Engine_TryGetBuf_object_out2.NowAttackMode
+637,SkillRate,IchijhinnokazeBuf.GetHibariBonus((PlayerActionManagerBase.get_PlayerStatus())) + 30 × Lv + IchijhinnokazeAratame.GetHibariBonus((PlayerActionManagerBase.get_PlayerStat…(ย่อ) %,Engine_TryGetBuf_object_out2;Engine_TryGetBuf_object_out2.NowAttackMode;PlayerStatusBase;PlayerStatusBase.get_SkillManager;SkillId;SkillId.IchijhinnokazeAratame
+637,SkillRate,IchijhinnokazeBuf.GetHibariBonus(PlayerActionManagerBase.get_PlayerStatus()) + 30 × Lv + 600 %,Engine_TryGetBuf_object_out2;Engine_TryGetBuf_object_out2.NowAttackMode
+637,SkillRate,IchijhinnokazeBuf.GetIbukiBonus((PlayerActionManagerBase.get_PlayerStatus())) + 60 × Lv + IchijhinnokazeAratame.GetIbukiBonus((PlayerActionManagerBase.get_PlayerStatus…(ย่อ) %,Engine_TryGetBuf_object_out2;Engine_TryGetBuf_object_out2.NowAttackMode;PlayerStatusBase;PlayerStatusBase.get_SkillManager;SkillId;SkillId.IchijhinnokazeAratame
+637,SkillRate,IchijhinnokazeBuf.GetIbukiBonus(PlayerActionManagerBase.get_PlayerStatus()) + 60 × Lv + 300 %,Engine_TryGetBuf_object_out2;Engine_TryGetBuf_object_out2.NowAttackMode
+637,SkillRate,IchijhinnokazeBuf.GetArahaeBonus((PlayerActionManagerBase.get_PlayerStatus())) + 20 × Lv + IchijhinnokazeAratame.GetArahaeBonus((PlayerActionManagerBase.get_PlayerStat…(ย่อ) %,Engine_TryGetBuf_object_out2;Engine_TryGetBuf_object_out2.NowAttackMode;PlayerStatusBase;PlayerStatusBase.get_SkillManager;SkillId;SkillId.IchijhinnokazeAratame
+637,SkillRate,IchijhinnokazeBuf.GetArahaeBonus(PlayerActionManagerBase.get_PlayerStatus()) + 20 × Lv + 500 %,Engine_TryGetBuf_object_out2;Engine_TryGetBuf_object_out2.NowAttackMode
+638,SkillRate,EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Function + 3000 %,decoder-residual;equipItemProbe
+646,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+646,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+647,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+649,LastDamageRate,"100 × CalcPhantomRaveLastDamageRate.out2(this, (PlayerActionManagerBase.get_PlayerStatus()), (PlayerActionManagerBase.get_PlayerStatus())) - 100 × MobPropertyLifeReduc…(ย่อ) %",baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit;decoder-residual;pairMobActionManager;pairMobActionManager.HpGage
+649,LastDamageRate,"100 × CalcPhantomRaveLastDamageRate.out3(this, (PlayerActionManagerBase.get_PlayerStatus()), (PlayerActionManagerBase.get_PlayerStatus())) - 100 × MobPropertyLifeReduc…(ย่อ) %",baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit;decoder-residual;pairMobActionManager;pairMobActionManager.HpGage
+656,ExpRate,(MobActionManagerBase.get_MobStatus(mobAction).localExpDefSkill / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+656,ExpRate,(targetExpList[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+661,SkillRate,"min(10 × buffParam(PowerResistBreaker) + 10 × BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) + 40 × Lv - 900, 500) + DE…(ย่อ) %",BonusType;BonusType.bPowerResistBreaker;allBonusList;allBonusList.Count;buffParam;decoder-residual
+661,SkillRate,"min(10 × buffParam(PowerResistBreaker) + 10 × BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) + 40 × Lv - 900, 500) + 40…(ย่อ) %",BonusType;BonusType.bPowerResistBreaker;allBonusList;allBonusList.Count;buffParam;decoder-residual
+661,SkillRate,"min(10 × buffParam(PowerResistBreaker) + 10 × BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) + 40 × Lv - 900, 500) + AG…(ย่อ) %",BonusType;BonusType.bPowerResistBreaker;allBonusList;allBonusList.Count;buffParam;decoder-residual
+671,ExpRate,(targetExpList[mobAction] / 100),decoder-residual
+673,ExpRate,(MobActionManagerBase.get_MobStatus(mobAction).localExpDefNormal / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+673,ExpRate,(targetExpList[mobAction] / 100),decoder-residual
+674,ExpRate,(MobActionManagerBase.get_MobStatus(mobAction).localExpDefNormal / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+674,ExpRate,(targetExpList[mobAction] / 100),decoder-residual
+675,ExpRate,(MobActionManagerBase.get_MobStatus(mobAction).localExpDefNormal / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+675,ExpRate,(targetExpList[mobAction] / 100),decoder-residual
+718,SkillRate,skillRate[state] %,decoder-residual
+718,SkillRate,skillRate[state] %,decoder-residual
+718,SkillConstantDamage,constDamage[state],decoder-residual
+797,SkillConstantDamage,buffParam(NormalAttackConstantDamage),buffParam
+797,SkillRate,100 × buffParam(NormalAttackRate) / 100 + 100 × GemCartBufferManager.GetNormalAttackRate(PlayerStatusBase.get_GemCartBuffManager()) / 100 + 100 %,buffParam
+797,LastDamageRate,"100 × PlayerAttackBase.CalcBufferLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()) - 100 × MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetPr…(ย่อ) %",IsInstanceOf;PlayerStatusBase;PlayerStatusBase.get_SecondaryStatus;baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit
+797,LastDamageRate,"100 × PlayerAttackBase.CalcBufferLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus()) %",IsInstanceOf;PlayerStatusBase;PlayerStatusBase.get_SecondaryStatus;decoder-residual;skillMaster;skillMaster.SkillTreeType
+797,BaseDamage,"PlayerAttackBase.calcBaseDamage(playerAction, mobAction, BattleNotesAttackAction.get_AttackType(), (MasterSkillDataManager.GetSkillMaster(Singleton<MasterSkillDataMana…(ย่อ)",decoder-residual
+797,DistanceResistRate,"PlayerAttackBase.CalcDistanceResistRate(playerAction, mobAction)",Engine_UnityEngine_Transform_get_position;Engine_UnityEngine_Transform_get_position.x;decoder-residual;fsqrt
+807,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+834,ExpRate,"ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(SkillAttackType.Physics, PlayerAttackBase.get_ActionID(), MobActionManagerBase.get_MobBattleStatu…(ย่อ)",SkillAttackType;SkillAttackType.Physics;mobStatus;mobStatus.localExpDefMagic;mobStatus.localExpDefSkill
+844,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+844,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+872,SkillConstantDamage,((((int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function / 2.5)) lt 300 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemDat…(ย่อ),decoder-residual;equipItemProbe
+872,SkillConstantDamage,((((int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function / 2.5)) lt 300 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemDat…(ย่อ),decoder-residual;equipItemProbe
+900,LastConstantDamage,int((MobActionManagerBase.get_MobStatus(mobAction).serverHp * 0.1)),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+959,ExpRate,"ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(PetNormalMagicAction.get_AttackType(), PetNormalMagicAction.get_ActionID(), MobActionManagerBase.…(ย่อ)",mobStatus;mobStatus.localExpDefMagic;mobStatus.localExpDefSkill
+962,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+966,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+967,BaseDamage,"PlayerAttackBase.calcBaseDamage(playerAction, mobAction, 1, [skillMaster+0x24], PlayerAttackBase.CheckMagicCritical(this, PlayerActionManagerBase.get_PlayerStatus(), m…(ย่อ)",decoder-residual
+969,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+975,ExpRate,"ExtensionMethod.ExSkillData.SkillDataExtentionMethod.GetTargetExpRate(BusterLanceAction.get_AttackType(), PlayerAttackBase.get_ActionID(), MobActionManagerBase.get_Mob…(ย่อ)",mobStatus;mobStatus.localExpDefMagic;mobStatus.localExpDefSkill
+976,SkillRate,(isFirst = 0 ? 50 × Lv + 500 : 50 × Lv + 500) × (5 × [_currentSkillCombo+0x18] / 100 + 1) %,decoder-residual
+976,SkillRate,(isFirst = 0 ? 50 × Lv + 500 : 50 × Lv + 500) × (5 × [_currentSkillCombo+0x18] / 100 + 1) %,decoder-residual
+976,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+976,Def,-int((1 - min(max((min(20 × int(MathUtil.DistanceToDisplayMeter(MobActionManagerBase.get_PlayerDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(targe…(ย่อ),statusMaster;statusMaster.mdef
+976,Def,"-int((1 - min(max((10 × int(MathUtil.DistanceToDisplayMeter(MobActionManagerBase.get_PlayerDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, p…(ย่อ)",statusMaster;statusMaster.mdef
+976,Def,-int(IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction))),statusMaster;statusMaster.mdef
+981,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+982,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+982,SkillConstantDamage,(((Level ของบัพ ไลท์นิ่งเฮล * 10) + 100)),Engine_TryGetBuf_object_out2;Engine_TryGetBuf_object_out2.Level
+982,SkillRate,(pursuitHitCount + 1) * (((((Level ของบัพ ไลท์นิ่งเฮล >> 1) * 20) + (INTรวม ÷ 10)) + 75)) %,Engine_TryGetBuf_object_out2;Engine_TryGetBuf_object_out2.Level
+1004,SkillRate,((Lv * 25) + 250) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase…(ย่อ) %,decoder-residual;equipItemProbe
+1004,SkillRate,((Lv * 25) + 250) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData…(ย่อ) %,decoder-residual;equipItemProbe
+1004,SkillRate,(((Lv * 25) + 250) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBas…(ย่อ) %,decoder-residual;equipItemProbe
+1004,SkillRate,(((Lv * 25) + 250) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemDat…(ย่อ) %,decoder-residual;equipItemProbe
+1004,Percent,"VenomInjectAction.CalcPercent(PlayerActionManagerBase.get_PlayerStatus(), SkillCalcTemplate.CheckStepResult((PlayerAttackBase.HitReactionAssign(this, new, SkillCalcTem…(ย่อ)",decoder-residual;equipItemProbe
+1028,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+1029,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+1058,LastDamageRate,"100 - 100 × MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90, PlayerActionManagerBase.get_PlayerStatus())) %",baseMobActionManager;baseMobActionManager.HpGage;baseMobActionManager.HpGageUpLimit;decoder-residual;pairMobActionManager;pairMobActionManager.HpGage
+1060,Percent,(((((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().s…(ย่อ),PartnerStatus;PartnerStatus.MaxHp
+1060,Percent,"10 × min(100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())), 90) ÷ 10 ÷ (11 - Lv)",PartnerStatus;PartnerStatus.MaxHp
+1061,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+1063,ExpRate,(MobActionManagerBase.get_MobStatus(mobAction).localExpDefMagic / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+1063,ExpRate,(targetExpList[MobActionManagerBase.get_MobStatus(mobAction).UniqueId] / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+1063,ExpRate,(MobActionManagerBase.get_MobStatus(mobAction).localExpDefMagic / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+1063,ExpRate,(targetExpList[MobActionManagerBase.get_MobStatus(mobAction).UniqueId] / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+1122,ExpRate,(proration ที่เก็บไว้ตอนร่าย[mobAction] / 100),decoder-residual
+1129,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+1129,SkillRate,skillRate[attackDir] %,decoder-residual
+1129,ExpRate,(proration ที่เก็บไว้ตอนร่าย[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100),decoder-residual
+1219,ExpRate,(targetExpLit[MobActionManagerBase.get_MobStatus(mobAction).UniqueId] / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+1221,SkillRate,"?mla + NinjaSkillBase.GetNinko(this, (PlayerActionManagerBase.get_PlayerStatus())) + 30 × NinjaSkillBase.GetNinjutsuTraining(this, (PlayerActionManagerBase.get_PlayerS…(ย่อ) %",decoder-residual
+1221,SkillRate,"?mla + NinjaSkillBase.GetNinko(this, (PlayerActionManagerBase.get_PlayerStatus())) + 30 × NinjaSkillBase.GetNinjutsuTraining(this, (PlayerActionManagerBase.get_PlayerS…(ย่อ) %",decoder-residual
+1245,ExpRate,(MobActionManagerBase.get_MobStatus(mobAction).localExpDefSkill / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+1245,ExpRate,(targetExpList[MobActionManagerBase.get_MobStatus(mobAction).UniqueId] / 100),decoder-residual;parentActionManager.IsDummy;parentActionManager.parentActionManager
+1285,SkillRate,"(int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((Player…(ย่อ) %",PlayerStatusBase;PlayerStatusBase.get_PrimaryStatus;decoder-residual
+1285,SkillRate,"int(((((PlayerSecondaryStatus.CalcBaseMaxMp(PlayerStatusBase.get_SecondaryStatus()) / 20) * 0.5) * (PlayerAttackBase.CalcCostMp(this, actarAction) / 200)) + (((PlayerS…(ย่อ) %",PlayerStatusBase;PlayerStatusBase.get_PrimaryStatus;decoder-residual
+1285,ExpRate,(targetMagicExpList[MobActionManagerBase.get_gameObject(mobAction)] / 100),decoder-residual

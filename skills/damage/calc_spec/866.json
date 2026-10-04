@@ -1,0 +1,405 @@
+{
+ "version": 1,
+ "uid": 866,
+ "name_th": "อีเทอร์แฟลร์",
+ "name_en": "EtherFlare",
+ "tree": "MagicBladeSkill",
+ "category": "Attack",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "EtherFlareAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 866,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "conversion",
+   "formula": "(hasBuff(867) & 1)",
+   "simplified": "hasBuff(867) & 1",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipSubWeaponElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipSubWeaponElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipSubWeaponElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(6)",
+   "simplified": "MathUtil.DisplayMeterToDistance(6)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((baseINT gt baseSTR ? baseINT : baseSTR) + 250)",
+   "simplified": "max(baseINT, baseSTR) + 250",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isGemCartBuf",
+   "formula": "(hasGemCart(1014) & 1)",
+   "simplified": "hasGemCart(1014) & 1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "SkillUtil.GetWeakElement(target.Element)",
+   "simplified": "SkillUtil.GetWeakElement(target.Element)",
+   "when": "always",
+   "vars": [
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(fixAddDamage << 1)",
+   "simplified": "2 × fixAddDamage",
+   "when": "EtherFlareAction.get_AttackType() eq 2 AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) OR EtherFlareAction.get_AttackType() ne 2 AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) OR EtherFlareAction.get_AttackType() eq 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction) AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element)",
+   "vars": [
+    "AbnormalType.Ignition",
+    "EtherFlareAction.get_AttackType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "(fixAddDamage << 1)",
+   "simplified": "2 × fixAddDamage",
+   "when": "EtherFlareAction.get_AttackType() eq 2 AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) OR EtherFlareAction.get_AttackType() ne 2 AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) OR EtherFlareAction.get_AttackType() eq 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction) AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element)",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalType.Ignition",
+    "EtherFlareAction.get_AttackType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "!SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) AND EtherFlareAction.get_AttackType() eq 2 OR !SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) AND EtherFlareAction.get_AttackType() ne 2 OR !SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) AND EtherFlareAction.get_AttackType() eq 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction)",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "AbnormalType.Ignition",
+    "EtherFlareAction.get_AttackType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "CheckAbnormalSubEffect",
+   "kind": "call",
+   "name": "EtherFlareBuf..ctor",
+   "formula": ".ctor(Lv, isGemCartBuf)",
+   "simplified": ".ctor(Lv, isGemCartBuf)",
+   "when": "UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(actor, actor), 0)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "CheckAbnormalSubEffect",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new EtherFlareBuf, Id)",
+   "simplified": "AddSelfBuffer(new, EtherFlareBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<CharacterActionManagerBase>(actor, actor), 0)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(8, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(8, percent, playerAction)",
+   "when": "EtherFlareAction.get_AttackType() eq 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction) AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction) AND EtherFlareAction.get_AttackType() eq 2 AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) OR EtherFlareAction.get_AttackType() ne 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction) AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element)",
+   "vars": [
+    "AbnormalType.Ignition",
+    "EtherFlareAction.get_AttackType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(8)",
+   "simplified": "SetAbnormalType(8)",
+   "when": "EtherFlareAction.get_AttackType() eq 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction) AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) OR EtherFlareAction.get_AttackType() ne 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction) AND SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) OR !SkillUtil.CheckWeakElemet(SkillUtil.GetWeakElement(target.Element), target.Element) AND EtherFlareAction.get_AttackType() eq 2 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, percent, playerAction)",
+   "vars": [
+    "AbnormalType.Ignition",
+    "EtherFlareAction.get_AttackType",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillUtil.CheckWeakElemet",
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "EtherFlareBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool isGemCart",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "20",
+        "when": "(isGemCart & 1) ne 0",
+        "by_level": 20
+       },
+       {
+        "formula": "10",
+        "when": "(isGemCart & 1) eq 0",
+        "by_level": 10
+       }
+      ],
+      "attackMpRecovery": [
+       {
+        "formula": "(((int(((Lv + 2) * 0.25)) + (int(((Lv + 2) * 0.25)) << 2)) + 15) - 10)",
+        "when": "(isGemCart & 1) ne 0",
+        "by_level": 5
+       },
+       {
+        "formula": "((int(((Lv + 2) * 0.25)) + (int(((Lv + 2) * 0.25)) << 2)) + 15)",
+        "when": "(isGemCart & 1) eq 0",
+        "by_level": 15
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "attackMpRecovery",
+     "simplified": "attackMpRecovery",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "EtherFlareBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:EtherFlareBuf$$.ctor<-EtherFlareAction$$CheckAbnormalSubEffect",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Ignition",
+  "EtherFlareAction.get_AttackType",
+  "IMobStatusCalculator.get_Element",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.int",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.GetEquipSubWeaponElement",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillUtil.CheckWeakElemet",
+  "SkillUtil.GetWeakElement",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "target.Element"
+ ],
+ "residual": []
+}

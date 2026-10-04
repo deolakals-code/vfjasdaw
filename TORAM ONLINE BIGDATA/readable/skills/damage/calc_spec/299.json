@@ -1,0 +1,377 @@
+{
+ "version": 1,
+ "uid": 299,
+ "name_th": "ไนฟ์คอมแบท",
+ "name_en": "KnifeCombat",
+ "tree": "KnifeSkill",
+ "category": "Special",
+ "max_level": 50,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "changes attack pattern (motion / combo chain; heuristic)",
+  "boosts normal-attack damage"
+ ],
+ "class": "KnifeCombatAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 299,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(100 + EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function)",
+   "simplified": "(100 + EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function)",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 18",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "100",
+   "simplified": "100",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 18",
+   "by_level": 100,
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "addExcetraDamage",
+   "formula": "System.Delegate.Combine(addExcetraDamage, new System.Action)",
+   "simplified": "System.Delegate.Combine(addExcetraDamage, new, System.Action)",
+   "when": "MobaMode ne 0",
+   "vars": [
+    "System.Delegate.Combine"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 8)",
+   "simplified": "SkillParam | 8",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) OR (SkillParam & 32) eq 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0",
+   "vars": [
+    "MasteryId.Trigger",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), KnifeCombatAction.get_AttackType())",
+   "simplified": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), KnifeCombatAction.get_AttackType())",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "KnifeCombatAction.get_AttackType",
+    "MasteryId.Trigger",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcLastDamageRate",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[LastDamageRate]",
+   "formula": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "simplified": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0",
+   "op": "AddRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "MasteryId.Trigger",
+    "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "KnifeCombatBuf..ctor",
+   "formula": ".ctor(Lv, actarAction)",
+   "simplified": ".ctor(Lv, actarAction)",
+   "when": "!PlayerAttackBase.IsBlank(this) OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) eq 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new KnifeCombatBuf)",
+   "simplified": "AddSelfBuffer(new, KnifeCombatBuf)",
+   "when": "!PlayerAttackBase.IsBlank(this) OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) eq 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "KnifeCombatBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "actionManager": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "takeController": [
+       {
+        "formula": "UnityEngine.Component.GetComponent<TakeController>(playerAction)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "normalAtkRate",
+     "simplified": "normalAtkRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "(100 - avoidStackRegist)",
+     "simplified": "100 - avoidStackRegist",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "atkMpRecovery",
+     "simplified": "atkMpRecovery",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "crtUp",
+     "simplified": "crtUp",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [
+    "<TakeEvent>b__19_0",
+    "CheckTake",
+    "IsBattleActive",
+    "TakeEvent",
+    "TakeStop",
+    "get_KnifeTakeId"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "KnifeCombatBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:KnifeCombatBuf$$.ctor<-KnifeCombatAction$$ActionStart",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "AvoidActionManager.AvoidMove",
+  "FlinchKnifeAction.ActionStart",
+  "MobaPlayerBattleManager.OnSkillActionEnd",
+  "MobaPlayerSecondaryStatus.GetCrtConstant",
+  "NormalAttackAction.OnInitialize",
+  "PlayerAttackBase.RemoveAfterSkillBuf",
+  "PlayerBattleManager.CheckZeroActionDelay",
+  "PlayerSecondaryStatus.GetCrtConstant",
+  "WheelBiteAction.<>c__DisplayClass31_0.<ActionStart>b__0"
+ ],
+ "variables": [
+  "EquipItemData.get_SubWeapon",
+  "KnifeCombatAction.get_AttackType",
+  "MasteryId.Trigger",
+  "MathUtil.DisplayMeterToDistance",
+  "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcLastDamageRate",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillActionBase.checkPercent",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.NormalAttackRate",
+  "SkillBufferId.Value",
+  "SkillMasteryBase.GetMasteryParam",
+  "System.Delegate.Combine",
+  "TryGetBuf.out2",
+  "TryGetProperties.out2",
+  "UnityEngine.Component.GetComponent"
+ ],
+ "residual": []
+}

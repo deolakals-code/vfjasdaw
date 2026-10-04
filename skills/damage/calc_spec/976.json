@@ -1,0 +1,766 @@
+{
+ "version": 1,
+ "uid": 976,
+ "name_th": "ดราโกนิกชาร์จ",
+ "name_en": "DragonicCharge",
+ "tree": "HalberdSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "DragonicChargeAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 976,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "targetFixDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeFixDamage",
+   "formula": "(Lv * 30)",
+   "simplified": "30 × Lv",
+   "when": "always",
+   "by_level": [
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "targetSkillRate",
+   "formula": "((Lv * 50) + 500)",
+   "simplified": "50 × Lv + 500",
+   "when": "always",
+   "by_level": [
+    550,
+    600,
+    650,
+    700,
+    750,
+    800,
+    850,
+    900,
+    950,
+    1000
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "((Lv * 50) + 500)",
+   "simplified": "50 × Lv + 500",
+   "when": "always",
+   "by_level": [
+    550,
+    600,
+    650,
+    700,
+    750,
+    800,
+    850,
+    900,
+    950,
+    1000
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "(Lv * Lv)",
+   "simplified": "Lv × Lv",
+   "when": "(System.Collections.Generic.Dictionary<Int32Enum, Int32Enum>.TryGetValue(selectAbnormalType, PlayerStatusBase.GetEquipElementPlayerActionManagerBase.get_PlayerStatus()), (this + 324)) AND GemCartBufferManager.GetTalentElementType(PlayerStatusBase.get_GemCartBuffManager()) eq 0 OR (System.Collections.Generic.Dictionary<Int32Enum, Int32Enum>.TryGetValue(selectAbnormalType, GemCartBufferManager.GetTalentElementTypePlayerStatusBase.get_GemCartBuffManager()), (this + 324)) AND GemCartBufferManager.GetTalentElementType(PlayerStatusBase.get_GemCartBuffManager()) ne 0",
+   "by_level": [
+    1,
+    4,
+    9,
+    16,
+    25,
+    36,
+    49,
+    64,
+    81,
+    100
+   ],
+   "vars": [
+    "GemCartBufferManager.GetTalentElementType",
+    "GemCartBufferManager.GetTalentElementTypePlayerStatusBase.get_GemCartBuffManager",
+    "PlayerStatusBase.GetEquipElementPlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_GemCartBuffManager"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "chargeValue",
+   "formula": "(SkillIndividualFlag + (SkillIndividualFlag << 2))",
+   "simplified": "5 × SkillIndividualFlag",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "target",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "chargeValue",
+   "formula": "([_currentSkillCombo+0x18] + ([_currentSkillCombo+0x18] << 2))",
+   "simplified": "5 × [_currentSkillCombo+0x18]",
+   "when": "always",
+   "residual": [
+    "+0x18]",
+    "+0x18]"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "[_currentSkillCombo+0x18]",
+   "simplified": "[_currentSkillCombo+0x18]",
+   "when": "always",
+   "residual": [
+    "+0x18]"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "SetTargetMobOthers",
+   "kind": "set",
+   "name": "target",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "OnSkillButton",
+   "kind": "set",
+   "name": "chargeSkip",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "chargeSkip",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!DragonicChargeBuf.get_IsAttackPermission(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976)) AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 0,
+   "vars": [
+    "DragonicChargeBuf.get_IsAttackPermission",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "chargeSkip",
+   "formula": "1",
+   "simplified": "1",
+   "when": "ActionRange eq -1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR ActionRange ne -1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR ActionRange ne -1 AND IsInstanceOf(actarAction, OtherPlayerActionManager) ne 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "powerRegist",
+   "formula": "((((int(MathUtil.DistanceToDisplayMeter(MobActionManagerBase.get_PlayerDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)))) + (int(MathUtil.DistanceToDisplayMeter(MobActionManagerBase.get_PlayerDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)))) << 2)) << 1) << 1) lt 100 ? (((int(MathUtil.DistanceToDisplayMeter(MobActionManagerBase.get_PlayerDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)))) + (int(MathUtil.DistanceToDisplayMeter(MobActionManagerBase.get_PlayerDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)))) << 2)) << 1) << 1) : 100)",
+   "simplified": "min(20 × int(MathUtil.DistanceToDisplayMeter(MobActionManagerBase.get_PlayerDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)))), 100)",
+   "when": "(((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) ls (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND ActionRange ne -1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) hi (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND ActionRange ne -1 AND MathUtil.DisplayMeterToDistance((((SkillBufferDataBase.GetParam(20) * 8) * 0.01) + 8)) gt 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) hi (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND ActionRange ne -1 AND MathUtil.DisplayMeterToDistance((((SkillBufferDataBase.GetParam(20) * 8) * 0.01) + 8)) le 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "MathUtil.DistanceToDisplayMeter",
+    "MobActionManagerBase.get_PlayerDistance",
+    "MobActionManagerBase.get_Size",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "chargeValue",
+   "formula": "SkillBufferDataBase.GetParam(20)",
+   "simplified": "SkillBufferDataBase.GetParam(20)",
+   "when": "(((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) ls (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND ActionRange ne -1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) hi (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND ActionRange ne -1 AND MathUtil.DisplayMeterToDistance((((SkillBufferDataBase.GetParam(20) * 8) * 0.01) + 8)) gt 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) hi (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND ActionRange ne -1 AND MathUtil.DisplayMeterToDistance((((SkillBufferDataBase.GetParam(20) * 8) * 0.01) + 8)) le 0 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "MobActionManagerBase.get_Size",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isFirstAtkHit",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) hi (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND MathUtil.DisplayMeterToDistance((((chargeValue * 8) * 0.01) + 8)) gt 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) hi (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND MathUtil.DisplayMeterToDistance((((chargeValue * 8) * 0.01) + 8)) le 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) hi (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND MathUtil.DisplayMeterToDistance((((chargeValue * 8) * 0.01) + 8)) gt 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "by_level": 0,
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "MobActionManagerBase.get_Size",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "isFirstAtkHit",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) ls (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) OR !UnityEngine.Object.op_Inequality(actarAction) AND (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) ls (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) ls (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND ActionRange ne -1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "MobActionManagerBase.get_Size",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "powerRegist",
+   "formula": "((int(MathUtil.DistanceToDisplayMeter(MobActionManagerBase.get_PlayerDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)))) + (int(MathUtil.DistanceToDisplayMeter(MobActionManagerBase.get_PlayerDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)))) << 2)) << 1)",
+   "simplified": "10 × int(MathUtil.DistanceToDisplayMeter(MobActionManagerBase.get_PlayerDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))))",
+   "when": "(((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) ls (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) OR !UnityEngine.Object.op_Inequality(actarAction) AND (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) ls (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) OR ActionRange ne -1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 976) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "MathUtil.DistanceToDisplayMeter",
+    "MobActionManagerBase.get_PlayerDistance",
+    "MobActionManagerBase.get_Size",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "chargeValue",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) ls (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND ActionRange ne -1 AND UnityEngine.Object.op_Inequality(actarAction) OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) hi (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND ActionRange ne -1 AND MathUtil.DisplayMeterToDistance(8) gt 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x))) hi (MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param)) * MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target, param))) AND ActionRange ne -1 AND MathUtil.DisplayMeterToDistance(8) le 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "by_level": 0,
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "MobActionManagerBase.get_Size",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "chargeSkip",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(System.Collections.Generic.Dictionary<int, int>.ContainsKey(values, 48, values) & 1) ne 0 AND (skillEventId & 0xffff) eq 101 OR (System.Collections.Generic.Dictionary<int, int>.ContainsKey(values, 48, values) & 1) eq 0 AND (skillEventId & 0xffff) eq 101",
+   "by_level": 1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "NextRangeHit",
+   "kind": "set",
+   "name": "isFirst",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "isFirst ne 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND isFirst eq 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) ne 0 AND isFirst eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "IMobStatusCalculator.CalcMdef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[SkillRate]",
+   "formula": "(((isFirst eq 0 ? rangeSkillRate : targetSkillRate) * ((chargeValue / 100) + 1)) / 100)",
+   "simplified": "(isFirst = 0 ? rangeSkillRate : targetSkillRate) × (chargeValue / 100 + 1) / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[SkillConstantDamage]",
+   "formula": "(isFirst eq 0 ? rangeFixDamage : targetFixDamage)",
+   "simplified": "isFirst = 0 ? rangeFixDamage : targetFixDamage",
+   "when": "always",
+   "op": "SetConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[Def]",
+   "formula": "-int(((1 - min(((((((powerRegist + PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker)) + DragonToothResistBreaker) lt 0 ? (((powerRegist + PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker)) + DragonToothResistBreaker) + 1) : ((powerRegist + PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker)) + DragonToothResistBreaker)) >> 1) gt (DragonToothResistBreaker + PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bMagicResistBreaker)) ? ((((powerRegist + PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker)) + DragonToothResistBreaker) lt 0 ? (((powerRegist + PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker)) + DragonToothResistBreaker) + 1) : ((powerRegist + PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bPowerResistBreaker)) + DragonToothResistBreaker)) >> 1) : (DragonToothResistBreaker + PlayerStatusBase.GetBonusValueWithBuf(PlayerActionManagerBase.get_PlayerStatus(), BonusType.bMagicResistBreaker))) / 100), 1)) * IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction))))",
+   "simplified": "-int((1 - min(max((powerRegist + PlayerStatusBase.GetBonusValueWithBuf(A, BonusType.bPowerResistBreaker) + DragonToothResistBreaker) ÷ 2, DragonToothResistBreaker + PlayerStatusBase.GetBonusValueWithBuf(A, BonusType.bMagicResistBreaker)) / 100, 1)) × IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)))",
+   "when": "(IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND isFirst eq 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND abnormalType eq 0 AND isFirst eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, abnormalType, abnormalPercent, playerAction) AND (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND abnormalType ne 0 AND isFirst eq 0",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "op": "SetConstant",
+   "step": "Def",
+   "vars": [
+    "BonusType.bMagicResistBreaker",
+    "BonusType.bPowerResistBreaker",
+    "IMobStatusCalculator.CalcMdef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerStatusBase.GetBonusValueWithBuf"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[Def]",
+   "formula": "-int(IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)))",
+   "simplified": "-int(IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)))",
+   "when": "(IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) ne 0 AND isFirst eq 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) ne 0 AND abnormalType eq 0 AND isFirst eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, abnormalType, abnormalPercent, playerAction) AND (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) ne 0 AND abnormalType ne 0 AND isFirst eq 0",
+   "op": "SetConstant",
+   "step": "Def",
+   "vars": [
+    "IMobStatusCalculator.CalcMdef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "simplified": "(targetExpRegister[MobActionManagerBase.get_CharacterActionManagerBase(mobAction)] / 100)",
+   "when": "isFirst ne 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND isFirst eq 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) ne 0 AND isFirst eq 0",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "IMobStatusCalculator.CalcMdef",
+    "MobActionManagerBase.get_CharacterActionManagerBase",
+    "MobActionManagerBase.get_MobBattleStatus"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(976, Lv)",
+   "simplified": "AddSelfBuffer(976, Lv)",
+   "when": "!PlayerAttackBase.IsBlank(this)",
+   "vars": [
+    "PlayerAttackBase.IsBlank"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(987, 0)",
+   "simplified": "AddSelfBuffer(987, 0)",
+   "when": "isFirst ne 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND isFirst eq 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) ne 0 AND isFirst eq 0",
+   "vars": [
+    "IMobStatusCalculator.CalcMdef",
+    "MobActionManagerBase.get_MobBattleStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(987)",
+   "simplified": "RemoveSelfBuffer(987)",
+   "when": "isFirst ne 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND isFirst eq 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) ne 0 AND isFirst eq 0",
+   "vars": [
+    "IMobStatusCalculator.CalcMdef",
+    "MobActionManagerBase.get_MobBattleStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(abnormalType, abnormalPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(abnormalType, abnormalPercent, playerAction)",
+   "when": "!PlayerAttackBase.checkAbnormalPercent(this, abnormalType, abnormalPercent, playerAction) AND (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND abnormalType ne 0 AND isFirst eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, abnormalType, abnormalPercent, playerAction) AND (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) ne 0 AND abnormalType ne 0 AND isFirst eq 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, abnormalPercent, playerAction) AND abnormalType eq 5 AND abnormalType ne 0 AND isFirst eq 0",
+   "vars": [
+    "IMobStatusCalculator.CalcMdef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(abnormalType)",
+   "simplified": "SetAbnormalType(abnormalType)",
+   "when": "(IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, abnormalPercent, playerAction) AND abnormalType eq 5 AND abnormalType ne 0 AND isFirst eq 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, abnormalPercent, playerAction) AND abnormalType ne 0 AND abnormalType ne 5 AND isFirst eq 0 OR (IMobStatusCalculator.CalcMdef(MobActionManagerBase.get_MobBattleStatus(mobAction)) & 0x80000000) ne 0 AND PlayerAttackBase.checkAbnormalPercent(this, abnormalType, abnormalPercent, playerAction) AND abnormalType eq 5 AND abnormalType ne 0 AND isFirst eq 0",
+   "vars": [
+    "IMobStatusCalculator.CalcMdef",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass36_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(976)",
+   "simplified": "RemoveSelfBuffer(976)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "DragonicChargeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "chargeValue": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "isCharge": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "time": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "100",
+        "when": "always",
+        "by_level": 100
+       }
+      ],
+      "IsWarnDetection": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "int(chargeValue)",
+     "simplified": "int(chargeValue)",
+     "when": []
+    }
+   ],
+   "state": {
+    "IsWarnDetection": [
+     {
+      "method": "set_IsWarnDetection",
+      "formula": "(value & 1)",
+      "when": "always"
+     },
+     {
+      "method": "WarnMobAttack",
+      "formula": "1",
+      "when": "isCharge ne 0"
+     }
+    ],
+    "time": [
+     {
+      "method": "Updata",
+      "formula": "(time + UnityEngine.Time.get_deltaTime())",
+      "when": "always"
+     }
+    ],
+    "chargeValue": [
+     {
+      "method": "Updata",
+      "formula": "min(((time + UnityEngine.Time.get_deltaTime()) / 0.05), 100)",
+      "when": "chargeValue mi 100 AND isCharge ne 0"
+     },
+     {
+      "method": "WarnMobAttack",
+      "formula": "100",
+      "when": "isCharge ne 0"
+     }
+    ],
+    "Count": [
+     {
+      "method": "Updata",
+      "formula": "int(min(((time + UnityEngine.Time.get_deltaTime()) / 0.05), 100))",
+      "when": "chargeValue mi 100 AND isCharge ne 0"
+     },
+     {
+      "method": "WarnMobAttack",
+      "formula": "100",
+      "when": "isCharge ne 0"
+     }
+    ],
+    "isCharge": [
+     {
+      "method": "StopCharge",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "StopCharge",
+    "WarnMobAttack",
+    "get_IsAttackPermission",
+    "get_IsCharge",
+    "get_IsWarnDetection",
+    "set_IsWarnDetection"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "DragonicChargeAction.ActionSkillEvent",
+  "DragonicChargeAction.ActionSkillEventIfMoveIndex",
+  "GuardActionManager.CheckGuardStart",
+  "PlayerActionManagerBase.InMobAttackArea"
+ ],
+ "variables": [
+  "BonusType.bMagicResistBreaker",
+  "BonusType.bPowerResistBreaker",
+  "DragonicChargeBuf.get_IsAttackPermission",
+  "GemCartBufferManager.GetTalentElementType",
+  "GemCartBufferManager.GetTalentElementTypePlayerStatusBase.get_GemCartBuffManager",
+  "IMobStatusCalculator.CalcMdef",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "MathUtil.DisplayMeterToDistance",
+  "MathUtil.DistanceToDisplayMeter",
+  "MobActionManagerBase.get_CharacterActionManagerBase",
+  "MobActionManagerBase.get_MobBattleStatus",
+  "MobActionManagerBase.get_PlayerDistance",
+  "MobActionManagerBase.get_Size",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.GetBonusValueWithBuf",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.GetEquipElementPlayerActionManagerBase.get_PlayerStatus",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "System.Collections.Generic.Dictionary.ContainsKey",
+  "System.Collections.Generic.Dictionary.TryGetValue",
+  "TryGetBuf.buf",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_position",
+  "target.ExpDefSkill"
+ ],
+ "residual": [
+  {
+   "where": "ActionStart:chargeValue",
+   "tokens": [
+    "+0x18]",
+    "+0x18]"
+   ]
+  },
+  {
+   "where": "ActionStart:SkillIndividualFlag",
+   "tokens": [
+    "+0x18]"
+   ]
+  }
+ ]
+}

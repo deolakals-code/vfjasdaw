@@ -1,0 +1,59 @@
+{
+ "version": 1,
+ "uid": 971,
+ "name_th": "คริติคอลสเปียร์",
+ "name_en": "HandlingSatisfaction",
+ "tree": "HalberdSkill",
+ "category": "Mastery",
+ "max_level": 70,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "HandlingSatisfactionMastary",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "HandlingSatisfactionMastary",
+  "bonuses": {
+   "CrtRate": {
+    "id": 23,
+    "expr": "int((Lv * 0.5))",
+    "by_level": [
+     0,
+     1,
+     1,
+     2,
+     2,
+     3,
+     3,
+     4,
+     4,
+     5
+    ]
+   },
+   "Crt": {
+    "id": 22,
+    "expr": "int(((Lv + 1) * 0.5))",
+    "by_level": [
+     1,
+     1,
+     2,
+     2,
+     3,
+     3,
+     4,
+     4,
+     5,
+     5
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

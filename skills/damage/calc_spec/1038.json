@@ -1,0 +1,78 @@
+{
+ "version": 1,
+ "uid": 1038,
+ "name_th": "การวิจัยเวทมนตร์",
+ "name_en": "MagicResearch",
+ "tree": "WizardSkill",
+ "category": "Mastery",
+ "max_level": 285,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "MagicResearch",
+ "proration": null,
+ "eq_limit": [
+  "Rod",
+  "Magictool"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "MagicResearch",
+  "bonuses": {
+   "Cspd": {
+    "id": 38,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   },
+   "Value": {
+    "id": 28,
+    "expr": "((Lv + (Lv << 2)) << 3)",
+    "by_level": [
+     40,
+     80,
+     120,
+     160,
+     200,
+     240,
+     280,
+     320,
+     360,
+     400
+    ]
+   },
+   "SkillRate": {
+    "id": 26,
+    "expr": "((Lv + (Lv << 2)) << 2)",
+    "by_level": [
+     20,
+     40,
+     60,
+     80,
+     100,
+     120,
+     140,
+     160,
+     180,
+     200
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

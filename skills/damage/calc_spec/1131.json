@@ -1,0 +1,266 @@
+{
+ "version": 1,
+ "uid": 1131,
+ "name_th": "ซัมมอนเดโมนิก",
+ "name_en": "SummonDemonic",
+ "tree": "NecromancerSkill",
+ "category": "Extra",
+ "max_level": 260,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "SummonDemonicAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1131,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcCostMp",
+   "kind": "set",
+   "name": "mp",
+   "formula": "0",
+   "simplified": "0",
+   "when": "hasBuff(1131)",
+   "by_level": 0
+  },
+  {
+   "method": "calcCostMp",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "0",
+   "simplified": "0",
+   "when": "hasBuff(1131)",
+   "by_level": 0
+  },
+  {
+   "method": "calcCostMp",
+   "kind": "set",
+   "name": "mp",
+   "formula": "((PlayerAttackBase.CalcCostMp(this, playerAction) lt 2000 ? PlayerAttackBase.CalcCostMp(this, playerAction) : 2000) gt 100 ? (PlayerAttackBase.CalcCostMp(this, playerAction) lt 2000 ? PlayerAttackBase.CalcCostMp(this, playerAction) : 2000) : 100)",
+   "simplified": "max(min(PlayerAttackBase.CalcCostMp(this, playerAction), 2000), 100)",
+   "when": "!hasBuff(1131)",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp"
+   ]
+  },
+  {
+   "method": "calcCostMp",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "((PlayerAttackBase.CalcCostMp(this, playerAction) lt 2000 ? PlayerAttackBase.CalcCostMp(this, playerAction) : 2000) gt 100 ? (PlayerAttackBase.CalcCostMp(this, playerAction) lt 2000 ? PlayerAttackBase.CalcCostMp(this, playerAction) : 2000) : 100)",
+   "simplified": "max(min(PlayerAttackBase.CalcCostMp(this, playerAction), 2000), 100)",
+   "when": "!hasBuff(1131)",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "GetDamageResistRate",
+   "kind": "call",
+   "name": "virtual MobAttackBase.CheckPercentageDamage",
+   "formula": "virtual MobAttackBase.CheckPercentageDamage()",
+   "simplified": "virtual MobAttackBase.CheckPercentageDamage()",
+   "when": "(ExSkillSummonDemonic.CheckAbility(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131), DemonicAbility.DemonBarrier) | ExSkillSummonDemonic.CheckAbility(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131), DemonicAbility.BarrierExpansion)) AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131) ne 0 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) OR !ExSkillSummonDemonic.CheckAbility(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131), DemonicAbility.DemonBarrier) AND (ExSkillSummonDemonic.CheckAbility(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131), DemonicAbility.DemonBarrier) | ExSkillSummonDemonic.CheckAbility(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131), DemonicAbility.BarrierExpansion)) AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131) ne 0 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0) OR (ExSkillSummonDemonic.CheckAbility(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131), DemonicAbility.DemonBarrier) | ExSkillSummonDemonic.CheckAbility(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131), DemonicAbility.BarrierExpansion)) AND ExSkillSummonDemonic.CheckAbility(TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131), DemonicAbility.DemonBarrier) AND TryGetExSkillData<object>.out2(PlayerDataManager.get_ExSkillManager(PlayerDataManager.GetPlayerDataManager()), 1131) ne 0 AND UnityEngine.Object.op_Inequality(PlayerDataManager.GetPlayerDataManager(), 0)",
+   "vars": [
+    "ExSkillSummonDemonic.CheckAbility",
+    "MobAttackBase.CheckPercentageDamage",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_ExSkillManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ChangeHateManaged",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1131)",
+   "simplified": "RemoveSelfBuffer(1131)",
+   "when": "CharacterActionManagerBase.AddAbnormalState(UnityEngine.Component.get_gameObject(playerAction), 3, 5, 0, 0, 0, 1) AND UnityEngine.Random.Range(0, 100) lt int((((100 - PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) * (100 - PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) / 200)) AND hasBuff(1131) OR !CharacterActionManagerBase.AddAbnormalState(UnityEngine.Component.get_gameObject(playerAction), 3, 5, 0, 0, 0, 1) AND UnityEngine.Random.Range(0, 100) lt int((((100 - PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) * (100 - PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) / 200)) AND hasBuff(1131) OR CharacterActionManagerBase.AddAbnormalState(UnityEngine.Component.get_gameObject(playerAction), 3, 5, 0, 0, 0, 1) AND TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 15, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager())) ne 0 AND UnityEngine.Random.Range(0, 100) lt int((((100 - PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) * (100 - PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) / 200)) AND hasBuff(1131)",
+   "vars": [
+    "CharacterActionManagerBase.AddAbnormalState",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_PlayerArchetypeId",
+    "PlayerStatusBase.GetHpPercent",
+    "TryGetAutoMember.automember",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Random.Range"
+   ]
+  },
+  {
+   "method": "PartyAcceptance",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1131)",
+   "simplified": "RemoveSelfBuffer(1131)",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1131) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SummonDemonicBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int mp",
+     "fields": {
+      "summonMp": [
+       {
+        "formula": "mp",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "100"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MaxHpUpRate",
+     "bonus_id": 62,
+     "formula": "maxHpRate",
+     "simplified": "maxHpRate",
+     "when": []
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "summonMp",
+     "simplified": "summonMp",
+     "when": []
+    }
+   ],
+   "state": {
+    "maxHpRate": [
+     {
+      "method": "SetBloodContract",
+      "formula": "-50",
+      "when": "always"
+     }
+    ],
+    "summonMp": [
+     {
+      "method": "SetSummonMp",
+      "formula": "mp",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "BufferEnd",
+    "SetBloodContract",
+    "SetSummonMp"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "GameManager.ReceiveSummons",
+  "MainPlayer.PlayerDead",
+  "PhotonListener.OnActionPartyChangeHateActor",
+  "PhotonListener.OnActionPartyChangeHateMine",
+  "PhotonListener.OnActionRoomChangeHateActor",
+  "PhotonListener.OnActionRoomChangeHateMine",
+  "PlayerActionManager.Damaged",
+  "ReceiveSupportResult.OnActionPlayerSupport",
+  "ReceiveSupportResult.OnEventNpcSupport",
+  "ReceiveSupportResult.OnEventPlayerSupport",
+  "SummonDemonicAI..ctor",
+  "SummonDemonicAction.ChangeHateManaged",
+  "SummonDemonicAction.IsFailure",
+  "SummonDemonicAction.calcCostMp",
+  "SummonDemonicActionManager.BattleReservSpecialAttack",
+  "SummonDemonicActionManager.BattleReserveNormalAttack",
+  "SummonDemonicAttackAction.ActionHit",
+  "SummonDemonicAttackAction.OnInitialize",
+  "SummonDemonicSpecialAttack.ActionHit",
+  "SummonDemonicSpecialAttack.OnInitialize"
+ ],
+ "variables": [
+  "CharacterActionManagerBase.AddAbnormalState",
+  "ExSkillSummonDemonic.CheckAbility",
+  "MobAttackBase.CheckPercentageDamage",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CalcCostMp",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_ExSkillManager",
+  "PlayerDataManager.get_PlayerArchetypeId",
+  "PlayerStatusBase.GetHpPercent",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferId.MaxHpUpRate",
+  "SkillBufferId.Value",
+  "TryGetAutoMember.automember",
+  "TryGetBuf.out2",
+  "TryGetExSkillData.out2",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Random.Range"
+ ],
+ "residual": []
+}

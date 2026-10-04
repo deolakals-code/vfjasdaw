@@ -1,0 +1,390 @@
+{
+ "version": 1,
+ "uid": 1060,
+ "name_th": "เดมอนคลอว์",
+ "name_en": "DemonCrowe",
+ "tree": "DarkPowerSkill",
+ "category": "Attack",
+ "max_level": 60,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "DemonCroweAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1060,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "6",
+   "simplified": "6",
+   "when": "always",
+   "by_level": 6
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) << 3)",
+   "simplified": "40 × Lv",
+   "when": "always",
+   "by_level": [
+    40,
+    80,
+    120,
+    160,
+    200,
+    240,
+    280,
+    320,
+    360,
+    400
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasGemCart(1016) OR !PlayerAttackBase.IsBlank(this) AND !hasGemCart(1016) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasGemCart(1016) OR !PlayerAttackBase.IsBlank(this) AND !hasGemCart(1016) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "target",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasGemCart(1016) OR !PlayerAttackBase.IsBlank(this) AND !hasGemCart(1016) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "isGemCartBuf",
+   "formula": "(hasGemCart(1016) & 1)",
+   "simplified": "hasGemCart(1016) & 1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasGemCart(1016) OR !PlayerAttackBase.IsBlank(this) AND !hasGemCart(1016) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasGemCart(1016)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(max((skillRate + -100), 0) * ((((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) + ((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) << 2)) << 1) / 12))",
+   "simplified": "(max((skillRate + -100), 0) * ((((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) + ((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) << 2)) << 1) / 12))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasGemCart(1016)",
+   "vars": [
+    "BonusType.DemonCrowAlphaImmunity",
+    "EternalNightmareBuf.GetParam",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.GetHpPercent",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) + ((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) << 2)) << 1) // (11 - Lv))",
+   "simplified": "((((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) + ((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) << 2)) << 1) // (11 - Lv))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasGemCart(1016) OR !PlayerAttackBase.IsBlank(this) AND !hasGemCart(1016) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusType.DemonCrowAlphaImmunity",
+    "EternalNightmareBuf.GetParam",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.GetHpPercent",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(max((skillRate + -100), 0) * ((((((100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) lt 90 ? (100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) : 90) // 10) + ((((100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) lt 90 ? (100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) : 90) // 10) << 2)) << 1) / 12))",
+   "simplified": "max(skillRate - 100, 0) × 10 × min(100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())), 90) // 10 / 12",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasGemCart(1016)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.GetHpPercent",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "percent",
+   "formula": "((((((100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) lt 90 ? (100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) : 90) // 10) + ((((100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) lt 90 ? (100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) : 90) // 10) << 2)) << 1) // (11 - Lv))",
+   "simplified": "10 × min(100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())), 90) // 10 // (11 - Lv)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasGemCart(1016) OR !PlayerAttackBase.IsBlank(this) AND !hasGemCart(1016) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.GetHpPercent",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "((System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) lt 10 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) : 10) gt 1 ? (System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) lt 10 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) : 10) : 1)",
+   "simplified": "((System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) lt 10 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) : 10) gt 1 ? (System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) lt 10 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) : 10) : 1)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !hasGemCart(1016) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "MobManager.get_TargetableMobList",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate * ((((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) + ((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) << 2)) << 1) / 12))",
+   "simplified": "(skillRate * ((((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) + ((((100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) lt 90 ? (100 - (int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())) - EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.DemonCrowAlphaImmunity))) : 90) // 10) << 2)) << 1) / 12))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !hasGemCart(1016) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusType.DemonCrowAlphaImmunity",
+    "EternalNightmareBuf.GetParam",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.GetHpPercent",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate * ((((((100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) lt 90 ? (100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) : 90) // 10) + ((((100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) lt 90 ? (100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()))) : 90) // 10) << 2)) << 1) / 12))",
+   "simplified": "skillRate × 10 × min(100 - int(PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus())), 90) // 10 / 12",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !hasGemCart(1016) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.GetHpPercent",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "6",
+   "simplified": "6",
+   "when": "always",
+   "by_level": 6
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "((System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) lt 10 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) : 10) gt 1 ? (System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) lt 10 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) : 10) : 1)",
+   "simplified": "((System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) lt 10 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) : 10) gt 1 ? (System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) lt 10 ? System.Linq.Enumerable.Count<MobActionManagerBase>(MobManager.get_TargetableMobList(TargetableListManagerBase<MobManager>.get_Instance()), new System.Func<MobActionManagerBase, bool>) : 10) : 1)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "MobManager.get_TargetableMobList",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "DemonCroweAction.<>c__DisplayClass23_0..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "PlayerAttackBase.IsBlank(this) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND hasGemCart(1016)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "DemonCroweAction.<>c__DisplayClass26_0..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(23, percent, playerAction)",
+   "simplified": "checkAbnormalPercent(23, percent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(23)",
+   "simplified": "SetAbnormalType(23)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Tiredness, percent, playerAction)",
+   "vars": [
+    "AbnormalType.Tiredness",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Tiredness",
+  "BonusType.DemonCrowAlphaImmunity",
+  "EternalNightmareBuf.GetParam",
+  "MathUtil.DisplayMeterToDistance",
+  "MobManager.get_TargetableMobList",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.GetHpPercent",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "System.Linq.Enumerable.Count",
+  "TargetableListManagerBase.get_Instance",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

@@ -1,0 +1,172 @@
+{
+ "version": 1,
+ "uid": 1027,
+ "name_th": "ไลท์นิ่ง",
+ "name_en": "Lightning",
+ "tree": "WizardSkill",
+ "category": "Object",
+ "max_level": 35,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment",
+  "placed object / trap / summon"
+ ],
+ "class": "LightningAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target if class check passes",
+  "attack_type": "Magic",
+  "action_id": 1027,
+  "is_exp_def_fluctuate": "conditional",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod",
+  "Magictool"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "3",
+   "simplified": "3",
+   "when": "always",
+   "by_level": 3
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 16)",
+   "simplified": "SkillParam | 16",
+   "when": "!PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.HighFamilia) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND PlayerAttackBase.IsBlank(this) AND SkillActionBase.checkPercent(this, 100, 30) OR !PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.HighFamilia) AND !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND PlayerAttackBase.get_ActionID() eq 0 AND SkillActionBase.checkPercent(this, 100, 30) OR !PlayerAttackBase.CheckSkillParamFlag(this, SkillParamFlag.HighFamilia) AND !PlayerAttackBase.IsBlank(this) AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Fear) AND PlayerAttackBase.ContainsNotApplicableSkill(PlayerAttackBase.get_ActionID()) AND PlayerAttackBase.get_ActionID() ne 0 AND SkillActionBase.checkPercent(this, 100, 30)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Fear",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.ContainsNotApplicableSkill",
+    "PlayerAttackBase.IsBlank",
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "SkillActionBase.checkPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeHighFamilia",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 256)",
+   "simplified": "SkillParam | 256",
+   "when": "always"
+  },
+  {
+   "method": "InitializeHighFamilia",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((((Lv * 30) + 400) + HighFamiliaAction.GetLightningPowerUpValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HighFamilia, 1))) / 100)",
+   "simplified": "(30 × Lv + HighFamiliaAction.GetLightningPowerUpValue(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.HighFamilia, 1)) + 400) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "HighFamiliaAction.GetLightningPowerUpValue",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.HighFamilia",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "80",
+   "simplified": "80",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(6, (Lv + (Lv << 1)), playerAction)",
+   "simplified": "checkAbnormalPercent(6, 3 × Lv, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(6)",
+   "simplified": "SetAbnormalType(6)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, (Lv + (Lv << 1)), playerAction)",
+   "vars": [
+    "AbnormalType.Paralysis",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Fear",
+  "AbnormalType.Paralysis",
+  "HighFamiliaAction.GetLightningPowerUpValue",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.ContainsNotApplicableSkill",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.checkPercent",
+  "SkillId.HighFamilia",
+  "SkillManager.GetSkillLv"
+ ],
+ "residual": []
+}

@@ -1,0 +1,1216 @@
+{
+ "version": 1,
+ "uid": 637,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "IchijhinnokazeAttackAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 637,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "actorAction",
+   "formula": "actarAction",
+   "simplified": "actarAction",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(20)",
+   "simplified": "MathUtil.DisplayMeterToDistance(20)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "IchijhinnokazeAttackAction.CheckSetunakenran",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackTargetSize",
+   "formula": "MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))",
+   "simplified": "MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "IchijhinnokazeAttackAction.CheckSetunakenran",
+    "MobActionManagerBase.get_Size",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "activeSkill",
+   "formula": "5",
+   "simplified": "5",
+   "when": "!PlayerAttackBase.IsBlank(this) AND IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 629) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "by_level": 5,
+   "vars": [
+    "IchijhinnokazeAttackAction.CheckSetunakenran",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "5",
+   "simplified": "5",
+   "when": "!PlayerAttackBase.IsBlank(this) AND IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 629) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "by_level": 5,
+   "vars": [
+    "IchijhinnokazeAttackAction.CheckSetunakenran",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackTargetDistance",
+   "formula": "max((fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) - MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))), 0)",
+   "simplified": "max((fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) - MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))), 0)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "IchijhinnokazeAttackAction.CheckSetunakenran",
+    "MobActionManagerBase.get_Size",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "int(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)))",
+   "simplified": "int(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "IchijhinnokazeAttackAction.CheckSetunakenran",
+    "MobActionManagerBase.get_Size",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "shukuchiLevel",
+   "formula": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Shukuchi, 1)",
+   "simplified": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.Shukuchi, 1)",
+   "when": "!IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) ls 3 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) ls 3 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) hi 3 AND UnityEngine.Object.op_Inequality(actarAction) AND activeSkill eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isSetsunaConnect ne 0",
+   "vars": [
+    "IchijhinnokazeAttackAction.CheckSetunakenran",
+    "IchijhinnokazeAttackAction.GetInputDirect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.Shukuchi",
+    "SkillId.WeirdnessOfGod",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "weirdnessOfGodLevel",
+   "formula": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)",
+   "simplified": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)",
+   "when": "!IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) ls 3 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) ls 3 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) hi 3 AND UnityEngine.Object.op_Inequality(actarAction) AND activeSkill eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isSetsunaConnect ne 0",
+   "vars": [
+    "IchijhinnokazeAttackAction.CheckSetunakenran",
+    "IchijhinnokazeAttackAction.GetInputDirect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.WeirdnessOfGod",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) hi 3 AND UnityEngine.Object.op_Inequality(actarAction) AND activeSkill eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isSetsunaConnect ne 0 OR !IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) hi 3 AND UnityEngine.Object.op_Inequality(actarAction) AND activeSkill ne 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isSetsunaConnect ne 0 OR !IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) hi 3 AND UnityEngine.Object.op_Inequality(actarAction) AND activeSkill eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND isSetsunaConnect ne 0",
+   "by_level": 1,
+   "vars": [
+    "IchijhinnokazeAttackAction.CheckSetunakenran",
+    "IchijhinnokazeAttackAction.GetInputDirect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.WeirdnessOfGod",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "activeSkill",
+   "simplified": "activeSkill",
+   "when": "!IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) hi 3 AND UnityEngine.Object.op_Inequality(actarAction) AND activeSkill eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isSetsunaConnect ne 0 OR !IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) hi 3 AND UnityEngine.Object.op_Inequality(actarAction) AND activeSkill ne 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isSetsunaConnect ne 0 OR !IchijhinnokazeAttackAction.CheckSetunakenran(UnityEngine.Object.op_Inequality(actarAction, 0), actarAction) AND !PlayerAttackBase.IsBlank(this) AND (IchijhinnokazeAttackAction.GetInputDirect(this, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WeirdnessOfGod, 1)) - 1) hi 3 AND UnityEngine.Object.op_Inequality(actarAction) AND activeSkill eq 0 AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND isSetsunaConnect eq 0",
+   "vars": [
+    "IchijhinnokazeAttackAction.CheckSetunakenran",
+    "IchijhinnokazeAttackAction.GetInputDirect",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.WeirdnessOfGod",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "SkillEventKariwatashi",
+   "kind": "set",
+   "name": "forceMiss",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 AND SkillIndividualFlag eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(attackTarget), 0) AND UnityEngine.Object.op_Inequality(actorAction) AND UnityEngine.Object.op_Inequality(attackTarget) AND nextSkill ne 0 AND param eq 201 OR !UnityEngine.Object.op_Inequality(actorAction) AND IsOtherPlayer eq 0 AND SkillIndividualFlag eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(attackTarget), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND nextSkill ne 0 AND param eq 201 OR IsOtherPlayer eq 0 AND SkillIndividualFlag eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(attackTarget), 0) AND UnityEngine.Object.op_Inequality(actorAction) AND UnityEngine.Object.op_Inequality(attackTarget) AND nextSkill eq 0 AND param eq 201",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "SkillEventHibari",
+   "kind": "set",
+   "name": "IsAvoid",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND param eq 302 AND param ne 303 OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND IsOtherPlayer eq 0 AND param eq 302 AND param ne 303",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "SkillEventHibari",
+   "kind": "set",
+   "name": "forceMiss",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 AND SkillIndividualFlag eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(attackTarget), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND param eq 303",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "SkillEventIbuki",
+   "kind": "set",
+   "name": "forceMiss",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 AND SkillIndividualFlag eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(attackTarget), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND param eq 402 AND param ne 403",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "SkillEventArahae",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "3",
+   "simplified": "3",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorAction) AND nextSkill ne 0 AND param eq 501 AND param ne 502 AND param ne 503 OR !UnityEngine.Object.op_Inequality(actorAction) AND IsOtherPlayer eq 0 AND nextSkill ne 0 AND param eq 501 AND param ne 502 AND param ne 503 OR IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorAction) AND nextSkill eq 0 AND param eq 501 AND param ne 502 AND param ne 503",
+   "by_level": 3,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "SkillEventArahae",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorAction) AND nextSkill ne 0 AND param eq 501 AND param ne 502 AND param ne 503 OR !UnityEngine.Object.op_Inequality(actorAction) AND IsOtherPlayer eq 0 AND nextSkill ne 0 AND param eq 501 AND param ne 502 AND param ne 503 OR IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorAction) AND nextSkill eq 0 AND param eq 501 AND param ne 502 AND param ne 503",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "SkillEventArahae",
+   "kind": "set",
+   "name": "attackWidth",
+   "formula": "MathUtil.DisplayMeterToDistance(1.5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1.5)",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorAction) AND nextSkill ne 0 AND param eq 501 AND param ne 502 AND param ne 503 OR !UnityEngine.Object.op_Inequality(actorAction) AND IsOtherPlayer eq 0 AND nextSkill ne 0 AND param eq 501 AND param ne 502 AND param ne 503 OR IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actorAction) AND nextSkill eq 0 AND param eq 501 AND param ne 502 AND param ne 503",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "SkillEventArahae",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))))",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) gt 1e-05 AND param eq 502 AND param ne 503 OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) gt 1e-05 AND param eq 502 AND param ne 503",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "SkillEventArahae",
+   "kind": "set",
+   "name": "attackDir.y",
+   "formula": "(0 / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))))",
+   "simplified": "(0 / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))))",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) gt 1e-05 AND param eq 502 AND param ne 503 OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) gt 1e-05 AND param eq 502 AND param ne 503",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "SkillEventArahae",
+   "kind": "set",
+   "name": "attackDir.z",
+   "formula": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))))",
+   "simplified": "((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) / fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))))",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) gt 1e-05 AND param eq 502 AND param ne 503 OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) gt 1e-05 AND param eq 502 AND param ne 503",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "SkillEventArahae",
+   "kind": "set",
+   "name": "attackDir",
+   "formula": "UnityEngine.Vector3.static+0x0",
+   "simplified": "UnityEngine.Vector3.static",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) le 1e-05 AND param eq 502 AND param ne 503 OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) le 1e-05 AND param eq 502 AND param ne 503",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "SkillEventArahae",
+   "kind": "set",
+   "name": "attackDir.y",
+   "formula": "UnityEngine.Vector3.static+0x4",
+   "simplified": "UnityEngine.Vector3.static + 4",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) le 1e-05 AND param eq 502 AND param ne 503 OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) le 1e-05 AND param eq 502 AND param ne 503",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "SkillEventArahae",
+   "kind": "set",
+   "name": "attackDir.z",
+   "formula": "UnityEngine.Vector3.static+0x8",
+   "simplified": "UnityEngine.Vector3.static + 8",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) le 1e-05 AND param eq 502 AND param ne 503 OR !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actorAction), 0) AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(attackTarget) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(attackTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actorAction)).x)))) le 1e-05 AND param eq 502 AND param ne 503",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "SkillEventSetsunakenran",
+   "kind": "set",
+   "name": "setsunakenranActiveSkill",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(param - 621) hi 22 AND IsOtherPlayer ne 0 AND param eq 611 AND param ne 612 OR !UnityEngine.Object.op_Inequality(attackTarget) AND (param - 621) hi 22 AND IsOtherPlayer eq 0 AND param eq 611 AND param ne 612 OR (param - 621) hi 22 AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(attackTarget), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND param eq 611 AND param ne 612",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "SkillEventSetsunakenran",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!UnityEngine.Object.op_Inequality(attackTarget) AND (param - 621) hi 22 AND IsOtherPlayer eq 0 AND param eq 611 AND param ne 612 OR (param - 621) hi 22 AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(attackTarget), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND param eq 611 AND param ne 612 OR !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(attackTarget), 0) AND (param - 621) hi 22 AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(attackTarget) AND param eq 611 AND param ne 612",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "SkillEventSetsunakenran",
+   "kind": "set",
+   "name": "forceMiss",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Inequality(attackTarget) AND (param - 621) hi 22 AND IsOtherPlayer eq 0 AND param eq 611 AND param ne 612 OR (param - 621) hi 22 AND IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(attackTarget), 0) AND UnityEngine.Object.op_Inequality(attackTarget) AND param eq 611 AND param ne 612",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "SkillEventSetsunakenran",
+   "kind": "set",
+   "name": "currentSetsunakenranTake",
+   "formula": "SkillLinkedTake.CreateNextTake(currentSetsunakenranTake, 0xbfe8a9a)",
+   "simplified": "SkillLinkedTake.CreateNextTake(currentSetsunakenranTake, 0xbfe8a9a)",
+   "when": "(param - 621) hi 22 AND forceMiss eq 0 AND param eq 612",
+   "vars": [
+    "SkillLinkedTake.CreateNextTake"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "attackTargetSize",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "isSetsunaConnect",
+   "formula": "(?v3 ne 0 ? 1 : 0)",
+   "simplified": "?v3 ≠ 0 ? 1 : 0",
+   "when": "always",
+   "residual": [
+    "?v3"
+   ]
+  },
+  {
+   "method": "OtherPlayerAttackStartReceive",
+   "kind": "set",
+   "name": "activeSkill",
+   "formula": "skillIndividualFlag",
+   "simplified": "skillIndividualFlag",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "attackTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "actorAction",
+   "formula": "actarAction",
+   "simplified": "actarAction",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "nextSkill",
+   "formula": "values[54]",
+   "simplified": "values[54]",
+   "when": "(skillEventId & 0xffff) eq 100"
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "isSetsunaConnect",
+   "formula": "(values[55] ne 0 ? 1 : 0)",
+   "simplified": "(values[55] ne 0 ? 1 : 0)",
+   "when": "(skillEventId & 0xffff) eq 100"
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "activeNagiCutoff",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(skillEventId & 0xffff) eq 101 AND (skillEventId & 0xffff) ne 100",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeNagi",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(20)",
+   "simplified": "MathUtil.DisplayMeterToDistance(20)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeNagi",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "InitializeNagi",
+   "kind": "set",
+   "name": "skillRates[0]",
+   "formula": "(((Lv * 50) + 500) + IchijhinnokazeAratame.GetNagiBonus(PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "50 × Lv + IchijhinnokazeAratame.GetNagiBonus(PlayerActionManagerBase.get_PlayerStatus()) + 500",
+   "when": "skillRates.Length ne 0",
+   "vars": [
+    "IchijhinnokazeAratame.GetNagiBonus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "InitializeNagi",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "0",
+   "simplified": "0",
+   "when": "skillRates.Length ne 0",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeNagi",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "skillRates.Length ne 0",
+   "by_level": 300
+  },
+  {
+   "method": "InitializeNagi",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "1",
+   "simplified": "1",
+   "when": "skillRates.Length ne 0",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeKariwatashi",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(20)",
+   "simplified": "MathUtil.DisplayMeterToDistance(20)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeKariwatashi",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "InitializeKariwatashi",
+   "kind": "set",
+   "name": "skillRates[1]",
+   "formula": "((IchijhinnokazeBuf.GetKariwatashiBonus(PlayerActionManagerBase.get_PlayerStatus()) + ((Lv * 20) + 400)) + IchijhinnokazeAratame.GetKariwatashiBonus(PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "IchijhinnokazeBuf.GetKariwatashiBonus(A) + 20 × Lv + IchijhinnokazeAratame.GetKariwatashiBonus(A) + 400",
+   "when": "skillRates.Length hi 1",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "vars": [
+    "IchijhinnokazeAratame.GetKariwatashiBonus",
+    "IchijhinnokazeBuf.GetKariwatashiBonus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "InitializeKariwatashi",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "skillRates.Length hi 1",
+   "by_level": 300
+  },
+  {
+   "method": "InitializeKariwatashi",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "3",
+   "simplified": "3",
+   "when": "skillRates.Length hi 1",
+   "by_level": 3
+  },
+  {
+   "method": "InitializeKariwatashi",
+   "kind": "set",
+   "name": "skillRates[1]",
+   "formula": "(IchijhinnokazeBuf.GetKariwatashiBonus(PlayerActionManagerBase.get_PlayerStatus()) + ((Lv * 20) + 400))",
+   "simplified": "IchijhinnokazeBuf.GetKariwatashiBonus(PlayerActionManagerBase.get_PlayerStatus()) + 20 × Lv + 400",
+   "when": "skillRates.Length hi 1 AND skillRates.Length ls 1",
+   "vars": [
+    "IchijhinnokazeBuf.GetKariwatashiBonus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "InitializeHibari",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeHibari",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "InitializeHibari",
+   "kind": "set",
+   "name": "skillRates[2]",
+   "formula": "((IchijhinnokazeBuf.GetHibariBonus(PlayerActionManagerBase.get_PlayerStatus()) + ((Lv * 30) + 600)) + IchijhinnokazeAratame.GetHibariBonus(PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "IchijhinnokazeBuf.GetHibariBonus(A) + 30 × Lv + IchijhinnokazeAratame.GetHibariBonus(A) + 600",
+   "when": "skillRates.Length hi 2",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "vars": [
+    "IchijhinnokazeAratame.GetHibariBonus",
+    "IchijhinnokazeBuf.GetHibariBonus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "InitializeHibari",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "skillRates.Length hi 2",
+   "by_level": 300
+  },
+  {
+   "method": "InitializeHibari",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "3",
+   "simplified": "3",
+   "when": "skillRates.Length hi 2",
+   "by_level": 3
+  },
+  {
+   "method": "InitializeHibari",
+   "kind": "set",
+   "name": "skillRates[2]",
+   "formula": "(IchijhinnokazeBuf.GetHibariBonus(PlayerActionManagerBase.get_PlayerStatus()) + ((Lv * 30) + 600))",
+   "simplified": "IchijhinnokazeBuf.GetHibariBonus(PlayerActionManagerBase.get_PlayerStatus()) + 30 × Lv + 600",
+   "when": "skillRates.Length hi 2 AND skillRates.Length ls 2",
+   "vars": [
+    "IchijhinnokazeBuf.GetHibariBonus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "InitializeIbuki",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeIbuki",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "InitializeIbuki",
+   "kind": "set",
+   "name": "skillRates[3]",
+   "formula": "((IchijhinnokazeBuf.GetIbukiBonus(PlayerActionManagerBase.get_PlayerStatus()) + ((Lv * 60) + 300)) + IchijhinnokazeAratame.GetIbukiBonus(PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "IchijhinnokazeBuf.GetIbukiBonus(A) + 60 × Lv + IchijhinnokazeAratame.GetIbukiBonus(A) + 300",
+   "when": "skillRates.Length hi 3",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "vars": [
+    "IchijhinnokazeAratame.GetIbukiBonus",
+    "IchijhinnokazeBuf.GetIbukiBonus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "InitializeIbuki",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "skillRates.Length hi 3",
+   "by_level": 300
+  },
+  {
+   "method": "InitializeIbuki",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "3",
+   "simplified": "3",
+   "when": "skillRates.Length hi 3",
+   "by_level": 3
+  },
+  {
+   "method": "InitializeIbuki",
+   "kind": "set",
+   "name": "skillRates[3]",
+   "formula": "(IchijhinnokazeBuf.GetIbukiBonus(PlayerActionManagerBase.get_PlayerStatus()) + ((Lv * 60) + 300))",
+   "simplified": "IchijhinnokazeBuf.GetIbukiBonus(PlayerActionManagerBase.get_PlayerStatus()) + 60 × Lv + 300",
+   "when": "skillRates.Length hi 3 AND skillRates.Length ls 3",
+   "vars": [
+    "IchijhinnokazeBuf.GetIbukiBonus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "InitializeArahae",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(14)",
+   "simplified": "MathUtil.DisplayMeterToDistance(14)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeArahae",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "InitializeArahae",
+   "kind": "set",
+   "name": "skillRates[4]",
+   "formula": "((IchijhinnokazeBuf.GetArahaeBonus(PlayerActionManagerBase.get_PlayerStatus()) + ((Lv * 20) + 500)) + IchijhinnokazeAratame.GetArahaeBonus(PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "IchijhinnokazeBuf.GetArahaeBonus(A) + 20 × Lv + IchijhinnokazeAratame.GetArahaeBonus(A) + 500",
+   "when": "skillRates.Length hi 4",
+   "defs": [
+    [
+     "A",
+     "PlayerActionManagerBase.get_PlayerStatus()"
+    ]
+   ],
+   "vars": [
+    "IchijhinnokazeAratame.GetArahaeBonus",
+    "IchijhinnokazeBuf.GetArahaeBonus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "InitializeArahae",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "skillRates.Length hi 4",
+   "by_level": 300
+  },
+  {
+   "method": "InitializeArahae",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "3",
+   "simplified": "3",
+   "when": "skillRates.Length hi 4",
+   "by_level": 3
+  },
+  {
+   "method": "InitializeArahae",
+   "kind": "set",
+   "name": "isRange",
+   "formula": "1",
+   "simplified": "1",
+   "when": "skillRates.Length hi 4",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeArahae",
+   "kind": "set",
+   "name": "attackWidth",
+   "formula": "MathUtil.DisplayMeterToDistance(1.5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1.5)",
+   "when": "skillRates.Length hi 4",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeArahae",
+   "kind": "set",
+   "name": "skillRates[4]",
+   "formula": "(IchijhinnokazeBuf.GetArahaeBonus(PlayerActionManagerBase.get_PlayerStatus()) + ((Lv * 20) + 500))",
+   "simplified": "IchijhinnokazeBuf.GetArahaeBonus(PlayerActionManagerBase.get_PlayerStatus()) + 20 × Lv + 500",
+   "when": "skillRates.Length hi 4 AND skillRates.Length ls 4",
+   "vars": [
+    "IchijhinnokazeBuf.GetArahaeBonus",
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "InitializeSetunakenran",
+   "kind": "set",
+   "name": "skillRates[1]",
+   "formula": "(skillRates[1] + 1200)",
+   "simplified": "(skillRates[1] + 1200)",
+   "when": "skillRates.Length hi 1 AND skillRates.Length ls 3 OR skillRates.Length hi 1 AND skillRates.Length hi 3 AND skillRates.Length ne 4 OR skillRates.Length eq 4 AND skillRates.Length hi 1 AND skillRates.Length hi 3"
+  },
+  {
+   "method": "InitializeSetunakenran",
+   "kind": "set",
+   "name": "skillRates[3]",
+   "formula": "(skillRates[3] + 1450)",
+   "simplified": "(skillRates[3] + 1450)",
+   "when": "skillRates.Length hi 1 AND skillRates.Length hi 3 AND skillRates.Length ne 4 OR skillRates.Length eq 4 AND skillRates.Length hi 1 AND skillRates.Length hi 3"
+  },
+  {
+   "method": "InitializeSetunakenran",
+   "kind": "set",
+   "name": "skillRates[4]",
+   "formula": "(skillRates[4] + 1350)",
+   "simplified": "(skillRates[4] + 1350)",
+   "when": "skillRates.Length hi 1 AND skillRates.Length hi 3 AND skillRates.Length ne 4"
+  },
+  {
+   "method": "InitializeSetunakenran",
+   "kind": "set",
+   "name": "skillRates[2]",
+   "formula": "(skillRates[2] + 1550)",
+   "simplified": "(skillRates[2] + 1550)",
+   "when": "skillRates.Length hi 1 AND skillRates.Length hi 3 AND skillRates.Length ne 4"
+  },
+  {
+   "method": "InitializeSetunakenran",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(20)",
+   "simplified": "MathUtil.DisplayMeterToDistance(20)",
+   "when": "skillRates.Length hi 1 AND skillRates.Length hi 3 AND skillRates.Length ne 4",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeSetunakenran",
+   "kind": "set",
+   "name": "currentSetsunakenranTake",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "skillRates.Length hi 1 AND skillRates.Length hi 3 AND skillRates.Length ne 4"
+  },
+  {
+   "method": "CalcNagiDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcKariwatashiDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcHibariDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcIbukiDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcArahaeDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CalcSetsunakenranDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "SkillUtil.GetWeakElement(target.Element)",
+   "simplified": "SkillUtil.GetWeakElement(target.Element)",
+   "when": "always",
+   "vars": [
+    "SkillUtil.GetWeakElement",
+    "target.Element"
+   ]
+  },
+  {
+   "method": "AddMotionEndFinishingTouchBuf",
+   "kind": "set",
+   "name": "isMotionEndFinishingTouchBuf",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(playerAction) AND isMotionEndFinishingTouchBuf eq 0",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "<SkillEventHibari>b__82_1",
+   "kind": "set",
+   "name": "IsAvoid",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "<ActionStartOthers>b__93_0",
+   "kind": "set",
+   "name": "currentSetsunakenranTake",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(cancel & 1) ne 0",
+   "by_level": 0
+  },
+  {
+   "method": "<InitializeSetunakenran>b__103_0",
+   "kind": "set",
+   "name": "currentSetsunakenranTake",
+   "formula": "0",
+   "simplified": "0",
+   "when": "(cancel & 1) ne 0",
+   "by_level": 0
+  }
+ ],
+ "terms": [
+  {
+   "method": "CalcNagiDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRates[0] / 100)",
+   "simplified": "(skillRates[0] / 100)",
+   "when": "forceMiss ne 0 AND skillRates.Length ne 0 OR forceMiss eq 0 AND skillRates.Length ne 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcNagiDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "forceMiss ne 0 AND skillRates.Length ne 0 OR forceMiss eq 0 AND skillRates.Length ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "CalcKariwatashiDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRates[1] / 100)",
+   "simplified": "(skillRates[1] / 100)",
+   "when": "forceMiss ne 0 AND skillRates.Length hi 1 OR forceMiss eq 0 AND skillRates.Length hi 1",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcKariwatashiDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "forceMiss ne 0 AND skillRates.Length hi 1 OR forceMiss eq 0 AND skillRates.Length hi 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "CalcHibariDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRates[2] / 100)",
+   "simplified": "(skillRates[2] / 100)",
+   "when": "forceMiss ne 0 AND skillRates.Length hi 2 OR forceMiss eq 0 AND skillRates.Length hi 2",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcHibariDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "forceMiss ne 0 AND skillRates.Length hi 2 OR forceMiss eq 0 AND skillRates.Length hi 2",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "CalcIbukiDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRates[3] / 100)",
+   "simplified": "(skillRates[3] / 100)",
+   "when": "forceMiss ne 0 AND skillRates.Length hi 3 OR forceMiss eq 0 AND skillRates.Length hi 3",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcIbukiDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "forceMiss ne 0 AND skillRates.Length hi 3 OR forceMiss eq 0 AND skillRates.Length hi 3",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "CalcArahaeDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRates[4] / 100)",
+   "simplified": "(skillRates[4] / 100)",
+   "when": "forceMiss ne 0 AND skillRates.Length hi 4 OR forceMiss eq 0 AND skillRates.Length hi 4",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "CalcArahaeDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "forceMiss ne 0 AND skillRates.Length hi 4 OR forceMiss eq 0 AND skillRates.Length hi 4",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": ".<>c__DisplayClass117_0::<AddMotionEndFinishingTouchBuf>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(621, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1), 0)",
+   "simplified": "AddSelfBuffer(621, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1), 0)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.FinishingTouch",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass80_0::<SkillEventNagi>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(616)",
+   "simplified": "RemoveBuffer(616)",
+   "when": "UnityEngine.Object.op_Inequality(<>c__DisplayClass80_0.actorAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IMobStatusCalculator.get_Element",
+  "IchijhinnokazeAratame.GetArahaeBonus",
+  "IchijhinnokazeAratame.GetHibariBonus",
+  "IchijhinnokazeAratame.GetIbukiBonus",
+  "IchijhinnokazeAratame.GetKariwatashiBonus",
+  "IchijhinnokazeAratame.GetNagiBonus",
+  "IchijhinnokazeAttackAction.CheckSetunakenran",
+  "IchijhinnokazeAttackAction.GetInputDirect",
+  "IchijhinnokazeBuf.GetArahaeBonus",
+  "IchijhinnokazeBuf.GetHibariBonus",
+  "IchijhinnokazeBuf.GetIbukiBonus",
+  "IchijhinnokazeBuf.GetKariwatashiBonus",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Size",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillId.FinishingTouch",
+  "SkillId.Shukuchi",
+  "SkillId.WeirdnessOfGod",
+  "SkillLinkedTake.CreateNextTake",
+  "SkillManager.GetSkillLv",
+  "SkillUtil.GetWeakElement",
+  "TryGetBuf.out2",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "target.Element"
+ ],
+ "residual": [
+  {
+   "where": "InitializeOthers:isSetsunaConnect",
+   "tokens": [
+    "?v3"
+   ]
+  }
+ ]
+}

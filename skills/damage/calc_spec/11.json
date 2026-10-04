@@ -1,0 +1,190 @@
+{
+ "version": 1,
+ "uid": 11,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "PhysicalPursuitAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "never (IsExpSkill excludes ActionID)",
+  "attack_type": "Physics",
+  "action_id": 11,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam & 0xffffffef)",
+   "simplified": "SkillParam & 0xffffffef",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(SkillBufferDataBase.GetParam(85) + EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bPhysicalPursuit))",
+   "simplified": "SkillBufferDataBase.GetParam(85) + EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bPhysicalPursuit)",
+   "when": "MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 50) ne 0 OR MobaMode eq 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 50) ne 0 OR MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) ne 2 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 50) ne 0",
+   "vars": [
+    "BonusType.bPhysicalPursuit",
+    "EquipBuffManager.GetParam",
+    "PlayerAttackBase.checkMobReaction",
+    "PlayerStatusBase.get_EquipBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 OR MobaMode eq 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 OR MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) ne 2",
+   "vars": [
+    "PlayerAttackBase.checkMobReaction",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bPhysicalPursuit)",
+   "simplified": "EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bPhysicalPursuit)",
+   "when": "MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 OR MobaMode eq 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 OR MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) ne 2",
+   "vars": [
+    "BonusType.bPhysicalPursuit",
+    "EquipBuffManager.GetParam",
+    "PlayerAttackBase.checkMobReaction",
+    "PlayerStatusBase.get_EquipBuffManager",
+    "target.GuardProbability"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 OR MobaMode eq 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 OR MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 50) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "MobActionManagerBase.get_BuffManager",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.checkMobReaction",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "System.Math.Max",
+    "TryGetBuf.buf",
+    "TryGetBuff.buff",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((SkillBufferDataBase.GetParam(85) + EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bPhysicalPursuit)) / 100)",
+   "simplified": "(SkillBufferDataBase.GetParam(85) + EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bPhysicalPursuit)) / 100",
+   "when": "MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 50) ne 0 OR MobaMode eq 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 50) ne 0 OR MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) ne 2 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 50) ne 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "BonusType.bPhysicalPursuit",
+    "EquipBuffManager.GetParam",
+    "PlayerAttackBase.checkMobReaction",
+    "PlayerStatusBase.get_EquipBuffManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "TryGetBuf.buf",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 OR MobaMode eq 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 OR MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 50) ne 0",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "PlayerAttackBase.checkMobReaction",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "target.GuardProbability"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bPhysicalPursuit) / 100)",
+   "simplified": "EquipBuffManager.GetParam(PlayerStatusBase.get_EquipBuffManager(), BonusType.bPhysicalPursuit) / 100",
+   "when": "MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 OR MobaMode eq 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) eq 2 OR MobaMode ne 0 AND PlayerAttackBase.checkMobReaction(this, target.GuardProbability) ne 2",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "BonusType.bPhysicalPursuit",
+    "EquipBuffManager.GetParam",
+    "PlayerAttackBase.checkMobReaction",
+    "PlayerStatusBase.get_EquipBuffManager",
+    "target.GuardProbability"
+   ]
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "BonusType.bPhysicalPursuit",
+  "EquipBuffManager.GetParam",
+  "IMobStatusCalculator.get_GuardProbability",
+  "MobActionManagerBase.get_BuffManager",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "PlayerAttackBase.checkMobReaction",
+  "PlayerStatusBase.get_EquipBuffManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "System.Math.Max",
+  "TryGetBuf.buf",
+  "TryGetBuff.buff",
+  "target.GuardProbability"
+ ],
+ "residual": []
+}

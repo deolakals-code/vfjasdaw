@@ -1,0 +1,845 @@
+{
+ "version": 1,
+ "uid": 56,
+ "name_th": "ออร์คสแลช",
+ "name_en": "Orgaslash",
+ "tree": "BladeSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "OrgaslashAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 56,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleAttackSkillRate",
+   "formula": "(baseVIT + baseSTR)",
+   "simplified": "baseVIT + baseSTR",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleAttackConstantDamage",
+   "formula": "status.Dex",
+   "simplified": "status.Dex",
+   "when": "always",
+   "vars": [
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(1.5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(1.5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackStartTargetDist",
+   "formula": "max((fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) - MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))), 0)",
+   "simplified": "max((fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) - MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))), 0)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) ge 101 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) lt 101 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "MobActionManagerBase.get_Size",
+    "OrgaslashBuf.Pay",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "physicsResistBreaker",
+   "formula": "((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)",
+   "simplified": "8 × (A & 255) + 2 × A",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) ge 101 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) lt 101 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "defs": [
+    [
+     "A",
+     "OrgaslashBuf.Pay(new, OrgaslashBuf)"
+    ]
+   ],
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "OrgaslashBuf.Pay",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "explosionSkillRate",
+   "formula": "(explosionSkillRate * (OrgaslashBuf.Pay(new OrgaslashBuf) & 255))",
+   "simplified": "explosionSkillRate × (OrgaslashBuf.Pay(new, OrgaslashBuf) & 255)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) ge 101 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) lt 101 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "OrgaslashBuf.Pay",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "singleAttackSkillRate",
+   "formula": "(singleAttackSkillRate + (((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) - 100))",
+   "simplified": "singleAttackSkillRate + buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) + 8 × (A & 255) + 2 × A - 100",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) ge 101 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "defs": [
+    [
+     "A",
+     "OrgaslashBuf.Pay(new, OrgaslashBuf)"
+    ]
+   ],
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "OrgaslashBuf.Pay",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "physicsResistBreaker",
+   "formula": "((((OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56)) & 255) << 2) + OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56))) << 1)",
+   "simplified": "8 × (A & 255) + 2 × A",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56)) & 255) << 2) + OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56))) << 1)) ge 101 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56)) & 255) << 2) + OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56))) << 1)) lt 101 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "defs": [
+    [
+     "A",
+     "OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56))"
+    ]
+   ],
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "OrgaslashBuf.Pay",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "explosionSkillRate",
+   "formula": "(explosionSkillRate * (OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56)) & 255))",
+   "simplified": "explosionSkillRate × (OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56)) & 255)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56)) & 255) << 2) + OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56))) << 1)) ge 101 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56)) & 255) << 2) + OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56))) << 1)) lt 101 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "OrgaslashBuf.Pay",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "singleAttackSkillRate",
+   "formula": "(singleAttackSkillRate + (((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56)) & 255) << 2) + OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56))) << 1)) - 100))",
+   "simplified": "singleAttackSkillRate + buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) + 8 × (A & 255) + 2 × A - 100",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56)) & 255) << 2) + OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56))) << 1)) ge 101 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "defs": [
+    [
+     "A",
+     "OrgaslashBuf.Pay(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 56))"
+    ]
+   ],
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "OrgaslashBuf.Pay",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "physicsResistBreaker",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND (buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) ge 101 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND (buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) lt 101",
+   "by_level": 0,
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "explosionSkillRate",
+   "formula": "(explosionSkillRate * 0)",
+   "simplified": "0",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND (buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) ge 101 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND (buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) lt 101",
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "singleAttackSkillRate",
+   "formula": "(singleAttackSkillRate + ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) - 100))",
+   "simplified": "singleAttackSkillRate + buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker) - 100",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) AND (buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) ge 101",
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEventPreparation",
+   "kind": "set",
+   "name": "singleAttack",
+   "formula": "0",
+   "simplified": "0",
+   "when": "IsOtherPlayer ne 0 AND param eq 200 OR IsOtherPlayer eq 0 AND param eq 200",
+   "by_level": 0
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "eventTime",
+   "formula": "(eventTime - UnityEngine.Time.get_deltaTime())",
+   "simplified": "eventTime - UnityEngine.Time.get_deltaTime()",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Time.get_deltaTime"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(singleAttackSkillRate / 100)",
+   "simplified": "singleAttackSkillRate / 100",
+   "when": "singleAttack ne 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "singleAttackConstantDamage",
+   "simplified": "singleAttackConstantDamage",
+   "when": "singleAttack ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(target.ExpDefSkill / 100)",
+   "simplified": "target.ExpDefSkill / 100",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "target.ExpDefSkill"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(explosionSkillRate / 100)",
+   "simplified": "explosionSkillRate / 100",
+   "when": "singleAttack eq 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "explosionConstantDamage",
+   "simplified": "explosionConstantDamage",
+   "when": "singleAttack eq 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpList[mobAction] / 100)",
+   "simplified": "(targetExpList[mobAction] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate"
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "OrgaslashBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) ge 101 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) lt 101 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "OrgaslashBuf.Pay",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new OrgaslashBuf)",
+   "simplified": "AddSelfBuffer(new, OrgaslashBuf)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) ge 101 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND ((buffParam(PowerResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bPowerResistBreaker)) + ((((OrgaslashBuf.Pay(new OrgaslashBuf) & 255) << 2) + OrgaslashBuf.Pay(new OrgaslashBuf)) << 1)) lt 101 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BonusManager.GetBonusValue",
+    "BonusType.bPowerResistBreaker",
+    "OrgaslashBuf.Pay",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_BonusManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "StackAttackArea",
+   "kind": "call",
+   "name": "OrgaslashBuf..ctor",
+   "formula": ".ctor(CheckStack.skillLevel(playerAction))",
+   "simplified": ".ctor(CheckStack.skillLevel(playerAction))",
+   "when": "!OrgaslashBuf.CheckStackAttackArea(new OrgaslashBuf) AND !UnityEngine.Object.op_Equality(playerAction) OR !UnityEngine.Object.op_Equality(playerAction) AND IsInstanceOf(playerAction, PlayerActionManager) eq 1 AND OrgaslashBuf.CheckStackAttackArea(new OrgaslashBuf) OR !UnityEngine.Object.op_Equality(playerAction) AND IsInstanceOf(playerAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND OrgaslashBuf.CheckStackAttackArea(new OrgaslashBuf)",
+   "vars": [
+    "CheckStack.skillLevel",
+    "OrgaslashBuf.CheckStackAttackArea",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "StackAttackArea",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new OrgaslashBuf)",
+   "simplified": "AddSelfBuffer(new, OrgaslashBuf)",
+   "when": "!OrgaslashBuf.CheckStackAttackArea(new OrgaslashBuf) AND !UnityEngine.Object.op_Equality(playerAction) OR !UnityEngine.Object.op_Equality(playerAction) AND IsInstanceOf(playerAction, PlayerActionManager) eq 1 AND OrgaslashBuf.CheckStackAttackArea(new OrgaslashBuf) OR !UnityEngine.Object.op_Equality(playerAction) AND IsInstanceOf(playerAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(playerAction, PlayerActionManager) ne 1 AND OrgaslashBuf.CheckStackAttackArea(new OrgaslashBuf)",
+   "vars": [
+    "OrgaslashBuf.CheckStackAttackArea",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "StackDamage",
+   "kind": "call",
+   "name": "OrgaslashBuf..ctor",
+   "formula": ".ctor(CheckStack.skillLevel(playerAction))",
+   "simplified": ".ctor(CheckStack.skillLevel(playerAction))",
+   "when": "!UnityEngine.Object.op_Equality(playerAction) AND damageData.HitReactionType hi 5 OR !UnityEngine.Object.op_Equality(playerAction) AND ((1 << damageData.HitReactionType) & 52) ne 0 AND damageData.HitReactionType ls 5 OR !UnityEngine.Object.op_Equality(playerAction) AND ((1 << damageData.HitReactionType) & 52) eq 0 AND damageData.HitReactionType ls 5",
+   "vars": [
+    "CheckStack.skillLevel",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "StackDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new OrgaslashBuf)",
+   "simplified": "AddSelfBuffer(new, OrgaslashBuf)",
+   "when": "!UnityEngine.Object.op_Equality(playerAction) AND damageData.HitReactionType hi 5 OR !UnityEngine.Object.op_Equality(playerAction) AND ((1 << damageData.HitReactionType) & 52) ne 0 AND damageData.HitReactionType ls 5 OR !UnityEngine.Object.op_Equality(playerAction) AND ((1 << damageData.HitReactionType) & 52) eq 0 AND damageData.HitReactionType ls 5",
+   "vars": [
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(0)",
+   "simplified": "SetAbnormalType(0)",
+   "when": "!SkillActionBase.op_Equality(SkillActionManagerBase.get_CurrentSkill(), 0) AND AbnormalTypeEx.IsActionStop(damageData.AbnormalType) AND damageData.AbnormalType ne 20 AND damageData.AbnormalType ne 43",
+   "vars": [
+    "AbnormalTypeEx.IsActionStop",
+    "SkillActionBase.op_Equality",
+    "SkillActionManagerBase.get_CurrentSkill"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "OrgaslashBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "countViewType": [
+       {
+        "formula": "3",
+        "when": "always",
+        "by_level": 3
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "20"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "attackAreaCoolTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND attackAreaCoolTime gt 0 AND damageCoolTime le 0 AND isActive eq 0 OR (attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count gt 0 AND attackAreaCoolTime gt 0 AND damageCoolTime le 0 AND isActive eq 0 OR (attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (damageCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND attackAreaCoolTime gt 0 AND damageCoolTime gt 0 AND isActive eq 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(attackAreaCoolTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) hi 0 AND Count le 0 AND attackAreaCoolTime gt 0 AND damageCoolTime le 0 AND isActive eq 0 OR (attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) hi 0 AND Count gt 0 AND attackAreaCoolTime gt 0 AND damageCoolTime le 0 AND isActive eq 0 OR (attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (damageCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND attackAreaCoolTime gt 0 AND damageCoolTime gt 0 AND isActive eq 0"
+     },
+     {
+      "method": "StackAttackArea",
+      "formula": "(chargeLeftTime + 1)",
+      "when": "always"
+     }
+    ],
+    "damageCoolTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(damageCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND attackAreaCoolTime le 0 AND damageCoolTime gt 0 AND isActive eq 0 OR (damageCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count gt 0 AND attackAreaCoolTime le 0 AND damageCoolTime gt 0 AND isActive eq 0 OR (attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (damageCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND attackAreaCoolTime gt 0 AND damageCoolTime gt 0 AND isActive eq 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(damageCoolTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(damageCoolTime - UnityEngine.Time.get_deltaTime()) hi 0 AND Count le 0 AND attackAreaCoolTime le 0 AND damageCoolTime gt 0 AND isActive eq 0 OR (damageCoolTime - UnityEngine.Time.get_deltaTime()) hi 0 AND Count gt 0 AND attackAreaCoolTime le 0 AND damageCoolTime gt 0 AND isActive eq 0 OR (attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (damageCoolTime - UnityEngine.Time.get_deltaTime()) hi 0 AND Count le 0 AND attackAreaCoolTime gt 0 AND damageCoolTime gt 0 AND isActive eq 0"
+     },
+     {
+      "method": "StackDamage",
+      "formula": "1",
+      "when": "damageCoolTime le 0"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND LeftTime gt 0 AND attackAreaCoolTime le 0 AND damageCoolTime le 0 AND isActive ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count gt 0 AND LeftTime gt 0 AND attackAreaCoolTime le 0 AND damageCoolTime le 0 AND isActive ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND LeftTime gt 0 AND attackAreaCoolTime gt 0 AND damageCoolTime le 0 AND isActive ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND Count le 0 AND LeftTime gt 0 AND attackAreaCoolTime le 0 AND damageCoolTime le 0 AND isActive ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND Count gt 0 AND LeftTime gt 0 AND attackAreaCoolTime le 0 AND damageCoolTime le 0 AND isActive ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND LeftTime gt 0 AND attackAreaCoolTime gt 0 AND damageCoolTime le 0 AND isActive ne 0"
+     },
+     {
+      "method": "ValidEffect",
+      "formula": "((Lv + (Lv << 2)) + 10)",
+      "when": "always"
+     },
+     {
+      "method": "InvalidEffect",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "isActive": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND LeftTime gt 0 AND attackAreaCoolTime le 0 AND damageCoolTime le 0 AND isActive ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count gt 0 AND LeftTime gt 0 AND attackAreaCoolTime le 0 AND damageCoolTime le 0 AND isActive ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND LeftTime gt 0 AND attackAreaCoolTime gt 0 AND damageCoolTime le 0 AND isActive ne 0"
+     },
+     {
+      "method": "ValidEffect",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "InvalidEffect",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "countViewType": [
+     {
+      "method": "Updata",
+      "formula": "3",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND LeftTime gt 0 AND attackAreaCoolTime le 0 AND damageCoolTime le 0 AND isActive ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count gt 0 AND LeftTime gt 0 AND attackAreaCoolTime le 0 AND damageCoolTime le 0 AND isActive ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (attackAreaCoolTime - UnityEngine.Time.get_deltaTime()) ls 0 AND Count le 0 AND LeftTime gt 0 AND attackAreaCoolTime gt 0 AND damageCoolTime le 0 AND isActive ne 0"
+     },
+     {
+      "method": "ValidEffect",
+      "formula": "6",
+      "when": "always"
+     },
+     {
+      "method": "InvalidEffect",
+      "formula": "3",
+      "when": "always"
+     }
+    ],
+    "Count": [
+     {
+      "method": "Pay",
+      "formula": "max((Count - 10), 0)",
+      "when": "always"
+     }
+    ],
+    "payStackNum": [
+     {
+      "method": "ValidEffect",
+      "formula": "payStackNum",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckStackAttackArea",
+    "CheckValidEffect",
+    "InvalidEffect",
+    "Pay",
+    "StackAttackArea",
+    "StackDamage",
+    "ValidEffect"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "OrgaslashBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "20"
+    }
+   },
+   "attached_via": "caller2:OrgaslashBuf$$.ctor<-OrgaslashAction$$ActionPreparation",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "GameManager.ReceivesSupportDelay",
+  "MobAttackBase.CalcLastDamage",
+  "OrgaslashAction.CheckStack"
+ ],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "AbnormalTypeEx.IsActionStop",
+  "BonusManager.GetBonusValue",
+  "BonusType.bPowerResistBreaker",
+  "CheckStack.skillLevel",
+  "GetWeaponType.item",
+  "IMobStatusCalculator.get_ExpDefSkill",
+  "IPlayerStatusCalculator.get_Dex",
+  "MathUtil.CheckPercent",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_Size",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "OrgaslashBuf.CheckStackAttackArea",
+  "OrgaslashBuf.Pay",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerPrimaryStatus.str",
+  "PlayerPrimaryStatus.vit",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_BonusManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillActionBase.op_Equality",
+  "SkillActionBase.op_Inequality",
+  "SkillActionManagerBase.get_CurrentSkill",
+  "SkillBufferId.Count",
+  "SkillComboState.GetThirdEyeValue",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuf.out2",
+  "TryGetBuff.buff",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_position",
+  "status.Dex",
+  "target.ExpDefSkill"
+ ],
+ "residual": []
+}

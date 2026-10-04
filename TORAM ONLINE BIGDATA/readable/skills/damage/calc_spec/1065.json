@@ -1,0 +1,225 @@
+{
+ "version": 1,
+ "uid": 1065,
+ "name_th": "เนตรมารข่มขวัญ",
+ "name_en": "IntimidatingEvilEye",
+ "tree": "DarkPowerSkill",
+ "category": "Attack",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "IntimidatingEvilEyeAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 1065,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "6",
+   "simplified": "6",
+   "when": "always",
+   "by_level": 6
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "slowPercent",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "Lv",
+   "simplified": "Lv",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "((Lv + (Lv << 2)) << 2)",
+   "simplified": "20 × Lv",
+   "when": "always",
+   "by_level": 20
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "flinchPercent",
+   "formula": "(max(((max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EternalNightmare, 1), 0) + status.Lv) - target.Level), 0) * Lv)",
+   "simplified": "max(max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.EternalNightmare, 1), 0) + status.Lv - target.Level, 0) × Lv",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.EternalNightmare",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality",
+    "status.Lv",
+    "target.Level"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(1, flinchPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(1, flinchPercent, playerAction)",
+   "when": "!AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction) OR !AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) OR !AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction)",
+   "vars": [
+    "AbnormalStateManager.ContainsAbnormal",
+    "AbnormalType.Flinch",
+    "AbnormalType.Slow",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(1)",
+   "simplified": "SetAbnormalType(1)",
+   "when": "!AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction)",
+   "vars": [
+    "AbnormalStateManager.ContainsAbnormal",
+    "AbnormalType.Flinch",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(11, slowPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(11, slowPercent, playerAction)",
+   "when": "AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) OR !AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction)",
+   "vars": [
+    "AbnormalStateManager.ContainsAbnormal",
+    "AbnormalType.Flinch",
+    "AbnormalType.Slow",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(11)",
+   "simplified": "SetAbnormalType(11)",
+   "when": "AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) OR !AbnormalStateManager.ContainsAbnormal(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Flinch) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Flinch, flinchPercent, playerAction) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction)",
+   "vars": [
+    "AbnormalStateManager.ContainsAbnormal",
+    "AbnormalType.Flinch",
+    "AbnormalType.Slow",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.ContainsAbnormal",
+  "AbnormalType.Flinch",
+  "AbnormalType.Slow",
+  "IMobStatusCalculator.get_Level",
+  "IPlayerStatusCalculator.get_Lv",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillId.EternalNightmare",
+  "SkillManager.GetSkillLv",
+  "UnityEngine.Object.op_Inequality",
+  "status.Lv",
+  "target.Level"
+ ],
+ "residual": []
+}

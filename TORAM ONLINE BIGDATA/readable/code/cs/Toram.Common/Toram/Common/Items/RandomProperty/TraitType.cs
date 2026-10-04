@@ -1,0 +1,87 @@
+// Assembly: Toram.Common.dll
+// Namespace: Toram.Common.Items.RandomProperty
+public enum TraitType // TypeDefIndex: 12512
+{
+	// Fields
+	public int value__; // 0x0
+	public const TraitType Tier1 = -1;
+	public const TraitType Tier2 = -2;
+	public const TraitType Tier3 = -3;
+	public const TraitType Tier4 = -4;
+	public const TraitType Tier5 = -5;
+	public const TraitType GlowOfProbability = 1;
+	public const TraitType STR = 101;
+	public const TraitType INT = 111;
+	public const TraitType VIT = 121;
+	public const TraitType AGI = 131;
+	public const TraitType DEX = 141;
+	public const TraitType MaxHp = 161;
+	public const TraitType MaxMp = 171;
+	public const TraitType ATK = 181;
+	public const TraitType MATK = 191;
+	public const TraitType Hit = 201;
+	public const TraitType Avoid = 211;
+	public const TraitType DEF = 221;
+	public const TraitType MDEF = 231;
+	public const TraitType ASPD = 241;
+	public const TraitType CSPD = 251;
+	public const TraitType HpReg = 261;
+	public const TraitType MpReg = 271;
+	public const TraitType CrtRate = 281;
+	public const TraitType CrtDmg = 291;
+	public const TraitType EXP = 301;
+	public const TraitType PetEXP = 311;
+	public const TraitType GrantStopFlinch = 321;
+	public const TraitType GrantStopTumble = 322;
+	public const TraitType GrantStopStun = 323;
+	public const TraitType FightPower = 1001;
+	public const TraitType FightMagica = 1011;
+	public const TraitType BloodEdge = 1021;
+	public const TraitType BloodSpell = 1031;
+	public const TraitType SoulBlow = 1041;
+	public const TraitType SoulShot = 1051;
+	public const TraitType Accuracy = 1061;
+	public const TraitType Nimble = 1071;
+	public const TraitType CriticalPlus = 1081;
+	public const TraitType Engineer = 1091;
+	public const TraitType HealthBarrier = 1101;
+	public const TraitType LuckExperience = 1111;
+	public const TraitType GearChange = 1121;
+	public const TraitType BattleCast = 1131;
+	public const TraitType BunkerEdge = 1141;
+	public const TraitType BunkerMagica = 1151;
+	public const TraitType CursedWeapon = 1161;
+	public const TraitType RedoCritical = 2001;
+	public const TraitType RedoMana = 2011;
+	public const TraitType RedoPower = 2021;
+	public const TraitType RedoMagica = 2031;
+	public const TraitType RedoGigantoPower = 2041;
+	public const TraitType GrazeAccuracy = 3001;
+	public const TraitType GrazeMana = 3011;
+	public const TraitType GrazeBoostMana = 3021;
+	public const TraitType AvoidedCoop = 5001;
+	public const TraitType AvoidedPower = 5011;
+	public const TraitType AvoidedMana = 5021;
+	public const TraitType GuardedCoop = 6001;
+	public const TraitType GuardedMagica = 6011;
+	public const TraitType GuardedHeal = 6021;
+	public const TraitType RevengePower = 7001;
+	public const TraitType RevengeMagica = 7011;
+	public const TraitType RevengeLife = 7021;
+	public const TraitType RevengeMana = 7031;
+	public const TraitType LifePurge = 7041;
+	public const TraitType ManaConvert = 7051;
+	public const TraitType CounterSpeed = 7061;
+	public const TraitType CounterRage = 7071;
+	public const TraitType RevengeSamurai = 7081;
+	public const TraitType DashPower = 8001;
+	public const TraitType DashDefence = 8011;
+	public const TraitType DashRescue = 8016;
+	public const TraitType DashStealth = 8021;
+	public const TraitType FireShield = 9001;
+	public const TraitType WaterShield = 9006;
+	public const TraitType WindShield = 9011;
+	public const TraitType GrandShield = 9016;
+	public const TraitType LightShield = 9021;
+	public const TraitType DarkShield = 9026;
+}

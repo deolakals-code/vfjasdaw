@@ -1,0 +1,112 @@
+{
+ "version": 1,
+ "uid": 720,
+ "name_th": "รีเทค",
+ "name_en": "Retake",
+ "tree": "SpriteSkill",
+ "category": "Mastery",
+ "max_level": 300,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "Retake",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "RetakeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((Lv + 2) * Lv)",
+        "when": "always",
+        "by_level": [
+         3,
+         8,
+         15,
+         24,
+         35,
+         48,
+         63,
+         80,
+         99,
+         120
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": {
+  "class": "Retake",
+  "bonuses": {}
+ },
+ "hooks": [
+  "PlayerActionManager.Damaged"
+ ],
+ "variables": [
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

@@ -1,0 +1,382 @@
+{
+ "version": 1,
+ "uid": 118,
+ "name_th": "คาดาร์เอเล็คซิโอ",
+ "name_en": "KadarElexio",
+ "tree": "MagicSkill",
+ "category": "Buffer",
+ "max_level": 70,
+ "roles": [
+  "buff (self)",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "KadarElexioAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 118,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "KadarElexioBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "100"
+    }
+   },
+   "attached_via": "caller2:KadarElexioBuf$$.ctor<-KadarElexioAction$$PlayRandomEffect",
+   "kind": "counter"
+  },
+  {
+   "class": "KadarElexioBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, ElementType elementType, EffectPlayer effectPlayer",
+     "fields": {
+      "bufFlag": [
+       {
+        "formula": "514",
+        "when": "always",
+        "by_level": 514
+       }
+      ],
+      "effectiveSkillList": [
+       {
+        "formula": "new System.Collections.Generic.List<KadarElexioBuf.SkillIdData>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "effectPlayer": [
+       {
+        "formula": "effectPlayer",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "100"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MaxHpUpRate",
+     "bonus_id": 62,
+     "formula": "-Count",
+     "simplified": "-Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value2",
+     "bonus_id": 51,
+     "formula": "overloadValue",
+     "simplified": "overloadValue",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "isStack",
+     "simplified": "isStack",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "LastDmgUpRate",
+     "bonus_id": 3,
+     "formula": "(Count lt overloadValue ? Count : overloadValue)",
+     "simplified": "min(Count, overloadValue)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "validOverloadBonus ne 0"
+     ]
+    },
+    {
+     "id": "LastDmgUpRate",
+     "bonus_id": 3,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "validOverloadBonus eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus eq 0 AND effectiveKadarElexio ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer le 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (overloadTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND activeOverloadBonus eq 0 AND effectiveKadarElexio ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer le 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND (overloadTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer gt 0"
+     },
+     {
+      "method": "ActiveKadarElexio",
+      "formula": "180",
+      "when": "always"
+     },
+     {
+      "method": "InactiveKadarElexio",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "effectiveKadarElexio": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus eq 0 AND effectiveKadarElexio ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer le 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (overloadTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer gt 0"
+     },
+     {
+      "method": "ActiveKadarElexio",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "InactiveKadarElexio",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "FailureKadarElexio",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "Count": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus eq 0 AND effectiveKadarElexio ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer le 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (overloadTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer gt 0"
+     },
+     {
+      "method": "ActiveKadarElexio",
+      "formula": "maxHpRate",
+      "when": "always"
+     },
+     {
+      "method": "InactiveKadarElexio",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "FailureKadarElexio",
+      "formula": "maxHpRate",
+      "when": "always"
+     }
+    ],
+    "isStack": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus eq 0 AND effectiveKadarElexio ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer le 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND (overloadTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer gt 0"
+     },
+     {
+      "method": "ActiveKadarElexio",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "InactiveKadarElexio",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "FailureKadarElexio",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "overloadTimer": [
+     {
+      "method": "Updata",
+      "formula": "(overloadTimer - UnityEngine.Time.get_deltaTime())",
+      "when": "(overloadTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio eq 0 AND overloadTimer gt 0 OR (overloadTimer - UnityEngine.Time.get_deltaTime()) hi 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio eq 0 AND overloadTimer gt 0 OR (overloadTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime le 0 AND activeOverloadBonus ne 0 AND effectiveKadarElexio ne 0 AND overloadTimer gt 0"
+     }
+    ],
+    "bufferEffectState": [
+     {
+      "method": "ActiveKadarElexio",
+      "formula": "1",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "ActiveKadarElexio",
+    "CheckCritical",
+    "CheckEnd",
+    "CheckMpHalving",
+    "CreateFailure",
+    "CreateOverloadStart",
+    "FailureKadarElexio",
+    "InactiveKadarElexio",
+    "get_BufEffectTakeId"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerBattleManager.OnBattleActive",
+  "MobaPlayerBattleManager.OnBattleEnd",
+  "PlayerAttackBase.<>c__DisplayClass111_0.<ActionPreparation>b__0",
+  "PlayerAttackBase.ActionPreparation",
+  "PlayerAttackBase.CalcCostMp",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerBattleManager.OnBattleActive",
+  "PlayerBattleManager.OnBattleEnd",
+  "ReceiveSupportResult.OnEventPlayerSupport"
+ ],
+ "variables": [
+  "SkillBufferId.Count",
+  "SkillBufferId.LastDmgUpRate",
+  "SkillBufferId.MaxHpUpRate",
+  "SkillBufferId.Value",
+  "SkillBufferId.Value2",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

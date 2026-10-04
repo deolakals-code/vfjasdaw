@@ -1,0 +1,447 @@
+{
+ "version": 1,
+ "uid": 82,
+ "name_th": "ทวินสตอร์ม",
+ "name_en": "TwinStorm",
+ "tree": "ShootSkill",
+ "category": "Buffer",
+ "max_level": 240,
+ "roles": [
+  "buff (self)",
+  "changes attack pattern (motion / combo chain; heuristic)",
+  "modifies normal-attack behaviour",
+  "boosts normal-attack damage"
+ ],
+ "class": "TwinStormAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 82,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "TwinStormBuf..ctor",
+   "formula": ".ctor(Lv, actarAction)",
+   "simplified": ".ctor(Lv, actarAction)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new TwinStormBuf, Id)",
+   "simplified": "AddSelfBuffer(new, TwinStormBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "TwinStormBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "BufferTakeId": [
+       {
+        "formula": "0xbf399d0",
+        "when": "always",
+        "by_level": 200514000
+       }
+      ],
+      "isTwinStorm": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "isBattleActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "actionManager": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "takeController": [
+       {
+        "formula": "UnityEngine.Component.GetComponent<TakeController>(playerAction)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "effectManager": [
+       {
+        "formula": "PlayerActionManagerBase.get_BufferEffectManager()",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "99"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "normalAttackRate",
+     "simplified": "normalAttackRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isTwinStorm ne 0"
+     ]
+    },
+    {
+     "id": "MoveSpeed",
+     "bonus_id": 69,
+     "formula": "moveSpeed",
+     "simplified": "moveSpeed",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isTwinStorm ne 0"
+     ]
+    },
+    {
+     "id": "NormalAttackConstantDamage",
+     "bonus_id": 56,
+     "formula": "normalAttackConstant",
+     "simplified": "normalAttackConstant",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isTwinStorm ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "updateNextAttackCount",
+     "simplified": "updateNextAttackCount",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isTwinStorm ne 0"
+     ]
+    },
+    {
+     "id": "Stable",
+     "bonus_id": 41,
+     "formula": "effectiveStable",
+     "simplified": "effectiveStable",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isTwinStorm ne 0"
+     ]
+    },
+    {
+     "id": "Aspd",
+     "bonus_id": 35,
+     "formula": "aspd",
+     "simplified": "aspd",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isTwinStorm ne 0"
+     ]
+    },
+    {
+     "id": "LastDmgUpRate",
+     "bonus_id": 3,
+     "formula": "effectiveLastDamageRate",
+     "simplified": "effectiveLastDamageRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isTwinStorm ne 0"
+     ]
+    },
+    {
+     "id": "Stable",
+     "bonus_id": 41,
+     "formula": "effectiveStable",
+     "simplified": "effectiveStable",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isTwinStorm eq 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "updateNextAttackCount",
+     "simplified": "updateNextAttackCount",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isTwinStorm eq 0"
+     ]
+    },
+    {
+     "id": "LastDmgUpRate",
+     "bonus_id": 3,
+     "formula": "effectiveLastDamageRate",
+     "simplified": "effectiveLastDamageRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isTwinStorm eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "isUpdateWeapon": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND TwinStormBuf.CheckTiwnTake(this) AND isTwinStorm ne 0 AND isUpdateWeapon ne 0 OR !TwinStormBuf.CheckTake(this) AND !TwinStormBuf.IsBattleActive(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND TwinStormBuf.CheckTiwnTake(this) AND isBattleActive eq 0 AND isTwinStorm ne 0 AND isUpdateWeapon ne 0 OR PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND TwinStormBuf.CheckTake(this) AND TwinStormBuf.CheckTiwnTake(this) AND TwinStormBuf.IsBattleActive(this) AND isTwinStorm ne 0 AND isUpdateWeapon ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "!TwinStormBuf.CheckTiwnTake(this) AND isTwinStorm eq 0 OR !TwinStormBuf.CheckTiwnTake(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND isTwinStorm ne 0 AND isUpdateWeapon eq 0 OR !TwinStormBuf.CheckTake(this) AND !TwinStormBuf.CheckTiwnTake(this) AND !TwinStormBuf.IsBattleActive(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND isBattleActive eq 0 AND isTwinStorm ne 0 AND isUpdateWeapon eq 0"
+     },
+     {
+      "method": "TakeStop",
+      "formula": "1",
+      "when": "always"
+     }
+    ],
+    "isBattleActive": [
+     {
+      "method": "Updata",
+      "formula": "(TwinStormBuf.IsBattleActive(this) & 1)",
+      "when": "PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND TwinStormBuf.CheckTake(this) AND TwinStormBuf.CheckTiwnTake(this) AND TwinStormBuf.IsBattleActive(this) AND isTwinStorm ne 0 AND isUpdateWeapon ne 0 OR PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND TwinStormBuf.CheckTake(this) AND TwinStormBuf.CheckTiwnTake(this) AND TwinStormBuf.IsBattleActive(this) AND isTwinStorm ne 0 AND isUpdateWeapon ne 0 OR !TwinStormBuf.CheckTiwnTake(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND TwinStormBuf.CheckTake(this) AND TwinStormBuf.IsBattleActive(this) AND isTwinStorm ne 0 AND isUpdateWeapon ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "!TwinStormBuf.CheckTake(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND TwinStormBuf.CheckTiwnTake(this) AND TwinStormBuf.IsBattleActive(this) AND isTwinStorm ne 0 AND isUpdateWeapon ne 0 OR !TwinStormBuf.CheckTake(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND TwinStormBuf.CheckTiwnTake(this) AND TwinStormBuf.IsBattleActive(this) AND isTwinStorm ne 0 AND isUpdateWeapon ne 0 OR !TwinStormBuf.CheckTake(this) AND !TwinStormBuf.CheckTiwnTake(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND TwinStormBuf.IsBattleActive(this) AND isTwinStorm ne 0 AND isUpdateWeapon ne 0"
+     }
+    ],
+    "updateNextAttackCount": [
+     {
+      "method": "Next",
+      "formula": "0",
+      "when": "!AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), 9) AND ((updateNextAttackCount + 1) - (((updateNextAttackCount + 1) // maxUpdateNextAttackCount) * maxUpdateNextAttackCount)) eq 0"
+     },
+     {
+      "method": "Next",
+      "formula": "(updateNextAttackCount + 1)",
+      "when": "!AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), 9) AND ((updateNextAttackCount + 1) - (((updateNextAttackCount + 1) // maxUpdateNextAttackCount) * maxUpdateNextAttackCount)) ne 0"
+     },
+     {
+      "method": "ChangeTwinStorm",
+      "formula": "0",
+      "when": "(active & 1) eq 0 AND isTwinStorm ne 0"
+     },
+     {
+      "method": "UseTwinStorm",
+      "formula": "0",
+      "when": "isTwinStorm ne 0"
+     }
+    ],
+    "isTwinStorm": [
+     {
+      "method": "ChangeTwinStorm",
+      "formula": "(active & 1)",
+      "when": "always"
+     },
+     {
+      "method": "UseTwinStorm",
+      "formula": "(isTwinStorm ^ 1)",
+      "when": "always"
+     }
+    ],
+    "Count": [
+     {
+      "method": "UseConquester",
+      "formula": "max((Count - 5), 0)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "BufferEnd",
+    "ChangeTwinStorm",
+    "CheckTwinStorm",
+    "IsBattleActive",
+    "Next",
+    "TakeStop",
+    "UseConquester",
+    "UseTwinStorm",
+    "get_BufEffectTakeId"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "TwinStormBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "99"
+    }
+   },
+   "attached_via": "caller2:TwinStormBuf$$.ctor<-TwinStormAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerActionManager.get_MoveSpeed",
+  "NormalAttackAction.Damaged",
+  "NormalAttackAction.OnInitialize",
+  "PlayerActionManager.get_MoveSpeed",
+  "TwinStormAction.IsFailure"
+ ],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Freeze",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_BufferEffectManager",
+  "SkillBufferId.Aspd",
+  "SkillBufferId.Count",
+  "SkillBufferId.LastDmgUpRate",
+  "SkillBufferId.MoveSpeed",
+  "SkillBufferId.NormalAttackConstantDamage",
+  "SkillBufferId.NormalAttackRate",
+  "SkillBufferId.Stable",
+  "SkillBufferId.Value",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TakeController.get_MainPlayer",
+  "TwinStormBuf.CheckTake",
+  "TwinStormBuf.CheckTiwnTake",
+  "TwinStormBuf.IsBattleActive",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

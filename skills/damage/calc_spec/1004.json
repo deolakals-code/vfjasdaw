@@ -1,0 +1,857 @@
+{
+ "version": 1,
+ "uid": 1004,
+ "name_th": "เดธรีเซฟชัน",
+ "name_en": "DeathReception",
+ "tree": "AssassinSkill",
+ "category": "Attack",
+ "max_level": 205,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "DeathReceptionAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1004,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(7)",
+   "simplified": "MathUtil.DisplayMeterToDistance(7)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "((((Lv * 25) + 250) + status.Dex) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500))",
+   "simplified": "((((Lv * 25) + 250) + status.Dex) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500))",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon == OneHandSword",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleConstantDamage",
+   "formula": "(Lv * 30)",
+   "simplified": "30 × Lv",
+   "when": "always",
+   "by_level": [
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleResistBreaker",
+   "formula": "(singleResistBreaker + 25)",
+   "simplified": "singleResistBreaker + 25",
+   "when": "mainWeapon == Null OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1090) ne 0 AND mainWeapon == Null OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1090) eq 0 AND mainWeapon == Null",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeConstantDamage",
+   "formula": "0",
+   "simplified": "0",
+   "when": "mainWeapon == Null OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1090) ne 0 AND mainWeapon == Null OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 23 AND mainWeapon != Null AND mainWeapon == Halberd",
+   "by_level": 0,
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "(((((Lv * 25) + 250) + status.Dex) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500)) * 0.5)",
+   "simplified": "(((((Lv * 25) + 250) + status.Dex) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500)) * 0.5)",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon == OneHandSword",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "(((Lv * 25) + 250) + status.Dex)",
+   "simplified": "25 × Lv + status.Dex + 250",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon == OneHandSword",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "((((Lv * 25) + 250) + status.Dex) * 0.5)",
+   "simplified": "12.5 × Lv + 0.5 × status.Dex + 125",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon == OneHandSword",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "((((Lv * 25) + 250) + status.Dex) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500))",
+   "simplified": "((((Lv * 25) + 250) + status.Dex) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500))",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon == OneHandSword",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "(((((Lv * 25) + 250) + status.Dex) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500)) * 0.5)",
+   "simplified": "(((((Lv * 25) + 250) + status.Dex) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500)) * 0.5)",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon == OneHandSword",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "(((Lv * 25) + 250) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500))",
+   "simplified": "(((Lv * 25) + 250) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500))",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon != OneHandSword",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "((((Lv * 25) + 250) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500)) * 0.5)",
+   "simplified": "((((Lv * 25) + 250) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500)) * 0.5)",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon != OneHandSword",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "((Lv * 25) + 250)",
+   "simplified": "25 × Lv + 250",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon != OneHandSword",
+   "by_level": [
+    275,
+    300,
+    325,
+    350,
+    375,
+    400,
+    425,
+    450,
+    475,
+    500
+   ],
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "(((Lv * 25) + 250) * 0.5)",
+   "simplified": "12.5 × Lv + 125",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon != OneHandSword",
+   "by_level": [
+    137.5,
+    150.0,
+    162.5,
+    175.0,
+    187.5,
+    200.0,
+    212.5,
+    225.0,
+    237.5,
+    250.0
+   ],
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "(((Lv * 25) + 250) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500))",
+   "simplified": "(((Lv * 25) + 250) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500))",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon != OneHandSword",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "((((Lv * 25) + 250) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500)) * 0.5)",
+   "simplified": "((((Lv * 25) + 250) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500)) * 0.5)",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 23 AND mainWeapon != Halberd AND mainWeapon != Null AND mainWeapon != OneHandSword",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "((((Lv * 25) + 250) + baseAGI) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500))",
+   "simplified": "((((Lv * 25) + 250) + baseAGI) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500))",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Null AND mainWeapon == Halberd",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "(((((Lv * 25) + 250) + baseAGI) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500)) * 0.5)",
+   "simplified": "(((((Lv * 25) + 250) + baseAGI) + (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function lt 500 ? EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function : 500)) * 0.5)",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Null AND mainWeapon == Halberd",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "(((Lv * 25) + 250) + baseAGI)",
+   "simplified": "25 × Lv + baseAGI + 250",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Null AND mainWeapon == Halberd",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "((((Lv * 25) + 250) + baseAGI) * 0.5)",
+   "simplified": "12.5 × Lv + 0.5 × baseAGI + 125",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 18 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 23 AND mainWeapon != Null AND mainWeapon == Halberd",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "((((Lv * 25) + 250) + baseAGI) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500))",
+   "simplified": "((((Lv * 25) + 250) + baseAGI) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500))",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 23 AND mainWeapon != Null AND mainWeapon == Halberd",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "(((((Lv * 25) + 250) + baseAGI) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500)) * 0.5)",
+   "simplified": "(((((Lv * 25) + 250) + baseAGI) + (int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) lt 500 ? int((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function * 0.8)) : 500)) * 0.5)",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 23 AND mainWeapon != Null AND mainWeapon == Halberd",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "((((Lv * 25) + 250) + (status.Lv * 1.25)) + TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1090).Count)",
+   "simplified": "((((Lv * 25) + 250) + (status.Lv * 1.25)) + TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1090).Count)",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1090) ne 0 AND mainWeapon == Null",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "status.Lv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "(((((Lv * 25) + 250) + (status.Lv * 1.25)) + TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1090).Count) * 0.5)",
+   "simplified": "(((((Lv * 25) + 250) + (status.Lv * 1.25)) + TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1090).Count) * 0.5)",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1090) ne 0 AND mainWeapon == Null",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "status.Lv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "(((Lv * 25) + 250) + (status.Lv * 1.25))",
+   "simplified": "25 × Lv + 1.25 × status.Lv + 250",
+   "when": "mainWeapon == Null OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1090) eq 0 AND mainWeapon == Null",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "status.Lv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "((((Lv * 25) + 250) + (status.Lv * 1.25)) * 0.5)",
+   "simplified": "12.5 × Lv + 0.625 × status.Lv + 125",
+   "when": "mainWeapon == Null",
+   "vars": [
+    "status.Lv"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "actorPlayerAction",
+   "formula": "actarAction",
+   "simplified": "actarAction",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) lt 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.PoisonMixer",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "singleSkillRate",
+   "formula": "(singleSkillRate + PoisonMixer.GetDeathReceptionSingleAttackSkillRate(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1), PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "singleSkillRate + PoisonMixer.GetDeathReceptionSingleAttackSkillRate(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "PoisonMixer.GetDeathReceptionSingleAttackSkillRate",
+    "SkillId.PoisonMixer",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "rangeSkillRate",
+   "formula": "(rangeSkillRate + PoisonMixer.GetDeathReceptionRangeAttackSkillRate(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1), PlayerActionManagerBase.get_PlayerStatus()))",
+   "simplified": "rangeSkillRate + PoisonMixer.GetDeathReceptionRangeAttackSkillRate(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "PoisonMixer.GetDeathReceptionRangeAttackSkillRate",
+    "SkillId.PoisonMixer",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "poisonLevel",
+   "formula": "SkillBufferDataBase.GetParam(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003), SkillBufferId.Value)",
+   "simplified": "SkillBufferDataBase.GetParam(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003), SkillBufferId.Value)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Value",
+    "SkillId.PoisonMixer",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "singleResistBreaker",
+   "formula": "((SkillBufferDataBase.GetParam(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003), SkillBufferId.Value) * 25) + singleResistBreaker)",
+   "simplified": "25 × SkillBufferDataBase.GetParam(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003), SkillBufferId.Value) + singleResistBreaker",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Value",
+    "SkillId.PoisonMixer",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "UnmanagedHitTake",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) OR (poisonLevel & 0x80000000) eq 0 AND UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) OR (poisonLevel & 0x80000000) ne 0 AND UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction)))",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(mainTarget).y",
+   "simplified": "UnityEngine.Transform.get_position(mainTarget).y",
+   "when": "UnityEngine.Object.op_Inequality(mainTarget) AND param eq 100",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(mainTarget).z",
+   "simplified": "UnityEngine.Transform.get_position(mainTarget).z",
+   "when": "UnityEngine.Object.op_Inequality(mainTarget) AND param eq 100",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(singleSkillRate / 100)",
+   "simplified": "singleSkillRate / 100",
+   "when": "UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) OR (poisonLevel & 0x80000000) eq 0 AND UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) OR (poisonLevel & 0x80000000) ne 0 AND UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction)))",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "singleConstantDamage",
+   "simplified": "singleConstantDamage",
+   "when": "UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) OR (poisonLevel & 0x80000000) eq 0 AND UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) OR (poisonLevel & 0x80000000) ne 0 AND UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction)))",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(rangeSkillRate / 100)",
+   "simplified": "rangeSkillRate / 100",
+   "when": "!UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) AND poisonLevel eq 1 OR !UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) AND poisonLevel eq 2 AND poisonLevel ne 1 OR !UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) AND poisonLevel ne 1 AND poisonLevel ne 2",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "rangeConstantDamage",
+   "simplified": "rangeConstantDamage",
+   "when": "!UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) AND poisonLevel eq 1 OR !UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) AND poisonLevel eq 2 AND poisonLevel ne 1 OR !UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) AND poisonLevel ne 1 AND poisonLevel ne 2",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionPreparation",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1003)",
+   "simplified": "RemoveSelfBuffer(1003)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) ge 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.PoisonMixer, 1) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 1003) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.PoisonMixer",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(5, 100, actorPlayerAction)",
+   "simplified": "checkAbnormalPercent(5, 100, actorPlayerAction)",
+   "when": "!FieldManager.get_IsMoRoom(Singleton<FieldManager>.get_Instance()) AND !MobActionManagerBase.get_IsDeadOrLocalDead(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND !PartyManager.get_IsParty(Singleton<PartyManager>.get_Instance()) AND !UnityEngine.Object.op_Equality(mainTarget, targetTransform) AND (((UnityEngine.Transform.get_position(targetTransform).x - attackPos) * (UnityEngine.Transform.get_position(targetTransform).x - attackPos)) + ((UnityEngine.Transform.get_position(targetTransform).z - attackPos.z) * (UnityEngine.Transform.get_position(targetTransform).z - attackPos.z))) le ((attackRange + size) * (attackRange + size)) AND MobActionManagerBase.HasPlayerHate(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, 100, actorPlayerAction) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - attackPos.y), size) OR !FieldManager.get_IsMoRoom(Singleton<FieldManager>.get_Instance()) AND !MobActionManagerBase.get_IsDeadOrLocalDead(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND !PartyManager.get_IsParty(Singleton<PartyManager>.get_Instance()) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, 100, actorPlayerAction) AND !UnityEngine.Object.op_Equality(mainTarget, targetTransform) AND (((UnityEngine.Transform.get_position(targetTransform).x - attackPos) * (UnityEngine.Transform.get_position(targetTransform).x - attackPos)) + ((UnityEngine.Transform.get_position(targetTransform).z - attackPos.z) * (UnityEngine.Transform.get_position(targetTransform).z - attackPos.z))) le ((attackRange + size) * (attackRange + size)) AND MobActionManagerBase.HasPlayerHate(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - attackPos.y), size) OR !MobActionManagerBase.get_IsDeadOrLocalDead(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND !UnityEngine.Object.op_Equality(mainTarget, targetTransform) AND (((UnityEngine.Transform.get_position(targetTransform).x - attackPos) * (UnityEngine.Transform.get_position(targetTransform).x - attackPos)) + ((UnityEngine.Transform.get_position(targetTransform).z - attackPos.z) * (UnityEngine.Transform.get_position(targetTransform).z - attackPos.z))) le ((attackRange + size) * (attackRange + size)) AND FieldManager.get_IsMoRoom(Singleton<FieldManager>.get_Instance()) AND MobActionManagerBase.GetHate(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND MobActionManagerBase.HasPlayerHate(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, 100, actorPlayerAction) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - attackPos.y), size)",
+   "vars": [
+    "AbnormalType.Poison",
+    "FieldManager.get_IsMoRoom",
+    "MobActionManagerBase.GetHate",
+    "MobActionManagerBase.HasPlayerHate",
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "PartyManager.get_IsParty",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerAttackBase.checkRangeHeight",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(5, VenomInjectAction.CalcPercent(PlayerActionManagerBase.get_PlayerStatus(), (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, actorPlayerAction, UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)), CalcStep.CriticalCheck) & 1), (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, actorPlayerAction, UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)), CalcStep.CorrectHitCheck) & 1)), actorPlayerAction)",
+   "simplified": "checkAbnormalPercent(5, VenomInjectAction.CalcPercent(PlayerActionManagerBase.get_PlayerStatus(), SkillCalcTemplate.CheckStepResult(A, CalcStep.CriticalCheck) & 1, SkillCalcTemplate.CheckStepResult(A, CalcStep.CorrectHitCheck) & 1), actorPlayerAction)",
+   "when": "!MobActionManagerBase.GetHate(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND !MobActionManagerBase.get_IsDeadOrLocalDead(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND !UnityEngine.Object.op_Equality(mainTarget, targetTransform) AND (((UnityEngine.Transform.get_position(targetTransform).x - attackPos) * (UnityEngine.Transform.get_position(targetTransform).x - attackPos)) + ((UnityEngine.Transform.get_position(targetTransform).z - attackPos.z) * (UnityEngine.Transform.get_position(targetTransform).z - attackPos.z))) le ((attackRange + size) * (attackRange + size)) AND FieldManager.get_IsMoRoom(Singleton<FieldManager>.get_Instance()) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, VenomInjectAction.CalcPercent(PlayerActionManagerBase.get_PlayerStatus(), (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, actorPlayerAction, UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)), CalcStep.CriticalCheck) & 1), (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, actorPlayerAction, UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)), CalcStep.CorrectHitCheck) & 1)), actorPlayerAction) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - attackPos.y), size) OR !MobActionManagerBase.GetHate(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND !MobActionManagerBase.get_IsDeadOrLocalDead(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, VenomInjectAction.CalcPercent(PlayerActionManagerBase.get_PlayerStatus(), (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, actorPlayerAction, UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)), CalcStep.CriticalCheck) & 1), (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, actorPlayerAction, UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)), CalcStep.CorrectHitCheck) & 1)), actorPlayerAction) AND !UnityEngine.Object.op_Equality(mainTarget, targetTransform) AND (((UnityEngine.Transform.get_position(targetTransform).x - attackPos) * (UnityEngine.Transform.get_position(targetTransform).x - attackPos)) + ((UnityEngine.Transform.get_position(targetTransform).z - attackPos.z) * (UnityEngine.Transform.get_position(targetTransform).z - attackPos.z))) le ((attackRange + size) * (attackRange + size)) AND FieldManager.get_IsMoRoom(Singleton<FieldManager>.get_Instance()) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - attackPos.y), size) OR !FieldManager.get_IsMoRoom(Singleton<FieldManager>.get_Instance()) AND !MobActionManagerBase.GetHate(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND !MobActionManagerBase.get_IsDeadOrLocalDead(UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)) AND !UnityEngine.Object.op_Equality(mainTarget, targetTransform) AND (((UnityEngine.Transform.get_position(targetTransform).x - attackPos) * (UnityEngine.Transform.get_position(targetTransform).x - attackPos)) + ((UnityEngine.Transform.get_position(targetTransform).z - attackPos.z) * (UnityEngine.Transform.get_position(targetTransform).z - attackPos.z))) le ((attackRange + size) * (attackRange + size)) AND PartyManager.get_IsParty(Singleton<PartyManager>.get_Instance()) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, VenomInjectAction.CalcPercent(PlayerActionManagerBase.get_PlayerStatus(), (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, actorPlayerAction, UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)), CalcStep.CriticalCheck) & 1), (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, actorPlayerAction, UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform)), CalcStep.CorrectHitCheck) & 1)), actorPlayerAction) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - attackPos.y), size)",
+   "defs": [
+    [
+     "A",
+     "PlayerAttackBase.HitReactionAssign(this, new, SkillCalcTemplate, actorPlayerAction, UnityEngine.Component.GetComponent<MobActionManagerBase>(targetTransform))"
+    ]
+   ],
+   "vars": [
+    "AbnormalType.Poison",
+    "CalcStep.CorrectHitCheck",
+    "CalcStep.CriticalCheck",
+    "FieldManager.get_IsMoRoom",
+    "MobActionManagerBase.GetHate",
+    "MobActionManagerBase.get_IsDeadOrLocalDead",
+    "PartyManager.get_IsParty",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.HitReactionAssign",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "PlayerAttackBase.checkRangeHeight",
+    "SkillCalcTemplate.CheckStepResult",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position",
+    "VenomInjectAction.CalcPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "DeadlyPoisonDebuff..ctor",
+   "formula": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), poisonLevel)",
+   "simplified": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), poisonLevel)",
+   "when": "(poisonLevel & 0x80000000) eq 0 AND UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction)))",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "Toram.Common.ArchetypeUid.get_Id",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(5)",
+   "simplified": "SetAbnormalType(5)",
+   "when": "!UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) AND poisonLevel eq 1 OR !UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) AND poisonLevel eq 2 AND poisonLevel ne 1 OR !UnityEngine.Object.op_Equality(mainTarget, UnityEngine.GameObject.get_transform(MobActionManagerBase.get_gameObject(mobAction))) AND poisonLevel ne 1 AND poisonLevel ne 2",
+   "vars": [
+    "MobActionManagerBase.get_gameObject",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "FuneVinteAction.ActionPreparation",
+  "VenomSnatchAction.BattleResult"
+ ],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "AbnormalType.Poison",
+  "CalcStep.CorrectHitCheck",
+  "CalcStep.CriticalCheck",
+  "EquipItemData.get_SubWeapon",
+  "FieldManager.get_IsMoRoom",
+  "IPlayerStatusCalculator.get_Dex",
+  "IPlayerStatusCalculator.get_Lv",
+  "MathUtil.CheckPercent",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.GetHate",
+  "MobActionManagerBase.HasPlayerHate",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_IsDeadOrLocalDead",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobActionManagerBase.get_gameObject",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "PartyManager.get_IsParty",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.HitReactionAssign",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.checkRangeHeight",
+  "PlayerPrimaryStatus.agi",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "PoisonMixer.GetDeathReceptionRangeAttackSkillRate",
+  "PoisonMixer.GetDeathReceptionSingleAttackSkillRate",
+  "Singleton.get_Instance",
+  "SkillActionBase.op_Inequality",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Value",
+  "SkillCalcTemplate.CheckStepResult",
+  "SkillComboState.GetThirdEyeValue",
+  "SkillId.PoisonMixer",
+  "SkillManager.GetSkillLv",
+  "System.Math.Max",
+  "Toram.Common.ArchetypeUid.get_Id",
+  "TryGetBuf.out2",
+  "TryGetBuff.buff",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "VenomInjectAction.CalcPercent",
+  "status.Dex",
+  "status.Lv"
+ ],
+ "residual": []
+}

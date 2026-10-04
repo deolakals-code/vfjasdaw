@@ -1,0 +1,605 @@
+{
+ "version": 1,
+ "uid": 269,
+ "name_th": "บาลาเกรุง",
+ "name_en": "Beragelung",
+ "tree": "ShieldSkill",
+ "category": "Object",
+ "max_level": 225,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "placed object / trap / summon"
+ ],
+ "class": "BeragelungAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 269,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Shield"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 35) + 400)",
+   "simplified": "35 × Lv + 400",
+   "when": "always",
+   "by_level": [
+    435,
+    470,
+    505,
+    540,
+    575,
+    610,
+    645,
+    680,
+    715,
+    750
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackRange",
+   "formula": "MathUtil.DisplayMeterToDistance(3)",
+   "simplified": "MathUtil.DisplayMeterToDistance(3)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "mainTargetPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "mainTargetPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "mainTargetPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mainTargetPos",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 17 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mainTargetPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 17 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "mainTargetPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z",
+   "when": "!UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 17 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target)",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "shieldRefine",
+   "formula": "(ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255)",
+   "simplified": "ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255",
+   "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17 AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(target) OR !UnityEngine.Object.op_Inequality(target) AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EquipItemData.get_SubWeapon",
+    "ItemData.get_Refine",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "state",
+   "formula": "param",
+   "simplified": "param",
+   "when": "param eq 100 AND param ge 1 AND param le 199 OR param eq 200 AND param ge 1 AND param gt 199 OR param eq 102 AND param ge 1 AND param le 199 AND param ne 100"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "straightEventTake",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "param eq 100 AND param ge 1 AND param le 199"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "homingEventTake",
+   "formula": "new SkillLinkedTake",
+   "simplified": "new SkillLinkedTake",
+   "when": "param eq 200 AND param ge 1 AND param gt 199"
+  },
+  {
+   "method": "ActionSkillReceiveEffect",
+   "kind": "set",
+   "name": "straightObject",
+   "formula": "effect",
+   "simplified": "effect",
+   "when": "state eq 101 AND state ne 201"
+  },
+  {
+   "method": "ActionSkillReceiveEffect",
+   "kind": "set",
+   "name": "homingObject",
+   "formula": "effect",
+   "simplified": "effect",
+   "when": "state eq 201"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "((1.5 * skillRate) / 100)",
+   "simplified": "1.5 × skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "(constantDamage + (((shieldRefine // 5) + 1) * baseVIT))",
+   "simplified": "constantDamage + (shieldRefine // 5 + 1) × baseVIT",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(MobActionManagerBase.get_MobStatus(mobAction).localExpDefSkill / 100)",
+   "simplified": "(MobActionManagerBase.get_MobStatus(mobAction).localExpDefSkill / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate",
+   "vars": [
+    "MobActionManagerBase.get_MobStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[ExpRate]",
+   "formula": "(targetExpList[mobAction] / 100)",
+   "simplified": "(targetExpList[mobAction] / 100)",
+   "when": "always",
+   "op": "SetRate",
+   "step": "ExpRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "AddDebuff",
+   "kind": "call",
+   "name": "BeragelungStraightDebuff..ctor",
+   "formula": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), action.Level)",
+   "simplified": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), action.Level)",
+   "when": "!UnityEngine.Object.op_Equality(actionManager) AND IsInstanceOf(action, PlayerAttackBase) eq 1 AND PlayerStatusBase.CheckBodyAbility(PlayerActionManagerBase.get_PlayerStatus(), ArmorAbility.Heavy) AND SkillActionBase.get_ActionID() eq 269",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.CheckBodyAbility",
+    "SkillActionBase.get_ActionID",
+    "Toram.Common.ArchetypeUid.get_Id",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "AddDebuff",
+   "kind": "call",
+   "name": "BeragelungHomingDebuff..ctor",
+   "formula": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), action.Level)",
+   "simplified": ".ctor(Toram.Common.ArchetypeUid.get_Id(out), action.Level)",
+   "when": "!UnityEngine.Object.op_Equality(actionManager) AND IsInstanceOf(action, PlayerAttackBase) eq 1 AND PlayerStatusBase.CheckBodyAbility(PlayerActionManagerBase.get_PlayerStatus(), ArmorAbility.Heavy) AND SkillActionBase.get_ActionID() eq 269",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.CheckBodyAbility",
+    "SkillActionBase.get_ActionID",
+    "Toram.Common.ArchetypeUid.get_Id",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "BeragelungBuf..ctor",
+   "formula": ".ctor(int((BeragelungDebuffBase.GetLastDamageUpRate(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 11)) + BeragelungDebuffBase.GetLastDamageUpRate(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 12)))), (BeragelungDebuffBase.GetAttackMpRecovery(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 12)) + BeragelungDebuffBase.GetAttackMpRecovery(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 11))))",
+   "simplified": ".ctor(int((BeragelungDebuffBase.GetLastDamageUpRate(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 11)) + BeragelungDebuffBase.GetLastDamageUpRate(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 12)))), (BeragelungDebuffBase.GetAttackMpRecovery(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 12)) + BeragelungDebuffBase.GetAttackMpRecovery(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 11))))",
+   "when": "TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 11) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 12) ne 0",
+   "vars": [
+    "BeragelungDebuffBase.GetAttackMpRecovery",
+    "BeragelungDebuffBase.GetLastDamageUpRate",
+    "MobActionManagerBase.get_BuffManager",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new BeragelungBuf)",
+   "simplified": "AddSelfBuffer(new, BeragelungBuf)",
+   "when": "always"
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "BeragelungBuf..ctor",
+   "formula": ".ctor(int(BeragelungDebuffBase.GetLastDamageUpRate(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 11))), BeragelungDebuffBase.GetAttackMpRecovery(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 11)))",
+   "simplified": ".ctor(int(BeragelungDebuffBase.GetLastDamageUpRate(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 11))), BeragelungDebuffBase.GetAttackMpRecovery(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 11)))",
+   "when": "TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 11) ne 0",
+   "vars": [
+    "BeragelungDebuffBase.GetAttackMpRecovery",
+    "BeragelungDebuffBase.GetLastDamageUpRate",
+    "MobActionManagerBase.get_BuffManager",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "BeragelungBuf..ctor",
+   "formula": ".ctor(int(BeragelungDebuffBase.GetLastDamageUpRate(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 12))), BeragelungDebuffBase.GetAttackMpRecovery(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 12)))",
+   "simplified": ".ctor(int(BeragelungDebuffBase.GetLastDamageUpRate(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 12))), BeragelungDebuffBase.GetAttackMpRecovery(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 12)))",
+   "when": "TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 12) ne 0",
+   "vars": [
+    "BeragelungDebuffBase.GetAttackMpRecovery",
+    "BeragelungDebuffBase.GetLastDamageUpRate",
+    "MobActionManagerBase.get_BuffManager",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "BeragelungBuf..ctor",
+   "formula": ".ctor(0)",
+   "simplified": ".ctor(0)",
+   "when": "always"
+  },
+  {
+   "method": "InvalidDebuff",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(269)",
+   "simplified": "RemoveSelfBuffer(269)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass36_0::<ActionPreparation>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(267)",
+   "simplified": "RemoveSelfBuffer(267)",
+   "when": "always"
+  },
+  {
+   "method": ".<>c__DisplayClass36_0::<ActionPreparation>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(267)",
+   "simplified": "RemoveSelfBuffer(267)",
+   "when": "(cancel & 1) ne 0"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "BeragelungBuf",
+   "ctors": [
+    {
+     "sig": "int lastDamageRate, int attackMpRecovery",
+     "fields": {
+      "lastDamageRate": [
+       {
+        "formula": "lastDamageRate",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "attackMpRecovery": [
+       {
+        "formula": "attackMpRecovery",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "LastDmgUpRate",
+     "bonus_id": 3,
+     "formula": "lastDamageRate",
+     "simplified": "lastDamageRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "attackMpRecovery",
+     "simplified": "attackMpRecovery",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "BeragelungBuf": {
+     "lv": "1",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:BeragelungBuf$$.ctor<-BeragelungAction$$ValidDebuff",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "BeragelungDebuffBase.GetAttackMpRecovery",
+  "BeragelungDebuffBase.GetLastDamageUpRate",
+  "EquipItemData.get_SubWeapon",
+  "ItemData.get_Refine",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_MobStatus",
+  "MobStatus.localExpDefSkill",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerPrimaryStatus.vit",
+  "PlayerStatusBase.CheckBodyAbility",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillActionBase.get_ActionID",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.LastDmgUpRate",
+  "Toram.Common.ArchetypeUid.get_Id",
+  "TryGetBuff.buff",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

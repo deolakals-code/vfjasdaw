@@ -1,0 +1,399 @@
+{
+ "version": 1,
+ "uid": 1039,
+ "name_th": "ชิฟท์",
+ "name_en": "Shift",
+ "tree": "WizardSkill",
+ "category": "Buffer",
+ "max_level": 285,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "ShiftAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1039,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "0",
+   "simplified": "0",
+   "when": "hasBuff(1039)",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "200",
+   "simplified": "200",
+   "when": "!hasBuff(1039)",
+   "by_level": 200
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ReceiveSupport",
+   "kind": "call",
+   "name": "ShiftBuf..ctor",
+   "formula": ".ctor(skillLv, playerAction)",
+   "simplified": ".ctor(skillLv, playerAction)",
+   "when": "UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<FadeAnimationManager>(UnityEngine.Component.get_gameObject(playerAction)), 0) AND resultData.Flag eq 1 AND resultData.Flag ne 2 OR !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<FadeAnimationManager>(UnityEngine.Component.get_gameObject(playerAction)), 0) AND resultData.Flag eq 1 AND resultData.Flag ne 2",
+   "vars": [
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ReceiveSupport",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ShiftBuf)",
+   "simplified": "AddSelfBuffer(new, ShiftBuf)",
+   "when": "UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<FadeAnimationManager>(UnityEngine.Component.get_gameObject(playerAction)), 0) AND resultData.Flag eq 1 AND resultData.Flag ne 2 OR !UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<FadeAnimationManager>(UnityEngine.Component.get_gameObject(playerAction)), 0) AND resultData.Flag eq 1 AND resultData.Flag ne 2",
+   "vars": [
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ReceiveSupport",
+   "kind": "call",
+   "name": "ShiftMotionSpeedBuf..ctor",
+   "formula": ".ctor(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039).Level, SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039), SkillBufferId.Count), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039).Level, SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039), SkillBufferId.Count), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039), SkillBufferId.Count) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039) ne 0 AND resultData.Flag eq 2",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "ReceiveSupport",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ShiftMotionSpeedBuf)",
+   "simplified": "AddSelfBuffer(new, ShiftMotionSpeedBuf)",
+   "when": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039), SkillBufferId.Count) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039) ne 0 AND resultData.Flag eq 2",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "TryGetBuf.buf"
+   ]
+  },
+  {
+   "method": "ReceiveSupport",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1039)",
+   "simplified": "RemoveSelfBuffer(1039)",
+   "when": "SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039), SkillBufferId.Count) ge 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039) ne 0 AND resultData.Flag eq 2 OR SkillBufferDataBase.GetParam(TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039), SkillBufferId.Count) lt 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 1039) ne 0 AND resultData.Flag eq 2",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count",
+    "TryGetBuf.buf"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ShiftBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "actionManager": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "99"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "EnableDistFade": [
+     {
+      "method": "set_EnableDistFade",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "BufferEnd",
+    "get_EnableDistFade",
+    "set_EnableDistFade"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "ShiftMotionSpeedBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int count, PlayerStatusBase status, SkillBufferDataBase buf",
+     "fields": {
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "min((buf.LeftTime + ((int((((Lv * Lv) / 5) + 0.5)) + 10) * count)), 60)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "motionSpeed": [
+       {
+        "formula": "(((((baseINT * 0x51eb851f) >> 32) >> 5) lt 5 ? (((baseINT * 0x51eb851f) >> 32) >> 5) : 5) + 10)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MotionSpeed",
+     "bonus_id": 0,
+     "formula": "motionSpeed",
+     "simplified": "motionSpeed",
+     "when": []
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "ShiftBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "99"
+    }
+   },
+   "attached_via": "caller2:ShiftBuf$$.ctor<-ShiftAction$$ReceiveSupport",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "AvoidActionManager.CheckAvoidStart",
+  "BattleManagerBase.BattleEntry",
+  "BattleManagerBase.SupportEntry",
+  "GuardActionManager.CheckGuardStart",
+  "MobaPlayerActionManager.BattleReserve",
+  "MobaPlayerActionManager.Damaged",
+  "MobaPlayerActionManager.OnActionButton",
+  "MobaPlayerActionManager.SupportReserve",
+  "MobaPlayerBattleManager.StartAutoDeviceAttack",
+  "PlayerActionManager.BattleReserve",
+  "PlayerActionManager.Damaged",
+  "PlayerActionManager.OnActionButton",
+  "PlayerActionManager.SupportReserve",
+  "PlayerBattleManager.StartAutoDeviceAttack",
+  "ReceiveSupportResult.OnEventPlayerSupport",
+  "ShiftAction.OnInitialize",
+  "ShiftAction.ReceiveSupport"
+ ],
+ "variables": [
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerPrimaryStatus.int",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.Count",
+  "SkillBufferId.MotionSpeed",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuf.buf",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

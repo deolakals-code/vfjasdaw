@@ -1,0 +1,61 @@
+{
+ "version": 1,
+ "uid": 1036,
+ "name_th": "ซอร์ดเซอรีไกด์",
+ "name_en": "MagicalGuidance",
+ "tree": "WizardSkill",
+ "category": "Mastery",
+ "max_level": 205,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "MagicalGuidance",
+ "proration": null,
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "MagicalGuidance",
+  "bonuses": {
+   "Value": {
+    "id": 28,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   },
+   "Cspd": {
+    "id": 38,
+    "expr": "(Lv * 50)",
+    "by_level": [
+     50,
+     100,
+     150,
+     200,
+     250,
+     300,
+     350,
+     400,
+     450,
+     500
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

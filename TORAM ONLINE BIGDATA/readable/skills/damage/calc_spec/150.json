@@ -1,0 +1,502 @@
+{
+ "version": 1,
+ "uid": 150,
+ "name_th": "[N]หมุนปัด[N2]ขากงจักร[N]",
+ "name_en": "Senfutsu",
+ "tree": "MarshallSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "SenfutsuAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 150,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "mainWeapon == Knuckle AND skillRate.Length eq 0 OR mainWeapon == Knuckle AND skillRate.Length eq 1 AND skillRate.Length ne 0 OR mainWeapon == Knuckle AND skillRate.Length ls 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[0]",
+   "formula": "(((Lv * 25) + 250) / 100)",
+   "simplified": "(25 × Lv + 250) / 100",
+   "when": "mainWeapon == Knuckle AND skillRate.Length eq 1 AND skillRate.Length ne 0 OR mainWeapon == Knuckle AND skillRate.Length ls 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length eq 0 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": [
+    2.75,
+    3.0,
+    3.25,
+    3.5,
+    3.75,
+    4.0,
+    4.25,
+    4.5,
+    4.75,
+    5.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[1]",
+   "formula": "((((Lv * 50) + 500) + baseAGI) / 100)",
+   "simplified": "(50 × Lv + baseAGI + 500) / 100",
+   "when": "fixAddDamage.Length eq 0 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length eq 1 AND fixAddDamage.Length ne 0 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length eq 0"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage[0]",
+   "formula": "400",
+   "simplified": "400",
+   "when": "fixAddDamage.Length eq 1 AND fixAddDamage.Length ne 0 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length eq 1 AND fixAddDamage.Length ne 0 AND mainWeapon != Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length eq 0",
+   "by_level": 400
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage[1]",
+   "formula": "((Lv * 40) + 400)",
+   "simplified": "40 × Lv + 400",
+   "when": "fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length eq 0 OR fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon != Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length eq 0 OR fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length ne 0 AND tumblePercent.Length ne 1",
+   "by_level": [
+    440,
+    480,
+    520,
+    560,
+    600,
+    640,
+    680,
+    720,
+    760,
+    800
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "tumblePercent[0]",
+   "formula": "100",
+   "simplified": "100",
+   "when": "fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length ne 0 AND tumblePercent.Length ne 1 OR fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length eq 1 AND tumblePercent.Length ne 0 OR fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon != Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length ne 0 AND tumblePercent.Length ne 1",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "tumblePercent[1]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length ne 0 AND tumblePercent.Length ne 1 OR fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon != Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length ne 0 AND tumblePercent.Length ne 1",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "buffTime",
+   "formula": "((Lv >> 1) + 2)",
+   "simplified": "Lv ÷ 2 + 2",
+   "when": "fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length ne 0 AND tumblePercent.Length ne 1 OR fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon != Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length ne 0 AND tumblePercent.Length ne 1",
+   "by_level": [
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "recoveryAvoidStack",
+   "formula": "(((Lv * 100) + 500) << 1)",
+   "simplified": "200 × Lv + 1000",
+   "when": "fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon == Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length ne 0 AND tumblePercent.Length ne 1",
+   "by_level": [
+    1200,
+    1400,
+    1600,
+    1800,
+    2000,
+    2200,
+    2400,
+    2600,
+    2800,
+    3000
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[1]",
+   "formula": "(((Lv * 50) + 500) + baseAGI)",
+   "simplified": "50 × Lv + baseAGI + 500",
+   "when": "mainWeapon == Knuckle AND skillRate.Length ls 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "mainWeapon != Knuckle AND skillRate.Length eq 0 OR mainWeapon != Knuckle AND skillRate.Length eq 1 AND skillRate.Length ne 0 OR mainWeapon != Knuckle AND skillRate.Length ls 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[0]",
+   "formula": "((((Lv * 25) + 250) + System.Math.Max(status.Str, status.Agi)) / 100)",
+   "simplified": "(25 × Lv + System.Math.Max(status.Str, status.Agi) + 250) / 100",
+   "when": "mainWeapon != Knuckle AND skillRate.Length eq 1 AND skillRate.Length ne 0 OR mainWeapon != Knuckle AND skillRate.Length ls 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length eq 0 AND mainWeapon != Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "vars": [
+    "System.Math.Max",
+    "status.Agi",
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[1]",
+   "formula": "(((Lv * 50) + 500) / 100)",
+   "simplified": "(50 × Lv + 500) / 100",
+   "when": "fixAddDamage.Length eq 0 AND mainWeapon != Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length eq 1 AND fixAddDamage.Length ne 0 AND mainWeapon != Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon != Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length eq 0",
+   "by_level": [
+    5.5,
+    6.0,
+    6.5,
+    7.0,
+    7.5,
+    8.0,
+    8.5,
+    9.0,
+    9.5,
+    10.0
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "recoveryAvoidStack",
+   "formula": "((Lv * 100) + 500)",
+   "simplified": "100 × Lv + 500",
+   "when": "fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND mainWeapon != Knuckle AND skillRate.Length hi 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1 AND tumblePercent.Length ne 0 AND tumblePercent.Length ne 1",
+   "by_level": [
+    600,
+    700,
+    800,
+    900,
+    1000,
+    1100,
+    1200,
+    1300,
+    1400,
+    1500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[1]",
+   "formula": "((Lv * 50) + 500)",
+   "simplified": "50 × Lv + 500",
+   "when": "mainWeapon != Knuckle AND skillRate.Length ls 1 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": [
+    550,
+    600,
+    650,
+    700,
+    750,
+    800,
+    850,
+    900,
+    950,
+    1000
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "3",
+   "simplified": "3",
+   "when": "(System.Collections.IEnumerator#0System.Array.GetEnumerator(System.Enum.GetValues(System.Type.GetTypeFromHandle(meta(0x39a89c8, SenfutsuAction.STATE_var)))))",
+   "vars": [
+    "System.Enum.GetValues",
+    "System.Type.GetTypeFromHandle"
+   ],
+   "residual": [
+    "meta("
+   ]
+  },
+  {
+   "method": "OnSuccessAddAbnormalState",
+   "kind": "set",
+   "name": "isSuccessTumble",
+   "formula": "1",
+   "simplified": "1",
+   "when": "type eq 2",
+   "by_level": 1
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "state",
+   "formula": "(skillEventId & 0xffff)",
+   "simplified": "skillEventId & 65535",
+   "when": "(skillEventId & 0xffff) eq 1"
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "isSuccessTumble",
+   "formula": "(skillEventId & 0xffff)",
+   "simplified": "skillEventId & 65535",
+   "when": "(skillEventId & 0xffff) eq 1"
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "state",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND isSuccessTumble ne 0 OR IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND isSuccessTumble ne 0 OR IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND isSuccessTumble ne 0",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate[vtab(0x165da70(System.Collections.IEnumerator#1(System.Array.GetEnumerator(System.Enum.GetValues(System.Type.GetTypeFromHandle(meta(0x39a89c8, SenfutsuAction.STATE_var))))), typeof(SenfutsuAction.STATE)))]",
+   "simplified": "skillRate[vtab(0x165da70(System.Collections.IEnumerator#1(System.Array.GetEnumerator(System.Enum.GetValues(System.Type.GetTypeFromHandle(meta(0x39a89c8, SenfutsuAction.STATE_var))))), typeof(SenfutsuAction.STATE)))]",
+   "when": "(System.Collections.IEnumerator#0System.Array.GetEnumerator(System.Enum.GetValues(System.Type.GetTypeFromHandle(meta(0x39a89c8, SenfutsuAction.STATE_var)))))",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "System.Array.GetEnumerator",
+    "System.Enum.GetValues",
+    "System.Type.GetTypeFromHandle"
+   ],
+   "residual": [
+    "0x165da70(",
+    "meta(",
+    "meta("
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[vtab(0x165da70(System.Collections.IEnumerator#1(System.Array.GetEnumerator(System.Enum.GetValues(System.Type.GetTypeFromHandle(meta(0x39a89c8, SenfutsuAction.STATE_var))))), typeof(SenfutsuAction.STATE)))]",
+   "simplified": "fixAddDamage[vtab(0x165da70(System.Collections.IEnumerator#1(System.Array.GetEnumerator(System.Enum.GetValues(System.Type.GetTypeFromHandle(meta(0x39a89c8, SenfutsuAction.STATE_var))))), typeof(SenfutsuAction.STATE)))]",
+   "when": "(System.Collections.IEnumerator#0System.Array.GetEnumerator(System.Enum.GetValues(System.Type.GetTypeFromHandle(meta(0x39a89c8, SenfutsuAction.STATE_var)))))",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage",
+   "vars": [
+    "System.Array.GetEnumerator",
+    "System.Enum.GetValues",
+    "System.Type.GetTypeFromHandle"
+   ],
+   "residual": [
+    "0x165da70(",
+    "meta(",
+    "meta("
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(PlayerAttackBase.get_ActionID(), Lv, buffTime)",
+   "simplified": "AddSelfBuffer(PlayerAttackBase.get_ActionID(), Lv, buffTime)",
+   "when": "state eq 1",
+   "vars": [
+    "PlayerAttackBase.get_ActionID"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SenfutsuBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, float second",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "(self & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "second",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "InstallationBlackHolePattern.CheckSuctionHit",
+  "InstallationMoveBlackHolePattern.CheckSuctionHit",
+  "MobAttackBase.SetAbnormalEffect"
+ ],
+ "variables": [
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Agi",
+  "IPlayerStatusCalculator.get_Str",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerPrimaryStatus.agi",
+  "System.Array.GetEnumerator",
+  "System.Enum.GetValues",
+  "System.Math.Max",
+  "System.Type.GetTypeFromHandle",
+  "UnityEngine.Time.get_deltaTime",
+  "status.Agi",
+  "status.Str"
+ ],
+ "residual": [
+  {
+   "where": "calcPlayerToMobDamage:templates",
+   "tokens": [
+    "meta("
+   ]
+  },
+  {
+   "where": "calcPlayerToMobDamage:AddRate[SkillRate]",
+   "tokens": [
+    "0x165da70(",
+    "meta(",
+    "meta("
+   ]
+  },
+  {
+   "where": "calcPlayerToMobDamage:AddConstant[SkillConstantDamage]",
+   "tokens": [
+    "0x165da70(",
+    "meta(",
+    "meta("
+   ]
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "version": 1,
+ "uid": 560,
+ "name_th": "ความรู้ของนักล่า",
+ "name_en": "HuntersKnowledge",
+ "tree": "HunterSkill",
+ "category": "Mastery",
+ "max_level": 285,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "HuntersKnowledge",
+ "proration": null,
+ "eq_limit": [
+  "Bowgun"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "HuntersKnowledge",
+  "bonuses": {
+   "SkillRate": {
+    "id": 26,
+    "expr": "(Lv * 25)",
+    "by_level": [
+     25,
+     50,
+     75,
+     100,
+     125,
+     150,
+     175,
+     200,
+     225,
+     250
+    ]
+   },
+   "Crt": {
+    "id": 22,
+    "expr": "25",
+    "by_level": [
+     25,
+     25,
+     25,
+     25,
+     25,
+     25,
+     25,
+     25,
+     25,
+     25
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

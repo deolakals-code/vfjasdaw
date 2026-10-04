@@ -1,0 +1,445 @@
+{
+ "version": 1,
+ "uid": 551,
+ "name_th": "ทุ่นระเบิด",
+ "name_en": "Explossive",
+ "tree": "HunterSkill",
+ "category": "Object",
+ "max_level": 125,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment",
+  "placed object / trap / summon"
+ ],
+ "class": "ExplossiveAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 551,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": "MobAttackPlayerSelfDestruct"
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "placePosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "placePosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "placePosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 30) + 100)",
+   "simplified": "30 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    130,
+    160,
+    190,
+    220,
+    250,
+    280,
+    310,
+    340,
+    370,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv * 60) + 200) + ((baseTEC + baseDEX) << 1)) / 100)",
+   "simplified": "(60 × Lv + 2 × baseTEC + 2 × baseDEX + 200) / 100",
+   "when": "(0 | (subWeapon == Arrow ? 1 : 0)) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) OR ((subWeapon != Null ? 1 : 0) | (subWeapon == Arrow ? 1 : 0)) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) ne 0 OR (0 | (subWeapon == Arrow ? 1 : 0)) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(0 | (subWeapon == Arrow ? 1 : 0)) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) OR (0 | (subWeapon == Arrow ? 1 : 0)) eq 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) OR ((subWeapon != Null ? 1 : 0) | (subWeapon == Arrow ? 1 : 0)) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) ne 0",
+   "by_level": 1,
+   "vars": [
+    "PlayerStatusBase.get_SkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "failTrapper",
+   "formula": "(hasGemCart(45) & 1)",
+   "simplified": "hasGemCart(45) & 1",
+   "when": "(0 | (subWeapon == Arrow ? 1 : 0)) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) OR (0 | (subWeapon == Arrow ? 1 : 0)) eq 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) OR ((subWeapon != Null ? 1 : 0) | (subWeapon == Arrow ? 1 : 0)) ne 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 60) + 200) / 100)",
+   "simplified": "(60 × Lv + 200) / 100",
+   "when": "(0 | (subWeapon == Arrow ? 1 : 0)) eq 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) OR ((subWeapon != Null ? 1 : 0) | (subWeapon == Arrow ? 1 : 0)) eq 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) ne 0 OR (0 | (subWeapon == Arrow ? 1 : 0)) eq 0 AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) eq 0",
+   "by_level": [
+    2.6,
+    3.2,
+    3.8,
+    4.4,
+    5.0,
+    5.6,
+    6.2,
+    6.8,
+    7.4,
+    8.0
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 60) + 200)",
+   "simplified": "60 × Lv + 200",
+   "when": "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!PlayerStatusBase.get_SkillManager().SkillMasteryList, 557) OR (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) ne 0 OR (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 557) AND (mainWeapon==Bowgun & 1) eq 0",
+   "by_level": [
+    260,
+    320,
+    380,
+    440,
+    500,
+    560,
+    620,
+    680,
+    740,
+    800
+   ],
+   "vars": [
+    "PlayerStatusBase.get_SkillManager"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "setEffect",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IOtherPlayerActionManager.get_IsPartyMember(actarAction)",
+   "by_level": 1,
+   "vars": [
+    "IOtherPlayerActionManager.get_IsPartyMember"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "fastHit",
+   "formula": "(motionSpeed gt 0 ? 1 : 0)",
+   "simplified": "motionSpeed > 0 ? 1 : 0",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "setEffect",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!IOtherPlayerActionManager.get_IsPartyMember(actarAction)",
+   "by_level": 0,
+   "vars": [
+    "IOtherPlayerActionManager.get_IsPartyMember"
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "charaMove",
+   "formula": "UnityEngine.Component.GetComponent<CharacterMove>(actarAction)",
+   "simplified": "UnityEngine.Component.GetComponent<CharacterMove>(actarAction)",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "charaMove",
+   "formula": "UnityEngine.Component.GetComponent<CharacterMove>(actarAction)",
+   "simplified": "UnityEngine.Component.GetComponent<CharacterMove>(actarAction)",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "fastHit",
+   "formula": "1",
+   "simplified": "1",
+   "when": "ExplossiveAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), MobActionManagerBase.get_transform(?stack), MobActionManagerBase.get_Size(?stack)) AND UnityEngine.Object.op_Inequality(actarAction) AND failTrapper ne 0",
+   "by_level": 1,
+   "vars": [
+    "ExplossiveAction.CheckRangeHit",
+    "MobActionManagerBase.get_Size",
+    "MobActionManagerBase.get_transform",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "?stack",
+    "?stack"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "1",
+   "simplified": "1",
+   "when": "ExplossiveAction.CheckRangeHit(UnityEngine.Component.get_transform(actarAction), MobActionManagerBase.get_transform(?stack), MobActionManagerBase.get_Size(?stack)) AND UnityEngine.Object.op_Inequality(actarAction) AND failTrapper ne 0",
+   "by_level": 1,
+   "vars": [
+    "ExplossiveAction.CheckRangeHit",
+    "MobActionManagerBase.get_Size",
+    "MobActionManagerBase.get_transform",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "?stack",
+    "?stack"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "rad",
+   "simplified": "rad",
+   "when": "(((UnityEngine.Transform.get_position(targetTransform).x - placePosition) * (UnityEngine.Transform.get_position(targetTransform).x - placePosition)) + ((UnityEngine.Transform.get_position(targetTransform).z - placePosition.z) * (UnityEngine.Transform.get_position(targetTransform).z - placePosition.z))) ls ((Radius + size) * (Radius + size)) AND PlayerAttackBase.checkRangeHeight(this, (UnityEngine.Transform.get_position(targetTransform).y - placePosition.y), size)",
+   "vars": [
+    "PlayerAttackBase.checkRangeHeight",
+    "UnityEngine.Transform.get_position"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(8, abnormalPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(8, abnormalPercent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(8)",
+   "simplified": "SetAbnormalType(8)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Ignition, abnormalPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Ignition",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "MobActionPattern..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "!UnityEngine.Object.op_Equality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND !UnityEngine.Object.op_Equality(actarAction) AND fastHit ne 0 OR !UnityEngine.Object.op_Equality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND !UnityEngine.Object.op_Equality(actarAction) AND TryGetProperties<object>.out2(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 10) ne 0 AND fastHit ne 0 OR !UnityEngine.Object.op_Equality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND !UnityEngine.Object.op_Equality(actarAction) AND TryGetProperties<object>.out2(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 10) eq 0 AND fastHit ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "NormalAttackPattern..ctor",
+   "formula": ".ctor(new MobAttackPlayerSelfDestruct, UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), UnityEngine.Component.get_gameObject(actarAction))",
+   "simplified": ".ctor(new MobAttackPlayerSelfDestruct, UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), UnityEngine.Component.get_gameObject(actarAction))",
+   "when": "!UnityEngine.Object.op_Equality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND !UnityEngine.Object.op_Equality(actarAction) AND fastHit ne 0 OR !UnityEngine.Object.op_Equality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND !UnityEngine.Object.op_Equality(actarAction) AND TryGetProperties<object>.out2(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 10) ne 0 AND fastHit ne 0 OR !UnityEngine.Object.op_Equality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND !UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_IsLocalDead() AND SkillActionBase.checkPercent(this, 100, abnormalPercent) AND fastHit ne 0",
+   "vars": [
+    "PlayerStatusBase.get_IsLocalDead",
+    "SkillActionBase.checkPercent",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Equality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(8, AbnormalStateManager.GetAnbormalStateResistTime(AbnormalType.Ignition))",
+   "simplified": "SetAbnormalType(8, AbnormalStateManager.GetAnbormalStateResistTime(AbnormalType.Ignition))",
+   "when": "!UnityEngine.Object.op_Equality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND !UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_IsLocalDead() AND SkillActionBase.checkPercent(this, 100, abnormalPercent) AND fastHit ne 0 OR !PlayerStatusBase.get_IsLocalDead() AND !UnityEngine.Object.op_Equality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND !UnityEngine.Object.op_Equality(actarAction) AND SkillActionBase.checkPercent(this, 100, abnormalPercent) AND fastHit ne 0 OR !UnityEngine.Object.op_Equality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND !UnityEngine.Object.op_Equality(actarAction) AND PlayerStatusBase.get_IsLocalDead() AND SkillActionBase.checkPercent(this, 100, abnormalPercent) AND TryGetProperties<object>.out2(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 10) ne 0 AND fastHit ne 0",
+   "vars": [
+    "AbnormalStateManager.GetAnbormalStateResistTime",
+    "AbnormalType.Ignition",
+    "PlayerStatusBase.get_IsLocalDead",
+    "SkillActionBase.checkPercent",
+    "UnityEngine.Object.op_Equality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.GetAnbormalStateResistTime",
+  "AbnormalType.Ignition",
+  "ExplossiveAction.CheckRangeHit",
+  "IOtherPlayerActionManager.get_IsPartyMember",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Size",
+  "MobActionManagerBase.get_transform",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerAttackBase.checkRangeHeight",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.tec",
+  "PlayerStatusBase.get_IsLocalDead",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.checkPercent",
+  "System.Collections.Generic.Dictionary.ContainsKeyPlayerStatusBase.get_SkillManager",
+  "TryGetProperties.out2",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": [
+  {
+   "where": "ActionStart:fastHit",
+   "tokens": [
+    "?stack",
+    "?stack"
+   ]
+  },
+  {
+   "where": "ActionStart:LoopParam",
+   "tokens": [
+    "?stack",
+    "?stack"
+   ]
+  }
+ ]
+}

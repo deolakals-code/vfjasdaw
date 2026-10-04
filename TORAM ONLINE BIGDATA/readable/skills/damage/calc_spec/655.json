@@ -1,0 +1,582 @@
+{
+ "version": 1,
+ "uid": 655,
+ "name_th": "ลูนาดิธเธอร์สตาร์",
+ "name_en": "LunaDitherStar",
+ "tree": "DualSword",
+ "category": "Attack",
+ "max_level": 250,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "LunaDitherStarAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 655,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "6",
+   "simplified": "6",
+   "when": "always",
+   "by_level": 6
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SubElement",
+   "formula": "BonusManager.GetEquipElement(PlayerStatusBase.get_BonusManager(), EquipType.SubWeapon)",
+   "simplified": "BonusManager.GetEquipElement(PlayerStatusBase.get_BonusManager(), EquipType.SubWeapon)",
+   "when": "always",
+   "vars": [
+    "BonusManager.GetEquipElement",
+    "PlayerStatusBase.get_BonusManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "baseMp",
+   "formula": "(hasGemCart(1040) ? 300 : 400)",
+   "simplified": "hasGemCart(1040) ? 300 : 400",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "crossSkillRate",
+   "formula": "((status.Dex / 1.5) + ((Lv * 50) + 500))",
+   "simplified": "status.Dex / 1.5 + 50 × Lv + 500",
+   "when": "always",
+   "vars": [
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "crossFixAddDamage",
+   "formula": "400",
+   "simplified": "400",
+   "when": "always",
+   "by_level": 400
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 2)",
+   "simplified": "SkillParam | 2",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "bladeRain",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(skillEventId & 0xffff) eq 100 AND (skillEventId & 0xffff) ne 102",
+   "by_level": 1
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "otherInterruptable",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(skillEventId & 0xffff) eq 102",
+   "by_level": 1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "isAssault",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!GemCartBufferBase.get_IsCoolDown(GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1047)) AND !PlayerAttackBase.IsBlank(this) AND (System.Linq.Enumerable.Any<SkillActionBase.ApplyBufferData>(temporaryApplySkillBuffer, LunaDitherStarAction.<>c.<>9__46_0) & 1) ne 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !GemCartBufferBase.get_IsCoolDown(GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1047)) AND !PlayerAttackBase.IsBlank(this) AND (System.Linq.Enumerable.Any<SkillActionBase.ApplyBufferData>(temporaryApplySkillBuffer, LunaDitherStarAction.<>c.<>9__46_0) & 1) ne 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !GemCartBufferBase.get_IsCoolDown(GemCartBufferManager.GetGemCartBuffer(PlayerStatusBase.get_GemCartBuffManager(), 1047)) AND !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND (System.Linq.Enumerable.Any<SkillActionBase.ApplyBufferData>(temporaryApplySkillBuffer, LunaDitherStarAction.<>c.<>9__46_0) & 1) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "by_level": 1,
+   "vars": [
+    "GemCartBufferBase.get_IsCoolDown",
+    "GemCartBufferManager.GetGemCartBuffer",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_GemCartBuffManager",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "UnityEngine.GameObject.get_transform(target)",
+   "simplified": "UnityEngine.GameObject.get_transform(target)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND (System.Linq.Enumerable.Any<SkillActionBase.ApplyBufferData>(temporaryApplySkillBuffer, LunaDitherStarAction.<>c.<>9__46_0) & 1) eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND (System.Linq.Enumerable.Any<SkillActionBase.ApplyBufferData>(temporaryApplySkillBuffer, LunaDitherStarAction.<>c.<>9__46_0) & 1) eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND (System.Linq.Enumerable.Any<SkillActionBase.ApplyBufferData>(temporaryApplySkillBuffer, LunaDitherStarAction.<>c.<>9__46_0) & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "attackStartTargetDist",
+   "formula": "max((fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) - MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))), 0)",
+   "simplified": "max((fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).y - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y))))) - MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))), 0)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND (System.Linq.Enumerable.Any<SkillActionBase.ApplyBufferData>(temporaryApplySkillBuffer, LunaDitherStarAction.<>c.<>9__46_0) & 1) eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !PlayerAttackBase.IsBlank(this) AND (System.Linq.Enumerable.Any<SkillActionBase.ApplyBufferData>(temporaryApplySkillBuffer, LunaDitherStarAction.<>c.<>9__46_0) & 1) eq 0 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND (System.Linq.Enumerable.Any<SkillActionBase.ApplyBufferData>(temporaryApplySkillBuffer, LunaDitherStarAction.<>c.<>9__46_0) & 1) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05",
+   "vars": [
+    "MobActionManagerBase.get_Size",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "bladeRain",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND !UnityEngine.Object.op_Inequality(actarAction) AND IsOtherPlayer ne 0 AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Inequality(actarAction) AND IsOtherPlayer ne 0 AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Inequality(actarAction) AND IsOtherPlayer ne 0 AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND param eq 100 AND param ne 101",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "interruptable",
+   "formula": "1",
+   "simplified": "1",
+   "when": "param eq 101",
+   "by_level": 1
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "attackPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).y",
+   "when": "UnityEngine.Object.op_Equality(mainTarget, targetTransform)",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "CheckRangeHit",
+   "kind": "set",
+   "name": "attackPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).z",
+   "when": "UnityEngine.Object.op_Equality(mainTarget, targetTransform)",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEventIfMoveIndex",
+   "kind": "set",
+   "name": "bladeRain",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(mainTarget) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 OR !UnityEngine.Object.op_Equality(mainTarget) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(mainTarget)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05",
+   "by_level": 1,
+   "vars": [
+    "InputManager.get_LeftInputKey",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(System.Collections.Generic.Dictionary<object, int>.ContainsKey(targetExpList, mobAction) & 1) eq 0"
+  },
+  {
+   "method": "RegistInterruptableSkill",
+   "kind": "set",
+   "name": "registSkillId",
+   "formula": "skillId",
+   "simplified": "skillId",
+   "when": "always"
+  },
+  {
+   "method": "SetNextAction",
+   "kind": "set",
+   "name": "nextAction",
+   "formula": "nextAction",
+   "simplified": "nextAction",
+   "when": "SkillActionBase.get_ActionID() eq registSkillId",
+   "vars": [
+    "SkillActionBase.get_ActionID"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(crossSkillRate / 100)",
+   "simplified": "crossSkillRate / 100",
+   "when": "(System.Collections.Generic.Dictionary<object, int>.ContainsKey(targetExpList, mobAction) & 1) eq 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "crossFixAddDamage",
+   "simplified": "crossFixAddDamage",
+   "when": "(System.Collections.Generic.Dictionary<object, int>.ContainsKey(targetExpList, mobAction) & 1) eq 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "(PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100",
+   "when": "(System.Collections.Generic.Dictionary<object, int>.ContainsKey(targetExpList, mobAction) & 1) eq 0",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamageRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "when": "(System.Collections.Generic.Dictionary<object, int>.ContainsKey(targetExpList, mobAction) & 1) eq 0",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamage"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "WrapAroundBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WrapAround, 1))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WrapAround, 1))",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WrapAround, 1) & 255) ne 0 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) eq 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Equality(actarAction) AND (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WrapAround, 1) & 255) ne 0 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 OR (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WrapAround, 1) & 255) ne 0 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) eq 1 AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.WrapAround",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new WrapAroundBuf, Id)",
+   "simplified": "AddSelfBuffer(new, WrapAroundBuf, Id)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WrapAround, 1) & 255) ne 0 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) eq 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Equality(actarAction) AND (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WrapAround, 1) & 255) ne 0 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 OR (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.WrapAround, 1) & 255) ne 0 AND IsInstanceOf(actarAction.battleManager, PlayerBattleManager) eq 1 AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.WrapAround",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.CreateNextDamage",
+   "formula": "CreateNextDamage()",
+   "simplified": "CreateNextDamage()",
+   "when": "(System.Collections.Generic.Dictionary<object, int>.ContainsKey(targetExpList, mobAction) & 1) eq 0"
+  },
+  {
+   "method": "ReceivedAbnormal",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(671)",
+   "simplified": "RemoveSelfBuffer(671)",
+   "when": "AbnormalTypeEx.IsActionStop(type) AND hasBuff(671)",
+   "vars": [
+    "AbnormalTypeEx.IsActionStop"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "WrapAroundBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "temporaryCount": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "crtRate": [
+       {
+        "formula": "(((Lv << 2) + lv) << 2)",
+        "when": "always",
+        "by_level": [
+         20,
+         40,
+         60,
+         80,
+         100,
+         120,
+         140,
+         160,
+         180,
+         200
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "CrtUpRate",
+     "bonus_id": 43,
+     "formula": "crtRate",
+     "simplified": "crtRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "Lv",
+     "simplified": "Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "WrapAroundBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "1"
+    }
+   },
+   "attached_via": "caller2:WrapAroundBuf$$.ctor<-LunaDitherStarAction$$ActionSkillEvent",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "ShiningClothAction.OnInitialize"
+ ],
+ "variables": [
+  "AbnormalTypeEx.IsActionStop",
+  "BonusManager.GetEquipElement",
+  "GemCartBufferBase.get_IsCoolDown",
+  "GemCartBufferManager.GetGemCartBuffer",
+  "IPlayerStatusCalculator.get_Dex",
+  "InputManager.get_LeftInputKey",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Size",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerStatusBase.get_BonusManager",
+  "PlayerStatusBase.get_GemCartBuffManager",
+  "PlayerStatusBase.get_SkillManager",
+  "Singleton.get_Instance",
+  "SkillActionBase.get_ActionID",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.Count",
+  "SkillBufferId.CrtUpRate",
+  "SkillId.WrapAround",
+  "SkillManager.GetSkillLv",
+  "System.Collections.Generic.Dictionary.ContainsKey",
+  "System.Linq.Enumerable.Any",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position",
+  "status.Dex"
+ ],
+ "residual": []
+}

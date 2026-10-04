@@ -1,0 +1,229 @@
+{
+ "version": 1,
+ "uid": 1057,
+ "name_th": "บลัดดี้ไบท์",
+ "name_en": "BloodBite",
+ "tree": "DarkPowerSkill",
+ "category": "Attack",
+ "max_level": 1,
+ "roles": [
+  "attack (deals damage)",
+  "heal / recovery"
+ ],
+ "class": "BloodBiteAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1057,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(4)",
+   "simplified": "MathUtil.DisplayMeterToDistance(4)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + 100) + gemCart(1015[4]))",
+   "simplified": "10 × Lv + gemCart(1015, [4]) + 100",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "always",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "recoveryRate",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": 10
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "maxHpRecovery",
+   "formula": "int(((EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.BloodBiteRecoveryLimitRate) * ((status.Lv + (status.Lv << 2)) << 1)) * 0.01))",
+   "simplified": "int(((EternalNightmareBuf.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1064], BonusType.BloodBiteRecoveryLimitRate) * ((status.Lv + (status.Lv << 2)) << 1)) * 0.01))",
+   "when": "always",
+   "vars": [
+    "BonusType.BloodBiteRecoveryLimitRate",
+    "EternalNightmareBuf.GetParam",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "status.Lv"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "maxHpRecovery",
+   "formula": "((status.Lv + (status.Lv << 2)) << 1)",
+   "simplified": "10 × status.Lv",
+   "when": "always",
+   "vars": [
+    "status.Lv"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "hpRecovery",
+   "formula": "(int((((DarkStingerBuf.GetParam(50) * DarkStingerBuf.GetParam(50)) * status.MaxHp) * 0.01)) + hpRecovery)",
+   "simplified": "int(0.01 × A × A × status.MaxHp) + hpRecovery",
+   "when": "IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "defs": [
+    [
+     "A",
+     "DarkStingerBuf.GetParam(50)"
+    ]
+   ],
+   "vars": [
+    "DarkStingerBuf.GetParam",
+    "UnityEngine.Object.op_Inequality",
+    "status.MaxHp"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "hpRecovery",
+   "formula": "int((((recoveryRate * [PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 1)+0x18]) * 0.01) mi maxHpRecovery ? ((recoveryRate * [PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 1)+0x18]) * 0.01) : maxHpRecovery))",
+   "simplified": "int((((recoveryRate * [PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 1)+0x18]) * 0.01) mi maxHpRecovery ? ((recoveryRate * [PlayerAttackBase.templateToDamageData(this, new SkillActionBase.DamageData, PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 1)+0x18]) * 0.01) : maxHpRecovery))",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.templateToDamageData"
+   ],
+   "residual": [
+    "+0x18]",
+    "+0x18]"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1059)",
+   "simplified": "RemoveSelfBuffer(1059)",
+   "when": "IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "BonusType.BloodBiteRecoveryLimitRate",
+  "DarkStingerBuf.GetParam",
+  "EternalNightmareBuf.GetParam",
+  "IPlayerStatusCalculator.get_Lv",
+  "IPlayerStatusCalculator.get_MaxHp",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.templateToDamageData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "UnityEngine.Object.op_Inequality",
+  "status.Lv",
+  "status.MaxHp"
+ ],
+ "residual": [
+  {
+   "where": "calcPlayerToMobDamage:hpRecovery",
+   "tokens": [
+    "+0x18]",
+    "+0x18]"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+{"name": "DungeonBossMobBattleStatus$$get_MaxHp", "rva": "0x1ee6a24", "addr": "0x1ee6a24", "params": [], "static": false, "returns": "int", "truncated": false, "npaths": 1, "cases": [{"value": "int((((((mobLevel * mobLevel) / 2.4) + (mobLevel + 100)) * statusMaster.maxHp) * 0.01))", "common": [], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

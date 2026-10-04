@@ -1,0 +1,941 @@
+[
+ {
+  "call": "AstuteBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.Astute]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "BerserkBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.Berserk]": 1,
+   "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 46)": 3
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "CharacterActionManagerBase.get_Size",
+  "receivers": {
+   "this.BowCalculator.shootMastery": 1,
+   "this.BowgunCalculator.mastery": 1,
+   "this.HalberdCalculator.mastery": 1,
+   "this.KnuckleCalculator.mastery": 1,
+   "this.OneHundSwordCalculator.mastery": 1,
+   "this.TwoHundSwordCalculator.mastery": 1
+  },
+  "overriddenIn": [
+   "EnemyMobActionManagerBase",
+   "HalloweenMobActionManager",
+   "MobaOtherPlayerActionManager",
+   "PetMemberActionManager",
+   "PetMemberRaceActionManager"
+  ]
+ },
+ {
+  "call": "ClearAndSereneBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.ClearAndSerene]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "DeathTorqueShotBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.DeathTorqueShot]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "DualBringerBuf.GetParam",
+  "receivers": {
+   "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 873)": 2
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "EquipItemData.OneHundSwordCalculator.calcEqAtkBonus",
+  "receivers": {
+   "this": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "EquipItemData.WeaponTypeCalculatorBase.CalcStable",
+  "receivers": {
+   "PlayerStatusBase.get_EquipItemData().mainWeaponCalculator": 1
+  },
+  "overriddenIn": [
+   "EquipItemData.ArrowCalculator",
+   "EquipItemData.BowCalculator",
+   "EquipItemData.BowgunCalculator",
+   "EquipItemData.HalberdCalculator",
+   "EquipItemData.HundCalculator",
+   "EquipItemData.KatanaCalculator",
+   "EquipItemData.KnuckleCalculator",
+   "EquipItemData.MagictoolCalculator",
+   "EquipItemData.NinjutsuScrollCalculator",
+   "EquipItemData.OneHundSwordCalculator",
+   "EquipItemData.RodCalculator",
+   "EquipItemData.ShieldCalculator",
+   "EquipItemData.ShortSwordCalculator",
+   "EquipItemData.TwoHundSwordCalculator"
+  ]
+ },
+ {
+  "call": "EquipItemData.WeaponTypeCalculatorBase.CalcSubAtk",
+  "receivers": {
+   "PlayerStatusBase.get_EquipItemData().subWeaponCalculator": 1
+  },
+  "overriddenIn": [
+   "EquipItemData.ArrowCalculator",
+   "EquipItemData.BowCalculator",
+   "EquipItemData.BowgunCalculator",
+   "EquipItemData.HalberdCalculator",
+   "EquipItemData.HundCalculator",
+   "EquipItemData.KatanaCalculator",
+   "EquipItemData.KnuckleCalculator",
+   "EquipItemData.MagictoolCalculator",
+   "EquipItemData.NinjutsuScrollCalculator",
+   "EquipItemData.OneHundSwordCalculator",
+   "EquipItemData.RodCalculator",
+   "EquipItemData.ShieldCalculator",
+   "EquipItemData.ShortSwordCalculator",
+   "EquipItemData.TwoHundSwordCalculator"
+  ]
+ },
+ {
+  "call": "EquipItemData.WeaponTypeCalculatorBase.CalcSubEqAtk",
+  "receivers": {
+   "PlayerStatusBase.get_EquipItemData().subWeaponCalculator": 1
+  },
+  "overriddenIn": [
+   "EquipItemData.HundCalculator",
+   "EquipItemData.OneHundSwordCalculator"
+  ]
+ },
+ {
+  "call": "EquipItemData.WeaponTypeCalculatorBase.CorrectHit",
+  "receivers": {
+   "PlayerStatusBase.get_EquipItemData().mainWeaponCalculator": 1
+  },
+  "overriddenIn": [
+   "EquipItemData.BowCalculator",
+   "EquipItemData.BowgunCalculator",
+   "EquipItemData.HalberdCalculator",
+   "EquipItemData.HundCalculator",
+   "EquipItemData.KatanaCalculator",
+   "EquipItemData.KnuckleCalculator",
+   "EquipItemData.MagictoolCalculator",
+   "EquipItemData.OneHundSwordCalculator",
+   "EquipItemData.RodCalculator",
+   "EquipItemData.TwoHundSwordCalculator"
+  ]
+ },
+ {
+  "call": "EquipItemData.WeaponTypeCalculatorBase.SubCalcMatk",
+  "receivers": {
+   "PlayerStatusBase.get_EquipItemData().subWeaponCalculator": 1
+  },
+  "overriddenIn": [
+   "EquipItemData.ArrowCalculator",
+   "EquipItemData.BowCalculator",
+   "EquipItemData.BowgunCalculator",
+   "EquipItemData.HalberdCalculator",
+   "EquipItemData.HundCalculator",
+   "EquipItemData.KatanaCalculator",
+   "EquipItemData.KnuckleCalculator",
+   "EquipItemData.MagictoolCalculator",
+   "EquipItemData.NinjutsuScrollCalculator",
+   "EquipItemData.OneHundSwordCalculator",
+   "EquipItemData.RodCalculator",
+   "EquipItemData.ShieldCalculator",
+   "EquipItemData.ShortSwordCalculator",
+   "EquipItemData.TwoHundSwordCalculator"
+  ]
+ },
+ {
+  "call": "EquipItemData.WeaponTypeCalculatorBase.SubCalcStable",
+  "receivers": {
+   "PlayerStatusBase.get_EquipItemData().subWeaponCalculator": 1
+  },
+  "overriddenIn": [
+   "EquipItemData.ArrowCalculator",
+   "EquipItemData.BowCalculator",
+   "EquipItemData.BowgunCalculator",
+   "EquipItemData.HalberdCalculator",
+   "EquipItemData.HundCalculator",
+   "EquipItemData.KatanaCalculator",
+   "EquipItemData.KnuckleCalculator",
+   "EquipItemData.MagictoolCalculator",
+   "EquipItemData.NinjutsuScrollCalculator",
+   "EquipItemData.OneHundSwordCalculator",
+   "EquipItemData.RodCalculator",
+   "EquipItemData.ShieldCalculator",
+   "EquipItemData.ShortSwordCalculator",
+   "EquipItemData.TwoHundSwordCalculator"
+  ]
+ },
+ {
+  "call": "EquipItemData.WeaponTypeCalculatorBase.calcAspdParam",
+  "receivers": {
+   "this": 1
+  },
+  "overriddenIn": [
+   "EquipItemData.ArrowCalculator",
+   "EquipItemData.BowCalculator",
+   "EquipItemData.BowgunCalculator",
+   "EquipItemData.HalberdCalculator",
+   "EquipItemData.HundCalculator",
+   "EquipItemData.KatanaCalculator",
+   "EquipItemData.KnuckleCalculator",
+   "EquipItemData.MagictoolCalculator",
+   "EquipItemData.NinjutsuScrollCalculator",
+   "EquipItemData.OneHundSwordCalculator",
+   "EquipItemData.RodCalculator",
+   "EquipItemData.ShieldCalculator",
+   "EquipItemData.ShortSwordCalculator",
+   "EquipItemData.TwoHundSwordCalculator"
+  ]
+ },
+ {
+  "call": "EquipItemData.WeaponTypeCalculatorBase.calcAtkParam",
+  "receivers": {
+   "this": 2
+  },
+  "overriddenIn": [
+   "EquipItemData.ArrowCalculator",
+   "EquipItemData.BowCalculator",
+   "EquipItemData.BowgunCalculator",
+   "EquipItemData.HalberdCalculator",
+   "EquipItemData.HundCalculator",
+   "EquipItemData.KatanaCalculator",
+   "EquipItemData.KnuckleCalculator",
+   "EquipItemData.MagictoolCalculator",
+   "EquipItemData.NinjutsuScrollCalculator",
+   "EquipItemData.OneHundSwordCalculator",
+   "EquipItemData.RodCalculator",
+   "EquipItemData.ShieldCalculator",
+   "EquipItemData.ShortSwordCalculator",
+   "EquipItemData.TwoHundSwordCalculator"
+  ]
+ },
+ {
+  "call": "EquipItemData.WeaponTypeCalculatorBase.calcEqAtkBonus",
+  "receivers": {
+   "this": 1
+  },
+  "overriddenIn": [
+   "EquipItemData.ArrowCalculator",
+   "EquipItemData.BowCalculator",
+   "EquipItemData.BowgunCalculator",
+   "EquipItemData.HalberdCalculator",
+   "EquipItemData.HundCalculator",
+   "EquipItemData.KatanaCalculator",
+   "EquipItemData.KnuckleCalculator",
+   "EquipItemData.MagictoolCalculator",
+   "EquipItemData.NinjutsuScrollCalculator",
+   "EquipItemData.OneHundSwordCalculator",
+   "EquipItemData.RodCalculator",
+   "EquipItemData.ShieldCalculator",
+   "EquipItemData.ShortSwordCalculator",
+   "EquipItemData.TwoHundSwordCalculator"
+  ]
+ },
+ {
+  "call": "EquipItemData.WeaponTypeCalculatorBase.calcMatkParam",
+  "receivers": {
+   "this": 1
+  },
+  "overriddenIn": [
+   "EquipItemData.ArrowCalculator",
+   "EquipItemData.BowCalculator",
+   "EquipItemData.BowgunCalculator",
+   "EquipItemData.HalberdCalculator",
+   "EquipItemData.HundCalculator",
+   "EquipItemData.KatanaCalculator",
+   "EquipItemData.KnuckleCalculator",
+   "EquipItemData.MagictoolCalculator",
+   "EquipItemData.NinjutsuScrollCalculator",
+   "EquipItemData.OneHundSwordCalculator",
+   "EquipItemData.RodCalculator",
+   "EquipItemData.ShieldCalculator",
+   "EquipItemData.ShortSwordCalculator",
+   "EquipItemData.TwoHundSwordCalculator"
+  ]
+ },
+ {
+  "call": "FuriousEffortsBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.FuriousEfforts]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "HandlingerOfGodspeedBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.HandlingerOfGodspeed]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "MailBreakerBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.MailBreaker]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "MultipleHuntBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.MultipleHunt]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "OverLimitBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.OverLimit]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "PlayerActionManagerBase.Damaged",
+  "receivers": {
+   "new System.IO.BinaryWriter": 24
+  },
+  "overriddenIn": [
+   "AutoMemberActionManager",
+   "CallGolemActionManager",
+   "FamiliaActionManager",
+   "HuntingOneActionManager",
+   "MercenaryActionManager",
+   "MobaPlayerActionManager",
+   "PetMemberActionManager",
+   "PlayerActionManager",
+   "SummonDemonicActionManager"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_AbnormalStatusManager",
+  "receivers": {
+   "this.playerStatus": 5
+  },
+  "overriddenIn": [
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_BonusManager",
+  "receivers": {
+   "this.playerStatus": 35,
+   "this": 40,
+   "status": 25
+  },
+  "overriddenIn": [
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_EquipBuffManager",
+  "receivers": {
+   "this": 16
+  },
+  "overriddenIn": [
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_EquipItemData",
+  "receivers": {
+   "this.playerStatus": 101,
+   "this": 11,
+   "status": 25
+  },
+  "overriddenIn": [
+   "BuildPlayerStatus",
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_GameStatus",
+  "receivers": {
+   "this.playerStatus": 1,
+   "this": 22
+  },
+  "overriddenIn": [
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_GemCartBuffManager",
+  "receivers": {
+   "this.playerStatus": 7,
+   "status": 2
+  },
+  "overriddenIn": [
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_ItemRandomProperty",
+  "receivers": {
+   "this": 5
+  },
+  "overriddenIn": [
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_PrimaryStatus",
+  "receivers": {
+   "this.playerStatus": 19,
+   "this": 4,
+   "status": 2
+  },
+  "overriddenIn": [
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_SecondaryStatus",
+  "receivers": {
+   "this.playerStatus": 55,
+   "this": 6,
+   "status": 190
+  },
+  "overriddenIn": [
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_SkillBufferManager",
+  "receivers": {
+   "this.playerStatus": 93,
+   "this": 10,
+   "status": 33,
+   "playerStatus": 1
+  },
+  "overriddenIn": [
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PlayerStatusBase.get_SkillManager",
+  "receivers": {
+   "this.playerStatus": 58,
+   "this": 2,
+   "status": 49
+  },
+  "overriddenIn": [
+   "MobaPlayerStatus",
+   "PlayerStatus"
+  ]
+ },
+ {
+  "call": "PunishRayBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.PunishRay]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "ResonanceBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.Resonance]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "RushBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.Rush]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "SkillBufferDataBase.GetParam",
+  "receivers": {
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.SpiralAir)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.TornadoLance)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.ClearAndSerene)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.ArrowSharpening)": 3,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.LifeRecovery)": 2,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.HealingSong)": 3,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.ManaRecharge)": 2,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.HighCycle)": 2,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Inflexibility)": 2,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.MagicProtection)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.ShiftMotionSpeed)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.AshuraAura)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.ArkSaber)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Stabilis)": 2,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.KnifeCombat)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Detection)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Camouflage)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Destroyer)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Kakei)": 1,
+   "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), SkillId.Ichijhinnokaze)": 1
+  },
+  "overriddenIn": [
+   "AccelBladeBuf",
+   "AegisBuf",
+   "AfterShieldBuf",
+   "ArialSlayBuf",
+   "ArkSaberBuf",
+   "ArrowSharpeningBuf",
+   "AshuraAuraBuf",
+   "AspisSeoulBuf",
+   "AssassinStubBuf",
+   "AssaultChaseBuf",
+   "AstralLanceBuf",
+   "AstuteBuf",
+   "AuraBladeBuf",
+   "AutoDeviceBuf",
+   "BackstepBuf",
+   "BarrierScreenBuf",
+   "BeautiesOfNatureBuf",
+   "BeragelungBuf",
+   "BerserkBuf",
+   "BlessBuf",
+   "BlinkSwordBuf",
+   "BlitzPikeBuf",
+   "BloodSteelBuf",
+   "BoomerangBuf",
+   "BraveAuraBuf",
+   "BraveUpBuf",
+   "BreathingMethodBuf",
+   "BusterBladeBuf",
+   "CallGolemBuf",
+   "CamouflageBuf",
+   "ChainCastBuf",
+   "ChainCastStackBuf",
+   "ChakraBuf",
+   "ChargingBuf",
+   "ChronosShiftBuf",
+   "ClearAndSereneBuf",
+   "CloningTechniqueBuf",
+   "CollectQigongBuf",
+   "ConversionBuf",
+   "CountBufferBase",
+   "CounterForceBuf",
+   "CrazyDaggerBuf",
+   "CronosDriveBuf",
+   "CrossFireBuf",
+   "CutOffTheDisasterBuf",
+   "CutUpBuf",
+   "DarkStingerBuf",
+   "DeadlySpearBuf",
+   "DeathTorqueShotBuf",
+   "DengerShakeBuf",
+   "DestroyerBuf",
+   "DetectionBuf",
+   "DiseasetSealBuf",
+   "DivaCheeringBuf",
+   "DoubleThrowBuf",
+   "DragonTailBuf",
+   "DragonicChargeBuf",
+   "DrainBarrierBuf",
+   "DrainRecallBuf",
+   "DualBringerBuf",
+   "EarthShatteringBuf",
+   "EarthShatteringPassiveBuf",
+   "EarthStyleBuf",
+   "ElegantStanceBuf",
+   "EnchantedBurstBuf",
+   "EnchantedBurstSwordBuf",
+   "EnchantedDanceBuf",
+   "EnchantedSpellBuf",
+   "EnchantedSwordBuf",
+   "EnhanceBuf",
+   "EnthusiasticSongBuf",
+   "EquipMagicBarrierBuf",
+   "EquipPhysicalBarrierBuf",
+   "EquipRateBarrierBuf",
+   "EternalNightmareBuf",
+   "EtherCoatBuf",
+   "EtherFlareBuf",
+   "EvolutionBuf",
+   "ExorcismBuf",
+   "FairyDanceBuf",
+   "FairySongBuf",
+   "FamiliaBuf",
+   "FastAttackBuf",
+   "FearlessBuf",
+   "FinishingTouchBuf",
+   "FirstAidBuf",
+   "FlashArtsBuf",
+   "FloatDashBuf",
+   "FocusBuf",
+   "ForceArrowBuf",
+   "ForefistPunchBuf",
+   "FuneVinteBuf",
+   "FuriousEffortsBuf",
+   "FuriousEffortsExtremeBuf",
+   "GeoImpactBuf",
+   "GladiateBuf",
+   "GlaiveTiggerBuf",
+   "GloriaBuf",
+   "GodHandBuf",
+   "GoliathTakeShotBuf",
+   "GuardianBuf",
+   "GuardyBladeBuf",
+   "HalberdTemporaryMatkBuf",
+   "HammerDownBuf",
+   "HandlingerOfGodspeedBuf",
+   "HealQigongBuf",
+   "HealingShotBuf",
+   "HealingSongBuf",
+   "HighCycleBuf",
+   "HighFamiliaBuf",
+   "HighReactionBuf",
+   "HolyBibleBuf",
+   "HolyGraceBuf",
+   "HorizontalCutBuf",
+   "HuntingOneBuf",
+   "IchijhinnokazeBuf",
+   "IllusionarySceneBuf",
+   "ImperialRayBuf",
+   "ImprovisationSongBuf",
+   "InflexibilityBuf",
+   "JudgmentOfTheDarkGodBuf",
+   "JumpBackShotBuf",
+   "JumpbackShotProtectionBuf",
+   "KadarElexioBuf",
+   "KakeiBuf",
+   "KakeiDeffenceBuf",
+   "KnifeCombatBuf",
+   "KnightPledgeBuf",
+   "KnightStanceBuf",
+   "KnowledgeSongBuf",
+   "LebenGlanzBuf",
+   "LifeRecoveryBuf",
+   "LightningHailBuf",
+   "LunaDitherStarBladeRainBuf",
+   "LunaDitherStarBuf",
+   "MagicBalkanBuf",
+   "MagicBarrierBuf",
+   "MagicBurstBuf",
+   "MagicCannonBuf",
+   "MagicImpactBuf",
+   "MagicLazerBuf",
+   "MagicProtectionBuf",
+   "MagicSkinBuf",
+   "MagnumBuf",
+   "MailBreakerBuf",
+   "MaintainingTheFrontBuf",
+   "ManaCrystalBuf",
+   "ManaRechargeBuf",
+   "MindUpBuf",
+   "MindimageSenjuBuf",
+   "MirageStepBuf",
+   "MizukazeBuf",
+   "MoonSlashBuf",
+   "MorningStarBuf",
+   "MultipleHuntBuf",
+   "N_DragonToothBuf",
+   "NemesisBuf",
+   "OrgaslashBuf",
+   "OverLimitBuf",
+   "P_DeffenceActionBuf",
+   "PairOfShieldsBuf",
+   "ParalysisShotBuf",
+   "ParryingSwordBuf",
+   "PassionDanceBuf",
+   "PetCriticalUpBuf",
+   "PhantomSongBuf",
+   "PhiloEclairBuf",
+   "PriereBuf",
+   "ProtectionBuf",
+   "PunishRayBuf",
+   "QuickAuraBuf",
+   "QuickLoaderBuf",
+   "QuickMotionBuf",
+   "RageSwordBuf",
+   "RampageBuf",
+   "RapidChargeBuf",
+   "RecoveryBuf",
+   "RedTearBuf",
+   "RegretBuf",
+   "RepelBladeBuf",
+   "ResonanceBuf",
+   "RetakeBuf",
+   "RevivalBuf",
+   "RushAidBuf",
+   "RushBuf",
+   "SaberAuraBuf",
+   "SacredTeachingsBuf",
+   "SamuraiArcheryBuf",
+   "SanctuaryBuf",
+   "SeekeriusBuf",
+   "SenfutsuBuf",
+   "ShadowWalkBuf",
+   "ShadowlessSlashBuf",
+   "SharpDanceBuf",
+   "ShieldUpperBuf",
+   "ShiftMotionSpeedBuf",
+   "ShiningClothBuf",
+   "ShukuchiBuf",
+   "SierramBuf",
+   "SlidingBuf",
+   "SmokeDustBuf",
+   "SnipingBuf",
+   "SongOfLifeBuf",
+   "SpiralAirBuf",
+   "SpriteShieldBuf",
+   "StabilisBuf",
+   "StepReactorbuf",
+   "StoneSkinBuf",
+   "StormAndUrgeBuf",
+   "StormAndUrgeExtremeBuf",
+   "StormBlazerBuf",
+   "SturmLeaperBuf",
+   "SummonDemonicBuf",
+   "SupportDanceBuf",
+   "SurvivalInstinctBuf",
+   "SwordMoveBuf",
+   "TakeQigongBuf",
+   "ThieshankaiBuf",
+   "ThorHammerBuf",
+   "ThreeStageThrustBuf",
+   "TornadoLanceBuf",
+   "TriggerSlashBuf",
+   "TwinStormBuf",
+   "UnannouncedDestinationBuf",
+   "UnionSwordBuf",
+   "VenomInjectBuf",
+   "VenomSnatchBuf",
+   "WarCryBuf",
+   "WarProvokeBuf",
+   "WaterStyleBuf",
+   "WeirdnessOfGodBuf",
+   "WheelBiteBuf",
+   "WideSpreadBuf",
+   "WindStyleBuf",
+   "WrapAroundBuf",
+   "ZanteisettetsuBuf"
+  ]
+ },
+ {
+  "call": "SkillMasteryBase.GetMasteryParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.HpBoost]": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.ForceShield]": 3,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.MagicalShiel": 3,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.Bushido]": 5,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.MaintainingT": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.MpBoost]": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.CrtUp]": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.LeewayBattle": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.SafetyRest]": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.SpellBurst]": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.CoolBattlePl": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.SmallBreathe": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.HandlingSati": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.WeaponInBoth": 4,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.Camouflage]": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.DualMastery]": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.DualSwordTec": 3,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.ShinobiWay]": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.DropUp]": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.ExpUp]": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.LightArmorMa": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.AdvanceFlee]": 4,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.AdvanceGuard": 6,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.HeavyArmorMa": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.GodspeedLocu": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.OneChance]": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.CollectQigon": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.SelfDisclosu": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.KnowledgeOfM": 4,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.CastMastery]": 4,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.HitUp]": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.StrongChase]": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.DefUp]": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.KnowledgeOfD": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.FleeUp]": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.ShootMastary": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.BowgunHunter": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.HalberdMaste": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.AtkUp]": 3,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.ThreateningP": 3,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.UnarmedTecni": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.MarshallMast": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.MagicMastary": 4,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.BladeMastery": 3,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.SpeedyBladeM": 4,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.ShieldMastar": 2,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.MatkUp]": 1,
+   "PlayerStatusBase.get_SkillManager().<SkillMasteryList>k__BackingField[SkillId.FurtherMagic": 1
+  },
+  "overriddenIn": [
+   "Abandonment",
+   "ActDead",
+   "AdvanceFlee",
+   "AdvanceGuard",
+   "AfterShield",
+   "ArkSaber",
+   "AspisSeoul",
+   "AssassinationSecrets",
+   "AtkUp",
+   "AttackPerformanceImprovement",
+   "BarehandMastery",
+   "BattleNotes",
+   "BladeMasterMastery",
+   "BladeMastery",
+   "BlessStrengthen",
+   "BowgunHunter",
+   "Bushido",
+   "BusterTypeImproved",
+   "CamouflageMastery",
+   "CaptureTechnicI",
+   "CaptureTechnicII",
+   "CarefulCapture",
+   "CastMastery",
+   "CatsDropItem",
+   "ChainCast",
+   "CollectQigongExtreme",
+   "CollisionOfFightingSpirit",
+   "Concentration",
+   "CoolBattlePlan",
+   "CorrosivePoison",
+   "CrtUp",
+   "DefUp",
+   "DesperateResistance",
+   "DoubleThrow",
+   "DrainRecall",
+   "DropUp",
+   "DualMastery",
+   "DualSwordTechnique",
+   "ElementReach",
+   "EnchantedSpell",
+   "EnhanceSprite",
+   "ExpUp",
+   "FirstAidMastary",
+   "FleeUp",
+   "ForceShield",
+   "FuriousEffortsExtreme",
+   "FurtherMagic",
+   "GodRigidBodyMastery",
+   "GodSpearHandlingMastary",
+   "GodspeedLocus",
+   "GoodQualityShovel",
+   "GoodTame",
+   "GuardStrike",
+   "HalberdMastery",
+   "HandlingSatisfactionMastary",
+   "Harvest",
+   "HeavyArmorMastary",
+   "HeavyBlow",
+   "HitUp",
+   "HpBoost",
+   "HuntersKnowledge",
+   "IchijhinnokazeAratame",
+   "Inflexibility",
+   "IntenseKnife",
+   "KnifeMastery",
+   "KnightHeal",
+   "KnightWill",
+   "KnowledgeOfDefense",
+   "KnowledgeOfMagicWarriorMastary",
+   "LancerTypeImproved",
+   "LeewayBattle",
+   "LightArmorMastary",
+   "LongRangeMastary",
+   "MagicMastary",
+   "MagicResearch",
+   "MagicSkin",
+   "MagicalGuidance",
+   "MagicalShield",
+   "MailBreaker",
+   "MaintainingTheFrontMastery",
+   "MarshallMastary",
+   "MatchPump",
+   "MatkUp",
+   "MindimageSenju",
+   "MirageStep",
+   "Mizukaze",
+   "MpBoost",
+   "OneChance",
+   "Parry",
+   "PetHide",
+   "PetHpUp",
+   "PetMpUp",
+   "PetProtect",
+   "PhysicalGuard",
+   "PoisonMixer",
+   "PowerWave",
+   "QuickDraw",
+   "RapidCharge",
+   "Retake",
+   "Revival",
+   "RushAidMastery",
+   "SacredTeachings",
+   "SafetyRest",
+   "SamuraiArchery",
+   "SecondArm",
+   "Seekerius",
+   "SelfDisclosure",
+   "ShieldMastary",
+   "ShieldPerformanceImprovement",
+   "ShieldTypeImproved",
+   "ShinobiWay",
+   "ShootMastary",
+   "Shukuchi",
+   "SmallBreather",
+   "SoundVeil",
+   "SpeedPerformanceImprovement",
+   "SpeedyBladeMastery",
+   "SpellBurst",
+   "StormAndUrgeExtreme",
+   "StrongChase",
+   "SuperGrip",
+   "SwordMove",
+   "ThePursuitOfPursuit",
+   "ThreateningPower",
+   "ThreateningThorwArts",
+   "TornadoLanceMastary",
+   "UnannouncedDestination",
+   "UnarmedTecnique",
+   "WeaponInBothHands"
+  ]
+ },
+ {
+  "call": "SnipingBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.Sniping]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "TwinStormBuf.GetParam",
+  "receivers": {
+   "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82)": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "WindStyleBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.WindStyle]": 1
+  },
+  "overriddenIn": []
+ },
+ {
+  "call": "WrapAroundBuf.GetParam",
+  "receivers": {
+   "PlayerStatusBase.get_SkillBufferManager().skillBufList[SkillId.WrapAround]": 1
+  },
+  "overriddenIn": []
+ }
+]

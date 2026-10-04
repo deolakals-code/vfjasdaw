@@ -1,0 +1,278 @@
+{
+ "version": 1,
+ "uid": 968,
+ "name_th": "วอร์ครายสทรักเกิ้ล",
+ "name_en": "AdversityRoar",
+ "tree": "HalberdSkill",
+ "category": "Buffer",
+ "max_level": 30,
+ "roles": [
+  "utility / system action"
+ ],
+ "class": "AdversityRoarAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 968,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "((120 + (Lv << 1)) + (Lv << 2))",
+   "simplified": "6 × Lv + 120",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon == Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon != Halberd",
+   "by_level": [
+    126,
+    132,
+    138,
+    144,
+    150,
+    156,
+    162,
+    168,
+    174,
+    180
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetHpPercent"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, ((6 - frintp((Lv / 3))) + -1), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 5 - frintp(Lv / 3), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon == Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon == Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon == Halberd",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerStatusBase.GetHpPercent"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, (6 - frintp((Lv / 3))), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 6 - frintp(Lv / 3), PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon != Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon != Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon != Halberd",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime",
+    "PlayerStatusBase.GetHpPercent"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "(((Lv * 10) + ((120 + (Lv << 1)) + (Lv << 2))) + 20)",
+   "simplified": "16 × Lv + 140",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon == Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon != Halberd",
+   "by_level": [
+    156,
+    172,
+    188,
+    204,
+    220,
+    236,
+    252,
+    268,
+    284,
+    300
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetHpPercent"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "(120 + (Lv << 1))",
+   "simplified": "2 × Lv + 120",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon == Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon != Halberd",
+   "by_level": [
+    122,
+    124,
+    126,
+    128,
+    130,
+    132,
+    134,
+    136,
+    138,
+    140
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetHpPercent"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "(((Lv * 10) + (120 + (Lv << 1))) + 20)",
+   "simplified": "12 × Lv + 140",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon == Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 85 AND mainWeapon != Halberd",
+   "by_level": [
+    152,
+    164,
+    176,
+    188,
+    200,
+    212,
+    224,
+    236,
+    248,
+    260
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetHpPercent"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "(120 + (Lv << 2))",
+   "simplified": "4 × Lv + 120",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 85 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND mainWeapon == Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 85 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND mainWeapon != Halberd",
+   "by_level": [
+    124,
+    128,
+    132,
+    136,
+    140,
+    144,
+    148,
+    152,
+    156,
+    160
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetHpPercent"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "(((Lv * 10) + (120 + (Lv << 2))) + 20)",
+   "simplified": "14 × Lv + 140",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 85 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND mainWeapon == Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 85 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 70 AND mainWeapon != Halberd",
+   "by_level": [
+    154,
+    168,
+    182,
+    196,
+    210,
+    224,
+    238,
+    252,
+    266,
+    280
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetHpPercent"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "120",
+   "simplified": "120",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 85 AND mainWeapon == Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 55 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 85 AND mainWeapon != Halberd",
+   "by_level": 120,
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetHpPercent"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mpRecovery",
+   "formula": "(((Lv * 10) + 120) + 20)",
+   "simplified": "10 × Lv + 140",
+   "when": "PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 85 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 55 AND mainWeapon == Halberd OR PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 70 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) hi 85 AND PlayerStatusBase.GetHpPercent(PlayerActionManagerBase.get_PlayerStatus()) ls 55 AND mainWeapon != Halberd",
+   "by_level": [
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220,
+    230,
+    240
+   ],
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetHpPercent"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerStatusBase.GetHpPercent"
+ ],
+ "residual": []
+}

@@ -1,0 +1,364 @@
+{
+ "version": 1,
+ "uid": 67,
+ "name_th": "มีบาช็อต",
+ "name_en": "MeebaShot",
+ "tree": "ShootSkill",
+ "category": "Attack",
+ "max_level": 10,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "MeebaShotAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 67,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun",
+  "Arrow"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always",
+   "by_level": 2
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SubElement",
+   "formula": "BonusManager.GetEquipElement(PlayerStatusBase.get_BonusManager(), EquipType.SubWeapon)",
+   "simplified": "BonusManager.GetEquipElement(PlayerStatusBase.get_BonusManager(), EquipType.SubWeapon)",
+   "when": "always",
+   "vars": [
+    "BonusManager.GetEquipElement",
+    "PlayerStatusBase.get_BonusManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "IsValidDualElement",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND mainWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND subWeapon != Bowgun AND subWeapon == Bow",
+   "by_level": 1,
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(14)",
+   "simplified": "MathUtil.DisplayMeterToDistance(14)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "always",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "slowPercent",
+   "formula": "(((Lv << 1) + 50) + 30)",
+   "simplified": "2 × Lv + 80",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) eq 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND mainWeapon != Bowgun AND mainWeapon == Bow OR (mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 19 AND subWeapon != Bowgun AND subWeapon == Bow",
+   "by_level": [
+    82,
+    84,
+    86,
+    88,
+    90,
+    92,
+    94,
+    96,
+    98,
+    100
+   ],
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv + (Lv << 2)) + 100)",
+   "simplified": "5 × Lv + 100",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND subWeapon != Bowgun AND subWeapon == Bow OR (mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND subWeapon != Bow AND subWeapon != Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND mainWeapon != Bowgun AND mainWeapon == Bow",
+   "by_level": [
+    105,
+    110,
+    115,
+    120,
+    125,
+    130,
+    135,
+    140,
+    145,
+    150
+   ],
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "(baseDEX + 50)",
+   "simplified": "baseDEX + 50",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "slowPercent",
+   "formula": "((Lv << 1) + 50)",
+   "simplified": "2 × Lv + 50",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND subWeapon != Bow AND subWeapon != Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND mainWeapon != Bow AND mainWeapon != Bowgun OR (mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 19 AND subWeapon != Bow AND subWeapon != Bowgun",
+   "by_level": [
+    52,
+    54,
+    56,
+    58,
+    60,
+    62,
+    64,
+    66,
+    68,
+    70
+   ],
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "slowPercent",
+   "formula": "(((Lv << 1) + 50) - 30)",
+   "simplified": "2 × Lv + 20",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND mainWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 19 AND subWeapon == Bowgun",
+   "by_level": [
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40
+   ],
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv + (Lv << 2)) + 100) + 50)",
+   "simplified": "5 × Lv + 150",
+   "when": "(mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND subWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) eq 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 19 AND mainWeapon == Bowgun OR (mainWeaponType & 0xfffffffe) ne 12 AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 19 AND subWeapon == Bowgun",
+   "by_level": [
+    155,
+    160,
+    165,
+    170,
+    175,
+    180,
+    185,
+    190,
+    195,
+    200
+   ],
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!MobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 11) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "by_level": 1,
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(bonusSkillRate / 100)",
+   "simplified": "bonusSkillRate / 100",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!MobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 11) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(11, slowPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(11, slowPercent, playerAction)",
+   "when": "!PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!MobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 11) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(11)",
+   "simplified": "SetAbnormalType(11)",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKey!MobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 11) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Slow) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyMobActionManagerBase.get_AbnormalStateManager(mobAction).resistTimeList, 11) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Slow, slowPercent, playerAction) AND SkillCalcTemplate.CheckStepResult(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.HitCheck)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "CalcStep.HitCheck",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.TemplateAssignment",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "HuntingOneNormalAttackAction.calcPlayerToMobDamage"
+ ],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Slow",
+  "BonusManager.GetEquipElement",
+  "CalcStep.HitCheck",
+  "EquipItemData.get_SubWeaponItemType",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.get_BonusManager",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillCalcTemplate.CheckStepResult",
+  "System.Collections.Generic.Dictionary.ContainsKeyMobActionManagerBase.get_AbnormalStateManager"
+ ],
+ "residual": []
+}

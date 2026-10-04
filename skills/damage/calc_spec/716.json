@@ -1,0 +1,169 @@
+{
+ "version": 1,
+ "uid": 716,
+ "name_th": "อาร์เดดราค",
+ "name_en": "Aldedrak",
+ "tree": "SpriteSkill",
+ "category": "Object",
+ "max_level": 90,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment",
+  "placed object / trap / summon"
+ ],
+ "class": "AldedrakAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 716,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(16)",
+   "simplified": "MathUtil.DisplayMeterToDistance(16)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 35) + 350) + (((baseDEX + baseINT) lt 0 ? ((baseDEX + baseINT) + 1) : (baseDEX + baseINT)) >> 1))",
+   "simplified": "35 × Lv + (baseDEX + baseINT) ÷ 2 + 350",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "state ne 0"
+  },
+  {
+   "method": "SetLaunch",
+   "kind": "set",
+   "name": "isMoveEnd",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "SetLaunch",
+   "kind": "set",
+   "name": "state",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "ActionHit",
+   "kind": "set",
+   "name": "hitObjectList",
+   "formula": "new System.Collections.Generic.List<GameObject>",
+   "simplified": "new System.Collections.Generic.List<GameObject>",
+   "when": "state eq 0"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "state ne 0",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "300",
+   "simplified": "300",
+   "when": "state ne 0",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(12, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(12, 100, playerAction)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, 100, playerAction) AND state eq 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, 100, playerAction) AND state eq 0",
+   "vars": [
+    "AbnormalType.Stop",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(12, 0)",
+   "simplified": "SetAbnormalType(12, 0)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stop, 100, playerAction) AND state eq 0",
+   "vars": [
+    "AbnormalType.Stop",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Stop",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.dex",
+  "PlayerPrimaryStatus.int",
+  "PlayerStatusBase.GetEquipElement"
+ ],
+ "residual": []
+}

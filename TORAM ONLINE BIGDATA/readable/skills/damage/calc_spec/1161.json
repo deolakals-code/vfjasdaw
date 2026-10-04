@@ -1,0 +1,63 @@
+{
+ "version": 1,
+ "uid": 1161,
+ "name_th": "ร่างแกร่งดุจเทพ",
+ "name_en": "GodRigidBody",
+ "tree": "CrusherSkill",
+ "category": "Mastery",
+ "max_level": 250,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "GodRigidBodyMastery",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "GodRigidBodyMastery",
+  "bonuses": {
+   "CutDmgRate": {
+    "id": 25,
+    "expr": "90",
+    "by_level": [
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90
+    ]
+   },
+   "Value": {
+    "id": 28,
+    "expr": "(Lv + (Lv << 2))",
+    "by_level": [
+     5,
+     10,
+     15,
+     20,
+     25,
+     30,
+     35,
+     40,
+     45,
+     50
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "GodHandBuf.DeathExemption",
+  "GodHandBuf.Initalize",
+  "GoliathTakeShotAction.EnemyDamage"
+ ],
+ "variables": [],
+ "residual": []
+}

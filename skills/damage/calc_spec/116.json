@@ -1,0 +1,533 @@
+{
+ "version": 1,
+ "uid": 116,
+ "name_th": "เอนชานท์บาเรีย",
+ "name_en": "MagicProtection",
+ "tree": "MagicSkill",
+ "category": "Buffer",
+ "max_level": 240,
+ "roles": [
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "MagicProtectionAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 116,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(3)",
+   "simplified": "MathUtil.DisplayMeterToDistance(3)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116).isBreak",
+   "simplified": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116).isBreak",
+   "when": "!PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(3)",
+   "simplified": "MathUtil.DisplayMeterToDistance(3)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116), 0)",
+   "simplified": "AddSelfBuffer(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116), 0)",
+   "when": "TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "MagicProtectionBuf..ctor",
+   "formula": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus(), UnityEngine.Component.get_transform(actarAction))",
+   "simplified": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus(), UnityEngine.Component.get_transform(actarAction))",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new MagicProtectionBuf)",
+   "simplified": "AddSelfBuffer(new, MagicProtectionBuf)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(0)",
+   "simplified": "SetAbnormalType(0)",
+   "when": "!SkillActionBase.op_Equality(action) AND (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116).effective ne 0 AND UnityEngine.Object.op_Inequality(actor) AND damageData.AbnormalType eq -1 OR !SkillActionBase.op_Equality(action) AND !UnityEngine.Object.op_Inequality(actor) AND (EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) & 0xfffffffe) eq 14 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116) ne 0 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 116).effective ne 0 AND damageData.AbnormalType eq -1",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillActionBase.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "MagicProtectionBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase status, Transform actor, BufferEffectManager bufferEffectManager",
+     "fields": {
+      "isFirstSend": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "flag": [
+       {
+        "formula": "514",
+        "when": "always",
+        "by_level": 514
+       }
+      ],
+      "countViewType": [
+       {
+        "formula": "9",
+        "when": "always",
+        "by_level": 9
+       }
+      ],
+      "outsideEffectTakeUid": [
+       {
+        "formula": "0xfffffffeffffffff",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "actor": [
+       {
+        "formula": "actor",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "bufferEffect": [
+       {
+        "formula": "bufferEffectManager",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "placePos": [
+       {
+        "formula": "UnityEngine.Transform.get_position(actor).x",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "placePos.y": [
+       {
+        "formula": "UnityEngine.Transform.get_position(actor).y",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "placePos.z": [
+       {
+        "formula": "UnityEngine.Transform.get_position(actor).z",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "size": [
+       {
+        "formula": "MathUtil.DisplayMeterToDistance(3)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "motionSpeed": [
+       {
+        "formula": "int((Lv * 2.5))",
+        "when": "always",
+        "by_level": [
+         2,
+         5,
+         7,
+         10,
+         12,
+         15,
+         17,
+         20,
+         22,
+         25
+        ]
+       }
+      ],
+      "damageCut": [
+       {
+        "formula": "(((Lv << 2) + lv) + 25)",
+        "when": "always",
+        "by_level": [
+         30,
+         35,
+         40,
+         45,
+         50,
+         55,
+         60,
+         65,
+         70,
+         75
+        ]
+       }
+      ],
+      "barrierHp": [
+       {
+        "formula": "(((((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpTo10) * 10) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHp)) + int(((BonusManager.GetBonusPercentValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpRate) + 1) * int((((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).dbData.Stable * EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Function) / 100) * (status.Int / 7.5)))))) lt 0x1869f ? (((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpTo10) * 10) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHp)) + int(((BonusManager.GetBonusPercentValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpRate) + 1) * int((((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).dbData.Stable * EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Function) / 100) * (status.Int / 7.5)))))) : 0x1869f) gt 100 ? ((((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpTo10) * 10) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHp)) + int(((BonusManager.GetBonusPercentValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpRate) + 1) * int((((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).dbData.Stable * EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Function) / 100) * (status.Int / 7.5)))))) lt 0x1869f ? (((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpTo10) * 10) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHp)) + int(((BonusManager.GetBonusPercentValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpRate) + 1) * int((((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).dbData.Stable * EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Function) / 100) * (status.Int / 7.5)))))) : 0x1869f) : 100)",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "maxBarrierHp": [
+       {
+        "formula": "(((((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpTo10) * 10) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHp)) + int(((BonusManager.GetBonusPercentValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpRate) + 1) * int((((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).dbData.Stable * EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Function) / 100) * (status.Int / 7.5)))))) lt 0x1869f ? (((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpTo10) * 10) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHp)) + int(((BonusManager.GetBonusPercentValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpRate) + 1) * int((((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).dbData.Stable * EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Function) / 100) * (status.Int / 7.5)))))) : 0x1869f) gt 100 ? ((((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpTo10) * 10) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHp)) + int(((BonusManager.GetBonusPercentValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpRate) + 1) * int((((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).dbData.Stable * EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Function) / 100) * (status.Int / 7.5)))))) lt 0x1869f ? (((BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpTo10) * 10) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHp)) + int(((BonusManager.GetBonusPercentValue(PlayerStatusBase.get_BonusManager(), BonusType.bMaxHpRate) + 1) * int((((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).dbData.Stable * EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Function) / 100) * (status.Int / 7.5)))))) : 0x1869f) : 100)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "100"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MotionSpeed",
+     "bonus_id": 0,
+     "formula": "motionSpeed",
+     "simplified": "motionSpeed",
+     "when": [
+      "BuffEffectActive ne 0",
+      "effective ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateUnique",
+     "bonus_id": 5,
+     "formula": "damageCut",
+     "simplified": "damageCut",
+     "when": [
+      "BuffEffectActive ne 0",
+      "effective ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "barrierHp",
+     "simplified": "barrierHp",
+     "when": [
+      "BuffEffectActive ne 0",
+      "effective ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "barrierHp",
+     "simplified": "barrierHp",
+     "when": [
+      "BuffEffectActive ne 0",
+      "effective eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "isFirstSend": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "Reinstallation",
+      "formula": "1",
+      "when": "always"
+     }
+    ],
+    "effective": [
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "MagicProtectionBuf.CheckInArea(this) AND effective eq 0 AND isBreak eq 0 OR MagicProtectionBuf.CheckInArea(this) AND effective ne 0 AND isBreak eq 0 AND isFirstSend ne 0 OR MagicProtectionBuf.CheckInArea(this) AND effective ne 0 AND isBreak eq 0 AND isFirstSend eq 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "!MagicProtectionBuf.CheckInArea(this) AND effective ne 0 OR !MagicProtectionBuf.CheckInArea(this) AND effective eq 0 AND isFirstSend ne 0 OR !MagicProtectionBuf.CheckInArea(this) AND effective eq 0 AND isFirstSend eq 0"
+     }
+    ],
+    "countViewType": [
+     {
+      "method": "Updata",
+      "formula": "9",
+      "when": "MagicProtectionBuf.CheckInArea(this) AND effective eq 0 AND isBreak eq 0 OR MagicProtectionBuf.CheckInArea(this) AND effective ne 0 AND isBreak eq 0 AND isFirstSend ne 0 OR MagicProtectionBuf.CheckInArea(this) AND effective ne 0 AND isBreak eq 0 AND isFirstSend eq 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "13",
+      "when": "!MagicProtectionBuf.CheckInArea(this) AND effective ne 0 OR !MagicProtectionBuf.CheckInArea(this) AND effective eq 0 AND isFirstSend ne 0 OR !MagicProtectionBuf.CheckInArea(this) AND effective eq 0 AND isFirstSend eq 0"
+     }
+    ],
+    "flag": [
+     {
+      "method": "Reinstallation",
+      "formula": "(flag & 0xfffff7ff)",
+      "when": "isBreak ne 0"
+     }
+    ],
+    "isBreak": [
+     {
+      "method": "Reinstallation",
+      "formula": "0",
+      "when": "isBreak ne 0"
+     }
+    ],
+    "barrierHp": [
+     {
+      "method": "Reinstallation",
+      "formula": "int((maxBarrierHp * 0.01))",
+      "when": "isBreak ne 0"
+     },
+     {
+      "method": "KadarElexioDamage",
+      "formula": "barrierHp",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckTakeSkip",
+    "DamageTransfer",
+    "KadarElexioDamage",
+    "Next",
+    "NextSkip",
+    "OnCall",
+    "Reinstallation",
+    "get_BufEffectTakeId"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "MagicProtectionBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "100"
+    }
+   },
+   "attached_via": "caller2:MagicProtectionBuf$$.ctor<-MagicProtectionAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MaximuyzerAction.ActionStart",
+  "MaximuyzerSwitchingBuff.ConverterMaximuyzerSwitching",
+  "MobAttackBase.CalcLastDamage",
+  "MobaPlayerSecondaryStatus.GetMotionSpeed",
+  "PlayerSecondaryStatus.GetCalcMotionSpeed"
+ ],
+ "variables": [
+  "BonusManager.GetBonusPercentValue",
+  "BonusManager.GetBonusValue",
+  "BonusType.bMaxHp",
+  "BonusType.bMaxHpRate",
+  "BonusType.bMaxHpTo10",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "EquipItemData.get_Weapon",
+  "IPlayerStatusCalculator.get_Int",
+  "MagicProtectionBuf.CheckInArea",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_BonusManager",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillActionBase.op_Equality",
+  "SkillBufferId.Count",
+  "SkillBufferId.MobLastDamageRateUnique",
+  "SkillBufferId.MotionSpeed",
+  "SkillBufferId.Value",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuf.out2",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

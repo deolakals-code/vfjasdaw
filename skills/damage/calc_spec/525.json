@@ -1,0 +1,181 @@
+{
+ "version": 1,
+ "uid": 525,
+ "name_th": "อาฟเตอร์ชีลด์",
+ "name_en": "AfterShield",
+ "tree": "KnightSkill",
+ "category": "Mastery",
+ "max_level": 285,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "AfterShield",
+ "proration": null,
+ "eq_limit": [
+  "OneHandSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "AfterShieldBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {},
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "(int(LeftTime) + (int(LeftTime) << 2))",
+     "simplified": "5 × int(LeftTime)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsCooltime eq 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsCooltime ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "IsCooltime": [
+     {
+      "method": "set_IsCooltime",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "CreateCooltimeBuf",
+    "CreateDefaultBuf",
+    "get_IsCooltime",
+    "set_IsCooltime"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "AfterShieldBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:AfterShieldBuf$$CreateCooltimeBuf<-AfterShield$$InvalidDamage",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "AfterShield",
+  "bonuses": {
+   "NormalResist": {
+    "id": 49,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "MobAttackBase.CalcLastDamage"
+ ],
+ "variables": [
+  "SkillBufferId.MobLastDamageRateBuf",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

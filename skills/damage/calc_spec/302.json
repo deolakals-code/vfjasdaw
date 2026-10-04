@@ -1,0 +1,561 @@
+{
+ "version": 1,
+ "uid": 302,
+ "name_th": "วีลไบต์",
+ "name_en": "WheelBite",
+ "tree": "KnifeSkill",
+ "category": "Attack",
+ "max_level": 225,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "changes attack pattern (motion / combo chain; heuristic)",
+  "boosts normal-attack damage"
+ ],
+ "class": "WheelBiteAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 302,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(14)",
+   "simplified": "MathUtil.DisplayMeterToDistance(14)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "400",
+   "simplified": "400",
+   "when": "always",
+   "by_level": 400
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 25) + 750)",
+   "simplified": "25 × Lv + 750",
+   "when": "always",
+   "by_level": [
+    775,
+    800,
+    825,
+    850,
+    875,
+    900,
+    925,
+    950,
+    975,
+    1000
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "targetAction",
+   "formula": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "simplified": "UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "int(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)))",
+   "simplified": "int(MobActionManagerBase.get_Size(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)))",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_Size"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "damageTemplate",
+   "formula": "PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "checkAvoid",
+   "formula": "1",
+   "simplified": "1",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 OR !UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101",
+   "by_level": 1,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "checkAvoid",
+   "formula": "0",
+   "simplified": "0",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND param eq 101 OR !UnityEngine.Object.op_Inequality(actarAction) AND param eq 101",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "DamageAvoid",
+   "kind": "set",
+   "name": "isAvoidSuccess",
+   "formula": "1",
+   "simplified": "1",
+   "when": "EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 9 AND checkAvoid ne 0 AND isAvoidSuccess eq 0 OR EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 9 AND checkAvoid ne 0 AND isAvoidSuccess eq 0",
+   "by_level": 1,
+   "vars": [
+    "EquipItemData.get_Weapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "RecalcAvoidDamage",
+   "kind": "tpl",
+   "name": "SetConstant[Def]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!SkillCalcTemplate.CheckStepResult(damageTemplate, CalcStep.InvincibleCheck) AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 18 OR !SkillCalcTemplate.CheckStepResult(damageTemplate, CalcStep.InvincibleCheck) AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) ne 18",
+   "op": "SetConstant",
+   "step": "Def",
+   "vars": [
+    "CalcStep.InvincibleCheck",
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  },
+  {
+   "method": "RecalcAvoidDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function << 1) lt 1000 ? (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function << 1) : 1000) / 100)",
+   "simplified": "(((EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function << 1) lt 1000 ? (EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function << 1) : 1000) / 100)",
+   "when": "!SkillCalcTemplate.CheckStepResult(damageTemplate, CalcStep.InvincibleCheck) AND EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 18",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "CalcStep.InvincibleCheck",
+    "EquipItemData.get_SubWeapon",
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData",
+    "SkillCalcTemplate.CheckStepResult"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(302, Lv, Id)",
+   "simplified": "AddSelfBuffer(302, Lv, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(302)",
+   "simplified": "RemoveBuffer(302)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND param eq 101",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "DamageAvoid",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(302)",
+   "simplified": "RemoveBuffer(302)",
+   "when": "EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 9 AND checkAvoid ne 0 AND isAvoidSuccess eq 0 OR EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 9 AND checkAvoid ne 0 AND isAvoidSuccess eq 0",
+   "vars": [
+    "EquipItemData.get_Weapon",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass31_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "KnifeCombatBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1), <>c__DisplayClass31_0.playerAction)",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1), <>c__DisplayClass31_0.playerAction)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) ge 1 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 OR (System.Linq.Enumerable.Any<SkillBufferDataBase>!SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000), WheelBiteAction.<>c.<>9__31_1) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) ge 1 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) ge 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) ge 1 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillId.KnifeCombat",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass31_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new KnifeCombatBuf)",
+   "simplified": "AddSelfBuffer(new, KnifeCombatBuf)",
+   "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) ge 1 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 OR (System.Linq.Enumerable.Any<SkillBufferDataBase>!SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000), WheelBiteAction.<>c.<>9__31_1) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) ge 1 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) ge 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) ge 1 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillId.KnifeCombat",
+    "SkillManager.GetSkillLv"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass31_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(302)",
+   "simplified": "RemoveBuffer(302)",
+   "when": "(System.Linq.Enumerable.Any<SkillBufferDataBase>SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000), WheelBiteAction.<>c.<>9__31_1) AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) ge 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) ge 1 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1 OR SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.KnifeCombat, 1) lt 1 AND System.Collections.Generic.ICollection<SkillBufferDataBase>#0(SkillBufferManager.GetSkillBufferFlagMachBuffer(PlayerStatusBase.get_SkillBufferManager(), 0x18000)) lt 1",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+    "SkillId.KnifeCombat",
+    "SkillManager.GetSkillLv"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "KnifeCombatBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "actionManager": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "takeController": [
+       {
+        "formula": "UnityEngine.Component.GetComponent<TakeController>(playerAction)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "normalAtkRate",
+     "simplified": "normalAtkRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "(100 - avoidStackRegist)",
+     "simplified": "100 - avoidStackRegist",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "atkMpRecovery",
+     "simplified": "atkMpRecovery",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "crtUp",
+     "simplified": "crtUp",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [
+    "<TakeEvent>b__19_0",
+    "CheckTake",
+    "IsBattleActive",
+    "TakeEvent",
+    "TakeStop",
+    "get_KnifeTakeId"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "WheelBiteBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MobLastDamageRateUnique",
+     "bonus_id": 5,
+     "formula": "((Lv + (Lv << 2)) << 1)",
+     "simplified": "10 × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateUnique",
+     "bonus_id": 5,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [
+    "CheckDamageInvalid"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "KnifeCombatBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:KnifeCombatBuf$$.ctor<-WheelBiteAction.<>c__DisplayClass31_0$$<ActionStart>b__0",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobAttackBase.CalcLastDamage",
+  "MobAttackBase.InvalidDamage"
+ ],
+ "variables": [
+  "CalcStep.InvincibleCheck",
+  "EquipItemData.get_SubWeapon",
+  "EquipItemData.get_SubWeaponItemType",
+  "EquipItemData.get_Weapon",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_Size",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.MobLastDamageRateUnique",
+  "SkillBufferId.NormalAttackRate",
+  "SkillBufferId.Value",
+  "SkillBufferManager.GetSkillBufferFlagMachBuffer",
+  "SkillCalcTemplate.CheckStepResult",
+  "SkillId.KnifeCombat",
+  "SkillManager.GetSkillLv",
+  "System.Linq.Enumerable.AnySkillBufferManager.GetSkillBufferFlagMachBuffer",
+  "TryGetBuf.out2",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality"
+ ],
+ "residual": []
+}

@@ -1,0 +1,179 @@
+{
+ "version": 1,
+ "uid": 1089,
+ "name_th": "ความชำนาญการสู้มือเปล่า",
+ "name_en": "BarehandMastery",
+ "tree": "BareHandSkill",
+ "category": "Mastery",
+ "max_level": 1,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "BarehandMastery",
+ "proration": null,
+ "eq_limit": [
+  "Hand"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "TakeQigongBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int max",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "600",
+        "when": "always",
+        "by_level": 600
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "max"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "Max",
+     "simplified": "Max",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "takeQigongNum": [
+     {
+      "method": "set_TakeQigongNum",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "Count": [
+     {
+      "method": "set_TakeQigongNum",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "UpdateQigongNum",
+      "formula": "takeQigongNum",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_TakeQigongNum",
+      "formula": "600",
+      "when": "value ne 0"
+     },
+     {
+      "method": "set_TakeQigongNum",
+      "formula": "0",
+      "when": "value eq 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "UpdateQigongNum",
+      "formula": "600",
+      "when": "takeQigongNum ne 0"
+     },
+     {
+      "method": "UpdateQigongNum",
+      "formula": "0",
+      "when": "takeQigongNum eq 0"
+     }
+    ]
+   },
+   "hooks": [
+    "GetUseQigongNum",
+    "UpdateQigongNum",
+    "get_TakeQigongNum",
+    "set_TakeQigongNum"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "counter"
+  }
+ ],
+ "passives": {
+  "class": "BarehandMastery",
+  "bonuses": {
+   "EqAtkRate": {
+    "id": 1,
+    "expr": "((Lv + (Lv << 2)) << 1)",
+    "by_level": [
+     10,
+     20,
+     30,
+     40,
+     50,
+     60,
+     70,
+     80,
+     90,
+     100
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "Revival.CheckRevival",
+  "Revival.OnActionMobDamage"
+ ],
+ "variables": [
+  "SkillBufferId.Count",
+  "SkillBufferId.Value",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

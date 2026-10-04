@@ -1,0 +1,511 @@
+{
+ "version": 1,
+ "uid": 39,
+ "name_th": "สไปรัลแอร์",
+ "name_en": "SpiralAir",
+ "tree": "BladeSkill",
+ "category": "Attack",
+ "max_level": 30,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "SpiralAirAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 39,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((((Lv * 6) + 20) + 5) + gemCart(202[4])) / 100)",
+   "simplified": "(6 × Lv + gemCart(202, [4]) + 25) / 100",
+   "when": "mainWeapon == TwoHandSword"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "10",
+   "simplified": "10",
+   "when": "always",
+   "by_level": 10
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv * 6) + 20) + gemCart(202[4])) / 100)",
+   "simplified": "(6 × Lv + gemCart(202, [4]) + 20) / 100",
+   "when": "mainWeapon != TwoHandSword"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "1 ge hitCount AND hitCount ge 1 OR 0 lt (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1 OR 0 ge (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "1 lt hitCount AND 2 ge hitCount AND hitCount ge 1 OR 1 lt hitCount AND 2 ge hitCount AND hitCount ge 1 AND hitCount lt 1 OR 0 lt (hitCount - 1) AND 1 ge hitCount AND 1 lt hitCount AND 2 ge hitCount AND hitCount ge 1"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "3",
+   "simplified": "3",
+   "when": "1 lt hitCount AND 2 lt hitCount AND 3 ge hitCount AND hitCount ge 1 OR 1 lt hitCount AND 2 lt hitCount AND 3 lt hitCount AND hitCount ge 1 OR 1 lt hitCount AND 2 lt hitCount AND 3 ge hitCount AND hitCount ge 1 AND hitCount lt 1"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "1 ge hitCount AND hitCount ge 1 OR 0 lt (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1 OR 0 ge (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "1 ge hitCount AND hitCount ge 1 OR 0 lt (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1 OR 0 ge (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[StableRate]",
+   "formula": "PlayerAttackBase.CalcStable(SpiralAirAction.get_AttackType(), status.Stable, (SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) & 1), PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcStable(SpiralAirAction.get_AttackType(), status.Stable, SkillCalcTemplate.CheckStepResult(PlayerAttackBase.HitReactionAssign(this, new, SkillCalcTemplate, playerAction, mobAction), CalcStep.CorrectHitCheck) & 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "1 ge hitCount AND hitCount ge 1 OR 0 lt (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1 OR 0 ge (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1",
+   "op": "SetRate",
+   "step": "StableRate",
+   "vars": [
+    "CalcStep.CorrectHitCheck",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcStable",
+    "PlayerAttackBase.HitReactionAssign",
+    "SkillCalcTemplate.CheckStepResult",
+    "SpiralAirAction.get_AttackType",
+    "status.Stable"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), SpiralAirAction.get_AttackType())",
+   "simplified": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), SpiralAirAction.get_AttackType())",
+   "when": "1 ge hitCount AND hitCount ge 1 OR 0 lt (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1 OR 0 ge (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1",
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcLastDamageRate",
+    "SpiralAirAction.get_AttackType"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SpiralAirBuf..ctor",
+   "formula": ".ctor(Lv, (((((status.Dex // (60 - Lv)) + (Lv >> 1)) lt 0 ? (((status.Dex // (60 - Lv)) + (Lv >> 1)) + 1) : ((status.Dex // (60 - Lv)) + (Lv >> 1))) >> 1) lt 5 ? ((((status.Dex // (60 - Lv)) + (Lv >> 1)) lt 0 ? (((status.Dex // (60 - Lv)) + (Lv >> 1)) + 1) : ((status.Dex // (60 - Lv)) + (Lv >> 1))) >> 1) : 5))",
+   "simplified": ".ctor(Lv, (((((status.Dex // (60 - Lv)) + (Lv >> 1)) lt 0 ? (((status.Dex // (60 - Lv)) + (Lv >> 1)) + 1) : ((status.Dex // (60 - Lv)) + (Lv >> 1))) >> 1) lt 5 ? ((((status.Dex // (60 - Lv)) + (Lv >> 1)) lt 0 ? (((status.Dex // (60 - Lv)) + (Lv >> 1)) + 1) : ((status.Dex // (60 - Lv)) + (Lv >> 1))) >> 1) : 5))",
+   "when": "((status.Dex // (60 - Lv)) + (Lv >> 1)) ge 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 11 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR ((status.Dex // (60 - Lv)) + (Lv >> 1)) ge 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) eq 10 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new SpiralAirBuf, Id)",
+   "simplified": "AddSelfBuffer(new, SpiralAirBuf, Id)",
+   "when": "((status.Dex // (60 - Lv)) + (Lv >> 1)) ge 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 11 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR ((status.Dex // (60 - Lv)) + (Lv >> 1)) lt 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 11 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR ((status.Dex // (60 - Lv)) + (Lv >> 1)) ge 1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SpiralAirBuf..ctor",
+   "formula": ".ctor(Lv, 1)",
+   "simplified": ".ctor(Lv, 1)",
+   "when": "((status.Dex // (60 - Lv)) + (Lv >> 1)) lt 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 11 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR ((status.Dex // (60 - Lv)) + (Lv >> 1)) lt 1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR ((status.Dex // (60 - Lv)) + (Lv >> 1)) lt 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) eq 10 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SpiralAirBuf..ctor",
+   "formula": ".ctor(Lv, (((status.Dex // (60 - Lv)) + (Lv >> 1)) lt 10 ? ((status.Dex // (60 - Lv)) + (Lv >> 1)) : 10))",
+   "simplified": ".ctor(Lv, (((status.Dex // (60 - Lv)) + (Lv >> 1)) lt 10 ? ((status.Dex // (60 - Lv)) + (Lv >> 1)) : 10))",
+   "when": "((status.Dex // (60 - Lv)) + (Lv >> 1)) ge 1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) OR ((status.Dex // (60 - Lv)) + (Lv >> 1)) ge 1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) ne 10 AND IsInstanceOf(actarAction, MobaPlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "UnityEngine.Object.op_Inequality",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.CreateNextDamage",
+   "formula": "CreateNextDamage()",
+   "simplified": "CreateNextDamage()",
+   "when": "0 lt (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1 OR 0 lt (hitCount - 1) AND 1 ge hitCount AND hitCount ge 1 AND hitCount lt 1 OR 0 lt (hitCount - 1) AND 1 ge hitCount AND 1 lt hitCount AND 2 ge hitCount AND hitCount ge 1"
+  },
+  {
+   "method": "ReceiveMobaAttack",
+   "kind": "call",
+   "name": "SpiralAirBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1), (((((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) lt 0 ? (((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) + 1) : ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1))) >> 1) lt 5 ? ((((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) lt 0 ? (((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) + 1) : ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1))) >> 1) : 5))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1), (((((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) lt 0 ? (((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) + 1) : ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1))) >> 1) lt 5 ? ((((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) lt 0 ? (((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) + 1) : ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1))) >> 1) : 5))",
+   "when": "((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) ge 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 11 AND attackResponseData.SkillId eq 39 OR ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) ge 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) eq 10 AND attackResponseData.SkillId eq 39",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.SpiralAir",
+    "SkillManager.GetSkillLv",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "ReceiveMobaAttack",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new SpiralAirBuf, attackResponseData.LocalId)",
+   "simplified": "AddSelfBuffer(new, SpiralAirBuf, attackResponseData.LocalId)",
+   "when": "((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) ge 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 11 AND attackResponseData.SkillId eq 39 OR ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) lt 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 11 AND attackResponseData.SkillId eq 39 OR ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) ge 1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND attackResponseData.SkillId eq 39",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.SpiralAir",
+    "SkillManager.GetSkillLv",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "ReceiveMobaAttack",
+   "kind": "call",
+   "name": "SpiralAirBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1), 1)",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1), 1)",
+   "when": "((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) lt 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 11 AND attackResponseData.SkillId eq 39 OR ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) lt 1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND attackResponseData.SkillId eq 39 OR ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) lt 2 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) eq 10 AND attackResponseData.SkillId eq 39",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.SpiralAir",
+    "SkillManager.GetSkillLv",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "ReceiveMobaAttack",
+   "kind": "call",
+   "name": "SpiralAirBuf..ctor",
+   "formula": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1), (((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) lt 10 ? ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) : 10))",
+   "simplified": ".ctor(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1), (((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) lt 10 ? ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) : 10))",
+   "when": "((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) ge 1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND attackResponseData.SkillId eq 39 OR ((status.Dex // (60 - SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1))) + ((SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) lt 0 ? (SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1) + 1) : SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.SpiralAir, 1)) >> 1)) ge 1 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 10 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 11 AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().subWeaponCalculator) ne 10 AND attackResponseData.SkillId eq 39",
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "PlayerStatusBase.get_EquipItemData",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.SpiralAir",
+    "SkillManager.GetSkillLv",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SpiralAirBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int criticalDamage",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "Lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "criticalDamage": [
+       {
+        "formula": "criticalDamage",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "CrtDamageUp",
+     "bonus_id": 46,
+     "formula": "criticalDamage",
+     "simplified": "criticalDamage",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtDamageUp",
+     "bonus_id": 46,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerSecondaryStatus.get_CriticalDmg",
+  "PlayerSecondaryStatus.CalcCriticalDmg",
+  "SpiralAirAction.ReceiveMobaAttack"
+ ],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "CalcStep.CorrectHitCheck",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Dex",
+  "IPlayerStatusCalculator.get_Stable",
+  "MathUtil.CheckPercent",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerAttackBase.CalcLastDamageRate",
+  "PlayerAttackBase.CalcStable",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.HitReactionAssign",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.op_Inequality",
+  "SkillBufferId.CrtDamageUp",
+  "SkillCalcTemplate.CheckStepResult",
+  "SkillComboState.GetThirdEyeValue",
+  "SkillId.SpiralAir",
+  "SkillManager.GetSkillLv",
+  "SpiralAirAction.get_AttackType",
+  "System.Math.Max",
+  "TryGetBuff.buff",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "status.Dex",
+  "status.Stable"
+ ],
+ "residual": []
+}

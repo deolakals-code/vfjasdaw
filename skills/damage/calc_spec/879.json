@@ -1,0 +1,171 @@
+{
+ "version": 1,
+ "uid": 879,
+ "name_th": "เมจิกสกิน",
+ "name_en": "MagicSkin",
+ "tree": "MagicBladeSkill",
+ "category": "Mastery",
+ "max_level": 260,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "MagicSkin",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "MagicSkinBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "120",
+        "when": "always",
+        "by_level": 120
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "name",
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "MagicSkinBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:MagicSkinBuf$$.ctor<-MagicSkin$$DamageAdjustment",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "MagicSkin",
+  "bonuses": {
+   "MobAttackLastDamageRate": {
+    "id": 42,
+    "expr": "(Lv * 25)",
+    "by_level": [
+     25,
+     50,
+     75,
+     100,
+     125,
+     150,
+     175,
+     200,
+     225,
+     250
+    ]
+   },
+   "Percent": {
+    "id": 27,
+    "expr": "(Lv * Lv)",
+    "by_level": [
+     1,
+     4,
+     9,
+     16,
+     25,
+     36,
+     49,
+     64,
+     81,
+     100
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "EquipItemData.CalcEqDef",
+  "MagicSkin.DamageAdjustment",
+  "MagicSkin.GetMobAttackLastDamageRate"
+ ],
+ "variables": [
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

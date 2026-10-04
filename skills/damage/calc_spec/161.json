@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "uid": 161,
+ "name_th": "เฮวี่อาร์เมอร์มาสเตอรี่",
+ "name_en": "HeavyArmorMastary",
+ "tree": "GuardSkill",
+ "category": "Mastery",
+ "max_level": 30,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "HeavyArmorMastary",
+ "proration": null,
+ "eq_limit": [
+  "HevyArmor"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "HeavyArmorMastary",
+  "bonuses": {
+   "Guard": {
+    "id": 9,
+    "expr": "Lv",
+    "by_level": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

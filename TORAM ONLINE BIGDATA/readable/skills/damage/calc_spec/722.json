@@ -1,0 +1,240 @@
+{
+ "version": 1,
+ "uid": 722,
+ "name_th": "เลเบนส์กลานซ์",
+ "name_en": "LebenGlanz",
+ "tree": "SpriteSkill",
+ "category": "Attack",
+ "max_level": 300,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "LebenGlanzAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "None",
+  "action_id": 722,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "LifeExplosionDebuff..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "always"
+  },
+  {
+   "method": "EndDebuffHpHeal",
+   "kind": "call",
+   "name": "Toram.Common.Actions.TargetPlayerData..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "(((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).x))) mi ((MathUtil.DisplayMeterToDistance(7) + EnemyMobActionManagerBase.get_Size()) * (MathUtil.DisplayMeterToDistance(7) + EnemyMobActionManagerBase.get_Size())) AND 0 hs OtherPlayerManager.GetOtherPlayers(TargetableListManagerBase<OtherPlayerManager>.get_Instance()).m_CancellationTokenSource AND OtherPlayerManager.GetOtherPlayers(TargetableListManagerBase<OtherPlayerManager>.get_Instance()).m_CancellationTokenSource ge 1 OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).x))) mi ((MathUtil.DisplayMeterToDistance(7) + EnemyMobActionManagerBase.get_Size()) * (MathUtil.DisplayMeterToDistance(7) + EnemyMobActionManagerBase.get_Size())) AND OtherPlayerManager.GetOtherPlayers(TargetableListManagerBase<OtherPlayerManager>.get_Instance()).m_CancellationTokenSource lt 1 AND System.Linq.Enumerable.Count<TargetPlayerData>(new System.Collections.Generic.List<TargetPlayerData>) ge 1 OR (((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(PlayerDataManager.get_gameObject(PlayerDataManager.GetPlayerDataManager()))).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(enemy)).x))) mi ((MathUtil.DisplayMeterToDistance(7) + EnemyMobActionManagerBase.get_Size()) * (MathUtil.DisplayMeterToDistance(7) + EnemyMobActionManagerBase.get_Size())) AND OtherPlayerManager.GetOtherPlayers(TargetableListManagerBase<OtherPlayerManager>.get_Instance()).m_CancellationTokenSource lt 1 AND System.Linq.Enumerable.Count<TargetPlayerData>(new System.Collections.Generic.List<TargetPlayerData>) lt 1",
+   "vars": [
+    "EnemyMobActionManagerBase.get_Size",
+    "MathUtil.DisplayMeterToDistance",
+    "OtherPlayerManager.GetOtherPlayers",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_gameObject",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "LebenGlanzBuf..ctor",
+   "formula": ".ctor(LifeExplosionDebuff.GetAttackMpRecovery(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 17)))",
+   "simplified": ".ctor(LifeExplosionDebuff.GetAttackMpRecovery(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 17)))",
+   "when": "TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 17) ne 0",
+   "vars": [
+    "LifeExplosionDebuff.GetAttackMpRecovery",
+    "MobActionManagerBase.get_BuffManager",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new LebenGlanzBuf)",
+   "simplified": "AddSelfBuffer(new, LebenGlanzBuf)",
+   "when": "always"
+  },
+  {
+   "method": "ValidDebuff",
+   "kind": "call",
+   "name": "LebenGlanzBuf..ctor",
+   "formula": ".ctor(0)",
+   "simplified": ".ctor(0)",
+   "when": "always"
+  },
+  {
+   "method": "InvalidDebuff",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(722)",
+   "simplified": "RemoveSelfBuffer(722)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "LebenGlanzBuf",
+   "ctors": [
+    {
+     "sig": "int atkMpRecovery",
+     "fields": {
+      "attackMpRecovery": [
+       {
+        "formula": "atkMpRecovery",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "0",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "attackMpRecovery",
+     "simplified": "attackMpRecovery",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "LebenGlanzBuf": {
+     "lv": "0",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:LebenGlanzBuf$$.ctor<-LebenGlanzAction$$ValidDebuff",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "EnemyMobActionManagerBase.get_Size",
+  "LifeExplosionDebuff.GetAttackMpRecovery",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_BuffManager",
+  "OtherPlayerManager.GetOtherPlayers",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_gameObject",
+  "SkillBufferId.AttackMprecoveryUp",
+  "System.Linq.Enumerable.Count",
+  "TargetableListManagerBase.get_Instance",
+  "TryGetBuff.buff",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": []
+}

@@ -1,0 +1,259 @@
+{
+ "version": 1,
+ "uid": 846,
+ "name_th": "คำสอนศักดิ์สิทธิ์",
+ "name_en": "SacredTeachings",
+ "tree": "PriestSkill",
+ "category": "Mastery",
+ "max_level": 285,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "SacredTeachings",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "SacredTeachingsBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "100"
+    }
+   },
+   "attached_via": "caller2:SacredTeachingsBuf$$.ctor<-SacredTeachings$$ReceiveEventSupport",
+   "kind": "counter"
+  },
+  {
+   "class": "SacredTeachingsBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "MaxOverHealValue": [
+       {
+        "formula": "(Lv * 1000)",
+        "when": "always",
+        "by_level": [
+         1000,
+         2000,
+         3000,
+         4000,
+         5000,
+         6000,
+         7000,
+         8000,
+         9000,
+         10000
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "100"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value2",
+     "bonus_id": 51,
+     "formula": "localOverHealValue",
+     "simplified": "localOverHealValue",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(id - 54) hs 2"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "overHealValue",
+     "simplified": "overHealValue",
+     "when": [
+      "BuffEffectActive ne 0",
+      "(id - 54) hs 2"
+     ]
+    }
+   ],
+   "state": {
+    "overHealValue": [
+     {
+      "method": "AddOverHeal",
+      "formula": "(max((0x1869f - maxHp), 0) lt (MaxOverHealValue lt (overHealValue + healValue) ? MaxOverHealValue : (overHealValue + healValue)) ? max((0x1869f - maxHp), 0) : (MaxOverHealValue lt (overHealValue + healValue) ? MaxOverHealValue : (overHealValue + healValue)))",
+      "when": "always"
+     },
+     {
+      "method": "SetOverHeal",
+      "formula": "(max((0x1869f - maxHp), 0) lt (MaxOverHealValue lt overHealValue ? MaxOverHealValue : overHealValue) ? max((0x1869f - maxHp), 0) : (MaxOverHealValue lt overHealValue ? MaxOverHealValue : overHealValue))",
+      "when": "always"
+     }
+    ],
+    "Count": [
+     {
+      "method": "AddOverHeal",
+      "formula": "(?ccmp lt 0 ? int((((max((0x1869f - maxHp), 0) lt (MaxOverHealValue lt (overHealValue + healValue) ? MaxOverHealValue : (overHealValue + healValue)) ? max((0x1869f - maxHp), 0) : (MaxOverHealValue lt (overHealValue + healValue) ? MaxOverHealValue : (overHealValue + healValue))) / MaxOverHealValue) * 100)) : 1)",
+      "when": "always"
+     },
+     {
+      "method": "SetOverHeal",
+      "formula": "(?ccmp lt 0 ? int((((max((0x1869f - maxHp), 0) lt (MaxOverHealValue lt overHealValue ? MaxOverHealValue : overHealValue) ? max((0x1869f - maxHp), 0) : (MaxOverHealValue lt overHealValue ? MaxOverHealValue : overHealValue)) / MaxOverHealValue) * 100)) : 1)",
+      "when": "always"
+     },
+     {
+      "method": "UpdateCount",
+      "formula": "(?ccmp lt 0 ? int(((overHealValue / MaxOverHealValue) * 100)) : 1)",
+      "when": "always"
+     }
+    ],
+    "localOverHealValue": [
+     {
+      "method": "SetOverHeal",
+      "formula": "(max((0x1869f - maxHp), 0) lt (MaxOverHealValue lt overHealValue ? MaxOverHealValue : overHealValue) ? max((0x1869f - maxHp), 0) : (MaxOverHealValue lt overHealValue ? MaxOverHealValue : overHealValue))",
+      "when": "always"
+     },
+     {
+      "method": "Damage",
+      "formula": "(localOverHealValue gt damage ? (localOverHealValue - damage) : 0)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "AddOverHeal",
+    "Damage",
+    "SetOverHeal",
+    "UpdateCount"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": {
+  "class": "SacredTeachings",
+  "bonuses": {}
+ },
+ "hooks": [
+  "SacredTeachings.ReceiveHpHeal"
+ ],
+ "variables": [
+  "SkillBufferId.Count",
+  "SkillBufferId.Value",
+  "SkillBufferId.Value2",
+  "System.Math.Max",
+  "System.Math.Min"
+ ],
+ "residual": []
+}

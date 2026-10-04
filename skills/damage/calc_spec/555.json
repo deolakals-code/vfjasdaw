@@ -1,0 +1,375 @@
+{
+ "version": 1,
+ "uid": 555,
+ "name_th": "เวอร์ติคัลแอร์",
+ "name_en": "VerticalAir",
+ "tree": "HunterSkill",
+ "category": "Attack",
+ "max_level": 205,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "VerticalAirAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 555,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[0]",
+   "formula": "((Lv * 45) + 300)",
+   "simplified": "45 × Lv + 300",
+   "when": "skillRate.Length eq 1 AND skillRate.Length ne 0 OR skillRate.Length ls 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length eq 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": [
+    345,
+    390,
+    435,
+    480,
+    525,
+    570,
+    615,
+    660,
+    705,
+    750
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[1]",
+   "formula": "((Lv * 30) + 200)",
+   "simplified": "30 × Lv + 200",
+   "when": "skillRate.Length ls 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length eq 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length eq 1 AND fixAddDamage.Length ne 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": [
+    230,
+    260,
+    290,
+    320,
+    350,
+    380,
+    410,
+    440,
+    470,
+    500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate[2]",
+   "formula": "(((Lv << 4) - Lv) + 100)",
+   "simplified": "15 × Lv + 100",
+   "when": "fixAddDamage.Length eq 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length eq 1 AND fixAddDamage.Length ne 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length ls 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": [
+    115,
+    130,
+    145,
+    160,
+    175,
+    190,
+    205,
+    220,
+    235,
+    250
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage[0]",
+   "formula": "250",
+   "simplified": "250",
+   "when": "fixAddDamage.Length eq 1 AND fixAddDamage.Length ne 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length ls 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length eq 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": 250
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage[1]",
+   "formula": "100",
+   "simplified": "100",
+   "when": "fixAddDamage.Length ls 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length eq 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length eq 1 AND physicsResist.Length ne 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage[2]",
+   "formula": "50",
+   "simplified": "50",
+   "when": "fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length eq 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length eq 1 AND physicsResist.Length ne 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length hi 2 AND physicsResist.Length ne 0 AND physicsResist.Length ne 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": 50
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicsResist[0]",
+   "formula": "0",
+   "simplified": "0",
+   "when": "fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length eq 1 AND physicsResist.Length ne 0 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length hi 2 AND physicsResist.Length ne 0 AND physicsResist.Length ne 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length ls 2 AND physicsResist.Length ne 0 AND physicsResist.Length ne 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicsResist[1]",
+   "formula": "int(((Lv * 2.5) * ((mainWeapon==Arrow & 1) ne 0 ? 2 : 1)))",
+   "simplified": "int(2.5 × Lv × ((mainWeapon = Arrow & 1) ≠ 0 ? 2 : 1))",
+   "when": "fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length hi 2 AND physicsResist.Length ne 0 AND physicsResist.Length ne 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1 OR fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length ls 2 AND physicsResist.Length ne 0 AND physicsResist.Length ne 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicsResist[2]",
+   "formula": "((((mainWeapon==Arrow & 1) ne 0 ? 2 : 1) * Lv) + ((((mainWeapon==Arrow & 1) ne 0 ? 2 : 1) * Lv) << 2))",
+   "simplified": "5 × ((mainWeapon = Arrow & 1) ≠ 0 ? 2 : 1) × Lv",
+   "when": "fixAddDamage.Length hi 2 AND fixAddDamage.Length ne 0 AND fixAddDamage.Length ne 1 AND physicsResist.Length hi 2 AND physicsResist.Length ne 0 AND physicsResist.Length ne 1 AND skillRate.Length hi 2 AND skillRate.Length ne 0 AND skillRate.Length ne 1"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "SkillIndividualFlag",
+   "simplified": "SkillIndividualFlag",
+   "when": "always"
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "damageCount",
+   "formula": "System.Math.Min((((MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) lt 0 ? (MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) + 3) : MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))) >> 2) + 1), 3)",
+   "simplified": "System.Math.Min(MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) ÷ 4 + 1, 3)",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_PlayerMeterDistance",
+    "System.Math.Min"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "System.Math.Min((((MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) lt 0 ? (MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) + 3) : MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target))) >> 2) + 1), 3)",
+   "simplified": "System.Math.Min(MobActionManagerBase.get_PlayerMeterDistance(UnityEngine.GameObject.GetComponent<MobActionManagerBase>(target)) ÷ 4 + 1, 3)",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_PlayerMeterDistance",
+    "System.Math.Min"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "0 hs skillRate.Length AND 0 lo physicsResist.Length AND damageCount ge 1 OR 0 hs fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 ge damageCount AND damageCount ge 1"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 hs skillRate.Length AND 1 lo physicsResist.Length AND 1 lt damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 hs fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 ge damageCount AND damageCount ge 1"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "3",
+   "simplified": "3",
+   "when": "0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 hs skillRate.Length AND 2 lo physicsResist.Length AND 2 lt damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 hs fixAddDamage.Length AND 2 lo physicsResist.Length AND 2 lo skillRate.Length AND 2 lt damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 lo fixAddDamage.Length AND 2 lo physicsResist.Length AND 2 lo skillRate.Length AND 2 lt damageCount AND 3 ge damageCount AND damageCount ge 1"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[0] / 100)",
+   "simplified": "(skillRate[0] / 100)",
+   "when": "0 hs fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 ge damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 hs physicsResist.Length AND 1 lt damageCount AND damageCount ge 1",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[0]",
+   "simplified": "fixAddDamage[0]",
+   "when": "0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 ge damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 hs physicsResist.Length AND 1 lt damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 hs skillRate.Length AND 1 lo physicsResist.Length AND 1 lt damageCount AND damageCount ge 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[1] / 100)",
+   "simplified": "(skillRate[1] / 100)",
+   "when": "0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 hs fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 ge damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 hs physicsResist.Length AND 2 lt damageCount AND damageCount ge 1",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[1]",
+   "simplified": "fixAddDamage[1]",
+   "when": "0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 ge damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 hs physicsResist.Length AND 2 lt damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 hs skillRate.Length AND 2 lo physicsResist.Length AND 2 lt damageCount AND damageCount ge 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate[2] / 100)",
+   "simplified": "(skillRate[2] / 100)",
+   "when": "0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 hs fixAddDamage.Length AND 2 lo physicsResist.Length AND 2 lo skillRate.Length AND 2 lt damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 lo fixAddDamage.Length AND 2 lo physicsResist.Length AND 2 lo skillRate.Length AND 2 lt damageCount AND 3 ge damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 lo fixAddDamage.Length AND 2 lo physicsResist.Length AND 2 lo skillRate.Length AND 2 lt damageCount AND 3 lt damageCount AND damageCount ge 1",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage[2]",
+   "simplified": "fixAddDamage[2]",
+   "when": "0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 lo fixAddDamage.Length AND 2 lo physicsResist.Length AND 2 lo skillRate.Length AND 2 lt damageCount AND 3 ge damageCount AND damageCount ge 1 OR 0 lo fixAddDamage.Length AND 0 lo physicsResist.Length AND 0 lo skillRate.Length AND 1 lo fixAddDamage.Length AND 1 lo physicsResist.Length AND 1 lo skillRate.Length AND 1 lt damageCount AND 2 lo fixAddDamage.Length AND 2 lo physicsResist.Length AND 2 lo skillRate.Length AND 2 lt damageCount AND 3 lt damageCount AND damageCount ge 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "System.Math.Max(0, (25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4))))",
+   "simplified": "System.Math.Max(0, 25 - MobBuffer.GuardUpBuff.get_GuardUpval(TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4)))",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND TryGetBuff.buff(MobActionManagerBase.get_BuffManager(mobAction), 4) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_BuffManager",
+    "MobActionManagerBase.get_SystemInvincible",
+    "MobBuffer.GuardUpBuff.get_GuardUpval",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager",
+    "System.Math.Max",
+    "TryGetBuff.buff"
+   ]
+  },
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "tpl",
+   "name": "SetCalcValue[GuardPower]",
+   "formula": "25",
+   "simplified": "25",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) ne 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND ((1 | isCritical) & 1) eq 0 AND (False & 1) eq 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType eq 2 AND comboType ne 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND (False & 1) eq 0 AND AbnormalStateManager.Contains(PlayerStatusBase.get_AbnormalStatusManager(), AbnormalType.Flash) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 2 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) ne 0 AND attackType ne 2 AND comboType ne 3",
+   "op": "SetCalcValue",
+   "step": "GuardPower",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Flash",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "PlayerStatusBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "via PlayerAttackBase$$HitReactionAssign",
+   "kind": "call",
+   "name": "MathUtil.CheckPercent",
+   "formula": "CheckPercent()",
+   "simplified": "CheckPercent()",
+   "when": "!MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3 OR !MobActionManagerBase.get_SystemInvincible(mobAction) AND !SkillActionBase.op_Inequality(this) AND ((1 | isCritical) & 1) eq 0 AND MathUtil.CheckPercent(SkillComboState.GetThirdEyeValue(_currentSkillCombo)) AND MobaMode eq 0 AND PlayerAttackBase.CalcHitReaction(this, attackType, playerAction, mobAction) eq 0 AND attackType eq 2 AND comboType eq 3",
+   "vars": [
+    "MathUtil.CheckPercent",
+    "MobActionManagerBase.get_SystemInvincible",
+    "PlayerAttackBase.CalcHitReaction",
+    "SkillActionBase.op_Inequality",
+    "SkillComboState.GetThirdEyeValue"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Flash",
+  "MathUtil.CheckPercent",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_BuffManager",
+  "MobActionManagerBase.get_PlayerMeterDistance",
+  "MobActionManagerBase.get_SystemInvincible",
+  "MobBuffer.GuardUpBuff.get_GuardUpval",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcHitReaction",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_AbnormalStatusManager",
+  "SkillActionBase.op_Inequality",
+  "SkillComboState.GetThirdEyeValue",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TryGetBuff.buff",
+  "UnityEngine.GameObject.GetComponent"
+ ],
+ "residual": []
+}

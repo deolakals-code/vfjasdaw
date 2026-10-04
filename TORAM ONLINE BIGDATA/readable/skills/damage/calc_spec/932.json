@@ -1,0 +1,43 @@
+{
+ "version": 1,
+ "uid": 932,
+ "name_th": "ซ่อนตัว",
+ "name_en": "PetHide",
+ "tree": "PetSkill",
+ "category": "Mastery",
+ "max_level": 1,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "PetHide",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "PetHide",
+  "bonuses": {
+   "DamageTransferRate": {
+    "id": 35,
+    "expr": "(55 - Lv)",
+    "by_level": [
+     54,
+     53,
+     52,
+     51,
+     50,
+     49,
+     48,
+     47,
+     46,
+     45
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

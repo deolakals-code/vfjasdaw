@@ -1,0 +1,444 @@
+{
+ "version": 1,
+ "uid": 587,
+ "name_th": "บาเรียสกรีน",
+ "name_en": "BarrierScreen",
+ "tree": "GolemSkill",
+ "category": "Object",
+ "max_level": 200,
+ "roles": [
+  "buff (self)",
+  "placed object / trap / summon"
+ ],
+ "class": "BarrierScreenAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 587,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bowgun",
+  "Shield"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(100)",
+   "simplified": "MathUtil.DisplayMeterToDistance(100)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "time",
+   "formula": "(((Lv + (Lv << 1)) << 2) lo 60 ? ((Lv + (Lv << 1)) << 2) : 60)",
+   "simplified": "12 × Lv < 60 ? 12 × Lv : 60",
+   "when": "always",
+   "by_level": [
+    12,
+    24,
+    36,
+    48,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "reduceDamageValue",
+   "formula": "((Lv << 2) hi 20 ? (Lv << 2) : 20)",
+   "simplified": "4 × Lv > 20 ? 4 × Lv : 20",
+   "when": "always",
+   "by_level": [
+    20,
+    20,
+    20,
+    20,
+    20,
+    24,
+    28,
+    32,
+    36,
+    40
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "archetypeUid",
+   "formula": "IUserArchetype.get_ArchetypeUid(UnityEngine.Component.GetComponent<IUserArchetype>(actarAction))",
+   "simplified": "IUserArchetype.get_ArchetypeUid(UnityEngine.Component.GetComponent<IUserArchetype>(actarAction))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(actarAction) AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(actarAction) AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) lt 1 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1",
+   "vars": [
+    "IUserArchetype.get_ArchetypeUid",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BarrierScreenPerformanceImprovement",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePos",
+   "formula": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x + UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x))",
+   "simplified": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x + UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).x))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(actarAction) AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(actarAction) AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) lt 1 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BarrierScreenPerformanceImprovement",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePos.y",
+   "formula": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y + UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y))",
+   "simplified": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y + UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).y))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(actarAction) AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(actarAction) AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) lt 1 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BarrierScreenPerformanceImprovement",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "placePos.z",
+   "formula": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z + UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z))",
+   "simplified": "(UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z + (UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z + UnityEngine.Transform.get_forward(UnityEngine.Component.get_transform(actarAction)).z))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(actarAction) AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(actarAction) AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) lt 1 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BarrierScreenPerformanceImprovement",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_forward",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "reduceDamageValue",
+   "formula": "(reduceDamageValue + max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0))",
+   "simplified": "reduceDamageValue + max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND UnityEngine.Object.op_Inequality(actarAction) AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) gt 1e-05 AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1 OR !PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction.battleManager.mainTargetData.Target) AND fsqrt((((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).z - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z)) + ((UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x) * (UnityEngine.Transform.get_position(UnityEngine.GameObject.get_transform(actarAction.battleManager.mainTargetData.Target)).x - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x)))) le 1e-05 AND max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0) ge 1",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BarrierScreenPerformanceImprovement",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.GameObject.get_transform",
+    "UnityEngine.Object.op_Inequality",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "state",
+   "formula": "1",
+   "simplified": "1",
+   "when": "param eq 100 AND param ne 10 AND param ne 101 AND state eq 0",
+   "by_level": 1
+  },
+  {
+   "method": "OnDamage",
+   "kind": "set",
+   "name": "state",
+   "formula": "2",
+   "simplified": "2",
+   "when": "state ne 2",
+   "by_level": 2
+  },
+  {
+   "method": "Break",
+   "kind": "set",
+   "name": "state",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always",
+   "by_level": 2
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "archetypeUid",
+   "formula": "IOtherPlayerActionManager.get_ArchetypeUid(actarAction)",
+   "simplified": "IOtherPlayerActionManager.get_ArchetypeUid(actarAction)",
+   "when": "always",
+   "vars": [
+    "IOtherPlayerActionManager.get_ArchetypeUid"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "isMine",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "placePos",
+   "formula": "castTime",
+   "simplified": "castTime",
+   "when": "always"
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "time",
+   "formula": "((((SkillIndividualFlag >> 24) + ((SkillIndividualFlag >> 24) << 1)) << 2) lo 60 ? (((SkillIndividualFlag >> 24) + ((SkillIndividualFlag >> 24) << 1)) << 2) : 60)",
+   "simplified": "A < 60 ? A : 60",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "12 × (SkillIndividualFlag ÷ 0x1000000)"
+    ]
+   ]
+  },
+  {
+   "method": "ActionStartOthers",
+   "kind": "set",
+   "name": "reduceDamageValue",
+   "formula": "((((SkillIndividualFlag >> 24) << 2) hi 20 ? ((SkillIndividualFlag >> 24) << 2) : 20) + ((255 & SkillIndividualFlag) eq 0 ? 0 : ?ubfx))",
+   "simplified": "(A > 20 ? A : 20) + (255 & SkillIndividualFlag = 0 ? 0 : ?ubfx)",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "4 × (SkillIndividualFlag ÷ 0x1000000)"
+    ]
+   ],
+   "residual": [
+    "?ubfx"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "BarrierScreenBuf..ctor",
+   "formula": ".ctor(Lv, max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0))",
+   "simplified": ".ctor(Lv, max(SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.BarrierScreenPerformanceImprovement, 1), 0))",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 10",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.BarrierScreenPerformanceImprovement",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new BarrierScreenBuf, Id)",
+   "simplified": "AddSelfBuffer(new, BarrierScreenBuf, Id)",
+   "when": "IsOtherPlayer eq 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 10",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ReceiveOtherSkillEvent",
+   "kind": "call",
+   "name": "Toram.Common.ArchetypeUid..ctor",
+   "formula": ".ctor(0, System.Collections.Generic.Dictionary<int, int>.get_Item(skillEventData.Value, 21))",
+   "simplified": ".ctor(0, System.Collections.Generic.Dictionary<int, int>.get_Item(skillEventData.Value, 21))",
+   "when": "(System.Collections.Generic.Dictionary<int, int>.ContainsKey(skillEventData.Value, 21) & 1) ne 0 AND skillEventData.SkillEventId eq 200 AND skillEventData.SkillID eq 587 OR (System.Collections.Generic.Dictionary<int, int>.ContainsKey(skillEventData.Value, 21) & 1) ne 0 AND SkillActionBase.op_Inequality(0) AND skillEventData.SkillEventId eq 200 AND skillEventData.SkillID eq 587 OR !SkillActionBase.op_Inequality(0) AND (System.Collections.Generic.Dictionary<int, int>.ContainsKey(skillEventData.Value, 21) & 1) ne 0 AND skillEventData.SkillEventId eq 200 AND skillEventData.SkillID eq 587",
+   "vars": [
+    "SkillActionBase.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "BarrierScreenBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, byte modifyLevel",
+     "fields": {
+      "atkMpHeal": [
+       {
+        "formula": "(int(((modifyLevel & 255) * 2.5)) - 50)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AttackMprecoveryUpRate",
+     "bonus_id": 34,
+     "formula": "atkMpHeal",
+     "simplified": "atkMpHeal",
+     "when": []
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "int(time)",
+     "simplified": "int(time)",
+     "when": []
+    }
+   ],
+   "state": {
+    "time": [
+     {
+      "method": "Updata",
+      "formula": "(time + UnityEngine.Time.get_deltaTime())",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "BarrierScreenBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:BarrierScreenBuf$$.ctor<-BarrierScreenAction$$ActionSkillEvent",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IOtherPlayerActionManager.get_ArchetypeUid",
+  "IUserArchetype.get_ArchetypeUid",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillActionBase.op_Inequality",
+  "SkillBufferId.AttackMprecoveryUpRate",
+  "SkillBufferId.Value",
+  "SkillId.BarrierScreenPerformanceImprovement",
+  "SkillManager.GetSkillLv",
+  "System.Collections.Generic.Dictionary.ContainsKey",
+  "System.Collections.Generic.Dictionary.get_Item",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.GameObject.get_transform",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Transform.get_forward",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": [
+  {
+   "where": "ActionStartOthers:reduceDamageValue",
+   "tokens": [
+    "?ubfx"
+   ]
+  }
+ ]
+}

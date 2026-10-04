@@ -1,0 +1,341 @@
+{
+ "version": 1,
+ "uid": 652,
+ "name_th": "[N]ไชน์นิ่งครอส[N2]เบลซซิ่งไชน์นิ่งครอส[N]",
+ "name_en": "ShiningCloth",
+ "tree": "DualSword",
+ "category": "Attack",
+ "max_level": 170,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "ShiningClothAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 652,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "5",
+   "simplified": "5",
+   "when": "always",
+   "by_level": 5
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + 300) + (((status.Agi // 4) + (status.Str // 4)) + (status.Dex // 4)))",
+   "simplified": "10 × Lv + status.Agi // 4 + status.Str // 4 + status.Dex // 4 + 300",
+   "when": "hasBuff(655)",
+   "vars": [
+    "status.Agi",
+    "status.Dex",
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 20) + 100)",
+   "simplified": "20 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    120,
+    140,
+    160,
+    180,
+    200,
+    220,
+    240,
+    260,
+    280,
+    300
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "change",
+   "formula": "1",
+   "simplified": "1",
+   "when": "hasBuff(655)",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "0x10000",
+   "simplified": "0x10000",
+   "when": "hasBuff(655)",
+   "by_level": 65536
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "LoopParam",
+   "formula": "SubElement",
+   "simplified": "SubElement",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 10) + 300) + (((status.Agi // 5) + (status.Str // 5)) + (status.Dex // 5)))",
+   "simplified": "10 × Lv + status.Agi // 5 + status.Str // 5 + status.Dex // 5 + 300",
+   "when": "!hasBuff(655)",
+   "vars": [
+    "status.Agi",
+    "status.Dex",
+    "status.Str"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!hasBuff(655)",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "SubElement",
+   "formula": "motionSpeed",
+   "simplified": "motionSpeed",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "change ne 0",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "max((skillRate - System.Math.Max(0, System.Math.Min(400, ((MobActionManagerBase.get_PlayerMeterDistance(mobAction) * 50) - 200)))), 100)",
+   "simplified": "max(skillRate - System.Math.Max(0, System.Math.Min(400, 50 × MobActionManagerBase.get_PlayerMeterDistance(mobAction) - 200)), 100)",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_PlayerMeterDistance",
+    "System.Math.Max",
+    "System.Math.Min"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(MobActionManagerBase.get_PlayerMeterDistance(mobAction) | SkillIndividualFlag)",
+   "simplified": "MobActionManagerBase.get_PlayerMeterDistance(mobAction) | SkillIndividualFlag",
+   "when": "always",
+   "vars": [
+    "MobActionManagerBase.get_PlayerMeterDistance"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always"
+  },
+  {
+   "method": "GetLocalizeKey",
+   "kind": "set",
+   "name": "change",
+   "formula": "change",
+   "simplified": "change",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(max((skillRate - System.Math.Max(0, System.Math.Min(400, ((MobActionManagerBase.get_PlayerMeterDistance(mobAction) * 50) - 200)))), 100) / 100)",
+   "simplified": "max(skillRate - System.Math.Max(0, System.Math.Min(400, 50 × MobActionManagerBase.get_PlayerMeterDistance(mobAction) - 200)), 100) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_PlayerMeterDistance",
+    "System.Math.Max",
+    "System.Math.Min"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": ".<>c__DisplayClass27_0::<ActionStart>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(CharacterActionManagerBase.get_IsLocalDead(), [<>c__DisplayClass27_0.<>4__this+0x14], 0)",
+   "simplified": "AddSelfBuffer(CharacterActionManagerBase.get_IsLocalDead(), [<>c__DisplayClass27_0.<>4__this+0x14], 0)",
+   "when": "(cancel & 1) eq 0",
+   "vars": [
+    "CharacterActionManagerBase.get_IsLocalDead"
+   ],
+   "residual": [
+    "+0x14]"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ShiningClothBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "9",
+        "when": "always",
+        "by_level": 9
+       }
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "CharacterActionManagerBase.get_IsLocalDead",
+  "IPlayerStatusCalculator.get_Agi",
+  "IPlayerStatusCalculator.get_Dex",
+  "IPlayerStatusCalculator.get_Str",
+  "MathUtil.DisplayMeterToDistance",
+  "MobActionManagerBase.get_PlayerMeterDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Time.get_deltaTime",
+  "status.Agi",
+  "status.Dex",
+  "status.Str"
+ ],
+ "residual": [
+  {
+   "where": ".<>c__DisplayClass27_0::<ActionStart>b__1:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "+0x14]"
+   ]
+  }
+ ]
+}

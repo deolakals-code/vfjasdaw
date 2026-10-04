@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "uid": 557,
+ "name_th": "ฮันเตอร์ครอสโบ",
+ "name_en": "BowgunHunter",
+ "tree": "HunterSkill",
+ "category": "Mastery",
+ "max_level": 125,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "BowgunHunter",
+ "proration": null,
+ "eq_limit": [
+  "Bowgun"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "BowgunHunter",
+  "bonuses": {
+   "EqAtkRate": {
+    "id": 1,
+    "expr": "int((Lv * 2.5))",
+    "by_level": [
+     2,
+     5,
+     7,
+     10,
+     12,
+     15,
+     17,
+     20,
+     22,
+     25
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

@@ -1,0 +1,326 @@
+{
+ "version": 1,
+ "uid": 994,
+ "name_th": "อีเวชัน",
+ "name_en": "Evolution",
+ "tree": "AssassinSkill",
+ "category": "Support",
+ "max_level": 15,
+ "roles": [
+  "buff (self)",
+  "buff (party / others)"
+ ],
+ "class": "EvolutionAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 994,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "EvolutionBuf..ctor",
+   "formula": ".ctor(Lv, 0, subWeaponType)",
+   "simplified": ".ctor(Lv, 0, subWeaponType)",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(new EvolutionBuf)",
+   "simplified": "AddBuffer(new, EvolutionBuf)",
+   "when": "always"
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "AbnormalStateManager.RemoveAbnormalState",
+   "formula": "RemoveAbnormalState(11)",
+   "simplified": "RemoveAbnormalState(11)",
+   "when": "AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Slow)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "PlayerActionManagerBase.get_AbnormalStatusManager"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "EvolutionBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, bool isSelf, int itemType",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "((Lv + 20) + (Lv + 20))",
+        "when": "itemType eq 23 OR itemType eq 18 AND itemType ne 23",
+        "by_level": [
+         42,
+         44,
+         46,
+         48,
+         50,
+         52,
+         54,
+         56,
+         58,
+         60
+        ]
+       },
+       {
+        "formula": "(Lv + 20)",
+        "when": "itemType ne 18 AND itemType ne 23",
+        "by_level": [
+         21,
+         22,
+         23,
+         24,
+         25,
+         26,
+         27,
+         28,
+         29,
+         30
+        ]
+       }
+      ],
+      "flee": [
+       {
+        "formula": "(Lv + 10)",
+        "when": "itemType eq 23 OR itemType eq 18 AND itemType ne 23",
+        "by_level": [
+         11,
+         12,
+         13,
+         14,
+         15,
+         16,
+         17,
+         18,
+         19,
+         20
+        ]
+       },
+       {
+        "formula": "Lv",
+        "when": "itemType ne 18 AND itemType ne 23",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "fleeRate": [
+       {
+        "formula": "Lv",
+        "when": "itemType eq 23 OR itemType eq 18 AND itemType ne 23 OR itemType ne 18 AND itemType ne 23",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "isViewSelfIcon": [
+       {
+        "formula": "(isSelf & 1)",
+        "when": "itemType eq 23 OR itemType eq 18 AND itemType ne 23 OR itemType ne 18 AND itemType ne 23",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(isSelf & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Flee",
+     "bonus_id": 13,
+     "formula": "flee",
+     "simplified": "flee",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "FleeRate",
+     "bonus_id": 12,
+     "formula": "fleeRate",
+     "simplified": "fleeRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "isViewSelfIcon": [
+     {
+      "method": "SetViewSelfIcon",
+      "formula": "(flag & 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "EvolutionBuf": {
+     "lv": "lv",
+     "self": "(isSelf & 1)"
+    }
+   },
+   "attached_via": "caller2:EvolutionBuf$$.ctor<-EvolutionAction$$ActionHit",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Slow",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "SkillBufferId.Flee",
+  "SkillBufferId.FleeRate",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

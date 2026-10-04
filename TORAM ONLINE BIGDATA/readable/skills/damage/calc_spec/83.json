@@ -1,0 +1,32 @@
+{
+ "version": 1,
+ "uid": 83,
+ "name_th": "ซามูไรอาร์เชอรี",
+ "name_en": "SamuraiArchery",
+ "tree": "ShootSkill",
+ "category": "Mastery",
+ "max_level": 240,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "SamuraiArchery",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "SamuraiArchery",
+  "bonuses": {}
+ },
+ "hooks": [
+  "ElementReach.CheckActiveSamuraiArcherySubElement",
+  "ElementReach.SetSubElement",
+  "GameManager.PlayerSkillUpdate",
+  "NormalAttackAction.Damaged",
+  "PlayerStatusBase.SetEquip"
+ ],
+ "variables": [],
+ "residual": []
+}

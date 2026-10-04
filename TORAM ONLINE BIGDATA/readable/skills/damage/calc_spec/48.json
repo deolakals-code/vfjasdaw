@@ -1,0 +1,326 @@
+{
+ "version": 1,
+ "uid": 48,
+ "name_th": "ชัทเอาท์",
+ "name_en": "ShutOut",
+ "tree": "BladeSkill",
+ "category": "Attack",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "ShutOutAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 48,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()))",
+   "when": "always",
+   "vars": [
+    "EquipItemData.get_Weapon",
+    "PlayerAttackBase.GetWeaponRange",
+    "PlayerStatusBase.get_EquipItemData"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((baseAGI lt 0 ? (baseAGI + 3) : baseAGI) >> 2) + 500)",
+   "simplified": "baseAGI ÷ 4 + 500",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "200",
+   "simplified": "200",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "by_level": 200
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "(((Lv * 150) + 500) + ((baseAGI lt 0 ? (baseAGI + 3) : baseAGI) >> 2))",
+   "simplified": "150 × Lv + baseAGI ÷ 4 + 500",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicsResistBreakerBonus",
+   "formula": "2",
+   "simplified": "2",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon == OneHandSword",
+   "by_level": 2
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((baseDEX lt 0 ? (baseDEX + 1) : baseDEX) >> 1) + 500)",
+   "simplified": "baseDEX ÷ 2 + 500",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "100",
+   "simplified": "100",
+   "when": "mainWeapon == TwoHandSword OR mainWeapon != OneHandSword AND mainWeapon != TwoHandSword OR mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword",
+   "by_level": 100
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "(((Lv * 150) + 500) + ((baseDEX lt 0 ? (baseDEX + 1) : baseDEX) >> 1))",
+   "simplified": "150 × Lv + baseDEX ÷ 2 + 500",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicsResistBreakerBonus",
+   "formula": "4",
+   "simplified": "4",
+   "when": "mainWeapon != TwoHandSword AND mainWeapon == OneHandSword AND subWeapon != OneHandSword",
+   "by_level": 4
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "500",
+   "simplified": "500",
+   "when": "mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "by_level": 500
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "((Lv * 150) + 500)",
+   "simplified": "150 × Lv + 500",
+   "when": "mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "by_level": [
+    650,
+    800,
+    950,
+    1100,
+    1250,
+    1400,
+    1550,
+    1700,
+    1850,
+    2000
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "physicsResistBreakerBonus",
+   "formula": "1",
+   "simplified": "1",
+   "when": "mainWeapon == TwoHandSword OR mainWeapon != OneHandSword AND mainWeapon != TwoHandSword",
+   "by_level": 1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 100) + 500)",
+   "simplified": "100 × Lv + 500",
+   "when": "mainWeapon == TwoHandSword",
+   "by_level": [
+    600,
+    700,
+    800,
+    900,
+    1000,
+    1100,
+    1200,
+    1300,
+    1400,
+    1500
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "(((Lv * 150) + 500) - (Lv * 150))",
+   "simplified": "500",
+   "when": "mainWeapon == TwoHandSword",
+   "by_level": 500
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "bleed",
+   "simplified": "bleed",
+   "when": "!PlayerAttackBase.IsBlank(this) AND WeaponType eq 11 OR !PlayerAttackBase.IsBlank(this) AND WeaponType ne 11",
+   "vars": [
+    "PlayerAttackBase.IsBlank"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "bleed",
+   "formula": "(MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock & 1)",
+   "simplified": "(MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock & 1)",
+   "when": "(MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock & 1) ne 0 AND MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock eq 0 OR (MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock & 1) eq 0 AND MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock eq 0",
+   "vars": [
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(bonusSkillRate / 100)",
+   "simplified": "bonusSkillRate / 100",
+   "when": "MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock ne 0 AND bleed ne 0 OR (MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock & 1) ne 0 AND MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock eq 0",
+   "op": "AddRate",
+   "step": "SkillRate",
+   "vars": [
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[Def]",
+   "formula": "-ShutOutAction.CalcBonusResistDamage(this, PlayerActionManagerBase.get_PlayerStatus(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "simplified": "-ShutOutAction.CalcBonusResistDamage(this, PlayerActionManagerBase.get_PlayerStatus(), MobActionManagerBase.get_MobBattleStatus(mobAction))",
+   "when": "MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock ne 0 AND bleed ne 0 OR (MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock & 1) ne 0 AND MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock eq 0",
+   "op": "SetConstant",
+   "step": "Def",
+   "vars": [
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "MobActionManagerBase.get_MobBattleStatus",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "ShutOutAction.CalcBonusResistDamage"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(19, 100, playerAction)",
+   "simplified": "checkAbnormalPercent(19, 100, playerAction)",
+   "when": "MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock ne 0 AND bleed ne 0 OR (MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock & 1) ne 0 AND MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock eq 0",
+   "vars": [
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(19)",
+   "simplified": "SetAbnormalType(19)",
+   "when": "MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock ne 0 AND bleed ne 0 OR (MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock & 1) ne 0 AND MobActionManagerBase.get_AbnormalStateManager(mobAction).IsActionLock eq 0",
+   "vars": [
+    "MobActionManagerBase.get_AbnormalStateManager"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "EquipItemData.get_Weapon",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "MobActionManagerBase.get_MobBattleStatus",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerPrimaryStatus.agi",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.get_EquipItemData",
+  "ShutOutAction.CalcBonusResistDamage"
+ ],
+ "residual": []
+}

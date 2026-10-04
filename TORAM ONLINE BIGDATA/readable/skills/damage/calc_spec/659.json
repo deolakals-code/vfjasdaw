@@ -1,0 +1,461 @@
+{
+ "version": 1,
+ "uid": 659,
+ "name_th": "เอเลียสลีย์",
+ "name_en": "ArialSlay",
+ "tree": "DualSword",
+ "category": "Special",
+ "max_level": 170,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "applies status ailment"
+ ],
+ "class": "ArialSlayAction",
+ "proration": {
+  "slot": "dynamic",
+  "mode": "first_hit_per_target",
+  "attack_type": "dynamic",
+  "action_id": 659,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "OneHandSword",
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "((1 << subWeaponType) & 0x888000) ne 0 AND subWeapon == OneHandSword AND subWeaponType ls 23 OR ((1 << subWeaponType) & 0x888000) ne 0 AND (subWeaponType | 2) eq 18 AND subWeapon == OneHandSword AND subWeaponType ls 23 OR ((1 << subWeaponType) & 0x888000) ne 0 AND (subWeaponType | 2) ne 18 AND subWeapon == OneHandSword AND subWeaponType ls 23",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 20) + 100)",
+   "simplified": "20 × Lv + 100",
+   "when": "(subWeaponType | 2) eq 18 AND subWeapon == OneHandSword AND subWeaponType hi 23 OR (subWeaponType | 2) ne 18 AND subWeapon == OneHandSword AND subWeaponType hi 23 OR (subWeaponType | 2) eq 18 AND subWeapon != OneHandSword AND subWeaponType hi 23",
+   "by_level": [
+    120,
+    140,
+    160,
+    180,
+    200,
+    220,
+    240,
+    260,
+    280,
+    300
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 50) + System.Math.Max(status.Dex, baseSTR))",
+   "simplified": "50 × Lv + System.Math.Max(status.Dex, baseSTR)",
+   "when": "(subWeaponType | 2) eq 18 AND subWeapon != OneHandSword AND subWeaponType hi 23 OR ((1 << subWeaponType) & 0x888000) ne 0 AND (subWeaponType | 2) eq 18 AND subWeapon != OneHandSword AND subWeaponType ls 23 OR ((1 << subWeaponType) & 0x888000) eq 0 AND (subWeaponType | 2) eq 18 AND subWeapon != OneHandSword AND subWeaponType ls 23",
+   "vars": [
+    "System.Math.Max",
+    "status.Dex"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "attackType",
+   "formula": "2",
+   "simplified": "2",
+   "when": "(subWeaponType | 2) ne 18 AND subWeapon != OneHandSword AND subWeapon == Magictool AND subWeaponType hi 23 OR ((1 << subWeaponType) & 0x888000) ne 0 AND (subWeaponType | 2) ne 18 AND subWeapon != OneHandSword AND subWeapon == Magictool AND subWeaponType ls 23 OR ((1 << subWeaponType) & 0x888000) eq 0 AND (subWeaponType | 2) ne 18 AND subWeapon != OneHandSword AND subWeapon == Magictool AND subWeaponType ls 23",
+   "by_level": 2
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "subWeapon == OneHandSword AND subWeaponType hi 23 OR ((1 << subWeaponType) & 0x888000) eq 0 AND subWeapon == OneHandSword AND subWeaponType ls 23 OR (subWeaponType | 2) eq 18 AND subWeapon == OneHandSword AND subWeaponType hi 23",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "isMoveAssist",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND SubWeaponType ne 10 AND SubWeaponType ne 17 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND hasBuff(519)",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "charaMove",
+   "formula": "UnityEngine.Component.GetComponent<CharacterMove>(actarAction)",
+   "simplified": "UnityEngine.Component.GetComponent<CharacterMove>(actarAction)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND !hasBuff(519) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "enableMove",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND !hasBuff(519) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) OR !PlayerAttackBase.IsBlank(this) AND SubWeaponType ne 10 AND SubWeaponType ne 17 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND hasBuff(519)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "isMoveAssist",
+   "formula": "[skillMaster+0x30]",
+   "simplified": "[skillMaster+0x30]",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !hasBuff(519) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND !hasBuff(519) AND SubWeaponType eq 17 AND SubWeaponType ne 10 OR !PlayerAttackBase.IsBlank(this) AND !hasBuff(519) AND SubWeaponType ne 10 AND SubWeaponType ne 17 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "+0x30]"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SubWeaponType eq 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND SubWeaponType eq 10 AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0) AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND !hasBuff(519) AND SubWeaponType eq 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND UnityEngine.Object.op_Inequality(UnityEngine.GameObject.GetComponent<EnemyMobActionManagerBase>(target), 0)",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ChangeMpDuringCombo",
+   "kind": "set",
+   "name": "baseMp",
+   "formula": "100",
+   "simplified": "100",
+   "when": "combo.index ge 1",
+   "by_level": 100
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "enableMove",
+   "formula": "0",
+   "simplified": "0",
+   "when": "UnityEngine.Object.op_Inequality(charaMove) AND param eq 101 OR !UnityEngine.Object.op_Inequality(charaMove) AND param eq 101",
+   "by_level": 0,
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "ArialSlayBuf..ctor",
+   "formula": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND !hasBuff(519) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0)",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ArialSlayBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ArialSlayBuf, Id)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND hasBuff(519) OR !PlayerAttackBase.IsBlank(this) AND !hasBuff(519) AND SubWeaponType eq 17 AND SubWeaponType ne 10 AND UnityEngine.Object.op_Inequality(UnityEngine.Component.GetComponent<CharacterMove>(actarAction), 0)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "Damaged",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(0)",
+   "simplified": "SetAbnormalType(0)",
+   "when": "EquipItemData.get_SubWeaponItemType(PlayerStatusBase.get_EquipItemData()) eq 17 AND SkillDamageData.IsInactivityAbnormal(damageData) AND hasBuff(659)",
+   "vars": [
+    "EquipItemData.get_SubWeaponItemType",
+    "PlayerStatusBase.get_EquipItemData",
+    "SkillDamageData.IsInactivityAbnormal"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass30_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(659)",
+   "simplified": "RemoveSelfBuffer(659)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ArialSlayBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase playerStatus",
+     "fields": {
+      "flag": [
+       {
+        "formula": "1024",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 10 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 17 OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 10 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 17",
+        "by_level": 1024
+       },
+       {
+        "formula": "3072",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17",
+        "by_level": 3072
+       }
+      ],
+      "subWeapon": [
+       {
+        "formula": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17 OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 10 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 17 OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 10 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 17",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "5",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 10 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 17",
+        "by_level": 5
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "System.Math.Min(((ItemData.get_Refine(subWeapon) & 255) << 1), 30)",
+     "simplified": "System.Math.Min(2 × (ItemData.get_Refine(subWeapon) & 255), 30)",
+     "when": [
+      "subWeapon.Type eq 17"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "subWeapon.Type ne 17"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "SkillBufferDataBase",
+   "ctors": [],
+   "params": [],
+   "state": {
+    "Level": [
+     {
+      "method": "set_Level",
+      "formula": "value",
+      "when": "always"
+     }
+    ],
+    "IsSelfAction": [
+     {
+      "method": "set_IsSelfAction",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsDamageCancel": [
+     {
+      "method": "set_IsDamageCancel",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "set_LeftTime",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "get_BufEffectTakeId",
+    "get_IsAbnormalDamageCancel",
+    "get_IsDamageCancel",
+    "get_IsEnd",
+    "get_IsRange",
+    "get_IsSelfAction",
+    "get_LeftTime",
+    "get_Level",
+    "set_IsDamageCancel",
+    "set_IsEnd",
+    "set_IsSelfAction",
+    "set_LeftTime",
+    "set_Level"
+   ],
+   "child_args": {
+    "ArialSlayBuf": {
+     "lv": "lv",
+     "self": "1"
+    }
+   },
+   "attached_via": "caller2:ArialSlayBuf$$.ctor<-ArialSlayAction$$ActionStart",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "ArialSlayAction.Damaged",
+  "MobAttackBase.CalcLastDamage"
+ ],
+ "variables": [
+  "EquipItemData.get_SubWeapon",
+  "EquipItemData.get_SubWeaponItemType",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Dex",
+  "ItemData.get_Refine",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerPrimaryStatus.str",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.MobLastDamageRateBuf",
+  "SkillDamageData.IsInactivityAbnormal",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Component.GetComponent",
+  "UnityEngine.GameObject.GetComponent",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "status.Dex"
+ ],
+ "residual": [
+  {
+   "where": "ActionStart:isMoveAssist",
+   "tokens": [
+    "+0x30]"
+   ]
+  }
+ ]
+}

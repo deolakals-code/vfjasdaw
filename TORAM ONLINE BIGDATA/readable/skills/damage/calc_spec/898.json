@@ -1,0 +1,86 @@
+{
+ "version": 1,
+ "uid": 898,
+ "name_th": "",
+ "name_en": "NpcHeal",
+ "tree": 28,
+ "category": "Heal",
+ "max_level": 0,
+ "roles": [
+  "heal / recovery"
+ ],
+ "class": "NpcHealAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 898,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "48",
+   "simplified": "48",
+   "when": "always",
+   "by_level": 48
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "SkillUtil.CalcCastTime(1, PlayerStatusBase.get_BattleStatus())",
+   "simplified": "SkillUtil.CalcCastTime(1, PlayerStatusBase.get_BattleStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_BattleStatus",
+    "SkillUtil.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "hpHeal",
+   "formula": "((((Lv + 15) * status.MaxHp) // 100) + (Lv * 50))",
+   "simplified": "(Lv + 15) × status.MaxHp // 100 + 50 × Lv",
+   "when": "always",
+   "vars": [
+    "status.MaxHp"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "IPlayerStatusCalculator.get_MaxHp",
+  "PlayerStatusBase.get_BattleStatus",
+  "SkillUtil.CalcCastTime",
+  "status.MaxHp"
+ ],
+ "residual": []
+}

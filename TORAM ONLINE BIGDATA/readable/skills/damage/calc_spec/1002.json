@@ -1,0 +1,30 @@
+{
+ "version": 1,
+ "uid": 1002,
+ "name_th": "พิษกัดกร่อน",
+ "name_en": "CorrosivePoison",
+ "tree": "AssassinSkill",
+ "category": "Mastery",
+ "max_level": 35,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "CorrosivePoison",
+ "proration": null,
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "CorrosivePoison",
+  "bonuses": {}
+ },
+ "hooks": [
+  "CorrosivePoison.CalcCorrosivePoison"
+ ],
+ "variables": [],
+ "residual": []
+}

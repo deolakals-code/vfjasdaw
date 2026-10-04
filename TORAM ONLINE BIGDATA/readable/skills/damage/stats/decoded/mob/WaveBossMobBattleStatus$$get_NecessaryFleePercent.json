@@ -1,0 +1,1 @@
+{"name": "WaveBossMobBattleStatus$$get_NecessaryFleePercent", "rva": "0x1f6fc98", "addr": "0x1f6fc98", "params": [], "static": false, "returns": "float", "truncated": false, "npaths": 1, "cases": [{"value": "((AbnormalStateManager.Contains(abnormalManager, AbnormalType.Blindness) & 1) ne 0 ? 0.7 : 1)", "common": [], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

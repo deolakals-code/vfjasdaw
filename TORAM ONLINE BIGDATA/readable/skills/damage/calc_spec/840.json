@@ -1,0 +1,325 @@
+{
+ "version": 1,
+ "uid": 840,
+ "name_th": "พรีเอล",
+ "name_en": "Priere",
+ "tree": "PriestSkill",
+ "category": "Support",
+ "max_level": 205,
+ "roles": [
+  "buff (self)",
+  "buff (party / others)"
+ ],
+ "class": "PriereAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 840,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "PriereBuf..ctor",
+   "formula": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": ".ctor(Lv, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddBuffer",
+   "formula": "AddBuffer(new PriereBuf)",
+   "simplified": "AddBuffer(new, PriereBuf)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "PriereBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerStatusBase status",
+     "fields": {
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR ((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 0) eq 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14",
+        "by_level": 1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR ((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 0) eq 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "0",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR ((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 0) eq 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14",
+        "by_level": null
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR ((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 0) eq 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14",
+        "by_level": -1
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "((Lv + 15) + 50)",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14",
+        "by_level": [
+         66,
+         67,
+         68,
+         69,
+         70,
+         71,
+         72,
+         73,
+         74,
+         75
+        ]
+       },
+       {
+        "formula": "(Lv + 15)",
+        "when": "((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 0) eq 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14 OR ((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 0) ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14 OR ((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 1) eq 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14",
+        "by_level": [
+         16,
+         17,
+         18,
+         19,
+         20,
+         21,
+         22,
+         23,
+         24,
+         25
+        ]
+       }
+      ],
+      "mAtkUpRate": [
+       {
+        "formula": "Lv",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR ((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 0) ne 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       },
+       {
+        "formula": "(Lv + 5)",
+        "when": "((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 0) eq 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14 OR ((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 1) eq 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14",
+        "by_level": [
+         6,
+         7,
+         8,
+         9,
+         10,
+         11,
+         12,
+         13,
+         14,
+         15
+        ]
+       }
+      ],
+      "isViewSelfIcon": [
+       {
+        "formula": "1",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 14 OR ((EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type eq 15 ? 1 : 0) | 0) eq 1 AND EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type ne 15 AND EquipItemData.get_Weapon(PlayerStatusBase.get_EquipItemData()).Type ne 14",
+        "by_level": 1
+       }
+      ]
+     }
+    },
+    {
+     "sig": "byte lv, float time, int val",
+     "fields": {
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "time",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "mAtkUpRate": [
+       {
+        "formula": "val",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "isViewSelfIcon": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MAtkUpRate",
+     "bonus_id": 30,
+     "formula": "mAtkUpRate",
+     "simplified": "mAtkUpRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "MAtkUpRate",
+     "bonus_id": 30,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "EquipItemData.get_SubWeapon",
+  "EquipItemData.get_Weapon",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerStatusBase.get_EquipItemData",
+  "SkillBufferId.MAtkUpRate",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

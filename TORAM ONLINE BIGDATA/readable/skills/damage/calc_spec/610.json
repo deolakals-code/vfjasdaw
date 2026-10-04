@@ -1,0 +1,259 @@
+{
+ "version": 1,
+ "uid": 610,
+ "name_th": "ปอมเมลสไตร์ค",
+ "name_en": "StrikeBackOfSword",
+ "tree": "MononofuSkill",
+ "category": "Attack",
+ "max_level": 10,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "StrikeBackOfSwordAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 610,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetSubWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetSubWeaponType.item(actarAction))",
+   "when": "mainWeapon == Bow",
+   "vars": [
+    "GetSubWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "abnormalPercent",
+   "formula": "((Lv + (Lv << 2)) + 50)",
+   "simplified": "5 × Lv + 50",
+   "when": "always",
+   "by_level": [
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv + (Lv << 2)) + 100) / 100)",
+   "simplified": "(5 × Lv + 100) / 100",
+   "when": "always",
+   "by_level": [
+    1.05,
+    1.1,
+    1.15,
+    1.2,
+    1.25,
+    1.3,
+    1.35,
+    1.4,
+    1.45,
+    1.5
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "stunPercent",
+   "formula": "(Lv + (Lv << 2))",
+   "simplified": "5 × Lv",
+   "when": "always",
+   "by_level": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "mainWeapon != Bow",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(3, stunPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(3, stunPercent, playerAction)",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Paralysis) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction) AND AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Paralysis)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Paralysis",
+    "AbnormalType.Stun",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(3)",
+   "simplified": "SetAbnormalType(3)",
+   "when": "AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Paralysis) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Stun, stunPercent, playerAction)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Paralysis",
+    "AbnormalType.Stun",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(6, abnormalPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(6, abnormalPercent, playerAction)",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Paralysis) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPercent, playerAction) OR !AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Paralysis) AND !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPercent, playerAction)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Paralysis",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(6)",
+   "simplified": "SetAbnormalType(6)",
+   "when": "!AbnormalStateManager.Contains(MobActionManagerBase.get_AbnormalStateManager(mobAction), AbnormalType.Paralysis) AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Paralysis, abnormalPercent, playerAction)",
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Paralysis",
+    "MobActionManagerBase.get_AbnormalStateManager",
+    "PlayerAttackBase.checkAbnormalPercent"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Paralysis",
+  "AbnormalType.Stun",
+  "GetSubWeaponType.item",
+  "GetWeaponType.item",
+  "MobActionManagerBase.get_AbnormalStateManager",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.checkAbnormalPercent"
+ ],
+ "residual": []
+}

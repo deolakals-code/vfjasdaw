@@ -1,0 +1,455 @@
+{
+ "version": 1,
+ "uid": 654,
+ "name_th": "เซเบอร์ออร่า",
+ "name_en": "SaberAura",
+ "tree": "DualSword",
+ "category": "Buffer",
+ "max_level": 170,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "SaberAuraAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 654,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(PlayerAttackBase.get_ActionID(), Lv, Id)",
+   "simplified": "AddSelfBuffer(PlayerAttackBase.get_ActionID(), Lv, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 657) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 657) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.get_ActionID",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(657)",
+   "simplified": "RemoveSelfBuffer(657)",
+   "when": "TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 657) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SaberAuraBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "isBattleActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "Count": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "hitUp": [
+       {
+        "formula": "(Lv + (Lv << 2))",
+        "when": "always",
+        "by_level": [
+         5,
+         10,
+         15,
+         20,
+         25,
+         30,
+         35,
+         40,
+         45,
+         50
+        ]
+       }
+      ],
+      "strengthenInterval": [
+       {
+        "formula": "(7 - int(((Lv + 1) * 0.5)))",
+        "when": "always",
+        "by_level": [
+         6,
+         6,
+         5,
+         5,
+         4,
+         4,
+         3,
+         3,
+         2,
+         2
+        ]
+       }
+      ],
+      "payHp": [
+       {
+        "formula": "(25 - (Lv << 1))",
+        "when": "always",
+        "by_level": [
+         23,
+         21,
+         19,
+         17,
+         15,
+         13,
+         11,
+         9,
+         7,
+         5
+        ]
+       }
+      ],
+      "increase": [
+       {
+        "formula": "5",
+        "when": "always",
+        "by_level": 5
+       }
+      ],
+      "moveSpeed": [
+       {
+        "formula": "100",
+        "when": "always",
+        "by_level": 100
+       }
+      ],
+      "critical": [
+       {
+        "formula": "int((Lv * 2.5))",
+        "when": "always",
+        "by_level": [
+         2,
+         5,
+         7,
+         10,
+         12,
+         15,
+         17,
+         20,
+         22,
+         25
+        ]
+       }
+      ],
+      "aspdRate": [
+       {
+        "formula": "((Lv + (Lv << 2)) << 1)",
+        "when": "always",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ],
+      "atkMpHeal": [
+       {
+        "formula": "(int(((Lv - 1) * 0.5)) + 1)",
+        "when": "always",
+        "by_level": [
+         1,
+         1,
+         2,
+         2,
+         3,
+         3,
+         4,
+         4,
+         5,
+         5
+        ]
+       }
+      ],
+      "timer": [
+       {
+        "formula": "(7 - int(((Lv + 1) * 0.5)))",
+        "when": "always",
+        "by_level": [
+         6,
+         6,
+         5,
+         5,
+         4,
+         4,
+         3,
+         3,
+         2,
+         2
+        ]
+       }
+      ],
+      "player": [
+       {
+        "formula": "PlayerDataManager.GetPlayerDataManager()",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "20"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0",
+      "bufferEnd ne 0"
+     ]
+    },
+    {
+     "id": "HitUp",
+     "bonus_id": 42,
+     "formula": "(Count * hitUp)",
+     "simplified": "Count × hitUp",
+     "when": [
+      "BuffEffectActive ne 0",
+      "bufferEnd eq 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "moveSpeed",
+     "simplified": "moveSpeed",
+     "when": [
+      "BuffEffectActive ne 0",
+      "bufferEnd eq 0"
+     ]
+    },
+    {
+     "id": "AspdRate",
+     "bonus_id": 36,
+     "formula": "(Count * aspdRate)",
+     "simplified": "Count × aspdRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "bufferEnd eq 0"
+     ]
+    },
+    {
+     "id": "AttackMprecoveryUp",
+     "bonus_id": 33,
+     "formula": "(Count * atkMpHeal)",
+     "simplified": "Count × atkMpHeal",
+     "when": [
+      "BuffEffectActive ne 0",
+      "bufferEnd eq 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0",
+      "bufferEnd eq 0"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "(Count * critical)",
+     "simplified": "Count × critical",
+     "when": [
+      "BuffEffectActive ne 0",
+      "bufferEnd eq 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "isBattleActive": [
+     {
+      "method": "Updata",
+      "formula": "(PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) & 1)",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND SaberAuraBuf.CheckTake(this) AND bufferEnd ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND SaberAuraBuf.CheckTake(this) AND bufferEnd ne 0 OR !PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND SaberAuraBuf.CheckTake(this) AND bufferEnd ne 0 AND isBattleActive ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "!SaberAuraBuf.CheckTake(this) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND bufferEnd ne 0 OR !SaberAuraBuf.CheckTake(this) AND (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND bufferEnd ne 0 OR !PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND !SaberAuraBuf.CheckTake(this) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND bufferEnd ne 0 AND isBattleActive ne 0"
+     }
+    ],
+    "timer": [
+     {
+      "method": "Updata",
+      "formula": "strengthenInterval",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND !SaberAuraBuf.CheckTake(this) AND (timer - UnityEngine.Time.get_deltaTime()) ls 0 AND CountBufferBase.get_Peak() AND bufferEnd eq 0 AND inquire eq 0 AND isBattleActive eq 0 OR !CountBufferBase.get_Peak() AND !PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND !SaberAuraBuf.CheckTake(this) AND (timer - UnityEngine.Time.get_deltaTime()) ls 0 AND bufferEnd eq 0 AND inquire eq 0 AND isBattleActive eq 0 OR (timer - UnityEngine.Time.get_deltaTime()) ls 0 AND CountBufferBase.get_Peak() AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND SaberAuraBuf.CheckTake(this) AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(player).TakeController).isTakePlay ne 0 AND bufferEnd eq 0 AND inquire eq 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(timer - UnityEngine.Time.get_deltaTime())",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND !SaberAuraBuf.CheckTake(this) AND (timer - UnityEngine.Time.get_deltaTime()) hi 0 AND bufferEnd eq 0 AND inquire eq 0 AND isBattleActive eq 0 OR (timer - UnityEngine.Time.get_deltaTime()) hi 0 AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND SaberAuraBuf.CheckTake(this) AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(player).TakeController).isTakePlay ne 0 AND bufferEnd eq 0 AND inquire eq 0 OR !SaberAuraBuf.CheckTake(this) AND (timer - UnityEngine.Time.get_deltaTime()) hi 0 AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(player).TakeController).isTakePlay ne 0 AND bufferEnd eq 0 AND inquire eq 0"
+     }
+    ],
+    "payHp": [
+     {
+      "method": "Updata",
+      "formula": "System.Math.Min(99, (increase + payHp))",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND !SaberAuraBuf.CheckTake(this) AND (timer - UnityEngine.Time.get_deltaTime()) ls 0 AND CountBufferBase.get_Peak() AND bufferEnd eq 0 AND inquire eq 0 AND isBattleActive eq 0 OR !CountBufferBase.get_Peak() AND !PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND !SaberAuraBuf.CheckTake(this) AND (timer - UnityEngine.Time.get_deltaTime()) ls 0 AND bufferEnd eq 0 AND inquire eq 0 AND isBattleActive eq 0 OR (timer - UnityEngine.Time.get_deltaTime()) ls 0 AND CountBufferBase.get_Peak() AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND SaberAuraBuf.CheckTake(this) AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(player).TakeController).isTakePlay ne 0 AND bufferEnd eq 0 AND inquire eq 0"
+     }
+    ],
+    "inquireTime": [
+     {
+      "method": "Updata",
+      "formula": "UnityEngine.Time.get_realtimeSinceStartup()",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND !SaberAuraBuf.CheckTake(this) AND (timer - UnityEngine.Time.get_deltaTime()) ls 0 AND CountBufferBase.get_Peak() AND bufferEnd eq 0 AND inquire eq 0 AND isBattleActive eq 0 OR !PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND !SaberAuraBuf.CheckTake(this) AND (UnityEngine.Time.get_realtimeSinceStartup() - inquireTime) ge 1 AND (timer - UnityEngine.Time.get_deltaTime()) hi 0 AND bufferEnd eq 0 AND inquire ne 0 AND isBattleActive eq 0 OR (timer - UnityEngine.Time.get_deltaTime()) ls 0 AND CountBufferBase.get_Peak() AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND SaberAuraBuf.CheckTake(this) AND TakeController.get_MainPlayer(PlayerDataManager.get_PlayerActionManager(player).TakeController).isTakePlay ne 0 AND bufferEnd eq 0 AND inquire eq 0"
+     },
+     {
+      "method": "Inquire",
+      "formula": "UnityEngine.Time.get_realtimeSinceStartup()",
+      "when": "inquire eq 0"
+     }
+    ],
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND SaberAuraBuf.CheckTake(this) AND bufferEnd ne 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND SaberAuraBuf.CheckTake(this) AND bufferEnd ne 0 OR !SaberAuraBuf.CheckTake(this) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND PlayerActionManagerBase.get_IsBattleActive(PlayerDataManager.get_PlayerActionManager(player)) AND bufferEnd ne 0"
+     },
+     {
+      "method": "BufferEnd",
+      "formula": "(Count + 10)",
+      "when": "SaberAuraBuf.CheckTake(this) AND bufferEnd eq 0 OR !SaberAuraBuf.CheckTake(this) AND bufferEnd eq 0"
+     }
+    ],
+    "inquire": [
+     {
+      "method": "Inquire",
+      "formula": "1",
+      "when": "inquire eq 0"
+     }
+    ],
+    "bufferEnd": [
+     {
+      "method": "BufferEnd",
+      "formula": "1",
+      "when": "SaberAuraBuf.CheckTake(this) AND bufferEnd eq 0 OR !SaberAuraBuf.CheckTake(this) AND bufferEnd eq 0"
+     }
+    ]
+   },
+   "hooks": [
+    "BufferEnd",
+    "CheckTake",
+    "CheckUnableEquipChange",
+    "Inquire",
+    "get_BufEffectTakeId",
+    "get_IsBufferEnd",
+    "get_IsPutUpWeapon"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "ArkSaberAction.ActionHit",
+  "ArkSaberAction.ActionStart",
+  "ArkSaberAction.ConverterArkSaberSkillId",
+  "ArkSaberAction.IsFailure",
+  "MobaPlayerActionManager.SupportReserve",
+  "MobaPlayerActionManager.get_MoveSpeed",
+  "PlayerActionManager.get_MoveSpeed"
+ ],
+ "variables": [
+  "CountBufferBase.get_Peak",
+  "PlayerActionManagerBase.get_IsBattleActive",
+  "PlayerAttackBase.get_ActionID",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_PlayerActionManager",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SaberAuraBuf.CheckTake",
+  "SkillBufferId.AspdRate",
+  "SkillBufferId.AttackMprecoveryUp",
+  "SkillBufferId.Count",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.HitUp",
+  "SkillBufferId.Value",
+  "System.Math.Min",
+  "TakeController.get_MainPlayer",
+  "TryGetBuf.buf",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime",
+  "UnityEngine.Time.get_realtimeSinceStartup"
+ ],
+ "residual": []
+}

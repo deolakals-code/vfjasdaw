@@ -1,0 +1,212 @@
+{
+ "version": 1,
+ "uid": 1090,
+ "name_th": "ชาร์จพลังชี่กง",
+ "name_en": "CollectQigong",
+ "tree": "BareHandSkill",
+ "category": "Buffer",
+ "max_level": 1,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "CollectQigongAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 1090,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Hand"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcCostMp",
+   "kind": "set",
+   "name": "mp",
+   "formula": "((PlayerAttackBase.CalcCostMp(this, playerAction) lt 2000 ? PlayerAttackBase.CalcCostMp(this, playerAction) : 2000) gt 100 ? (PlayerAttackBase.CalcCostMp(this, playerAction) lt 2000 ? PlayerAttackBase.CalcCostMp(this, playerAction) : 2000) : 100)",
+   "simplified": "max(min(PlayerAttackBase.CalcCostMp(this, playerAction), 2000), 100)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp"
+   ]
+  },
+  {
+   "method": "calcCostMp",
+   "kind": "set",
+   "name": "costMp",
+   "formula": "((PlayerAttackBase.CalcCostMp(this, playerAction) lt 2000 ? PlayerAttackBase.CalcCostMp(this, playerAction) : 2000) gt 100 ? (PlayerAttackBase.CalcCostMp(this, playerAction) lt 2000 ? PlayerAttackBase.CalcCostMp(this, playerAction) : 2000) : 100)",
+   "simplified": "max(min(PlayerAttackBase.CalcCostMp(this, playerAction), 2000), 100)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.CalcCostMp"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "CollectQigongBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int takeNum",
+     "fields": {
+      "Count": [
+       {
+        "formula": "takeNum",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "10",
+        "when": "always",
+        "by_level": 10
+       }
+      ],
+      "startTime": [
+       {
+        "formula": "UnityEngine.Time.get_realtimeSinceStartup()",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "180",
+        "when": "always",
+        "by_level": 180
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AtkUp",
+     "bonus_id": 54,
+     "formula": "((((Count * Lv) * Lv) * Lv) // 100)",
+     "simplified": "Count × Lv × Lv × Lv // 100",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Stable",
+     "bonus_id": 41,
+     "formula": "(Lv + (Lv << 2))",
+     "simplified": "5 × Lv",
+     "when": [
+      "BuffEffectActive ne 0",
+      "Count ge 1"
+     ]
+    },
+    {
+     "id": "Stable",
+     "bonus_id": 41,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "Count lt 1"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "((startTime - UnityEngine.Time.get_realtimeSinceStartup()) + 180)",
+      "when": "((startTime - UnityEngine.Time.get_realtimeSinceStartup()) + 180) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "((startTime - UnityEngine.Time.get_realtimeSinceStartup()) + 180) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "Count": [
+     {
+      "method": "UpdateQigongNum",
+      "formula": "nowNum",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "UpdateQigongNum"
+   ],
+   "attached_via": "name",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "PlayerSecondaryStatus.get_AtkMpRecovery",
+  "Revival.OnActionMobDamage"
+ ],
+ "variables": [
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CalcCostMp",
+  "SkillBufferId.AtkUp",
+  "SkillBufferId.Count",
+  "SkillBufferId.Stable",
+  "UnityEngine.Time.get_realtimeSinceStartup"
+ ],
+ "residual": []
+}

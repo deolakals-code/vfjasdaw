@@ -1,0 +1,582 @@
+{
+ "version": 1,
+ "uid": 653,
+ "name_th": "[N]สตอร์มรีปเปอร์[N2]ออร์บิทรีปเปอร์[N]",
+ "name_en": "SturmLeaper",
+ "tree": "DualSword",
+ "category": "Attack",
+ "max_level": 170,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "SturmLeaperAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 653,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwinSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((((Lv + (Lv << 2)) << 1) + 400) + ((baseDEX // 25) * Lv))",
+   "simplified": "10 × Lv + baseDEX // 25 × Lv + 400",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "(((Lv + (Lv << 2)) << 1) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 2)",
+   "simplified": "SkillParam | 2",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "(SkillIndividualFlag | 1)",
+   "simplified": "SkillIndividualFlag | 1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND change ne 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "startPos.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "!PlayerAttackBase.IsBlank(this) AND change ne 0 OR !PlayerAttackBase.IsBlank(this) AND change eq 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "startPos.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "!PlayerAttackBase.IsBlank(this) AND change ne 0 OR !PlayerAttackBase.IsBlank(this) AND change eq 0",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "otherTargetPos",
+   "formula": "castTime",
+   "simplified": "castTime",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "ActionRange",
+   "simplified": "ActionRange",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "2",
+   "simplified": "2",
+   "when": "always"
+  },
+  {
+   "method": "LunaDitherStartInterruptableInitialize",
+   "kind": "set",
+   "name": "change",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  },
+  {
+   "method": "LunaDitherStartInterruptableInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(24)",
+   "simplified": "MathUtil.DisplayMeterToDistance(24)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "LunaDitherStartInterruptableInitialize",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 4)",
+   "simplified": "SkillParam | 4",
+   "when": "always"
+  },
+  {
+   "method": "GetLocalizeKey",
+   "kind": "set",
+   "name": "change",
+   "formula": "change",
+   "simplified": "change",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "(PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamageRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamage"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": ".<>c__DisplayClass31_0::<ActionStart>b__1",
+   "kind": "call",
+   "name": "SturmLeaperBuf..ctor",
+   "formula": ".ctor([<>c__DisplayClass31_0.<>4__this+0x14], ((int(frintp((((((int(frintp((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + -0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + -0.5))) / 100) pl 0.1 ? min((int(frintp((((((int(frintp((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + -0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + -0.5))) / 100), 1) : 0.1), [<>c__DisplayClass31_0.<>4__this+0x135])",
+   "simplified": ".ctor([<>c__DisplayClass31_0.<>4__this+0x14], ((int(frintp((((((int(frintp((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + -0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + -0.5))) / 100) pl 0.1 ? min((int(frintp((((((int(frintp((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + -0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + -0.5))) / 100), 1) : 0.1), [<>c__DisplayClass31_0.<>4__this+0x135])",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ],
+   "residual": [
+    "+0x14]",
+    "+0x140]",
+    "+0x140]",
+    "+0x138]",
+    "+0x138]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass31_0::<ActionStart>b__1",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new SturmLeaperBuf, [<>c__DisplayClass31_0.<>4__this+0x10])",
+   "simplified": "AddSelfBuffer(new, SturmLeaperBuf, [<>c__DisplayClass31_0.<>4__this+0x10])",
+   "when": "always",
+   "residual": [
+    "+0x10]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass31_0::<ActionStart>b__1",
+   "kind": "call",
+   "name": "SturmLeaperBuf..ctor",
+   "formula": ".ctor([<>c__DisplayClass31_0.<>4__this+0x14], ((int(floor((((((int(frintp((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + -0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + 0.5))) / 100) pl 0.1 ? min((int(floor((((((int(frintp((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + -0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + 0.5))) / 100), 1) : 0.1), [<>c__DisplayClass31_0.<>4__this+0x135])",
+   "simplified": ".ctor([<>c__DisplayClass31_0.<>4__this+0x14], ((int(floor((((((int(frintp((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + -0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + 0.5))) / 100) pl 0.1 ? min((int(floor((((((int(frintp((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + -0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + 0.5))) / 100), 1) : 0.1), [<>c__DisplayClass31_0.<>4__this+0x135])",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ],
+   "residual": [
+    "+0x14]",
+    "+0x140]",
+    "+0x140]",
+    "+0x138]",
+    "+0x138]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass31_0::<ActionStart>b__1",
+   "kind": "call",
+   "name": "SturmLeaperBuf..ctor",
+   "formula": ".ctor([<>c__DisplayClass31_0.<>4__this+0x14], ((int(frintp((((((int(floor((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + 0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + -0.5))) / 100) pl 0.1 ? min((int(frintp((((((int(floor((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + 0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + -0.5))) / 100), 1) : 0.1), [<>c__DisplayClass31_0.<>4__this+0x135])",
+   "simplified": ".ctor([<>c__DisplayClass31_0.<>4__this+0x14], ((int(frintp((((((int(floor((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + 0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + -0.5))) / 100) pl 0.1 ? min((int(frintp((((((int(floor((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + 0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + -0.5))) / 100), 1) : 0.1), [<>c__DisplayClass31_0.<>4__this+0x135])",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ],
+   "residual": [
+    "+0x14]",
+    "+0x140]",
+    "+0x140]",
+    "+0x138]",
+    "+0x138]"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass31_0::<ActionStart>b__1",
+   "kind": "call",
+   "name": "SturmLeaperBuf..ctor",
+   "formula": ".ctor([<>c__DisplayClass31_0.<>4__this+0x14], ((int(floor((((((int(floor((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + 0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + 0.5))) / 100) pl 0.1 ? min((int(floor((((((int(floor((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + 0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + 0.5))) / 100), 1) : 0.1), [<>c__DisplayClass31_0.<>4__this+0x135])",
+   "simplified": ".ctor([<>c__DisplayClass31_0.<>4__this+0x14], ((int(floor((((((int(floor((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + 0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + 0.5))) / 100) pl 0.1 ? min((int(floor((((((int(floor((((fsqrt(((([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z) * ([<>c__DisplayClass31_0.<>4__this+0x140] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).z)) + (([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x) * ([<>c__DisplayClass31_0.<>4__this+0x138] - UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(<>c__DisplayClass31_0.actarAction)).x)))) * 100)) + 0.5))) / 100) / MathUtil.DisplayMeterToDistance(9)) * 100)) + 0.5))) / 100), 1) : 0.1), [<>c__DisplayClass31_0.<>4__this+0x135])",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ],
+   "residual": [
+    "+0x14]",
+    "+0x140]",
+    "+0x140]",
+    "+0x138]",
+    "+0x138]"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "SturmLeaperBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, float rate, bool OrbitReaper",
+     "fields": {
+      "temporaryCount": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "shortRange": [
+       {
+        "formula": "0",
+        "when": "(OrbitReaper & 1) ne 0",
+        "by_level": null
+       },
+       {
+        "formula": "int(((((Lv << 2) + lv) << 1) * rate))",
+        "when": "(OrbitReaper & 1) eq 0",
+        "by_level": null
+       }
+      ],
+      "longRange": [
+       {
+        "formula": "((int(((((Lv << 2) + lv) << 1) * rate)) lt 0 ? (int(((((Lv << 2) + lv) << 1) * rate)) + 1) : int(((((Lv << 2) + lv) << 1) * rate))) >> 1)",
+        "when": "(OrbitReaper & 1) ne 0",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "ShortRangeRate",
+     "bonus_id": 66,
+     "formula": "shortRange",
+     "simplified": "shortRange",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "LongRangeRate",
+     "bonus_id": 67,
+     "formula": "longRange",
+     "simplified": "longRange",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {},
+   "hooks": [],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "SturmLeaperBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "1"
+    }
+   },
+   "attached_via": "caller2:SturmLeaperBuf$$.ctor<-SturmLeaperAction.<>c__DisplayClass31_0$$<ActionStart>b__1",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "GetWeaponType.item",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerPrimaryStatus.dex",
+  "SkillBufferId.Count",
+  "SkillBufferId.LongRangeRate",
+  "SkillBufferId.ShortRangeRate",
+  "System.Math.Max",
+  "System.Math.Min",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Transform.get_position"
+ ],
+ "residual": [
+  {
+   "where": ".<>c__DisplayClass31_0::<ActionStart>b__1:SturmLeaperBuf..ctor",
+   "tokens": [
+    "+0x14]",
+    "+0x140]",
+    "+0x140]",
+    "+0x138]",
+    "+0x138]"
+   ]
+  },
+  {
+   "where": ".<>c__DisplayClass31_0::<ActionStart>b__1:SkillBufferManager.AddSelfBuffer",
+   "tokens": [
+    "+0x10]"
+   ]
+  },
+  {
+   "where": ".<>c__DisplayClass31_0::<ActionStart>b__1:SturmLeaperBuf..ctor",
+   "tokens": [
+    "+0x14]",
+    "+0x140]",
+    "+0x140]",
+    "+0x138]",
+    "+0x138]"
+   ]
+  },
+  {
+   "where": ".<>c__DisplayClass31_0::<ActionStart>b__1:SturmLeaperBuf..ctor",
+   "tokens": [
+    "+0x14]",
+    "+0x140]",
+    "+0x140]",
+    "+0x138]",
+    "+0x138]"
+   ]
+  },
+  {
+   "where": ".<>c__DisplayClass31_0::<ActionStart>b__1:SturmLeaperBuf..ctor",
+   "tokens": [
+    "+0x14]",
+    "+0x140]",
+    "+0x140]",
+    "+0x138]",
+    "+0x138]"
+   ]
+  }
+ ]
+}

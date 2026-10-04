@@ -1,0 +1,253 @@
+{
+ "version": 1,
+ "uid": 267,
+ "name_th": "ดูอัลชีลด์",
+ "name_en": "PairOfShields",
+ "tree": "ShieldSkill",
+ "category": "Buffer",
+ "max_level": 50,
+ "roles": [
+  "buff (self)",
+  "changes attack pattern (motion / combo chain; heuristic)",
+  "boosts normal-attack damage"
+ ],
+ "class": "PairOfShieldsAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 267,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Shield"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "PairOfShieldsBuf..ctor",
+   "formula": ".ctor(Lv, actarAction)",
+   "simplified": ".ctor(Lv, actarAction)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new PairOfShieldsBuf, Id)",
+   "simplified": "AddSelfBuffer(new, PairOfShieldsBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 82) eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "PairOfShieldsBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, PlayerActionManagerBase playerAction",
+     "fields": {
+      "isBattleActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "playerAction": [
+       {
+        "formula": "playerAction",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "status": [
+       {
+        "formula": "PlayerActionManagerBase.get_PlayerStatus()",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "takeController": [
+       {
+        "formula": "playerAction.TakeController",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "effectManager": [
+       {
+        "formula": "PlayerActionManagerBase.get_BufferEffectManager()",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "normalAttackRate": [
+       {
+        "formula": "((baseVIT // 5) + ((Lv + (Lv << 2)) << 1))",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "(LeftTime + (ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())) & 255))",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17",
+        "by_level": null
+       }
+      ],
+      "aspdRate": [
+       {
+        "formula": "(aspdRate + ItemData.get_Refine(EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData())))",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17",
+        "by_level": null
+       }
+      ],
+      "hit": [
+       {
+        "formula": "(hit + EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Function)",
+        "when": "EquipItemData.get_SubWeapon(PlayerStatusBase.get_EquipItemData()).Type eq 17",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "NormalAttackRate",
+     "bonus_id": 58,
+     "formula": "normalAttackRate",
+     "simplified": "normalAttackRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "HitUp",
+     "bonus_id": 42,
+     "formula": "hit",
+     "simplified": "hit",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AspdRate",
+     "bonus_id": 36,
+     "formula": "aspdRate",
+     "simplified": "aspdRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND IsEnd ne 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND IsEnd ne 0 AND LeftTime gt 0 OR !PlayerActionManagerBase.get_IsBattleActive(playerAction) AND (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND IsEnd eq 0 AND LeftTime gt 0 AND PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND isBattleActive eq 0 AND updateShield ne 0"
+     },
+     {
+      "method": "BufferEnd",
+      "formula": "0",
+      "when": "always"
+     }
+    ],
+    "updateShield": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "!PlayerActionManagerBase.get_IsBattleActive(playerAction) AND IsEnd eq 0 AND LeftTime le 0 AND PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND isBattleActive eq 0 AND updateShield ne 0 OR IsEnd eq 0 AND LeftTime le 0 AND PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateShield ne 0 OR IsEnd eq 0 AND LeftTime le 0 AND PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateShield ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "!PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND !PlayerActionManagerBase.get_IsBattleActive(playerAction) AND IsEnd eq 0 AND LeftTime le 0 AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND isBattleActive eq 0 AND updateShield eq 0 OR !PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateShield eq 0 OR !PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateShield eq 0"
+     }
+    ],
+    "isBattleActive": [
+     {
+      "method": "Updata",
+      "formula": "1",
+      "when": "IsEnd eq 0 AND LeftTime le 0 AND PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock eq 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateShield ne 0 OR IsEnd eq 0 AND LeftTime le 0 AND PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND PlayerActionManagerBase.get_AbnormalStatusManager().IsActionLock ne 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).isTakePlay eq 0 AND updateShield ne 0 OR IsEnd eq 0 AND LeftTime le 0 AND PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).TakeId ne 0xc0bade0 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND updateShield ne 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(PlayerActionManagerBase.get_IsBattleActive(playerAction) & 1)",
+      "when": "IsEnd eq 0 AND LeftTime le 0 AND PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).TakeId eq 0xc0bade0 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND updateShield ne 0 OR !PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).TakeId eq 0xc0bade0 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND updateShield ne 0 OR !PairOfShieldsBuf.CheckPairOfShieldsTake(this) AND IsEnd eq 0 AND LeftTime le 0 AND PlayerActionManagerBase.get_IsBattleActive(playerAction) AND TakeController.get_MainPlayer(takeController).TakeId eq 0xc0bade0 AND TakeController.get_MainPlayer(takeController).isTakePlay ne 0 AND updateShield eq 0"
+     }
+    ]
+   },
+   "hooks": [
+    "BufferEnd",
+    "CheckPairOfShieldsTake",
+    "TakeStop",
+    "get_BufEffectTakeId"
+   ],
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "BeragelungAction.IsFailure",
+  "GuardActionManager.CheckGuardStart",
+  "GuardActionManager.CheckPairOfShields",
+  "GuardActionManager.CheckPairOfShieldsGuard",
+  "NormalAttackAction.OnInitialize",
+  "PlayerActionManager.Damaged",
+  "PlayerActionManager.SuccessAddAbnormal",
+  "PlayerBattleManager.CheckZeroActionDelay"
+ ],
+ "variables": [
+  "EquipItemData.get_SubWeapon",
+  "ItemData.get_Refine",
+  "PairOfShieldsBuf.CheckPairOfShieldsTake",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerActionManagerBase.get_BufferEffectManager",
+  "PlayerActionManagerBase.get_IsBattleActive",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerPrimaryStatus.vit",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "SkillBufferId.AspdRate",
+  "SkillBufferId.HitUp",
+  "SkillBufferId.NormalAttackRate",
+  "TakeController.get_MainPlayer",
+  "TryGetBuf.out2",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

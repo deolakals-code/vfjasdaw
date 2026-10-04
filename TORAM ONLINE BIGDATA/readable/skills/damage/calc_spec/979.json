@@ -1,0 +1,170 @@
+{
+ "version": 1,
+ "uid": 979,
+ "name_th": "ทอร์นาโดแลนซ์",
+ "name_en": "TornadoLance",
+ "tree": "HalberdSkill",
+ "category": "Mastery",
+ "max_level": 240,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "TornadoLanceMastary",
+ "proration": null,
+ "eq_limit": [],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "TornadoLanceBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int count",
+     "fields": {
+      "Count": [
+       {
+        "formula": "count",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "100",
+        "when": "always",
+        "by_level": 100
+       }
+      ],
+      "pursuitPercent": [
+       {
+        "formula": "2.5",
+        "when": "always",
+        "by_level": 2.5
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "10"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Percent",
+     "bonus_id": 52,
+     "formula": "int((pursuitPercent * Count))",
+     "simplified": "int(pursuitPercent × Count)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtDamageUp",
+     "bonus_id": 46,
+     "formula": "int((crtDamageUp * Count))",
+     "simplified": "int(crtDamageUp × Count)",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "FleeRate",
+     "bonus_id": 12,
+     "formula": "((Count + (Count << 2)) << 1)",
+     "simplified": "10 × Count",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Next",
+      "formula": "100",
+      "when": "always"
+     }
+    ],
+    "Count": [
+     {
+      "method": "CheckHitMobAttack",
+      "formula": "((Count lt 0 ? (Count + 1) : Count) >> 1)",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckHitMobAttack",
+    "Next",
+    "NextStack",
+    "get_CorrectHit"
+   ],
+   "attached_via": "name",
+   "kind": "counter"
+  }
+ ],
+ "passives": {
+  "class": "TornadoLanceMastary",
+  "bonuses": {}
+ },
+ "hooks": [
+  "MagicPursuit.Calc",
+  "MobAttackBase.CalcHit",
+  "MobEventScriptAttack.CalcHit",
+  "MobaPlayerSecondaryStatus.get_CriticalDmg",
+  "PhysicalPursuit.Calc",
+  "PlayerAttackBase.CalcStable",
+  "PlayerAttackBase.ChackCorrectHit",
+  "PlayerSecondaryStatus.CalcCriticalDmg",
+  "PlayerSecondaryStatus.get_CurrectHit",
+  "ReceiveBattleResult.AttackMobaMob"
+ ],
+ "variables": [
+  "SkillBufferId.Count",
+  "SkillBufferId.CrtDamageUp",
+  "SkillBufferId.FleeRate",
+  "SkillBufferId.Percent",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

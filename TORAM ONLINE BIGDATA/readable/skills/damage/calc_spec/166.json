@@ -1,0 +1,111 @@
+{
+ "version": 1,
+ "uid": 166,
+ "name_th": "มิราจอีวาชั่น",
+ "name_en": "MirageStep",
+ "tree": "GuardSkill",
+ "category": "Mastery",
+ "max_level": 180,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "MirageStep",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "MirageStepBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "(20 - lv)",
+        "when": "always",
+        "by_level": [
+         19,
+         18,
+         17,
+         16,
+         15,
+         14,
+         13,
+         12,
+         11,
+         10
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0 OR (LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "name",
+   "kind": "timed"
+  }
+ ],
+ "passives": {
+  "class": "MirageStep",
+  "bonuses": {
+   "Trigger": {
+    "id": 0,
+    "expr": "(20 - Lv)",
+    "by_level": [
+     19,
+     18,
+     17,
+     16,
+     15,
+     14,
+     13,
+     12,
+     11,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "AvoidActionManager.AvoidMove",
+  "AvoidActionManager.AvoidStart"
+ ],
+ "variables": [
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

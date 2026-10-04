@@ -1,0 +1,191 @@
+{
+ "version": 1,
+ "uid": 115,
+ "name_th": "แรพพิดชาร์จ",
+ "name_en": "RapidCharge",
+ "tree": "MagicSkill",
+ "category": "Mastery",
+ "max_level": 240,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "RapidCharge",
+ "proration": null,
+ "eq_limit": [
+  "Rod",
+  "Magictool"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "RapidChargeBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int heal, PlayerStatusBase status",
+     "fields": {
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "(buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) ge 51 OR ((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) ge 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51 OR ((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) lt 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "(buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) ge 51 OR ((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) ge 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51 OR ((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) lt 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "(buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) ge 51 OR ((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) ge 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51 OR ((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) lt 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51",
+        "by_level": -1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "(buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) ge 51 OR ((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) ge 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51 OR ((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) lt 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "(((((Lv << 2) + lv) << 1) hi 50 ? (((Lv << 2) + lv) << 1) : 50) - 10)",
+        "when": "(buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) ge 51 OR ((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) ge 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51 OR ((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) lt 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51",
+        "by_level": [
+         40,
+         40,
+         40,
+         40,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90
+        ]
+       }
+      ],
+      "matk": [
+       {
+        "formula": "(((((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMagicResistBreaker))) + (((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMagicResistBreaker))) << 2)) + (heal // 10)) - 250)",
+        "when": "((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) ge 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51",
+        "by_level": null
+       },
+       {
+        "formula": "(heal // 10)",
+        "when": "((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) lt 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51",
+        "by_level": null
+       },
+       {
+        "formula": "((heal // 10) + ((heal // 50) + ((heal // 50) << 2)))",
+        "when": "(buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) ge 51",
+        "by_level": null
+       }
+      ],
+      "magicResistBreaker": [
+       {
+        "formula": "max((50 - (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), BonusType.bMagicResistBreaker))), 0)",
+        "when": "((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) ge 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51",
+        "by_level": null
+       },
+       {
+        "formula": "(heal // 50)",
+        "when": "((heal // 50) + (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52))) lt 51 AND (buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) lt 51",
+        "by_level": null
+       },
+       {
+        "formula": "0",
+        "when": "(buffParam(MagicResistBreaker) + BonusManager.GetBonusValue(PlayerStatusBase.get_BonusManager(), 52)) ge 51",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "MatkUp",
+     "bonus_id": 55,
+     "formula": "matk",
+     "simplified": "matk",
+     "when": []
+    },
+    {
+     "id": "MagicResistBreaker",
+     "bonus_id": 73,
+     "formula": "magicResistBreaker",
+     "simplified": "magicResistBreaker",
+     "when": []
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "name",
+   "kind": "timed"
+  }
+ ],
+ "passives": {
+  "class": "RapidCharge",
+  "bonuses": {
+   "Value": {
+    "id": 28,
+    "expr": "((Lv << 1) lo 10 ? (Lv << 1) : 10)",
+    "by_level": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10
+    ]
+   }
+  }
+ },
+ "hooks": [
+  "ReceiveSupportResult.OnActionPlayerSupport"
+ ],
+ "variables": [
+  "BonusManager.GetBonusValue",
+  "BonusType.bMagicResistBreaker",
+  "PlayerStatusBase.get_BonusManager",
+  "SkillBufferId.MagicResistBreaker",
+  "SkillBufferId.MatkUp",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

@@ -1,0 +1,313 @@
+{
+ "version": 1,
+ "uid": 291,
+ "name_th": "พอยซั่นแดกเกอร์",
+ "name_en": "PoisonDagger",
+ "tree": "KnifeSkill",
+ "category": "Attack",
+ "max_level": 20,
+ "roles": [
+  "attack (deals damage)",
+  "applies status ailment"
+ ],
+ "class": "PoisonDaggerAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 291,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(8)",
+   "simplified": "MathUtil.DisplayMeterToDistance(8)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((int((Lv * 2.5)) + 50) / 100)",
+   "simplified": "(int(2.5 × Lv) + 50) / 100",
+   "when": "always",
+   "by_level": [
+    0.52,
+    0.55,
+    0.57,
+    0.6,
+    0.62,
+    0.65,
+    0.67,
+    0.7,
+    0.72,
+    0.75
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusSkillRate",
+   "formula": "((baseINT // (11 - Lv)) / 100)",
+   "simplified": "baseINT // (11 - Lv) / 100",
+   "when": "always"
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "bonusFixAddDamage",
+   "formula": "status.SubAtk",
+   "simplified": "status.SubAtk",
+   "when": "always",
+   "vars": [
+    "status.SubAtk"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "poisonPercent",
+   "formula": "(int((Lv * 2.5)) + 75)",
+   "simplified": "int(2.5 × Lv) + 75",
+   "when": "always",
+   "by_level": [
+    77,
+    80,
+    82,
+    85,
+    87,
+    90,
+    92,
+    95,
+    97,
+    100
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "addExcetraDamage",
+   "formula": "System.Delegate.Combine(addExcetraDamage, new System.Action)",
+   "simplified": "System.Delegate.Combine(addExcetraDamage, new, System.Action)",
+   "when": "MobaMode ne 0 OR MobaMode ne 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, poisonPercent, playerAction) OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, poisonPercent, playerAction) AND MobaMode ne 0",
+   "vars": [
+    "AbnormalType.Poison",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "System.Delegate.Combine"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "SkillParam",
+   "formula": "(SkillParam | 8)",
+   "simplified": "SkillParam | 8",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) OR (SkillParam & 32) eq 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0",
+   "vars": [
+    "MasteryId.Trigger",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "bonusSkillRate",
+   "simplified": "bonusSkillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "bonusFixAddDamage",
+   "simplified": "bonusFixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetRate[LastDamageRate]",
+   "formula": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), PoisonDaggerAction.get_AttackType())",
+   "simplified": "PlayerAttackBase.CalcLastDamageRate(this, PlayerActionManagerBase.get_PlayerStatus(), PoisonDaggerAction.get_AttackType())",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) eq 0",
+   "op": "SetRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "MasteryId.Trigger",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcLastDamageRate",
+    "PoisonDaggerAction.get_AttackType",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[LastDamageRate]",
+   "formula": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "simplified": "-MobPropertyLifeReduceDamage.CalcReduceLastDamageRate(TryGetProperties<object>.out2(mobAction, 90))",
+   "when": "(SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 OR (SkillParam & 32) ne 0 AND MobaMode eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, poisonPercent, playerAction) AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0 OR !PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, poisonPercent, playerAction) AND (SkillParam & 32) ne 0 AND MobaMode eq 0 AND SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND TryGetProperties<object>.out2(mobAction, 90) ne 0",
+   "op": "AddRate",
+   "step": "LastDamageRate",
+   "vars": [
+    "AbnormalType.Poison",
+    "MasteryId.Trigger",
+    "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PoisonDaggerAction.<>c__DisplayClass25_0..ctor",
+   "formula": ".ctor()",
+   "simplified": ".ctor()",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.checkAbnormalPercent",
+   "formula": "checkAbnormalPercent(5, poisonPercent, playerAction)",
+   "simplified": "checkAbnormalPercent(5, poisonPercent, playerAction)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillDamageData.SetAbnormalType",
+   "formula": "SetAbnormalType(5)",
+   "simplified": "SetAbnormalType(5)",
+   "when": "PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, poisonPercent, playerAction) OR MobaMode ne 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, poisonPercent, playerAction) OR !SkillActionBase.checkPercent(this, 100, SkillMasteryBase.GetMasteryParam(MasteryId.Trigger)) AND MobaMode eq 0 AND PlayerAttackBase.checkAbnormalPercent(this, AbnormalType.Poison, poisonPercent, playerAction)",
+   "vars": [
+    "AbnormalType.Poison",
+    "MasteryId.Trigger",
+    "PlayerAttackBase.checkAbnormalPercent",
+    "SkillActionBase.checkPercent",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "AbnormalType.Poison",
+  "IPlayerStatusCalculator.get_SubAtk",
+  "MasteryId.Trigger",
+  "MathUtil.DisplayMeterToDistance",
+  "MobPropertyLifeReduceDamage.CalcReduceLastDamageRate",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcLastDamageRate",
+  "PlayerAttackBase.checkAbnormalPercent",
+  "PlayerPrimaryStatus.int",
+  "PlayerStatusBase.GetEquipElement",
+  "PoisonDaggerAction.get_AttackType",
+  "SkillActionBase.checkPercent",
+  "SkillMasteryBase.GetMasteryParam",
+  "System.Delegate.Combine",
+  "TryGetProperties.out2",
+  "status.SubAtk"
+ ],
+ "residual": []
+}

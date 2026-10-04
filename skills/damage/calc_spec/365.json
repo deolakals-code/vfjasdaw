@@ -1,0 +1,36 @@
+{
+ "version": 1,
+ "uid": 365,
+ "name_th": "อัพเกรดอุปกรณ์",
+ "name_en": "EnhanceEquipment",
+ "tree": "SmithSkill",
+ "category": "Extra",
+ "max_level": 50,
+ "roles": [
+  "no client action class (system / production / unreleased)"
+ ],
+ "class": null,
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "SmithGrant.getSuccessSkillRate",
+  "SmithGrant.getUsableSlotCount",
+  "SmithGrantInfoWindow.getEnhanceMax"
+ ],
+ "variables": [],
+ "residual": []
+}

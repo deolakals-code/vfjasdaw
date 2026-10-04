@@ -1,0 +1,572 @@
+{
+ "version": 1,
+ "uid": 145,
+ "name_th": "อาชูร่าออร่า",
+ "name_en": "AshuraAura",
+ "tree": "MarshallSkill",
+ "category": "Buffer",
+ "max_level": 240,
+ "roles": [
+  "buff (self)",
+  "changes attack pattern (motion / combo chain; heuristic)",
+  "boosts normal-attack damage"
+ ],
+ "class": "AshuraAuraAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 145,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Knuckle"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "([TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145)+0x28] eq 0 ? 2 : 1)",
+   "simplified": "[TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145)+0x28] = 0 ? 2 : 1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "+0x28]"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "takeUid",
+   "formula": "TakeController.TakePlay([Singleton<TakeManager>.get_Instance()+0x20], 0x11e68500, new System.Action<int, TakeEventType, int>, UnityEngine.Component.get_gameObject(actarAction))",
+   "simplified": "TakeController.TakePlay([Singleton<TakeManager>.get_Instance()+0x20], 0x11e68500, new System.Action<int, TakeEventType, int>, UnityEngine.Component.get_gameObject(actarAction))",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 OR IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 OR IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TakeController.TakePlay",
+    "TryGetBuf.buf",
+    "UnityEngine.Component.get_gameObject",
+    "UnityEngine.Object.op_Inequality"
+   ],
+   "residual": [
+    "+0x20]"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "addBuf",
+   "formula": "1",
+   "simplified": "1",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 OR IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 OR IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100",
+   "by_level": 1,
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "terms": [],
+ "effects": [
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveBuffer",
+   "formula": "RemoveBuffer(145)",
+   "simplified": "RemoveBuffer(145)",
+   "when": "IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 OR IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND TryGetBuf.buf(PlayerStatusBase.get_SkillBufferManager(), 145) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 OR IsInstanceOf(actarAction, MobaPlayerActionManager) eq 1 AND IsInstanceOf(actarAction, PlayerActionManager) ne 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetBuf.buf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "AshuraAuraBuf..ctor",
+   "formula": ".ctor(Lv, takeUid, actarAction)",
+   "simplified": ".ctor(Lv, takeUid, actarAction)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND addBuf ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionHit",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new AshuraAuraBuf, Id)",
+   "simplified": "AddSelfBuffer(new, AshuraAuraBuf, Id)",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND addBuf ne 0",
+   "vars": [
+    "UnityEngine.Object.op_Inequality"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "AshuraAuraBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int takeUid, PlayerActionManagerBase playerAction",
+     "fields": {
+      "actionManager": [
+       {
+        "formula": "playerAction",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1",
+        "by_level": null
+       }
+      ],
+      "StartAshuraAuraAttack": [
+       {
+        "formula": "new System.Func<MobActionManagerBase, bool>",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1",
+        "by_level": null
+       }
+      ],
+      "lastDamageRate": [
+       {
+        "formula": "10",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) ne 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1",
+        "by_level": 10
+       },
+       {
+        "formula": "0",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) ne 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1",
+        "by_level": null
+       }
+      ],
+      "lastDamageRateOffVer": [
+       {
+        "formula": "0",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1",
+        "by_level": null
+       }
+      ],
+      "constantDamage": [
+       {
+        "formula": "((((Lv << 2) + lv) << 1) << 1)",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) ne 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1",
+        "by_level": [
+         20,
+         40,
+         60,
+         80,
+         100,
+         120,
+         140,
+         160,
+         180,
+         200
+        ]
+       },
+       {
+        "formula": "(((Lv << 2) + lv) << 1)",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) ne 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       }
+      ],
+      "critical": [
+       {
+        "formula": "(int((Lv * 2.5)) + (int((Lv * 2.5)) << 1))",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) ne 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1",
+        "by_level": [
+         6,
+         15,
+         21,
+         30,
+         36,
+         45,
+         51,
+         60,
+         66,
+         75
+        ]
+       },
+       {
+        "formula": "int((Lv * 2.5))",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) ne 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1",
+        "by_level": [
+         2,
+         5,
+         7,
+         10,
+         12,
+         15,
+         17,
+         20,
+         22,
+         25
+        ]
+       }
+      ],
+      "isMainKnucle": [
+       {
+        "formula": "1",
+        "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) eq 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) eq 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 16 AND IsInstanceOf(playerAction.battleManager, MobaPlayerBattleManager) ne 1 AND IsInstanceOf(playerAction.battleManager, PlayerBattleManager) ne 1",
+        "by_level": 1
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "40"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "SkillConstantDamage",
+     "bonus_id": 84,
+     "formula": "constantDamage",
+     "simplified": "constantDamage",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "NormalAttackConstantDamage",
+     "bonus_id": 56,
+     "formula": "constantDamage",
+     "simplified": "constantDamage",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "CrtUp",
+     "bonus_id": 19,
+     "formula": "critical",
+     "simplified": "critical",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "LastDmgUpRate",
+     "bonus_id": 3,
+     "formula": "lastDamageRate",
+     "simplified": "lastDamageRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsActive ne 0"
+     ]
+    },
+    {
+     "id": "LastDmgUpRate",
+     "bonus_id": 3,
+     "formula": "lastDamageRateOffVer",
+     "simplified": "lastDamageRateOffVer",
+     "when": [
+      "BuffEffectActive ne 0",
+      "IsActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "IsActive": [
+     {
+      "method": "set_IsActive",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "IsAttack": [
+     {
+      "method": "set_IsAttack",
+      "formula": "(value & 1)",
+      "when": "always"
+     }
+    ],
+    "mobAction": [
+     {
+      "method": "UpdateAshuraAuraAttack",
+      "formula": "0",
+      "when": "AshuraAuraBuf.CheckAttackStop(this) AND IsAttack ne 0"
+     }
+    ],
+    "+0x4c": [
+     {
+      "method": "UpdateAshuraAuraAttack",
+      "formula": "0",
+      "when": "AshuraAuraBuf.CheckAttackStop(this) AND IsAttack ne 0"
+     }
+    ],
+    "loopTimer": [
+     {
+      "method": "UpdateAshuraAuraAttack",
+      "formula": "((loopTimer - UnityEngine.Time.get_deltaTime()) + 0.25)",
+      "when": "!AshuraAuraBuf.CheckAttackStop(this) AND (loopTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND IsActive ne 0 AND IsAttack ne 0 OR !AshuraAuraBuf.CheckAttackStop(this) AND (loopTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND IsActive eq 0 AND IsAttack ne 0 AND attackCount ge 1 OR !AshuraAuraBuf.CheckAttackStop(this) AND (attackCount - 1) gt 0 AND (loopTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND IsActive eq 0 AND IsAttack ne 0 AND attackCount ge 1"
+     },
+     {
+      "method": "UpdateAshuraAuraAttack",
+      "formula": "(loopTimer - UnityEngine.Time.get_deltaTime())",
+      "when": "!AshuraAuraBuf.CheckAttackStop(this) AND (loopTimer - UnityEngine.Time.get_deltaTime()) hi 0 AND IsActive ne 0 AND IsAttack ne 0 OR !AshuraAuraBuf.CheckAttackStop(this) AND (loopTimer - UnityEngine.Time.get_deltaTime()) hi 0 AND IsActive eq 0 AND IsAttack ne 0 AND attackCount ge 1"
+     }
+    ],
+    "Count": [
+     {
+      "method": "UpdateAshuraAuraAttack",
+      "formula": "max((attackCount - 1), 0)",
+      "when": "!AshuraAuraBuf.CheckAttackStop(this) AND (attackCount - 1) gt 0 AND (loopTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND IsActive eq 0 AND IsAttack ne 0 AND attackCount ge 1 OR !AshuraAuraBuf.CheckAttackStop(this) AND (attackCount - 1) le 0 AND (loopTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND IsActive eq 0 AND IsAttack ne 0 AND attackCount ge 1"
+     }
+    ],
+    "right": [
+     {
+      "method": "UpdateAshuraAuraAttack",
+      "formula": "(right ^ 1)",
+      "when": "!AshuraAuraBuf.CheckAttackStop(this) AND (loopTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND IsActive ne 0 AND IsAttack ne 0 OR !AshuraAuraBuf.CheckAttackStop(this) AND (attackCount - 1) gt 0 AND (loopTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND IsActive eq 0 AND IsAttack ne 0 AND attackCount ge 1 OR !AshuraAuraBuf.CheckAttackStop(this) AND (attackCount - 1) le 0 AND (loopTimer - UnityEngine.Time.get_deltaTime()) ls 0 AND IsActive eq 0 AND IsAttack ne 0 AND attackCount ge 1"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckRightAttack",
+    "Next",
+    "OnLeave",
+    "StartSkill",
+    "UpdateAshuraAuraAttack",
+    "get_IsActive",
+    "get_IsAttack",
+    "set_IsActive",
+    "set_IsAttack"
+   ],
+   "kind": "flag/param"
+  },
+  {
+   "class": "CountBufferBase",
+   "ctors": [
+    {
+     "sig": "byte lv, bool self, int max",
+     "fields": {
+      "Count": [
+       {
+        "formula": "0",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "Max": [
+       {
+        "formula": "max",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "(self & 1)"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Count",
+     "bonus_id": 20,
+     "formula": "Count",
+     "simplified": "Count",
+     "when": []
+    }
+   ],
+   "state": {
+    "Count": [
+     {
+      "method": "set_Count",
+      "formula": "value",
+      "when": "always"
+     },
+     {
+      "method": "Next",
+      "formula": "System.Math.Min((Count + 1), Max)",
+      "when": "always"
+     },
+     {
+      "method": "NextSkip",
+      "formula": "System.Math.Min((Count + count), Max)",
+      "when": "always"
+     },
+     {
+      "method": "Prev",
+      "formula": "System.Math.Max((Count - 1), 0)",
+      "when": "always"
+     },
+     {
+      "method": "PrevSkip",
+      "formula": "System.Math.Max((Count - count), 0)",
+      "when": "always"
+     }
+    ],
+    "Max": [
+     {
+      "method": "set_Max",
+      "formula": "value",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "Next",
+    "NextSkip",
+    "Prev",
+    "PrevSkip",
+    "get_Count",
+    "get_Max",
+    "get_Peak",
+    "set_Count",
+    "set_Max"
+   ],
+   "child_args": {
+    "AshuraAuraBuf": {
+     "lv": "lv",
+     "self": "1",
+     "max": "40"
+    }
+   },
+   "attached_via": "caller2:AshuraAuraBuf$$.ctor<-AshuraAuraAction$$ActionHit",
+   "kind": "counter"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "AshuraAuraAction.ActionSkillEvent",
+  "AshuraAuraAction.ActionStart",
+  "AshuraAuraAction.Damaged",
+  "AshuraAuraAttackAction.OnInitialize",
+  "AvoidActionManager.InvalidAshuraAuraAttack",
+  "ChariotAction.OnInitialize",
+  "GuardActionManager.<StartManualGuard>d__91.MoveNext",
+  "GuardActionManager.CheckGuard",
+  "MobaPlayerActionManager.ReceiveDamaged",
+  "MobaPlayerBattleManager.CheckAshuraAuraAttackStart",
+  "MobaPlayerBattleManager.CheckAshuraAuraAttackStop",
+  "MobaPlayerBattleManager.OnSkillActionStart",
+  "MobaPlayerBattleManager.OnSkillActionStartSummonSkeleton",
+  "MobaPlayerBattleManager.StartAshuraAuraAttack",
+  "MobaPlayerSecondaryStatus.GetCrtConstant",
+  "MobaPlayerSecondaryStatus.get_AntiVirus",
+  "PlayerActionManager.Damaged",
+  "PlayerAttackBase.CalcCostMp",
+  "PlayerBattleManager.CheckAshuraAuraAttackStart",
+  "PlayerBattleManager.CheckAshuraAuraAttackStop",
+  "PlayerBattleManager.OnSkillActionStart",
+  "PlayerBattleManager.OnSkillActionStartSummonSkeleton",
+  "PlayerBattleManager.StartAshuraAuraAttack",
+  "PlayerSecondaryStatus.CalcAntiVirus",
+  "PlayerSecondaryStatus.GetCrtConstant"
+ ],
+ "variables": [
+  "AshuraAuraBuf.CheckAttackStop",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "Singleton.get_Instance",
+  "SkillBufferId.Count",
+  "SkillBufferId.CrtUp",
+  "SkillBufferId.LastDmgUpRate",
+  "SkillBufferId.NormalAttackConstantDamage",
+  "SkillBufferId.SkillConstantDamage",
+  "System.Math.Max",
+  "System.Math.Min",
+  "TakeController.TakePlay",
+  "TryGetBuf.buf",
+  "UnityEngine.Component.get_gameObject",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": [
+  {
+   "where": "ActionStart:SkillIndividualFlag",
+   "tokens": [
+    "+0x28]"
+   ]
+  },
+  {
+   "where": "ActionSkillEvent:takeUid",
+   "tokens": [
+    "+0x20]"
+   ]
+  }
+ ]
+}

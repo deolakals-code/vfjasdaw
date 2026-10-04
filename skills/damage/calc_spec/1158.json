@@ -1,0 +1,475 @@
+{
+ "version": 1,
+ "uid": 1158,
+ "name_th": "ก็อดแฮนด์",
+ "name_en": "GodHand",
+ "tree": "CrusherSkill",
+ "category": "Attack",
+ "max_level": 170,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "GodHandAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 1158,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "1000",
+   "simplified": "1000",
+   "when": "always",
+   "by_level": 1000
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv + (Lv << 2)) << 3)",
+   "simplified": "40 × Lv",
+   "when": "always",
+   "by_level": [
+    40,
+    80,
+    120,
+    160,
+    200,
+    240,
+    280,
+    320,
+    360,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(System.Collections.Generic.Dictionary<Int32Enum, object>.ContainsKeyPlayerStatusBase.get_SkillManager().SkillMasteryList, 1161)",
+   "by_level": 1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(skillRate + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1158], SkillBufferId.Value))",
+   "simplified": "(skillRate + SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1158], SkillBufferId.Value))",
+   "when": "UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Value",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "simplified": "PlayerAttackBase.GetWeaponElementType(this, playerAction, mobAction)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.GetWeaponElementType"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "OnInheritance",
+   "kind": "set",
+   "name": "IsInheritance",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate * 0.01)",
+   "simplified": "0.01 × skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1158)",
+   "simplified": "RemoveSelfBuffer(1158)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValuePlayerStatusBase.get_SkillBufferManager().skillBufList, 1158, (new GodHandAction.<>c__DisplayClass25_0 + 24)) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue!PlayerStatusBase.get_SkillBufferManager().skillBufList, 1158, (new GodHandAction.<>c__DisplayClass25_0 + 24)) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValuePlayerStatusBase.get_SkillBufferManager().skillBufList, 1158, (new GodHandAction.<>c__DisplayClass25_0 + 24)) AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1158, Lv, new GodHandAction.<>c__DisplayClass25_0.buf.LeftTime)",
+   "simplified": "AddSelfBuffer(1158, Lv, new, GodHandAction.<>, c__DisplayClass25_0.buf.LeftTime)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValuePlayerStatusBase.get_SkillBufferManager().skillBufList, 1158, (new GodHandAction.<>c__DisplayClass25_0 + 24)) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValuePlayerStatusBase.get_SkillBufferManager().skillBufList, 1158, (new GodHandAction.<>c__DisplayClass25_0 + 24)) AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValuePlayerStatusBase.get_SkillBufferManager().skillBufList, 1158, (new GodHandAction.<>c__DisplayClass25_0 + 24)) AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(1158, Lv)",
+   "simplified": "AddSelfBuffer(1158, Lv)",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Equality(actarAction) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue!PlayerStatusBase.get_SkillBufferManager().skillBufList, 1158, (new GodHandAction.<>c__DisplayClass25_0 + 24)) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue!PlayerStatusBase.get_SkillBufferManager().skillBufList, 1158, (new GodHandAction.<>c__DisplayClass25_0 + 24)) AND MobaMode ne 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND (System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValue!PlayerStatusBase.get_SkillBufferManager().skillBufList, 1158, (new GodHandAction.<>c__DisplayClass25_0 + 24)) AND MobaMode eq 0 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": ".<>c__DisplayClass25_0::<ActionStart>b__0",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(1158)",
+   "simplified": "RemoveSelfBuffer(1158)",
+   "when": "(System.Collections.Generic.Dictionary<Int32Enum, object>.TryGetValuePlayerStatusBase.get_SkillBufferManager().selfSkillBufList, 1158, (this + 24)) AND SkillBufferDataBase.GetParam(PlayerStatusBase.get_SkillBufferManager().selfSkillBufList[1158], SkillBufferId.Count) eq 0",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager",
+    "SkillBufferDataBase.GetParam",
+    "SkillBufferId.Count"
+   ]
+  }
+ ],
+ "buffs": [
+  {
+   "class": "GodHandBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, int stack, float time",
+     "fields": {
+      "damageDownRate": [
+       {
+        "formula": "72",
+        "when": "1 ge (10 - lv) AND Lv ls 9",
+        "by_level": 72
+       },
+       {
+        "formula": "57",
+        "when": "1 lt (10 - lv) AND 2 ge (10 - lv) AND Lv ls 9",
+        "by_level": 57
+       },
+       {
+        "formula": "45",
+        "when": "1 lt (10 - lv) AND 2 lt (10 - lv) AND 3 ge (10 - lv) AND Lv ls 9",
+        "by_level": 45
+       },
+       {
+        "formula": "90",
+        "when": "Lv hi 9 OR 1 lt (10 - lv) AND 2 lt (10 - lv) AND 3 lt (10 - lv) AND Lv ls 9",
+        "by_level": 90
+       }
+      ],
+      "Count": [
+       {
+        "formula": "stack",
+        "when": "Lv hi 9 OR 1 ge (10 - lv) AND Lv ls 9 OR 1 lt (10 - lv) AND 2 ge (10 - lv) AND Lv ls 9",
+        "by_level": null
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "time",
+        "when": "Lv hi 9 OR 1 ge (10 - lv) AND Lv ls 9 OR 1 lt (10 - lv) AND 2 ge (10 - lv) AND Lv ls 9",
+        "by_level": null
+       }
+      ],
+      "isSkillEnd": [
+       {
+        "formula": "0",
+        "when": "Lv hi 9 OR 1 ge (10 - lv) AND Lv ls 9 OR 1 lt (10 - lv) AND 2 ge (10 - lv) AND Lv ls 9",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "3"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "(((Count * Lv) + ((Count * Lv) << 2)) << 1)",
+     "simplified": "10 × Count × Lv",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "AbnormalRegist",
+     "bonus_id": 37,
+     "formula": "SkillMasteryBase.GetMasteryParam(MasteryId.Value)",
+     "simplified": "SkillMasteryBase.GetMasteryParam(MasteryId.Value)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isSkillEnd eq 0"
+     ]
+    },
+    {
+     "id": "AbnormalRegist",
+     "bonus_id": 37,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isSkillEnd eq 0"
+     ]
+    },
+    {
+     "id": "AbnormalRegist",
+     "bonus_id": 37,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isSkillEnd ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "SkillMasteryBase.GetMasteryParam(MasteryId.CutDmgRate)",
+     "simplified": "SkillMasteryBase.GetMasteryParam(MasteryId.CutDmgRate)",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isSkillEnd eq 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isSkillEnd eq 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isSkillEnd ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateUnique",
+     "bonus_id": 5,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isSkillEnd ne 0"
+     ]
+    },
+    {
+     "id": "MobLastDamageRateUnique",
+     "bonus_id": 5,
+     "formula": "damageDownRate",
+     "simplified": "damageDownRate",
+     "when": [
+      "BuffEffectActive ne 0",
+      "isSkillEnd eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Next",
+      "formula": "60",
+      "when": "always"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "isSkillEnd": [
+     {
+      "method": "SkillEnd",
+      "formula": "1",
+      "when": "always"
+     }
+    ],
+    "isDeathExemption": [
+     {
+      "method": "SkillEnd",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "Initalize",
+      "formula": "1",
+      "when": "SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), 1161, 1) ge 1"
+     }
+    ],
+    "playerStatus": [
+     {
+      "method": "Initalize",
+      "formula": "status",
+      "when": "always"
+     }
+    ],
+    "isCutDamage": [
+     {
+      "method": "ApplyDamageCut",
+      "formula": "1",
+      "when": "always"
+     },
+     {
+      "method": "DamageFunction",
+      "formula": "0",
+      "when": "damageData.HitType ne 0 AND isCutDamage ne 0 OR damageData.HitType eq 0 AND isCutDamage ne 0"
+     }
+    ]
+   },
+   "hooks": [
+    "ApplyDamageCut",
+    "DamageFunction",
+    "Initalize",
+    "Next",
+    "SkillEnd",
+    "get_BufEffectTakeId",
+    "get_IsGodRigidBodyMastery",
+    "get_IsSkillEnd"
+   ],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "GazerShootAction.ActionPreparation",
+  "GodHandAction.ActionHit",
+  "MindimageSenjuAttackAction.ActionHit",
+  "MobaPlayerActionManager.ReceiveDamaged",
+  "MobaPlayerSecondaryStatus.get_AntiVirus",
+  "PlayerActionManager.Damaged",
+  "PlayerSecondaryStatus.CalcAntiVirus"
+ ],
+ "variables": [
+  "GetWeaponType.item",
+  "MasteryId.CutDmgRate",
+  "MasteryId.Value",
+  "PlayerAttackBase.GetWeaponElementType",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "PlayerStatusBase.get_SkillManager",
+  "SkillBufferDataBase.GetParam",
+  "SkillBufferId.AbnormalRegist",
+  "SkillBufferId.Count",
+  "SkillBufferId.MobLastDamageRateBuf",
+  "SkillBufferId.MobLastDamageRateUnique",
+  "SkillBufferId.Value",
+  "SkillId.GodRigidBody",
+  "SkillManager.GetSkillLv",
+  "SkillMasteryBase.GetMasteryParam",
+  "System.Collections.Generic.Dictionary.ContainsKeyPlayerStatusBase.get_SkillManager",
+  "System.Collections.Generic.Dictionary.TryGetValuePlayerStatusBase.get_SkillBufferManager",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

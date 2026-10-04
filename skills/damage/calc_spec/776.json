@@ -1,0 +1,229 @@
+{
+ "version": 1,
+ "uid": 776,
+ "name_th": "บีทบลาสต์",
+ "name_en": "BeatBlast",
+ "tree": "Minstrel",
+ "category": "Special",
+ "max_level": 60,
+ "roles": [
+  "attack (deals damage)"
+ ],
+ "class": "BeatBlastAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "first_hit_per_target",
+  "attack_type": "Magic",
+  "action_id": 776,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerStatusBase.GetEquipElement(PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquipElement"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "0",
+   "simplified": "0",
+   "when": "always",
+   "by_level": 0
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv << 4) - Lv) + 100)",
+   "simplified": "15 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    115,
+    130,
+    145,
+    160,
+    175,
+    190,
+    205,
+    220,
+    235,
+    250
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "magicBreak",
+   "formula": "((Lv + (Lv << 2)) << 1)",
+   "simplified": "10 × Lv",
+   "when": "always",
+   "by_level": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "BeatBlastBuf.PayStack(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 776))",
+   "simplified": "BeatBlastBuf.PayStack(TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 776))",
+   "when": "!PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 776) ne 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 776) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager()) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND TryGetBuf<object>.out2(PlayerStatusBase.get_SkillBufferManager(), 776) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager()) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager()).IsEnd eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "vars": [
+    "BeatBlastBuf.PayStack",
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetImprovisationSongBuf.songBuf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionPreparation",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!PlayerAttackBase.IsBlank(this) AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager()) eq 0 AND UnityEngine.Object.op_Inequality(actarAction) OR !PlayerAttackBase.IsBlank(this) AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager()) ne 0 AND TryGetImprovisationSongBuf.songBuf(PlayerStatusBase.get_SkillBufferManager()).IsEnd eq 0 AND UnityEngine.Object.op_Inequality(actarAction)",
+   "by_level": 0,
+   "vars": [
+    "PlayerAttackBase.IsBlank",
+    "PlayerStatusBase.get_SkillBufferManager",
+    "TryGetImprovisationSongBuf.songBuf",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Atk",
+   "simplified": "status.Atk",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND status.Matk lt status.Atk",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "status.Atk",
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "AtkParam",
+   "formula": "status.Matk",
+   "simplified": "status.Matk",
+   "when": "UnityEngine.Object.op_Inequality(actarAction) AND status.Matk ge status.Atk",
+   "vars": [
+    "UnityEngine.Object.op_Inequality",
+    "status.Atk",
+    "status.Matk"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "attackCount ge 1"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "attackCount ge 1",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "attackCount ge 1",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [],
+ "buffs": [],
+ "passives": null,
+ "hooks": [
+  "ImprovisationSongAction.ActionSkillEventIfMoveIndex"
+ ],
+ "variables": [
+  "BeatBlastBuf.PayStack",
+  "GetWeaponType.item",
+  "IPlayerStatusCalculator.get_Atk",
+  "IPlayerStatusCalculator.get_Matk",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.IsBlank",
+  "PlayerStatusBase.GetEquipElement",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "TryGetBuf.out2",
+  "TryGetImprovisationSongBuf.songBuf",
+  "UnityEngine.Object.op_Inequality",
+  "status.Atk",
+  "status.Matk"
+ ],
+ "residual": []
+}

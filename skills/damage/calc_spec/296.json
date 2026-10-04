@@ -1,0 +1,61 @@
+{
+ "version": 1,
+ "uid": 296,
+ "name_th": "แซคเคิลอาร์ม",
+ "name_en": "SecondArm",
+ "tree": "KnifeSkill",
+ "category": "Mastery",
+ "max_level": 5,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "SecondArm",
+ "proration": null,
+ "eq_limit": [
+  "ShortSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "SecondArm",
+  "bonuses": {
+   "Trigger": {
+    "id": 0,
+    "expr": "(Lv + (Lv << 2))",
+    "by_level": [
+     5,
+     10,
+     15,
+     20,
+     25,
+     30,
+     35,
+     40,
+     45,
+     50
+    ]
+   },
+   "SkillRate": {
+    "id": 26,
+    "expr": "25",
+    "by_level": [
+     25,
+     25,
+     25,
+     25,
+     25,
+     25,
+     25,
+     25,
+     25,
+     25
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

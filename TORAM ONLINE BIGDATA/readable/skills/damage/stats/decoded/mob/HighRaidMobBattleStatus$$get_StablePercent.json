@@ -1,0 +1,1 @@
+{"name": "HighRaidMobBattleStatus$$get_StablePercent", "rva": "0x1efe8b4", "addr": "0x1efe8b4", "params": [], "static": false, "returns": "float", "truncated": false, "npaths": 1, "cases": [{"value": "((AbnormalStateManager.Contains(abnormalManager, AbnormalType.Tiredness) & 1) ne 0 ? 0.5 : 1)", "common": [], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

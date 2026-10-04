@@ -1,0 +1,1 @@
+{"name": "PlayerStatusBase$$EnoughMp", "rva": "0x2057bb4", "addr": "0x2057bb4", "params": [["int", "mp"]], "static": false, "returns": "bool", "truncated": false, "npaths": 1, "cases": [{"value": "((PlayerStatusBase.get_GameStatus().localMp + PlayerStatusBase.get_GameStatus().localExMp) ge mp ? 1 : 0)", "common": [], "variants": [], "n": 1}], "sets": {}, "events": [], "lets": {}}

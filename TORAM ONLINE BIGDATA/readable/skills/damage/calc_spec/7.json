@@ -1,0 +1,384 @@
+{
+ "version": 1,
+ "uid": 7,
+ "name_th": null,
+ "name_en": null,
+ "tree": null,
+ "category": null,
+ "max_level": null,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "PhiloEclailAttackAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 7,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": null,
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "placePosition",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).x",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "placePosition.y",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).y",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "placePosition.z",
+   "formula": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "simplified": "UnityEngine.Transform.get_position(UnityEngine.Component.get_transform(actarAction)).z",
+   "when": "always",
+   "vars": [
+    "UnityEngine.Component.get_transform",
+    "UnityEngine.Transform.get_position"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "isDualSword",
+   "formula": "1",
+   "simplified": "1",
+   "when": "PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type eq 10 AND PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.SubWeapon).Type eq 10",
+   "by_level": 1,
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquip"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "3",
+   "simplified": "3",
+   "when": "always",
+   "by_level": 3
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "SubElement",
+   "formula": "BonusManager.GetEquipElement(PlayerStatusBase.get_BonusManager(), EquipType.SubWeapon)",
+   "simplified": "BonusManager.GetEquipElement(PlayerStatusBase.get_BonusManager(), EquipType.SubWeapon)",
+   "when": "PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type eq 10 AND PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.SubWeapon).Type eq 10 OR PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type ne 10 AND isDualSword ne 0 OR PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type eq 10 AND PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.SubWeapon).Type ne 10 AND isDualSword ne 0",
+   "vars": [
+    "BonusManager.GetEquipElement",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquip",
+    "PlayerStatusBase.get_BonusManager"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "IsValidDualElement",
+   "formula": "1",
+   "simplified": "1",
+   "when": "PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type eq 10 AND PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.SubWeapon).Type eq 10 OR PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type ne 10 AND isDualSword ne 0 OR PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type eq 10 AND PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.SubWeapon).Type ne 10 AND isDualSword ne 0",
+   "by_level": 1,
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquip"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 10) + 100)",
+   "simplified": "10 × Lv + 100",
+   "when": "always",
+   "by_level": [
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type eq 10 ? (((Lv * 15) + 50) + 50) : ((Lv * 15) + 50)) / 100)",
+   "simplified": "((PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type eq 10 ? (((Lv * 15) + 50) + 50) : ((Lv * 15) + 50)) / 100)",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquip"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance((PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type eq 10 ? 5 : 4))",
+   "simplified": "MathUtil.DisplayMeterToDistance((PlayerStatusBase.GetEquip(PlayerActionManagerBase.get_PlayerStatus(), EquipType.Weapon).Type eq 10 ? 5 : 4))",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance",
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerStatusBase.GetEquip"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[BaseDamage]",
+   "formula": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, PhiloEclailAttackAction.get_AttackType(), (isDualSword << 15), (PlayerAttackBase.checkCriticalPercent(this, PlayerSecondaryStatus.CalcCritical(PlayerStatusBase.get_SecondaryStatus(), (PlayerSecondaryStatus.GetCrtRate(PlayerStatusBase.get_SecondaryStatus()) + (WrapAroundBuf.GetParam(43) / -100)), (PlayerSecondaryStatus.GetCrtConstant(PlayerStatusBase.get_SecondaryStatus(), 1) - ClearAndSereneBuf.GetParam(19))), mobAction) & 1))",
+   "simplified": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, PhiloEclailAttackAction.get_AttackType(), 32768 × isDualSword, PlayerAttackBase.checkCriticalPercent(this, PlayerSecondaryStatus.CalcCritical(A, PlayerSecondaryStatus.GetCrtRate(A) + WrapAroundBuf.GetParam(43) / -100, PlayerSecondaryStatus.GetCrtConstant(A, 1) - ClearAndSereneBuf.GetParam(19)), mobAction) & 1)",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "PlayerStatusBase.get_SecondaryStatus()"
+    ]
+   ],
+   "op": "SetConstant",
+   "step": "BaseDamage",
+   "vars": [
+    "ClearAndSereneBuf.GetParam",
+    "PhiloEclailAttackAction.get_AttackType",
+    "PlayerAttackBase.calcBaseDamage",
+    "PlayerAttackBase.checkCriticalPercent",
+    "PlayerSecondaryStatus.CalcCritical",
+    "PlayerSecondaryStatus.GetCrtConstant",
+    "PlayerSecondaryStatus.GetCrtRate",
+    "PlayerStatusBase.get_SecondaryStatus",
+    "WrapAroundBuf.GetParam"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "skillRate",
+   "simplified": "skillRate",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[BaseDamage]",
+   "formula": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, PhiloEclailAttackAction.get_AttackType(), (isDualSword << 15), (PlayerAttackBase.checkCriticalPercent(this, PlayerSecondaryStatus.CalcCritical(PlayerStatusBase.get_SecondaryStatus(), (PlayerSecondaryStatus.GetCrtRate(PlayerStatusBase.get_SecondaryStatus()) + (WrapAroundBuf.GetParam(43) / -100)), PlayerSecondaryStatus.GetCrtConstant(PlayerStatusBase.get_SecondaryStatus(), 1)), mobAction) & 1))",
+   "simplified": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, PhiloEclailAttackAction.get_AttackType(), 32768 × isDualSword, PlayerAttackBase.checkCriticalPercent(this, PlayerSecondaryStatus.CalcCritical(A, PlayerSecondaryStatus.GetCrtRate(A) + WrapAroundBuf.GetParam(43) / -100, PlayerSecondaryStatus.GetCrtConstant(A, 1)), mobAction) & 1)",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "PlayerStatusBase.get_SecondaryStatus()"
+    ]
+   ],
+   "op": "SetConstant",
+   "step": "BaseDamage",
+   "vars": [
+    "PhiloEclailAttackAction.get_AttackType",
+    "PlayerAttackBase.calcBaseDamage",
+    "PlayerAttackBase.checkCriticalPercent",
+    "PlayerSecondaryStatus.CalcCritical",
+    "PlayerSecondaryStatus.GetCrtConstant",
+    "PlayerSecondaryStatus.GetCrtRate",
+    "PlayerStatusBase.get_SecondaryStatus",
+    "WrapAroundBuf.GetParam"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[BaseDamage]",
+   "formula": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, PhiloEclailAttackAction.get_AttackType(), (isDualSword << 15), (PlayerAttackBase.checkCriticalPercent(this, PlayerSecondaryStatus.CalcCritical(PlayerStatusBase.get_SecondaryStatus(), PlayerSecondaryStatus.GetCrtRate(PlayerStatusBase.get_SecondaryStatus()), (PlayerSecondaryStatus.GetCrtConstant(PlayerStatusBase.get_SecondaryStatus(), 1) - ClearAndSereneBuf.GetParam(19))), mobAction) & 1))",
+   "simplified": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, PhiloEclailAttackAction.get_AttackType(), 32768 × isDualSword, PlayerAttackBase.checkCriticalPercent(this, PlayerSecondaryStatus.CalcCritical(A, PlayerSecondaryStatus.GetCrtRate(A), PlayerSecondaryStatus.GetCrtConstant(A, 1) - ClearAndSereneBuf.GetParam(19)), mobAction) & 1)",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "PlayerStatusBase.get_SecondaryStatus()"
+    ]
+   ],
+   "op": "SetConstant",
+   "step": "BaseDamage",
+   "vars": [
+    "ClearAndSereneBuf.GetParam",
+    "PhiloEclailAttackAction.get_AttackType",
+    "PlayerAttackBase.calcBaseDamage",
+    "PlayerAttackBase.checkCriticalPercent",
+    "PlayerSecondaryStatus.CalcCritical",
+    "PlayerSecondaryStatus.GetCrtConstant",
+    "PlayerSecondaryStatus.GetCrtRate",
+    "PlayerStatusBase.get_SecondaryStatus"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "SetConstant[BaseDamage]",
+   "formula": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, PhiloEclailAttackAction.get_AttackType(), (isDualSword << 15), (PlayerAttackBase.checkCriticalPercent(this, PlayerSecondaryStatus.CalcCritical(PlayerStatusBase.get_SecondaryStatus(), PlayerSecondaryStatus.GetCrtRate(PlayerStatusBase.get_SecondaryStatus()), PlayerSecondaryStatus.GetCrtConstant(PlayerStatusBase.get_SecondaryStatus(), 1)), mobAction) & 1))",
+   "simplified": "PlayerAttackBase.calcBaseDamage(playerAction, mobAction, PhiloEclailAttackAction.get_AttackType(), 32768 × isDualSword, PlayerAttackBase.checkCriticalPercent(this, PlayerSecondaryStatus.CalcCritical(A, PlayerSecondaryStatus.GetCrtRate(A), PlayerSecondaryStatus.GetCrtConstant(A, 1)), mobAction) & 1)",
+   "when": "always",
+   "defs": [
+    [
+     "A",
+     "PlayerStatusBase.get_SecondaryStatus()"
+    ]
+   ],
+   "op": "SetConstant",
+   "step": "BaseDamage",
+   "vars": [
+    "PhiloEclailAttackAction.get_AttackType",
+    "PlayerAttackBase.calcBaseDamage",
+    "PlayerAttackBase.checkCriticalPercent",
+    "PlayerSecondaryStatus.CalcCritical",
+    "PlayerSecondaryStatus.GetCrtConstant",
+    "PlayerSecondaryStatus.GetCrtRate",
+    "PlayerStatusBase.get_SecondaryStatus"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(653)",
+   "simplified": "RemoveSelfBuffer(653)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "PlayerAttackBase.SetBufferConstantDamage",
+   "formula": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new SkillCalcTemplate, playerAction, mobAction), 2)",
+   "simplified": "SetBufferConstantDamage(PlayerAttackBase.TemplateAssignment(this, new, SkillCalcTemplate, playerAction, mobAction), 2)",
+   "when": "always",
+   "vars": [
+    "PlayerAttackBase.TemplateAssignment"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager().skillBufList[653], 0)",
+   "simplified": "AddSelfBuffer(PlayerStatusBase.get_SkillBufferManager().skillBufList[653], 0)",
+   "when": "always",
+   "vars": [
+    "PlayerStatusBase.get_SkillBufferManager"
+   ]
+  }
+ ],
+ "buffs": [],
+ "passives": null,
+ "hooks": [],
+ "variables": [
+  "BonusManager.GetEquipElement",
+  "ClearAndSereneBuf.GetParam",
+  "MathUtil.DisplayMeterToDistance",
+  "PhiloEclailAttackAction.get_AttackType",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.TemplateAssignment",
+  "PlayerAttackBase.calcBaseDamage",
+  "PlayerAttackBase.checkCriticalPercent",
+  "PlayerSecondaryStatus.CalcCritical",
+  "PlayerSecondaryStatus.GetCrtConstant",
+  "PlayerSecondaryStatus.GetCrtRate",
+  "PlayerStatusBase.GetEquip",
+  "PlayerStatusBase.get_BonusManager",
+  "PlayerStatusBase.get_SecondaryStatus",
+  "PlayerStatusBase.get_SkillBufferManager",
+  "UnityEngine.Component.get_transform",
+  "UnityEngine.Transform.get_position",
+  "WrapAroundBuf.GetParam"
+ ],
+ "residual": []
+}

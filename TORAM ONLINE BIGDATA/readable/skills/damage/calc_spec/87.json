@@ -1,0 +1,148 @@
+{
+ "version": 1,
+ "uid": 87,
+ "name_th": "คู่หูนักล่า",
+ "name_en": "HuntingOne",
+ "tree": "ShootSkill",
+ "category": "Special",
+ "max_level": 150,
+ "roles": [
+  "buff (self)"
+ ],
+ "class": "HuntingOneAction",
+ "proration": {
+  "slot": "none",
+  "mode": "never (ExpType None: no proration slot)",
+  "attack_type": "None",
+  "action_id": 87,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Bow",
+  "Bowgun"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 0.1, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 0.1, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "mp",
+   "formula": "0",
+   "simplified": "0",
+   "when": "hasBuff(AvoidUp)",
+   "by_level": 0
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  }
+ ],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "HuntingOneBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "hitSkillList": [
+       {
+        "formula": "new System.Collections.Generic.List<SkillIdData>",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "CountBufferBase",
+      "args": [
+       "lv",
+       "1",
+       "25"
+      ],
+      "params": [
+       "lv",
+       "self",
+       "max"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ],
+    "Count": [
+     {
+      "method": "Stack",
+      "formula": "(Max lt hitSkillList.Count ? Max : hitSkillList.Count)",
+      "when": "(System.Collections.Generic.List<SkillIdData>.Contains(hitSkillList, skillIdData, meta(0x39a9f18, Method$System.Collections.Generic.List<SkillIdData>.Contains())) & 1) eq 0"
+     },
+     {
+      "method": "Clear",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "BufferEnd",
+    "Clear",
+    "Stack"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "GameManager.ReceiveSummons",
+  "HuntingOneAction.OnInitialize",
+  "HuntingOneActionManager.BattleReservation",
+  "HuntingOneActionManager.SupportResevation"
+ ],
+ "variables": [
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "System.Collections.Generic.List.Contains",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

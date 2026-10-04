@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "uid": 1124,
+ "name_th": "พลั่วชั้นดี",
+ "name_en": "GoodQualityShovel",
+ "tree": "NecromancerSkill",
+ "category": "Mastery",
+ "max_level": 1,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "GoodQualityShovel",
+ "proration": null,
+ "eq_limit": [
+  "Rod"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "GoodQualityShovel",
+  "bonuses": {
+   "Value": {
+    "id": 28,
+    "expr": "int(((Lv * 0.6) * 10))",
+    "by_level": [
+     6,
+     12,
+     18,
+     24,
+     30,
+     36,
+     42,
+     48,
+     53,
+     60
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

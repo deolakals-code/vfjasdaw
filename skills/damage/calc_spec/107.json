@@ -1,0 +1,37 @@
+{
+ "version": 1,
+ "uid": 107,
+ "name_th": "พาวเวอร์เวฟ",
+ "name_en": "PowerWave",
+ "tree": "MagicSkill",
+ "category": "Mastery",
+ "max_level": 70,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "PowerWave",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "PowerWave",
+  "bonuses": {}
+ },
+ "hooks": [
+  "GemCartBuffer.PowerWaveChangeBuff.OnGetValue"
+ ],
+ "variables": [],
+ "residual": []
+}

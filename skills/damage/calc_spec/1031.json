@@ -1,0 +1,348 @@
+{
+ "version": 1,
+ "uid": 1031,
+ "name_th": "[N]อิมพีเรียลเรย์[PN]อิมพีเรียลบลาสท์[PF]อิมพีเรียลไฟร์[PA]อิมพีเรียลฟรีซ[PW]อิมพีเรียลโกลม[PE]อิมพีเรียลเปตรา[PL]อิมพีเรียลโฮลี่[PD]อิมพีเรียลชาโดว์[N]",
+ "name_en": "ImperialRay",
+ "tree": "WizardSkill",
+ "category": "Attack",
+ "max_level": 205,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)"
+ ],
+ "class": "ImperialRayAction",
+ "proration": {
+  "slot": "Magic",
+  "mode": "never (IsExpDefFluctuate=false)",
+  "attack_type": "Magic",
+  "action_id": 1031,
+  "is_exp_def_fluctuate": "false",
+  "child_actions": ""
+ },
+ "eq_limit": [
+  "Rod",
+  "Magictool"
+ ],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "MathUtil.DisplayMeterToDistance(12)",
+   "simplified": "MathUtil.DisplayMeterToDistance(12)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Element",
+   "formula": "7",
+   "simplified": "7",
+   "when": "always",
+   "by_level": 7
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 50) + 500) + SkillMasteryBase.GetMasteryParam(MasteryId.SkillRate))",
+   "simplified": "50 × Lv + SkillMasteryBase.GetMasteryParam(MasteryId.SkillRate) + 500",
+   "when": "(mainWeapon==Rod & 1) ne 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 OR (mainWeapon==Magictool & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0",
+   "vars": [
+    "MasteryId.SkillRate",
+    "SkillMasteryBase.GetMasteryParam"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "fixAddDamage",
+   "formula": "((Lv * 20) + 200)",
+   "simplified": "20 × Lv + 200",
+   "when": "always",
+   "by_level": [
+    220,
+    240,
+    260,
+    280,
+    300,
+    320,
+    340,
+    360,
+    380,
+    400
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "CastTime",
+   "formula": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "simplified": "PlayerAttackBase.CalcCastTime(this, 2, PlayerActionManagerBase.get_PlayerStatus())",
+   "when": "always",
+   "vars": [
+    "PlayerActionManagerBase.get_PlayerStatus",
+    "PlayerAttackBase.CalcCastTime"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "((Lv * 50) + 500)",
+   "simplified": "50 × Lv + 500",
+   "when": "(mainWeapon==Rod & 1) ne 0 OR (mainWeapon==Magictool & 1) ne 0 AND (mainWeapon==Rod & 1) eq 0 OR (mainWeapon==Magictool & 1) eq 0 AND (mainWeapon==Rod & 1) eq 0",
+   "by_level": [
+    550,
+    600,
+    650,
+    700,
+    750,
+    800,
+    850,
+    900,
+    950,
+    1000
+   ]
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "mainTarget",
+   "formula": "target",
+   "simplified": "target",
+   "when": "always"
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "player",
+   "formula": "PlayerDataManager.GetPlayerDataManager()",
+   "simplified": "PlayerDataManager.GetPlayerDataManager()",
+   "when": "!AutoMemberManager.TryGetAutoMember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()), (this + 296)) AND !PlayerAttackBase.IsBlank(this) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 OR !PlayerAttackBase.IsBlank(this) AND AutoMemberManager.TryGetAutoMember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()), (this + 296)) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager())) eq 0 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()))), 0) AND AutoMemberManager.TryGetAutoMember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()), (this + 296)) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager())) ne 0",
+   "vars": [
+    "AutoMemberManager.TryGetAutoMember",
+    "PlayerAttackBase.IsBlank",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_PlayerArchetypeId",
+    "PlayerObjectBase.get_ActionManager",
+    "TryGetAutoMember.automember",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!PlayerAttackBase.IsBlank(this) AND !SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND AutoMemberManager.TryGetAutoMember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()), (this + 296)) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager())) ne 0 AND UnityEngine.Object.op_Inequality(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()))), 0) OR !PlayerAttackBase.IsBlank(this) AND AutoMemberManager.TryGetAutoMember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()), (this + 296)) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND PlayerAttackBase.CheckSkillParamFlag(SkillActionManagerBase.get_CurrentSkill(), SkillParamFlag.HighFamilia) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager())) ne 0 AND UnityEngine.Object.op_Inequality(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()))), 0)",
+   "by_level": 1,
+   "vars": [
+    "AutoMemberManager.TryGetAutoMember",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_PlayerArchetypeId",
+    "PlayerObjectBase.get_ActionManager",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "TryGetAutoMember.automember",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionStart",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "0",
+   "simplified": "0",
+   "when": "!AutoMemberManager.TryGetAutoMember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()), (this + 296)) AND !PlayerAttackBase.IsBlank(this) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 OR !PlayerAttackBase.IsBlank(this) AND !UnityEngine.Object.op_Inequality(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()))), 0) AND AutoMemberManager.TryGetAutoMember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()), (this + 296)) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager())) ne 0 OR !PlayerAttackBase.CheckSkillParamFlag(SkillActionManagerBase.get_CurrentSkill(), SkillParamFlag.HighFamilia) AND !PlayerAttackBase.IsBlank(this) AND AutoMemberManager.TryGetAutoMember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()), (this + 296)) AND IsInstanceOf(actarAction, PlayerActionManager) eq 1 AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager())) ne 0 AND UnityEngine.Object.op_Inequality(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(PlayerDataManager.GetPlayerDataManager().AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(PlayerDataManager.GetPlayerDataManager()))), 0)",
+   "by_level": 0,
+   "vars": [
+    "AutoMemberManager.TryGetAutoMember",
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerAttackBase.IsBlank",
+    "PlayerDataManager.GetPlayerDataManager",
+    "PlayerDataManager.get_PlayerArchetypeId",
+    "PlayerObjectBase.get_ActionManager",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "TryGetAutoMember.automember",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "familiaCast",
+   "formula": "1",
+   "simplified": "1",
+   "when": "SkillIndividualFlag eq 1 AND SkillIndividualFlag ne 0 AND TryGetAutoMember.automember(player.AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(player)) ne 0 AND UnityEngine.Object.op_Inequality(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(player.AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(player))), 0) AND UnityEngine.Object.op_Inequality(player) AND familiaCast eq 0 AND param eq 255 OR !SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillIndividualFlag eq 0 AND TryGetAutoMember.automember(player.AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(player)) ne 0 AND UnityEngine.Object.op_Inequality(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(player.AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(player))), 0) AND UnityEngine.Object.op_Inequality(player) AND familiaCast eq 0 AND param eq 255 OR PlayerAttackBase.CheckSkillParamFlag(SkillActionManagerBase.get_CurrentSkill(), SkillParamFlag.HighFamilia) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillIndividualFlag eq 0 AND TryGetAutoMember.automember(player.AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(player)) ne 0 AND UnityEngine.Object.op_Inequality(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(player.AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(player))), 0) AND UnityEngine.Object.op_Inequality(player) AND familiaCast eq 0 AND param eq 255",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerDataManager.get_PlayerArchetypeId",
+    "PlayerObjectBase.get_ActionManager",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "TryGetAutoMember.automember",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "SkillIndividualFlag",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillIndividualFlag eq 0 AND TryGetAutoMember.automember(player.AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(player)) ne 0 AND UnityEngine.Object.op_Inequality(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(player.AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(player))), 0) AND UnityEngine.Object.op_Inequality(player) AND familiaCast eq 0 AND param eq 255 OR PlayerAttackBase.CheckSkillParamFlag(SkillActionManagerBase.get_CurrentSkill(), SkillParamFlag.HighFamilia) AND SkillActionBase.op_Inequality(SkillActionManagerBase.get_CurrentSkill(), 0) AND SkillIndividualFlag eq 0 AND TryGetAutoMember.automember(player.AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(player)) ne 0 AND UnityEngine.Object.op_Inequality(PlayerObjectBase.get_ActionManager(TryGetAutoMember.automember(player.AutoMemberManager, 8, PlayerDataManager.get_PlayerArchetypeId(player))), 0) AND UnityEngine.Object.op_Inequality(player) AND familiaCast eq 0 AND param eq 255",
+   "by_level": 1,
+   "vars": [
+    "PlayerAttackBase.CheckSkillParamFlag",
+    "PlayerDataManager.get_PlayerArchetypeId",
+    "PlayerObjectBase.get_ActionManager",
+    "SkillActionBase.op_Inequality",
+    "SkillActionManagerBase.get_CurrentSkill",
+    "TryGetAutoMember.automember",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "fixAddDamage",
+   "simplified": "fixAddDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  }
+ ],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "ImperialRayBuf",
+   "ctors": [
+    {
+     "sig": "",
+     "fields": {
+      "targetMobList": [
+       {
+        "formula": "new System.Collections.Generic.Dictionary<int, bool>",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "timer": [
+       {
+        "formula": "5",
+        "when": "always",
+        "by_level": 5
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "1",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "timer": [
+     {
+      "method": "Updata",
+      "formula": "5",
+      "when": "(timer - UnityEngine.Time.get_deltaTime()) ls 0 AND System.Collections.Generic.Dictionary<int, bool>.get_Count(targetMobList, meta(0x3982e30, Method$System.Collections.Generic.Dictionary<int, bool>.get_Count())) gt 0 AND timer gt 0 OR (timer - UnityEngine.Time.get_deltaTime()) ls 0 AND System.Collections.Generic.Dictionary<int, bool>.get_Count(targetMobList, meta(0x3982e30, Method$System.Collections.Generic.Dictionary<int, bool>.get_Count())) le 0 AND timer gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(timer - UnityEngine.Time.get_deltaTime())",
+      "when": "(timer - UnityEngine.Time.get_deltaTime()) hi 0 AND System.Collections.Generic.Dictionary<int, bool>.get_Count(targetMobList, meta(0x3982e30, Method$System.Collections.Generic.Dictionary<int, bool>.get_Count())) gt 0 AND timer gt 0 OR (timer - UnityEngine.Time.get_deltaTime()) hi 0 AND System.Collections.Generic.Dictionary<int, bool>.get_Count(targetMobList, meta(0x3982e30, Method$System.Collections.Generic.Dictionary<int, bool>.get_Count())) le 0 AND timer gt 0"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckMob",
+    "RegisterMobUid",
+    "RemoveMobUid",
+    "UpdateMobUidList"
+   ],
+   "attached_via": "name",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "MobaPlayerBattleManager.PursuitImperialRayAttack",
+  "PlayerBattleManager.PursuitImperialRayAttack"
+ ],
+ "variables": [
+  "AutoMemberManager.TryGetAutoMember",
+  "MasteryId.SkillRate",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_PlayerStatus",
+  "PlayerAttackBase.CalcCastTime",
+  "PlayerAttackBase.CheckSkillParamFlag",
+  "PlayerAttackBase.IsBlank",
+  "PlayerDataManager.GetPlayerDataManager",
+  "PlayerDataManager.get_PlayerArchetypeId",
+  "PlayerObjectBase.get_ActionManager",
+  "SkillActionBase.op_Inequality",
+  "SkillActionManagerBase.get_CurrentSkill",
+  "SkillMasteryBase.GetMasteryParam",
+  "System.Collections.Generic.Dictionary.get_Count",
+  "TryGetAutoMember.automember",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

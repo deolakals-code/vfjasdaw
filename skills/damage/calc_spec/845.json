@@ -1,0 +1,100 @@
+{
+ "version": 1,
+ "uid": 845,
+ "name_th": "แอสพิสโซล",
+ "name_en": "AspisSeoul",
+ "tree": "PriestSkill",
+ "category": "Mastery",
+ "max_level": 285,
+ "roles": [
+  "buff (self)",
+  "passive mastery",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "AspisSeoul",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "AspisSeoulBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "((Lv << 1) + lv)",
+        "when": "always",
+        "by_level": [
+         3,
+         6,
+         9,
+         12,
+         15,
+         18,
+         21,
+         24,
+         27,
+         30
+        ]
+       }
+      ]
+     },
+     "base_ctor": {
+      "class": "SkillBufferDataBase",
+      "args": [
+       "lv",
+       "1"
+      ],
+      "params": [
+       "lv",
+       "self"
+      ]
+     }
+    }
+   ],
+   "params": [],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "name",
+   "kind": "timed"
+  }
+ ],
+ "passives": {
+  "class": "AspisSeoul",
+  "bonuses": {}
+ },
+ "hooks": [
+  "AspisSeoul.GetRateDamageResist",
+  "AspisSeoul.ReceiveSupportEvent"
+ ],
+ "variables": [
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

@@ -1,0 +1,46 @@
+{
+ "version": 1,
+ "uid": 40,
+ "name_th": "ซอร์ดเทคนิก",
+ "name_en": "BladeMasterMastery",
+ "tree": "BladeSkill",
+ "category": "Mastery",
+ "max_level": 30,
+ "roles": [
+  "passive mastery"
+ ],
+ "class": "BladeMasterMastery",
+ "proration": null,
+ "eq_limit": [
+  "OneHandSword",
+  "TwoHandSword"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [],
+ "passives": {
+  "class": "BladeMasterMastery",
+  "bonuses": {
+   "LastDmgRate": {
+    "id": 8,
+    "expr": "(Lv << 1)",
+    "by_level": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     14,
+     16,
+     18,
+     20
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [],
+ "residual": []
+}

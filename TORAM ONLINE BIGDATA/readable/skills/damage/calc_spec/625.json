@@ -1,0 +1,488 @@
+{
+ "version": 1,
+ "uid": 625,
+ "name_th": "ชาโดว์เลสสแลช",
+ "name_en": "ShadowlessSlash",
+ "tree": "MononofuSkill",
+ "category": "Object",
+ "max_level": 240,
+ "roles": [
+  "attack (deals damage)",
+  "buff (self)",
+  "placed object / trap / summon",
+  "modifies normal-attack behaviour"
+ ],
+ "class": "ShadowlessSlashAction",
+ "proration": {
+  "slot": "Skill",
+  "mode": "first_hit_per_target",
+  "attack_type": "Physics",
+  "action_id": 625,
+  "is_exp_def_fluctuate": "true",
+  "child_actions": ""
+ },
+ "eq_limit": [],
+ "fields": [
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "simplified": "PlayerAttackBase.GetWeaponRange(GetWeaponType.item(actarAction))",
+   "when": "always",
+   "vars": [
+    "GetWeaponType.item",
+    "PlayerAttackBase.GetWeaponRange"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "Radius",
+   "formula": "MathUtil.DisplayMeterToDistance(2.5)",
+   "simplified": "MathUtil.DisplayMeterToDistance(2.5)",
+   "when": "always",
+   "vars": [
+    "MathUtil.DisplayMeterToDistance"
+   ]
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "constantDamage",
+   "formula": "300",
+   "simplified": "300",
+   "when": "always",
+   "by_level": 300
+  },
+  {
+   "method": "OnInitialize",
+   "kind": "set",
+   "name": "skillRate",
+   "formula": "(((Lv * 50) + 400) + (((baseAGI + baseDEX) lt 0 ? ((baseAGI + baseDEX) + 1) : (baseAGI + baseDEX)) >> 1))",
+   "simplified": "50 × Lv + (baseAGI + baseDEX) ÷ 2 + 400",
+   "when": "always"
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "shadowless",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102 OR !UnityEngine.Object.op_Equality(actarAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) lt 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102 OR MobaMode ne 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102",
+   "by_level": 1,
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.FinishingTouch",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "IsSwordMoveStart",
+   "formula": "1",
+   "simplified": "1",
+   "when": "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) ne 8 AND ISwordMove.CheckSwordMoveStart(actarAction, this) AND IsOtherPlayer eq 0 AND inputValie ne 0 AND param eq 101 AND param ne 102 OR EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 AND ISwordMove.CheckSwordMoveStart(actarAction, this) AND IsOtherPlayer eq 0 AND SwordMove.AddBuf(this, actarAction) AND inputValie ne 0 AND param eq 101 AND param ne 102 OR !SwordMove.AddBuf(this, actarAction) AND EquipItemData.WeaponTypeCalculatorBase.get_WeaponType(PlayerStatusBase.get_EquipItemData().mainWeaponCalculator) eq 8 AND ISwordMove.CheckSwordMoveStart(actarAction, this) AND IsOtherPlayer eq 0 AND inputValie ne 0 AND param eq 101 AND param ne 102",
+   "by_level": 1,
+   "vars": [
+    "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+    "ISwordMove.CheckSwordMoveStart",
+    "PlayerStatusBase.get_EquipItemData",
+    "SwordMove.AddBuf"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "set",
+   "name": "inputValie",
+   "formula": "1",
+   "simplified": "1",
+   "when": "!AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Slow) AND !AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Stop) AND !IPlayerControl.ExistsCurrentCobmoSkill(isinst(actarAction, typeof(IPlayerControl))) AND ActionRange ne -1 AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND param eq 102 AND shadowless ne 0 OR !AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Slow) AND !AbnormalStateManager.Contains(PlayerActionManagerBase.get_AbnormalStatusManager(), AbnormalType.Stop) AND ActionRange ne -1 AND IPlayerControl.ExistsCurrentCobmoSkill(isinst(actarAction, typeof(IPlayerControl))) AND IPlayerControl.IsCurrentComboLastSkill(isinst(actarAction, typeof(IPlayerControl))) AND InputManager.get_LeftInputKey(Singleton<InputManager>.get_Instance()) AND param eq 102 AND shadowless ne 0",
+   "by_level": 1,
+   "vars": [
+    "AbnormalStateManager.Contains",
+    "AbnormalType.Slow",
+    "AbnormalType.Stop",
+    "IPlayerControl.ExistsCurrentCobmoSkill",
+    "IPlayerControl.IsCurrentComboLastSkill",
+    "InputManager.get_LeftInputKey",
+    "PlayerActionManagerBase.get_AbnormalStatusManager"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "info",
+   "name": "templates",
+   "formula": "1",
+   "simplified": "1",
+   "when": "always"
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "ActionRange",
+   "formula": "-1",
+   "simplified": "-1",
+   "when": "always",
+   "by_level": -1
+  },
+  {
+   "method": "InitializeOthers",
+   "kind": "set",
+   "name": "Element",
+   "formula": "loopCount",
+   "simplified": "loopCount",
+   "when": "always"
+  },
+  {
+   "method": "OtherPlayerSkillEventReceive",
+   "kind": "set",
+   "name": "inputValie",
+   "formula": "1",
+   "simplified": "1",
+   "when": "(skillEventId & 0xffff) eq 102 OR (System.Collections.Generic.Dictionary<int, int>.ContainsKey(values, 17, values) & 1) ne 0 AND (skillEventId & 0xffff) eq 101 AND (skillEventId & 0xffff) ne 102 OR (System.Collections.Generic.Dictionary<int, int>.ContainsKey(values, 17, values) & 1) eq 0 AND (skillEventId & 0xffff) eq 101 AND (skillEventId & 0xffff) ne 102",
+   "by_level": 1
+  }
+ ],
+ "terms": [
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[SkillRate]",
+   "formula": "(skillRate / 100)",
+   "simplified": "skillRate / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "SkillRate"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[SkillConstantDamage]",
+   "formula": "constantDamage",
+   "simplified": "constantDamage",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "SkillConstantDamage"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddRate[FirstAttackRate]",
+   "formula": "(PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamageRate(playerAction) / 100",
+   "when": "always",
+   "op": "AddRate",
+   "step": "FirstAttackRate",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamageRate"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "tpl",
+   "name": "AddConstant[FirstAttack]",
+   "formula": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "simplified": "PlayerAttackBase.calcFastAttackDamage(this, playerAction)",
+   "when": "always",
+   "op": "AddConstant",
+   "step": "FirstAttack",
+   "vars": [
+    "PlayerAttackBase.calcFastAttackDamage"
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "ShadowlessSlashBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102 OR !UnityEngine.Object.op_Equality(actarAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) lt 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102 OR MobaMode ne 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.FinishingTouch",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ShadowlessSlashBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ShadowlessSlashBuf, Id)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102 OR !UnityEngine.Object.op_Equality(actarAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) lt 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102 OR MobaMode ne 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.FinishingTouch",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "ActionSkillEvent",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(621, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1), 0)",
+   "simplified": "AddSelfBuffer(621, SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1), 0)",
+   "when": "!UnityEngine.Object.op_Equality(actarAction) AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1 AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102 OR MobaMode ne 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102 OR MobaMode eq 0 AND SkillManager.GetSkillLv(PlayerStatusBase.get_SkillManager(), SkillId.FinishingTouch, 1) ge 1 AND UnityEngine.Object.op_Equality(actarAction) AND UnityEngine.Object.op_Inequality(actarAction) AND param eq 100 AND param ne 101 AND param ne 102",
+   "vars": [
+    "PlayerStatusBase.get_SkillManager",
+    "SkillId.FinishingTouch",
+    "SkillManager.GetSkillLv",
+    "UnityEngine.Object.op_Equality",
+    "UnityEngine.Object.op_Inequality"
+   ]
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "ShadowlessSlashBuf..ctor",
+   "formula": ".ctor(Lv)",
+   "simplified": ".ctor(Lv)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.AddSelfBuffer",
+   "formula": "AddSelfBuffer(new ShadowlessSlashBuf, Id)",
+   "simplified": "AddSelfBuffer(new, ShadowlessSlashBuf, Id)",
+   "when": "always"
+  },
+  {
+   "method": "calcPlayerToMobDamage",
+   "kind": "call",
+   "name": "SkillBufferManager.RemoveSelfBuffer",
+   "formula": "RemoveSelfBuffer(625)",
+   "simplified": "RemoveSelfBuffer(625)",
+   "when": "always"
+  }
+ ],
+ "buffs": [
+  {
+   "class": "ShadowlessSlashBuf",
+   "ctors": [
+    {
+     "sig": "byte lv",
+     "fields": {
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "LeftTime": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "hitRate": [
+       {
+        "formula": "((Lv * Lv) + ((Lv * Lv) << 1))",
+        "when": "always",
+        "by_level": [
+         3,
+         12,
+         27,
+         48,
+         75,
+         108,
+         147,
+         192,
+         243,
+         300
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "HitRate",
+     "bonus_id": 11,
+     "formula": "hitRate",
+     "simplified": "hitRate",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "HitRate",
+     "bonus_id": 11,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "kind": "timed"
+  },
+  {
+   "class": "SwordMoveBuf",
+   "ctors": [
+    {
+     "sig": "bool damageInvalid",
+     "fields": {
+      "Level": [
+       {
+        "formula": "257",
+        "when": "always",
+        "by_level": 257
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BufEffectTakeUid": [
+       {
+        "formula": "-1",
+        "when": "always",
+        "by_level": -1
+       }
+      ],
+      "damageInvalid": [
+       {
+        "formula": "(damageInvalid & 1)",
+        "when": "always",
+        "by_level": null
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "damageInvalid",
+     "simplified": "damageInvalid",
+     "when": [
+      "BuffEffectActive ne 0"
+     ]
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "0",
+     "simplified": "0",
+     "when": [
+      "BuffEffectActive eq 0"
+     ]
+    }
+   ],
+   "state": {
+    "damageInvalid": [
+     {
+      "method": "DamageInvalid",
+      "formula": "0",
+      "when": "always"
+     },
+     {
+      "method": "EndSwordMove",
+      "formula": "0",
+      "when": "always"
+     }
+    ]
+   },
+   "hooks": [
+    "CheckDamageInvalid",
+    "DamageInvalid",
+    "EndSwordMove"
+   ],
+   "attached_via": "caller2:SwordMove$$AddBuf<-ShadowlessSlashAction$$ActionSkillEvent",
+   "kind": "flag/param"
+  }
+ ],
+ "passives": null,
+ "hooks": [
+  "TenjhoTengeMusouSwordAction.CheckActive"
+ ],
+ "variables": [
+  "AbnormalStateManager.Contains",
+  "AbnormalType.Slow",
+  "AbnormalType.Stop",
+  "EquipItemData.WeaponTypeCalculatorBase.get_WeaponType",
+  "GetWeaponType.item",
+  "IPlayerControl.ExistsCurrentCobmoSkill",
+  "IPlayerControl.IsCurrentComboLastSkill",
+  "ISwordMove.CheckSwordMoveStart",
+  "InputManager.get_LeftInputKey",
+  "MathUtil.DisplayMeterToDistance",
+  "PlayerActionManagerBase.get_AbnormalStatusManager",
+  "PlayerAttackBase.GetWeaponRange",
+  "PlayerAttackBase.calcFastAttackDamage",
+  "PlayerAttackBase.calcFastAttackDamageRate",
+  "PlayerPrimaryStatus.agi",
+  "PlayerPrimaryStatus.dex",
+  "PlayerStatusBase.get_EquipItemData",
+  "PlayerStatusBase.get_SkillManager",
+  "Singleton.get_Instance",
+  "SkillBufferId.HitRate",
+  "SkillBufferId.Value",
+  "SkillId.FinishingTouch",
+  "SkillManager.GetSkillLv",
+  "SwordMove.AddBuf",
+  "System.Collections.Generic.Dictionary.ContainsKey",
+  "UnityEngine.Object.op_Equality",
+  "UnityEngine.Object.op_Inequality",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}

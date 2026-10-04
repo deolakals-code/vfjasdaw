@@ -1,0 +1,245 @@
+{
+ "version": 1,
+ "uid": 999,
+ "name_th": "ซิคาเรียส",
+ "name_en": "Seekerius",
+ "tree": "AssassinSkill",
+ "category": "Mastery",
+ "max_level": 205,
+ "roles": [
+  "buff (self)",
+  "passive mastery"
+ ],
+ "class": "Seekerius",
+ "proration": null,
+ "eq_limit": [
+  "Hand",
+  "OneHandSword",
+  "TwoHandSword",
+  "Bow",
+  "Bowgun",
+  "Rod",
+  "Magictool",
+  "Knuckle"
+ ],
+ "fields": [],
+ "terms": [],
+ "effects": [],
+ "buffs": [
+  {
+   "class": "SeekeriusBuf",
+   "ctors": [
+    {
+     "sig": "byte lv, float rate, int val",
+     "fields": {
+      "LeftTime": [
+       {
+        "formula": "30",
+        "when": "always",
+        "by_level": 30
+       }
+      ],
+      "Level": [
+       {
+        "formula": "lv",
+        "when": "always",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "IsSelfAction": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "BuffEffectActive": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ],
+      "atkUp": [
+       {
+        "formula": "((Lv + (Lv << 2)) << 1)",
+        "when": "val eq 1",
+        "by_level": [
+         10,
+         20,
+         30,
+         40,
+         50,
+         60,
+         70,
+         80,
+         90,
+         100
+        ]
+       },
+       {
+        "formula": "((Lv << 2) + lv)",
+        "when": "val ne 1",
+        "by_level": [
+         5,
+         10,
+         15,
+         20,
+         25,
+         30,
+         35,
+         40,
+         45,
+         50
+        ]
+       }
+      ],
+      "powerResistBreaker": [
+       {
+        "formula": "(Lv + 15)",
+        "when": "val eq 1",
+        "by_level": [
+         16,
+         17,
+         18,
+         19,
+         20,
+         21,
+         22,
+         23,
+         24,
+         25
+        ]
+       },
+       {
+        "formula": "Lv",
+        "when": "val ne 1",
+        "by_level": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ]
+       }
+      ],
+      "stubRate": [
+       {
+        "formula": "rate",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "damageCut": [
+       {
+        "formula": "int(((Lv + 10) * rate))",
+        "when": "always",
+        "by_level": null
+       }
+      ],
+      "IsDamageCancel": [
+       {
+        "formula": "1",
+        "when": "always",
+        "by_level": 1
+       }
+      ]
+     }
+    }
+   ],
+   "params": [
+    {
+     "id": "AtkUp",
+     "bonus_id": 54,
+     "formula": "atkUp",
+     "simplified": "atkUp",
+     "when": []
+    },
+    {
+     "id": "PowerResistBreaker",
+     "bonus_id": 72,
+     "formula": "powerResistBreaker",
+     "simplified": "powerResistBreaker",
+     "when": []
+    },
+    {
+     "id": "Value",
+     "bonus_id": 50,
+     "formula": "int((stubRate * 100))",
+     "simplified": "int(100 × stubRate)",
+     "when": []
+    },
+    {
+     "id": "MobLastDamageRateBuf",
+     "bonus_id": 6,
+     "formula": "damageCut",
+     "simplified": "damageCut",
+     "when": []
+    }
+   ],
+   "state": {
+    "LeftTime": [
+     {
+      "method": "Updata",
+      "formula": "0",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) ls 0 AND LeftTime gt 0"
+     },
+     {
+      "method": "Updata",
+      "formula": "(LeftTime - UnityEngine.Time.get_deltaTime())",
+      "when": "(LeftTime - UnityEngine.Time.get_deltaTime()) hi 0 AND LeftTime gt 0"
+     }
+    ]
+   },
+   "hooks": [],
+   "attached_via": "factory:CreateSkillBuffer",
+   "kind": "timed"
+  }
+ ],
+ "passives": {
+  "class": "Seekerius",
+  "bonuses": {
+   "LastDmgRate": {
+    "id": 8,
+    "expr": "((Lv << 4) - Lv)",
+    "by_level": [
+     15,
+     30,
+     45,
+     60,
+     75,
+     90,
+     105,
+     120,
+     135,
+     150
+    ]
+   }
+  }
+ },
+ "hooks": [],
+ "variables": [
+  "SkillBufferId.AtkUp",
+  "SkillBufferId.MobLastDamageRateBuf",
+  "SkillBufferId.PowerResistBreaker",
+  "SkillBufferId.Value",
+  "UnityEngine.Time.get_deltaTime"
+ ],
+ "residual": []
+}
