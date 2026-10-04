@@ -15,8 +15,16 @@ def cmd_watch(a):
     events = diff.diff_snapshot(snap, since=a.since)
     base = os.path.join(paths.STATE, "extra_baseline.json")
     if os.path.exists(base):
-        import json
         events += diff.diff_extra(json.load(open(base)), snap["extra"])
+    cdn = os.path.join(paths.STATE, "cdn_changes.json")
+    if os.path.exists(cdn):
+        from toramre.watch.tags import Event
+        for x in json.load(open(cdn)):
+            data = x["key"] == "BynaryData" or x["key"].startswith(("Localize/", "FieldScript/"))
+            tag = {"new": "NEW", "removed": "REMOVED"}.get(x["kind"], "CHANGED")
+            events.append(Event(tag, f"cdn/{x['channel']}", x["key"], x["from"] or "-", x["to"] or "-",
+                                "new data version on the CDN: run `toramre fetch get --only data,text --channel "
+                                f"{x['channel']}`" if data else "bundle version changed on the CDN"))
     out = a.out or paths.STATE
     report.write(events, out)
     for tag, evs in report.summarize(events).items():
@@ -92,6 +100,76 @@ def cmd_brain(a):
     return 0
 
 
+def cmd_fetch(a):
+    from toramre.net import catalog, download, manifest, plan
+    from toramre.net.http import Client
+    client = Client(rate=a.rate, retries=a.retries)
+    root = a.dest or os.environ.get("TORAM_CDN_CACHE") or os.path.join(paths.REPO, "cdn_cache")
+    if a.action == "catalog":
+        before = catalog.load()
+        tables = catalog.refresh(client)
+        changes = catalog.diff(before, tables)
+        os.makedirs(paths.STATE, exist_ok=True)
+        json.dump(changes, open(os.path.join(paths.STATE, "cdn_changes.json"), "w"), indent=1)
+        if changes:
+            from collections import Counter
+            for (c, kind), n in sorted(Counter((x["channel"], x["kind"]) for x in changes).items()):
+                print(f"  channel {c}: {n} bundles {kind}")
+        for ch, t in sorted(tables.items()):
+            bd = t.get("BynaryData")
+            print(f"channel {ch}: {len(t)} bundles, BynaryData {catalog.ver_hex(bd[0]) if bd else '-'}")
+        for c, info in catalog.channel_report(tables).items():
+            print(f"  {c}: BynaryData {info['BynaryData']}{'  (already decoded here)' if info['decoded_here'] else '  (new to this repo)'}")
+        print(f"default channel: {catalog.default_channel(tables)}")
+        return 0
+    tables = catalog.load()
+    if not tables:
+        print("no stored version tables; run `toramre fetch catalog` first", file=sys.stderr)
+        return 2
+    ch = (a.channel or catalog.default_channel(tables)).upper()
+    if ch not in tables:
+        print(f"channel {ch} has no stored version table", file=sys.stderr)
+        return 2
+    man = manifest.load()
+    if a.action == "status":
+        print(f"cache root {root}; manifest {len(man)} bundles, {sum((m.get('bytes') or 0) for m in man.values()) / 1e6:,.1f} MB")
+        jobs, skipped = plan.build(tables[ch], ch, root, manifest=man)
+        print(f"channel {ch}: {skipped} bundles current, {len(jobs)} not fetched or outdated")
+        return 0
+    if a.action == "verify":
+        bad = download.verify(root, man)
+        for k, why in bad:
+            print(f"BAD {k}: {why}")
+        print(f"{len(man) - len(bad)}/{len(man)} files verified")
+        return 1 if bad else 0
+    only = tuple(a.only.split(",")) if a.only else ("all",)
+    jobs, skipped = plan.build(tables[ch], ch, root, only=only, match=a.match, manifest=man, include_present=a.revalidate)
+    summ = plan.summary(jobs)
+    print(f"channel {ch} -> {root}")
+    for c, (n, b) in sorted(summ.items()):
+        print(f"  {c:7} {n:5} bundles  ~{b / 1e6:,.0f} MB (estimate)")
+    print(f"  total {len(jobs)} to fetch, {skipped} already current")
+    if a.action == "plan" or not jobs:
+        return 0
+    try:
+        rep = download.run(client, jobs, root, catalog.BASE, man, jobs_n=a.jobs, revalidate=a.revalidate)
+    finally:
+        manifest.save(man)
+    out = os.path.join(paths.STATE, "fetch_report.json")
+    json.dump(rep, open(out, "w"), indent=1)
+    print(f"fetched {len(rep['ok'])}, unchanged {len(rep['unchanged'])}, failed {len(rep['failed'])}; "
+          f"{rep['bytes'] / 1e6:,.1f} MB in {rep['seconds']} s, {rep['retries']} retries -> {out}")
+    if rep["failed"] or not a.then:
+        return 1 if rep["failed"] else 0
+    env_cache = os.pathsep.join(x for x in (root, os.environ.get("TORAM_CACHE", "")) if x)
+    os.environ["TORAM_CACHE"] = env_cache
+    for step in a.then.split(","):
+        rc = stages.run_all(["extract"]) if step == "extract" else main(["watch"]) if step == "watch" else 2
+        if rc:
+            return rc
+    return 0
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="toramre", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -118,6 +196,18 @@ def main(argv=None):
     br.add_argument("--dry-run", action="store_true", help="solve without saving to the knowledge base")
     br.add_argument("--rows", type=int, default=5, help="records printed by `show`")
     br.set_defaults(fn=cmd_brain)
+    f = sub.add_parser("fetch", help="download bundles from the public CDN (catalog, plan, get, status, verify)")
+    f.add_argument("action", choices=["catalog", "plan", "get", "status", "verify"])
+    f.add_argument("--only", help="categories: data,text,script,model,audio,field,other or all (default all)")
+    f.add_argument("--match", help="regex on the bundle key")
+    f.add_argument("--channel", help="CDN channel A-F (default: the one with the newest data)")
+    f.add_argument("--dest", help="cache root (default: env TORAM_CDN_CACHE or <repo>/cdn_cache)")
+    f.add_argument("--jobs", type=int, default=8, help="parallel downloads")
+    f.add_argument("--rate", type=float, default=8.0, help="max requests per second")
+    f.add_argument("--retries", type=int, default=5)
+    f.add_argument("--revalidate", action="store_true", help="re-check files already on disk with If-None-Match (304 = keep)")
+    f.add_argument("--then", help="after a clean fetch run: extract,watch")
+    f.set_defaults(fn=cmd_fetch)
     a = p.parse_args(argv)
     return a.fn(a)
 
