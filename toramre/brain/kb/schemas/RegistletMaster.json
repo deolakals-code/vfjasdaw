@@ -1,0 +1,41 @@
+{
+ "schema": {
+  "header": {
+   "prefix": 4,
+   "count": "u16"
+  },
+  "record": [
+   {
+    "t": "i16"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "i32"
+   }
+  ]
+ },
+ "strategy": "anchor-fit",
+ "confidence": "strong",
+ "stats": {
+  "records": 159,
+  "null_rate": 0.0,
+  "switch_cases": 0,
+  "counted": true
+ },
+ "describe": "prefix 4, count u16 x [i16, i16, i32]",
+ "evidence": {
+  "rule": "exact-EOF on every distinct version",
+  "versions": [
+   "48a4ce31"
+  ],
+  "label": "Code-checked layout; field types Inferred"
+ },
+ "alternatives": [
+  "records until EOF x [u8, u8]",
+  "records until EOF x [i16, u8]"
+ ],
+ "table": "RegistletMaster",
+ "learned": "2026-10-04"
+}

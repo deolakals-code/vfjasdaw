@@ -1,0 +1,122 @@
+{
+ "schema": {
+  "header": {
+   "prefix": 1,
+   "count": "u32"
+  },
+  "record": [
+   {
+    "t": "i32"
+   },
+   {
+    "t": "i32"
+   },
+   {
+    "t": "switch",
+    "tag": "u8",
+    "cases": {
+     "1": [
+      {
+       "t": "i32"
+      },
+      {
+       "t": "i32"
+      },
+      {
+       "t": "i32"
+      },
+      {
+       "t": "u8"
+      },
+      {
+       "t": "u8"
+      },
+      {
+       "t": "u8"
+      },
+      {
+       "t": "u8"
+      }
+     ],
+     "2": [
+      {
+       "t": "i32"
+      },
+      {
+       "t": "u8"
+      },
+      {
+       "t": "u8"
+      },
+      {
+       "t": "u8"
+      },
+      {
+       "t": "u8"
+      },
+      {
+       "t": "u8"
+      },
+      {
+       "t": "u8"
+      },
+      {
+       "t": "u8"
+      },
+      {
+       "t": "u8"
+      }
+     ],
+     "3": [
+      {
+       "t": "i32"
+      },
+      {
+       "t": "i32"
+      },
+      {
+       "t": "i32"
+      },
+      {
+       "t": "i32"
+      }
+     ],
+     "4": [
+      {
+       "t": "i32"
+      },
+      {
+       "t": "i32"
+      },
+      {
+       "t": "i32"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "strategy": "anchor-fit",
+ "confidence": "strong",
+ "stats": {
+  "records": 1181,
+  "null_rate": 0.0,
+  "switch_cases": 4,
+  "counted": true
+ },
+ "describe": "prefix 1, count u32 x [i32, i32, switch(u8){1: i32, i32, i32, u8, u8, u8, u8; 2: i32, u8, u8, u8, u8, u8, u8, u8, u8; 3: i32, i32, i32, i32; 4: i32, i32, i32}]",
+ "evidence": {
+  "rule": "exact-EOF on every distinct version",
+  "versions": [
+   "48a4ce31"
+  ],
+  "label": "Code-checked layout; field types Inferred"
+ },
+ "alternatives": [
+  "prefix 1, count u32 x [raw1, switch(u8){117: raw19; 118: raw19; 195: raw23; 196: raw23; 21: raw19; 25: raw19; 26: raw19; 27: raw19; 39: raw23; 40: raw23; 52: raw19}]",
+  "records until EOF x [u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, i16, i16, i32, i32, f32, f32, f32]",
+  "records until EOF x [u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, i16, i32, i16, i32, f32, f32, f32]"
+ ],
+ "table": "GuildQuestMaster",
+ "learned": "2026-10-04"
+}

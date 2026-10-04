@@ -30,6 +30,37 @@ def _ids(keys):
     return ",".join(shown) + (f",+{len(keys) - ROW_LIMIT}" if len(keys) > ROW_LIMIT else "")
 
 
+def _schema_diff(ev, bundle, t, va, vb, a, b):
+    """Record-level diff with a learned schema (toramre brain). Records are keyed by their first field (the id)."""
+    from toramre.brain import grammar as G, kb
+    known = kb.load(t)
+    if not known:
+        return False
+    sch = known["schema"]
+    if not G.fits(a, sch):
+        return False
+    if not G.fits(b, sch):
+        ev.append(Event("LAYOUT_BROKEN", bundle, t, va, vb, "learned schema no longer fits (exact-EOF): relearn with `toramre brain solve`"))
+        return True
+    key = lambda r: repr(r[0])  # noqa: E731
+    ra = {key(r): r for r in G.parse(a, sch)}
+    rb = {key(r): r for r in G.parse(b, sch)}
+    add = sorted(set(rb) - set(ra))
+    rem = sorted(set(ra) - set(rb))
+    chg = sorted(k for k in set(ra) & set(rb) if ra[k] != rb[k])
+    names = sch.get("names") or []
+    fields = set()
+    for k in chg:
+        for i, (x, y) in enumerate(zip(ra[k], rb[k])):
+            if x != y:
+                fields.add(names[i] if i < len(names) else f"#{i}")
+    ids = lambda ks: ",".join(ks[:ROW_LIMIT]) + (f",+{len(ks) - ROW_LIMIT}" if len(ks) > ROW_LIMIT else "")  # noqa: E731
+    ev.append(Event("CHANGED", bundle, t, va, vb,
+                    f"+{len(add)} -{len(rem)} ~{len(chg)} records (schema); fields changed: {', '.join(sorted(fields)) or '-'}; "
+                    f"added[{ids(add)}] changed[{ids(chg)}]"))
+    return True
+
+
 def compare_tables(bundle, va, vb, snap_a, snap_b, root):
     """Events between version va and vb of one bundle (snap_* = {table: {bytes, sha}})."""
     ev = []
@@ -54,6 +85,8 @@ def compare_tables(bundle, va, vb, snap_a, snap_b, root):
                                 f"+{len(add)} -{len(rem)} ~{len(chg)} rows; added[{_ids(add)}] changed[{_ids(chg)}]"))
             else:
                 ev.append(Event("TEXT_CHANGED", bundle, t, va, vb, f"{len(a)} -> {len(b)} bytes"))
+        elif _schema_diff(ev, bundle, t, va, vb, a, b):
+            pass
         else:
             fa, fb = framing.master_frame(a), framing.master_frame(b)
             if fa and not fb:

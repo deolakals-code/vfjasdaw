@@ -1,5 +1,6 @@
 """toramre command line. Subcommands are added phase by phase (see the plan in PROJECT.md "Program")."""
 import argparse
+import json
 import os
 import sys
 
@@ -54,6 +55,43 @@ def cmd_stage(a):
     return stages.run_all(a.names)
 
 
+def cmd_brain(a):
+    from toramre.brain import engine, grammar as G, kb
+    if a.action == "frontier":
+        for it in engine.frontier():
+            print(f"{it['table']:24} {it['bytes']:>8} bytes  {it['why']}")
+        return 0
+    if a.action == "status":
+        known = kb.all_tables()
+        fr = engine.frontier()
+        print(f"learned schemas: {len(known)}  open frontier items: {len(fr)}")
+        for t in known:
+            e = kb.load(t)
+            print(f"  [learned] {t:22} {e['strategy']:12} {e['stats']['records']:>6} records  {e['describe'][:90]}")
+        for it in fr:
+            print(f"  [open]    {it['table']:22} {it['why']}")
+        st = kb.stats()
+        if st:
+            print("strategy record:", ", ".join(f"{k} {v['solved']}/{v['tried']}" for k, v in sorted(st.items())))
+        return 0
+    if a.action == "show":
+        for t in a.tables:
+            e = kb.load(t)
+            if not e:
+                print(f"{t}: not learned"); continue
+            print(json.dumps({k: e[k] for k in ("describe", "strategy", "confidence", "stats", "evidence")}, indent=1))
+            names, recs = engine.decode_table(t)
+            print("names:", names)
+            for r in recs[:a.rows]:
+                print("  ", r)
+        return 0
+    results = engine.run(a.tables or None, learn=not a.dry_run)
+    for r in results:
+        line = r.get("describe") or "; ".join(f"{c['describe']} [{c['confidence']}]" for c in r.get("candidates", [])[:1]) or r.get("why", "")
+        print(f"{r['table']:24} {r['status']:8} {r.get('strategy', ''):12} {line[:110]}")
+    return 0
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="toramre", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -74,6 +112,12 @@ def main(argv=None):
                         formatter_class=argparse.RawDescriptionHelpFormatter)
     st.add_argument("names", nargs="*", metavar="STAGE", help="stages to run (default: all)")
     st.set_defaults(fn=cmd_stage)
+    br = sub.add_parser("brain", help="learn table layouts: frontier, solve, status, show")
+    br.add_argument("action", choices=["status", "frontier", "solve", "show"])
+    br.add_argument("tables", nargs="*", help="tables (default: every open frontier item)")
+    br.add_argument("--dry-run", action="store_true", help="solve without saving to the knowledge base")
+    br.add_argument("--rows", type=int, default=5, help="records printed by `show`")
+    br.set_defaults(fn=cmd_brain)
     a = p.parse_args(argv)
     return a.fn(a)
 

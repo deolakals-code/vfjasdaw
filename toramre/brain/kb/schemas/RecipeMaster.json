@@ -1,0 +1,91 @@
+{
+ "schema": {
+  "header": {
+   "prefix": 0,
+   "count": "u32"
+  },
+  "record": [
+   {
+    "t": "i32"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "i32"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "i32"
+   },
+   {
+    "t": "i16"
+   },
+   {
+    "t": "u8"
+   },
+   {
+    "t": "list",
+    "count": "u32",
+    "elem": [
+     {
+      "t": "u8"
+     },
+     {
+      "t": "u8"
+     },
+     {
+      "t": "i32"
+     },
+     {
+      "t": "i16"
+     }
+    ]
+   }
+  ],
+  "names": [
+   "recipeId",
+   "type",
+   "releaseLv",
+   "price",
+   "difficulty",
+   "createId",
+   "createVal",
+   "category",
+   "materialDatas"
+  ],
+  "owner": "RecipeDBData"
+ },
+ "strategy": "code-hint",
+ "confidence": "strong",
+ "stats": {
+  "records": 2079,
+  "null_rate": 0.0,
+  "switch_cases": 0,
+  "counted": true
+ },
+ "describe": "count u32 x [i32, u8, i16, i32, i16, i32, i16, u8, list(u32)[u8, u8, i32, i16]]",
+ "evidence": {
+  "rule": "exact-EOF on every distinct version",
+  "versions": [
+   "0b170732",
+   "15893d32",
+   "3b4e3432",
+   "48a4ce31",
+   "658f0832",
+   "8a85e231",
+   "d96dea31",
+   "dad0fc31",
+   "e8e43f32"
+  ],
+  "label": "Code (constructor signature of the owner class) + exact-EOF"
+ },
+ "alternatives": [],
+ "table": "RecipeMaster",
+ "learned": "2026-10-04"
+}
