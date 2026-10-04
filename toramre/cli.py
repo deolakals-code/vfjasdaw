@@ -122,6 +122,32 @@ def cmd_fetch(a):
             print(f"  {c}: BynaryData {info['BynaryData']}{'  (already decoded here)' if info['decoded_here'] else '  (new to this repo)'}")
         print(f"default channel: {catalog.default_channel(tables)}")
         return 0
+    if a.action in ("update", "poll"):
+        from toramre.net import update
+        only = tuple(a.only.split(",")) if a.only else update.DEFAULT_ONLY
+
+        def after(res):
+            if a.then:
+                os.environ["TORAM_CACHE"] = os.pathsep.join(x for x in (root, os.environ.get("TORAM_CACHE", "")) if x)
+                for step in a.then.split(","):
+                    if step == "extract":
+                        stages.run_all(["extract"])
+                    elif step == "watch":
+                        main(["watch", "--fail-on", "high"])
+
+        kw = dict(channel=a.channel, only=only, jobs=a.jobs, max_mbps=a.max_mbps)
+        if a.action == "update":
+            res = update.check_and_fetch(client, root, **kw)
+            rep = res.get("fetched")
+            if rep:
+                print(f"fetched {len(rep['ok'])}, failed {len(rep['failed'])}" + (" (interrupted)" if rep.get("interrupted") else ""))
+                if rep["ok"] and not rep["failed"]:
+                    after(res)
+                return 1 if rep["failed"] else 0
+            print("nothing new to fetch")
+            return 0
+        update.poll(client, root, a.interval * 60, once=a.once, on_new=after, **kw)
+        return 0
     tables = catalog.load()
     if not tables:
         print("no stored version tables; run `toramre fetch catalog` first", file=sys.stderr)
@@ -157,7 +183,8 @@ def cmd_fetch(a):
         print(f"{len(man) - len(bad)}/{len(man)} files verified")
         return 1 if bad else 0
     only = tuple(a.only.split(",")) if a.only else ("all",)
-    jobs, skipped = plan.build(tables[ch], ch, root, only=only, match=a.match, manifest=man, include_present=a.revalidate)
+    jobs, skipped = plan.build(tables[ch], ch, root, only=only, match=a.match, manifest=man,
+                               include_present=a.revalidate or a.force)
     summ = plan.summary(jobs)
     print(f"channel {ch} -> {root}")
     for c, (n, b) in sorted(summ.items()):
@@ -166,11 +193,13 @@ def cmd_fetch(a):
     if a.action == "plan" or not jobs:
         return 0
     try:
-        rep = download.run(client, jobs, root, catalog.BASE, man, jobs_n=a.jobs, revalidate=a.revalidate)
+        rep = download.run(client, jobs, root, catalog.BASE, man, jobs_n=a.jobs, revalidate=a.revalidate, max_mbps=a.max_mbps)
     finally:
         manifest.save(man)
     out = os.path.join(paths.STATE, "fetch_report.json")
     json.dump(rep, open(out, "w"), indent=1)
+    if rep.get("interrupted"):
+        print("stopped by Ctrl+C: finished files are kept, unfinished ones resume on the next run")
     print(f"fetched {len(rep['ok'])}, unchanged {len(rep['unchanged'])}, failed {len(rep['failed'])}; "
           f"{rep['bytes'] / 1e6:,.1f} MB in {rep['seconds']} s, {rep['retries']} retries -> {out}")
     if rep["failed"] or not a.then:
@@ -211,7 +240,13 @@ def main(argv=None):
     br.add_argument("--rows", type=int, default=5, help="records printed by `show`")
     br.set_defaults(fn=cmd_brain)
     f = sub.add_parser("fetch", help="download bundles from the public CDN (catalog, plan, get, status, verify)")
-    f.add_argument("action", choices=["catalog", "plan", "get", "status", "verify", "export"])
+    f.add_argument("action", choices=["catalog", "plan", "get", "update", "poll", "status", "verify", "export"],
+                   help="update = fetch only bundles that changed on the CDN since the last check (default --only data,text,script); "
+                        "poll = run update every --interval minutes")
+    f.add_argument("--force", action="store_true", help="get: download again even when the file is on disk and current")
+    f.add_argument("--max-mbps", type=float, default=0.0, help="cap the total download speed in MB/s (0 = no cap)")
+    f.add_argument("--interval", type=float, default=60.0, help="poll: minutes between checks")
+    f.add_argument("--once", action="store_true", help="poll: check once and exit")
     f.add_argument("--out", help="export: output folder (default: env TORAM_EXPORT or <repo>/exported)")
     f.add_argument("--types", help="export: model,texture,audio,mesh,text (default all)")
     f.add_argument("--no-preview", action="store_true", help="export: skip the PNG preview of Toram models")
@@ -223,7 +258,7 @@ def main(argv=None):
     f.add_argument("--rate", type=float, default=8.0, help="max requests per second")
     f.add_argument("--retries", type=int, default=5)
     f.add_argument("--revalidate", action="store_true", help="re-check files already on disk with If-None-Match (304 = keep)")
-    f.add_argument("--then", help="after a clean fetch run: extract,watch")
+    f.add_argument("--then", help="after a clean fetch / update with new files: extract,watch")
     f.set_defaults(fn=cmd_fetch)
     a = p.parse_args(argv)
     return a.fn(a)

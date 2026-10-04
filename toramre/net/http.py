@@ -19,18 +19,16 @@ class TokenBucket:
         self.t = time.monotonic()
         self.lock = threading.Lock()
 
-    def take(self):
+    def take(self, n=1):
+        """Wait until n tokens are available (n may exceed the burst: the debt is paid by waiting)."""
         if self.rate <= 0:
             return
-        while True:
-            with self.lock:
-                now = time.monotonic()
-                self.tokens = min(self.cap, self.tokens + (now - self.t) * self.rate)
-                self.t = now
-                if self.tokens >= 1:
-                    self.tokens -= 1
-                    return
-                wait = (1 - self.tokens) / self.rate
+        with self.lock:
+            now = time.monotonic()
+            self.tokens = min(self.cap, self.tokens + (now - self.t) * self.rate) - n
+            self.t = now
+            wait = -self.tokens / self.rate if self.tokens < 0 else 0
+        if wait > 0:
             time.sleep(wait)
 
 

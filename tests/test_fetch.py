@@ -188,3 +188,53 @@ class RealCatalog(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class UpdateAndControls(Fetch):
+    def test_force_redownloads(self):
+        jobs, _ = plan.build(self.table, "A", self.root)
+        _, man = self.run_jobs(jobs)
+        none, _ = plan.build(self.table, "A", self.root, manifest=man)
+        forced, _ = plan.build(self.table, "A", self.root, manifest=man, include_present=True)
+        self.assertEqual((len(none), len(forced)), (0, 3))
+        rep, _ = self.run_jobs(forced, man)
+        self.assertEqual(len(rep["ok"]), 3)
+
+    def test_priority_data_first(self):
+        jobs, _ = plan.build(self.table, "A", self.root)
+        self.assertEqual([plan.category(j.key) for j in jobs], ["data", "text", "model"])
+
+    def test_bandwidth_cap(self):
+        import time
+        for k in self.table:
+            FakeCDN.files[f"/releaseA/{k}.unity3d"] = b"UnityFS" + bytes(200_000)
+        jobs, _ = plan.build(self.table, "A", self.root)
+        total = sum(len(FakeCDN.files[f"/releaseA/{j.key}.unity3d"]) for j in jobs)
+        t0 = time.monotonic()
+        download.run(self.client, jobs, self.root, self.base, {}, jobs_n=3, progress_out=io.StringIO(), min_free=0,
+                     max_mbps=total / 0.6 / 1e6)  # 600 KB at 1 MB/s with a 0.25 s burst -> >= 0.35 s
+        self.assertGreater(time.monotonic() - t0, 0.25)
+
+    def test_update_fetches_only_changed_bundles(self):
+        from toramre.net import update
+        with tempfile.TemporaryDirectory() as cdn_dir, tempfile.TemporaryDirectory() as state:
+            kw = dict(base=self.base, out_dir=cdn_dir, state_dir=state, progress_out=io.StringIO(), log=lambda *a: None)
+            first = update.check_and_fetch(self.client, self.root, channel="A", **kw)
+            self.assertIsNone(first["fetched"])  # first run only stores the tables
+            newer = dict(self.table, **{"BynaryData": (843048104, 1, 50), "Mob/Mob_1": (201, 0, 9)})
+            FakeCDN.files["/releaseA/RevisionInfoBinary.bytes"] = revision.build(newer)
+            res = update.check_and_fetch(self.client, self.root, channel="A", **kw)
+            self.assertEqual(res["jobs"], ["BynaryData"])  # Mob is a model bundle: not in data,text,script
+            self.assertEqual(res["fetched"]["ok"], ["BynaryData"])
+            j = plan.Job("BynaryData", 843048104, 50, "A")
+            self.assertTrue(os.path.exists(j.dest(self.root)))
+            again = update.check_and_fetch(self.client, self.root, channel="A", **kw)
+            self.assertEqual(again["jobs"], [])
+
+    def test_poll_stops_after_max_polls(self):
+        from toramre.net import update
+        seen = []
+        with tempfile.TemporaryDirectory() as cdn_dir, tempfile.TemporaryDirectory() as state:
+            update.poll(self.client, self.root, 60, max_polls=2, sleep=seen.append, log=lambda *a: None,
+                        base=self.base, out_dir=cdn_dir, state_dir=state, progress_out=io.StringIO(), channel="A")
+        self.assertEqual(seen, [60])

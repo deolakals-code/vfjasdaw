@@ -59,7 +59,7 @@ class Progress:
         self.out.flush()
 
 
-def fetch_one(client, url, path, progress=None, known=None, revalidate=False):
+def fetch_one(client, url, path, progress=None, known=None, revalidate=False, throttle=None, stop=None):
     """-> dict(status=new|resumed|unchanged, bytes, md5, etag, last_modified). Raises on failure (no file written)."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
     part = path + ".part"
@@ -93,6 +93,10 @@ def fetch_one(client, url, path, progress=None, known=None, revalidate=False):
                 f.write(b)
                 if progress:
                     progress.add_bytes(len(b))
+                if throttle:
+                    throttle.take(len(b))
+                if stop is not None and stop.is_set():
+                    raise KeyboardInterrupt  # .part stays on disk; the next run resumes it
             f.flush()
             os.fsync(f.fileno())
     finally:
@@ -120,8 +124,14 @@ def fetch_one(client, url, path, progress=None, known=None, revalidate=False):
             "last_modified": lm}
 
 
-def run(client, jobs, root, base_url, manifest, jobs_n=8, revalidate=False, progress_out=sys.stderr, min_free=2 << 30):
-    """Fetch every job; -> report dict. Updates `manifest` (dict) in place."""
+def run(client, jobs, root, base_url, manifest, jobs_n=8, revalidate=False, progress_out=sys.stderr, min_free=2 << 30,
+        max_mbps=0.0):
+    """Fetch every job (in the given order); -> report dict. Updates `manifest` (dict) in place.
+    `max_mbps` caps the total download speed (MB/s, 0 = no cap). Ctrl+C stops cleanly: finished files are kept and recorded,
+    unfinished ones stay as .part and resume on the next run."""
+    from .http import TokenBucket
+    throttle = TokenBucket(max_mbps * 1e6, burst=max(16384, max_mbps * 1e6 * 0.25)) if max_mbps > 0 else None  # 0.25 s burst
+    stop = threading.Event()
     est = sum(j.est_bytes for j in jobs)
     os.makedirs(root, exist_ok=True)
     free = shutil.disk_usage(root).free
@@ -134,7 +144,11 @@ def run(client, jobs, root, base_url, manifest, jobs_n=8, revalidate=False, prog
     def work(j):
         url = base_url.format(j.channel) + j.key + ".unity3d"
         try:
-            res = fetch_one(client, url, j.dest(root), prog, manifest.get(j.key), revalidate)
+            if stop.is_set():
+                return
+            res = fetch_one(client, url, j.dest(root), prog, manifest.get(j.key), revalidate, throttle, stop)
+        except KeyboardInterrupt:
+            return
         except (VerifyError, urllib.error.HTTPError, urllib.error.URLError, OSError) as e:
             prog.done(False)
             with lock:
@@ -151,9 +165,16 @@ def run(client, jobs, root, base_url, manifest, jobs_n=8, revalidate=False, prog
                                "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%S")}
 
     t0 = time.monotonic()
-    with ThreadPoolExecutor(max_workers=max(1, jobs_n)) as ex:
+    report["interrupted"] = False
+    ex = ThreadPoolExecutor(max_workers=max(1, jobs_n))
+    try:
         for f in as_completed([ex.submit(work, j) for j in jobs]):
             f.result()
+    except KeyboardInterrupt:
+        stop.set()
+        report["interrupted"] = True
+    finally:
+        ex.shutdown(wait=True, cancel_futures=True)
     if progress_out:
         progress_out.write("\n")
     report.update(seconds=round(time.monotonic() - t0, 1), bytes=prog.bytes, requests=client.stats["requests"],

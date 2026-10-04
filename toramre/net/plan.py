@@ -46,8 +46,17 @@ class Job:
         return self.size_units * SIZE_UNIT
 
 
-def build(table, channel, root, only=("all",), match=None, manifest=None, include_present=False):
-    """-> (jobs to fetch, skipped count). `only`: categories or 'all'; `match`: regex on the key."""
+PRIORITY = ("data", "text", "script", "model", "audio", "field", "other")
+
+
+def prioritized(jobs):
+    """Data first, then text, scripts, then the heavy media; small files first inside a category."""
+    return sorted(jobs, key=lambda j: (PRIORITY.index(category(j.key)) if category(j.key) in PRIORITY else 99, j.size_units, j.key))
+
+
+def build(table, channel, root, only=("all",), match=None, manifest=None, include_present=False, keys=None):
+    """-> (jobs to fetch, skipped count). `only`: categories or 'all'; `match`: regex on the key;
+    `keys`: restrict to these keys (e.g. the bundles that changed on the CDN); `include_present`: force re-download."""
     rx = re.compile(match) if match else None
     jobs, skipped = [], 0
     for key in sorted(table):
@@ -56,6 +65,8 @@ def build(table, channel, root, only=("all",), match=None, manifest=None, includ
             continue
         if rx and not rx.search(key):
             continue
+        if keys is not None and key not in keys:
+            continue
         j = Job(key, ver, sz, channel)
         if not include_present and os.path.exists(j.dest(root)):
             m = (manifest or {}).get(key)
@@ -63,7 +74,7 @@ def build(table, channel, root, only=("all",), match=None, manifest=None, includ
                 skipped += 1
                 continue
         jobs.append(j)
-    return jobs, skipped
+    return prioritized(jobs), skipped
 
 
 def summary(jobs):
