@@ -93,6 +93,9 @@ table.matrix tbody th { text-align: right; padding-right: 8px; white-space: nowr
 
 table.vers { width: 100%; border-collapse: collapse; background: var(--surface); font-variant-numeric: tabular-nums }
 table.vers th, table.vers td { text-align: left; padding: 7px 12px; border-bottom: 1px solid var(--line); white-space: nowrap }
+table.vers td.cellwrap { white-space: normal; min-width: 260px; overflow-wrap: anywhere }
+.badge { font: 600 .68rem var(--f-mono); padding: 2px 7px; border-radius: 4px; background: var(--accent-soft); color: var(--accent) }
+.badge.weak { background: var(--med-soft); color: var(--med) } .badge.none { background: var(--sunk); color: var(--muted) }
 table.vers th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted) }
 .bar { display: inline-block; height: 8px; background: var(--accent); border-radius: 2px; vertical-align: middle; margin-right: 6px }
 .panel-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between }
@@ -119,6 +122,8 @@ footer { color: var(--muted); font-size: .8rem }
     <button role="tab" id="tab-alerts" aria-controls="view-alerts" aria-selected="true">Alerts</button>
     <button role="tab" id="tab-matrix" aria-controls="view-matrix" aria-selected="false">Change matrix</button>
     <button role="tab" id="tab-versions" aria-controls="view-versions" aria-selected="false">Versions</button>
+    <button role="tab" id="tab-brain" aria-controls="view-brain" aria-selected="false">Table layouts</button>
+    <button role="tab" id="tab-cdn" aria-controls="view-cdn" aria-selected="false">CDN</button>
   </nav>
 
   <section id="view-alerts" role="tabpanel" aria-labelledby="tab-alerts" class="list">
@@ -147,6 +152,22 @@ footer { color: var(--muted); font-size: .8rem }
     <div class="panel-head"><h2>Kept versions</h2><select id="v-bundle" aria-label="Bundle"></select></div>
     <div class="matrix-box"><table class="vers" id="vers"></table></div>
     <p class="muted" style="margin:0">Order follows <span class="mono">readable/masters/_history.csv</span> for BynaryData. The 8-hex version number is not a release order across CDN channels.</p>
+  </section>
+
+  <section id="view-brain" role="tabpanel" aria-labelledby="tab-brain" class="list" hidden>
+    <div class="panel-head"><h2>Learned table layouts</h2><span class="muted" id="brain-stats"></span></div>
+    <div class="matrix-box"><table class="vers" id="brain-learned"></table></div>
+    <div class="panel-head"><h2>Still open</h2><span class="muted">Run <span class="mono">toramre brain solve</span> to retry; reasons below.</span></div>
+    <div class="matrix-box"><table class="vers" id="brain-open"></table></div>
+  </section>
+
+  <section id="view-cdn" role="tabpanel" aria-labelledby="tab-cdn" class="list" hidden>
+    <div class="panel-head"><h2>CDN channels</h2><span class="muted">From the stored version tables (<span class="mono">toramre fetch catalog</span>).</span></div>
+    <div class="matrix-box"><table class="vers" id="cdn-channels"></table></div>
+    <div class="panel-head"><h2>Changed on the CDN since the previous check</h2></div>
+    <div class="matrix-box"><table class="vers" id="cdn-changes"></table></div>
+    <div class="panel-head"><h2>Fetched here</h2></div>
+    <div class="matrix-box"><table class="vers" id="cdn-fetched"></table></div>
   </section>
 
   <footer id="foot"></footer>
@@ -192,13 +213,14 @@ function init() {
   document.querySelectorAll("nav.tabs button").forEach((t) => t.addEventListener("click", () => show(t.id.slice(4))));
   $("foot").textContent = DATA.extra && DATA.extra.so_sha256 ? `libil2cpp.so ${DATA.extra.so_sha256.slice(0, 16)}` :
     "No libil2cpp.so fingerprint in this report: BINARY_CHANGED and UNIT_CHANGED need the IL2CPP side.";
-  renderAlerts(); renderMatrix(); renderVersions();
+  renderAlerts(); renderMatrix(); renderVersions(); renderBrain(); renderCdn();
   const start = (location.hash || "").slice(1) || store.get("toramre.tab") || "alerts";
-  show(["alerts", "matrix", "versions"].includes(start) ? start : "alerts");
+  show(TABS.includes(start) ? start : "alerts");
 }
 
+const TABS = ["alerts", "matrix", "versions", "brain", "cdn"];
 function show(name) {
-  ["alerts", "matrix", "versions"].forEach((n) => {
+  TABS.forEach((n) => {
     $("view-" + n).hidden = n !== name; $("tab-" + n).setAttribute("aria-selected", n === name);
   });
   store.set("toramre.tab", name);
@@ -256,6 +278,39 @@ function renderVersions() {
   $("vers").innerHTML = `<thead><tr><th>#</th><th>Version</th><th>Cached</th><th>Tables changed vs previous</th></tr></thead><tbody>` +
     b.versions.map((v, i) => `<tr><td class="muted">${i + 1}</td><td class="mono">${esc(v.v)}</td><td>${esc(v.date || "–")}</td>` +
       `<td>${i ? `<span class="bar" style="width:${Math.round(changed[i] / max * 120)}px"></span>${changed[i]}` : `<span class="muted">first kept version</span>`}</td></tr>`).reverse().join("") + `</tbody>`;
+}
+
+function table(id, head, rows, empty) {
+  $(id).innerHTML = rows.length ? `<thead><tr>${head.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody>`
+    : `<tbody><tr><td class="muted">${esc(empty)}</td></tr></tbody>`;
+}
+
+function renderBrain() {
+  const b = DATA.brain || { learned: [], frontier: [], stats: {} };
+  $("brain-stats").textContent = Object.entries(b.stats || {}).map(([k, v]) => `${k} ${v.solved}/${v.tried}`).join(" · ");
+  table("brain-learned", ["Table", "Records", "Found by", "Layout", "Evidence"], b.learned.map((e) =>
+    `<tr><td><b>${esc(e.table)}</b>${e.owner ? `<br><span class="muted mono">${esc(e.owner)}</span>` : ""}</td><td>${e.records.toLocaleString()}</td>` +
+    `<td><span class="badge">${esc(e.strategy)}</span></td><td class="cellwrap mono">${esc(e.describe)}` +
+    `${e.names.length ? `<br><span class="muted">${esc(e.names.join(", "))}</span>` : ""}</td><td class="cellwrap">${esc(e.label)}; ${e.versions} distinct version${e.versions === 1 ? "" : "s"}</td></tr>`),
+    "Nothing learned yet: run toramre brain solve.");
+  table("brain-open", ["Table", "Bytes", "Why open", "Best guess", "Next link"], b.frontier.map((f) =>
+    `<tr><td><b>${esc(f.table)}</b></td><td>${f.bytes.toLocaleString()}</td><td class="cellwrap">${esc(f.why)}</td>` +
+    `<td class="cellwrap mono">${f.best ? `<span class="badge ${f.confidence === "weak" ? "weak" : "none"}">${esc(f.confidence || "?")}</span> ${esc(f.best)}` : `<span class="muted">${f.tried ? "no layout found (nested variable parts)" : "not tried yet"}</span>`}</td>` +
+    `<td class="cellwrap">${esc(f.next.join(", "))}</td></tr>`), "No open tables.");
+}
+
+function renderCdn() {
+  const c = DATA.cdn || { channels: {}, changes: [], fetched: {}, bundles: {} };
+  table("cdn-channels", ["Channel", "Bundles", "BynaryData", "Status"], Object.entries(c.channels).map(([ch, v]) =>
+    `<tr><td><b>${esc(ch)}</b>${ch === c.default ? ` <span class="badge">default</span>` : ""}</td><td>${(c.bundles[ch] || 0).toLocaleString()}</td>` +
+    `<td class="mono">${esc(v.BynaryData || "-")}</td><td>${v.decoded_here ? "decoded here" : `<span class="badge weak">not decoded yet</span>`}</td></tr>`),
+    "No stored version tables: run toramre fetch catalog.");
+  table("cdn-changes", ["Channel", "Bundle", "Change", "From", "To"], c.changes.map((x) =>
+    `<tr><td>${esc(x.channel)}</td><td class="mono">${esc(x.key)}</td><td>${esc(x.kind)}</td><td class="mono">${esc(x.from || "-")}</td><td class="mono">${esc(x.to || "-")}</td></tr>`),
+    "No changes recorded at the last check.");
+  table("cdn-fetched", ["Category", "Bundles", "Size"], Object.entries(c.fetched).map(([k, [n, b]]) =>
+    `<tr><td>${esc(k)}</td><td>${n.toLocaleString()}</td><td>${(b / 1e6).toLocaleString(undefined, { maximumFractionDigits: 1 })} MB</td></tr>`),
+    "Nothing fetched on this machine yet: toramre fetch get.");
 }
 
 if (DATA) init();

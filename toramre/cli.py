@@ -4,7 +4,7 @@ import json
 import os
 import sys
 
-from toramre.core import paths, versions
+from toramre.core import config, paths, versions
 from toramre.data import stages
 from toramre.watch import diff, report, snapshot
 
@@ -29,6 +29,13 @@ def cmd_watch(a):
     report.write(events, out)
     for tag, evs in report.summarize(events).items():
         print(f"{tag:15} {len(evs)}")
+    if a.notify:
+        from toramre import notify
+        from toramre.watch.tags import level
+        lvl = level(config.get("notify", "level", "medium"))
+        sel = [e for e in events if e.severity >= lvl]
+        if sel and notify.send(notify.summarize(sel)):
+            print(f"notified: {len(sel)} events at level >= {config.get('notify', 'level', 'medium')}")
     print(f"{len(events)} events -> {os.path.join(out, 'CHANGES.md')}")
     return 1 if report.exceeds(events, a.fail_on) else 0
 
@@ -55,7 +62,19 @@ def cmd_versions(a):
     return 0
 
 
+def _cache_env():
+    """TORAM_CACHE for tools/legacy_scripts/cache.py: env, else [paths] cache_roots + the CDN cache folder."""
+    if os.environ.get("TORAM_CACHE"):
+        return
+    roots = list(config.get("paths", "cache_roots", []) or [])
+    cdn = config.get("paths", "cdn_cache", env="TORAM_CDN_CACHE") or os.path.join(paths.REPO, "cdn_cache")
+    roots += [cdn] if os.path.isdir(cdn) else []
+    if roots:
+        os.environ["TORAM_CACHE"] = os.pathsep.join(roots)
+
+
 def cmd_stage(a):
+    _cache_env()
     bad = [n for n in a.names if n not in stages.STAGES]
     if bad:
         print(f"unknown stage {', '.join(bad)}; choose from {', '.join(stages.ORDER)}", file=sys.stderr)
@@ -103,8 +122,12 @@ def cmd_brain(a):
 def cmd_fetch(a):
     from toramre.net import catalog, download, manifest, plan
     from toramre.net.http import Client
+    a.jobs = a.jobs or int(config.get("fetch", "jobs", 8))
+    a.rate = a.rate if a.rate is not None else float(config.get("fetch", "rate", 8.0))
+    a.max_mbps = a.max_mbps if a.max_mbps is not None else float(config.get("fetch", "max_mbps", 0.0))
+    a.channel = a.channel or config.get("fetch", "channel")
     client = Client(rate=a.rate, retries=a.retries)
-    root = a.dest or os.environ.get("TORAM_CDN_CACHE") or os.path.join(paths.REPO, "cdn_cache")
+    root = a.dest or config.get("paths", "cdn_cache", env="TORAM_CDN_CACHE") or os.path.join(paths.REPO, "cdn_cache")
     if a.action == "catalog":
         before = catalog.load()
         tables = catalog.refresh(client)
@@ -127,13 +150,18 @@ def cmd_fetch(a):
         only = tuple(a.only.split(",")) if a.only else update.DEFAULT_ONLY
 
         def after(res):
+            from toramre import notify
+            try:
+                notify.send(f"Toram CDN: new bundles on channel {res['channel']}: " + ", ".join(res.get("jobs", [])[:20]))
+            except Exception as e:
+                print(f"notify failed: {e}", file=sys.stderr)
             if a.then:
                 os.environ["TORAM_CACHE"] = os.pathsep.join(x for x in (root, os.environ.get("TORAM_CACHE", "")) if x)
                 for step in a.then.split(","):
                     if step == "extract":
                         stages.run_all(["extract"])
                     elif step == "watch":
-                        main(["watch", "--fail-on", "high"])
+                        main(["watch", "--fail-on", "high", "--notify"])
 
         kw = dict(channel=a.channel, only=only, jobs=a.jobs, max_mbps=a.max_mbps)
         if a.action == "update":
@@ -165,12 +193,12 @@ def cmd_fetch(a):
     if a.action == "export":
         from toramre.assets import export as ex
         names = {k.rsplit("/", 1)[-1]: k for t in tables.values() for k in t}
-        out = a.out or os.environ.get("TORAM_EXPORT") or os.path.join(paths.REPO, "exported")
+        out = a.out or config.get("paths", "export", env="TORAM_EXPORT") or os.path.join(paths.REPO, "exported")
         kinds = tuple(a.types.split(",")) if a.types else ex.KINDS
         only = tuple(a.only.split(",")) if a.only else ("all",)
         summ = ex.run(root, out, lambda b: plan.category(names.get(b, b)), only=only, match=a.match, kinds=kinds,
-                      preview=not a.no_preview, jobs=a.jobs if a.jobs != 8 else 1)
-        json.dump(summ, open(os.path.join(paths.STATE, "export_report.json"), "w"), indent=1, ensure_ascii=False)
+                      preview=not a.no_preview, jobs=a.export_jobs)
+        json.dump(summ, open(os.path.join(paths.STATE, "export_report.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
         print(f"{summ['exported']} bundles exported, {summ['skipped']} unchanged; files {summ['files']}; "
               f"{len(summ['errors'])} errors -> {out}")
         for e in summ["errors"][:10]:
@@ -213,6 +241,11 @@ def cmd_fetch(a):
     return 0
 
 
+def cmd_doctor(a):
+    from toramre import doctor
+    return doctor.report(online=a.online)
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="toramre", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -220,6 +253,7 @@ def main(argv=None):
     w.add_argument("--since", help="only pairs whose newer version is this version or later (8 hex chars)")
     w.add_argument("--out", help="report directory (default: state/)")
     w.add_argument("--fail-on", choices=["low", "medium", "high"], default="high", help="exit 1 when an event of this level exists")
+    w.add_argument("--notify", action="store_true", help="send a summary to the webhook in toramre.toml [notify]")
     w.set_defaults(fn=cmd_watch)
     u = sub.add_parser("ui", help="build the dashboard (one self-contained HTML page)")
     u.add_argument("--out", help="output file (default: state/dashboard.html)")
@@ -233,6 +267,9 @@ def main(argv=None):
                         formatter_class=argparse.RawDescriptionHelpFormatter)
     st.add_argument("names", nargs="*", metavar="STAGE", help="stages to run (default: all)")
     st.set_defaults(fn=cmd_stage)
+    dr = sub.add_parser("doctor", help="check what this machine can run and what is missing")
+    dr.add_argument("--online", action="store_true", help="also check that the CDN answers")
+    dr.set_defaults(fn=cmd_doctor)
     br = sub.add_parser("brain", help="learn table layouts: frontier, solve, status, show")
     br.add_argument("action", choices=["status", "frontier", "solve", "show"])
     br.add_argument("tables", nargs="*", help="tables (default: every open frontier item)")
@@ -244,7 +281,7 @@ def main(argv=None):
                    help="update = fetch only bundles that changed on the CDN since the last check (default --only data,text,script); "
                         "poll = run update every --interval minutes")
     f.add_argument("--force", action="store_true", help="get: download again even when the file is on disk and current")
-    f.add_argument("--max-mbps", type=float, default=0.0, help="cap the total download speed in MB/s (0 = no cap)")
+    f.add_argument("--max-mbps", type=float, help="cap the total download speed in MB/s (0 = no cap; default [fetch] max_mbps)")
     f.add_argument("--interval", type=float, default=60.0, help="poll: minutes between checks")
     f.add_argument("--once", action="store_true", help="poll: check once and exit")
     f.add_argument("--out", help="export: output folder (default: env TORAM_EXPORT or <repo>/exported)")
@@ -254,8 +291,9 @@ def main(argv=None):
     f.add_argument("--match", help="regex on the bundle key")
     f.add_argument("--channel", help="CDN channel A-F (default: the one with the newest data)")
     f.add_argument("--dest", help="cache root (default: env TORAM_CDN_CACHE or <repo>/cdn_cache)")
-    f.add_argument("--jobs", type=int, default=8, help="parallel downloads (export: worker processes, default 1)")
-    f.add_argument("--rate", type=float, default=8.0, help="max requests per second")
+    f.add_argument("--jobs", type=int, help="parallel downloads (default 8 or [fetch] jobs)")
+    f.add_argument("--export-jobs", type=int, default=1, help="export: worker processes")
+    f.add_argument("--rate", type=float, help="max requests per second (default 8 or [fetch] rate)")
     f.add_argument("--retries", type=int, default=5)
     f.add_argument("--revalidate", action="store_true", help="re-check files already on disk with If-None-Match (304 = keep)")
     f.add_argument("--then", help="after a clean fetch / update with new files: extract,watch")

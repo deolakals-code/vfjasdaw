@@ -150,12 +150,12 @@ def write_obj(path, name, textures, meshes, materials):
     base = os.path.join(path, name)
     for i, t in enumerate(textures):
         t.transpose(Image.Transpose.FLIP_TOP_BOTTOM).save(f"{base}_{i}.png")
-    with open(base + ".mtl", "w") as f:
+    with open(base + ".mtl", "w", encoding="utf-8") as f:
         for mat, (kind, t, dye) in sorted(materials.items()):
             # "# kind" / "# dye" are ours (build-models-pak.mjs reads them); OBJ readers skip comments
             f.write(f"newmtl m{mat}\n# kind {kind}\n" + (f"# dye {' '.join(dye)}\n" if dye else "")
                     + (f"map_Kd {name}_{t}.png\n" if t >= 0 else ""))
-    with open(base + ".obj", "w") as f:
+    with open(base + ".obj", "w", encoding="utf-8") as f:
         f.write(f"mtllib {name}.mtl\n")
         vbase = 1
         for mesh, pos, uv, subs, col in meshes:

@@ -1,0 +1,21 @@
+# Copy to toramre.toml (git-ignored) and adjust. Command-line options and environment variables win over this file.
+
+[paths]
+# where `toramre fetch get` writes bundles (Unity-cache layout) and `fetch export` reads them
+cdn_cache = 'D:\toram_re\cdn_cache'
+# readable files from `toramre fetch export`
+export = 'D:\toram_re\exported'
+# extra game caches for `toramre stage extract` (the phone copy, the PC cache)
+cache_roots = ['D:\toram_re\phone_cache\UnityCache\Shared']
+
+[fetch]
+jobs = 8          # parallel downloads
+rate = 8.0        # max requests per second
+max_mbps = 0      # 0 = no speed cap
+channel = 'A'
+
+[notify]
+# your own Discord (or Slack-compatible) incoming webhook; leave empty to disable
+webhook = ''
+allowed_hosts = ['discord.com']
+level = 'medium'  # low / medium / high: the lowest severity that is sent

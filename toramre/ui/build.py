@@ -43,11 +43,48 @@ def collect(snap=None, events=None):
             cells[t] = row
         bundles[b] = {"versions": [{"v": v, "date": dates.get(v, "")} for v in order], "tables": tables, "cells": cells}
     return {
+        "brain": _brain(),
+        "cdn": _cdn(),
         "generated": time.strftime("%Y-%m-%d %H:%M"),
         "bundles": bundles,
         "events": [e.as_dict() for e in events],
         "extra": snap.get("extra", {}),
     }
+
+
+def _brain():
+    from toramre.brain import engine, kb
+    learned = []
+    for t in kb.all_tables():
+        e = kb.load(t)
+        learned.append({"table": t, "strategy": e["strategy"], "records": e["stats"]["records"], "describe": e["describe"],
+                        "owner": e["schema"].get("owner", ""), "names": e["schema"].get("names") or [],
+                        "versions": len(e["evidence"]["versions"]), "label": e["evidence"]["label"]})
+    p = os.path.join(paths.STATE, "frontier.json")
+    solved = {r["table"]: r for r in json.load(open(p))} if os.path.exists(p) else {}
+    frontier = []
+    for it in engine.frontier():
+        r = solved.get(it["table"], {})
+        cand = (r.get("candidates") or [{}])[0]
+        frontier.append({"table": it["table"], "bytes": it["bytes"], "why": it["why"], "tried": bool(r),
+                         "best": cand.get("describe", ""), "confidence": cand.get("confidence", ""),
+                         "next": [n["class"] for n in r.get("next", [])][:3]})
+    return {"learned": learned, "frontier": frontier, "stats": kb.stats()}
+
+
+def _cdn():
+    from toramre.net import catalog, manifest, plan
+    tables = catalog.load()
+    p = os.path.join(paths.STATE, "cdn_changes.json")
+    changes = json.load(open(p)) if os.path.exists(p) else []
+    man = manifest.load()
+    by = {}
+    for k, m in man.items():
+        c = by.setdefault(plan.category(k), [0, 0])
+        c[0] += 1
+        c[1] += m.get("bytes") or 0
+    return {"channels": catalog.channel_report(tables), "bundles": {ch: len(t) for ch, t in tables.items()},
+            "changes": changes, "fetched": by, "default": catalog.default_channel(tables)}
 
 
 def render(data, standalone=True):

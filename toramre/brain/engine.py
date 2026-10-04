@@ -90,7 +90,9 @@ def run(tables=None, learn=True, out=None):
     results = [solve(it["table"], learn=learn) for it in items]
     out = out or os.path.join(paths.STATE, "frontier.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    json.dump(results, open(out, "w"), indent=1, ensure_ascii=False)
+    merged = {r["table"]: r for r in (json.load(open(out, encoding="utf-8")) if os.path.exists(out) else [])}
+    merged.update({r["table"]: r for r in results})  # one run on a few tables keeps the others' last result
+    json.dump(sorted(merged.values(), key=lambda r: r["table"]), open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     return results
 
 

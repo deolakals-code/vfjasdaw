@@ -705,3 +705,8 @@ Result: no damage / buff / mastery code exists in the client for any of the nine
 - `fetch get --force` re-downloads present files; `--max-mbps` caps the total speed (token bucket on bytes, 0.25 s burst; live check: 0.9 MB at a 0.5 MB/s cap took 2.4 s); jobs are ordered data -> text -> script -> model -> audio -> field, small files first; Ctrl+C sets a stop flag: finished files are recorded, unfinished `.part` files resume on the next run.
 - Scope note: skill multipliers, damage formulas and buff values are in `libil2cpp.so` (APK), so a balance change there is not visible to the CDN updater; SkillMaster fields and skill texts are.
 - Tests 43 (fake CDN): force, priority, speed cap, update fetches only the changed data bundle (a changed model bundle is left alone), second update fetches nothing, poll stops after max_polls.
+
+## Program polish: settings, doctor, notify, dashboard tabs, CI (2026-10-04)
+- `toramre.toml` (+ `toramre.example.toml`), `toramre doctor [--online]`, `watch --notify` / `fetch poll` webhook alerts (`toramre/notify.py`; https + allowed host from the settings, separate from the CDN-only guard), dashboard tabs "Table layouts" and "CDN", `brain solve` now merges into `state/frontier.json` instead of overwriting it.
+- Bug fixed on the way: the dashboard's `.wrap` page-container class also matched table cells (`td.wrap`), turning them into grid boxes; renamed to `cellwrap`. JSON/OBJ/MTL writers now name `utf-8` explicitly (Windows default code page).
+- CI added (Ubuntu + Windows). Full brain rerun (25 tables): unchanged result, 3 learned / 22 open.

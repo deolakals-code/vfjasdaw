@@ -14,7 +14,7 @@ def summarize(events):
 
 def write(events, out_dir):
     os.makedirs(out_dir, exist_ok=True)
-    json.dump([e.as_dict() for e in events], open(os.path.join(out_dir, "changes.json"), "w"), indent=1, ensure_ascii=False)
+    json.dump([e.as_dict() for e in events], open(os.path.join(out_dir, "changes.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     lines = [f"# Change report ({time.strftime('%Y-%m-%d')})", "", f"{len(events)} events", ""]
     for tag, evs in sorted(summarize(events).items(), key=lambda kv: -kv[1][0].severity):
         lines += [f"## {tag} [{NAMES[evs[0].severity]}] ({len(evs)})", ""]
