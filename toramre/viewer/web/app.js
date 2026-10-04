@@ -102,7 +102,7 @@ async function pageEntity(typ, id) {
     Object.entries(groups).map(([rel, ls]) => el("div", { class: "row", style: "grid-template-columns:110px minmax(0,1fr)" }, el("span", { class: "label", text: rel }),
       el("span", { class: "chips" }, ls.slice(0, 40).map((l) => el("a", { class: "chip", href: href(l.type, l.id), text: `${l.name || l.id}` })), ls.length > 40 ? el("span", { class: "muted", text: `+${ls.length - 40} more` }) : null)))) : null;
   view.replaceChildren(head, e.balance ? changesCard(typ, e.balance) : null, info, links);
-  document.title = `${e.name || id} · toramre viewer`;
+  document.title = `${e.name || id} · toramre`;
 }
 
 /* ---------- Skills ---------- */
@@ -213,18 +213,142 @@ async function pageCalc() {
   renderMon(); renderHits(); loadClaims();
 }
 
+/* ---------- Overview ---------- */
+const bytesText = (n) => n >= 1e9 ? (n / 1e9).toFixed(1) + " GB" : (n / 1e6).toFixed(n >= 1e8 ? 0 : 1) + " MB";
+async function pageOverview() {
+  loading();
+  const o = await api("overview");
+  const stat = (label, value, cls, sub) => el("div", { class: "stat " + (cls || "") }, el("span", { class: "label", text: label }), el("b", { text: value }), sub ? el("span", { class: "muted", text: sub }) : null);
+  const byVer = {};
+  for (const n of o.new_data) (byVer[n.version] = byVer[n.version] || []).push(n.channel);
+  const banners = Object.entries(byVer).map(([ver, chs]) => el("section", { class: "banner" }, el("div", null, el("b", { text: `Channel${chs.length > 1 ? "s" : ""} ${chs.join(", ")} carry BynaryData ${ver}` }),
+    el("div", { class: "muted", text: "Not decoded here yet. The version number alone does not say whether it is newer or a test channel; fetch it and compare." })),
+    el("a", { class: "btn", href: "#/fetch" }, "Fetch data and text")));
+  const catRows = Object.entries(o.fetched);
+  view.replaceChildren(
+    el("div", { class: "top-row" }, el("div", { class: "label", text: "Overview" }), el("h1", { text: `Data version ${o.newest || "-"}` }),
+      el("div", { class: "muted", text: `${o.date ? "Cached " + o.date + " · " : ""}${o.versions} master versions kept · Doctor: ${o.doctor.ok} ok, ${o.doctor.warn} warnings, ${o.doctor.missing} missing` })),
+    ...banners,
+    el("section", { class: "strip", "aria-label": "Summary" }, stat("High alerts", o.alerts.high, "high"), stat("Medium alerts", o.alerts.medium, "medium"), stat("Low alerts", o.alerts.low, "low"),
+      stat("Table layouts learned", o.layouts.learned, "", `${o.layouts.open} still open`),
+      stat("Fetched here", catRows.reduce((n, [, v]) => n + v.bundles, 0), "", bytesText(catRows.reduce((n, [, v]) => n + v.bytes, 0)))),
+    el("div", { class: "two" },
+      el("section", { class: "card wide" }, el("div", { class: "head" }, el("h2", { text: "Most important alerts" })),
+        o.recent.length ? o.recent.map((e) => el("a", { class: "row", href: e.bundle.startsWith("balance/") ? href(e.bundle.slice(8), e.item) : "#/balance" }, el("span", { class: "t" }, pill(e.tag), " ", el("b", { text: `${e.bundle}/${e.item}` }), el("div", { class: "s", text: e.detail })),
+          el("span", { class: "s mono", text: `${e.from} → ${e.to}` }))) : el("div", { class: "row" }, el("span", { class: "muted", text: "No alerts." })),
+        el("a", { class: "row", href: "#/balance" }, el("span", { class: "t", text: "All buff / nerf changes" }), el("span", { class: "s", text: "Balance →" }))),
+      el("section", { class: "card narrow" }, el("div", { class: "head" }, el("h2", { text: "CDN channels" })),
+        Object.entries(o.channels).map(([c, r]) => el("div", { class: "row" }, el("span", { class: "t" }, el("b", { text: c }), c === o.default_channel ? " (default) " : " ", el("span", { class: "mono", text: r.BynaryData || "-" })),
+          el("span", { class: "s", text: r.decoded_here ? "decoded here" : "not decoded" }))),
+        el("a", { class: "row", href: "#/fetch" }, el("span", { class: "t", text: "Fetch and update" }), el("span", { class: "s", text: "→" })))));
+}
+
+/* ---------- Table layouts ---------- */
+async function pageLayouts() {
+  loading();
+  const b = await api("layouts");
+  const learned = el("div", { class: "grid3" }, b.learned.map((e) => el("article", { class: "card" }, el("div", { class: "head" }, el("div", { class: "chips" }, el("h2", { text: e.table }), el("span", { class: "pill ADDED", text: e.strategy }))),
+    el("div", { class: "body" }, el("b", { style: "font:600 1.5rem var(--f-display)", text: e.records.toLocaleString() }),
+      el("span", { class: "mono muted", style: "overflow-wrap:anywhere", text: e.names.length ? e.names.join(" · ") : e.describe }),
+      el("span", { class: "muted", text: `${e.label}; ${e.versions} distinct version${e.versions === 1 ? "" : "s"}` })))));
+  const open = el("section", { class: "card" }, el("div", { class: "head" }, el("h2", { text: `Still open (${b.frontier.length})` })),
+    el("div", { class: "scroll" }, el("table", { class: "tbl" }, el("thead", null, el("tr", null, ["Table", "Bytes", "Why open", "Best guess", "Next link"].map((h, i) => el("th", { class: i === 1 ? "num" : "", text: h })))),
+      el("tbody", null, b.frontier.map((f) => el("tr", null, el("td", null, el("b", { text: f.table })), el("td", { class: "num", text: f.bytes.toLocaleString() }), el("td", { text: f.why }),
+        el("td", { class: "mono" }, f.best ? [el("span", { class: "pill " + (f.confidence === "weak" ? "MIXED" : ""), text: f.confidence || "?" }), " " + f.best] : el("span", { class: "muted", text: f.tried ? "no layout found (nested variable parts)" : "not tried yet" })),
+        el("td", { text: f.next.join(", ") })))))));
+  const st = Object.entries(b.stats || {}).map(([k, v]) => `${k} ${v.solved}/${v.tried}`).join(" · ");
+  view.replaceChildren(el("div", null, el("div", { class: "label", text: "Table layouts" }), el("h1", { text: `${b.learned.length} learned, ${b.frontier.length} still open` }),
+    el("div", { class: "muted", text: "A layout is kept only when it reads every cached version to the last byte and shuffled bytes never fit it." + (st ? " Strategy record: " + st : "") })),
+    learned, open);
+}
+
+/* ---------- Doctor ---------- */
+async function pageDoctor() {
+  loading();
+  const d = await api("doctor");
+  view.replaceChildren(el("div", null, el("div", { class: "label", text: "Doctor" }), el("h1", { text: "What this machine can run" })),
+    el("section", { class: "card" }, d.checks.map((c) => el("div", { class: "check" }, el("span", { class: "st " + c.state, text: c.state.toUpperCase() }),
+      el("div", null, el("b", { text: c.what }), " ", el("span", { class: "muted", text: c.detail }), c.state !== "ok" && c.needed_for ? el("div", { class: "s muted", text: "needed for: " + c.needed_for }) : null)))));
+}
+
+/* ---------- Fetch ---------- */
+const fetchState = { only: new Set(["data", "text", "script"]), channel: "", force: false, timer: null };
+function stopPolling() { if (fetchState.timer) { clearInterval(fetchState.timer); fetchState.timer = null; } }
+async function post(path, body) {
+  const r = await fetch("/api/" + path, { method: "POST", headers: { "Content-Type": "application/json", "X-Toramre": "1" }, body: JSON.stringify(body || {}) });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+async function pageFetch() {
+  stopPolling();
+  loading();
+  const s = await api("fetch/status", { only: [...fetchState.only].join(","), channel: fetchState.channel, force: fetchState.force ? "1" : "" });
+  if (s.error) {
+    return view.replaceChildren(el("div", null, el("div", { class: "label", text: "Fetch" }), el("h1", { text: "Download from the CDN" })), el("div", { class: "empty", text: s.error }),
+      el("div", null, el("button", { class: "btn", type: "button", text: "Check the CDN now", onclick: async (ev) => { ev.target.disabled = true; try { await post("fetch/catalog"); } catch (e) { /* the retry below shows the same error */ } pageFetch(); } })));
+  }
+  const jobs = el("input", { type: "number", min: 1, max: 32, value: s.defaults.jobs, id: "o-jobs" }), mbps = el("input", { type: "number", min: 0, step: "any", value: s.defaults.max_mbps, id: "o-mbps" });
+  const force = el("input", { type: "checkbox", id: "o-force", checked: fetchState.force, onchange: (ev) => { fetchState.force = ev.target.checked; pageFetch(); } });
+  const live = el("div"), msg = el("div", { class: "muted", role: "status" });
+  const startBtn = el("button", { class: "btn", type: "button", text: "Start download" }), stopBtn = el("button", { class: "btn secondary", type: "button", text: "Stop", hidden: true });
+  const cats = s.categories.map((c) => {
+    const pct = c.total ? Math.round(c.fetched / c.total * 100) : 0;
+    return el("div", { class: "cat" }, el("input", { type: "checkbox", id: "c-" + c.name, checked: fetchState.only.has(c.name), onchange: (ev) => { ev.target.checked ? fetchState.only.add(c.name) : fetchState.only.delete(c.name); pageFetch(); } }),
+      el("label", { for: "c-" + c.name }, el("b", { text: c.name }), el("span", { class: "bar" }, el("i", { style: `width:${pct}%` }))),
+      el("span", { class: "n", text: `${c.fetched.toLocaleString()} / ${c.total.toLocaleString()}` }), el("span", { class: "mb", text: c.to_fetch ? "~" + bytesText(c.bytes) + " to go" : "current" }));
+  });
+  function paint(j) {
+    const running = j.state === "running" || j.state === "stopping";
+    startBtn.disabled = running; stopBtn.hidden = !running;
+    if (!j.total_files && !j.message && !j.error) return live.replaceChildren();
+    const pct = j.total_bytes ? Math.min(100, Math.round(j.bytes / j.total_bytes * 100)) : (j.state === "done" ? 100 : 0);
+    live.replaceChildren(el("div", { class: "card" }, el("div", { class: "body" },
+      el("div", null, pill(j.state === "done" ? "BUFF" : j.state === "failed" ? "NERF" : j.state === "stopped" ? "MIXED" : "ADDED"), " ", el("b", { text: j.state }), j.message ? " · " + j.message : "", j.error ? " · " + j.error : ""),
+      j.total_files ? el("span", { class: "bar" }, el("i", { style: `width:${pct}%` })) : null,
+      j.total_files ? el("div", { class: "muted", style: "font-variant-numeric:tabular-nums", text: `${j.files}/${j.total_files} files · ${bytesText(j.bytes)} of ~${bytesText(j.total_bytes)} · ${(j.rate / 1e6).toFixed(2)} MB/s${j.eta ? " · about " + Math.ceil(j.eta) + " s left" : ""} · ${j.failed || 0} failed` }) : null,
+      j.report && j.report.failed && j.report.failed.length ? el("div", { class: "s" }, j.report.failed.slice(0, 5).map((f) => el("div", { class: "mono", text: `${f.key}: ${f.error}` }))) : null)));
+    if (!running && fetchState.timer) { stopPolling(); setTimeout(pageFetch, 800); }
+  }
+  async function poll() { try { paint(await api("fetch/job")); } catch (e) { stopPolling(); } }
+  startBtn.addEventListener("click", async () => {
+    msg.textContent = "";
+    try { await post("fetch/start", { only: [...fetchState.only], channel: s.channel, jobs: +jobs.value, max_mbps: +mbps.value, force: fetchState.force }); fetchState.timer = setInterval(poll, 1000); poll(); }
+    catch (e) { msg.textContent = e.message; }
+  });
+  stopBtn.addEventListener("click", async () => { await post("fetch/stop"); poll(); });
+  view.replaceChildren(
+    el("div", { class: "top-row" }, el("div", { class: "label", text: "Fetch" }), el("h1", { text: "Download from the CDN" }),
+      el("div", { class: "muted", text: `Channel ${s.channel} · files go to ${s.root} · every file is checked against its MD5 before it enters the cache` })),
+    el("div", { class: "two" },
+      el("section", { class: "card wide" }, el("div", { class: "head" }, el("h2", { text: "Categories" }), el("span", { class: "muted", text: "Order: data first, heavy media last" })), cats,
+        el("div", { class: "row" }, el("span", { class: "t", text: `${s.to_fetch.toLocaleString()} bundles to fetch, ${s.skipped.toLocaleString()} current` }), el("span", { class: "s", text: "sizes are estimates" }))),
+      el("section", { class: "card narrow" }, el("div", { class: "head" }, el("h2", { text: "Options" })), el("div", { class: "body" },
+        el("label", { for: "o-jobs", class: "cmp" }, el("span", { text: "Parallel files" }), jobs), el("label", { for: "o-mbps", class: "cmp" }, el("span", { text: "Speed cap MB/s (0 = none)" }), mbps),
+        el("label", { for: "o-force", style: "display:flex;gap:10px;align-items:center;min-height:36px" }, force, "Download again even when the file is current"),
+        el("div", { class: "chips" }, startBtn, stopBtn, el("button", { class: "btn secondary", type: "button", text: "Check the CDN now", onclick: async (ev) => { ev.target.disabled = true; msg.textContent = "Checking…"; try { const r = await post("fetch/catalog"); msg.textContent = `${r.changes} change${r.changes === 1 ? "" : "s"} since the last check.`; } catch (e) { msg.textContent = e.message; } setTimeout(pageFetch, 1200); } })),
+        msg))),
+    live);
+  paint(s.job);
+  if (s.job.state === "running") { fetchState.timer = setInterval(poll, 1000); }
+}
+
 /* ---------- Router ---------- */
 function go(base, params) { const u = new URLSearchParams(); for (const [k, v] of Object.entries(params || {})) if (v) u.set(k, v); location.hash = base + (u.toString() ? "?" + u : ""); }
 async function route() {
   const [path, qs] = (location.hash.slice(1) || "/").split("?");
   const p = Object.fromEntries(new URLSearchParams(qs || ""));
   const seg = path.split("/").filter(Boolean).map(decodeURIComponent);
-  document.title = "toramre viewer";
-  const tab = seg[0] === "search" || !seg.length ? "search" : ["skills", "balance", "compare", "calc"].includes(seg[0]) ? seg[0] : "";
-  document.querySelectorAll("#nav a").forEach((a) => a.toggleAttribute("aria-current", a.dataset.t === tab) || a.removeAttribute("aria-current"));
-  document.querySelectorAll("#nav a[aria-current]").forEach((a) => a.setAttribute("aria-current", "page"));
+  document.title = "toramre";
+  stopPolling();
+  const tab = !seg.length ? "overview" : ["search", "skills", "balance", "compare", "calc", "fetch", "layouts", "doctor"].includes(seg[0]) ? seg[0] : "";
+  document.querySelectorAll("#nav a").forEach((n) => { if (n.dataset.t === tab) n.setAttribute("aria-current", "page"); else n.removeAttribute("aria-current"); });
   try {
-    if (!seg.length || seg[0] === "search") await pageSearch(p.q || "");
+    if (!seg.length) await pageOverview();
+    else if (seg[0] === "search") await pageSearch(p.q || "");
+    else if (seg[0] === "fetch") await pageFetch();
+    else if (seg[0] === "layouts") await pageLayouts();
+    else if (seg[0] === "doctor") await pageDoctor();
     else if (seg[0] === "skills") await pageSkills(p);
     else if (seg[0] === "balance") await pageBalance(p);
     else if (seg[0] === "compare") await pageCompare(seg[1], seg[2]);

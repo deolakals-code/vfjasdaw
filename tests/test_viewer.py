@@ -102,6 +102,19 @@ class Api(unittest.TestCase):
         self.assertEqual(self.get("/..%2f..%2fetc%2fpasswd")[0], 404)
         self.assertEqual(self.get("/%2e%2e/%2e%2e/etc/passwd")[0], 404)
 
+    def test_overview_layouts_doctor_fetch_status(self):
+        code, o = self.j("/api/overview")
+        self.assertEqual(code, 200)
+        self.assertEqual(set(o["alerts"]), {"high", "medium", "low"})
+        self.assertGreaterEqual(o["layouts"]["learned"], 5)
+        code, l = self.j("/api/layouts")
+        self.assertTrue(any(x["table"] == "RecipeMaster" for x in l["learned"]))
+        code, d = self.j("/api/doctor")
+        self.assertTrue(any(c["what"] == "python" for c in d["checks"]))
+        code, f = self.j("/api/fetch/status?only=data")
+        self.assertIn("categories", f)
+        self.assertEqual(self.j("/api/fetch/job")[0], 200)
+
     def test_skill_list_filters_by_verdict(self):
         code, r = self.j("/api/skills?q=hard&lang=us")
         self.assertEqual(r["rows"][0]["id"], "33")
@@ -182,6 +195,18 @@ class PostSecurity(unittest.TestCase):
         self.assertEqual(self.post(body, {"X-Toramre": "1", "Content-Type": "text/plain"}), 403)    # not JSON
         self.assertEqual(self.post(body, {"X-Toramre": "1", "Content-Type": "application/json"}), 200)
         self.assertEqual(self.post({"tool": "x"}, {"X-Toramre": "1", "Content-Type": "application/json"}), 400)
+
+    def test_fetch_posts_are_guarded_too(self):
+        for path in ("catalog", "start", "stop"):
+            req = urllib.request.Request(f"http://127.0.0.1:{self.port}/api/fetch/{path}", data=b"{}", headers={"Content-Type": "application/json"})
+            with self.assertRaises(urllib.error.HTTPError) as cm:
+                urllib.request.urlopen(req)
+            self.assertEqual(cm.exception.code, 403, path)
+        req = urllib.request.Request(f"http://127.0.0.1:{self.port}/api/fetch/start", data=b'{"only":[]}',
+                                     headers={"Content-Type": "application/json", "X-Toramre": "1"})
+        with self.assertRaises(urllib.error.HTTPError) as cm:
+            urllib.request.urlopen(req)
+        self.assertEqual(cm.exception.code, 400)        # empty category list is refused before anything runs
 
     def test_other_post_paths_are_refused(self):
         req = urllib.request.Request(f"http://127.0.0.1:{self.port}/api/search", data=b"{}", headers={"X-Toramre": "1", "Content-Type": "application/json"})

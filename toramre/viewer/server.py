@@ -12,6 +12,7 @@ from urllib.parse import parse_qs, unquote, urlparse
 from toramre.balance import api as balance, snapshot
 from toramre.core import paths, versions as V
 from . import calc
+from .jobs import FetchJobs
 from .store import LANGS, TYPES, Store
 
 WEB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web")
@@ -21,10 +22,12 @@ LIMITS = ("Skill multipliers and buff tables exist for one decoded build only; t
 
 
 class App:
-    def __init__(self, store=None, balance_dir=None):
+    def __init__(self, store=None, balance_dir=None, jobs=None):
         self.store = store or Store()
         self.balance_dir = balance_dir
         self._entries = None
+        self._events = None
+        self.jobs = jobs or FetchJobs()
         self.lock = threading.Lock()
 
     def entries(self):
@@ -32,6 +35,14 @@ class App:
             if self._entries is None:
                 self._entries = balance.all_entries(directory=self.balance_dir)
             return self._entries
+
+    def events(self, refresh=False):
+        """All watch events (data, balance, CDN), computed once and kept until `refresh`."""
+        from toramre.watch import collect
+        with self.lock:
+            if self._events is None or refresh:
+                self._events = collect.collect()[0]
+            return self._events
 
     # ---- API handlers: return (status, json-able) -------------------------------------------------------
     def meta(self, q):
@@ -105,6 +116,69 @@ class App:
         diff = [k for k in keys if a["fields"].get(k) != b["fields"].get(k)]
         return 200, {"a": a, "b": b, "differs": diff}
 
+    def overview(self, q):
+        from toramre.brain import engine, kb
+        from toramre.net import catalog, manifest, plan as nplan
+        from toramre.watch.tags import NAMES
+        dv = V.list_versions("BynaryData")
+        dates = {}
+        for line in open(os.path.join(paths.MASTERS, "_history.csv"), encoding="utf-8").read().splitlines()[1:] if os.path.exists(os.path.join(paths.MASTERS, "_history.csv")) else []:
+            c = line.split(",")
+            dates.setdefault(c[0], c[1])
+        evs = self.events(refresh=q.get("refresh") == "1")
+        sev = {"high": 0, "medium": 0, "low": 0}
+        for e in evs:
+            sev[NAMES[e.severity]] += 1
+        recent = sorted(evs, key=lambda e: (-e.severity, -V.rank(e.to_ver), e.bundle, e.item))[:6]
+        tables = catalog.load()
+        chans = catalog.channel_report(tables)
+        default = catalog.default_channel(tables)
+        newer = [{"channel": c, "version": r["BynaryData"]} for c, r in chans.items()
+                 if c != default and r["BynaryData"] and not r["decoded_here"] and r["BynaryData"] != (chans.get(default) or {}).get("BynaryData")]
+        newer_default = [] if not default or (chans.get(default) or {}).get("decoded_here") else [{"channel": default, "version": chans[default]["BynaryData"]}]
+        by = {}
+        for k, m in manifest.load().items():
+            c = by.setdefault(nplan.category(k), [0, 0])
+            c[0] += 1
+            c[1] += m.get("bytes") or 0
+        learned, frontier = kb.all_tables(), engine.frontier()
+        from toramre import doctor
+        dc = doctor.checks()
+        return 200, {"newest": dv[-1] if dv else None, "date": dates.get(dv[-1], "") if dv else "", "versions": len(dv),
+                     "alerts": sev, "recent": [{"tag": e.tag, "severity": NAMES[e.severity], "bundle": e.bundle, "item": e.item,
+                                               "from": e.from_ver, "to": e.to_ver, "detail": e.detail[:200]} for e in recent],
+                     "layouts": {"learned": len(learned), "open": len(frontier)}, "fetched": {k: {"bundles": v[0], "bytes": v[1]} for k, v in by.items()},
+                     "channels": chans, "default_channel": default, "new_data": newer_default + newer,
+                     "doctor": {"ok": sum(1 for c in dc if c[0] == "ok"), "warn": sum(1 for c in dc if c[0] == "warn"), "missing": sum(1 for c in dc if c[0] == "missing")}}
+
+    def layouts(self, q):
+        from toramre.ui import build
+        return 200, build._brain()
+
+    def doctor(self, q):
+        from toramre import doctor
+        return 200, {"checks": [{"state": a, "what": b, "detail": c, "needed_for": d} for a, b, c, d in doctor.checks()]}
+
+    def fetch_status(self, q):
+        only = tuple(c for c in q.get("only", "all").split(",") if c) or ("all",)
+        ps = self.jobs.plan_summary(only, q.get("channel"), q.get("force") == "1")
+        if "error" in ps:
+            return 200, {"error": ps["error"], "job": self.jobs.current()}
+        ps.pop("jobs")
+        from toramre.core import config
+        ps["defaults"] = {"jobs": int(config.get("fetch", "jobs", 8)), "max_mbps": float(config.get("fetch", "max_mbps", 0.0))}
+        ps["job"] = self.jobs.current()
+        return 200, ps
+
+    def fetch_post(self, action, body):
+        if action == "catalog":
+            return 200, self.jobs.refresh_catalog()
+        if action == "start":
+            return 200, self.jobs.start(body)
+        if action == "stop":
+            return 200, self.jobs.stop()
+        return 404, {"error": "unknown action"}
+
     def calc_proration(self, q):
         hits = [h for h in q.get("hits", "").split(",") if h]
         if q.get("monster"):
@@ -147,6 +221,16 @@ class App:
                 return self.calc_proration(q)
             if parts == ["claims"]:
                 return self.claims()
+            if parts == ["overview"]:
+                return self.overview(q)
+            if parts == ["layouts"]:
+                return self.layouts(q)
+            if parts == ["doctor"]:
+                return self.doctor(q)
+            if parts == ["fetch", "status"]:
+                return self.fetch_status(q)
+            if parts == ["fetch", "job"]:
+                return 200, self.jobs.current()
             if len(parts) == 3 and parts[0] == "balance":
                 return self.balance_for(parts[1], parts[2], q)
             if len(parts) == 3 and parts[0] == "entity":
@@ -174,15 +258,22 @@ class Handler(http.server.BaseHTTPRequestHandler):
     def do_POST(self):
         u = urlparse(self.path)
         # a browser page on another site cannot send this header without a CORS preflight, which this server never answers
-        if u.path != "/api/claims" or self.headers.get("X-Toramre") != "1" or "json" not in (self.headers.get("Content-Type") or ""):
+        parts = [p for p in u.path.split("/") if p]
+        ok_path = u.path == "/api/claims" or (len(parts) == 3 and parts[:2] == ["api", "fetch"] and parts[2] in ("catalog", "start", "stop"))
+        if not ok_path or self.headers.get("X-Toramre") != "1" or "json" not in (self.headers.get("Content-Type") or ""):
             return self._send(403, b'{"error":"forbidden"}', "application/json")
         n = int(self.headers.get("Content-Length") or 0)
-        if n <= 0 or n > 20000:
+        if n < 0 or n > 20000:
             return self._send(400, b'{"error":"bad body"}', "application/json")
         try:
-            code, obj = self.app.claims(json.loads(self.rfile.read(n)))
-        except (ValueError, TypeError) as e:
+            body = json.loads(self.rfile.read(n) or b"{}")
+            if not isinstance(body, dict):
+                raise ValueError("body must be a JSON object")
+            code, obj = self.app.claims(body) if u.path == "/api/claims" else self.app.fetch_post(parts[2], body)
+        except (ValueError, TypeError, RuntimeError) as e:
             code, obj = 400, {"error": str(e)}
+        except Exception as e:  # network failures while refreshing the catalog etc.
+            code, obj = 502, {"error": f"{type(e).__name__}: {e}"}
         self._send(code, json.dumps(obj, ensure_ascii=False).encode("utf-8"), "application/json; charset=utf-8")
 
     def do_GET(self):
@@ -249,7 +340,8 @@ def selftest():
             return e.code, e.read()
     checks = [("/", 200), ("/app.js", 200), ("/app.css", 200), ("/api/meta", 200), ("/api/search?q=hit", 200), ("/api/skills", 200),
               ("/api/balance?limit=3", 200), ("/api/calc/capabilities", 200), ("/api/calc/proration?steps=10,5,10&hits=Normal,Skill", 200),
-              ("/api/claims", 200), ("/api/entity/skill/99999", 404), ("/api/nope", 404), ("/..%2f..%2fetc%2fpasswd", 404)]
+              ("/api/claims", 200), ("/api/overview", 200), ("/api/layouts", 200), ("/api/doctor", 200), ("/api/fetch/status?only=data", 200),
+              ("/api/fetch/job", 200), ("/api/entity/skill/99999", 404), ("/api/nope", 404), ("/..%2f..%2fetc%2fpasswd", 404)]
     bad = 0
     for path, want in checks:
         code, _ = get(path)

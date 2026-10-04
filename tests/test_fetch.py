@@ -238,3 +238,58 @@ class UpdateAndControls(Fetch):
             update.poll(self.client, self.root, 60, max_polls=2, sleep=seen.append, log=lambda *a: None,
                         base=self.base, out_dir=cdn_dir, state_dir=state, progress_out=io.StringIO(), channel="A")
         self.assertEqual(seen, [60])
+
+
+class ViewerJobs(Fetch):
+    def jobs(self, state):
+        from toramre.viewer.jobs import FetchJobs
+        return FetchJobs(root=self.root, base=self.base, state_dir=state, client_factory=lambda: self.client)
+
+    def wait(self, j, seconds=10):
+        import time
+        t0 = time.time()
+        while j.current().get("state") in ("running", "stopping") and time.time() - t0 < seconds:
+            time.sleep(0.05)
+        return j.current()
+
+    def test_plan_start_progress_and_manifest(self):
+        from unittest import mock
+        from toramre.net import catalog
+        with tempfile.TemporaryDirectory() as state, mock.patch.object(catalog, "load", return_value={"A": self.table}):
+            j = self.jobs(state)
+            ps = j.plan_summary(("data", "text"))
+            self.assertEqual((ps["to_fetch"], {c["name"]: c["to_fetch"] for c in ps["categories"]}), (2, {"data": 1, "text": 1, "model": 1}))
+            j.start({"only": ["data", "text"], "jobs": 2, "max_mbps": 0})
+            st = self.wait(j)
+            self.assertEqual(st["state"], "done")
+            self.assertEqual((st["files"], st["total_files"], st["failed"]), (2, 2, 0))
+            self.assertTrue(os.path.exists(os.path.join(state, "fetch_manifest.json")))
+            ps = j.plan_summary(("all",))
+            self.assertEqual({c["name"]: c["fetched"] for c in ps["categories"]}, {"data": 1, "text": 1, "model": 0})
+            j.start({"only": ["data"]})
+            self.assertEqual(j.current()["state"], "done")           # nothing left: reported, not started
+            self.assertIn("nothing to fetch", j.current()["message"])
+
+    def test_rejects_bad_options_and_double_start(self):
+        from unittest import mock
+        from toramre.net import catalog
+        with tempfile.TemporaryDirectory() as state, mock.patch.object(catalog, "load", return_value={"A": self.table}):
+            j = self.jobs(state)
+            for bad in ({"only": []}, {"only": ["nope"]}, {"only": ["data"], "jobs": 99}, {"only": ["data"], "max_mbps": -1}):
+                with self.assertRaises(ValueError):
+                    j.start(bad)
+
+    def test_stop_keeps_finished_files(self):
+        from unittest import mock
+        from toramre.net import catalog
+        for k in self.table:
+            FakeCDN.files[f"/releaseA/{k}.unity3d"] = b"UnityFS" + bytes(300_000)
+        with tempfile.TemporaryDirectory() as state, mock.patch.object(catalog, "load", return_value={"A": self.table}):
+            j = self.jobs(state)
+            j.start({"only": ["data", "text", "model"], "jobs": 1, "max_mbps": 0.2})   # slow enough to stop in the middle
+            import time
+            time.sleep(0.4)
+            j.stop()
+            st = self.wait(j)
+            self.assertEqual(st["state"], "stopped")
+            self.assertLess(st["files"], 3)

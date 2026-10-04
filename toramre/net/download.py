@@ -54,6 +54,8 @@ class Progress:
         rate = self.bytes / dt
         left = max(0, self.total_bytes - self.bytes)
         eta = left / rate if rate > 0 else 0
+        if self.out is None:
+            return
         self.out.write(f"\r{self.files}/{self.total_files} files  {self.bytes / 1e6:,.1f} MB  {rate / 1e6:,.2f} MB/s  "
                        f"ETA {int(eta // 60)}m{int(eta % 60):02d}s  failed {self.failed}   ")
         self.out.flush()
@@ -125,19 +127,21 @@ def fetch_one(client, url, path, progress=None, known=None, revalidate=False, th
 
 
 def run(client, jobs, root, base_url, manifest, jobs_n=8, revalidate=False, progress_out=sys.stderr, min_free=2 << 30,
-        max_mbps=0.0):
+        max_mbps=0.0, progress=None, stop=None):
     """Fetch every job (in the given order); -> report dict. Updates `manifest` (dict) in place.
     `max_mbps` caps the total download speed (MB/s, 0 = no cap). Ctrl+C stops cleanly: finished files are kept and recorded,
     unfinished ones stay as .part and resume on the next run."""
     from .http import TokenBucket
     throttle = TokenBucket(max_mbps * 1e6, burst=max(16384, max_mbps * 1e6 * 0.25)) if max_mbps > 0 else None  # 0.25 s burst
-    stop = threading.Event()
+    stop = stop if stop is not None else threading.Event()   # an outside owner (the viewer) can stop the run by setting it
     est = sum(j.est_bytes for j in jobs)
     os.makedirs(root, exist_ok=True)
     free = shutil.disk_usage(root).free
     if est and free - est < min_free:
         raise OSError(f"not enough disk: estimate {est / 1e9:.2f} GB, free {free / 1e9:.2f} GB, margin {min_free / 1e9:.1f} GB")
-    prog = Progress(len(jobs), est, out=progress_out)
+    prog = progress or Progress(len(jobs), est, out=progress_out)
+    if progress is not None:
+        prog.total_files, prog.total_bytes = len(jobs), est
     report = {"ok": [], "unchanged": [], "failed": []}
     lock = threading.Lock()
 
@@ -175,6 +179,8 @@ def run(client, jobs, root, base_url, manifest, jobs_n=8, revalidate=False, prog
         report["interrupted"] = True
     finally:
         ex.shutdown(wait=True, cancel_futures=True)
+    if stop.is_set():
+        report["interrupted"] = True
     if progress_out:
         progress_out.write("\n")
     report.update(seconds=round(time.monotonic() - t0, 1), bytes=prog.bytes, requests=client.stats["requests"],

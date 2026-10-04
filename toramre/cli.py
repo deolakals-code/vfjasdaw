@@ -10,24 +10,9 @@ from toramre.watch import diff, report, snapshot
 
 
 def cmd_watch(a):
-    snap = snapshot.take()
+    from toramre.watch import collect
+    events, snap = collect.collect(since=a.since, balance=not a.no_balance)
     snapshot.save(snap, os.path.join(paths.STATE, "snapshot_latest.json"))
-    events = diff.diff_snapshot(snap, since=a.since)
-    base = os.path.join(paths.STATE, "extra_baseline.json")
-    if os.path.exists(base):
-        events += diff.diff_extra(json.load(open(base)), snap["extra"])
-    if not a.no_balance:
-        from toramre.balance import api as balance_api
-        events += balance_api.events(since=a.since)
-    cdn = os.path.join(paths.STATE, "cdn_changes.json")
-    if os.path.exists(cdn):
-        from toramre.watch.tags import Event
-        for x in json.load(open(cdn)):
-            data = x["key"] == "BynaryData" or x["key"].startswith(("Localize/", "FieldScript/"))
-            tag = {"new": "NEW", "removed": "REMOVED"}.get(x["kind"], "CHANGED")
-            events.append(Event(tag, f"cdn/{x['channel']}", x["key"], x["from"] or "-", x["to"] or "-",
-                                "new data version on the CDN: run `toramre fetch get --only data,text --channel "
-                                f"{x['channel']}`" if data else "bundle version changed on the CDN"))
     out = a.out or paths.STATE
     report.write(events, out)
     for tag, evs in report.summarize(events).items():
@@ -130,7 +115,7 @@ def cmd_fetch(a):
     a.max_mbps = a.max_mbps if a.max_mbps is not None else float(config.get("fetch", "max_mbps", 0.0))
     a.channel = a.channel or config.get("fetch", "channel")
     client = Client(rate=a.rate, retries=a.retries)
-    root = a.dest or config.get("paths", "cdn_cache", env="TORAM_CDN_CACHE") or os.path.join(paths.REPO, "cdn_cache")
+    root = a.dest or catalog.cache_root()
     if a.action == "catalog":
         before = catalog.load()
         tables = catalog.refresh(client)

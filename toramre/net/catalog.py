@@ -3,7 +3,7 @@ import csv
 import os
 import urllib.error
 
-from toramre.core import paths, versions as V
+from toramre.core import config, paths, versions as V
 from . import revision
 
 BASE = "https://toram-jp.akamaized.net/resources/android/release{}/"
@@ -87,3 +87,8 @@ def channel_report(tables):
         v = ver_hex(bd[0]) if bd else None
         out[ch] = {"BynaryData": v, "decoded_here": v in hist}
     return out
+
+
+def cache_root():
+    """Where bundles are stored: env TORAM_CDN_CACHE > [paths] cdn_cache > <repo>/cdn_cache."""
+    return config.get("paths", "cdn_cache", env="TORAM_CDN_CACHE") or os.path.join(paths.REPO, "cdn_cache")
