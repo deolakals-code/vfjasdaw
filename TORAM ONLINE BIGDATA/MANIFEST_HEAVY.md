@@ -19,5 +19,6 @@ Sizes as of 2026-09-29. Paths are on D:.
 Not downloaded: the ~4,000 model/motion/BGM/field bundles in `data/cdn/catalog_A.csv` (estimate ~2.6 GB for all 5,089 bundles of channel A).
 Fetch with `python -m toramre fetch plan --only model` (dry run, sizes) then `python -m toramre fetch get --only model --dest D:\toram_re\cdn_cache`
 (parallel, resumable, MD5-verified; `--only all` for everything). The old `python scripts/cdn_fetch.py "<regex>" A` still works and uses the same code.
+Readable files from the fetched bundles: `python -m toramre fetch export --only model --dest <cache> --out D:\toram_re\exported` (needs `pip install UnityPy`).
 
 Anti-cheat files (`libxigncode.so`, `files/xigncode/`) exist inside the phone copies and were never analysed.

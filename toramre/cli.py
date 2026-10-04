@@ -136,6 +136,20 @@ def cmd_fetch(a):
         jobs, skipped = plan.build(tables[ch], ch, root, manifest=man)
         print(f"channel {ch}: {skipped} bundles current, {len(jobs)} not fetched or outdated")
         return 0
+    if a.action == "export":
+        from toramre.assets import export as ex
+        names = {k.rsplit("/", 1)[-1]: k for t in tables.values() for k in t}
+        out = a.out or os.environ.get("TORAM_EXPORT") or os.path.join(paths.REPO, "exported")
+        kinds = tuple(a.types.split(",")) if a.types else ex.KINDS
+        only = tuple(a.only.split(",")) if a.only else ("all",)
+        summ = ex.run(root, out, lambda b: plan.category(names.get(b, b)), only=only, match=a.match, kinds=kinds,
+                      preview=not a.no_preview, jobs=a.jobs if a.jobs != 8 else 1)
+        json.dump(summ, open(os.path.join(paths.STATE, "export_report.json"), "w"), indent=1, ensure_ascii=False)
+        print(f"{summ['exported']} bundles exported, {summ['skipped']} unchanged; files {summ['files']}; "
+              f"{len(summ['errors'])} errors -> {out}")
+        for e in summ["errors"][:10]:
+            print("  error", e)
+        return 1 if summ["errors"] and not summ["exported"] else 0
     if a.action == "verify":
         bad = download.verify(root, man)
         for k, why in bad:
@@ -197,12 +211,15 @@ def main(argv=None):
     br.add_argument("--rows", type=int, default=5, help="records printed by `show`")
     br.set_defaults(fn=cmd_brain)
     f = sub.add_parser("fetch", help="download bundles from the public CDN (catalog, plan, get, status, verify)")
-    f.add_argument("action", choices=["catalog", "plan", "get", "status", "verify"])
+    f.add_argument("action", choices=["catalog", "plan", "get", "status", "verify", "export"])
+    f.add_argument("--out", help="export: output folder (default: env TORAM_EXPORT or <repo>/exported)")
+    f.add_argument("--types", help="export: model,texture,audio,mesh,text (default all)")
+    f.add_argument("--no-preview", action="store_true", help="export: skip the PNG preview of Toram models")
     f.add_argument("--only", help="categories: data,text,script,model,audio,field,other or all (default all)")
     f.add_argument("--match", help="regex on the bundle key")
     f.add_argument("--channel", help="CDN channel A-F (default: the one with the newest data)")
     f.add_argument("--dest", help="cache root (default: env TORAM_CDN_CACHE or <repo>/cdn_cache)")
-    f.add_argument("--jobs", type=int, default=8, help="parallel downloads")
+    f.add_argument("--jobs", type=int, default=8, help="parallel downloads (export: worker processes, default 1)")
     f.add_argument("--rate", type=float, default=8.0, help="max requests per second")
     f.add_argument("--retries", type=int, default=5)
     f.add_argument("--revalidate", action="store_true", help="re-check files already on disk with If-None-Match (304 = keep)")

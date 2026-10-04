@@ -8,11 +8,14 @@ version = "0.1.0"
 description = "Toram Online client-data reverse toolkit (offline static analysis only)"
 requires-python = ">=3.9"
 
+[project.optional-dependencies]
+export = ["UnityPy", "Pillow"]
+
 [project.scripts]
 toramre = "toramre.cli:main"
 
 [tool.setuptools]
-packages = ["toramre", "toramre.brain", "toramre.core", "toramre.data", "toramre.net", "toramre.watch", "toramre.ui"]
+packages = ["toramre", "toramre.assets", "toramre.brain", "toramre.core", "toramre.data", "toramre.net", "toramre.watch", "toramre.ui"]
 
 [tool.setuptools.package-data]
 "toramre.ui" = ["template.html"]
