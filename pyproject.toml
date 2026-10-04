@@ -15,8 +15,10 @@ export = ["UnityPy", "Pillow"]
 toramre = "toramre.cli:main"
 
 [tool.setuptools]
-packages = ["toramre", "toramre.assets", "toramre.brain", "toramre.core", "toramre.data", "toramre.net", "toramre.watch", "toramre.ui"]
+packages = ["toramre", "toramre.assets", "toramre.balance", "toramre.brain", "toramre.core", "toramre.data", "toramre.net", "toramre.viewer", "toramre.watch", "toramre.ui"]
 
 [tool.setuptools.package-data]
 "toramre.ui" = ["template.html"]
 "toramre.brain" = ["kb/*.json", "kb/schemas/*.json"]
+"toramre.balance" = ["snapshots/*.json"]
+"toramre.viewer" = ["web/*"]

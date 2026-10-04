@@ -113,7 +113,7 @@ def diff_snapshot(snap, root=None, since=None):
     for b, vers in snap["bundles"].items():
         order = [v for v in versions.list_versions(b, root) if v in vers]
         for va, vb in zip(order, order[1:]):
-            if since and versions.version_number(vb) < versions.version_number(since):
+            if since and versions.rank(vb) < versions.rank(since):
                 continue
             out += compare_tables(b, va, vb, vers[va], vers[vb], root)
     return out

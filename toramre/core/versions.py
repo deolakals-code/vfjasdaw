@@ -38,3 +38,19 @@ def history_bundles(decoded=None):
     """Bundles whose every cached version is kept (BynaryData and GameScene_<lang>)."""
     root = decoded or paths.DECODED
     return sorted(b for b in os.listdir(root) if b == "BynaryData" or b.startswith("GameScene_"))
+
+
+_rank = None
+
+
+def rank(ver):
+    """Sort key for a version label: position in readable/masters/_history.csv (release/cache order) when listed, else the
+    numeric value placed after all listed ones. Non-version labels (snapshot names) sort first."""
+    global _rank
+    if _rank is None:
+        _rank = {v: i for i, v in enumerate(history_order())}
+    if ver in _rank:
+        return _rank[ver]
+    if len(ver) == 8 and all(c in "0123456789abcdef" for c in ver):
+        return len(_rank) + version_number(ver) / 2**32
+    return -1

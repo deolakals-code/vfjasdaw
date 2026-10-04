@@ -86,7 +86,7 @@ def latest_verdict(entries, kind):
     for e in entries:
         if e["kind"] != kind or e["verdict"] in ("ADDED", "REMOVED"):
             continue
-        rank = (V.version_number(e["to"]) if len(e["to"]) == 8 and all(c in "0123456789abcdef" for c in e["to"]) else 0, e["to"])
+        rank = (V.rank(e["to"]), e["to"])
         if e["id"] not in order or rank >= order[e["id"]][0]:
             order[e["id"]] = (rank, e["verdict"])
     return {k: v[1] for k, v in order.items()}
@@ -114,7 +114,7 @@ def events(since=None, lang="th", directory=None):
     for e in all_entries(lang=lang, directory=directory):
         if e["verdict"] not in ("BUFF", "NERF", "MIXED"):
             continue
-        if since and V.version_number(e["to"]) < V.version_number(since) if len(e["to"]) == 8 else False:
+        if since and V.rank(e["to"]) < V.rank(since):
             continue
         out.append(Event(e["verdict"], f"balance/{e['kind']}", e["id"], e["from"], e["to"], f"[{e['source']}] " + describe(e)))
     return out

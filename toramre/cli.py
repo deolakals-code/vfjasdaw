@@ -280,7 +280,14 @@ def cmd_balance(a):
 
 
 def V_key(v):
-    return versions.version_number(v) if len(v) == 8 and all(c in "0123456789abcdef" for c in v) else -1
+    return versions.rank(v)
+
+
+def cmd_viewer(a):
+    from toramre.viewer import server
+    if a.selftest:
+        return server.selftest()
+    return server.serve(port=a.port, open_browser=not a.no_open)
 
 
 def cmd_doctor(a):
@@ -319,6 +326,11 @@ def main(argv=None):
     bl.add_argument("--build", help="snapshot: build id of libil2cpp.so the values were decoded from (or [balance] build)")
     bl.add_argument("--limit", type=int, default=40)
     bl.set_defaults(fn=cmd_balance)
+    vw = sub.add_parser("viewer", help="local web viewer: search, links, balance history, compare (127.0.0.1 only)")
+    vw.add_argument("--port", type=int, default=8777)
+    vw.add_argument("--no-open", action="store_true", help="do not open the browser")
+    vw.add_argument("--selftest", action="store_true", help="request every route once and exit (CI smoke test)")
+    vw.set_defaults(fn=cmd_viewer)
     dr = sub.add_parser("doctor", help="check what this machine can run and what is missing")
     dr.add_argument("--online", action="store_true", help="also check that the CDN answers")
     dr.set_defaults(fn=cmd_doctor)

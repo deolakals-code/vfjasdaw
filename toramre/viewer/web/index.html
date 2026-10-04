@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>toramre viewer</title>
+<link rel="stylesheet" href="app.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="#/">toramre <span>viewer</span></a>
+  <form id="searchform" role="search" class="search">
+    <label for="q" class="sr">Search</label>
+    <input id="q" type="search" placeholder="Search skills, items, monsters, recipes (name or id)" autocomplete="off">
+  </form>
+  <label class="lang"><span class="sr">Language</span>
+    <select id="lang"><option value="th">ไทย</option><option value="us">English</option><option value="jp">日本語</option><option value="kr">한국어</option><option value="cnt">繁體中文</option><option value="idn">Indonesia</option></select>
+  </label>
+</header>
+<nav class="tabs" id="nav" aria-label="Sections">
+  <a href="#/search" data-t="search">Search</a>
+  <a href="#/skills" data-t="skills">Skills</a>
+  <a href="#/balance" data-t="balance">Balance</a>
+  <a href="#/compare" data-t="compare">Compare</a>
+  <a href="#/calc" data-t="calc">Calculator</a>
+</nav>
+<main id="view" tabindex="-1"></main>
+<footer id="foot"></footer>
+<script src="app.js"></script>
+</body>
+</html>
