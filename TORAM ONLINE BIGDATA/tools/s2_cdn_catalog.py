@@ -1,10 +1,11 @@
 """Stage 2: full CDN bundle catalog (RevisionInfoBinary of releaseA-F, android) -> data/cdn/catalog_<ch>.csv + summary.
 Only the small version table is downloaded here; no bundle bodies."""
 import os, sys, urllib.request, urllib.error, csv, re, collections
-ROOT = r"D:\toram reverse data"
-sys.path.insert(0, ROOT + r"\scripts")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(1, os.path.join(os.path.dirname(os.path.abspath(__file__)), "legacy_scripts"))
+from common import ROOT
 from revision import parse
-OUT = ROOT + r"\TORAM ONLINE BIGDATA\data\cdn"
+OUT = os.path.join(ROOT, "data", "cdn")
 BASE = "https://toram-jp.akamaized.net/resources/android/release{}/"
 for ch in "ABCDEF":
     try:

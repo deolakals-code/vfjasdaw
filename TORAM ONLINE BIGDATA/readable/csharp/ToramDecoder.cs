@@ -1,4 +1,4 @@
-// Toram Online client-data decoder (C#), mirrors tools/decode.py. Offline use on files copied from the game cache.
+// Toram Online client-data decoder (C#), mirrors tools/common.py (decode). Offline use on files copied from the game cache.
 // Bundle layout: outer UnityFS holds TextAssets; each asset is XOR-obfuscated with a per-bundle key.
 using System;
 using System.Collections.Generic;

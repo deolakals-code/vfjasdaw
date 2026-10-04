@@ -1,14 +1,8 @@
 import struct, sys, os, glob
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
-def decode(buf: bytes, ver_hash: int) -> bytes:
-    key = ver_hash.to_bytes(4, "little")
-    out = bytearray(buf)
-    # trailing len % 4 bytes are stored plain
-    for j in range(len(buf) - len(buf) % 4):
-        prev = buf[j - 4] if j >= 4 else 0
-        out[j] = buf[j] ^ prev ^ key[j & 3]
-    return bytes(out)
+from common import decode  # noqa: E402  (single copy lives in tools/common.py)
 
 
 if __name__ == "__main__":

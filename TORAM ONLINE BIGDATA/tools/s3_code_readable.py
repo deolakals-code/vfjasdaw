@@ -1,8 +1,8 @@
 """Stage 3: dump.cs.gz -> readable/code/{cs/<assembly>/<namespace>/<Type>.cs, enums.json, enums.txt, classes.json, methods.tsv}.
 Structure only (declarations, layouts, RVAs). Method bodies are native ARM64 in libil2cpp.so and are not decompiled."""
 import bisect, gzip, json, os, re, shutil
-ROOT = r"D:\toram reverse data\TORAM ONLINE BIGDATA"
-OUT = ROOT + r"\readable\code"
+from common import ROOT
+OUT = os.path.join(ROOT, "readable", "code")
 CS = OUT + r"\cs"
 shutil.rmtree(CS, ignore_errors=True)
 HEAD = re.compile(r"\b(class|struct|enum|interface) (.*?)(?: : (.*))? // TypeDefIndex: (\d+)\s*$")
@@ -10,7 +10,7 @@ FIELD = re.compile(r"^\t(.*?); // 0x([0-9A-Fa-f]+)\s*$")
 CONST = re.compile(r"^\t(?:public |private |protected |internal )?const (.*?) (\S+) = (.*?);\s*$")
 RVA = re.compile(r"^\t// RVA: 0x([0-9A-Fa-f]+) Offset: 0x[0-9A-Fa-f]+ VA: 0x[0-9A-Fa-f]+(?: Slot: (\d+))?")
 MODS = {"public", "private", "protected", "internal", "static", "readonly", "const", "volatile", "new", "unsafe"}
-lines = gzip.open(ROOT + r"\code\dump.cs.gz", "rt", encoding="utf-8", errors="replace").read().split("\n")
+lines = gzip.open(os.path.join(ROOT, "code", "dump.cs.gz"), "rt", encoding="utf-8", errors="replace").read().split("\n")
 images = [(int(m.group(3)), m.group(2)) for m in (re.match(r"// Image (\d+): (.+) - (\d+)$", l) for l in lines[:200]) if m]
 starts = [s for s, _ in images]
 classes, enums, used = {}, {}, set()

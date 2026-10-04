@@ -1141,11 +1141,7 @@ UIMobaLobbyProfileStable	0	0	Stable\n{0}%
 UIMobaLobbyProfileConditionMes	0	0	由於未滿足參加調解，\n因此無法登錄檔案
 UIMobaLobbyProfileSaveMes	0	0	已保存檔案
 UIMobaLobbyProfileNameTitle	0	0	戰鬥名稱
-UIMobaLobbyProfileNameMes	0	0	"對戰中可更改顯示名稱
-[ffff64]※有可能會和其他玩家重名[ffffff]
-
-[ff6464]※若名稱設定違反使用條約，
-則有可能會被限制功能[ffffff]"
+UIMobaLobbyProfileNameMes	0	0	對戰中可更改顯示名稱\n[ffff64]※有可能會和其他玩家重名[ffffff]\n\n[ff6464]※若名稱設定違反使用條約，\n則有可能會被限制功能[ffffff]
 UIMobaLobbyProfileErrorMes	0	0	由於設定發生問題，\n保存檔案失敗
 UIMobaLobbyMatchingOnevsOneBattle	0	0	1v1模式
 UIMobaLobbyMatchingFourvsFourBattle	0	0	4v4模式
@@ -1400,8 +1396,7 @@ UIMobaDuelAbilityShortMes41	0	0	進入最終階段時，消除自身被附加的
 UIMobaDuelAbilityShortMes42	0	0	進入最終階段並只剩餘2名玩家時，回復自身的全部HP與MP。
 UIMobaDuelAbilityShortMes43	0	0	丟棄補給裝備後，裝備不會掉落而會消失，同時回復25%的HP與MP。
 UIMobaDuelAbilityShortMes44	0	0	帶有逼退效果的技能將無法被異常狀態抗性防禦。
-UIMobaDuelAbilitySelect	0	0	"最多可裝備3種決鬥能力
-此外，無法使用總Cost超過7的組合"
+UIMobaDuelAbilitySelect	0	0	最多可裝備3種決鬥能力\n此外，無法使用總Cost超過7的組合
 UIMobaDuelAbilityTotalCost	0	0	總Cost {0}/{1}
 UIMobaDuelAbilityEquip	0	0	裝備
 UIMobaDuelAbilityNoEquip	0	0	無裝備
@@ -1432,74 +1427,13 @@ UIMobaBattleMenuHelpCasualTitle4	0	0	BOSS怪
 UIMobaBattleMenuHelpCasualTitle5	0	0	中央移動
 UIMobaBattleMenuHelpCasualTitle6	0	0	第1名爭奪戰
 UIMobaBattleMenuHelpCasualTitle7	0	0	水晶塔
-UIMobaBattleMenuHelpCasualText1	0	0	"參加者將使用[ffff64]當前的角色能力[ffffff]進行最多達32人參加的大逃殺式戰鬥
-
-場地會被分為３×３區域，
-對戰開始時全體參加者會被隨機放置於同一區域
-[ffff64]※中央區域除外[ffffff]"
-UIMobaBattleMenuHelpCasualText2	0	0	"參加者將從Lv１開始，越接近Lv100(上限)，
-越接近角色原本的能力值
-討伐怪物，盡量使自己的等級高過其他玩家吧
-
-
-[ffff64]若在此階段體力不支倒地，則會變為靈體，10秒後可選擇復活[ffffff]
-變為靈體的狀態其他玩家不可見
-靈體狀態的時間越長，復活時回復的HP和MP越多
-
-
-[ff6464]打倒玩家可獲得的經驗值為 0 [ffffff]
-但是如果對方持有補給裝備，則可隨機奪取1件"
-UIMobaBattleMenuHelpCasualText3	0	0	"戰斗開始2分鐘後，
-區域中會配置3種寶箱：
-青銅寶箱、白銀寶箱、黃金寶箱
-
-從寶箱中可獲得補給裝備，
-玩家最多可裝備2個補給裝備
-[ffff64]※若沒有空位，或者選擇丟棄，則會被設置在原地[ffffff]
-
-
-此外，討伐出現在各區域的BOSS怪物，
-可以獲得特定的黃金補給裝備
-[ff6464]只有給予怪物最後一擊的玩家可獲得報酬
-請留意不要被搶怪[ffffff]"
-UIMobaBattleMenuHelpCasualText4	0	0	"戰斗開始3分鐘後，
-各區域將會出現1隻BOSS怪
-
-討伐BOSS怪，
-可以獲得特定的黃金補給裝備
-[ff6464]只有給予怪物最後一擊的玩家可獲得報酬
-請留意不要被搶怪[ffffff]
-
-
-▼可獲得的補給裝備
-　  ・守護甲Ⅲ[aaaaaa](物理抗性UP)[ffffff]
-  ・魔法披風Ⅲ[aaaaaa](魔法抗性UP)[ffffff]
-　・防護帽Ⅲ[aaaaaa](昏厥無效)[ffffff]"
-UIMobaBattleMenuHelpCasualText5	0	0	"升等時間結束後，會從外圍開始向中心區域
-生成傷害區域
-
-
-在此階段打怪後，怪物不會重生
-請一邊留意其他玩家，
-一邊抓緊最後機會積攢經驗值，[ffff64]向中央區域移動吧[ffffff]
-
-
-[ff6464]若玩家處於靈體狀態，請務必在此階段結束之前復活，
-否則會被判定為失敗，同時排名落定。敬請留意[ffffff]"
-UIMobaBattleMenuHelpCasualText6	0	0	"當除中央區域以外都變為傷害區域後，
-即會開始第1名爭奪戰
-[ff6464]※此階段傷害區域的威力也會大幅提升[ffffff]
-
-
-若在此階段倒地，即會確定排名。
-[ffff64]※變為靈體後會進入觀戰模式[ffffff]"
-UIMobaBattleMenuHelpCasualText7	0	0	"若在最終階段未能分出勝負(超時結束)
-[ffff64]則對中央區域的水晶塔
-造成最多傷害的玩家獲得勝利[ffffff]
-
-
-倒地玩家造成的傷害量會被重置
-[ff6464]※即使給出很多傷害，若未能活到最後則沒有意義[ffffff]"
+UIMobaBattleMenuHelpCasualText1	0	0	參加者將使用[ffff64]當前的角色能力[ffffff]進行最多達32人參加的大逃殺式戰鬥\n\n場地會被分為３×３區域，\n對戰開始時全體參加者會被隨機放置於同一區域\n[ffff64]※中央區域除外[ffffff]
+UIMobaBattleMenuHelpCasualText2	0	0	參加者將從Lv１開始，越接近Lv100(上限)，\n越接近角色原本的能力值\n討伐怪物，盡量使自己的等級高過其他玩家吧\n\n\n[ffff64]若在此階段體力不支倒地，則會變為靈體，10秒後可選擇復活[ffffff]\n變為靈體的狀態其他玩家不可見\n靈體狀態的時間越長，復活時回復的HP和MP越多\n\n\n[ff6464]打倒玩家可獲得的經驗值為 0 [ffffff]\n但是如果對方持有補給裝備，則可隨機奪取1件
+UIMobaBattleMenuHelpCasualText3	0	0	戰斗開始2分鐘後，\n區域中會配置3種寶箱：\n青銅寶箱、白銀寶箱、黃金寶箱\n\n從寶箱中可獲得補給裝備，\n玩家最多可裝備2個補給裝備\n[ffff64]※若沒有空位，或者選擇丟棄，則會被設置在原地[ffffff]\n\n\n此外，討伐出現在各區域的BOSS怪物，\n可以獲得特定的黃金補給裝備\n[ff6464]只有給予怪物最後一擊的玩家可獲得報酬\n請留意不要被搶怪[ffffff]
+UIMobaBattleMenuHelpCasualText4	0	0	戰斗開始3分鐘後，\n各區域將會出現1隻BOSS怪\n\n討伐BOSS怪，\n可以獲得特定的黃金補給裝備\n[ff6464]只有給予怪物最後一擊的玩家可獲得報酬\n請留意不要被搶怪[ffffff]\n\n\n▼可獲得的補給裝備\n　  ・守護甲Ⅲ[aaaaaa](物理抗性UP)[ffffff]\n  ・魔法披風Ⅲ[aaaaaa](魔法抗性UP)[ffffff]\n　・防護帽Ⅲ[aaaaaa](昏厥無效)[ffffff]
+UIMobaBattleMenuHelpCasualText5	0	0	升等時間結束後，會從外圍開始向中心區域\n生成傷害區域\n\n\n在此階段打怪後，怪物不會重生\n請一邊留意其他玩家，\n一邊抓緊最後機會積攢經驗值，[ffff64]向中央區域移動吧[ffffff]\n\n\n[ff6464]若玩家處於靈體狀態，請務必在此階段結束之前復活，\n否則會被判定為失敗，同時排名落定。敬請留意[ffffff]
+UIMobaBattleMenuHelpCasualText6	0	0	當除中央區域以外都變為傷害區域後，\n即會開始第1名爭奪戰\n[ff6464]※此階段傷害區域的威力也會大幅提升[ffffff]\n\n\n若在此階段倒地，即會確定排名。\n[ffff64]※變為靈體後會進入觀戰模式[ffffff]
+UIMobaBattleMenuHelpCasualText7	0	0	若在最終階段未能分出勝負(超時結束)\n[ffff64]則對中央區域的水晶塔\n造成最多傷害的玩家獲得勝利[ffffff]\n\n\n倒地玩家造成的傷害量會被重置\n[ff6464]※即使給出很多傷害，若未能活到最後則沒有意義[ffffff]
 UIMobaBattleMenuHelpSkillButton	0	0	部分技能效果變更&限制
 UIMobaBattleMenuHelpSkillCantUse	0	0	【對戰模式無法使用的技能】
 UIMobaBattleMenuHelpSkillCantUseNon	0	0	無
@@ -1512,15 +1446,12 @@ UIMobaTelopGameSet	0	0	Game Set
 LogOutPanelEnterMobaSever	0	0	前往競技場
 MobaMainFieldMobAraOut	0	0	此區域沒有怪物
 UIMobaBattleMenuHelpAbilityButton	0	0	關於能力限制
-UIMobaBattleMenuHelpAbilityTitle1	0	0	"關於造型能力
-（妖精的裁縫工具等）"
+UIMobaBattleMenuHelpAbilityTitle1	0	0	關於造型能力\n（妖精的裁縫工具等）
 UIMobaBattleMenuHelpAbilityTitle2	0	0	關於料理和道具效果
 UIMobaBattleMenuHelpAbilityTitle3	0	0	關於行動速度
 UIMobaBattleMenuHelpAbilityMes1	0	0	在對戰模式中，造型賦予的能力無效
 UIMobaBattleMenuHelpAbilityMes2	0	0	在對戰模式中，料理和道具的增益效果無效
-UIMobaBattleMenuHelpAbilityMes3	0	0	"在對戰模式中，行動速度的上限為100%
-
-僅限連擊效果的「迅速」以及可加速行動的部分技能可以突破此上限"
+UIMobaBattleMenuHelpAbilityMes3	0	0	在對戰模式中，行動速度的上限為100%\n\n僅限連擊效果的「迅速」以及可加速行動的部分技能可以突破此上限
 UIMobaGhostWarpButton	0	0	跳躍
 UIMobaVsModeTelop	0	0	對戰結束！！
 UIMobaRoundCount	0	0	第{0}場
@@ -1530,21 +1461,8 @@ UIMobaVsModeUnsuccessMes	0	0	對戰已結束，即將退出
 UIMobaBattleMenuHelpVsMode	0	0	對戰模式(1v1、4v4)
 UIMobaBattleMenuHelpVsModelTitle1	0	0	1v1模式
 UIMobaBattleMenuHelpVsModelTitle2	0	0	4v4模式
-UIMobaBattleMenuHelpVsModelText1	0	0	"參加者將以[ffff64]當前的個人能力[ffffff]進行1對1戰鬥，3戰2勝即為勝出。
-
-角色等級將被調整為50(50%能力)
-
-1次對戰時限為3分鐘，
-若勝負未分，則視為平局（DRAW）。"
-UIMobaBattleMenuHelpVsModelText2	0	0	"參加者將以[ffff64]當前的個人能力[ffffff]進行4對4戰鬥，3戰2勝即為勝出。
-
-角色等級將被調整為50(50%能力)
-
-1次對戰時限為3分鐘，
-若勝負未分，則視為平局（DRAW）。
-
-玩家可組隊參加，
-若人數不夠，則會以配對補充成員。"
+UIMobaBattleMenuHelpVsModelText1	0	0	參加者將以[ffff64]當前的個人能力[ffffff]進行1對1戰鬥，3戰2勝即為勝出。\n\n角色等級將被調整為50(50%能力)\n\n1次對戰時限為3分鐘，\n若勝負未分，則視為平局（DRAW）。
+UIMobaBattleMenuHelpVsModelText2	0	0	參加者將以[ffff64]當前的個人能力[ffffff]進行4對4戰鬥，3戰2勝即為勝出。\n\n角色等級將被調整為50(50%能力)\n\n1次對戰時限為3分鐘，\n若勝負未分，則視為平局（DRAW）。\n\n玩家可組隊參加，\n若人數不夠，則會以配對補充成員。
 UIMobaVsModeWin	0	0	贏家 {0} !!
 UIMobaVsModeDraw	0	0	DRAW!!
 UIMobaVsModePartyWin	0	0	優勝者 {0} 隊伍 !!
@@ -2096,8 +2014,7 @@ SnowballLobbyMatchingMes	0	0	搜尋對手中・・・
 SnowballLobbyMatchingFailureTitle	0	0	配對失敗
 SnowballLobbyMatchingFailureMes	0	0	沒有搜尋到對手。\n\n請稍待片刻後再做嘗試。
 SnowballInfoTitle	0	0	來玩雪球大戰吧！
-SnowballInfoMes1	0	0	"雪球大戰熱血開戰！！\n用雪球猛砸敵人並獲得勝利吧！
-\n\n不論是單人或是組隊都能參加！\n\n\n[ffff64]▼勝利條件[ffffff]\n3分鐘內，將敵方隊伍的HP削減至0\n3分鐘後，剩餘的隊伍HP比敵方隊伍還多\n\n\n[ffff64]▼提示[ffffff]\n可以透過腳下的顏色辨別隊伍\n隊伍HP是共通的"
+SnowballInfoMes1	0	0	雪球大戰熱血開戰！！\n用雪球猛砸敵人並獲得勝利吧！\n\n\n不論是單人或是組隊都能參加！\n\n\n[ffff64]▼勝利條件[ffffff]\n3分鐘內，將敵方隊伍的HP削減至0\n3分鐘後，剩餘的隊伍HP比敵方隊伍還多\n\n\n[ffff64]▼提示[ffffff]\n可以透過腳下的顏色辨別隊伍\n隊伍HP是共通的
 SnowballActionThrow	0	0	丟擲
 SnowballActionMake	0	0	製作
 SnowballActionDodge	0	0	閃避
@@ -2374,8 +2291,7 @@ MyHomeFarmerMes	0	0	進入菜園
 MyHomeCultivation	0	0	收成農作物
 MyHomeCultivationMes	0	0	可收成農作物。
 UIMyHomePartitionEditWarningTitle	0	0	改造中的資料尚未儲存
-UIMyHomePartitionEditWarningMessage	0	0	"改造中的資料尚未儲存
-確定放棄嗎？"
+UIMyHomePartitionEditWarningMessage	0	0	改造中的資料尚未儲存\n確定放棄嗎？
 MyHomePartitionPanelEnter	0	0	確定
 MyHomePartitionTypeButton0	0	0	入口位置
 MyHomePartitionTypeButton1	0	0	室內・室外
@@ -3342,8 +3258,7 @@ DefenceResultNoDamageCrystal	0	0	・存在無損傷水晶
 DefencePresentWindowClose	0	0	關閉
 DefencePresentGetItem	0	0	領取報酬
 DefencePresentNotEnrty	0	0	無上週的挑戰紀錄。
-DefencePresentNote	0	0	"※每週日上午５點(JPT)進行結算。
-※未於結算前領取之報酬將作廢。"
+DefencePresentNote	0	0	※每週日上午５點(JPT)進行結算。\n※未於結算前領取之報酬將作廢。
 DefencePresentLastRanking	0	0	[ffffff]於上週挑戰型迷宮[00ff00]排名第{0}[ffffff]。
 DefencePresentRankDown	0	0	降到{0}了…
 DefencePresentRankUp	0	0	升至{0}了！
@@ -3446,22 +3361,10 @@ InputNameB	0	0	註冊此角色名稱。
 NextButton	0	0	下個項目
 BackButton	0	0	返回
 Page1T	0	0	打造個人\n專屬角色
-selectWeaponMessage0	0	0	"[64ffff]【難易度：簡單】[ffffff]
-攻擊力取決於STR(力量)。
-可裝備提升防禦力的盾牌，
-以及使用攻擊力強大的巨劍。"
-selectWeaponMessage1	0	0	"【難易度：普通】
-攻擊力取決於DEX(靈巧)。
-可安全地由遠距離進行攻擊。
-可裝備箭來強化攻擊力。"
-selectWeaponMessage2	0	0	"[ff6464]【難易度：難】[ffffff]
-攻擊力取決於INT(智力)。
-詠唱魔法時[ff6464]若遭受攻擊即無法施展，
-[ffffff]需要靈活地閃躲。"
-selectWeaponMessage3	0	0	"[64ffff]【難易度：簡單】[ffffff]
-攻擊力取決於AGI(敏捷)。
-有許多好用技能，攻守兼備易於培養，
-但最終攻擊力將偏低。"
+selectWeaponMessage0	0	0	[64ffff]【難易度：簡單】[ffffff]\n攻擊力取決於STR(力量)。\n可裝備提升防禦力的盾牌，\n以及使用攻擊力強大的巨劍。
+selectWeaponMessage1	0	0	【難易度：普通】\n攻擊力取決於DEX(靈巧)。\n可安全地由遠距離進行攻擊。\n可裝備箭來強化攻擊力。
+selectWeaponMessage2	0	0	[ff6464]【難易度：難】[ffffff]\n攻擊力取決於INT(智力)。\n詠唱魔法時[ff6464]若遭受攻擊即無法施展，\n[ffffff]需要靈活地閃躲。
+selectWeaponMessage3	0	0	[64ffff]【難易度：簡單】[ffffff]\n攻擊力取決於AGI(敏捷)。\n有許多好用技能，攻守兼備易於培養，\n但最終攻擊力將偏低。
 selectWeaponMessage4	0	0	[ff6464]【難易度：困難】[ffffff]\n攻擊力取決於STR(力量)。\n可從中距離處進行強悍攻擊。\n但僵直時間長，較難運用自如。
 selectWeaponMessage5	0	0	【難易度：普通】\n攻擊力取決於DEX(靈巧)。\n可以迅速進行攻擊、但是攻擊力較低。\n裝備弓時，可做為副武器進行裝備。
 Page2T	0	0	請選擇喜歡的武器。\n以下項目可於遊戲內\n再度進行變更。
@@ -3495,19 +3398,12 @@ ChangeOverMoveStartButtonV4	0	0	繼承角色
 ChangeOverMoveStartGoogleSignin	0	0	2017年12月以前創建的角色\n可以使用Google帳戶進行繼承
 ChangeOverMoveStartButtonGoogleSignin	0	0	使用Google帳戶進行繼承
 ChangeNewAccountButton	0	0	創建
-InheritingMessage	0	0	"承接α版遊戲資料。\n
-感謝您支持並參與封測！\n\n
-[FFFF77]α版　{0}\n\n
-[FFFFFF]承接上方角色的部分數據後，開始遊戲。"
+InheritingMessage	0	0	承接α版遊戲資料。\n\n感謝您支持並參與封測！\n\n\n[FFFF77]α版　{0}\n\n\n[FFFFFF]承接上方角色的部分數據後，開始遊戲。
 InheritingButton	0	0	準備中，請稍候(剩餘{0}秒)
 InheritingAlpha	0	0	承接α版數據
 CharacterCreateKeybordOptionButton	0	0	無法輸入?
 CharacterCreateKeybordOptionPopTitle	0	0	無法輸入名稱時，請嘗試下列操作。
-CharacterCreateKeybordOptionPopText	0	0	"依據您使用的鍵盤或裝置，
-有可能發生無法正常輸入的情況。
-
-若您在輸入時發生問題，
-將以下設定設為[FFFFA0]ON[ffffff]，或可獲得改善。"
+CharacterCreateKeybordOptionPopText	0	0	依據您使用的鍵盤或裝置，\n有可能發生無法正常輸入的情況。\n\n若您在輸入時發生問題，\n將以下設定設為[FFFFA0]ON[ffffff]，或可獲得改善。
 CharacterCreateKeybordOptionPopOptionText	0	0	全螢幕打字視窗
 CharacterCreateKeybordOptionPopOptionOn	0	0	ON
 CharacterCreateKeybordOptionPopOptionOff	0	0	OFF
@@ -3673,42 +3569,20 @@ amall	0	0	收疊
 DetailsClose	0	0	收疊
 DetailsOpen	0	0	查看詳細
 StatusSetting	0	0	設定
-ItemPanelPropertyATK	0	0	"【{0}】 ATK ： {1}　({2}%)
-{3} {4} 
-{5} {6} 
-{7} {8} {9} {10} {11} {12} {13} {14} {15}
-{16}
-{17}"
-ItemPanelPropertyDEF	0	0	"【{0}】 DEF ： {1}
-{2} {3} {4}
-{5} {6} {7} {8} {9} {10} {11} {12} {13} {14} 
-{15}
-{16}"
+ItemPanelPropertyATK	0	0	【{0}】 ATK ： {1}　({2}%)\n{3} {4} \n{5} {6} \n{7} {8} {9} {10} {11} {12} {13} {14} {15}\n{16}\n{17}
+ItemPanelPropertyDEF	0	0	【{0}】 DEF ： {1}\n{2} {3} {4}\n{5} {6} {7} {8} {9} {10} {11} {12} {13} {14} \n{15}\n{16}
 ItemPanelPropertyGuardEquip	0	0	[99FF99]可使用阻擋的裝備[ffffff]\n
 ItemPanelPropertyAvoidEquip	0	0	[CC99FF]可使用閃躲的裝備[ffffff]\n
 ItemPanelPropertyMainAvoidEquip	0	0	[CC99FF]可使用閃躲的裝備(主)[ffffff]\n
 ItemPanelPropertyDualSwordAvoidEquip	0	0	[CC99FF]可使用閃躲的裝備(雙劍)[ffffff]\n
-ItemPanelPropertyMaxCrista31	0	0	"【通用鍛晶】
-適用所有裝備鑲嵌。
-單格最多可放置({0})個。"
-ItemPanelPropertyMaxCrista32	0	0	"【武器鍛晶】
-僅可鑲嵌於武器上。
-單格最多可放置({0})個。"
-ItemPanelPropertyMaxCrista33	0	0	"【護甲鍛晶】
-僅可鑲嵌於身體防具上。
-單格最多可放置({0})個。"
-ItemPanelPropertyMaxCrista34	0	0	"【改裝鍛晶】
-僅可鑲嵌於追加裝備上。
-單格最多可放置({0})個。"
-ItemPanelPropertyMaxCrista35	0	0	"【飾品鍛晶】
-僅可鑲嵌於特殊裝備上。
-單格最多可放置({0})個。"
-ItemPanelPropertyMaxCrista36	0	0	"【進階鍛晶】
-僅可覆蓋在特定的鍛晶上。
-單格最多可放置({0})個。"
+ItemPanelPropertyMaxCrista31	0	0	【通用鍛晶】\n適用所有裝備鑲嵌。\n單格最多可放置({0})個。
+ItemPanelPropertyMaxCrista32	0	0	【武器鍛晶】\n僅可鑲嵌於武器上。\n單格最多可放置({0})個。
+ItemPanelPropertyMaxCrista33	0	0	【護甲鍛晶】\n僅可鑲嵌於身體防具上。\n單格最多可放置({0})個。
+ItemPanelPropertyMaxCrista34	0	0	【改裝鍛晶】\n僅可鑲嵌於追加裝備上。\n單格最多可放置({0})個。
+ItemPanelPropertyMaxCrista35	0	0	【飾品鍛晶】\n僅可鑲嵌於特殊裝備上。\n單格最多可放置({0})個。
+ItemPanelPropertyMaxCrista36	0	0	【進階鍛晶】\n僅可覆蓋在特定的鍛晶上。\n單格最多可放置({0})個。
 Element	0	0	{0}屬性
-AlphaTestNoUse	0	0	"尚未開放學習。
-請期待更新。"
+AlphaTestNoUse	0	0	尚未開放學習。\n請期待更新。
 Coin	0	0	露珠
 CoinShard	0	0	露珠碎片
 UseItem	0	0	使用露珠
@@ -3737,29 +3611,15 @@ DeadPanelSaveRespawnLabel	0	0	返回街道
 DeadPanelPushRespawnLabel	0	0	重新再戰！！
 DeadPanelPushRespawnText	0	0	憑著意志力復活
 DeadPanelNowRespawnWindowLabel	0	0	是否立刻復活？
-DeadPanelNowRespawnWindowTextCoin	0	0	"消耗{0}個露珠[FFFFFF]
-
-持有數量:{1}
-
-[FFFF99]回復全HP・MP。
-復活後可無敵一段時間。"
-DeadPanelNowRespawnWindowTextItem	0	0	"消耗１個復活之露
-
-持有數量:{0}
-
-
-[FFFF99]回復全HP・MP。
-復活後可無敵一段時間。"
+DeadPanelNowRespawnWindowTextCoin	0	0	消耗{0}個露珠[FFFFFF]\n\n持有數量:{1}\n\n[FFFF99]回復全HP・MP。\n復活後可無敵一段時間。
+DeadPanelNowRespawnWindowTextItem	0	0	消耗１個復活之露\n\n持有數量:{0}\n\n\n[FFFF99]回復全HP・MP。\n復活後可無敵一段時間。
 DeadPanelNowRespawnWindowButton	0	0	重返戰場
 DeadPanelNowRespawnWindowButton2	0	0	持有露珠不足
 DeadPanelSaveRespawnWindowLabel	0	0	是否返回街道？
-DeadPanelSaveRespawnWindowText	0	0	"返回最後造訪過的街道。
-
-再過{0}秒，即可於當場復活。真的要返回街道嗎？"
+DeadPanelSaveRespawnWindowText	0	0	返回最後造訪過的街道。\n\n再過{0}秒，即可於當場復活。真的要返回街道嗎？
 DeadPanelSaveRespawnWindowButton	0	0	返回街道
 Exit	0	0	離開
-DeadPanelAllDeadLabel	0	0	"隊友全數陣亡…
-無法繼續進行戰鬥。"
+DeadPanelAllDeadLabel	0	0	隊友全數陣亡…\n無法繼續進行戰鬥。
 DeadPanelAllDeadText	0	0	[888888]成員復活，或新成員參戰，即可重啟戰場。
 DeadPanelSoroAllDeadLabel	0	0	力氣用盡・・・\n無法繼續戰鬥
 DeadPanelSoroAllDeadText	0	0	[888888]使用復活道具等可以繼續戰鬥
@@ -3772,9 +3632,7 @@ MapPanelNowMap	0	0	所在地圖
 MapPanelNowMapSmallLabel	0	0	 
 MapPanelChangeMap	0	0	立即移動
 MapPanelCoinWarpWindowLabel	0	0	移動至指定地圖
-MapPanelWarpWindowTextCoin	0	0	"消耗{0}個露珠
-
-持有數量:{1}"
+MapPanelWarpWindowTextCoin	0	0	消耗{0}個露珠\n\n持有數量:{1}
 MapPanelWarpWindowTextItem	0	0	\n\n消耗1枚傳送券\n\n持有數量：{0}
 MapPanelWarpWindowButton	0	0	使用{0}露珠進行跳躍
 MapPanelWarpWindowButton2	0	0	露珠不足
@@ -3965,51 +3823,29 @@ EquipPanelEnter1	0	0	解除裝備
 EquipPanelNext	0	0	下一步
 EquipPanelEquipLoc	0	0	無法裝備
 EquipPanelNonSlotCrista	0	0	[aaaaaa]無鑲嵌孔
-EquipPanelCristaSlotCheck	0	0	"此裝備無鑲嵌孔，
-無法編輯鍛晶。
-
-怪物掉落或自行生產時，
-有機會獲得含鑲嵌孔的裝備。"
-EquipPanelCristaSlotApertaText	0	0	"可使用""{0}""
-附加鑲嵌孔。
-(持有數量:{1}個)"
+EquipPanelCristaSlotCheck	0	0	此裝備無鑲嵌孔，\n無法編輯鍛晶。\n\n怪物掉落或自行生產時，\n有機會獲得含鑲嵌孔的裝備。
+EquipPanelCristaSlotApertaText	0	0	"可使用""{0}""\n附加鑲嵌孔。\n(持有數量:{1}個)"
 EquipPanelNonCrista	0	0	無鍛晶
 EquipPanelCristaSlotApertaLabel	0	0	開孔
 PopUpCristaCustomWindowTitle	0	0	編輯鍛晶
 PopUpCristaCustomWindowMessage	0	0	裝備中的鍛晶要如何處置？
 PopUpCristaCustomWindowButton0	0	0	[ffff77]破壞
-PopUpCristaCustomWindowButton1	0	0	"[ffff77]卸下
-[ffffff]成˙功率：80%"
-PopUpCristaCustomWindowButton2	0	0	"[ffff77]使用卸載鍛晶
-{0}成功率：100%
-(所持数：{1}個)"
-PopUpCristaCustomWindowButton3	0	0	"[ffff77]使用{2}個露珠
-{0}成功率：100%
-(持有數量：{1}個)"
-PopUpCristaCustomWindowButton4	0	0	"[ffff77]使用{2}個露珠
-{0}成功率：100%
-(製作露珠)"
+PopUpCristaCustomWindowButton1	0	0	[ffff77]卸下\n[ffffff]成˙功率：80%
+PopUpCristaCustomWindowButton2	0	0	[ffff77]使用卸載鍛晶\n{0}成功率：100%\n(所持数：{1}個)
+PopUpCristaCustomWindowButton3	0	0	[ffff77]使用{2}個露珠\n{0}成功率：100%\n(持有數量：{1}個)
+PopUpCristaCustomWindowButton4	0	0	[ffff77]使用{2}個露珠\n{0}成功率：100%\n(製作露珠)
 PopUpCristaUnLocWindowSlot	0	0	[ffff77]鑲嵌孔{0}　→　{1}
-PopUpCristaUnLocWindowMessage	0	0	"是否使用""{0}""
-進行開孔？
-
-(持有數量：{1}個)"
+PopUpCristaUnLocWindowMessage	0	0	"是否使用""{0}""\n進行開孔？\n\n(持有數量：{1}個)"
 PopUpCristaUnLocWindowButton	0	0	開孔
 PopUpCristaUnLocWindowTitle	0	0	開孔
 EquipPanelEnter2	0	0	鑲嵌鍛晶
 PopUpCristaCustomWindowButtonBagAll	0	0	[ff0000]背包已滿
 PopUpCristaCustomWindowButtonSpecific	0	0	[ffff77]拆除鍛晶[ffffff]\n成功率：100%\n[64ffff]調整期機率保證對象
-EquipPanelNoUseCristaSlot	0	0	"[ffff64]盾・小刀・箭[ffffff]等輔助裝備
-無附帶鑲嵌孔。
-
-[ffff64]拳套、魔導具、雙劍[ffffff]可裝備於輔助裝備欄，
-但[ff6464]輔助欄位的鍛晶將失去效用。[ffffff]"
+EquipPanelNoUseCristaSlot	0	0	[ffff64]盾・小刀・箭[ffffff]等輔助裝備\n無附帶鑲嵌孔。\n\n[ffff64]拳套、魔導具、雙劍[ffffff]可裝備於輔助裝備欄，\n但[ff6464]輔助欄位的鍛晶將失去效用。[ffffff]
 EquipPanelBattleChangeErrLabel	0	0	戰鬥中無法變更裝備。
-EquipPanelCristaMessage	0	0	"\n\n
-對{0}鑲嵌{1}鍛晶"
+EquipPanelCristaMessage	0	0	\n\n\n對{0}鑲嵌{1}鍛晶
 EquipPanelCristaTitle	0	0	鑲嵌鍛晶
-EquipPanelCristaSelectedMessage	0	0	"編輯鍛晶
-請選擇裝備"
+EquipPanelCristaSelectedMessage	0	0	編輯鍛晶\n請選擇裝備
 EquipPanelEquipNoWeapon	0	0	無主裝備
 EquipPanelEquipNoSubWeapon	0	0	無副裝備
 EquipPanelEquipNoBody	0	0	無身體防具
@@ -4181,10 +4017,8 @@ StatusPanelMaterialMaxPointLabel	0	0	目前素材點數上限　{0}pt
 StatusPanelMaterialMaxPointAddParamLabel	0	0	角色欄位加成：點數上限([ffff88]+{0}[ffffff])
 StatusPanelMaterialMaxPointAddCourse1OnLabel	0	0	「背包擴充方案」([ffff88]加成：上限２倍[ffffff])
 StatusPanelMaterialMaxPointAddCourse1OffLabel	0	0	[aaaaaa]「背包擴充方案」加成：上限２倍
-StatusPanelWeaponCreateWarning	0	0	"因鍛冶熟練之Lv上限降低，
-故於使用EX技能時，將視為Lv{0}。"
-StatusPanelMedicineCreateWarning	0	0	"因合成熟練之Lv上限降低，
-故於使用EX技能時，將視為Lv{0}。"
+StatusPanelWeaponCreateWarning	0	0	因鍛冶熟練之Lv上限降低，\n故於使用EX技能時，將視為Lv{0}。
+StatusPanelMedicineCreateWarning	0	0	因合成熟練之Lv上限降低，\n故於使用EX技能時，將視為Lv{0}。
 HaveSupina	0	0	持有眾神幣：{0}s
 StatusPanelPersonalLabel	0	0	可選擇個人能力
 StatusPanelPersonalText	0	0	[ff0000]決定後即無法變更。
@@ -4200,27 +4034,11 @@ StatusPanelPersonalTextMEN	0	0	提升對異常狀態的耐性
 StatusPanelPersonalLabelTEC	0	0	技巧
 StatusPanelPersonalTextTEC	0	0	提升生產或其餘成功率
 StatusPanelStatusRestPopUpLabel	0	0	重設能力數值
-StatusPanelStatusRestPopUpText	0	0	"消耗一個天地開元之書
-
-持有數量：{0}
-
-[FFFF99]重設角色數值。"
-StatusPanelStatusRestPopUpOrbText	0	0	"消耗{0}個露珠
-
-持有數量：{1}
-
-[FFFF99]重設能力數值。"
+StatusPanelStatusRestPopUpText	0	0	消耗一個天地開元之書\n\n持有數量：{0}\n\n[FFFF99]重設角色數值。
+StatusPanelStatusRestPopUpOrbText	0	0	消耗{0}個露珠\n\n持有數量：{1}\n\n[FFFF99]重設能力數值。
 StatusPanelPrimaryRestPopUpLabel	0	0	重設個人能力
-StatusPanelPrimaryRestPopUpText	0	0	"消耗1個沉思的手鏡
-
-持有數量：{0}
-
-[FFFF99]重設個人能力。"
-StatusPanelPrimaryRestPopUpOrbText	0	0	"消耗{0}個露珠
-
-持有數量：{1}
-
-[FFFF99]重設個人能力。"
+StatusPanelPrimaryRestPopUpText	0	0	消耗1個沉思的手鏡\n\n持有數量：{0}\n\n[FFFF99]重設個人能力。
+StatusPanelPrimaryRestPopUpOrbText	0	0	消耗{0}個露珠\n\n持有數量：{1}\n\n[FFFF99]重設個人能力。
 StatusPanelRestPopUpText	0	0	選擇要重設的項目。
 StatusPanelConnectionWait	0	0	連接中…請稍候…
 StatusPanelConnectionReset	0	0	重設成功
@@ -4233,10 +4051,8 @@ UIStatusPanelPropertyMessage2	0	0	提升DEF，[ffff88]可降低遭受的物理�
 UIStatusPanelPropertyMessage3	0	0	提升MDEF，[ffff88]可降低遭受的魔法傷害[ffffff]。
 UIStatusPanelPropertyMessage4	0	0	提升HIT，[ffff88]可增加命中率[ffffff]。
 UIStatusPanelPropertyMessage5	0	0	提升FLEE，[ffff88]可增加閃避率[ffffff]。
-UIStatusPanelPropertyMessage6	0	0	"提升ASPD，[ffff88]可縮短攻擊的發動間距[ffffff]。
-超過一定值後，將增加行動速度。"
-UIStatusPanelPropertyMessage7	0	0	"提升CSPD，[ffff88]可縮短蓄力時間與詠唱時間[ffffff]。
-對部分技能無效。"
+UIStatusPanelPropertyMessage6	0	0	提升ASPD，[ffff88]可縮短攻擊的發動間距[ffffff]。\n超過一定值後，將增加行動速度。
+UIStatusPanelPropertyMessage7	0	0	提升CSPD，[ffff88]可縮短蓄力時間與詠唱時間[ffffff]。\n對部分技能無效。
 UIStatusPanelBuild	0	0	[ffff88]尚未分配強化點數！
 UIStatuslCreaterPanelButton	0	0	素材pt／生產Lv
 UIStatusBuildPanelButton	0	0	強化角色
@@ -4246,18 +4062,12 @@ UIStatusEquipText	0	0	裝備中的「{0}」情報
 UIStatusBulidEquipMessage8	0	0	攻擊力與命中率隨[ffff88]DEX[ffffff]上升。[ffff88]STR[ffffff]亦可稍微增加攻擊力。\n亦可增加[ffff88]VIT[ffffff]提升耐力、增加[ffff88]AGI[ffffff]加快攻擊速度。
 UIStatusBulidEquipMessage9	0	0	攻擊力隨[ffff88]STR[ffffff]上升。提升[ffff88]AGI[ffffff]，可增加迴避率與攻擊速度，亦可小幅增加攻擊力。\n難以增加命中的武器，需在其他裝備等上下功夫。
 UIStatusBulidEquipMessage10	0	0	攻擊力隨[ffff88]STR[ffffff]或[ffff88]DEX[ffffff]上升。建議一併提升[ffff88]DEX[ffffff]增加命中率。\n亦可增加[ffff88]VIT[ffffff]提升耐力、增加[ffff88]AGI[ffffff]加快攻擊速度。
-UIStatusBulidEquipMessage11	0	0	"攻擊力隨[ffff88]STR[ffffff]上升。[ffff88]DEX[ffffff]可提高命中率與些微攻擊力。
-由於無法裝備盾，建議可點選[ffff88]VIT[ffffff]提升耐力。"
-UIStatusBulidEquipMessage12	0	0	"攻擊力與命中力隨[ffff88]DEX[ffffff]上升。[ffff88]STR[ffffff]亦可稍微增加攻擊力。
-裝備箭時，箭的攻擊力與穩定率將反映在弓上。"
-UIStatusBulidEquipMessage13	0	0	"攻擊力與命中率隨[ffff88]DEX[ffffff]上升。
-連弩與箭較無關連，即使搭配盾或小刀也能完美發揮效能。"
-UIStatusBulidEquipMessage14	0	0	"魔法攻擊力隨[ffff88]INT[ffffff]上升。提升[ffff88]DEX[ffffff]可縮短詠唱魔法時間。
-法杖若有附帶屬性，則有機會發動不同魔法。"
-UIStatusBulidEquipMessage15	0	0	"魔法攻擊力隨[ffff88]INT[ffffff]上升。提升[ffff88]AGI[ffffff]亦可增加一般攻擊威力。
-攻擊距離比法杖遠，攻擊後可有較充裕的MP恢復時間。"
-UIStatusBulidEquipMessage16	0	0	"攻擊力、閃避率、攻擊速度隨[ffff88]AGI[ffffff]上升。
-提升[ffff88]DEX[ffffff]可增加命中率與少許攻擊力。"
+UIStatusBulidEquipMessage11	0	0	攻擊力隨[ffff88]STR[ffffff]上升。[ffff88]DEX[ffffff]可提高命中率與些微攻擊力。\n由於無法裝備盾，建議可點選[ffff88]VIT[ffffff]提升耐力。
+UIStatusBulidEquipMessage12	0	0	攻擊力與命中力隨[ffff88]DEX[ffffff]上升。[ffff88]STR[ffffff]亦可稍微增加攻擊力。\n裝備箭時，箭的攻擊力與穩定率將反映在弓上。
+UIStatusBulidEquipMessage13	0	0	攻擊力與命中率隨[ffff88]DEX[ffffff]上升。\n連弩與箭較無關連，即使搭配盾或小刀也能完美發揮效能。
+UIStatusBulidEquipMessage14	0	0	魔法攻擊力隨[ffff88]INT[ffffff]上升。提升[ffff88]DEX[ffffff]可縮短詠唱魔法時間。\n法杖若有附帶屬性，則有機會發動不同魔法。
+UIStatusBulidEquipMessage15	0	0	魔法攻擊力隨[ffff88]INT[ffffff]上升。提升[ffff88]AGI[ffffff]亦可增加一般攻擊威力。\n攻擊距離比法杖遠，攻擊後可有較充裕的MP恢復時間。
+UIStatusBulidEquipMessage16	0	0	攻擊力、閃避率、攻擊速度隨[ffff88]AGI[ffffff]上升。\n提升[ffff88]DEX[ffffff]可增加命中率與少許攻擊力。
 UIStatusBulidEquipMessageHand	0	0	赤手空拳難以打天下，請裝備武器戰鬥。\n[ffff88]STR[ffffff]可強化攻擊力、[ffff88]DEX[ffffff]可提升命中率、[ffff88]AGI[ffffff]可加速攻擊。
 UIStatusBulidEquipMessageTwinSword	0	0	攻擊力與命中率隨[ffff64]DEX[ffffff]增加。[ffff64]STR[ffffff]與[ffff64]AGI[ffffff]均可稍微提升攻擊力。\n副手武器攻擊力隨[ffff64]AGI[ffffff]增加，\n[ffff64]STR[ffffff]亦可小幅提升攻擊力。
 StatusPanelRestItemBuyOrbNum	0	0	製作露珠
@@ -4281,8 +4091,7 @@ ParameterPanelBuyMes	0	0	購買可繼承的新角色
 ParameterPanelCharButton	0	0	Lv{0}  {1}
 ParameterPanelCharButtonMes	0	0	切換能力數值、技能、容貌。
 ParameterPanelDeleteLabel	0	0	是否刪除下列角色？
-ParameterPanelDeleteText	0	0	"輸入[ffff64]刪除角色[ffffff]，即可看見執行按鈕。
-Type ""[ffff64]Delete[ffffff]"" to show the delete button."
+ParameterPanelDeleteText	0	0	"輸入[ffff64]刪除角色[ffffff]，即可看見執行按鈕。\nType ""[ffff64]Delete[ffffff]"" to show the delete button."
 ParameterPanelDeleteKey	0	0	刪除角色
 ParameterPanelDeleteOKButton	0	0	確定
 ParametarPanelChangeSlotLabel	0	0	切換角色
@@ -4304,11 +4113,7 @@ ParameterPanelDeleteEqualErrLabel	0	0	角色刪除錯誤
 ParameterPanelDeleteEqualErrText	0	0	無法刪除當前角色
 ParametarPanelCreateSlotText	0	0	改頭換面，重新做人。\n\n[ff6464]※創角過程中將等同登出狀態。\n※請注意，您將無法看到聊天內容。\n※此功能無法變更角色名稱。
 ParametarPanelCreateSlotButton	0	0	新增角色
-ParameterPanelAddSlotTextCoin	0	0	"消耗{0}個露珠
-
-持有數量:{1}
-
-購買新角色欄位"
+ParameterPanelAddSlotTextCoin	0	0	消耗{0}個露珠\n\n持有數量:{1}\n\n購買新角色欄位
 ParameterPanelAddSlotWindowLabel	0	0	購買新角色欄位
 ParameterPanelAddSlotWindowButton	0	0	確定購買
 ParameterPanelAddSlotMaxText	0	0	\n\n角色欄位已達上限，\n無法再擴增欄位。
@@ -4325,13 +4130,7 @@ ParameterPanelUnRegisterMes	0	0	切換過一次角色後，即可使用此系統
 ParameterPanelCanNotNowMap	0	0	當前地圖無法召喚夥伴。
 ParameterPanelAbnormalStatusMes	0	0	由於夥伴資訊有問題。\n召喚失敗。
 ParameterPanelTutorialTitle	0	0	可使用夥伴功能！
-ParameterPanelTutorialMessage	0	0	"成功創建新欄位角色！
-[ffff64]可以將未使用的欄位角色[ffffff]
-[ffff64]召喚成隊友。[ffffff]
-
-
-可在[64ffff]切換角色[64ffff]畫面，
-設定帶他同行。"
+ParameterPanelTutorialMessage	0	0	成功創建新欄位角色！\n[ffff64]可以將未使用的欄位角色[ffffff]\n[ffff64]召喚成隊友。[ffffff]\n\n\n可在[64ffff]切換角色[64ffff]畫面，\n設定帶他同行。
 PartnerUnregisterd	0	0	未登錄夥伴
 PartnerNeverChangeAttention	0	0	切換一次角色後即可使用。
 PartnerActionSetting	0	0	行動設定
@@ -4430,8 +4229,7 @@ ComboPanelStartText	0	0	連擊的第一項技能\n無法設定特殊效果。
 ComboPanelSelectClear	0	0	解除設定
 ComboPanelComboPoint	0	0	剩餘連擊分(CP)
 ComboPanelAddComboBuffer	0	0	[ffffff]可消耗1CP，附加特殊效果。
-ComboPanelNewSkillMessage	0	0	"請選擇{0}之後
-發動的技能。"
+ComboPanelNewSkillMessage	0	0	請選擇{0}之後\n發動的技能。
 ComboPanelStartSkillMessage	0	0	請選擇第一項發動技能。
 ComboPanelCpCheck	0	0	[ff0000]已無CP，\n無法追加。
 ComboPanelSelectDelete	0	0	刪除連擊
@@ -4461,529 +4259,7 @@ EquipPanelAbilityPopWindowBuyButton	0	0	[ffff64]確定使用1露珠購買
 EquipPanelAbilityHaveItemNum	0	0	（持有數量：{0}個）
 EquipPanelAbilityNoAbility	0	0	無
 EquipPanelAbilityRepair	0	0	重新附加
-EquipPanelAbilityListMain	0	0	"▼能力欄位抽選機率
-第1格：１００％
-第2格：　５０％
-第3格：　２５％
-[ff6464]※第3格將只在已附加第2格能力後，
-方進行抽選[ffffff]
-[ff6464]※不會重複附加相同的能力[ffffff]
-[ff6464]※能力愈強，附加難度愈高[ffffff]
-
-
-▼抽選能力
-STR+1
-STR+2
-STR+3
-STR+4
-STR+5
-STR+6
-STR+7
-STR+8
-STR+9
-[ffff64]STR+10[ffffff]
-INT+1
-INT+2
-INT+3
-INT+4
-INT+5
-INT+6
-INT+7
-INT+8
-INT+9
-[ffff64]INT+10[ffffff]
-VIT+1
-VIT+2
-VIT+3
-VIT+4
-VIT+5
-VIT+6
-VIT+7
-VIT+8
-VIT+9
-[ffff64]VIT+10[ffffff]
-AGI+1
-AGI+2
-AGI+3
-AGI+4
-AGI+5
-AGI+6
-AGI+7
-AGI+8
-AGI+9
-[ffff64]AGI+10[ffffff]
-DEX+1
-DEX+2
-DEX+3
-DEX+4
-DEX+5
-DEX+6
-DEX+7
-DEX+8
-DEX+9
-[ffff64]DEX+10[ffffff]
-STR+1%
-STR+2%
-[ffff64]STR+3%[ffffff]
-INT+1%
-INT+2%
-[ffff64]INT+3%[ffffff]
-VIT+1%
-VIT+2%
-[ffff64]VIT+3%[ffffff]
-AGI+1%
-AGI+2%
-[ffff64]AGI+3%[ffffff]
-DEX+1%
-DEX+2%
-[ffff64]DEX+3%[ffffff]
-HP上限+100
-HP上限+200
-HP上限+300
-HP上限+400
-HP上限+500
-HP上限+600
-HP上限+700
-HP上限+800
-HP上限+900
-[ffff64]HP上限+1000[ffffff]
-HP上限+5%
-HP上限+10%
-[ffff64]HP上限+15%[ffffff]
-MP上限+10
-MP上限+20
-MP上限+30
-MP上限+40
-MP上限+50
-MP上限+60
-MP上限+70
-MP上限+80
-MP上限+90
-[ffff64]MP上限+100[ffffff]
-武器ATK+3
-武器ATK+6
-武器ATK+9
-武器ATK+12
-武器ATK+15
-武器ATK+18
-武器ATK+21
-武器ATK+24
-武器ATK+27
-[ffff64]武器ATK+30[ffffff]
-武器ATK+1%
-武器ATK+2%
-[ffff64]武器ATK+3%[ffffff]
-ATK+3
-ATK+6
-ATK+9
-ATK+12
-ATK+15
-ATK+18
-ATK+21
-ATK+24
-ATK+27
-[ffff64]ATK+30[ffffff]
-ATK+1%
-ATK+2%
-[ffff64]ATK+3%[ffffff]
-MATK+3
-MATK+6
-MATK+9
-MATK+12
-MATK+15
-MATK+18
-MATK+21
-MATK+24
-MATK+27
-[ffff64]MATK+30[ffffff]
-MATK+1%
-MATK+2%
-[ffff64]MATK+3%[ffffff]
-穩定率+1%
-穩定率+2%
-[ffff64]穩定率+3%[ffffff]
-命中+3
-命中+6
-命中+9
-命中+12
-命中+15
-命中+18
-命中+21
-命中+24
-命中+27
-[ffff64]命中+30[ffffff]
-命中+1%
-命中+2%
-[ffff64]命中+3%[ffffff]
-迴避+3
-迴避+6
-迴避+9
-迴避+12
-迴避+15
-迴避+18
-迴避+21
-迴避+24
-迴避+27
-[ffff64]迴避+30[ffffff]
-迴避+1%
-迴避+2%
-[ffff64]迴避+3%[ffffff]
-DEF+10
-DEF+20
-DEF+30
-DEF+40
-DEF+50
-DEF+60
-DEF+70
-DEF+80
-DEF+90
-[ffff64]DEF+100[ffffff]
-DEF+1%
-DEF+2%
-DEF+3%
-DEF+4%
-[ffff64]DEF+5%[ffffff]
-MDEF+10
-MDEF+20
-MDEF+30
-MDEF+40
-MDEF+50
-MDEF+60
-MDEF+70
-MDEF+80
-MDEF+90
-[ffff64]MDEF+100[ffffff]
-MDEF+1%
-MDEF+2%
-MDEF+3%
-MDEF+4%
-[ffff64]MDEF+5%[ffffff]
-ASPD+10
-ASPD+20
-ASPD+30
-ASPD+40
-ASPD+50
-ASPD+60
-ASPD+70
-ASPD+80
-ASPD+90
-[ffff64]ASPD+100[ffffff]
-ASPD+1%
-ASPD+2%
-ASPD+3%
-ASPD+4%
-ASPD+5%
-ASPD+6%
-ASPD+7%
-ASPD+8%
-ASPD+9%
-[ffff64]ASPD+10%[ffffff]
-CSPD+10
-CSPD+20
-CSPD+30
-CSPD+40
-CSPD+50
-CSPD+60
-CSPD+70
-CSPD+80
-CSPD+90
-[ffff64]CSPD+100[ffffff]
-CSPD+1%
-CSPD+2%
-CSPD+3%
-CSPD+4%
-CSPD+5%
-CSPD+6%
-CSPD+7%
-CSPD+8%
-CSPD+9%
-[ffff64]CSPD+10%[ffffff]
-HP自然回復+10
-HP自然回復+20
-HP自然回復+30
-HP自然回復+40
-HP自然回復+50
-HP自然回復+60
-HP自然回復+70
-HP自然回復+80
-HP自然回復+90
-[ffff64]HP自然回復+100[ffffff]
-HP自然回復+5%
-HP自然回復+10%
-HP自然回復+15%
-HP自然回復+20%
-[ffff64]HP自然回復+25%[ffffff]
-MP自然回復+1
-MP自然回復+2
-MP自然回復+3
-MP自然回復+4
-MP自然回復+5
-MP自然回復+6
-MP自然回復+7
-MP自然回復+8
-MP自然回復+9
-[ffff64]MP自然回復+10[ffffff]
-MP自然回復+5%
-MP自然回復+10%
-MP自然回復+15%
-MP自然回復+20%
-[ffff64]MP自然回復+25%[ffffff]
-攻擊回復MP+1
-攻擊回復MP+2
-攻擊回復MP+3
-攻擊回復MP+4
-攻擊回復MP+5
-攻擊回復MP+6
-攻擊回復MP+7
-攻擊回復MP+8
-攻擊回復MP+9
-[ffff64]攻擊回復MP+10[ffffff]
-暴擊率+1
-暴擊率+2
-暴擊率+3
-暴擊率+4
-[ffff64]暴擊率+5[ffffff]
-暴擊率+1%
-暴擊率+2%
-[ffff64]暴擊率+3%[ffffff]
-暴擊傷害+1
-暴擊傷害+2
-暴擊傷害+3
-暴擊傷害+4
-[ffff64]暴擊傷害+5[ffffff]
-暴擊傷害+1%
-暴擊傷害+2%
-[ffff64]暴擊傷害+3%[ffffff]
-異常抗性+1%
-異常抗性+2%
-異常抗性+3%
-異常抗性+4%
-異常抗性+5%
-異常抗性+6%
-異常抗性+7%
-異常抗性+8%
-異常抗性+9%
-[ffff64]異常抗性+10%[ffffff]
-阻擋回復+1%
-阻擋回復+2%
-[ffff64]阻擋回復+3%[ffffff]
-阻擋力+1%
-阻擋力+2%
-[ffff64]阻擋力+3%[ffffff]
-閃躲回復+1%
-閃躲回復+2%
-[ffff64]閃躲回復+3%[ffffff]
-物理抗性+1%
-物理抗性+2%
-物理抗性+3%
-物理抗性+4%
-物理抗性+5%
-物理抗性+6%
-物理抗性+7%
-物理抗性+8%
-物理抗性+9%
-[ffff64]物理抗性+10%[ffffff]
-魔法抗性+1%
-魔法抗性+2%
-魔法抗性+3%
-魔法抗性+4%
-魔法抗性+5%
-魔法抗性+6%
-魔法抗性+7%
-魔法抗性+8%
-魔法抗性+9%
-[ffff64]魔法抗性+10%[ffffff]
-物理貫穿+1%
-物理貫穿+2%
-物理貫穿+3%
-物理貫穿+4%
-物理貫穿+5%
-物理貫穿+6%
-物理貫穿+7%
-物理貫穿+8%
-物理貫穿+9%
-[ffff64]物理貫穿+10%[ffffff]
-魔法貫穿+1%
-魔法貫穿+2%
-魔法貫穿+3%
-魔法貫穿+4%
-魔法貫穿+5%
-魔法貫穿+6%
-魔法貫穿+7%
-魔法貫穿+8%
-魔法貫穿+9%
-[ffff64]魔法貫穿+10%[ffffff]
-對火屬性加強+1%
-對火屬性加強+2%
-[ffff64]對火屬性加強+3%[ffffff]
-對水屬性加強+1%
-對水屬性加強+2%
-[ffff64]對水屬性加強+3%[ffffff]
-對風屬性加強+1%
-對風屬性加強+2%
-[ffff64]對風屬性加強+3%[ffffff]
-對地屬性加強+1%
-對地屬性加強+2%
-[ffff64]對地屬性加強+3%[ffffff]
-對光屬性加強+1%
-對光屬性加強+2%
-[ffff64]對光屬性加強+3%[ffffff]
-對闇屬性加強+1%
-對闇屬性加強+2%
-[ffff64]對闇屬性加強+3%[ffffff]
-對無屬性加強+1%
-對無屬性加強+2%
-[ffff64]對無屬性加強+3%[ffffff]
-恨意值+1%
-恨意值+2%
-恨意值+3%
-恨意值+4%
-恨意值+5%
-恨意值+6%
-恨意值+7%
-恨意值+8%
-恨意值+9%
-[ffff64]恨意值+10%[ffffff]
-恨意值-1%
-恨意值-2%
-恨意值-3%
-恨意值-4%
-恨意值-5%
-恨意值-6%
-恨意值-7%
-恨意值-8%
-恨意值-9%
-[ffff64]恨意值-10%[ffffff]
-對火抗性+1%
-對火抗性+2%
-對火抗性+3%
-對火抗性+4%
-對火抗性+5%
-對火抗性+6%
-對火抗性+7%
-對火抗性+8%
-對火抗性+9%
-[ffff64]對火抗性+10%[ffffff]
-對水抗性+1%
-對水抗性+2%
-對水抗性+3%
-對水抗性+4%
-對水抗性+5%
-對水抗性+6%
-對水抗性+7%
-對水抗性+8%
-對水抗性+9%
-[ffff64]對水抗性+10%[ffffff]
-對風抗性+1%
-對風抗性+2%
-對風抗性+3%
-對風抗性+4%
-對風抗性+5%
-對風抗性+6%
-對風抗性+7%
-對風抗性+8%
-對風抗性+9%
-[ffff64]對風抗性+10%[ffffff]
-對地抗性+1%
-對地抗性+2%
-對地抗性+3%
-對地抗性+4%
-對地抗性+5%
-對地抗性+6%
-對地抗性+7%
-對地抗性+8%
-對地抗性+9%
-[ffff64]對地抗性+10%[ffffff]
-對光抗性+1%
-對光抗性+2%
-對光抗性+3%
-對光抗性+4%
-對光抗性+5%
-對光抗性+6%
-對光抗性+7%
-對光抗性+8%
-對光抗性+9%
-[ffff64]對光抗性+10%[ffffff]
-對闇抗性+1%
-對闇抗性+2%
-對闇抗性+3%
-對闇抗性+4%
-對闇抗性+5%
-對闇抗性+6%
-對闇抗性+7%
-對闇抗性+8%
-對闇抗性+9%
-[ffff64]對闇抗性+10%[ffffff]
-對無抗性+1%
-對無抗性+2%
-對無抗性+3%
-對無抗性+4%
-對無抗性+5%
-對無抗性+6%
-對無抗性+7%
-對無抗性+8%
-對無抗性+9%
-[ffff64]對無抗性+10%[ffffff]
-近距離威力+1%
-近距離威力+2%
-[ffff64]近距離威力+3%[ffffff]
-遠距離威力+1%
-遠距離威力+2%
-[ffff64]遠距離威力+3%[ffffff]
-看穿+1%
-看穿+2%
-[ffff64]看穿+3%[ffffff]
-破防+1%
-破防+2%
-[ffff64]破防+3%[ffffff]
-物理追擊10%
-物理追擊20%
-物理追擊30%
-物理追擊40%
-[ffff64]物理追擊50%[ffffff]
-魔法追擊10%
-魔法追擊20%
-魔法追擊30%
-魔法追擊40%
-[ffff64]魔法追擊50%[ffffff]
-反彈傷害5%
-反彈傷害10%
-[ffff64]反彈傷害15%[ffffff]
-物理屏障+100
-物理屏障+200
-物理屏障+300
-物理屏障+400
-物理屏障+500
-物理屏障+600
-物理屏障+700
-物理屏障+800
-物理屏障+900
-[ffff64]物理屏障+1000[ffffff]
-魔法屏障+100
-魔法屏障+200
-魔法屏障+300
-魔法屏障+400
-魔法屏障+500
-魔法屏障+600
-魔法屏障+700
-魔法屏障+800
-魔法屏障+900
-[ffff64]魔法屏障+1000[ffffff]
-百分比屏障+1%
-百分比屏障+2%
-百分比屏障+3%
-百分比屏障+4%
-百分比屏障+5%
-百分比屏障+6%
-百分比屏障+7%
-百分比屏障+8%
-百分比屏障+9%
-[ffff64]百分比屏障+10%[ffffff]
-屏障速度+3%
-屏障速度+6%
-屏障速度+9%
-屏障速度+12%
-[ffff64]屏障速度+15%[ffffff]"
+EquipPanelAbilityListMain	0	0	▼能力欄位抽選機率\n第1格：１００％\n第2格：　５０％\n第3格：　２５％\n[ff6464]※第3格將只在已附加第2格能力後，\n方進行抽選[ffffff]\n[ff6464]※不會重複附加相同的能力[ffffff]\n[ff6464]※能力愈強，附加難度愈高[ffffff]\n\n\n▼抽選能力\nSTR+1\nSTR+2\nSTR+3\nSTR+4\nSTR+5\nSTR+6\nSTR+7\nSTR+8\nSTR+9\n[ffff64]STR+10[ffffff]\nINT+1\nINT+2\nINT+3\nINT+4\nINT+5\nINT+6\nINT+7\nINT+8\nINT+9\n[ffff64]INT+10[ffffff]\nVIT+1\nVIT+2\nVIT+3\nVIT+4\nVIT+5\nVIT+6\nVIT+7\nVIT+8\nVIT+9\n[ffff64]VIT+10[ffffff]\nAGI+1\nAGI+2\nAGI+3\nAGI+4\nAGI+5\nAGI+6\nAGI+7\nAGI+8\nAGI+9\n[ffff64]AGI+10[ffffff]\nDEX+1\nDEX+2\nDEX+3\nDEX+4\nDEX+5\nDEX+6\nDEX+7\nDEX+8\nDEX+9\n[ffff64]DEX+10[ffffff]\nSTR+1%\nSTR+2%\n[ffff64]STR+3%[ffffff]\nINT+1%\nINT+2%\n[ffff64]INT+3%[ffffff]\nVIT+1%\nVIT+2%\n[ffff64]VIT+3%[ffffff]\nAGI+1%\nAGI+2%\n[ffff64]AGI+3%[ffffff]\nDEX+1%\nDEX+2%\n[ffff64]DEX+3%[ffffff]\nHP上限+100\nHP上限+200\nHP上限+300\nHP上限+400\nHP上限+500\nHP上限+600\nHP上限+700\nHP上限+800\nHP上限+900\n[ffff64]HP上限+1000[ffffff]\nHP上限+5%\nHP上限+10%\n[ffff64]HP上限+15%[ffffff]\nMP上限+10\nMP上限+20\nMP上限+30\nMP上限+40\nMP上限+50\nMP上限+60\nMP上限+70\nMP上限+80\nMP上限+90\n[ffff64]MP上限+100[ffffff]\n武器ATK+3\n武器ATK+6\n武器ATK+9\n武器ATK+12\n武器ATK+15\n武器ATK+18\n武器ATK+21\n武器ATK+24\n武器ATK+27\n[ffff64]武器ATK+30[ffffff]\n武器ATK+1%\n武器ATK+2%\n[ffff64]武器ATK+3%[ffffff]\nATK+3\nATK+6\nATK+9\nATK+12\nATK+15\nATK+18\nATK+21\nATK+24\nATK+27\n[ffff64]ATK+30[ffffff]\nATK+1%\nATK+2%\n[ffff64]ATK+3%[ffffff]\nMATK+3\nMATK+6\nMATK+9\nMATK+12\nMATK+15\nMATK+18\nMATK+21\nMATK+24\nMATK+27\n[ffff64]MATK+30[ffffff]\nMATK+1%\nMATK+2%\n[ffff64]MATK+3%[ffffff]\n穩定率+1%\n穩定率+2%\n[ffff64]穩定率+3%[ffffff]\n命中+3\n命中+6\n命中+9\n命中+12\n命中+15\n命中+18\n命中+21\n命中+24\n命中+27\n[ffff64]命中+30[ffffff]\n命中+1%\n命中+2%\n[ffff64]命中+3%[ffffff]\n迴避+3\n迴避+6\n迴避+9\n迴避+12\n迴避+15\n迴避+18\n迴避+21\n迴避+24\n迴避+27\n[ffff64]迴避+30[ffffff]\n迴避+1%\n迴避+2%\n[ffff64]迴避+3%[ffffff]\nDEF+10\nDEF+20\nDEF+30\nDEF+40\nDEF+50\nDEF+60\nDEF+70\nDEF+80\nDEF+90\n[ffff64]DEF+100[ffffff]\nDEF+1%\nDEF+2%\nDEF+3%\nDEF+4%\n[ffff64]DEF+5%[ffffff]\nMDEF+10\nMDEF+20\nMDEF+30\nMDEF+40\nMDEF+50\nMDEF+60\nMDEF+70\nMDEF+80\nMDEF+90\n[ffff64]MDEF+100[ffffff]\nMDEF+1%\nMDEF+2%\nMDEF+3%\nMDEF+4%\n[ffff64]MDEF+5%[ffffff]\nASPD+10\nASPD+20\nASPD+30\nASPD+40\nASPD+50\nASPD+60\nASPD+70\nASPD+80\nASPD+90\n[ffff64]ASPD+100[ffffff]\nASPD+1%\nASPD+2%\nASPD+3%\nASPD+4%\nASPD+5%\nASPD+6%\nASPD+7%\nASPD+8%\nASPD+9%\n[ffff64]ASPD+10%[ffffff]\nCSPD+10\nCSPD+20\nCSPD+30\nCSPD+40\nCSPD+50\nCSPD+60\nCSPD+70\nCSPD+80\nCSPD+90\n[ffff64]CSPD+100[ffffff]\nCSPD+1%\nCSPD+2%\nCSPD+3%\nCSPD+4%\nCSPD+5%\nCSPD+6%\nCSPD+7%\nCSPD+8%\nCSPD+9%\n[ffff64]CSPD+10%[ffffff]\nHP自然回復+10\nHP自然回復+20\nHP自然回復+30\nHP自然回復+40\nHP自然回復+50\nHP自然回復+60\nHP自然回復+70\nHP自然回復+80\nHP自然回復+90\n[ffff64]HP自然回復+100[ffffff]\nHP自然回復+5%\nHP自然回復+10%\nHP自然回復+15%\nHP自然回復+20%\n[ffff64]HP自然回復+25%[ffffff]\nMP自然回復+1\nMP自然回復+2\nMP自然回復+3\nMP自然回復+4\nMP自然回復+5\nMP自然回復+6\nMP自然回復+7\nMP自然回復+8\nMP自然回復+9\n[ffff64]MP自然回復+10[ffffff]\nMP自然回復+5%\nMP自然回復+10%\nMP自然回復+15%\nMP自然回復+20%\n[ffff64]MP自然回復+25%[ffffff]\n攻擊回復MP+1\n攻擊回復MP+2\n攻擊回復MP+3\n攻擊回復MP+4\n攻擊回復MP+5\n攻擊回復MP+6\n攻擊回復MP+7\n攻擊回復MP+8\n攻擊回復MP+9\n[ffff64]攻擊回復MP+10[ffffff]\n暴擊率+1\n暴擊率+2\n暴擊率+3\n暴擊率+4\n[ffff64]暴擊率+5[ffffff]\n暴擊率+1%\n暴擊率+2%\n[ffff64]暴擊率+3%[ffffff]\n暴擊傷害+1\n暴擊傷害+2\n暴擊傷害+3\n暴擊傷害+4\n[ffff64]暴擊傷害+5[ffffff]\n暴擊傷害+1%\n暴擊傷害+2%\n[ffff64]暴擊傷害+3%[ffffff]\n異常抗性+1%\n異常抗性+2%\n異常抗性+3%\n異常抗性+4%\n異常抗性+5%\n異常抗性+6%\n異常抗性+7%\n異常抗性+8%\n異常抗性+9%\n[ffff64]異常抗性+10%[ffffff]\n阻擋回復+1%\n阻擋回復+2%\n[ffff64]阻擋回復+3%[ffffff]\n阻擋力+1%\n阻擋力+2%\n[ffff64]阻擋力+3%[ffffff]\n閃躲回復+1%\n閃躲回復+2%\n[ffff64]閃躲回復+3%[ffffff]\n物理抗性+1%\n物理抗性+2%\n物理抗性+3%\n物理抗性+4%\n物理抗性+5%\n物理抗性+6%\n物理抗性+7%\n物理抗性+8%\n物理抗性+9%\n[ffff64]物理抗性+10%[ffffff]\n魔法抗性+1%\n魔法抗性+2%\n魔法抗性+3%\n魔法抗性+4%\n魔法抗性+5%\n魔法抗性+6%\n魔法抗性+7%\n魔法抗性+8%\n魔法抗性+9%\n[ffff64]魔法抗性+10%[ffffff]\n物理貫穿+1%\n物理貫穿+2%\n物理貫穿+3%\n物理貫穿+4%\n物理貫穿+5%\n物理貫穿+6%\n物理貫穿+7%\n物理貫穿+8%\n物理貫穿+9%\n[ffff64]物理貫穿+10%[ffffff]\n魔法貫穿+1%\n魔法貫穿+2%\n魔法貫穿+3%\n魔法貫穿+4%\n魔法貫穿+5%\n魔法貫穿+6%\n魔法貫穿+7%\n魔法貫穿+8%\n魔法貫穿+9%\n[ffff64]魔法貫穿+10%[ffffff]\n對火屬性加強+1%\n對火屬性加強+2%\n[ffff64]對火屬性加強+3%[ffffff]\n對水屬性加強+1%\n對水屬性加強+2%\n[ffff64]對水屬性加強+3%[ffffff]\n對風屬性加強+1%\n對風屬性加強+2%\n[ffff64]對風屬性加強+3%[ffffff]\n對地屬性加強+1%\n對地屬性加強+2%\n[ffff64]對地屬性加強+3%[ffffff]\n對光屬性加強+1%\n對光屬性加強+2%\n[ffff64]對光屬性加強+3%[ffffff]\n對闇屬性加強+1%\n對闇屬性加強+2%\n[ffff64]對闇屬性加強+3%[ffffff]\n對無屬性加強+1%\n對無屬性加強+2%\n[ffff64]對無屬性加強+3%[ffffff]\n恨意值+1%\n恨意值+2%\n恨意值+3%\n恨意值+4%\n恨意值+5%\n恨意值+6%\n恨意值+7%\n恨意值+8%\n恨意值+9%\n[ffff64]恨意值+10%[ffffff]\n恨意值-1%\n恨意值-2%\n恨意值-3%\n恨意值-4%\n恨意值-5%\n恨意值-6%\n恨意值-7%\n恨意值-8%\n恨意值-9%\n[ffff64]恨意值-10%[ffffff]\n對火抗性+1%\n對火抗性+2%\n對火抗性+3%\n對火抗性+4%\n對火抗性+5%\n對火抗性+6%\n對火抗性+7%\n對火抗性+8%\n對火抗性+9%\n[ffff64]對火抗性+10%[ffffff]\n對水抗性+1%\n對水抗性+2%\n對水抗性+3%\n對水抗性+4%\n對水抗性+5%\n對水抗性+6%\n對水抗性+7%\n對水抗性+8%\n對水抗性+9%\n[ffff64]對水抗性+10%[ffffff]\n對風抗性+1%\n對風抗性+2%\n對風抗性+3%\n對風抗性+4%\n對風抗性+5%\n對風抗性+6%\n對風抗性+7%\n對風抗性+8%\n對風抗性+9%\n[ffff64]對風抗性+10%[ffffff]\n對地抗性+1%\n對地抗性+2%\n對地抗性+3%\n對地抗性+4%\n對地抗性+5%\n對地抗性+6%\n對地抗性+7%\n對地抗性+8%\n對地抗性+9%\n[ffff64]對地抗性+10%[ffffff]\n對光抗性+1%\n對光抗性+2%\n對光抗性+3%\n對光抗性+4%\n對光抗性+5%\n對光抗性+6%\n對光抗性+7%\n對光抗性+8%\n對光抗性+9%\n[ffff64]對光抗性+10%[ffffff]\n對闇抗性+1%\n對闇抗性+2%\n對闇抗性+3%\n對闇抗性+4%\n對闇抗性+5%\n對闇抗性+6%\n對闇抗性+7%\n對闇抗性+8%\n對闇抗性+9%\n[ffff64]對闇抗性+10%[ffffff]\n對無抗性+1%\n對無抗性+2%\n對無抗性+3%\n對無抗性+4%\n對無抗性+5%\n對無抗性+6%\n對無抗性+7%\n對無抗性+8%\n對無抗性+9%\n[ffff64]對無抗性+10%[ffffff]\n近距離威力+1%\n近距離威力+2%\n[ffff64]近距離威力+3%[ffffff]\n遠距離威力+1%\n遠距離威力+2%\n[ffff64]遠距離威力+3%[ffffff]\n看穿+1%\n看穿+2%\n[ffff64]看穿+3%[ffffff]\n破防+1%\n破防+2%\n[ffff64]破防+3%[ffffff]\n物理追擊10%\n物理追擊20%\n物理追擊30%\n物理追擊40%\n[ffff64]物理追擊50%[ffffff]\n魔法追擊10%\n魔法追擊20%\n魔法追擊30%\n魔法追擊40%\n[ffff64]魔法追擊50%[ffffff]\n反彈傷害5%\n反彈傷害10%\n[ffff64]反彈傷害15%[ffffff]\n物理屏障+100\n物理屏障+200\n物理屏障+300\n物理屏障+400\n物理屏障+500\n物理屏障+600\n物理屏障+700\n物理屏障+800\n物理屏障+900\n[ffff64]物理屏障+1000[ffffff]\n魔法屏障+100\n魔法屏障+200\n魔法屏障+300\n魔法屏障+400\n魔法屏障+500\n魔法屏障+600\n魔法屏障+700\n魔法屏障+800\n魔法屏障+900\n[ffff64]魔法屏障+1000[ffffff]\n百分比屏障+1%\n百分比屏障+2%\n百分比屏障+3%\n百分比屏障+4%\n百分比屏障+5%\n百分比屏障+6%\n百分比屏障+7%\n百分比屏障+8%\n百分比屏障+9%\n[ffff64]百分比屏障+10%[ffffff]\n屏障速度+3%\n屏障速度+6%\n屏障速度+9%\n屏障速度+12%\n[ffff64]屏障速度+15%[ffffff]
 EquipPanelAbilityPopWindowNewExpText	0	0	\n\n保證附加第1格，第2格則為機率性附加。\n[ffff64]當成功附加第2格後，第3格將再被機率性附加。[ffffff]\n\n請從清單中確認可能被附加的能力。
 SelectSkillPopWindowDetailMessage	0	0	使用[ffff64]{0}[ffffff]時，將有下列效果
 SelectSkillPopWindowLevelUpMessage	0	0	可將技能等級，\n一口氣提升至指定值
@@ -5119,1041 +4395,10 @@ SkillFreeSystemLockErrMessage	0	0	免費期間已結束。
 SkillTreePanelFreeResetMessage	0	0	可以免費進行[ffff64]{0}[ffffff]次重置。
 ParameterPanelNgwordErrLabel	0	0	含有被禁止的詞彙
 ParameterPanelNgwordErrText	0	0	此名稱含有被禁止的詞彙，\n無法以此名稱命名。
-EquipPanelAbilityTopLabel	0	0	"▼能力欄位抽選機率
-第1格：１００％
-第2格：　５０％
-第3格：　２５％
-[ff6464]※第3格將只在已附加第2格能力後，
-方進行抽選[ffffff]
-
-
-▼抽選能力"
-EquipPanelAbilityListLabel	0	0	"STR+1
-STR+2
-STR+3
-STR+4
-STR+5
-STR+6
-STR+7
-STR+8
-STR+9
-[ffff64]STR+10[ffffff]
-INT+1
-INT+2
-INT+3
-INT+4
-INT+5
-INT+6
-INT+7
-INT+8
-INT+9
-[ffff64]INT+10[ffffff]
-VIT+1
-VIT+2
-VIT+3
-VIT+4
-VIT+5
-VIT+6
-VIT+7
-VIT+8
-VIT+9
-[ffff64]VIT+10[ffffff]
-AGI+1
-AGI+2
-AGI+3
-AGI+4
-AGI+5
-AGI+6
-AGI+7
-AGI+8
-AGI+9
-[ffff64]AGI+10[ffffff]
-DEX+1
-DEX+2
-DEX+3
-DEX+4
-DEX+5
-DEX+6
-DEX+7
-DEX+8
-DEX+9
-[ffff64]DEX+10[ffffff]
-STR+1%
-STR+2%
-[ffff64]STR+3%[ffffff]
-INT+1%
-INT+2%
-[ffff64]INT+3%[ffffff]
-VIT+1%
-VIT+2%
-[ffff64]VIT+3%[ffffff]
-AGI+1%
-AGI+2%
-[ffff64]AGI+3%[ffffff]
-DEX+1%
-DEX+2%
-[ffff64]DEX+3%[ffffff]
-HP上限+100
-HP上限+200
-HP上限+300
-HP上限+400
-HP上限+500
-HP上限+600
-HP上限+700
-HP上限+800
-HP上限+900
-[ffff64]HP上限+1000[ffffff]
-HP上限+5%
-HP上限+10%
-[ffff64]HP上限+15%[ffffff]
-MP上限+10
-MP上限+20
-MP上限+30
-MP上限+40
-MP上限+50
-MP上限+60
-MP上限+70
-MP上限+80
-MP上限+90
-[ffff64]MP上限+100[ffffff]
-武器ATK+3
-武器ATK+6
-武器ATK+9
-武器ATK+12
-武器ATK+15
-武器ATK+18
-武器ATK+21
-武器ATK+24
-武器ATK+27
-[ffff64]武器ATK+30[ffffff]
-武器ATK+1%
-武器ATK+2%
-[ffff64]武器ATK+3%[ffffff]
-ATK+3
-ATK+6
-ATK+9
-ATK+12
-ATK+15
-ATK+18
-ATK+21
-ATK+24
-ATK+27
-[ffff64]ATK+30[ffffff]
-ATK+1%
-ATK+2%
-[ffff64]ATK+3%[ffffff]
-MATK+3
-MATK+6
-MATK+9
-MATK+12
-MATK+15
-MATK+18
-MATK+21
-MATK+24
-MATK+27
-[ffff64]MATK+30[ffffff]
-MATK+1%
-MATK+2%
-[ffff64]MATK+3%[ffffff]
-穩定率+1%
-穩定率+2%
-[ffff64]穩定率+3%[ffffff]
-命中+3
-命中+6
-命中+9
-命中+12
-命中+15
-命中+18
-命中+21
-命中+24
-命中+27
-[ffff64]命中+30[ffffff]
-命中+1%
-命中+2%
-[ffff64]命中+3%[ffffff]
-迴避+3
-迴避+6
-迴避+9
-迴避+12
-迴避+15
-迴避+18
-迴避+21
-迴避+24
-迴避+27
-[ffff64]迴避+30[ffffff]
-迴避+1%
-迴避+2%
-[ffff64]迴避+3%[ffffff]
-DEF+10
-DEF+20
-DEF+30
-DEF+40
-DEF+50
-DEF+60
-DEF+70
-DEF+80
-DEF+90
-[ffff64]DEF+100[ffffff]
-DEF+1%
-DEF+2%
-DEF+3%
-DEF+4%
-[ffff64]DEF+5%[ffffff]
-MDEF+10
-MDEF+20
-MDEF+30
-MDEF+40
-MDEF+50
-MDEF+60
-MDEF+70
-MDEF+80
-MDEF+90
-[ffff64]MDEF+100[ffffff]
-MDEF+1%
-MDEF+2%
-MDEF+3%
-MDEF+4%
-[ffff64]MDEF+5%[ffffff]
-ASPD+10
-ASPD+20
-ASPD+30
-ASPD+40
-ASPD+50
-ASPD+60
-ASPD+70
-ASPD+80
-ASPD+90
-[ffff64]ASPD+100[ffffff]
-ASPD+1%
-ASPD+2%
-ASPD+3%
-ASPD+4%
-ASPD+5%
-ASPD+6%
-ASPD+7%
-ASPD+8%
-ASPD+9%
-[ffff64]ASPD+10%[ffffff]
-CSPD+10
-CSPD+20
-CSPD+30
-CSPD+40
-CSPD+50
-CSPD+60
-CSPD+70
-CSPD+80
-CSPD+90
-[ffff64]CSPD+100[ffffff]
-CSPD+1%
-CSPD+2%
-CSPD+3%
-CSPD+4%
-CSPD+5%
-CSPD+6%
-CSPD+7%
-CSPD+8%
-CSPD+9%
-[ffff64]CSPD+10%[ffffff]
-HP自然回復+10
-HP自然回復+20
-HP自然回復+30
-HP自然回復+40
-HP自然回復+50
-HP自然回復+60
-HP自然回復+70
-HP自然回復+80
-HP自然回復+90
-[ffff64]HP自然回復+100[ffffff]
-HP自然回復+5%
-HP自然回復+10%
-HP自然回復+15%
-HP自然回復+20%
-[ffff64]HP自然回復+25%[ffffff]
-MP自然回復+1
-MP自然回復+2
-MP自然回復+3
-MP自然回復+4
-MP自然回復+5
-MP自然回復+6
-MP自然回復+7
-MP自然回復+8
-MP自然回復+9
-[ffff64]MP自然回復+10[ffffff]
-MP自然回復+5%
-MP自然回復+10%
-MP自然回復+15%
-MP自然回復+20%
-[ffff64]MP自然回復+25%[ffffff]
-攻擊回復MP+1
-攻擊回復MP+2
-攻擊回復MP+3
-攻擊回復MP+4
-攻擊回復MP+5
-攻擊回復MP+6
-攻擊回復MP+7
-攻擊回復MP+8
-攻擊回復MP+9
-[ffff64]攻擊回復MP+10[ffffff]
-暴擊率+1
-暴擊率+2
-暴擊率+3
-暴擊率+4
-[ffff64]暴擊率+5[ffffff]
-暴擊率+1%
-暴擊率+2%
-[ffff64]暴擊率+3%[ffffff]
-暴擊傷害+1
-暴擊傷害+2
-暴擊傷害+3
-暴擊傷害+4
-[ffff64]暴擊傷害+5[ffffff]
-暴擊傷害+1%
-暴擊傷害+2%
-[ffff64]暴擊傷害+3%[ffffff]
-異常抗性+1%
-異常抗性+2%
-異常抗性+3%
-異常抗性+4%
-異常抗性+5%
-異常抗性+6%
-異常抗性+7%
-異常抗性+8%
-異常抗性+9%
-[ffff64]異常抗性+10%[ffffff]
-阻擋率+1%
-阻擋率+2%
-[ffff64]阻擋率+3%[ffffff]
-阻擋力+1%
-阻擋力+2%
-[ffff64]阻擋力+3%[ffffff]
-閃躲率+1%
-閃躲率+2%
-[ffff64]閃躲率+3%[ffffff]
-物理抗性+1%
-物理抗性+2%
-物理抗性+3%
-物理抗性+4%
-物理抗性+5%
-物理抗性+6%
-物理抗性+7%
-物理抗性+8%
-物理抗性+9%
-[ffff64]物理抗性+10%[ffffff]
-魔法抗性+1%
-魔法抗性+2%
-魔法抗性+3%
-魔法抗性+4%
-魔法抗性+5%
-魔法抗性+6%
-魔法抗性+7%
-魔法抗性+8%
-魔法抗性+9%
-[ffff64]魔法抗性+10%[ffffff]
-物理貫穿+1%
-物理貫穿+2%
-物理貫穿+3%
-物理貫穿+4%
-物理貫穿+5%
-物理貫穿+6%
-物理貫穿+7%
-物理貫穿+8%
-物理貫穿+9%
-[ffff64]物理貫穿+10%[ffffff]
-魔法貫穿+1%
-魔法貫穿+2%
-魔法貫穿+3%
-魔法貫穿+4%
-魔法貫穿+5%
-魔法貫穿+6%
-魔法貫穿+7%
-魔法貫穿+8%
-魔法貫穿+9%
-[ffff64]魔法貫穿+10%[ffffff]
-對火屬性加強+1%
-對火屬性加強+2%
-[ffff64]對火屬性加強+3%[ffffff]
-對水屬性加強+1%
-對水屬性加強+2%
-[ffff64]對水屬性加強+3%[ffffff]
-對風屬性加強+1%
-對風屬性加強+2%
-[ffff64]對風屬性加強+3%[ffffff]
-對地屬性加強+1%
-對地屬性加強+2%
-[ffff64]對地屬性加強+3%[ffffff]
-對光屬性加強+1%
-對光屬性加強+2%
-[ffff64]對光屬性加強+3%[ffffff]
-對闇屬性加強+1%
-對闇屬性加強+2%
-[ffff64]對闇屬性加強+3%[ffffff]
-對無屬性加強+1%
-對無屬性加強+2%
-[ffff64]對無屬性加強+3%[ffffff]
-恨意值+1%
-恨意值+2%
-恨意值+3%
-恨意值+4%
-恨意值+5%
-恨意值+6%
-恨意值+7%
-恨意值+8%
-恨意值+9%
-[ffff64]恨意值+10%[ffffff]
-恨意值-1%
-恨意值-2%
-恨意值-3%
-恨意值-4%
-恨意值-5%
-恨意值-6%
-恨意值-7%
-恨意值-8%
-恨意值-9%
-[ffff64]恨意值-10%[ffffff]
-對火抗性+1%
-對火抗性+2%
-對火抗性+3%
-對火抗性+4%
-對火抗性+5%
-對火抗性+6%
-對火抗性+7%
-對火抗性+8%
-對火抗性+9%
-[ffff64]對火抗性+10%[ffffff]
-對水抗性+1%
-對水抗性+2%
-對水抗性+3%
-對水抗性+4%
-對水抗性+5%
-對水抗性+6%
-對水抗性+7%
-對水抗性+8%
-對水抗性+9%
-[ffff64]對水抗性+10%[ffffff]
-對風抗性+1%
-對風抗性+2%
-對風抗性+3%
-對風抗性+4%
-對風抗性+5%
-對風抗性+6%
-對風抗性+7%
-對風抗性+8%
-對風抗性+9%
-[ffff64]對風抗性+10%[ffffff]
-對地抗性+1%
-對地抗性+2%
-對地抗性+3%
-對地抗性+4%
-對地抗性+5%
-對地抗性+6%
-對地抗性+7%
-對地抗性+8%
-對地抗性+9%
-[ffff64]對地抗性+10%[ffffff]
-對光抗性+1%
-對光抗性+2%
-對光抗性+3%
-對光抗性+4%
-對光抗性+5%
-對光抗性+6%
-對光抗性+7%
-對光抗性+8%
-對光抗性+9%
-[ffff64]對光抗性+10%[ffffff]
-對闇抗性+1%
-對闇抗性+2%
-對闇抗性+3%
-對闇抗性+4%
-對闇抗性+5%
-對闇抗性+6%
-對闇抗性+7%
-對闇抗性+8%
-對闇抗性+9%
-[ffff64]對闇抗性+10%[ffffff]
-對無抗性+1%
-對無抗性+2%
-對無抗性+3%
-對無抗性+4%
-對無抗性+5%
-對無抗性+6%
-對無抗性+7%
-對無抗性+8%
-對無抗性+9%
-[ffff64]對無抗性+10%[ffffff]
-近距離威力+1%
-近距離威力+2%
-[ffff64]近距離威力+3%[ffffff]
-遠距離威力+1%
-遠距離威力+2%
-[ffff64]遠距離威力+3%[ffffff]
-看穿+1%
-看穿+2%
-[ffff64]看穿+3%[ffffff]
-破防+1%
-破防+2%
-[ffff64]破防+3%[ffffff]
-物理追擊10%
-物理追擊20%
-物理追擊30%
-物理追擊40%
-[ffff64]物理追擊50%[ffffff]
-魔法追擊10%
-魔法追擊20%
-魔法追擊30%
-魔法追擊40%
-[ffff64]魔法追擊50%[ffffff]
-反彈傷害5%
-反彈傷害10%
-[ffff64]反彈傷害15%[ffffff]
-物理屏障+100
-物理屏障+200
-物理屏障+300
-物理屏障+400
-物理屏障+500
-物理屏障+600
-物理屏障+700
-物理屏障+800
-物理屏障+900
-[ffff64]物理屏障+1000[ffffff]
-魔法屏障+100
-魔法屏障+200
-魔法屏障+300
-魔法屏障+400
-魔法屏障+500
-魔法屏障+600
-魔法屏障+700
-魔法屏障+800
-魔法屏障+900
-[ffff64]魔法屏障+1000[ffffff]
-百分比屏障+1%
-百分比屏障+2%
-百分比屏障+3%
-百分比屏障+4%
-百分比屏障+5%
-百分比屏障+6%
-百分比屏障+7%
-百分比屏障+8%
-百分比屏障+9%
-[ffff64]百分比屏障+10%[ffffff]
-屏障速度+3%
-屏障速度+6%
-屏障速度+9%
-屏障速度+12%
-[ffff64]屏障速度+15%[ffffff]"
-EquipPanelAbilityRateLabel	0	0	"0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%"
-EquipPanelAbilityLastLabel	0	0	"[ff6464]※由於同一種能力不會重複抽選，故第2個以後的項目，其抽選機率有可能比顯示機率還高。[ffffff]
-[ff6464]※抽選機率會計算至小數點第4位以下，但機率顯示會四捨五入至小數點第3位。因此，顯示機率之總和有可能不滿100%。[ffffff]"
+EquipPanelAbilityTopLabel	0	0	▼能力欄位抽選機率\n第1格：１００％\n第2格：　５０％\n第3格：　２５％\n[ff6464]※第3格將只在已附加第2格能力後，\n方進行抽選[ffffff]\n\n\n▼抽選能力
+EquipPanelAbilityListLabel	0	0	STR+1\nSTR+2\nSTR+3\nSTR+4\nSTR+5\nSTR+6\nSTR+7\nSTR+8\nSTR+9\n[ffff64]STR+10[ffffff]\nINT+1\nINT+2\nINT+3\nINT+4\nINT+5\nINT+6\nINT+7\nINT+8\nINT+9\n[ffff64]INT+10[ffffff]\nVIT+1\nVIT+2\nVIT+3\nVIT+4\nVIT+5\nVIT+6\nVIT+7\nVIT+8\nVIT+9\n[ffff64]VIT+10[ffffff]\nAGI+1\nAGI+2\nAGI+3\nAGI+4\nAGI+5\nAGI+6\nAGI+7\nAGI+8\nAGI+9\n[ffff64]AGI+10[ffffff]\nDEX+1\nDEX+2\nDEX+3\nDEX+4\nDEX+5\nDEX+6\nDEX+7\nDEX+8\nDEX+9\n[ffff64]DEX+10[ffffff]\nSTR+1%\nSTR+2%\n[ffff64]STR+3%[ffffff]\nINT+1%\nINT+2%\n[ffff64]INT+3%[ffffff]\nVIT+1%\nVIT+2%\n[ffff64]VIT+3%[ffffff]\nAGI+1%\nAGI+2%\n[ffff64]AGI+3%[ffffff]\nDEX+1%\nDEX+2%\n[ffff64]DEX+3%[ffffff]\nHP上限+100\nHP上限+200\nHP上限+300\nHP上限+400\nHP上限+500\nHP上限+600\nHP上限+700\nHP上限+800\nHP上限+900\n[ffff64]HP上限+1000[ffffff]\nHP上限+5%\nHP上限+10%\n[ffff64]HP上限+15%[ffffff]\nMP上限+10\nMP上限+20\nMP上限+30\nMP上限+40\nMP上限+50\nMP上限+60\nMP上限+70\nMP上限+80\nMP上限+90\n[ffff64]MP上限+100[ffffff]\n武器ATK+3\n武器ATK+6\n武器ATK+9\n武器ATK+12\n武器ATK+15\n武器ATK+18\n武器ATK+21\n武器ATK+24\n武器ATK+27\n[ffff64]武器ATK+30[ffffff]\n武器ATK+1%\n武器ATK+2%\n[ffff64]武器ATK+3%[ffffff]\nATK+3\nATK+6\nATK+9\nATK+12\nATK+15\nATK+18\nATK+21\nATK+24\nATK+27\n[ffff64]ATK+30[ffffff]\nATK+1%\nATK+2%\n[ffff64]ATK+3%[ffffff]\nMATK+3\nMATK+6\nMATK+9\nMATK+12\nMATK+15\nMATK+18\nMATK+21\nMATK+24\nMATK+27\n[ffff64]MATK+30[ffffff]\nMATK+1%\nMATK+2%\n[ffff64]MATK+3%[ffffff]\n穩定率+1%\n穩定率+2%\n[ffff64]穩定率+3%[ffffff]\n命中+3\n命中+6\n命中+9\n命中+12\n命中+15\n命中+18\n命中+21\n命中+24\n命中+27\n[ffff64]命中+30[ffffff]\n命中+1%\n命中+2%\n[ffff64]命中+3%[ffffff]\n迴避+3\n迴避+6\n迴避+9\n迴避+12\n迴避+15\n迴避+18\n迴避+21\n迴避+24\n迴避+27\n[ffff64]迴避+30[ffffff]\n迴避+1%\n迴避+2%\n[ffff64]迴避+3%[ffffff]\nDEF+10\nDEF+20\nDEF+30\nDEF+40\nDEF+50\nDEF+60\nDEF+70\nDEF+80\nDEF+90\n[ffff64]DEF+100[ffffff]\nDEF+1%\nDEF+2%\nDEF+3%\nDEF+4%\n[ffff64]DEF+5%[ffffff]\nMDEF+10\nMDEF+20\nMDEF+30\nMDEF+40\nMDEF+50\nMDEF+60\nMDEF+70\nMDEF+80\nMDEF+90\n[ffff64]MDEF+100[ffffff]\nMDEF+1%\nMDEF+2%\nMDEF+3%\nMDEF+4%\n[ffff64]MDEF+5%[ffffff]\nASPD+10\nASPD+20\nASPD+30\nASPD+40\nASPD+50\nASPD+60\nASPD+70\nASPD+80\nASPD+90\n[ffff64]ASPD+100[ffffff]\nASPD+1%\nASPD+2%\nASPD+3%\nASPD+4%\nASPD+5%\nASPD+6%\nASPD+7%\nASPD+8%\nASPD+9%\n[ffff64]ASPD+10%[ffffff]\nCSPD+10\nCSPD+20\nCSPD+30\nCSPD+40\nCSPD+50\nCSPD+60\nCSPD+70\nCSPD+80\nCSPD+90\n[ffff64]CSPD+100[ffffff]\nCSPD+1%\nCSPD+2%\nCSPD+3%\nCSPD+4%\nCSPD+5%\nCSPD+6%\nCSPD+7%\nCSPD+8%\nCSPD+9%\n[ffff64]CSPD+10%[ffffff]\nHP自然回復+10\nHP自然回復+20\nHP自然回復+30\nHP自然回復+40\nHP自然回復+50\nHP自然回復+60\nHP自然回復+70\nHP自然回復+80\nHP自然回復+90\n[ffff64]HP自然回復+100[ffffff]\nHP自然回復+5%\nHP自然回復+10%\nHP自然回復+15%\nHP自然回復+20%\n[ffff64]HP自然回復+25%[ffffff]\nMP自然回復+1\nMP自然回復+2\nMP自然回復+3\nMP自然回復+4\nMP自然回復+5\nMP自然回復+6\nMP自然回復+7\nMP自然回復+8\nMP自然回復+9\n[ffff64]MP自然回復+10[ffffff]\nMP自然回復+5%\nMP自然回復+10%\nMP自然回復+15%\nMP自然回復+20%\n[ffff64]MP自然回復+25%[ffffff]\n攻擊回復MP+1\n攻擊回復MP+2\n攻擊回復MP+3\n攻擊回復MP+4\n攻擊回復MP+5\n攻擊回復MP+6\n攻擊回復MP+7\n攻擊回復MP+8\n攻擊回復MP+9\n[ffff64]攻擊回復MP+10[ffffff]\n暴擊率+1\n暴擊率+2\n暴擊率+3\n暴擊率+4\n[ffff64]暴擊率+5[ffffff]\n暴擊率+1%\n暴擊率+2%\n[ffff64]暴擊率+3%[ffffff]\n暴擊傷害+1\n暴擊傷害+2\n暴擊傷害+3\n暴擊傷害+4\n[ffff64]暴擊傷害+5[ffffff]\n暴擊傷害+1%\n暴擊傷害+2%\n[ffff64]暴擊傷害+3%[ffffff]\n異常抗性+1%\n異常抗性+2%\n異常抗性+3%\n異常抗性+4%\n異常抗性+5%\n異常抗性+6%\n異常抗性+7%\n異常抗性+8%\n異常抗性+9%\n[ffff64]異常抗性+10%[ffffff]\n阻擋率+1%\n阻擋率+2%\n[ffff64]阻擋率+3%[ffffff]\n阻擋力+1%\n阻擋力+2%\n[ffff64]阻擋力+3%[ffffff]\n閃躲率+1%\n閃躲率+2%\n[ffff64]閃躲率+3%[ffffff]\n物理抗性+1%\n物理抗性+2%\n物理抗性+3%\n物理抗性+4%\n物理抗性+5%\n物理抗性+6%\n物理抗性+7%\n物理抗性+8%\n物理抗性+9%\n[ffff64]物理抗性+10%[ffffff]\n魔法抗性+1%\n魔法抗性+2%\n魔法抗性+3%\n魔法抗性+4%\n魔法抗性+5%\n魔法抗性+6%\n魔法抗性+7%\n魔法抗性+8%\n魔法抗性+9%\n[ffff64]魔法抗性+10%[ffffff]\n物理貫穿+1%\n物理貫穿+2%\n物理貫穿+3%\n物理貫穿+4%\n物理貫穿+5%\n物理貫穿+6%\n物理貫穿+7%\n物理貫穿+8%\n物理貫穿+9%\n[ffff64]物理貫穿+10%[ffffff]\n魔法貫穿+1%\n魔法貫穿+2%\n魔法貫穿+3%\n魔法貫穿+4%\n魔法貫穿+5%\n魔法貫穿+6%\n魔法貫穿+7%\n魔法貫穿+8%\n魔法貫穿+9%\n[ffff64]魔法貫穿+10%[ffffff]\n對火屬性加強+1%\n對火屬性加強+2%\n[ffff64]對火屬性加強+3%[ffffff]\n對水屬性加強+1%\n對水屬性加強+2%\n[ffff64]對水屬性加強+3%[ffffff]\n對風屬性加強+1%\n對風屬性加強+2%\n[ffff64]對風屬性加強+3%[ffffff]\n對地屬性加強+1%\n對地屬性加強+2%\n[ffff64]對地屬性加強+3%[ffffff]\n對光屬性加強+1%\n對光屬性加強+2%\n[ffff64]對光屬性加強+3%[ffffff]\n對闇屬性加強+1%\n對闇屬性加強+2%\n[ffff64]對闇屬性加強+3%[ffffff]\n對無屬性加強+1%\n對無屬性加強+2%\n[ffff64]對無屬性加強+3%[ffffff]\n恨意值+1%\n恨意值+2%\n恨意值+3%\n恨意值+4%\n恨意值+5%\n恨意值+6%\n恨意值+7%\n恨意值+8%\n恨意值+9%\n[ffff64]恨意值+10%[ffffff]\n恨意值-1%\n恨意值-2%\n恨意值-3%\n恨意值-4%\n恨意值-5%\n恨意值-6%\n恨意值-7%\n恨意值-8%\n恨意值-9%\n[ffff64]恨意值-10%[ffffff]\n對火抗性+1%\n對火抗性+2%\n對火抗性+3%\n對火抗性+4%\n對火抗性+5%\n對火抗性+6%\n對火抗性+7%\n對火抗性+8%\n對火抗性+9%\n[ffff64]對火抗性+10%[ffffff]\n對水抗性+1%\n對水抗性+2%\n對水抗性+3%\n對水抗性+4%\n對水抗性+5%\n對水抗性+6%\n對水抗性+7%\n對水抗性+8%\n對水抗性+9%\n[ffff64]對水抗性+10%[ffffff]\n對風抗性+1%\n對風抗性+2%\n對風抗性+3%\n對風抗性+4%\n對風抗性+5%\n對風抗性+6%\n對風抗性+7%\n對風抗性+8%\n對風抗性+9%\n[ffff64]對風抗性+10%[ffffff]\n對地抗性+1%\n對地抗性+2%\n對地抗性+3%\n對地抗性+4%\n對地抗性+5%\n對地抗性+6%\n對地抗性+7%\n對地抗性+8%\n對地抗性+9%\n[ffff64]對地抗性+10%[ffffff]\n對光抗性+1%\n對光抗性+2%\n對光抗性+3%\n對光抗性+4%\n對光抗性+5%\n對光抗性+6%\n對光抗性+7%\n對光抗性+8%\n對光抗性+9%\n[ffff64]對光抗性+10%[ffffff]\n對闇抗性+1%\n對闇抗性+2%\n對闇抗性+3%\n對闇抗性+4%\n對闇抗性+5%\n對闇抗性+6%\n對闇抗性+7%\n對闇抗性+8%\n對闇抗性+9%\n[ffff64]對闇抗性+10%[ffffff]\n對無抗性+1%\n對無抗性+2%\n對無抗性+3%\n對無抗性+4%\n對無抗性+5%\n對無抗性+6%\n對無抗性+7%\n對無抗性+8%\n對無抗性+9%\n[ffff64]對無抗性+10%[ffffff]\n近距離威力+1%\n近距離威力+2%\n[ffff64]近距離威力+3%[ffffff]\n遠距離威力+1%\n遠距離威力+2%\n[ffff64]遠距離威力+3%[ffffff]\n看穿+1%\n看穿+2%\n[ffff64]看穿+3%[ffffff]\n破防+1%\n破防+2%\n[ffff64]破防+3%[ffffff]\n物理追擊10%\n物理追擊20%\n物理追擊30%\n物理追擊40%\n[ffff64]物理追擊50%[ffffff]\n魔法追擊10%\n魔法追擊20%\n魔法追擊30%\n魔法追擊40%\n[ffff64]魔法追擊50%[ffffff]\n反彈傷害5%\n反彈傷害10%\n[ffff64]反彈傷害15%[ffffff]\n物理屏障+100\n物理屏障+200\n物理屏障+300\n物理屏障+400\n物理屏障+500\n物理屏障+600\n物理屏障+700\n物理屏障+800\n物理屏障+900\n[ffff64]物理屏障+1000[ffffff]\n魔法屏障+100\n魔法屏障+200\n魔法屏障+300\n魔法屏障+400\n魔法屏障+500\n魔法屏障+600\n魔法屏障+700\n魔法屏障+800\n魔法屏障+900\n[ffff64]魔法屏障+1000[ffffff]\n百分比屏障+1%\n百分比屏障+2%\n百分比屏障+3%\n百分比屏障+4%\n百分比屏障+5%\n百分比屏障+6%\n百分比屏障+7%\n百分比屏障+8%\n百分比屏障+9%\n[ffff64]百分比屏障+10%[ffffff]\n屏障速度+3%\n屏障速度+6%\n屏障速度+9%\n屏障速度+12%\n[ffff64]屏障速度+15%[ffffff]
+EquipPanelAbilityRateLabel	0	0	0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%
+EquipPanelAbilityLastLabel	0	0	[ff6464]※由於同一種能力不會重複抽選，故第2個以後的項目，其抽選機率有可能比顯示機率還高。[ffffff]\n[ff6464]※抽選機率會計算至小數點第4位以下，但機率顯示會四捨五入至小數點第3位。因此，顯示機率之總和有可能不滿100%。[ffffff]
 EquipPanelEnchantExExp	0	0	"使用[ffff64]""{0}""[ffffff]\n抽取造型裝備的能力！\n抽取出來的能力最多可保存10個。\n已保存的能力可透過重新附加來消耗。"
 EquipPanelEnchantRegrant	0	0	重新附加
 EquipPanelEnchantExtract	0	0	抽取能力
@@ -6324,25 +4569,18 @@ RegistletPanelGemPowderNum	0	0	晶石粉末
 RegistletPanelHaveGemCartNum	0	0	已持有的晶石盒
 RegistletPanelEquipButton	0	0	[ffff64]＋裝備晶石盒
 RegistletPanelAddSlotButton	0	0	使用{0}粉末擴增欄位
-RegistletPanelGemCartGetMes	0	0	"可在史東迪的實驗中獲得
-裝備晶石盒，強化自己吧！"
+RegistletPanelGemCartGetMes	0	0	可在史東迪的實驗中獲得\n裝備晶石盒，強化自己吧！
 RegistletPanelEditButton	0	0	編輯晶石盒
 RegistletPanelEditButtonMes	0	0	可將晶石合成強化、或分解成粉末
-RegistletPanelEditMes	0	0	"可以合成相同或不同的晶石盒
-來進行[ffff64]強化[ffffff]
-不需要的晶石盒還可以[ffff64]分解[ffffff]"
-RegistletPanelNoHaveMes	0	0	"您目前尚未持有晶石盒
-
-可以從艾爾斯卡羅的
-[ffff64]挑戰型迷宮Ⅱ[ffffff]中獲得！"
+RegistletPanelEditMes	0	0	可以合成相同或不同的晶石盒\n來進行[ffff64]強化[ffffff]\n不需要的晶石盒還可以[ffff64]分解[ffffff]
+RegistletPanelNoHaveMes	0	0	您目前尚未持有晶石盒\n\n可以從艾爾斯卡羅的\n[ffff64]挑戰型迷宮Ⅱ[ffffff]中獲得！
 RegistletPanelReinforceButton	0	0	強化
 RegistletPanelReinforceButtonMax	0	0	[ffff64]MAX[ffffff]
 RegistletPanelDetailButton	0	0	詳細
 RegistletPanelBreakButton	0	0	分解
 RegistletPanelAlreadyEquipButton	0	0	[ffff64]裝備中[ffffff]
 RegistletPanelReinforceMes	0	0	[ffff64]強化這個晶石盒[ffffff]
-RegistletPanelReinforceNoMaterialMes	0	0	"未持有可作材料的
-晶石盒"
+RegistletPanelReinforceNoMaterialMes	0	0	未持有可作材料的\n晶石盒
 RegistletPanelReinforceResultTitle	0	0	結果預覽
 RegistletPanelReinforceNeedGemPowderNum	0	0	需要的晶石粉末
 RegistletPanelReinforceDoButton	0	0	進行強化
@@ -6358,8 +4596,7 @@ RegistletPanelBreakDoButton	0	0	進行分解
 RegistletPanelBreakWait	0	0	正在將這個晶石盒分解為粉末・・・
 RegistletPanelBreakCancel	0	0	取消
 RegistletPanelBreakComplete	0	0	獲得了晶石粉末！
-RegistletPanelEquipNoGemCart	0	0	"沒有可裝備的
-晶石盒"
+RegistletPanelEquipNoGemCart	0	0	沒有可裝備的\n晶石盒
 RegistletPanelEquipThisEquip	0	0	裝備這個晶石盒
 RegistletPanelEquipThisChange	0	0	更換這個晶石盒
 RegistletPanelEquipRemove	0	0	移除
@@ -6627,10 +4864,7 @@ QuestPanelItemMes	0	0	收集 {0} (x{1})
 QuestPanelKeyMes	0	0	"貴重品""{0}"""
 QuestPanelEnemySubdue	0	0	達成！
 QuestPanelHock	0	0	已持有
-QuestPanelDestroyLabel	0	0	"「{0}」
-
-是否放棄此任務？
-[888888]＊放棄後，仍可重新接受任務。"
+QuestPanelDestroyLabel	0	0	「{0}」\n\n是否放棄此任務？\n[888888]＊放棄後，仍可重新接受任務。
 QuestPanelDestroyMissionLabel2	0	0	\n如放棄此任務，進度將變為已完成\n[FFFF88]{0}[ffffff]\n的狀態，且無法還原。
 QuestPanelDestroyButton	0	0	放棄任務
 QuestPopUpConnectLabel	0	0	等待連接…
@@ -6639,8 +4873,7 @@ QuestPopUpConnectfumbleText	0	0	連接失敗。是否重新嘗試？
 QuestPoPUpLabel	0	0	任務報酬
 QuestReceivedReWard	0	0	[AA5555]已經領取此項報酬
 QuestPanelDestroyMissionLabel	0	0	無法放棄劇情任務。
-JournalPopUpText	0	0	"{0}: ""{1}""
-{2}: {3}/{4} 已達成"
+JournalPopUpText	0	0	"{0}: ""{1}""\n{2}: {3}/{4} 已達成"
 Mission	0	0	劇情任務
 Quest	0	0	任務
 JournalPopUpMobText	0	0	{1}: {0}
@@ -6863,13 +5096,7 @@ EmotionPanelDisp	0	0	保持顯示
 EmotionPanelFavorite	0	0	設定最愛
 EmotionPanelDetail	0	0	顯示詳情
 EmotionPanelSimple	0	0	顯示簡介
-EmotionPanelDescription	0	0	"設定為[ffff64]最愛[ffffff]後，
-即可方便地透過
-情緒捷徑使用。
-
-
-點選想設為最愛的情緒，
-即可登錄"
+EmotionPanelDescription	0	0	設定為[ffff64]最愛[ffffff]後，\n即可方便地透過\n情緒捷徑使用。\n\n\n點選想設為最愛的情緒，\n即可登錄
 EmotionPanelSettingComplete	0	0	設定完成
 EmotionPanelIconType0	0	0	A
 EmotionPanelIconType1	0	0	B
@@ -7512,17 +5739,9 @@ SkillComboTypeNoneText	0	0	不設定
 SkillComboTypeStartText	0	0	開始
 SkillComboTypeRengekiText	0	0	依照連擊數，減輕消耗MP。\n在同一串連擊中，每發動一次連擊，\n威力將有所降低
 SkillComboTypeThirdEyeText	0	0	除特殊狀態以外，可保障最低Graze命中\n依照連擊數，有一定機率變為必中\n敵方對賦予的異常狀態帶有抗性，\n則連擊會中斷。
-SkillComboTypeFillingText	0	0	"不需消耗MP即可發動，
-但威力大幅降低，
-並暫時降低下一項技能威力。
-若最後MP有剩，
-則終點技能的消耗MP將增加。"
-SkillComboTypeQuickText	0	0	"加速此技能。
-(部分技能無法加速)"
-SkillComboTypeHardHitText	0	0	"增加此技能威力，
-降低下一項技能威力。
-若無下一項技能，
-則增加此技能的消耗MP。"
+SkillComboTypeFillingText	0	0	不需消耗MP即可發動，\n但威力大幅降低，\n並暫時降低下一項技能威力。\n若最後MP有剩，\n則終點技能的消耗MP將增加。
+SkillComboTypeQuickText	0	0	加速此技能。\n(部分技能無法加速)
+SkillComboTypeHardHitText	0	0	增加此技能威力，\n降低下一項技能威力。\n若無下一項技能，\n則增加此技能的消耗MP。
 SkillComboTypeTenacityText	0	0	MP不足時，\n不惜減損HP來發動技能。
 SkillComboTypeInvincibleText	0	0	依照連擊數，一定機率呈現無敵。\n當同一連擊中存在有多個無敵時，\n僅會反應第一個無敵的機率。
 SkillComboTypeBloodSuckingText	0	0	依照連擊數，回復傷害減損的HP。\n使用吸血後，效果會變為\n10秒之內，減損HP以增加技能的威力。
@@ -8435,16 +6654,13 @@ OptionScreenShotTypeSelectEx1	0	0	B
 OptionScreenShotTypeSelectEx2	0	0	A
 OptionScreenShotTypeLabel	0	0	擷取畫面設定
 OptionScreenShotTypeMes	0	0	更改擷取畫面設定
-ShortCutOptionPanelScreenShotPopUpMes	0	0	"部分機種可能無法
-正常擷取遊戲畫面。
-敬請諒解。"
+ShortCutOptionPanelScreenShotPopUpMes	0	0	部分機種可能無法\n正常擷取遊戲畫面。\n敬請諒解。
 ShortCutOptionPanelScreenShotPopUpTitle	0	0	告知
 OptionPanelAccountRebootTitle	0	0	已變更帳號設定。
 OptionPanelAccountRebootMessage	0	0	\n\n\n請重新啟動本遊戲，\n套用更改後的設定。
 NameChangePanelTitle	0	0	可使用[ffff64]{0}個露珠[ffffff]，更改角色名稱。
 NameChangePanelTitleWraing1	0	0	[ff0000]※變更後30天內欲再度變更時，需花費更多露珠。
-NameChangePanelTitleWraing3	0	0	"[ff0000]※變更後30天內欲再度變更時，需花費更多露珠。
-※距離上次變更姓名，已過{0}天。"
+NameChangePanelTitleWraing3	0	0	[ff0000]※變更後30天內欲再度變更時，需花費更多露珠。\n※距離上次變更姓名，已過{0}天。
 NameChangePanelTitleWraing2	0	0	[ffff64]※注意事項※\n無法變更為已被使用的名字。\n依照您的角色狀態，有可能無法變更姓名。
 NameChangePanelButton	0	0	確定使用此姓名
 NameChangePanelWait	0	0	[ffff64]申請變更姓名中。\n進度條跑完後即變更成功。
@@ -8757,8 +6973,8 @@ NewOptionCameraAutoFocusLabel	0	0	鎖定目標時鏡頭面向目標
 NewOptionFollowCameraLabel	0	0	鏡頭追從設定
 NewOptionFollowCameraPCLabel	0	0	鏡頭移動設定
 NewOptionFollowCameraFlag	0	0	可將部分移動類型的技能與鏡頭聯動
-NewOptionOtherCharacterTapLabel	0	0	"其他角色點選指令	"
-NewOptionOtherCharacterTapPCLabel	0	0	"其他角色點擊指令	"
+NewOptionOtherCharacterTapLabel	0	0	其他角色點選指令\t
+NewOptionOtherCharacterTapPCLabel	0	0	其他角色點擊指令\t
 NewOptionOtherCharacterTapMes	0	0	點選其他角色，\n將顯示邀請組隊或交易等專用選單。\n可以設定成戰鬥中無法點選。
 NewOptionOtherCharacterTapSelect0	0	0	保持開啟
 NewOptionOtherCharacterTapSelect1	0	0	無法在BOSS戰中點選
@@ -9048,10 +7264,7 @@ UserTargetPanelTradeMes2	0	0	\n與{0}交易失敗。\n\n原因為對方拒絕交
 UserTargetPanelTradeMes3	0	0	\n對方正在交易中，\n您的申請已被取消。
 UserTargetPaneTradelButton2	0	0	關閉
 UserTargetPanelPartyLabel	0	0	邀請組隊
-UserTargetPanelPartyMes	0	0	"是否邀請{0}組隊？
-
-超過一定時間無回應時，
-將自動取消。"
+UserTargetPanelPartyMes	0	0	是否邀請{0}組隊？\n\n超過一定時間無回應時，\n將自動取消。
 UserTargetPanelPartyButton	0	0	邀請組隊
 UserTargetPanelPartyText	0	0	嗨！一起冒險吧！
 UserTargetPanelPartyError	0	0	\n隊伍人數已滿，\n或該名玩家已在隊伍中。
@@ -9059,27 +7272,15 @@ UserTargetPanelPartyAuthorityError	0	0	無執行權限。
 UserTargetPanelPartyAlreadyOtherPartyError	0	0	\n已在其餘隊伍中。
 UserTargetPanelPartyNotStateReceive	0	0	\n對方並未上線，\n或處於無法接受邀請狀態。
 UserTargetPanelGuildLabel	0	0	邀請加入公會
-UserTargetPanelGuildMes	0	0	"是否邀請{0}加入公會？
-
-超過一定時間無回應時，
-將自動取消。"
+UserTargetPanelGuildMes	0	0	是否邀請{0}加入公會？\n\n超過一定時間無回應時，\n將自動取消。
 UserTargetPanelGuildText	0	0	嗨！想加入公會嗎？
-UserTargetPanelFriendMes	0	0	"邀請{0}成為好友。
-
-對方接受後即可成為好友。
-好友上限為300人。
-當自己或對方好友已達300人時，則無法申請。"
-UserTargetPanelFriendLimitMes	0	0	"邀請{0}成為好友。
-
-對方接受後即可成為好友。
-好友上限為{1}人。
-若自己或對方的好友已達上限，則無法申請。"
+UserTargetPanelFriendMes	0	0	邀請{0}成為好友。\n\n對方接受後即可成為好友。\n好友上限為300人。\n當自己或對方好友已達300人時，則無法申請。
+UserTargetPanelFriendLimitMes	0	0	邀請{0}成為好友。\n\n對方接受後即可成為好友。\n好友上限為{1}人。\n若自己或對方的好友已達上限，則無法申請。
 UserTargetPanelFriendText	0	0	嗨！可以加你好友嗎？
 UserTargetPanelFriendSuccess	0	0	已向{0}申請好友。
 UserTargetPanelFriendError	0	0	對方目前無法接受好友申請。
 UserTargetPanelFriendAlreadyExist	0	0	可能原因為好友數已滿，或已經是好友。
-UserTargetPanelReportMes	0	0	"是否對角色『{0}』的
-騷擾・不當行為進行舉報？"
+UserTargetPanelReportMes	0	0	是否對角色『{0}』的\n騷擾・不當行為進行舉報？
 UserTargetPanelLabel3	0	0	激勵
 UserTargetPanelMes3	0	0	剩餘{0}次
 UserTargetPanelLabel4	0	0	申請
@@ -9205,8 +7406,7 @@ NewsPanelGuildNewsMes	0	0	最新公會通知
 NewsPanelShopSellout	0	0	物品全數售出
 NewsPanelShopSelloutMes	0	0	販售中物品已全數售出。
 NewsPanelBagMax	0	0	背包已滿
-NewsPanelBagMaxMes	0	0	"背包已滿。請減少物品，
-否則無法獲得掉落物。"
+NewsPanelBagMaxMes	0	0	背包已滿。請減少物品，\n否則無法獲得掉落物。
 NewsPanelTrophy	0	0	最新達成勳章
 NewsPanelTrophyMes	0	0	可領取報酬
 NewsPanelTrade	0	0	交易申請
@@ -9214,8 +7414,7 @@ NewsPanelTradeMes	0	0	收到交易申請
 NewsPanelAsobimoAccount	0	0	繼承註冊
 NewsPanelAsobimoAccountMes	0	0	使用ASOBIMO帳號登入遊戲，即可領取勳章！！
 NewsPanelScenarioItemWarrantIn	0	0	無法收取貴重品
-NewsPanelScenarioItemWarrantInMes	0	0	"貴重品已收入備用空間。
-備用空間裡的物品不具效力。"
+NewsPanelScenarioItemWarrantInMes	0	0	貴重品已收入備用空間。\n備用空間裡的物品不具效力。
 NewsPanelStampReward	0	0	可領取集點卡獎勵
 NewsPanelStampRewardMes	0	0	可領取集點卡獎勵
 NewsPanelBeginnerItem	0	0	新手道具銷售中!
@@ -9224,13 +7423,10 @@ NewsPanelQuestionnairePage	0	0	[ffff64]問卷調查舉辦中
 NewsPanelQuestionnairePageMes	0	0	[ffff64]正在進行問卷調查
 StampNextReward	0	0	NEXT>>
 StampRewardReceived	0	0	GET
-StampMessage	0	0	"已獲得本日印章★
-連續五天登入，即可獲得印章所繪的贈品！"
-StampMessageOneMore	0	0	"已獲得本日印章★
-連續五天登入，即可獲得印章所繪的贈品！"
+StampMessage	0	0	已獲得本日印章★\n連續五天登入，即可獲得印章所繪的贈品！
+StampMessageOneMore	0	0	已獲得本日印章★\n連續五天登入，即可獲得印章所繪的贈品！
 StampMessageCarryOver	0	0	本月集點卡已更新。\n上月剩餘點數已合併至本月份。
-StampMessageReceive	0	0	"請點選圖示，獲取登入獎勵★
-集滿下一張後，本張獎勵將自動清除！"
+StampMessageReceive	0	0	請點選圖示，獲取登入獎勵★\n集滿下一張後，本張獎勵將自動清除！
 StampGetTicketMessage	0	0	已領取露珠碎片
 StampReward	0	0	集點卡獎勵
 StampRewardType1	0	0	經驗值
@@ -9399,25 +7595,13 @@ SyntheticItemType21	0	0	追加裝備
 SyntheticItemType22	0	0	特殊裝備
 SyntheticItemType-1	0	0	全部顯示
 SyntheticMedicineBagAnyFullMessage	0	0	\n背包容量不足，\n可能會無法合成道具。
-LibraryPanelWeaponSkill	0	0	"[ffff77]【學習技能－武器技能】
-[ffffff]各武器專用的必備招式。
-建議專攻同一種武器！"
-LibraryPanelBattleSkill	0	0	"[ffff77]【學習技能－戰鬥技巧】
-[ffffff]學習戰鬥方面的技巧。
-建議將武器技能集中強化！"
-LibraryPanelStrongSkill	0	0	"[ffff77]【學習技能－強化技能】
-[ffffff]能使戰況更為有利的技能。
-使盾、身體防具的性能更加完備！"
-LibraryPanelBufSkill	0	0	"[ffff77]【學習技能－輔助技能】
-[ffffff]冒險路上的好用技能。
-有多餘的技能點數時，不妨學習一下！"
-LibraryPanelLifeSkill	0	0	"[ffff77]【學習技能－生活技能】
-[ffffff]拍賣或生產的相關技能。
-等熟悉遊戲以後再來學習吧！"
-LibraryPanelMessage	0	0	"{0}目前習得技能種類為：{1}種
-[ff0000]想學習更多技能，口袋也得夠深才行！"
-LibraryPanelUnlearned	0	0	"Lv{0}以後
-即可學習"
+LibraryPanelWeaponSkill	0	0	[ffff77]【學習技能－武器技能】\n[ffffff]各武器專用的必備招式。\n建議專攻同一種武器！
+LibraryPanelBattleSkill	0	0	[ffff77]【學習技能－戰鬥技巧】\n[ffffff]學習戰鬥方面的技巧。\n建議將武器技能集中強化！
+LibraryPanelStrongSkill	0	0	[ffff77]【學習技能－強化技能】\n[ffffff]能使戰況更為有利的技能。\n使盾、身體防具的性能更加完備！
+LibraryPanelBufSkill	0	0	[ffff77]【學習技能－輔助技能】\n[ffffff]冒險路上的好用技能。\n有多餘的技能點數時，不妨學習一下！
+LibraryPanelLifeSkill	0	0	[ffff77]【學習技能－生活技能】\n[ffffff]拍賣或生產的相關技能。\n等熟悉遊戲以後再來學習吧！
+LibraryPanelMessage	0	0	{0}目前習得技能種類為：{1}種\n[ff0000]想學習更多技能，口袋也得夠深才行！
+LibraryPanelUnlearned	0	0	Lv{0}以後\n即可學習
 LibraryPanelPopWindowLabel	0	0	學習【{0}Lv{1}】
 LibraryPanelPopWindowText	0	0	學習【{0}】專用技能
 LibraryPanelPopWindowSellingPrice	0	0	學習費用：{0}s
@@ -9616,8 +7800,7 @@ GuildMemberListPost	0	0	職稱
 GuildMemberListActionChange	0	0	變更職稱
 GuildInformationTitle	0	0	公會通知
 GuildInformationEdit	0	0	編輯
-GuildInformationDefault	0	0	"歡迎加入本公會！
-讓我們團結、壯大這裡吧！"
+GuildInformationDefault	0	0	歡迎加入本公會！\n讓我們團結、壯大這裡吧！
 GuildInformationLastUpdateTime	0	0	最新公告日：{0}
 GuildInformationLastEditName	0	0	最終編輯者：{0}
 GuildPanelState0	0	0	邀請組隊
@@ -10485,17 +8668,13 @@ PartyPanelPartyStyle4	0	0	討伐BOSS
 PartyPanelPartyStyle5	0	0	虐殺小怪
 PartyPanelPartyStyle6	0	0	寶物獵人
 PartyPanelPartyCollectionWindowLabel	0	0	招募隊員
-PartyPanelPartyCollectionWindowText	0	0	"編輯自我介紹，等待來自其餘玩家的
-[ffff77]組隊邀請[ffffff]。收到邀請後，[ffff77]可至選單→公告查看。"
+PartyPanelPartyCollectionWindowText	0	0	編輯自我介紹，等待來自其餘玩家的\n[ffff77]組隊邀請[ffffff]。收到邀請後，[ffff77]可至選單→公告查看。
 PartyPanelPartySearchWindowLabel	0	0	搜尋隊伍
-PartyPanelPartySearchWindowText	0	0	"[ffff77]搜尋正在招募成員的隊伍。
-[ffffff]系統將依照申請順序加入成員。請注意，有時會發生被其餘玩家搶先的情況。"
+PartyPanelPartySearchWindowText	0	0	[ffff77]搜尋正在招募成員的隊伍。\n[ffffff]系統將依照申請順序加入成員。請注意，有時會發生被其餘玩家搶先的情況。
 PartyPanelPartySearchWindowLevel	0	0	隊伍平均等級
 PartyPanelPartySearchWindowStyle	0	0	隊伍風格
 PartyPanelMemberSearchWindowLabel	0	0	搜尋隊員
-PartyPanelMemberSearchWindowText	0	0	"可邀請正在尋找隊伍的玩家
-[ffff77]加入隊伍[ffffff]。
-送出邀請後，對方有可能會視情況拒絕。"
+PartyPanelMemberSearchWindowText	0	0	可邀請正在尋找隊伍的玩家\n[ffff77]加入隊伍[ffffff]。\n送出邀請後，對方有可能會視情況拒絕。
 PartyPanelMemberSearchWindowLevel	0	0	等級
 PartyPanelMemberSearchWindowOK	0	0	立即搜尋
 PartyPanelMemberCollectionWindowLabel	0	0	募集成員
@@ -10684,22 +8863,10 @@ SmithStrengthSupport	0	0	精鍊輔助道具
 SmithReconstructionTitle	0	0	改造防具（{0}）
 SmithReconstructionSelectItemGuide	0	0	改造下列防具
 SmithReconstructionLightTitle	0	0	提升迴避性能
-SmithReconstructionLightExplanation	0	0	"・迴避率上升
-
-・攻擊速度上升
-
-[ff7777]・物理防禦下降
-
-・魔法防禦下降"
+SmithReconstructionLightExplanation	0	0	・迴避率上升\n\n・攻擊速度上升\n\n[ff7777]・物理防禦下降\n\n・魔法防禦下降
 SmithReconstructionLightButton	0	0	輕質化
 SmithReconstructionWeightTitle	0	0	提升防禦性能
-SmithReconstructionWeightExplanation	0	0	"・物理防禦提升
-
-・魔法防禦提升
-
-[ff7777]・迴避率下降
-
-・攻擊速度下降"
+SmithReconstructionWeightExplanation	0	0	・物理防禦提升\n\n・魔法防禦提升\n\n[ff7777]・迴避率下降\n\n・攻擊速度下降
 SmithReconstructionWeightButton	0	0	重裝化
 SmithReconstructionCheckWindowTitle	0	0	開始改造
 SmithReconstructionCheckWindowTypeGuideLight	0	0	"將下方防具""[ffff77]輕質化[ffffff]"""
@@ -10715,11 +8882,7 @@ PopUpWindowComplete	0	0	完成
 SmithReconstructionCompleteWindowLabel2	0	0	物理防禦提升
 SmithReconstructionCompleteWindowLabel3	0	0	魔法防禦提升
 SmithReconstructionMissWindowTitle	0	0	無法改造
-SmithReconstructionMissWindowLabel	0	0	"裝備中的防具已經過改造，
-或是無法進行改造。
-
-只有裝備中的防具
-才可進行改造。"
+SmithReconstructionMissWindowLabel	0	0	裝備中的防具已經過改造，\n或是無法進行改造。\n\n只有裝備中的防具\n才可進行改造。
 SmithGrantTitle	0	0	強化裝備（{0}）
 SmithGrantInfoWindowTitle	0	0	強化配方
 SmithGrantInfoWindowList1Potential	0	0	潛力值 {0}
@@ -10732,10 +8895,7 @@ SmithGrantInfoWindowList2StartButton	0	0	開始強化！
 SmithGrantInfoWindowList3ConsumptionPontentialMessageLabel	0	0	[ffff77]剩餘 [ffffff]/ 潛力值 [808080](消耗)
 SmithGrantInfoWindowSetWeaponEmpty	0	0	無裝備物品。
 PopUpWindowDecision	0	0	確定
-SmithGrantWarningWindowMessage	0	0	"強化時的潛力值不足，
-可能無法附加全部能力！
-
-某些情形下，可能會丟失已強化過的能力…"
+SmithGrantWarningWindowMessage	0	0	強化時的潛力值不足，\n可能無法附加全部能力！\n\n某些情形下，可能會丟失已強化過的能力…
 SmithGrantWarningWindowTitle	0	0	有失敗風險！
 SmithGrantWarningWindowStrikeRate	0	0	[ff7777]成功機率{0}％
 SmithGrantInfoWindowCheckPotentialMessageLabel	0	0	--潛力值--
@@ -10839,8 +8999,7 @@ SmithBonusPropertiesCategory8	0	0	強化暴擊
 SmithBonusPropertiesCategory9	0	0	強化屬性
 SmithBonusPropertiesCategory10	0	0	特殊強化
 SmithBonusPropertiesCategory11	0	0	屬性覺醒
-SmithItemNotFound	0	0	"無精鍊所需道具。
-(按左上方按鈕返回。)"
+SmithItemNotFound	0	0	無精鍊所需道具。\n(按左上方按鈕返回。)
 NotUse	0	0	不使用
 SmithManufactureSelectCategory	0	0	[ffff77]請選擇要製作的類別。
 SmithGrantEmptySlot	0	0	[ffff77]可設定能力
@@ -10984,46 +9143,13 @@ RecreateExitMessage	0	0	確定要取消創角並返回嗎？
 RecreateExitTitle	0	0	確定
 RecreateRecipeTypeBody	0	0	身體
 EquipAdviceLabel	0	0	更改你的裝備！
-EquipAdviceText	0	0	"武器和防具可不是擺著好看的。	
-[ffff64]需裝備在身上，才會發揮效用[ffffff]。	
-	
-新的裝備可透過打怪獲得，
-或是到鐵匠鋪自行製作。	
-	
-憑著外觀挑選順眼的裝備，也是一個方法。	
-
-
-▼立刻查看目前裝備"
+EquipAdviceText	0	0	武器和防具可不是擺著好看的。\t\n[ffff64]需裝備在身上，才會發揮效用[ffffff]。\t\n\t\n新的裝備可透過打怪獲得，\n或是到鐵匠鋪自行製作。\t\n\t\n憑著外觀挑選順眼的裝備，也是一個方法。\t\n\n\n▼立刻查看目前裝備
 StatusAdviceLabel	0	0	強化你的角色！
-StatusAdviceText	0	0	"使用此強化點數，自由養成喜歡的角色！	
-
-若要重新配點，則需使用[ffff64]「天地開元之書」[ffffff]。
-配點前可要想清楚了。
-
-
-
-▼立刻強化角色
-"
+StatusAdviceText	0	0	使用此強化點數，自由養成喜歡的角色！\t\n\n若要重新配點，則需使用[ffff64]「天地開元之書」[ffffff]。\n配點前可要想清楚了。\n\n\n\n▼立刻強化角色\n
 SkillAdviceLabel	0	0	學習新的技能！
-SkillAdviceText	0	0	"升級後即可獲得[ffff64]「技能點數」[ffffff]。
-	
-技能點數可用來學習全新技能，
-或強化現有技能。		
-		
-若要重新配點，則需使用[ffff64]「忘卻之書」[ffffff]。配點前可要想清楚了。		
-		
-		
-		
-▼立刻學習新技能
-"
+SkillAdviceText	0	0	升級後即可獲得[ffff64]「技能點數」[ffffff]。\n\t\n技能點數可用來學習全新技能，\n或強化現有技能。\t\t\n\t\t\n若要重新配點，則需使用[ffff64]「忘卻之書」[ffffff]。配點前可要想清楚了。\t\t\n\t\t\n\t\t\n\t\t\n▼立刻學習新技能\n
 QuestAdviceLabel	0	0	完成任務報告！
-QuestAdviceText	0	0	"你已完成某些任務。
-回報後即可獲得報酬。
-
-
-
-
-▼查看已完成的任務"
+QuestAdviceText	0	0	你已完成某些任務。\n回報後即可獲得報酬。\n\n\n\n\n▼查看已完成的任務
 FrendAdviceLabel	0	0	拓展你的人脈！
 FrendAdviceText	0	0	好友永遠不嫌多！
 PartyAdviceLabel	0	0	組隊好處多！
@@ -11031,168 +9157,49 @@ PartyAdviceText	0	0	團結力量大，再強的怪物也不怕！
 GuildAdviceLabel	0	0	公會是什麼？
 GuildAdviceText	0	0	參加社群，結交冒險夥伴。
 CrowdedAdviceLabel	0	0	地圖太過擁擠？
-CrowdedAdviceText	0	0	"若周圍玩家太多，影響遊戲體驗，
-可以試著切換頻道，或許能得到改善。
-
-
-擁擠時，系統會自動加開新頻道。
-若[ffff64]遍尋不著同地圖內的朋友，則有可能並不在同一頻道[ffffff]。
-
-
-▼立刻切換頻道"
+CrowdedAdviceText	0	0	若周圍玩家太多，影響遊戲體驗，\n可以試著切換頻道，或許能得到改善。\n\n\n擁擠時，系統會自動加開新頻道。\n若[ffff64]遍尋不著同地圖內的朋友，則有可能並不在同一頻道[ffffff]。\n\n\n▼立刻切換頻道
 GuildBarLabel	0	0	前往公會酒場
 GuildBarText	0	0	有誰正在酒場裡呢？
 MyRoomLabel	0	0	到自己的房間看看
 MyRoomText	0	0	休息是為了走更長遠的路。
 SaveDataLabel	0	0	怎麼存檔？
-SaveDataText	0	0	"系統將自動保存玩家資料。
-為保全所有資料，請盡量「登出」後
-再關閉遊戲。
-
-
-然而，若是刪除遊戲程式、變更或遺失裝置的情況下，有可能無法找回資料。
-請事先至設定選單內，進行[ffff64]「帳號設定」[ffffff]，即可於變更裝置後，承接先前資料。"
+SaveDataText	0	0	系統將自動保存玩家資料。\n為保全所有資料，請盡量「登出」後\n再關閉遊戲。\n\n\n然而，若是刪除遊戲程式、變更或遺失裝置的情況下，有可能無法找回資料。\n請事先至設定選單內，進行[ffff64]「帳號設定」[ffffff]，即可於變更裝置後，承接先前資料。
 EmotionAdviceLabel	0	0	坐下來歇會兒吧！
-EmotionAdviceText	0	0	"選擇情緒→[ffff64]「坐下」[ffffff]，
-HP與MP回復速度將增為２倍！
-[64ffff]※「跪坐」也可獲得同樣效果[ffffff]
-
-休息時可以多加利用！
-
-
-
-
-▼立刻席地而坐"
+EmotionAdviceText	0	0	選擇情緒→[ffff64]「坐下」[ffffff]，\nHP與MP回復速度將增為２倍！\n[64ffff]※「跪坐」也可獲得同樣效果[ffffff]\n\n休息時可以多加利用！\n\n\n\n\n▼立刻席地而坐
 AutoItemAdviceLabel	0	0	設定自動回復！
-AutoItemAdviceText	0	0	"事先登錄道具，即可在HP減少時，
-自動使用該道具的超便利功能！
-[ffff64]可將活力藥等ＨP補藥設定為自動道具[ffffff]。
-
-初始設定為HP低於25%時發動，
-玩家可依照喜好自由變更。
-
-
-▼立刻設定自動道具"
+AutoItemAdviceText	0	0	事先登錄道具，即可在HP減少時，\n自動使用該道具的超便利功能！\n[ffff64]可將活力藥等ＨP補藥設定為自動道具[ffffff]。\n\n初始設定為HP低於25%時發動，\n玩家可依照喜好自由變更。\n\n\n▼立刻設定自動道具
 TargetAdviceLabel	0	0	優先攻擊遠方敵人！
-TargetAdviceText	0	0	"使用弓箭或連弩時，
-[ffff64]設定優先攻擊遠方敵人[ffffff]，
-戰鬥起來將更加得心應手！
-
-
-想用魔法優先攻擊遠方敵人時，
-也可善加利用此項設定。
-
-
-▼立刻設定優先順序！"
+TargetAdviceText	0	0	使用弓箭或連弩時，\n[ffff64]設定優先攻擊遠方敵人[ffffff]，\n戰鬥起來將更加得心應手！\n\n\n想用魔法優先攻擊遠方敵人時，\n也可善加利用此項設定。\n\n\n▼立刻設定優先順序！
 ControlAdviceLabel	0	0	調整操作設定
-ControlAdviceText	0	0	"可至系統設定內，更改捷徑配置、
-鏡頭反轉、感應度強弱等各項設定。
-
-亦可解除攻擊時的鏡頭跟隨，
-或優先鎖定遠方敵人。
-
-找到最適合自己的操作吧。
-
-
-▼立刻更改設定"
+ControlAdviceText	0	0	可至系統設定內，更改捷徑配置、\n鏡頭反轉、感應度強弱等各項設定。\n\n亦可解除攻擊時的鏡頭跟隨，\n或優先鎖定遠方敵人。\n\n找到最適合自己的操作吧。\n\n\n▼立刻更改設定
 CameraAdviceLabel	0	0	關閉鏡頭自動跟隨
-CameraAdviceText	0	0	"鎖定對象後，鏡頭將自動追隨目標，
-可至系統設定中，將[ffff64]「自動追蹤」[ffffff]關閉，
-即可解除。
-
-
-如果覺得鏡頭轉動影響到操作，
-可嘗試關閉此項。
-
-
-▼立刻去試試"
-CameraAdviceNewText	0	0	"鎖定對象後，鏡頭將自動追隨目標，
-可至系統設定中，將[ffff64]「鎖定目標時鏡頭面向目標」[ffffff]關閉，
-即可解除。
-
-
-如果覺得鏡頭轉動影響到操作，
-可嘗試關閉此項。
-
-
-▼立刻去試試"
+CameraAdviceText	0	0	鎖定對象後，鏡頭將自動追隨目標，\n可至系統設定中，將[ffff64]「自動追蹤」[ffffff]關閉，\n即可解除。\n\n\n如果覺得鏡頭轉動影響到操作，\n可嘗試關閉此項。\n\n\n▼立刻去試試
+CameraAdviceNewText	0	0	鎖定對象後，鏡頭將自動追隨目標，\n可至系統設定中，將[ffff64]「鎖定目標時鏡頭面向目標」[ffffff]關閉，\n即可解除。\n\n\n如果覺得鏡頭轉動影響到操作，\n可嘗試關閉此項。\n\n\n▼立刻去試試
 GraphicAdviceLabel	0	0	關閉顯示，痛快冒險！
-GraphicAdviceText	0	0	"覺得畫面中人物過多，不夠順暢嗎？	
-[ffff64]隱藏[ffffff]其餘玩家，
-即可暢快享受冒險。
-	
-	
-組隊進行遊戲時，可關閉所有顯示設定，
-也許會順暢許多喔。
-	
-	
-▼立刻去試試"
+GraphicAdviceText	0	0	覺得畫面中人物過多，不夠順暢嗎？\t\n[ffff64]隱藏[ffffff]其餘玩家，\n即可暢快享受冒險。\n\t\n\t\n組隊進行遊戲時，可關閉所有顯示設定，\n也許會順暢許多喔。\n\t\n\t\n▼立刻去試試
 ComboAdviceLabel	0	0	學習連擊！
-ComboAdviceText	0	0	"學會使用連擊後，
-可以更簡單的使用多種技能。
-
-・減少MP消費
-・增加傷害
-・快速敏捷地使用技能
-
-利用連擊，
-發揮出角色的特殊能力。
-
-▼怎麼學會連擊？
-　[ffff64]學會5種技能後，
-即可使用連擊。[ffffff]"
+ComboAdviceText	0	0	學會使用連擊後，\n可以更簡單的使用多種技能。\n\n・減少MP消費\n・增加傷害\n・快速敏捷地使用技能\n\n利用連擊，\n發揮出角色的特殊能力。\n\n▼怎麼學會連擊？\n　[ffff64]學會5種技能後，\n即可使用連擊。[ffffff]
 PartnerAdviceLabel	0	0	召喚夥伴！
-PartnerAdviceText	0	0	"[ffff64]可以將未使用的欄位角色[ffffff]
-[ffff64]召喚成隊友。[ffffff]
-
-
-可在切換角色畫面，
-設定帶他同行。
-
-
-
-▼立刻帶他同行"
+PartnerAdviceText	0	0	[ffff64]可以將未使用的欄位角色[ffffff]\n[ffff64]召喚成隊友。[ffffff]\n\n\n可在切換角色畫面，\n設定帶他同行。\n\n\n\n▼立刻帶他同行
 HouseAddPartitionLabel	0	0	阻擋野生怪物！
 HouseAddPartitionAdviceLabel	0	0	阻擋野生怪物！
-HouseAddPartitionAdviceText	0	0	" [ffff64]土地外圍全被設定成室內了！[ffffff]
-
-這種狀況下，
-野生怪物將無法進入你的基地。
-
-若想收養野生怪物，
-請至少設定1格可連接外部的土地。"
+HouseAddPartitionAdviceText	0	0	 [ffff64]土地外圍全被設定成室內了！[ffffff]\n\n這種狀況下，\n野生怪物將無法進入你的基地。\n\n若想收養野生怪物，\n請至少設定1格可連接外部的土地。
 HouseAddPartitionItem	0	0	 分區設定
 HouseSetGardenItemLabel	0	0	試著裝飾庭院吧！
 HouseSetGardenItemAdviceLabel	0	0	試著裝飾庭院吧！
-HouseSetGardenItemAdviceText	0	0	"   覺不覺得庭院好空曠？
-[ffff64]試著製作並擺上庭院裝飾吧！[ffffff]
-
-[ffff64]第一次製作的庭院裝飾，所需的素材較多[ffffff]，
-但第2次起，可能可用較少材料製作。
-"
+HouseSetGardenItemAdviceText	0	0	   覺不覺得庭院好空曠？\n[ffff64]試著製作並擺上庭院裝飾吧！[ffffff]\n\n[ffff64]第一次製作的庭院裝飾，所需的素材較多[ffffff]，\n但第2次起，可能可用較少材料製作。\n
 HouseSetGardenItem	0	0	 改造庭院
 HouseSetRoomItemLabel	0	0	試著擺上家具吧！
 HouseSetRoomItemAdviceLabel	0	0	試著擺上家具吧！
-HouseSetRoomItemAdviceText	0	0	" 覺不覺得庭院好空曠？
-[ffff64]試著製作並擺上家具吧！[ffffff]
-
-[ffff64]第一次製作的家具，所需的素材較多[ffffff]，
-但第2次起，可能可用較少材料製作。"
+HouseSetRoomItemAdviceText	0	0	 覺不覺得庭院好空曠？\n[ffff64]試著製作並擺上家具吧！[ffffff]\n\n[ffff64]第一次製作的家具，所需的素材較多[ffffff]，\n但第2次起，可能可用較少材料製作。
 HouseSetRoomItem	0	0	管理家具  
 HouseCreateRoomLabel	0	0	蓋房子吧！
 HouseCreateRoomAdviceLabel	0	0	蓋房子吧！
-HouseCreateRoomAdviceText	0	0	" 你的土地上現在都是庭院！
-利用分區設定，[ffff64]區分室內外[ffffff]吧！
-
-設定好室內區塊後，別忘了裝上門喔！"
+HouseCreateRoomAdviceText	0	0	 你的土地上現在都是庭院！\n利用分區設定，[ffff64]區分室內外[ffffff]吧！\n\n設定好室內區塊後，別忘了裝上門喔！
 HouseCreateRoom	0	0	 分區設定
 HouseCreateHouseLabel	0	0	裝潢房屋吧！
 HouseCreateHouseAdviceLabel	0	0	裝潢房屋吧！
-HouseCreateHouseAdviceText	0	0	" 不想幫房屋裝潢一下嗎？
-也可以更改室內的壁紙和地板喔！
-
-需要花費比家具更多的素材，
-但只要製作過一次，就可以無限更換。"
+HouseCreateHouseAdviceText	0	0	 不想幫房屋裝潢一下嗎？\n也可以更改室內的壁紙和地板喔！\n\n需要花費比家具更多的素材，\n但只要製作過一次，就可以無限更換。
 HouseCreateHouse	0	0	 改造房屋
 StylistSeletStylist	0	0	變更{0}
 StylistUseItemStorage	0	0	ー　消耗道具　－
@@ -11201,8 +9208,7 @@ StylistUseItemStorageShop	0	0	店家負擔
 StylistSeletStylistParts	0	0	ー　請選擇{0}　－
 StylistUseItemList	0	0	將消耗道具
 StylistName	0	0	設計師姓名
-StylistPossibleNum	0	0	"可作造型次數
-　剩餘　{0}次　　來店次數　{1}/{2}"
+StylistPossibleNum	0	0	可作造型次數\n　剩餘　{0}次　　來店次數　{1}/{2}
 StylistEnter	0	0	確定！
 StylistNeedItem	0	0	需要道具
 StylistNeedItemNum	0	0	持有數量：[000000]{0}個
@@ -11227,20 +9233,17 @@ WarehouseButtonName	0	0	【倉庫{0}：{1}】
 WarehouseButtonNameLock	0	0	未開放
 WarehouseButtonNameDefault	0	0	自由輸入訊息
 WarehouseButtonMessageDefault	0	0	點擊使用倉庫
-WarehouseButtonMessageLock	0	0	"目前無權使用此倉庫。
-請點擊以開放倉庫。"
+WarehouseButtonMessageLock	0	0	目前無權使用此倉庫。\n請點擊以開放倉庫。
 WarehouseButtonSlot	0	0	收納數量  {0}/{1}
 WarehouseInputNameLabel	0	0	▼倉庫名稱
 WarehouseInputNameText	0	0	請輸入倉庫名稱
 WarehouseInputMessageLabel	0	0	▼倉庫說明文
 WarehouseInputButton	0	0	更新
 WarehouseSelectedPickUp	0	0	提領
-WarehouseSelectedPickUpMax	0	0	"提領
-身上背包已滿！"
+WarehouseSelectedPickUpMax	0	0	提領\n身上背包已滿！
 WarehouseSelectedCustom	0	0	編輯
 WarehouseSelectedPutIn	0	0	寄放
-WarehouseSelectedPutInMax	0	0	"寄放
-倉庫已滿！"
+WarehouseSelectedPutInMax	0	0	寄放\n倉庫已滿！
 WarrantyItemBagErrLabel	0	0	警告
 WarrantyItemBagErrText	0	0	背包已滿
 ItemPanelPopUpUseLabel	0	0	使用道具
@@ -11266,15 +9269,9 @@ ItemPanelChangePanel	0	0	切換
 ItemPanelLock	0	0	鎖定
 ItemPanelUnLock	0	0	解除鎖定
 ItemPanelPopUpLockLabel	0	0	物品鎖定
-ItemPanelPopUpLockMessage	0	0	"鎖定{0}。
-解除鎖定前，
-無法刪除、販售、
-與素材加工。"
+ItemPanelPopUpLockMessage	0	0	鎖定{0}。\n解除鎖定前，\n無法刪除、販售、\n與素材加工。
 ItemPanelPopUpUnLockLabel	0	0	解除鎖定
-ItemPanelPopUpUnLockMessage	0	0	"解鎖{0}。
-解除鎖定後，
-即可進行刪除、販售、
-與素材加工。"
+ItemPanelPopUpUnLockMessage	0	0	解鎖{0}。\n解除鎖定後，\n即可進行刪除、販售、\n與素材加工。
 ItemPanelPopUpDeleteButton	0	0	丟棄
 ItemPanelPopUpDeleteRefineLabel	0	0	[ff3333]此道具精鍊值為 {0} 。
 ItemPanelPopUpDeleteCristaLabel	0	0	[ff3333]已裝備{0}。
@@ -11282,31 +9279,18 @@ ItemPanelPopUpDeleteEquipLabel	0	0	丟棄[C8C800]{0} [ffffff]。
 ItemPanelPopUpDeleteItemLabel	0	0	丟棄[C8C800]{0}　ｘ{1} [ffffff]
 ItemPanelPopUpDeleteTextLabel	0	0	物品丟棄後即無法回復！
 ItemPanelPopUpDeleteCristaSlotLabel	0	0	[ff3333]含{0}個鑲嵌孔
-ItemPanelBattleChangeErrLabel	0	0	"戰鬥中\n
-無法變更裝備"
+ItemPanelBattleChangeErrLabel	0	0	戰鬥中\n\n無法變更裝備
 ItemPanelPopUpUnEquipLabel	0	0	解除裝備
 ItemPanelPopUpUnEquipText	0	0	是否解除{0}?
 BuyNewItemSlot	0	0	購買新欄位
 BuyNewItemSlotText	0	0	已購入新欄位
 BuyNewItemSlotTextErr	0	0	購買新欄位失敗
-BuyNewItemBagSlotText	0	0	"消耗{0}個露珠
-
-持有數量：{1}
-
-[FFFF99]可追加1個新欄位"
-BuyNewItemStorageSlotText	0	0	"消耗{0}個露珠
-
-持有數量：{1}
-
-[FFFF99]可追加5個新欄位"
+BuyNewItemBagSlotText	0	0	消耗{0}個露珠\n\n持有數量：{1}\n\n[FFFF99]可追加1個新欄位
+BuyNewItemStorageSlotText	0	0	消耗{0}個露珠\n\n持有數量：{1}\n\n[FFFF99]可追加5個新欄位
 BuyNewStorageText	0	0	購買了新倉庫
 BuyNewStorageTextErr	0	0	購買新倉庫失敗
 StoragePanelNewBuyPopUpTitle	0	0	購買新倉庫
-StoragePanelNewBuyPopUp	0	0	"消耗{0}個露珠
-
-持有數量：{1}
-
-[FFFF99]購買新倉庫(10個欄位)"
+StoragePanelNewBuyPopUp	0	0	消耗{0}個露珠\n\n持有數量：{1}\n\n[FFFF99]購買新倉庫(10個欄位)
 StorageEditOverPopUpTitle	0	0	超過字數上限
 StorageEditOverPopUpText	0	0	輸入的文字數\n超過上限。
 ItemPanelPopUpDeleteEquipMessage	0	0	無法丟棄裝備中物品。
@@ -11314,9 +9298,7 @@ ItemPanelPopUpDeleteIndefeasibleMessage	0	0	無法丟棄{0}
 ItemPanelPopUpDeleteLockMessage	0	0	{0}被鎖定，\n無法丟棄。
 BagPanelAddSlotMaxText	0	0	\n\n已達購買上限，\n無法繼續購買。
 BagPanelAddSlotWindowButtonErr	0	0	[ff0000]無法繼續購買。
-EquipPanelRecycleGoldOverMessage	0	0	"眾神幣持有上限為21億。
-若回收物品後抽中眾神幣，
-超出的金額將被取消！"
+EquipPanelRecycleGoldOverMessage	0	0	眾神幣持有上限為21億。\n若回收物品後抽中眾神幣，\n超出的金額將被取消！
 ItemPanelNextButton	0	0	下一頁
 MapPanelRestItemAddBuyOrbNum	0	0	製作露珠
 ItemBagPanelOrbAddSlot	0	0	增加背包欄位
@@ -11381,12 +9363,7 @@ UIItemScrollListNonFilterNumLabel0	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterNumLabel1	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterNumLabel2	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterMessageLabel	0	0	[ffff00]若稀有道具超過上限，則會臨時放入暫存背包（僅限稀有道具）\n在暫存背包使用期間，怪物不會掉寶。
-BuyNewItemBagSlotNumText	0	0	"消耗{0}個露珠
-持有數量：{1}
-
-[FFFF99]可追加1個新欄位
-
-{2} → {3}"
+BuyNewItemBagSlotNumText	0	0	消耗{0}個露珠\n持有數量：{1}\n\n[FFFF99]可追加1個新欄位\n\n{2} → {3}
 ItemBagPanelFavoriteItem	0	0	最愛
 ItemBagPanelAutoDeleteOption	0	0	[aaaaaa]AUTO\n設定
 ItemBagPanelDisplayOption	0	0	一併顯示背包
@@ -11422,11 +9399,7 @@ OrbServiceErrorText	0	0	\n購買服務失敗。\n\n請檢查連線狀況後，�
 OrbShopConnectErrorTitle	0	0	連線錯誤
 OrbShopConnectErrorText	0	0	無法完成連線。\n\n請檢查連線狀況後，重新嘗試。\n若問題仍未改善，請與客服聯絡。
 OrbBuyPanelCreateOrbLabel	0	0	製作露珠
-OrbBuyPanelCreateOrbText	0	0	"消耗１００個露珠碎片。
-
-持有數量:{0}
-
-製作１個露珠"
+OrbBuyPanelCreateOrbText	0	0	消耗１００個露珠碎片。\n\n持有數量:{0}\n\n製作１個露珠
 OrbBuyPanelCreateOrbSuccessText	0	0	製作１個露珠
 OrbGachaItemNameText	0	0	{0}ｘ{1}個
 OrbLuckBagInfoText	0	0	{0}種
@@ -11437,11 +9410,7 @@ OrbShopPanelBuyCopyText	0	0	購買本數位產品即等同於獲得授權。\n�
 OrbBuyPanelBuyCopyText	0	0	購買本數位產品即等同於獲得授權。\n進入購買程序即視為您已同意使用條款。\n
 OrbBuyPanelCreateTicketLabel	0	0	兌換禮券
 OrbBuyPanelCreateTicketButton	0	0	使用缺角兌換禮券
-OrbBuyPanelCreateTicketText	0	0	"消耗100個禮券的缺角
-
-持有數:{0}
-
-兌換一張造型禮券。"
+OrbBuyPanelCreateTicketText	0	0	消耗100個禮券的缺角\n\n持有數:{0}\n\n兌換一張造型禮券。
 OrbBuyPanelCreateTicketSuccessText	0	0	獲得一張造型禮券。
 OrbBuyPanelCreateTicketButton	0	0	使用缺角兌換禮券
 OrbBuyPanelCreateTicketErrText	0	0	無法交換造型禮券。
@@ -11553,44 +9522,7 @@ EquipPanelPopUpAvatarRecycleText	0	0	回收[C8C800]{0} [ffffff]
 EquipPanelPopUpAvatarRecycleMessage	0	0	物品回收後即無法恢復！
 EquipPanelAvatarRecycleButton	0	0	回收
 EquipPanelAvatarRecycleItemCheckText	0	0	可換取下方其中一樣物品。是否確定？
-EquipPanelAvatarRecycleItemCheckText2	0	0	"              ・經驗值
-              ・眾神幣 1,000s
-              ・眾神幣2,000s
-              ・眾神幣3,000s
-              ・眾神幣4,000s
-              ・眾神幣5,000s
-              ・眾神幣6,000s
-              ・眾神幣7,000s
-              ・眾神幣8,000s
-              ・眾神幣9,000s
-              ・眾神幣10,000s
-              ・高純度鐵 x10
-              ・高純度大馬士革 x5
-              ・高純度秘銀 x3
-              ・高純度奧利哈鋼 x1
-              ・破掉的型錄 x3
-              ・破掉的型錄 x6
-              ・破掉的型錄 x9
-              ・聖光碎玉 x10
-              ・聖光碎玉x30
-              ・聖光碎玉x50
-              ・彩色碎玉 x10
-              ・彩色碎玉 x30
-              ・彩色碎玉 x50
-              ・[ffff64] 萬無一失券 (100%) [ffffff] x1
-              ・[ffff64] 精鍊加值券 (2倍)[ffffff] x1
-              ・[ffff64] 精鍊加值券(3倍)[ffffff] x1
-              ・[ffff64] 鐵匠鎚子[ffffff] x1
-              ・[ffff64] 無限晶石[ffffff] x1
-              ・[ffff64] 復活晶石[ffffff] x1
-              ・[ffff64] 珍寶晶石[ffffff] x1
-              ・[ffff64] 稀世晶石[ffffff] x1
-              ・[ffff64] 傳奇晶石[ffffff] x1
-              ・[ffff64] 終極晶石[ffffff] x1
-
-※獲得的經驗值將依目前角色等級有所變化。
-※若EXP已滿(Lv已達上限)，則不會抽中經驗值。
-※若眾神幣已達上限(21億)，則不會抽中眾神幣。"
+EquipPanelAvatarRecycleItemCheckText2	0	0	              ・經驗值\n              ・眾神幣 1,000s\n              ・眾神幣2,000s\n              ・眾神幣3,000s\n              ・眾神幣4,000s\n              ・眾神幣5,000s\n              ・眾神幣6,000s\n              ・眾神幣7,000s\n              ・眾神幣8,000s\n              ・眾神幣9,000s\n              ・眾神幣10,000s\n              ・高純度鐵 x10\n              ・高純度大馬士革 x5\n              ・高純度秘銀 x3\n              ・高純度奧利哈鋼 x1\n              ・破掉的型錄 x3\n              ・破掉的型錄 x6\n              ・破掉的型錄 x9\n              ・聖光碎玉 x10\n              ・聖光碎玉x30\n              ・聖光碎玉x50\n              ・彩色碎玉 x10\n              ・彩色碎玉 x30\n              ・彩色碎玉 x50\n              ・[ffff64] 萬無一失券 (100%) [ffffff] x1\n              ・[ffff64] 精鍊加值券 (2倍)[ffffff] x1\n              ・[ffff64] 精鍊加值券(3倍)[ffffff] x1\n              ・[ffff64] 鐵匠鎚子[ffffff] x1\n              ・[ffff64] 無限晶石[ffffff] x1\n              ・[ffff64] 復活晶石[ffffff] x1\n              ・[ffff64] 珍寶晶石[ffffff] x1\n              ・[ffff64] 稀世晶石[ffffff] x1\n              ・[ffff64] 傳奇晶石[ffffff] x1\n              ・[ffff64] 終極晶石[ffffff] x1\n\n※獲得的經驗值將依目前角色等級有所變化。\n※若EXP已滿(Lv已達上限)，則不會抽中經驗值。\n※若眾神幣已達上限(21億)，則不會抽中眾神幣。
 EquipPanelAvatarRecycleWaitText	0	0	準備回收。\n請稍候。
 EquipPanelAvatarRecycleCancel	0	0	已被取消。
 EquipPanelAvatarRecycleErr	0	0	回收失敗。
@@ -11630,41 +9562,15 @@ ReportTypeDefactMessage	0	0	疑似Bug現象之回報窗口。
 ReportTypeFraudButton	0	0	舉報
 ReportTypeFraudMessage	0	0	介紹舉報的方法。
 ReportFradProcedureTitle	0	0	如何舉報
-ReportFradProcedureMessage	0	0	"如果於遊戲內發現任何騷擾或不當行為，請使用下列方式進行舉報。
-
-*舉報對象的角色有出現在畫面中時:
-1. 點擊舉報對象的角色。
-2. 點擊 [下一頁]。
-3. 點擊 [舉報]。
-4. 依照畫面指示進行舉報。
-
-*從聊天視窗中進行舉報:
-1. 向上滑動聊天視窗。
-2. 點擊發言者的名字。
-3. 點擊 [下一頁]。
-4. 點擊 [舉報]。
-5. 依照畫面指示進行舉報。
-
-*對信件進行舉報:
-1. 打開欲舉報的信件。
-2. 點擊『查閱內容』。
-3. 點擊寄件者名稱。
-4. 點擊『舉報』。
-5. 依照畫面指示進行舉報。
-
-*關於在遊戲外發生的相關行為:
-關於發生在遊戲外，於其他公司網站進行之行為，請恕弊公司無法做進一步的對應。如果於其他公司之網站發現相關情事，請直接與該網站的營運者進行檢舉。"
+ReportFradProcedureMessage	0	0	如果於遊戲內發現任何騷擾或不當行為，請使用下列方式進行舉報。\n\n*舉報對象的角色有出現在畫面中時:\n1. 點擊舉報對象的角色。\n2. 點擊 [下一頁]。\n3. 點擊 [舉報]。\n4. 依照畫面指示進行舉報。\n\n*從聊天視窗中進行舉報:\n1. 向上滑動聊天視窗。\n2. 點擊發言者的名字。\n3. 點擊 [下一頁]。\n4. 點擊 [舉報]。\n5. 依照畫面指示進行舉報。\n\n*對信件進行舉報:\n1. 打開欲舉報的信件。\n2. 點擊『查閱內容』。\n3. 點擊寄件者名稱。\n4. 點擊『舉報』。\n5. 依照畫面指示進行舉報。\n\n*關於在遊戲外發生的相關行為:\n關於發生在遊戲外，於其他公司網站進行之行為，請恕弊公司無法做進一步的對應。如果於其他公司之網站發現相關情事，請直接與該網站的營運者進行檢舉。
 ReportTypeOtherButton	0	0	其他
 ReportTypeOtherMessage	0	0	上述以外事項之諮詢窗口。
 ReportMailAdress	0	0	- 電子信箱 -\n例）toramonline@gmail.com
 ReportCharacterName	0	0	- 您的角色名稱 -
 ReportTargetCharacterName	0	0	- 要舉報的角色名稱 -
-ReportDay	0	0	"- 日期  -
-例) YYYY年 MM月 DD日 HH點 MM分"
+ReportDay	0	0	- 日期  -\n例) YYYY年 MM月 DD日 HH點 MM分
 ReportPrice	0	0	- 購買的露珠數量  / 方案名稱 -
-ReportPurchaseNumber	0	0	"- Google訂閱號碼 -
-範例 (*字部分的17碼數字)
-GPA.****-****-****-*****"
+ReportPurchaseNumber	0	0	- Google訂閱號碼 -\n範例 (*字部分的17碼數字)\nGPA.****-****-****-*****
 ReportPhoneModel	0	0	- 裝置型號 -
 ReportOS	0	0	-  OS 版本 -
 ReportIOS	0	0	-  iOS 的版本 -
@@ -11674,8 +9580,7 @@ ReportProvider	0	0	- 電信業者 / Wi-Fi 提供業者 (ISP) -
 ReportWorld	0	0	- 地區 -
 ReportMap	0	0	- 地圖 -
 ReportErrorMessage	0	0	- 錯誤訊息 -
-ReportPurchaseDay	0	0	"- 購買日期  -
-例) YYYY年 MM月 DD日 HH點 MM分"
+ReportPurchaseDay	0	0	- 購買日期  -\n例) YYYY年 MM月 DD日 HH點 MM分
 ReportCharacterID	0	0	- 欄位角色名稱 (欄位角色ID) -
 ReportFreeMessage	0	0	- 內容(詳細描述) -
 ReportSendButton	0	0	送出
@@ -11696,10 +9601,7 @@ ReportTypeUserDeleteButton	0	0	帳號刪除申請
 OrbGachaItemListAvatarButton	0	0	試穿
 DailyDartsGameStartLabel	0	0	玩贈獎遊戲
 DailyDartsGameStartPopUpTitle	0	0	投擲飛鏢
-DailyDartsGameStartPopUpText	0	0	"1天可擲3次飛鏢。
-
-[ff0000]*若於贈獎遊戲過程中連線中斷，
-可能造成獎品消失，敬請留意。"
+DailyDartsGameStartPopUpText	0	0	1天可擲3次飛鏢。\n\n[ff0000]*若於贈獎遊戲過程中連線中斷，\n可能造成獎品消失，敬請留意。
 DailyDartsGameHitOutPopUpText	0	0	銘謝惠顧...\n無獲得獎品。
 DailyDartsGameHitPopUpButton1	0	0	再試一次。(剩餘{0}次)
 DailyDartsGameHitPopUpButton2	0	0	獲得獎品
@@ -11784,26 +9686,15 @@ OrbBuyPanelBonusNum	0	0	+{0}個
 OrbBuyPanelNew	0	0	New!
 OrbHistoryNonList	0	0	無購買紀錄。
 OrbBuyRefreshTitle	0	0	完成購買手續
-OrbBuyRefreshMainMes	0	0	"在購買露珠或月費方案的過程中，
-若發生錯誤導致購買被中斷，
-可在此完成被中斷的購買手續。"
+OrbBuyRefreshMainMes	0	0	在購買露珠或月費方案的過程中，\n若發生錯誤導致購買被中斷，\n可在此完成被中斷的購買手續。
 OrbBuyRefreshButton	0	0	完成購買手續
 OrbBuyRefreshCheckMes	0	0	正在確認被中斷的購買手續・・・
 OrbBuyRefreshButtonCancel	0	0	取消
 OrbBuyRefreshSuccessMes	0	0	被中斷的購買手續已處理完成。
-OrbBuyRefreshNothingMes	0	0	"購買手續可能已處理完成。
-請重新啟動裝置並確認露珠的持有數量。"
+OrbBuyRefreshNothingMes	0	0	購買手續可能已處理完成。\n請重新啟動裝置並確認露珠的持有數量。
 OrbBuyRefreshButtonOk	0	0	OK
-OrbBuyRefreshSuccessMes2	0	0	"尚有被中斷的購買手續。
-商品反映至帳號需要約1小時，敬請耐心等候。
-
-若已經過1小時以上且商品仍未反映至帳號，
-請由遊戲內的『選單 ＞ 露珠商店 ＞ 聯絡客服 ＞ 露珠』進行客服諮詢。"
-OrbBuyRefreshNothingMes2	0	0	"購買手續可能已處理完成。
-請重新啟動裝置並再次進行確認。
-
-若已購買的露珠與月費方案仍未反映至帳號，
-請由遊戲內的『選單 ＞ 露珠商店 ＞ 聯絡客服 ＞ 露珠』進行客服諮詢。"
+OrbBuyRefreshSuccessMes2	0	0	尚有被中斷的購買手續。\n商品反映至帳號需要約1小時，敬請耐心等候。\n\n若已經過1小時以上且商品仍未反映至帳號，\n請由遊戲內的『選單 ＞ 露珠商店 ＞ 聯絡客服 ＞ 露珠』進行客服諮詢。
+OrbBuyRefreshNothingMes2	0	0	購買手續可能已處理完成。\n請重新啟動裝置並再次進行確認。\n\n若已購買的露珠與月費方案仍未反映至帳號，\n請由遊戲內的『選單 ＞ 露珠商店 ＞ 聯絡客服 ＞ 露珠』進行客服諮詢。
 OrbBuyRefreshInquiry	0	0	聯絡客服
 AccountManagerCheckIdErrTitle	0	0	帳號資訊更新失敗。
 AccountManagerCheckIdErrMessage	0	0	\n\n\n帳號資訊更新失敗。\n將重新啟動托蘭異世錄。
@@ -11815,10 +9706,7 @@ OrbItemUsePanelSkillCompensationPopUpMessage	0	0	[ffff64]現在可免費重置�
 OrbItemUsePanelStatusCompensationPopUpMessage	0	0	[ffff64]現在可免費重置能力數值。\n詳情請參考公告。[ffffff]
 OrbItemUsePanelEntryErrPopUpText	0	0	若已經加入，則無法使用此道具。
 OrbBuyContactTitle	0	0	露珠
-OrbBuyContactMes	0	0	"若您購買的露珠與月費方案未正常反映至遊戲內，
-請嘗試以下操作，問題或可得到解決。
-
-[ffc900]於遊戲內點擊『選單 ＞ 露珠商店 ＞ 增加露珠 ＞ 完成購買手續』內之『完成購買手續』選項。[ffffff]"
+OrbBuyContactMes	0	0	若您購買的露珠與月費方案未正常反映至遊戲內，\n請嘗試以下操作，問題或可得到解決。\n\n[ffc900]於遊戲內點擊『選單 ＞ 露珠商店 ＞ 增加露珠 ＞ 完成購買手續』內之『完成購買手續』選項。[ffffff]
 OrbBuyContactToRefreshButton	0	0	嘗試『完成購買手續』
 OrbBuyContactToFormButton	0	0	聯絡客服
 ReportTypePrisonButton	0	0	不當行為
@@ -12003,8 +9891,7 @@ DungeonEnterPanelAreaLevelPopUpUserLabel	0	0	由B[ffff88]{0}[ffffff]重新開始
 DungeonEnterPanelAreaLevelPopUpUserText	0	0	由到達的最深處附近之樓層重新開始
 DungeonEnterPanelAreaLevelPopUpUserErr	0	0	未探索地區
 DungeonEnterPanelRecoverylPopUpTitle	0	0	使用{0}進行回復
-DungeonEnterPanelRecoverylPopUpText	0	0	"可使用1個{0}
-補滿傳送魔力"
+DungeonEnterPanelRecoverylPopUpText	0	0	可使用1個{0}\n補滿傳送魔力
 DungeonEnterTitleMasoPoint	0	0	魔素pt
 DungeonEnterCoinHave	0	0	{0} 
 DungeonEnterCoinItemHave	0	0	持有{0}個
@@ -12012,12 +9899,10 @@ DungeonEnterManaMaxCoinItem	0	0	魔力藥
 DungeonEnterMasoText	0	0	回復{0}% \n[ffff88]消耗魔素 {1}pt
 DungeonEnterMasoPoint	0	0	剩餘魔素：[ff0000]{0}pt
 DungeonDeadPopUpTitle	0	0	脫離迷宮
-DungeonDeadPopUpText	0	0	"脫離迷宮後，
-無法重新入場。確定離開嗎？"
+DungeonDeadPopUpText	0	0	脫離迷宮後，\n無法重新入場。確定離開嗎？
 DungeonEnterPanelLeaderSelect	0	0	由隊長選擇進入樓層。
 DungeonEnterPanelReadyTextWait	0	0	有玩家尚未準備好。
-DungeonEnterPanelSubLabel	0	0	"目前沒有來自公會成員的
-探索迷宮邀請。"
+DungeonEnterPanelSubLabel	0	0	目前沒有來自公會成員的\n探索迷宮邀請。
 DungeonEnterPanelSubText	0	0	(由隊長開啟此選單，發出邀請。)
 DungeonEventGetKeyMessage	0	0	獲得鑰匙！
 DungeonEventAcitveTrap	0	0	踩到陷阱{0}！
@@ -12026,8 +9911,7 @@ DungeonEnterPanelEnterLockLabel	0	0	目前無法挑戰迷宮。
 DungeonEnterPanelTimeOutLabel	0	0	目前無法回復魔力。
 DungeonDeadWindowLabel	0	0	迷宮中無法復活。
 DungeonEnterPopUpTitle	0	0	最終確認
-DungeonEnterPopUpMessage	0	0	"消耗魔力{1}進入迷宮Ｂ{0}。
-確定要進入嗎？"
+DungeonEnterPopUpMessage	0	0	消耗魔力{1}進入迷宮Ｂ{0}。\n確定要進入嗎？
 DungeonEnterMagicPower	0	0	魔力
 DungeonEnterPanelEnterNPCErrLabel	0	0	無法攜帶傭兵或夥伴進入迷宮
 DungeonEnterPanelEnterNPCErrLabelEx	0	0	無法攜帶傭兵・夥伴・寵物等\n進入迷宮
@@ -12060,25 +9944,14 @@ BossTrophyBreaker	0	0	Breaker
 BossTrophysBreaker	0	0	破甲
 BossTrophyAssister	0	0	Assister
 BossTrophysAssister	0	0	輔助
-BossMenuBossStatus	0	0	"BOSS資訊
-
-HP  {0}
-EXP  {1}
-{2}
-{3}
-
-掉落物
-
-共 {4}種
-部位破壞 {5}"
+BossMenuBossStatus	0	0	BOSS資訊\n\nHP  {0}\nEXP  {1}\n{2}\n{3}\n\n掉落物\n\n共 {4}種\n部位破壞 {5}
 BossMenuBossPartsCount	0	0	{0} 處
 BossMenuBossPartsNot	0	0	無
 BossMenuBattleLevel	0	0	建議等級：Lv {0}
 BossMenuBossBattle	0	0	BOSS BATTLE
 BossMenuBossReady	0	0	準備好後，即可開始BOSS戰
 BossResultNoUser	0	0	無
-BossMenuGemErr	0	0	"沒有可使用的
-輔助道具"
+BossMenuGemErr	0	0	沒有可使用的\n輔助道具
 BossMenuDifficulty	0	0	難易度
 BossMenuDifficultyEasyMode	0	0	Easy
 BossMenuDifficultyNormalMode	0	0	Normal
@@ -12087,17 +9960,7 @@ BossMenuDifficultyLunaticMode	0	0	Nightmare
 BossMenuDifficultyUltimateMode	0	0	Ultimate
 BossMenuNoUseItem	0	0	[64ffff]無法於此難易度下使用。
 BossMenuNoRecommendLevel	0	0	未達建議等級。
-BossMenuBossDifficultyStatus	0	0	"BOSS資訊
-
-HP  {0}
-EXP  {1}
-{2}
-{3}
-
-掉落物
-
-共 {4}種{5}
-部位破壞 {6}"
+BossMenuBossDifficultyStatus	0	0	BOSS資訊\n\nHP  {0}\nEXP  {1}\n{2}\n{3}\n\n掉落物\n\n共 {4}種{5}\n部位破壞 {6}
 BossMenuNoRareItem	0	0	[64ffff]EASY模式下將無掉落稀有道具。[ffffff]
 BossMenuColorWeapon	0	0	[ffff64]+ 染色武器[ffffff]
 BossMenuCantChangeLevel	0	0	[ff6464]此BOSS戰無法選擇難度。
@@ -12386,12 +10249,8 @@ UIPCKeyconfigPopWarningLabel	0	0	[aaaa00]{0}\n已使用以上指令
 UIPCKeyconfigPopErrLabel	0	0	[aa0000]此鍵無法變更或無法使用
 UIPCKeyconfigPopKeyMouseRightButtonErrLabel	0	0	[aa0000]已使用的鍵位，無法變更
 UIPCKeyconfigPopKeyMouseRightButtonChangeErrLabel	0	0	[aa0000]已使用的鍵位，無法變更
-PCSteamReportPurchaseNumber	0	0	"- Steam 訂閱號碼 -
-範例 (*字部分的1～21碼數字)
-*********************"
-PCAsobimoReportPurchaseNumber	0	0	"- Stripe Payment 訂閱號碼 -
-範例 (*字部分的8碼數字)
-****-****"
+PCSteamReportPurchaseNumber	0	0	- Steam 訂閱號碼 -\n範例 (*字部分的1～21碼數字)\n*********************
+PCAsobimoReportPurchaseNumber	0	0	- Stripe Payment 訂閱號碼 -\n範例 (*字部分的8碼數字)\n****-****
 PCAsobimoReportTypeOrbButton	0	0	購買露珠
 PCAsobimoReportTypeOrbMessage	0	0	購買露珠相關窗口。
 PCSteamReportTypeOrbButton	0	0	購買露珠
@@ -12458,14 +10317,7 @@ UIPCKeyconfigCommandTopLabel	0	0	命令名稱
 UIPCKeyconfigMainKeyLabel	0	0	實行鍵
 UIPCKeyconfigSubKeyLabel	0	0	副鍵
 UIPCMenuPanelChangePanelButton	0	0	切換
-EmotionPanelPCDescription	0	0	"設定為[ffff64]最愛[ffffff]後，
-即可方便地透過
-情緒捷徑使用。
-[6495ed]※長按滑鼠滾輪[ffffff]
-
-點選想設為最愛的情緒，
-即可登錄
-[6495ed]※最大可登錄10個"
+EmotionPanelPCDescription	0	0	設定為[ffff64]最愛[ffffff]後，\n即可方便地透過\n情緒捷徑使用。\n[6495ed]※長按滑鼠滾輪[ffffff]\n\n點選想設為最愛的情緒，\n即可登錄\n[6495ed]※最大可登錄10個
 UIPCOrbBuyPanelErrMessage	0	0	露珠購買系統正在準備中，\n目前無法使用
 PCAsobimoOrbShopPanelBuyWait	0	0	準備中
 PCTargetPanelSort0	0	0	事件優先

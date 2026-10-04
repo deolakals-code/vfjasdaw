@@ -1141,11 +1141,7 @@ UIMobaLobbyProfileStable	0	0	Stable\n{0}%
 UIMobaLobbyProfileConditionMes	0	0	参加条件を満たしていないため、\nプロフィールの登録をすることができません
 UIMobaLobbyProfileSaveMes	0	0	プロフィールを保存しました
 UIMobaLobbyProfileNameTitle	0	0	ファイトネーム
-UIMobaLobbyProfileNameMes	0	0	"対戦中に表示される名前を変更できます
-[ffff64]※他プレイヤーと名前の重複が可能です[ffffff]
-
-[ff6464]※利用規約に違反する名前を設定すると
-制限の対象になる可能性があります[ffffff]"
+UIMobaLobbyProfileNameMes	0	0	対戦中に表示される名前を変更できます\n[ffff64]※他プレイヤーと名前の重複が可能です[ffffff]\n\n[ff6464]※利用規約に違反する名前を設定すると\n制限の対象になる可能性があります[ffffff]
 UIMobaLobbyProfileErrorMes	0	0	設定に問題があったため、\nプロフィールの保存に失敗しました
 UIMobaLobbyMatchingOnevsOneBattle	0	0	1v1モード
 UIMobaLobbyMatchingFourvsFourBattle	0	0	4v4モード
@@ -1400,8 +1396,7 @@ UIMobaDuelAbilityShortMes41	0	0	最終フェーズ時、自身に付与された
 UIMobaDuelAbilityShortMes42	0	0	最終フェーズ時、残り2名になったらHPとMPを全回復します
 UIMobaDuelAbilityShortMes43	0	0	サプライ装備を捨てると、床に落ちずに消えるようになりますが、その際にHPとMPを25%回復
 UIMobaDuelAbilityShortMes44	0	0	ノックバックを付与できるスキルが、異常耐性によって防がれなくなる
-UIMobaDuelAbilitySelect	0	0	"最大３種類の対戦アビリティを装備できます
-また合計コストが７点を超える組み合わせは利用できません"
+UIMobaDuelAbilitySelect	0	0	最大３種類の対戦アビリティを装備できます\nまた合計コストが７点を超える組み合わせは利用できません
 UIMobaDuelAbilityTotalCost	0	0	合計コスト {0}/{1}
 UIMobaDuelAbilityEquip	0	0	これを装備する
 UIMobaDuelAbilityNoEquip	0	0	装備なし
@@ -1432,76 +1427,13 @@ UIMobaBattleMenuHelpCasualTitle4	0	0	ボスモンスター
 UIMobaBattleMenuHelpCasualTitle5	0	0	中央移動
 UIMobaBattleMenuHelpCasualTitle6	0	0	1位争奪戦
 UIMobaBattleMenuHelpCasualTitle7	0	0	クリスタルタワー
-UIMobaBattleMenuHelpCasualText1	0	0	"参加者は[ffff64]現在のパラメータ能力[ffffff]を使って最大３２人による
-バトルロイヤルを行います
-
-
-フィールドは３×３のエリアに分かれており、
-対戦開始時は全員が同じエリア内にランダムで配置されます
-[ffff64]※中央エリアは対象外です[ffffff]"
-UIMobaBattleMenuHelpCasualText2	0	0	"参加者はLv１からスタートし、Lv100(最大)に近づくと
-元のパラメータ能力に戻っていきます
-モンスターを討伐し、他プレイヤーよりも高いレベルを目指しましょう
-
-
-[ffff64]この段階では戦闘不能になっても、霊体化して約10秒後に復活可能です[ffffff]
-霊体化している時は他のプレイヤーから見えません
-霊体化している時間に応じて、復活時にHPとMPが多く回復します
-
-
-[ff6464]プレイヤーを倒した場合に得られるEXPは 0 です[ffffff]
-ただしサプライ装備を所持していた場合はランダムに1つ奪うことが出来ます"
-UIMobaBattleMenuHelpCasualText3	0	0	"戦闘開始から２分が経過すると
-フィールドにはブロンズ、シルバー、ゴールドの
-３種の宝箱が配置されています
-
-宝箱からはサプライ装備が入手でき、
-サプライ装備は２つまで装備可能です
-[ffff64]※枠が無かったり、捨てるとその場に設置されます[ffffff]
-
-
-また各エリアに出現しているボスモンスターを討伐することで、
-特定のゴールドサプライ装備を獲得できます
-[ff6464]ただし報酬を獲得できるのはトドメを刺したプレイヤーのみです
-横取りには注意しましょう[ffffff]"
-UIMobaBattleMenuHelpCasualText4	0	0	"戦闘開始から３分が経過すると
-各エリアにボスモンスターが１体出現します
-
-討伐することで、
-特定のゴールドサプライ装備を獲得できます
-[ff6464]ただし報酬を獲得できるのはトドメを刺したプレイヤーのみです
-横取りには注意しましょう[ffffff]
-
-
-▼獲得できるサプライ装備
-　・マモールアーマーⅢ[aaaaaa](物理耐性UP)[ffffff]
-  ・マジックマントⅢ[aaaaaa](魔法耐性UP)[ffffff]
-　・プロテクトハットⅢ[aaaaaa](気絶無効)[ffffff]"
-UIMobaBattleMenuHelpCasualText5	0	0	"レベル上げの時間が終了すると、外周から中央エリアに向かって
-ダメージエリアが生成され始めます
-
-
-この段階になるとモンスターは討伐するとリポップしません
-他のプレイヤーに注意しながら、
-最後のEXP稼ぎをしつつ[ffff64]中央エリアを目指しましょう[ffffff]
-
-
-[ff6464]霊体化している場合、このフェーズが終わるまでに復活しないと
-敗北となり、順位が確定してしまうので注意[ffffff]"
-UIMobaBattleMenuHelpCasualText6	0	0	"中央エリア以外が全てダメージエリアになると
-いよいよ１位を決める戦闘が開始します
-[ff6464]※この段階でダメージエリアの威力も大きく増加します[ffffff]
-
-
-この段階で戦闘不能になると順位が決定します
-[ffff64]※霊体化すると観戦モードになります[ffffff]"
-UIMobaBattleMenuHelpCasualText7	0	0	"最終フェーズで決着が付かなかった場合(時間切れ)
-[ffff64]中央エリアに存在するクリスタルタワーに
-与えたダメージが最も多いプレイヤーが勝利となります[ffffff]
-
-
-戦闘不能になったプレイヤーのダメージ量はリセットされます
-[ff6464]※多くダメージを与えても生き残らなければ意味がありません[ffffff]"
+UIMobaBattleMenuHelpCasualText1	0	0	参加者は[ffff64]現在のパラメータ能力[ffffff]を使って最大３２人による\nバトルロイヤルを行います\n\n\nフィールドは３×３のエリアに分かれており、\n対戦開始時は全員が同じエリア内にランダムで配置されます\n[ffff64]※中央エリアは対象外です[ffffff]
+UIMobaBattleMenuHelpCasualText2	0	0	参加者はLv１からスタートし、Lv100(最大)に近づくと\n元のパラメータ能力に戻っていきます\nモンスターを討伐し、他プレイヤーよりも高いレベルを目指しましょう\n\n\n[ffff64]この段階では戦闘不能になっても、霊体化して約10秒後に復活可能です[ffffff]\n霊体化している時は他のプレイヤーから見えません\n霊体化している時間に応じて、復活時にHPとMPが多く回復します\n\n\n[ff6464]プレイヤーを倒した場合に得られるEXPは 0 です[ffffff]\nただしサプライ装備を所持していた場合はランダムに1つ奪うことが出来ます
+UIMobaBattleMenuHelpCasualText3	0	0	戦闘開始から２分が経過すると\nフィールドにはブロンズ、シルバー、ゴールドの\n３種の宝箱が配置されています\n\n宝箱からはサプライ装備が入手でき、\nサプライ装備は２つまで装備可能です\n[ffff64]※枠が無かったり、捨てるとその場に設置されます[ffffff]\n\n\nまた各エリアに出現しているボスモンスターを討伐することで、\n特定のゴールドサプライ装備を獲得できます\n[ff6464]ただし報酬を獲得できるのはトドメを刺したプレイヤーのみです\n横取りには注意しましょう[ffffff]
+UIMobaBattleMenuHelpCasualText4	0	0	戦闘開始から３分が経過すると\n各エリアにボスモンスターが１体出現します\n\n討伐することで、\n特定のゴールドサプライ装備を獲得できます\n[ff6464]ただし報酬を獲得できるのはトドメを刺したプレイヤーのみです\n横取りには注意しましょう[ffffff]\n\n\n▼獲得できるサプライ装備\n　・マモールアーマーⅢ[aaaaaa](物理耐性UP)[ffffff]\n  ・マジックマントⅢ[aaaaaa](魔法耐性UP)[ffffff]\n　・プロテクトハットⅢ[aaaaaa](気絶無効)[ffffff]
+UIMobaBattleMenuHelpCasualText5	0	0	レベル上げの時間が終了すると、外周から中央エリアに向かって\nダメージエリアが生成され始めます\n\n\nこの段階になるとモンスターは討伐するとリポップしません\n他のプレイヤーに注意しながら、\n最後のEXP稼ぎをしつつ[ffff64]中央エリアを目指しましょう[ffffff]\n\n\n[ff6464]霊体化している場合、このフェーズが終わるまでに復活しないと\n敗北となり、順位が確定してしまうので注意[ffffff]
+UIMobaBattleMenuHelpCasualText6	0	0	中央エリア以外が全てダメージエリアになると\nいよいよ１位を決める戦闘が開始します\n[ff6464]※この段階でダメージエリアの威力も大きく増加します[ffffff]\n\n\nこの段階で戦闘不能になると順位が決定します\n[ffff64]※霊体化すると観戦モードになります[ffffff]
+UIMobaBattleMenuHelpCasualText7	0	0	最終フェーズで決着が付かなかった場合(時間切れ)\n[ffff64]中央エリアに存在するクリスタルタワーに\n与えたダメージが最も多いプレイヤーが勝利となります[ffffff]\n\n\n戦闘不能になったプレイヤーのダメージ量はリセットされます\n[ff6464]※多くダメージを与えても生き残らなければ意味がありません[ffffff]
 UIMobaBattleMenuHelpSkillButton	0	0	一部スキルの効果変更&制限
 UIMobaBattleMenuHelpSkillCantUse	0	0	【対戦モードで使用できないスキル】
 UIMobaBattleMenuHelpSkillCantUseNon	0	0	特になし
@@ -1514,17 +1446,12 @@ UIMobaTelopGameSet	0	0	Game Set
 LogOutPanelEnterMobaSever	0	0	闘技場に行く
 MobaMainFieldMobAraOut	0	0	モンスターの居ないエリアです
 UIMobaBattleMenuHelpAbilityButton	0	0	能力制限について
-UIMobaBattleMenuHelpAbilityTitle1	0	0	"アバター能力について
-(妖精の裁縫道具など)"
+UIMobaBattleMenuHelpAbilityTitle1	0	0	アバター能力について\n(妖精の裁縫道具など)
 UIMobaBattleMenuHelpAbilityTitle2	0	0	料理やアイテム効果について
 UIMobaBattleMenuHelpAbilityTitle3	0	0	行動速度について
 UIMobaBattleMenuHelpAbilityMes1	0	0	対戦モードでは、アバターに付与した能力は効果は発動しません
-UIMobaBattleMenuHelpAbilityMes2	0	0	"対戦モードでは、
-料理やアイテムによるバフ効果は発動しません"
-UIMobaBattleMenuHelpAbilityMes3	0	0	"対戦モードでは、行動速度の上限が100%となります
-
-コンボ効果の「迅速」や、行動が加速する一部スキルのみ
-この上限を突破します"
+UIMobaBattleMenuHelpAbilityMes2	0	0	対戦モードでは、\n料理やアイテムによるバフ効果は発動しません
+UIMobaBattleMenuHelpAbilityMes3	0	0	対戦モードでは、行動速度の上限が100%となります\n\nコンボ効果の「迅速」や、行動が加速する一部スキルのみ\nこの上限を突破します
 UIMobaGhostWarpButton	0	0	ワープ
 UIMobaVsModeTelop	0	0	対戦終了!!
 UIMobaRoundCount	0	0	第{0}試合目
@@ -1534,23 +1461,8 @@ UIMobaVsModeUnsuccessMes	0	0	対戦が終了したため、退出します
 UIMobaBattleMenuHelpVsMode	0	0	対戦モード(1v1、4v4)
 UIMobaBattleMenuHelpVsModelTitle1	0	0	1v1モード
 UIMobaBattleMenuHelpVsModelTitle2	0	0	4v4モード
-UIMobaBattleMenuHelpVsModelText1	0	0	"参加者は[ffff64]現在のパラメータ能力[ffffff]を使った１対１による
-３回勝負で２本先取したほうが勝利となります
-
-キャラクターレベルは５０にスケールされます(50%能力)
-
-１回の勝負あたり３分間の制限があり、
-決着が付かない場合はDRAWという扱いになります"
-UIMobaBattleMenuHelpVsModelText2	0	0	"参加者は[ffff64]現在のパラメータ能力[ffffff]を使った４対４による
-３回勝負で２本先取したほうが勝利となります
-
-キャラクターレベルは５０にスケールされます(50%能力)
-
-１回の勝負あたり３分間の制限があり、
-決着が付かない場合はDRAWという扱いになります
-
-パーティを組んで参加する事が可能で、
-不足メンバーはマッチングにて補充されます"
+UIMobaBattleMenuHelpVsModelText1	0	0	参加者は[ffff64]現在のパラメータ能力[ffffff]を使った１対１による\n３回勝負で２本先取したほうが勝利となります\n\nキャラクターレベルは５０にスケールされます(50%能力)\n\n１回の勝負あたり３分間の制限があり、\n決着が付かない場合はDRAWという扱いになります
+UIMobaBattleMenuHelpVsModelText2	0	0	参加者は[ffff64]現在のパラメータ能力[ffffff]を使った４対４による\n３回勝負で２本先取したほうが勝利となります\n\nキャラクターレベルは５０にスケールされます(50%能力)\n\n１回の勝負あたり３分間の制限があり、\n決着が付かない場合はDRAWという扱いになります\n\nパーティを組んで参加する事が可能で、\n不足メンバーはマッチングにて補充されます
 UIMobaVsModeWin	0	0	勝者 {0} !!
 UIMobaVsModeDraw	0	0	DRAW!!
 UIMobaVsModePartyWin	0	0	勝者 {0} パーティ !!
@@ -2102,8 +2014,7 @@ SnowballLobbyMatchingMes	0	0	対戦相手を検索中です・・・
 SnowballLobbyMatchingFailureTitle	0	0	マッチング失敗
 SnowballLobbyMatchingFailureMes	0	0	対戦相手が見つかりませんでした。\n\nしばらく時間をおいてから再度お試しください。
 SnowballInfoTitle	0	0	雪合戦で遊ぼう！
-SnowballInfoMes1	0	0	"突然やってきた雪合戦！？\n雪玉をたくさん相手に当てて勝利しよう！
-\n1人でもパーティでも参加できます！\n\n\n[ffff64]▼勝利条件[ffffff]\n3分以内に、相手チームのHPを0にする\n3分後、相手チームより味方チームのHPが多い\n\n\n[ffff64]▼ヒント[ffffff]\n足元の色でチームを判別できます\nチームのHPは共通です"
+SnowballInfoMes1	0	0	突然やってきた雪合戦！？\n雪玉をたくさん相手に当てて勝利しよう！\n\n1人でもパーティでも参加できます！\n\n\n[ffff64]▼勝利条件[ffffff]\n3分以内に、相手チームのHPを0にする\n3分後、相手チームより味方チームのHPが多い\n\n\n[ffff64]▼ヒント[ffffff]\n足元の色でチームを判別できます\nチームのHPは共通です
 SnowballActionThrow	0	0	Throw
 SnowballActionMake	0	0	Make
 SnowballActionDodge	0	0	Dodge
@@ -2380,8 +2291,7 @@ MyHomeFarmerMes	0	0	菜園に入ります
 MyHomeCultivation	0	0	作物の収穫
 MyHomeCultivationMes	0	0	作物の収穫します
 UIMyHomePartitionEditWarningTitle	0	0	編集中のデータがあります
-UIMyHomePartitionEditWarningMessage	0	0	"編集中のデータがあります
-破棄しても宜しいでしょうか？"
+UIMyHomePartitionEditWarningMessage	0	0	編集中のデータがあります\n破棄しても宜しいでしょうか？
 MyHomePartitionPanelEnter	0	0	確定
 MyHomePartitionTypeButton0	0	0	入場位置
 MyHomePartitionTypeButton1	0	0	室内・室外
@@ -3308,8 +3218,7 @@ DefenceBattleReady	0	0	[ffff88]準備OK!!
 DefenceBattleNoTrialPoint	0	0	[A0A0A0]挑戦回数が残っていません・・・
 DefenceBattleReadyMessage	0	0	準備が完了すると開始します
 DefenceBattleReadyWait	0	0	開始を待っています
-DefenceOrbRecoveryMessage	0	0	"雫玉を1つ消費して、
-チャレンジ回数を[ffff5f]1回復[ffffff]します。"
+DefenceOrbRecoveryMessage	0	0	雫玉を1つ消費して、\nチャレンジ回数を[ffff5f]1回復[ffffff]します。
 DefenceOrbRecovery	0	0	雫玉 1個
 DefenceChallengerRank	0	0	チャレンジャーランク
 DefenceRankRookie	0	0	ルーキー
@@ -3349,8 +3258,7 @@ DefenceResultNoDamageCrystal	0	0	・無傷なクリスタルがある
 DefencePresentWindowClose	0	0	とじる
 DefencePresentGetItem	0	0	報酬を受け取る
 DefencePresentNotEnrty	0	0	先週のチャレンジダンジョンに参加していません。
-DefencePresentNote	0	0	"※毎週、日曜日の朝５時に集計が行われます
-※報酬は次の集計までに受け取らないと消滅します"
+DefencePresentNote	0	0	※毎週、日曜日の朝５時に集計が行われます\n※報酬は次の集計までに受け取らないと消滅します
 DefencePresentLastRanking	0	0	[ffffff]先週のチャレンジダンジョンは[00ff00]{0}位[ffffff]でした
 DefencePresentRankDown	0	0	{0}に降格しました…
 DefencePresentRankUp	0	0	{0}に昇格しました!!
@@ -3453,22 +3361,10 @@ InputNameB	0	0	入力した名前で登録する
 NextButton	0	0	次の項目に進む
 BackButton	0	0	戻る
 Page1T	0	0	ゲーム内での自分の容姿を\n決定してください
-selectWeaponMessage0	0	0	"[64ffff]【難易度：かんたん】[ffffff]
-STR(力)で攻撃力が大きく成長する。
-盾を装備できるので防御力も上げやすく
-攻撃力がほしければ両手剣も扱える。"
-selectWeaponMessage1	0	0	"【難易度：ふつう】
-DEX(器用)で攻撃力が成長する。
-遠距離から安全に攻撃することができる
-矢を装備すると更に攻撃力が上がる。"
-selectWeaponMessage2	0	0	"[ff6464]【難易度：むずかしい】[ffffff]
-INT(知力)で攻撃力が大きく成長する。
-魔法を唱えてる時に[ff6464]ダメージを受けると
-失敗してしまう[ffffff]ので立ち回りが重要。"
-selectWeaponMessage3	0	0	"[64ffff]【難易度：かんたん】[ffffff]
-AGI(敏捷)で攻撃力が成長する。
-便利なスキルが多く、攻守共に成長させ
-やすいが、最終的な攻撃力は低め。"
+selectWeaponMessage0	0	0	[64ffff]【難易度：かんたん】[ffffff]\nSTR(力)で攻撃力が大きく成長する。\n盾を装備できるので防御力も上げやすく\n攻撃力がほしければ両手剣も扱える。
+selectWeaponMessage1	0	0	【難易度：ふつう】\nDEX(器用)で攻撃力が成長する。\n遠距離から安全に攻撃することができる\n矢を装備すると更に攻撃力が上がる。
+selectWeaponMessage2	0	0	[ff6464]【難易度：むずかしい】[ffffff]\nINT(知力)で攻撃力が大きく成長する。\n魔法を唱えてる時に[ff6464]ダメージを受けると\n失敗してしまう[ffffff]ので立ち回りが重要。
+selectWeaponMessage3	0	0	[64ffff]【難易度：かんたん】[ffffff]\nAGI(敏捷)で攻撃力が成長する。\n便利なスキルが多く、攻守共に成長させ\nやすいが、最終的な攻撃力は低め。
 selectWeaponMessage4	0	0	[ff6464]【難易度：むずかしい】[ffffff]\nSTR(力)で攻撃力が大きく成長する。\n中距離から強力な攻撃を行えるが、\n硬直が長く、使いこなすのは難しい。
 selectWeaponMessage5	0	0	【難易度：ふつう】\nDEXで攻撃力が成長する。\n素早い攻撃が可能だが、攻撃力は低い。\n弓装備時のサブ武器としても装備可能。
 Page2T	0	0	好きな武器を選択してください\n以下の項目はゲーム内でも\n変更できます
@@ -3502,19 +3398,12 @@ ChangeOverMoveStartButtonV4	0	0	キャラクターを引き継ぐ
 ChangeOverMoveStartGoogleSignin	0	0	2017年12月以前作成されたキャラクターは\nGoogleアカウント認証で引き継げます。
 ChangeOverMoveStartButtonGoogleSignin	0	0	Googleアカウントで引き継ぐ
 ChangeNewAccountButton	0	0	新規作成
-InheritingMessage	0	0	"α版のプレイデータを確認！\n
-テスター協力ありがとうございました\n\n
-[FFFF77]α版　{0}\n\n
-[FFFFFF]上記キャラクターの一部を引き継いで開始します"
+InheritingMessage	0	0	α版のプレイデータを確認！\n\nテスター協力ありがとうございました\n\n\n[FFFF77]α版　{0}\n\n\n[FFFFFF]上記キャラクターの一部を引き継いで開始します
 InheritingButton	0	0	準備しています(あと{0}秒)
 InheritingAlpha	0	0	α引継ぎ
 CharacterCreateKeybordOptionButton	0	0	入力できない場合
 CharacterCreateKeybordOptionPopTitle	0	0	名前が入力できない場合はお試しください
-CharacterCreateKeybordOptionPopText	0	0	"使用しているキーボード、または端末によって
-名前の入力が正常に行えない場合がございます。
-
-もし入力に不都合ございましたら、
-以下の設定を[FFFFA0]ON[ffffff]にすることで改善される場合がございます。"
+CharacterCreateKeybordOptionPopText	0	0	使用しているキーボード、または端末によって\n名前の入力が正常に行えない場合がございます。\n\nもし入力に不都合ございましたら、\n以下の設定を[FFFFA0]ON[ffffff]にすることで改善される場合がございます。
 CharacterCreateKeybordOptionPopOptionText	0	0	チャット入力画面の全画面
 CharacterCreateKeybordOptionPopOptionOn	0	0	ON
 CharacterCreateKeybordOptionPopOptionOff	0	0	OFF
@@ -3680,42 +3569,20 @@ amall	0	0	詳細を閉じる
 DetailsClose	0	0	詳細を閉じる
 DetailsOpen	0	0	詳細を開く
 StatusSetting	0	0	設定する
-ItemPanelPropertyATK	0	0	"【{0}】 ATK ： {1}　({2}%)
-{3} {4} 
-{5} {6} 
-{7} {8} {9} {10} {11} {12} {13} {14} {15}
-{16}
-{17}"
-ItemPanelPropertyDEF	0	0	"【{0}】 DEF ： {1}
-{2} {3} {4}
-{5} {6} {7} {8} {9} {10} {11} {12} {13} {14} 
-{15}
-{16}"
+ItemPanelPropertyATK	0	0	【{0}】 ATK ： {1}　({2}%)\n{3} {4} \n{5} {6} \n{7} {8} {9} {10} {11} {12} {13} {14} {15}\n{16}\n{17}
+ItemPanelPropertyDEF	0	0	【{0}】 DEF ： {1}\n{2} {3} {4}\n{5} {6} {7} {8} {9} {10} {11} {12} {13} {14} \n{15}\n{16}
 ItemPanelPropertyGuardEquip	0	0	[99FF99]Guard可能装備[ffffff]\n
 ItemPanelPropertyAvoidEquip	0	0	[CC99FF]Avoid可能装備[ffffff]\n
 ItemPanelPropertyMainAvoidEquip	0	0	[CC99FF]Avoid可能装備(MAIN)[ffffff]\n
 ItemPanelPropertyDualSwordAvoidEquip	0	0	[CC99FF]Avoid可能装備(双剣)[ffffff]\n
-ItemPanelPropertyMaxCrista31	0	0	"【ノーマルクリスタ】
-全ての装備スロットに装備可能です
-１マスで重なる最大個数({0})"
-ItemPanelPropertyMaxCrista32	0	0	"【ウエポンクリスタ】
-武器のスロットにのみ装備可能です
-１マスで重なる最大個数({0})"
-ItemPanelPropertyMaxCrista33	0	0	"【アーマークリスタ】
-体防具のスロットにのみ装備可能です
-１マスで重なる最大個数({0})"
-ItemPanelPropertyMaxCrista34	0	0	"【オプションクリスタ】
-追加装備のスロットにのみ装備可能です
-１マスで重なる最大個数({0})"
-ItemPanelPropertyMaxCrista35	0	0	"【アクセサリークリスタ】
-特殊装備のスロットにのみ装備可能です
-１マスで重なる最大個数({0})"
-ItemPanelPropertyMaxCrista36	0	0	"【アドバンスクリスタ】
-特定のクリスタにのみ上書き可能です
-１マスで重なる最大個数({0})"
+ItemPanelPropertyMaxCrista31	0	0	【ノーマルクリスタ】\n全ての装備スロットに装備可能です\n１マスで重なる最大個数({0})
+ItemPanelPropertyMaxCrista32	0	0	【ウエポンクリスタ】\n武器のスロットにのみ装備可能です\n１マスで重なる最大個数({0})
+ItemPanelPropertyMaxCrista33	0	0	【アーマークリスタ】\n体防具のスロットにのみ装備可能です\n１マスで重なる最大個数({0})
+ItemPanelPropertyMaxCrista34	0	0	【オプションクリスタ】\n追加装備のスロットにのみ装備可能です\n１マスで重なる最大個数({0})
+ItemPanelPropertyMaxCrista35	0	0	【アクセサリークリスタ】\n特殊装備のスロットにのみ装備可能です\n１マスで重なる最大個数({0})
+ItemPanelPropertyMaxCrista36	0	0	【アドバンスクリスタ】\n特定のクリスタにのみ上書き可能です\n１マスで重なる最大個数({0})
 Element	0	0	{0}属性
-AlphaTestNoUse	0	0	"まだ習得することができません。
-アップデートをお待ちください。"
+AlphaTestNoUse	0	0	まだ習得することができません。\nアップデートをお待ちください。
 Coin	0	0	雫玉
 CoinShard	0	0	雫玉の欠片
 UseItem	0	0	使用する
@@ -3744,29 +3611,15 @@ DeadPanelSaveRespawnLabel	0	0	街に戻る
 DeadPanelPushRespawnLabel	0	0	頑張る！！
 DeadPanelPushRespawnText	0	0	気合で復活を試みます
 DeadPanelNowRespawnWindowLabel	0	0	すぐに復活しますか？
-DeadPanelNowRespawnWindowTextCoin	0	0	"雫玉を{0}個[FFFFFF]消費します
-
-所持数:{1}
-
-[FFFF99]HP・MPが全回復します
-行動を行うまで一定時間、無敵になります"
-DeadPanelNowRespawnWindowTextItem	0	0	"復活の雫を1つ消費します
-
-所持数：{0}
-
-[FFFF99]HP・MPが全回復します
-行動を行うまで一定時間、無敵になります"
+DeadPanelNowRespawnWindowTextCoin	0	0	雫玉を{0}個[FFFFFF]消費します\n\n所持数:{1}\n\n[FFFF99]HP・MPが全回復します\n行動を行うまで一定時間、無敵になります
+DeadPanelNowRespawnWindowTextItem	0	0	復活の雫を1つ消費します\n\n所持数：{0}\n\n[FFFF99]HP・MPが全回復します\n行動を行うまで一定時間、無敵になります
 DeadPanelNowRespawnWindowButton	0	0	復活します
 DeadPanelNowRespawnWindowButton2	0	0	coinが不足しています
 DeadPanelSaveRespawnWindowLabel	0	0	街に戻りますか？
-DeadPanelSaveRespawnWindowText	0	0	"最後に訪れた街に帰ります
-
-あと{0}秒まてば、この場で復活も出来ます
-よろしいですか？"
+DeadPanelSaveRespawnWindowText	0	0	最後に訪れた街に帰ります\n\nあと{0}秒まてば、この場で復活も出来ます\nよろしいですか？
 DeadPanelSaveRespawnWindowButton	0	0	街に戻ります
 Exit	0	0	脱出
-DeadPanelAllDeadLabel	0	0	"パーティが全滅しました・・・
-これ以上戦闘を続けることができません"
+DeadPanelAllDeadLabel	0	0	パーティが全滅しました・・・\nこれ以上戦闘を続けることができません
 DeadPanelAllDeadText	0	0	[888888]誰か復活したり、新しくメンバーが参戦すると再開できます
 DeadPanelSoroAllDeadLabel	0	0	力尽きました・・・\nこれ以上戦闘を続けることができません
 DeadPanelSoroAllDeadText	0	0	[888888]復活アイテム等が使用できれば再開できます
@@ -3779,9 +3632,7 @@ MapPanelNowMap	0	0	現在マップ
 MapPanelNowMapSmallLabel	0	0	 
 MapPanelChangeMap	0	0	即座に移動する
 MapPanelCoinWarpWindowLabel	0	0	指定マップに移動
-MapPanelWarpWindowTextCoin	0	0	"雫玉を{0}個消費します
-
-所持数:{1}"
+MapPanelWarpWindowTextCoin	0	0	雫玉を{0}個消費します\n\n所持数:{1}
 MapPanelWarpWindowTextItem	0	0	\n\nワープチケットを１枚消費します\n\n所持数：{0}
 MapPanelWarpWindowButton	0	0	{0}雫玉でワープ
 MapPanelWarpWindowButton2	0	0	coinが不足しています
@@ -3972,53 +3823,29 @@ EquipPanelEnter1	0	0	装備解除
 EquipPanelNext	0	0	次へ
 EquipPanelEquipLoc	0	0	装備できません
 EquipPanelNonSlotCrista	0	0	[aaaaaa]スロットがありません
-EquipPanelCristaSlotCheck	0	0	"この装備にはスロットが無い為、
-クリスタ編集を行えません。
-
-スロットは、モンスターからのドロップ時、
-または自分で生産等すると付く場合があります。"
-EquipPanelCristaSlotApertaText	0	0	"""{0}""を使うと
-スロットを開放できます。
-(所持数:{1}個)"
+EquipPanelCristaSlotCheck	0	0	この装備にはスロットが無い為、\nクリスタ編集を行えません。\n\nスロットは、モンスターからのドロップ時、\nまたは自分で生産等すると付く場合があります。
+EquipPanelCristaSlotApertaText	0	0	"""{0}""を使うと\nスロットを開放できます。\n(所持数:{1}個)"
 EquipPanelNonCrista	0	0	クリスタ装備なし
 EquipPanelCristaSlotApertaLabel	0	0	スロット解放
 PopUpCristaCustomWindowTitle	0	0	クリスタ編集
 PopUpCristaCustomWindowMessage	0	0	装備されているクリスタをどうしますか？
 PopUpCristaCustomWindowButton0	0	0	[ffff77]破壊する
-PopUpCristaCustomWindowButton1	0	0	"[ffff77]取り外す
-[ffffff]成功率：80%"
-PopUpCristaCustomWindowButton2	0	0	"[ffff77]抽出クリスタを使う
-{0}成功率：100%
-(所持数：{1}個)"
-PopUpCristaCustomWindowButton3	0	0	"[ffff77]雫玉{2}個使う
-{0}成功率：100%
-(所持数：{1}個)"
-PopUpCristaCustomWindowButton4	0	0	"[ffff77]雫玉{2}個使う
-{0}成功率：100%
-(雫玉を作る)"
+PopUpCristaCustomWindowButton1	0	0	[ffff77]取り外す\n[ffffff]成功率：80%
+PopUpCristaCustomWindowButton2	0	0	[ffff77]抽出クリスタを使う\n{0}成功率：100%\n(所持数：{1}個)
+PopUpCristaCustomWindowButton3	0	0	[ffff77]雫玉{2}個使う\n{0}成功率：100%\n(所持数：{1}個)
+PopUpCristaCustomWindowButton4	0	0	[ffff77]雫玉{2}個使う\n{0}成功率：100%\n(雫玉を作る)
 PopUpCristaUnLocWindowSlot	0	0	[ffff77]スロット数{0}　→　{1}
-PopUpCristaUnLocWindowMessage	0	0	"""{0}""を使用して
-スロットを解放しますか？
-
-(所持数：{1}個)"
+PopUpCristaUnLocWindowMessage	0	0	"""{0}""を使用して\nスロットを解放しますか？\n\n(所持数：{1}個)"
 PopUpCristaUnLocWindowButton	0	0	解放する
 PopUpCristaUnLocWindowTitle	0	0	クリスタ解放
 EquipPanelEnter2	0	0	クリスタを埋め込む
 PopUpCristaCustomWindowButtonBagAll	0	0	[ff0000]鞄がいっぱいです
 PopUpCristaCustomWindowButtonSpecific	0	0	[ffff77]クリスタを外す[ffffff]\n成功率：100%\n[64ffff]調整に伴う免除対象
-EquipPanelNoUseCristaSlot	0	0	"補助装備の[ffff64]盾・短剣・矢[ffffff]には
-スロットは付与されません。
-
-[ffff64]手甲・魔導具・双剣[ffffff]は
-補助装備としても装備可能ですが、
-装備しても[ff6464]クリスタの効果を発揮しません。[ffffff]"
-EquipPanelBattleChangeErrLabel	0	0	"戦闘中は装備を\n
-変更することが出来ません"
-EquipPanelCristaMessage	0	0	"\n\n
-{0}に{1}クリスタを埋め込みます"
+EquipPanelNoUseCristaSlot	0	0	補助装備の[ffff64]盾・短剣・矢[ffffff]には\nスロットは付与されません。\n\n[ffff64]手甲・魔導具・双剣[ffffff]は\n補助装備としても装備可能ですが、\n装備しても[ff6464]クリスタの効果を発揮しません。[ffffff]
+EquipPanelBattleChangeErrLabel	0	0	戦闘中は装備を\n\n変更することが出来ません
+EquipPanelCristaMessage	0	0	\n\n\n{0}に{1}クリスタを埋め込みます
 EquipPanelCristaTitle	0	0	クリスタの埋め込み
-EquipPanelCristaSelectedMessage	0	0	"クリスタを編集する
-装備を選択してください"
+EquipPanelCristaSelectedMessage	0	0	クリスタを編集する\n装備を選択してください
 EquipPanelEquipNoWeapon	0	0	メイン装備なし
 EquipPanelEquipNoSubWeapon	0	0	サブ装備なし
 EquipPanelEquipNoBody	0	0	体防具なし
@@ -4190,10 +4017,8 @@ StatusPanelMaterialMaxPointLabel	0	0	現在の素材ポイント上限　{0}pt
 StatusPanelMaterialMaxPointAddParamLabel	0	0	パラメータスロットによる上限増加([ffff88]+{0}[ffffff])
 StatusPanelMaterialMaxPointAddCourse1OnLabel	0	0	月額「カバン拡張コース」([ffff88]上限２倍[ffffff])
 StatusPanelMaterialMaxPointAddCourse1OffLabel	0	0	[aaaaaa]月額「カバン拡張コース」(上限２倍)
-StatusPanelWeaponCreateWarning	0	0	"鍛冶熟練の最大Lvが低下している為、
-EXスキル使用時には、Lv{0}として扱われます。"
-StatusPanelMedicineCreateWarning	0	0	"合成熟練の最大Lvが低下している為、
-EXスキル使用時には、Lv{0}として扱われます。"
+StatusPanelWeaponCreateWarning	0	0	鍛冶熟練の最大Lvが低下している為、\nEXスキル使用時には、Lv{0}として扱われます。
+StatusPanelMedicineCreateWarning	0	0	合成熟練の最大Lvが低下している為、\nEXスキル使用時には、Lv{0}として扱われます。
 HaveSupina	0	0	所持スピナ：{0}s
 StatusPanelPersonalLabel	0	0	個性パラメータを選択できます
 StatusPanelPersonalText	0	0	[ff0000]１度決定すると変更できません
@@ -4209,27 +4034,11 @@ StatusPanelPersonalTextMEN	0	0	状態異常の耐性が増加します
 StatusPanelPersonalLabelTEC	0	0	テクニック
 StatusPanelPersonalTextTEC	0	0	生産などの成功率が増加します
 StatusPanelStatusRestPopUpLabel	0	0	ステータスリセット
-StatusPanelStatusRestPopUpText	0	0	"ステフリの書を1つ消費します
-
-所持数：{0}
-
-[FFFF99]ステータスをリセットします"
-StatusPanelStatusRestPopUpOrbText	0	0	"雫玉を{0}個消費します
-
-所持数：{1}
-
-[FFFF99]ステータスをリセットします"
+StatusPanelStatusRestPopUpText	0	0	ステフリの書を1つ消費します\n\n所持数：{0}\n\n[FFFF99]ステータスをリセットします
+StatusPanelStatusRestPopUpOrbText	0	0	雫玉を{0}個消費します\n\n所持数：{1}\n\n[FFFF99]ステータスをリセットします
 StatusPanelPrimaryRestPopUpLabel	0	0	個性パラメータリセット
-StatusPanelPrimaryRestPopUpText	0	0	"再考の手鏡を1つ消費します
-
-所持数：{0}
-
-[FFFF99]個性パラメータをリセットします"
-StatusPanelPrimaryRestPopUpOrbText	0	0	"雫玉を{0}個消費します
-
-所持数：{1}
-
-[FFFF99]個性パラメータをリセットします"
+StatusPanelPrimaryRestPopUpText	0	0	再考の手鏡を1つ消費します\n\n所持数：{0}\n\n[FFFF99]個性パラメータをリセットします
+StatusPanelPrimaryRestPopUpOrbText	0	0	雫玉を{0}個消費します\n\n所持数：{1}\n\n[FFFF99]個性パラメータをリセットします
 StatusPanelRestPopUpText	0	0	指定した項目をリセットできます
 StatusPanelConnectionWait	0	0	通信確認中ですしばらくお待ちください
 StatusPanelConnectionReset	0	0	リセットされました
@@ -4242,10 +4051,8 @@ UIStatusPanelPropertyMessage2	0	0	DEFが高いほど[ffff88]敵から受ける�
 UIStatusPanelPropertyMessage3	0	0	MDEFが高いほど[ffff88]敵から受ける魔法ダメージが減少[ffffff]する。
 UIStatusPanelPropertyMessage4	0	0	HITが高いほど[ffff88]相手に命中する確率が増加[ffffff]する。
 UIStatusPanelPropertyMessage5	0	0	FLEEが高いほど[ffff88]敵の攻撃を回避する確率が増加[ffffff]する。
-UIStatusPanelPropertyMessage6	0	0	"ASPDが高いほど[ffff88]次の攻撃までの準備時間が減少[ffffff]する。
-一定値以上は行動速度が加速していく。"
-UIStatusPanelPropertyMessage7	0	0	"CSPDが高いほど[ffff88]溜め時間と詠唱時間が減少[ffffff]する。
-一部のスキルには反映されない。"
+UIStatusPanelPropertyMessage6	0	0	ASPDが高いほど[ffff88]次の攻撃までの準備時間が減少[ffffff]する。\n一定値以上は行動速度が加速していく。
+UIStatusPanelPropertyMessage7	0	0	CSPDが高いほど[ffff88]溜め時間と詠唱時間が減少[ffffff]する。\n一部のスキルには反映されない。
 UIStatusPanelBuild	0	0	[ffff88]ステータスポイントの割り振りができます!!
 UIStatuslCreaterPanelButton	0	0	素材pt／生産Lv
 UIStatusBuildPanelButton	0	0	キャラクター強化
@@ -4255,18 +4062,12 @@ UIStatusEquipText	0	0	今、装備している「{0}」について
 UIStatusBulidEquipMessage8	0	0	[ffff88]DEX[ffffff]を上げると攻撃力と命中率が増加する。[ffff88]STR[ffffff]でも少し攻撃力が増加します。\n[ffff88]VIT[ffffff]で耐久度を伸ばすか、[ffff88]AGI[ffffff]で攻撃速度を伸ばすと良い。
 UIStatusBulidEquipMessage9	0	0	[ffff88]STR[ffffff]を上げると攻撃力が増加する。[ffff88]AGI[ffffff]を上げると回避率と攻撃速度が増加、攻撃力も\n少し増加します。命中を伸ばしにくい武器なので、装備等での工夫が必要です。
 UIStatusBulidEquipMessage10	0	0	[ffff88]STR[ffffff]か[ffff88]DEX[ffffff]を上げると攻撃力が増加する。命中率も上がる[ffff88]DEX[ffffff]がオススメです。\n[ffff88]VIT[ffffff]で耐久度を伸ばすか、[ffff88]AGI[ffffff]で攻撃速度を伸ばすと良い。
-UIStatusBulidEquipMessage11	0	0	"[ffff88]STR[ffffff]を上げると攻撃力が増加する。[ffff88]DEX[ffffff]で命中率が上がり攻撃力も少し増加します。
-盾を持てないので、耐久度を伸ばしたい場合は[ffff88]VIT[ffffff]に割り振ると良い。"
-UIStatusBulidEquipMessage12	0	0	"[ffff88]DEX[ffffff]を上げると攻撃力と命中率が増加する。[ffff88]STR[ffffff]でも少し攻撃力が増加します。
-矢を装備すると、その攻撃力と安定率が弓に反映されます。"
-UIStatusBulidEquipMessage13	0	0	"[ffff88]DEX[ffffff]を上げると攻撃力と命中率が増加する。
-弓と比べると矢の影響が少ないので、盾や短剣を持っても十分な性能を保てる。"
-UIStatusBulidEquipMessage14	0	0	"[ffff88]INT[ffffff]を上げると魔法の攻撃力が増加する。[ffff88]DEX[ffffff]を上げると詠唱時間が早くなります。
-杖に属性が付いていると、発動する魔法が変化することがあります。"
-UIStatusBulidEquipMessage15	0	0	"[ffff88]INT[ffffff]を上げると魔法の攻撃力が増加する。[ffff88]AGI[ffffff]を上げると通常攻撃の威力が増加する。
-杖に比べ離れた場所から攻撃が出来るので攻撃によるMP回復も期待できる。"
-UIStatusBulidEquipMessage16	0	0	"[ffff88]AGI[ffffff]を上げると攻撃力と回避率と攻撃速度が増加する。
-[ffff88]DEX[ffffff]を上げると命中率が増加し、攻撃力も少し増加します。"
+UIStatusBulidEquipMessage11	0	0	[ffff88]STR[ffffff]を上げると攻撃力が増加する。[ffff88]DEX[ffffff]で命中率が上がり攻撃力も少し増加します。\n盾を持てないので、耐久度を伸ばしたい場合は[ffff88]VIT[ffffff]に割り振ると良い。
+UIStatusBulidEquipMessage12	0	0	[ffff88]DEX[ffffff]を上げると攻撃力と命中率が増加する。[ffff88]STR[ffffff]でも少し攻撃力が増加します。\n矢を装備すると、その攻撃力と安定率が弓に反映されます。
+UIStatusBulidEquipMessage13	0	0	[ffff88]DEX[ffffff]を上げると攻撃力と命中率が増加する。\n弓と比べると矢の影響が少ないので、盾や短剣を持っても十分な性能を保てる。
+UIStatusBulidEquipMessage14	0	0	[ffff88]INT[ffffff]を上げると魔法の攻撃力が増加する。[ffff88]DEX[ffffff]を上げると詠唱時間が早くなります。\n杖に属性が付いていると、発動する魔法が変化することがあります。
+UIStatusBulidEquipMessage15	0	0	[ffff88]INT[ffffff]を上げると魔法の攻撃力が増加する。[ffff88]AGI[ffffff]を上げると通常攻撃の威力が増加する。\n杖に比べ離れた場所から攻撃が出来るので攻撃によるMP回復も期待できる。
+UIStatusBulidEquipMessage16	0	0	[ffff88]AGI[ffffff]を上げると攻撃力と回避率と攻撃速度が増加する。\n[ffff88]DEX[ffffff]を上げると命中率が増加し、攻撃力も少し増加します。
 UIStatusBulidEquipMessageHand	0	0	武器を装備していない状態です。このまま戦うのは非常に困難です。\n攻撃力は[ffff88]STR[ffffff]、命中率は[ffff88]DEX[ffffff]、攻撃速度は[ffff88]AGI[ffffff]で上げる事が出来ます。
 UIStatusBulidEquipMessageTwinSword	0	0	[ffff64]DEX[ffffff]を上げると攻撃力と命中率が増加する。[ffff64]STR[ffffff]と[ffff64]AGI[ffffff]でも少し攻撃力が増加します。\nサブハンドに関しては[ffff64]AGI[ffffff]で攻撃力が増加し、[ffff64]STR[ffffff]でも少し攻撃力が増加します。
 StatusPanelRestItemBuyOrbNum	0	0	雫玉を作る
@@ -4290,8 +4091,7 @@ ParameterPanelBuyMes	0	0	保持できるパラメータを新たに購入でき�
 ParameterPanelCharButton	0	0	Lv{0}  {1}
 ParameterPanelCharButtonMes	0	0	ステータス、スキル、容姿を切り替えます。
 ParameterPanelDeleteLabel	0	0	以下のパラメータを削除しますか？
-ParameterPanelDeleteText	0	0	"[ffff64]削除します[ffffff]　と入力すると実行ボタンが出ます
-Type ""[ffff64]Delete[ffffff]"" to show the delete button."
+ParameterPanelDeleteText	0	0	"[ffff64]削除します[ffffff]　と入力すると実行ボタンが出ます\nType ""[ffff64]Delete[ffffff]"" to show the delete button."
 ParameterPanelDeleteKey	0	0	削除します
 ParameterPanelDeleteOKButton	0	0	削除する
 ParametarPanelChangeSlotLabel	0	0	パラメータの切替
@@ -4313,11 +4113,7 @@ ParameterPanelDeleteEqualErrLabel	0	0	パラメータ削除エラー
 ParameterPanelDeleteEqualErrText	0	0	現在のパラメータを削除することはできません
 ParametarPanelCreateSlotText	0	0	新しい容姿のキャラクターを作成できます。\n\n[ff6464]※キャラクリエイト中はログアウトと同じ状態になります\n※チャットの確認などが出来なくなります、ご注意ください\n※表示されるキャラクター名は、この機能では変更できません
 ParametarPanelCreateSlotButton	0	0	新規作成
-ParameterPanelAddSlotTextCoin	0	0	"雫玉を{0}個消費します
-
-所持数:{1}
-
-新規パラメータスロットを購入します"
+ParameterPanelAddSlotTextCoin	0	0	雫玉を{0}個消費します\n\n所持数:{1}\n\n新規パラメータスロットを購入します
 ParameterPanelAddSlotWindowLabel	0	0	新規パラメータスロットの購入
 ParameterPanelAddSlotWindowButton	0	0	購入
 ParameterPanelAddSlotMaxText	0	0	\n\n最大スロット数購入されているため\nこれ以上スロットを購入できません
@@ -4334,12 +4130,7 @@ ParameterPanelUnRegisterMes	0	0	パラメータを一度でも切り替える事
 ParameterPanelCanNotNowMap	0	0	現在のマップではパートナーを呼び出せません。
 ParameterPanelAbnormalStatusMes	0	0	パートナーの情報に問題があったため、\n呼び出しに失敗しました。
 ParameterPanelTutorialTitle	0	0	パートナー機能が使用できます！
-ParameterPanelTutorialMessage	0	0	"新しいパラメーターが完成しました！
-[ffff64]使用していないパラメータを[ffffff]
-[ffff64]パーティメンバーとして呼び出せます。[ffffff]
-
-[64ffff]パラメータ切り替え[ffffff]の画面で、同行させるかを
-設定できます。"
+ParameterPanelTutorialMessage	0	0	新しいパラメーターが完成しました！\n[ffff64]使用していないパラメータを[ffffff]\n[ffff64]パーティメンバーとして呼び出せます。[ffffff]\n\n[64ffff]パラメータ切り替え[ffffff]の画面で、同行させるかを\n設定できます。
 PartnerUnregisterd	0	0	パートナー未登録
 PartnerNeverChangeAttention	0	0	パラメータを一度でも切り替える事で利用可能となります。
 PartnerActionSetting	0	0	行動設定
@@ -4437,10 +4228,8 @@ PlayerMenuComboMes	0	0	コンボ機能を設定できます
 ComboPanelStartText	0	0	コンボの起点になるスキルには\n特殊効果を設定することはできません。
 ComboPanelSelectClear	0	0	設定解除
 ComboPanelComboPoint	0	0	残りコンボポイント
-ComboPanelAddComboBuffer	0	0	"[ffffff]CPを1消費して特殊効果を付与できます。
-(ここをタップしてください)"
-ComboPanelNewSkillMessage	0	0	"{0}の後に
-自動発動するスキルを選択してください。"
+ComboPanelAddComboBuffer	0	0	[ffffff]CPを1消費して特殊効果を付与できます。\n(ここをタップしてください)
+ComboPanelNewSkillMessage	0	0	{0}の後に\n自動発動するスキルを選択してください。
 ComboPanelStartSkillMessage	0	0	初回に発動するスキルを選択してください。
 ComboPanelCpCheck	0	0	[ff0000]CPが無いので\n追加できません
 ComboPanelSelectDelete	0	0	連結を削除する
@@ -4470,531 +4259,7 @@ EquipPanelAbilityPopWindowBuyButton	0	0	[ffff64]１雫玉で購入確定
 EquipPanelAbilityHaveItemNum	0	0	（所持数：{0}個）
 EquipPanelAbilityNoAbility	0	0	なし
 EquipPanelAbilityRepair	0	0	付け直す
-EquipPanelAbilityListMain	0	0	"▼能力枠の抽選率
-１枠目：１００％
-２枠目：　５０％
-３枠目：　２５％
-[ff6464]※３枠目は２枠目の能力が付与
-された場合にのみ抽選されます[ffffff]
-[ff6464]※同じ能力は複数個所に付与さ
-れません[ffffff]
-[ff6464]※強力な能力ほど付与され難く
-なります[ffffff]
-
-
-▼抽選される能力
-STR+1
-STR+2
-STR+3
-STR+4
-STR+5
-STR+6
-STR+7
-STR+8
-STR+9
-[ffff64]STR+10[ffffff]
-INT+1
-INT+2
-INT+3
-INT+4
-INT+5
-INT+6
-INT+7
-INT+8
-INT+9
-[ffff64]INT+10[ffffff]
-VIT+1
-VIT+2
-VIT+3
-VIT+4
-VIT+5
-VIT+6
-VIT+7
-VIT+8
-VIT+9
-[ffff64]VIT+10[ffffff]
-AGI+1
-AGI+2
-AGI+3
-AGI+4
-AGI+5
-AGI+6
-AGI+7
-AGI+8
-AGI+9
-[ffff64]AGI+10[ffffff]
-DEX+1
-DEX+2
-DEX+3
-DEX+4
-DEX+5
-DEX+6
-DEX+7
-DEX+8
-DEX+9
-[ffff64]DEX+10[ffffff]
-STR+1%
-STR+2%
-[ffff64]STR+3%[ffffff]
-INT+1%
-INT+2%
-[ffff64]INT+3%[ffffff]
-VIT+1%
-VIT+2%
-[ffff64]VIT+3%[ffffff]
-AGI+1%
-AGI+2%
-[ffff64]AGI+3%[ffffff]
-DEX+1%
-DEX+2%
-[ffff64]DEX+3%[ffffff]
-最大HP+100
-最大HP+200
-最大HP+300
-最大HP+400
-最大HP+500
-最大HP+600
-最大HP+700
-最大HP+800
-最大HP+900
-[ffff64]最大HP+1000[ffffff]
-最大HP+5%
-最大HP+10%
-[ffff64]最大HP+15%[ffffff]
-最大MP+10
-最大MP+20
-最大MP+30
-最大MP+40
-最大MP+50
-最大MP+60
-最大MP+70
-最大MP+80
-最大MP+90
-[ffff64]最大MP+100[ffffff]
-武器ATK+3
-武器ATK+6
-武器ATK+9
-武器ATK+12
-武器ATK+15
-武器ATK+18
-武器ATK+21
-武器ATK+24
-武器ATK+27
-[ffff64]武器ATK+30[ffffff]
-武器ATK+1%
-武器ATK+2%
-[ffff64]武器ATK+3%[ffffff]
-ATK+3
-ATK+6
-ATK+9
-ATK+12
-ATK+15
-ATK+18
-ATK+21
-ATK+24
-ATK+27
-[ffff64]ATK+30[ffffff]
-ATK+1%
-ATK+2%
-[ffff64]ATK+3%[ffffff]
-MATK+3
-MATK+6
-MATK+9
-MATK+12
-MATK+15
-MATK+18
-MATK+21
-MATK+24
-MATK+27
-[ffff64]MATK+30[ffffff]
-MATK+1%
-MATK+2%
-[ffff64]MATK+3%[ffffff]
-安定率+1%
-安定率+2%
-[ffff64]安定率+3%[ffffff]
-命中+3
-命中+6
-命中+9
-命中+12
-命中+15
-命中+18
-命中+21
-命中+24
-命中+27
-[ffff64]命中+30[ffffff]
-命中+1%
-命中+2%
-[ffff64]命中+3%[ffffff]
-回避+3
-回避+6
-回避+9
-回避+12
-回避+15
-回避+18
-回避+21
-回避+24
-回避+27
-[ffff64]回避+30[ffffff]
-回避+1%
-回避+2%
-[ffff64]回避+3%[ffffff]
-DEF+10
-DEF+20
-DEF+30
-DEF+40
-DEF+50
-DEF+60
-DEF+70
-DEF+80
-DEF+90
-[ffff64]DEF+100[ffffff]
-DEF+1%
-DEF+2%
-DEF+3%
-DEF+4%
-[ffff64]DEF+5%[ffffff]
-MDEF+10
-MDEF+20
-MDEF+30
-MDEF+40
-MDEF+50
-MDEF+60
-MDEF+70
-MDEF+80
-MDEF+90
-[ffff64]MDEF+100[ffffff]
-MDEF+1%
-MDEF+2%
-MDEF+3%
-MDEF+4%
-[ffff64]MDEF+5%[ffffff]
-ASPD+10
-ASPD+20
-ASPD+30
-ASPD+40
-ASPD+50
-ASPD+60
-ASPD+70
-ASPD+80
-ASPD+90
-[ffff64]ASPD+100[ffffff]
-ASPD+1%
-ASPD+2%
-ASPD+3%
-ASPD+4%
-ASPD+5%
-ASPD+6%
-ASPD+7%
-ASPD+8%
-ASPD+9%
-[ffff64]ASPD+10%[ffffff]
-CSPD+10
-CSPD+20
-CSPD+30
-CSPD+40
-CSPD+50
-CSPD+60
-CSPD+70
-CSPD+80
-CSPD+90
-[ffff64]CSPD+100[ffffff]
-CSPD+1%
-CSPD+2%
-CSPD+3%
-CSPD+4%
-CSPD+5%
-CSPD+6%
-CSPD+7%
-CSPD+8%
-CSPD+9%
-[ffff64]CSPD+10%[ffffff]
-HP自然回復+10
-HP自然回復+20
-HP自然回復+30
-HP自然回復+40
-HP自然回復+50
-HP自然回復+60
-HP自然回復+70
-HP自然回復+80
-HP自然回復+90
-[ffff64]HP自然回復+100[ffffff]
-HP自然回復+5%
-HP自然回復+10%
-HP自然回復+15%
-HP自然回復+20%
-[ffff64]HP自然回復+25%[ffffff]
-MP自然回復+1
-MP自然回復+2
-MP自然回復+3
-MP自然回復+4
-MP自然回復+5
-MP自然回復+6
-MP自然回復+7
-MP自然回復+8
-MP自然回復+9
-[ffff64]MP自然回復+10[ffffff]
-MP自然回復+5%
-MP自然回復+10%
-MP自然回復+15%
-MP自然回復+20%
-[ffff64]MP自然回復+25%[ffffff]
-攻撃MP回復+1
-攻撃MP回復+2
-攻撃MP回復+3
-攻撃MP回復+4
-攻撃MP回復+5
-攻撃MP回復+6
-攻撃MP回復+7
-攻撃MP回復+8
-攻撃MP回復+9
-[ffff64]攻撃MP回復+10[ffffff]
-クリティカル率+1
-クリティカル率+2
-クリティカル率+3
-クリティカル率+4
-[ffff64]クリティカル率+5[ffffff]
-クリティカル率+1%
-クリティカル率+2%
-[ffff64]クリティカル率+3%[ffffff]
-クリティカルダメージ+1
-クリティカルダメージ+2
-クリティカルダメージ+3
-クリティカルダメージ+4
-[ffff64]クリティカルダメージ+5[ffffff]
-クリティカルダメージ+1%
-クリティカルダメージ+2%
-[ffff64]クリティカルダメージ+3%[ffffff]
-異常耐性+1%
-異常耐性+2%
-異常耐性+3%
-異常耐性+4%
-異常耐性+5%
-異常耐性+6%
-異常耐性+7%
-異常耐性+8%
-異常耐性+9%
-[ffff64]異常耐性+10%[ffffff]
-Guard回復+1%
-Guard回復+2%
-[ffff64]Guard回復+3%[ffffff]
-Guard力+1%
-Guard力+2%
-[ffff64]Guard力+3%[ffffff]
-Avoid回復+1%
-Avoid回復+2%
-[ffff64]Avoid回復+3%[ffffff]
-物理耐性+1%
-物理耐性+2%
-物理耐性+3%
-物理耐性+4%
-物理耐性+5%
-物理耐性+6%
-物理耐性+7%
-物理耐性+8%
-物理耐性+9%
-[ffff64]物理耐性+10%[ffffff]
-魔法耐性+1%
-魔法耐性+2%
-魔法耐性+3%
-魔法耐性+4%
-魔法耐性+5%
-魔法耐性+6%
-魔法耐性+7%
-魔法耐性+8%
-魔法耐性+9%
-[ffff64]魔法耐性+10%[ffffff]
-物理貫通+1%
-物理貫通+2%
-物理貫通+3%
-物理貫通+4%
-物理貫通+5%
-物理貫通+6%
-物理貫通+7%
-物理貫通+8%
-物理貫通+9%
-[ffff64]物理貫通+10%[ffffff]
-魔法貫通+1%
-魔法貫通+2%
-魔法貫通+3%
-魔法貫通+4%
-魔法貫通+5%
-魔法貫通+6%
-魔法貫通+7%
-魔法貫通+8%
-魔法貫通+9%
-[ffff64]魔法貫通+10%[ffffff]
-火属性にﾀﾞﾒｰｼﾞ+1%
-火属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]火属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-水属性にﾀﾞﾒｰｼﾞ+1%
-水属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]水属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-風属性にﾀﾞﾒｰｼﾞ+1%
-風属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]風属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-地属性にﾀﾞﾒｰｼﾞ+1%
-地属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]地属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-光属性にﾀﾞﾒｰｼﾞ+1%
-光属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]光属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-闇属性にﾀﾞﾒｰｼﾞ+1%
-闇属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]闇属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-無属性にﾀﾞﾒｰｼﾞ+1%
-無属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]無属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-ヘイト+1%
-ヘイト+2%
-ヘイト+3%
-ヘイト+4%
-ヘイト+5%
-ヘイト+6%
-ヘイト+7%
-ヘイト+8%
-ヘイト+9%
-[ffff64]ヘイト+10%[ffffff]
-ヘイト-1%
-ヘイト-2%
-ヘイト-3%
-ヘイト-4%
-ヘイト-5%
-ヘイト-6%
-ヘイト-7%
-ヘイト-8%
-ヘイト-9%
-[ffff64]ヘイト-10%[ffffff]
-火耐性+1%
-火耐性+2%
-火耐性+3%
-火耐性+4%
-火耐性+5%
-火耐性+6%
-火耐性+7%
-火耐性+8%
-火耐性+9%
-[ffff64]火耐性+10%[ffffff]
-水耐性+1%
-水耐性+2%
-水耐性+3%
-水耐性+4%
-水耐性+5%
-水耐性+6%
-水耐性+7%
-水耐性+8%
-水耐性+9%
-[ffff64]水耐性+10%[ffffff]
-風耐性+1%
-風耐性+2%
-風耐性+3%
-風耐性+4%
-風耐性+5%
-風耐性+6%
-風耐性+7%
-風耐性+8%
-風耐性+9%
-[ffff64]風耐性+10%[ffffff]
-地耐性+1%
-地耐性+2%
-地耐性+3%
-地耐性+4%
-地耐性+5%
-地耐性+6%
-地耐性+7%
-地耐性+8%
-地耐性+9%
-[ffff64]地耐性+10%[ffffff]
-光耐性+1%
-光耐性+2%
-光耐性+3%
-光耐性+4%
-光耐性+5%
-光耐性+6%
-光耐性+7%
-光耐性+8%
-光耐性+9%
-[ffff64]光耐性+10%[ffffff]
-闇耐性+1%
-闇耐性+2%
-闇耐性+3%
-闇耐性+4%
-闇耐性+5%
-闇耐性+6%
-闇耐性+7%
-闇耐性+8%
-闇耐性+9%
-[ffff64]闇耐性+10%[ffffff]
-無耐性+1%
-無耐性+2%
-無耐性+3%
-無耐性+4%
-無耐性+5%
-無耐性+6%
-無耐性+7%
-無耐性+8%
-無耐性+9%
-[ffff64]無耐性+10%[ffffff]
-近距離の威力+1%
-近距離の威力+2%
-[ffff64]近距離の威力+3%[ffffff]
-遠距離の威力+1%
-遠距離の威力+2%
-[ffff64]遠距離の威力+3%[ffffff]
-先読み+1%
-先読み+2%
-[ffff64]先読み+3%[ffffff]
-防御崩し+1%
-防御崩し+2%
-[ffff64]防御崩し+3%[ffffff]
-物理追撃10%
-物理追撃20%
-物理追撃30%
-物理追撃40%
-[ffff64]物理追撃50%[ffffff]
-魔法追撃10%
-魔法追撃20%
-魔法追撃30%
-魔法追撃40%
-[ffff64]魔法追撃50%[ffffff]
-ダメージ反射5%
-ダメージ反射10%
-[ffff64]ダメージ反射15%[ffffff]
-物理バリア+100
-物理バリア+200
-物理バリア+300
-物理バリア+400
-物理バリア+500
-物理バリア+600
-物理バリア+700
-物理バリア+800
-物理バリア+900
-[ffff64]物理バリア+1000[ffffff]
-魔法バリア+100
-魔法バリア+200
-魔法バリア+300
-魔法バリア+400
-魔法バリア+500
-魔法バリア+600
-魔法バリア+700
-魔法バリア+800
-魔法バリア+900
-[ffff64]魔法バリア+1000[ffffff]
-割合バリア+1%
-割合バリア+2%
-割合バリア+3%
-割合バリア+4%
-割合バリア+5%
-割合バリア+6%
-割合バリア+7%
-割合バリア+8%
-割合バリア+9%
-[ffff64]割合バリア+10%[ffffff]
-バリア速度+3%
-バリア速度+6%
-バリア速度+9%
-バリア速度+12%
-[ffff64]バリア速度+15%[ffffff]"
+EquipPanelAbilityListMain	0	0	▼能力枠の抽選率\n１枠目：１００％\n２枠目：　５０％\n３枠目：　２５％\n[ff6464]※３枠目は２枠目の能力が付与\nされた場合にのみ抽選されます[ffffff]\n[ff6464]※同じ能力は複数個所に付与さ\nれません[ffffff]\n[ff6464]※強力な能力ほど付与され難く\nなります[ffffff]\n\n\n▼抽選される能力\nSTR+1\nSTR+2\nSTR+3\nSTR+4\nSTR+5\nSTR+6\nSTR+7\nSTR+8\nSTR+9\n[ffff64]STR+10[ffffff]\nINT+1\nINT+2\nINT+3\nINT+4\nINT+5\nINT+6\nINT+7\nINT+8\nINT+9\n[ffff64]INT+10[ffffff]\nVIT+1\nVIT+2\nVIT+3\nVIT+4\nVIT+5\nVIT+6\nVIT+7\nVIT+8\nVIT+9\n[ffff64]VIT+10[ffffff]\nAGI+1\nAGI+2\nAGI+3\nAGI+4\nAGI+5\nAGI+6\nAGI+7\nAGI+8\nAGI+9\n[ffff64]AGI+10[ffffff]\nDEX+1\nDEX+2\nDEX+3\nDEX+4\nDEX+5\nDEX+6\nDEX+7\nDEX+8\nDEX+9\n[ffff64]DEX+10[ffffff]\nSTR+1%\nSTR+2%\n[ffff64]STR+3%[ffffff]\nINT+1%\nINT+2%\n[ffff64]INT+3%[ffffff]\nVIT+1%\nVIT+2%\n[ffff64]VIT+3%[ffffff]\nAGI+1%\nAGI+2%\n[ffff64]AGI+3%[ffffff]\nDEX+1%\nDEX+2%\n[ffff64]DEX+3%[ffffff]\n最大HP+100\n最大HP+200\n最大HP+300\n最大HP+400\n最大HP+500\n最大HP+600\n最大HP+700\n最大HP+800\n最大HP+900\n[ffff64]最大HP+1000[ffffff]\n最大HP+5%\n最大HP+10%\n[ffff64]最大HP+15%[ffffff]\n最大MP+10\n最大MP+20\n最大MP+30\n最大MP+40\n最大MP+50\n最大MP+60\n最大MP+70\n最大MP+80\n最大MP+90\n[ffff64]最大MP+100[ffffff]\n武器ATK+3\n武器ATK+6\n武器ATK+9\n武器ATK+12\n武器ATK+15\n武器ATK+18\n武器ATK+21\n武器ATK+24\n武器ATK+27\n[ffff64]武器ATK+30[ffffff]\n武器ATK+1%\n武器ATK+2%\n[ffff64]武器ATK+3%[ffffff]\nATK+3\nATK+6\nATK+9\nATK+12\nATK+15\nATK+18\nATK+21\nATK+24\nATK+27\n[ffff64]ATK+30[ffffff]\nATK+1%\nATK+2%\n[ffff64]ATK+3%[ffffff]\nMATK+3\nMATK+6\nMATK+9\nMATK+12\nMATK+15\nMATK+18\nMATK+21\nMATK+24\nMATK+27\n[ffff64]MATK+30[ffffff]\nMATK+1%\nMATK+2%\n[ffff64]MATK+3%[ffffff]\n安定率+1%\n安定率+2%\n[ffff64]安定率+3%[ffffff]\n命中+3\n命中+6\n命中+9\n命中+12\n命中+15\n命中+18\n命中+21\n命中+24\n命中+27\n[ffff64]命中+30[ffffff]\n命中+1%\n命中+2%\n[ffff64]命中+3%[ffffff]\n回避+3\n回避+6\n回避+9\n回避+12\n回避+15\n回避+18\n回避+21\n回避+24\n回避+27\n[ffff64]回避+30[ffffff]\n回避+1%\n回避+2%\n[ffff64]回避+3%[ffffff]\nDEF+10\nDEF+20\nDEF+30\nDEF+40\nDEF+50\nDEF+60\nDEF+70\nDEF+80\nDEF+90\n[ffff64]DEF+100[ffffff]\nDEF+1%\nDEF+2%\nDEF+3%\nDEF+4%\n[ffff64]DEF+5%[ffffff]\nMDEF+10\nMDEF+20\nMDEF+30\nMDEF+40\nMDEF+50\nMDEF+60\nMDEF+70\nMDEF+80\nMDEF+90\n[ffff64]MDEF+100[ffffff]\nMDEF+1%\nMDEF+2%\nMDEF+3%\nMDEF+4%\n[ffff64]MDEF+5%[ffffff]\nASPD+10\nASPD+20\nASPD+30\nASPD+40\nASPD+50\nASPD+60\nASPD+70\nASPD+80\nASPD+90\n[ffff64]ASPD+100[ffffff]\nASPD+1%\nASPD+2%\nASPD+3%\nASPD+4%\nASPD+5%\nASPD+6%\nASPD+7%\nASPD+8%\nASPD+9%\n[ffff64]ASPD+10%[ffffff]\nCSPD+10\nCSPD+20\nCSPD+30\nCSPD+40\nCSPD+50\nCSPD+60\nCSPD+70\nCSPD+80\nCSPD+90\n[ffff64]CSPD+100[ffffff]\nCSPD+1%\nCSPD+2%\nCSPD+3%\nCSPD+4%\nCSPD+5%\nCSPD+6%\nCSPD+7%\nCSPD+8%\nCSPD+9%\n[ffff64]CSPD+10%[ffffff]\nHP自然回復+10\nHP自然回復+20\nHP自然回復+30\nHP自然回復+40\nHP自然回復+50\nHP自然回復+60\nHP自然回復+70\nHP自然回復+80\nHP自然回復+90\n[ffff64]HP自然回復+100[ffffff]\nHP自然回復+5%\nHP自然回復+10%\nHP自然回復+15%\nHP自然回復+20%\n[ffff64]HP自然回復+25%[ffffff]\nMP自然回復+1\nMP自然回復+2\nMP自然回復+3\nMP自然回復+4\nMP自然回復+5\nMP自然回復+6\nMP自然回復+7\nMP自然回復+8\nMP自然回復+9\n[ffff64]MP自然回復+10[ffffff]\nMP自然回復+5%\nMP自然回復+10%\nMP自然回復+15%\nMP自然回復+20%\n[ffff64]MP自然回復+25%[ffffff]\n攻撃MP回復+1\n攻撃MP回復+2\n攻撃MP回復+3\n攻撃MP回復+4\n攻撃MP回復+5\n攻撃MP回復+6\n攻撃MP回復+7\n攻撃MP回復+8\n攻撃MP回復+9\n[ffff64]攻撃MP回復+10[ffffff]\nクリティカル率+1\nクリティカル率+2\nクリティカル率+3\nクリティカル率+4\n[ffff64]クリティカル率+5[ffffff]\nクリティカル率+1%\nクリティカル率+2%\n[ffff64]クリティカル率+3%[ffffff]\nクリティカルダメージ+1\nクリティカルダメージ+2\nクリティカルダメージ+3\nクリティカルダメージ+4\n[ffff64]クリティカルダメージ+5[ffffff]\nクリティカルダメージ+1%\nクリティカルダメージ+2%\n[ffff64]クリティカルダメージ+3%[ffffff]\n異常耐性+1%\n異常耐性+2%\n異常耐性+3%\n異常耐性+4%\n異常耐性+5%\n異常耐性+6%\n異常耐性+7%\n異常耐性+8%\n異常耐性+9%\n[ffff64]異常耐性+10%[ffffff]\nGuard回復+1%\nGuard回復+2%\n[ffff64]Guard回復+3%[ffffff]\nGuard力+1%\nGuard力+2%\n[ffff64]Guard力+3%[ffffff]\nAvoid回復+1%\nAvoid回復+2%\n[ffff64]Avoid回復+3%[ffffff]\n物理耐性+1%\n物理耐性+2%\n物理耐性+3%\n物理耐性+4%\n物理耐性+5%\n物理耐性+6%\n物理耐性+7%\n物理耐性+8%\n物理耐性+9%\n[ffff64]物理耐性+10%[ffffff]\n魔法耐性+1%\n魔法耐性+2%\n魔法耐性+3%\n魔法耐性+4%\n魔法耐性+5%\n魔法耐性+6%\n魔法耐性+7%\n魔法耐性+8%\n魔法耐性+9%\n[ffff64]魔法耐性+10%[ffffff]\n物理貫通+1%\n物理貫通+2%\n物理貫通+3%\n物理貫通+4%\n物理貫通+5%\n物理貫通+6%\n物理貫通+7%\n物理貫通+8%\n物理貫通+9%\n[ffff64]物理貫通+10%[ffffff]\n魔法貫通+1%\n魔法貫通+2%\n魔法貫通+3%\n魔法貫通+4%\n魔法貫通+5%\n魔法貫通+6%\n魔法貫通+7%\n魔法貫通+8%\n魔法貫通+9%\n[ffff64]魔法貫通+10%[ffffff]\n火属性にﾀﾞﾒｰｼﾞ+1%\n火属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]火属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n水属性にﾀﾞﾒｰｼﾞ+1%\n水属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]水属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n風属性にﾀﾞﾒｰｼﾞ+1%\n風属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]風属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n地属性にﾀﾞﾒｰｼﾞ+1%\n地属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]地属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n光属性にﾀﾞﾒｰｼﾞ+1%\n光属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]光属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n闇属性にﾀﾞﾒｰｼﾞ+1%\n闇属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]闇属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n無属性にﾀﾞﾒｰｼﾞ+1%\n無属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]無属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\nヘイト+1%\nヘイト+2%\nヘイト+3%\nヘイト+4%\nヘイト+5%\nヘイト+6%\nヘイト+7%\nヘイト+8%\nヘイト+9%\n[ffff64]ヘイト+10%[ffffff]\nヘイト-1%\nヘイト-2%\nヘイト-3%\nヘイト-4%\nヘイト-5%\nヘイト-6%\nヘイト-7%\nヘイト-8%\nヘイト-9%\n[ffff64]ヘイト-10%[ffffff]\n火耐性+1%\n火耐性+2%\n火耐性+3%\n火耐性+4%\n火耐性+5%\n火耐性+6%\n火耐性+7%\n火耐性+8%\n火耐性+9%\n[ffff64]火耐性+10%[ffffff]\n水耐性+1%\n水耐性+2%\n水耐性+3%\n水耐性+4%\n水耐性+5%\n水耐性+6%\n水耐性+7%\n水耐性+8%\n水耐性+9%\n[ffff64]水耐性+10%[ffffff]\n風耐性+1%\n風耐性+2%\n風耐性+3%\n風耐性+4%\n風耐性+5%\n風耐性+6%\n風耐性+7%\n風耐性+8%\n風耐性+9%\n[ffff64]風耐性+10%[ffffff]\n地耐性+1%\n地耐性+2%\n地耐性+3%\n地耐性+4%\n地耐性+5%\n地耐性+6%\n地耐性+7%\n地耐性+8%\n地耐性+9%\n[ffff64]地耐性+10%[ffffff]\n光耐性+1%\n光耐性+2%\n光耐性+3%\n光耐性+4%\n光耐性+5%\n光耐性+6%\n光耐性+7%\n光耐性+8%\n光耐性+9%\n[ffff64]光耐性+10%[ffffff]\n闇耐性+1%\n闇耐性+2%\n闇耐性+3%\n闇耐性+4%\n闇耐性+5%\n闇耐性+6%\n闇耐性+7%\n闇耐性+8%\n闇耐性+9%\n[ffff64]闇耐性+10%[ffffff]\n無耐性+1%\n無耐性+2%\n無耐性+3%\n無耐性+4%\n無耐性+5%\n無耐性+6%\n無耐性+7%\n無耐性+8%\n無耐性+9%\n[ffff64]無耐性+10%[ffffff]\n近距離の威力+1%\n近距離の威力+2%\n[ffff64]近距離の威力+3%[ffffff]\n遠距離の威力+1%\n遠距離の威力+2%\n[ffff64]遠距離の威力+3%[ffffff]\n先読み+1%\n先読み+2%\n[ffff64]先読み+3%[ffffff]\n防御崩し+1%\n防御崩し+2%\n[ffff64]防御崩し+3%[ffffff]\n物理追撃10%\n物理追撃20%\n物理追撃30%\n物理追撃40%\n[ffff64]物理追撃50%[ffffff]\n魔法追撃10%\n魔法追撃20%\n魔法追撃30%\n魔法追撃40%\n[ffff64]魔法追撃50%[ffffff]\nダメージ反射5%\nダメージ反射10%\n[ffff64]ダメージ反射15%[ffffff]\n物理バリア+100\n物理バリア+200\n物理バリア+300\n物理バリア+400\n物理バリア+500\n物理バリア+600\n物理バリア+700\n物理バリア+800\n物理バリア+900\n[ffff64]物理バリア+1000[ffffff]\n魔法バリア+100\n魔法バリア+200\n魔法バリア+300\n魔法バリア+400\n魔法バリア+500\n魔法バリア+600\n魔法バリア+700\n魔法バリア+800\n魔法バリア+900\n[ffff64]魔法バリア+1000[ffffff]\n割合バリア+1%\n割合バリア+2%\n割合バリア+3%\n割合バリア+4%\n割合バリア+5%\n割合バリア+6%\n割合バリア+7%\n割合バリア+8%\n割合バリア+9%\n[ffff64]割合バリア+10%[ffffff]\nバリア速度+3%\nバリア速度+6%\nバリア速度+9%\nバリア速度+12%\n[ffff64]バリア速度+15%[ffffff]
 EquipPanelAbilityPopWindowNewExpText	0	0	\n\n１枠目は必ず付与され、２枠目は確率で付与されます。\n[ffff64]２枠目の付与に成功した場合、３枠目も更に確率で付与されます。[ffffff]\n\n付与される能力は一覧でご確認ください。
 SelectSkillPopWindowDetailMessage	0	0	[ffff64]{0}[ffffff]で使用した場合、以下の効果を受ける
 SelectSkillPopWindowLevelUpMessage	0	0	スキルレベルを\n指定した値まで、一気に上げます
@@ -5130,1045 +4395,10 @@ SkillFreeSystemLockErrMessage	0	0	無料期間は終了しました
 SkillTreePanelFreeResetMessage	0	0	後[ffff64]{0}[ffffff]回無料でリセットできます
 ParameterPanelNgwordErrLabel	0	0	使用できない文字列が含まれています
 ParameterPanelNgwordErrText	0	0	使用できない文字列が含まれているため\nこの名前は使用することが出来ません
-EquipPanelAbilityTopLabel	0	0	"▼能力枠の抽選率
-１枠目：１００％
-２枠目：　５０％
-３枠目：　２５％
-[ff6464]※３枠目は２枠目の能力が付与
-された場合にのみ抽選されます[ffffff]
-[ff6464]※同じ能力は複数個所に付与さ
-れません[ffffff]
-[ff6464]※強力な能力ほど付与され難く
-なります[ffffff]
-
-
-▼抽選される能力"
-EquipPanelAbilityListLabel	0	0	"STR+1
-STR+2
-STR+3
-STR+4
-STR+5
-STR+6
-STR+7
-STR+8
-STR+9
-[ffff64]STR+10[ffffff]
-INT+1
-INT+2
-INT+3
-INT+4
-INT+5
-INT+6
-INT+7
-INT+8
-INT+9
-[ffff64]INT+10[ffffff]
-VIT+1
-VIT+2
-VIT+3
-VIT+4
-VIT+5
-VIT+6
-VIT+7
-VIT+8
-VIT+9
-[ffff64]VIT+10[ffffff]
-AGI+1
-AGI+2
-AGI+3
-AGI+4
-AGI+5
-AGI+6
-AGI+7
-AGI+8
-AGI+9
-[ffff64]AGI+10[ffffff]
-DEX+1
-DEX+2
-DEX+3
-DEX+4
-DEX+5
-DEX+6
-DEX+7
-DEX+8
-DEX+9
-[ffff64]DEX+10[ffffff]
-STR+1%
-STR+2%
-[ffff64]STR+3%[ffffff]
-INT+1%
-INT+2%
-[ffff64]INT+3%[ffffff]
-VIT+1%
-VIT+2%
-[ffff64]VIT+3%[ffffff]
-AGI+1%
-AGI+2%
-[ffff64]AGI+3%[ffffff]
-DEX+1%
-DEX+2%
-[ffff64]DEX+3%[ffffff]
-最大HP+100
-最大HP+200
-最大HP+300
-最大HP+400
-最大HP+500
-最大HP+600
-最大HP+700
-最大HP+800
-最大HP+900
-[ffff64]最大HP+1000[ffffff]
-最大HP+5%
-最大HP+10%
-[ffff64]最大HP+15%[ffffff]
-最大MP+10
-最大MP+20
-最大MP+30
-最大MP+40
-最大MP+50
-最大MP+60
-最大MP+70
-最大MP+80
-最大MP+90
-[ffff64]最大MP+100[ffffff]
-武器ATK+3
-武器ATK+6
-武器ATK+9
-武器ATK+12
-武器ATK+15
-武器ATK+18
-武器ATK+21
-武器ATK+24
-武器ATK+27
-[ffff64]武器ATK+30[ffffff]
-武器ATK+1%
-武器ATK+2%
-[ffff64]武器ATK+3%[ffffff]
-ATK+3
-ATK+6
-ATK+9
-ATK+12
-ATK+15
-ATK+18
-ATK+21
-ATK+24
-ATK+27
-[ffff64]ATK+30[ffffff]
-ATK+1%
-ATK+2%
-[ffff64]ATK+3%[ffffff]
-MATK+3
-MATK+6
-MATK+9
-MATK+12
-MATK+15
-MATK+18
-MATK+21
-MATK+24
-MATK+27
-[ffff64]MATK+30[ffffff]
-MATK+1%
-MATK+2%
-[ffff64]MATK+3%[ffffff]
-安定率+1%
-安定率+2%
-[ffff64]安定率+3%[ffffff]
-命中+3
-命中+6
-命中+9
-命中+12
-命中+15
-命中+18
-命中+21
-命中+24
-命中+27
-[ffff64]命中+30[ffffff]
-命中+1%
-命中+2%
-[ffff64]命中+3%[ffffff]
-回避+3
-回避+6
-回避+9
-回避+12
-回避+15
-回避+18
-回避+21
-回避+24
-回避+27
-[ffff64]回避+30[ffffff]
-回避+1%
-回避+2%
-[ffff64]回避+3%[ffffff]
-DEF+10
-DEF+20
-DEF+30
-DEF+40
-DEF+50
-DEF+60
-DEF+70
-DEF+80
-DEF+90
-[ffff64]DEF+100[ffffff]
-DEF+1%
-DEF+2%
-DEF+3%
-DEF+4%
-[ffff64]DEF+5%[ffffff]
-MDEF+10
-MDEF+20
-MDEF+30
-MDEF+40
-MDEF+50
-MDEF+60
-MDEF+70
-MDEF+80
-MDEF+90
-[ffff64]MDEF+100[ffffff]
-MDEF+1%
-MDEF+2%
-MDEF+3%
-MDEF+4%
-[ffff64]MDEF+5%[ffffff]
-ASPD+10
-ASPD+20
-ASPD+30
-ASPD+40
-ASPD+50
-ASPD+60
-ASPD+70
-ASPD+80
-ASPD+90
-[ffff64]ASPD+100[ffffff]
-ASPD+1%
-ASPD+2%
-ASPD+3%
-ASPD+4%
-ASPD+5%
-ASPD+6%
-ASPD+7%
-ASPD+8%
-ASPD+9%
-[ffff64]ASPD+10%[ffffff]
-CSPD+10
-CSPD+20
-CSPD+30
-CSPD+40
-CSPD+50
-CSPD+60
-CSPD+70
-CSPD+80
-CSPD+90
-[ffff64]CSPD+100[ffffff]
-CSPD+1%
-CSPD+2%
-CSPD+3%
-CSPD+4%
-CSPD+5%
-CSPD+6%
-CSPD+7%
-CSPD+8%
-CSPD+9%
-[ffff64]CSPD+10%[ffffff]
-HP自然回復+10
-HP自然回復+20
-HP自然回復+30
-HP自然回復+40
-HP自然回復+50
-HP自然回復+60
-HP自然回復+70
-HP自然回復+80
-HP自然回復+90
-[ffff64]HP自然回復+100[ffffff]
-HP自然回復+5%
-HP自然回復+10%
-HP自然回復+15%
-HP自然回復+20%
-[ffff64]HP自然回復+25%[ffffff]
-MP自然回復+1
-MP自然回復+2
-MP自然回復+3
-MP自然回復+4
-MP自然回復+5
-MP自然回復+6
-MP自然回復+7
-MP自然回復+8
-MP自然回復+9
-[ffff64]MP自然回復+10[ffffff]
-MP自然回復+5%
-MP自然回復+10%
-MP自然回復+15%
-MP自然回復+20%
-[ffff64]MP自然回復+25%[ffffff]
-攻撃MP回復+1
-攻撃MP回復+2
-攻撃MP回復+3
-攻撃MP回復+4
-攻撃MP回復+5
-攻撃MP回復+6
-攻撃MP回復+7
-攻撃MP回復+8
-攻撃MP回復+9
-[ffff64]攻撃MP回復+10[ffffff]
-クリティカル率+1
-クリティカル率+2
-クリティカル率+3
-クリティカル率+4
-[ffff64]クリティカル率+5[ffffff]
-クリティカル率+1%
-クリティカル率+2%
-[ffff64]クリティカル率+3%[ffffff]
-クリティカルダメージ+1
-クリティカルダメージ+2
-クリティカルダメージ+3
-クリティカルダメージ+4
-[ffff64]クリティカルダメージ+5[ffffff]
-クリティカルダメージ+1%
-クリティカルダメージ+2%
-[ffff64]クリティカルダメージ+3%[ffffff]
-異常耐性+1%
-異常耐性+2%
-異常耐性+3%
-異常耐性+4%
-異常耐性+5%
-異常耐性+6%
-異常耐性+7%
-異常耐性+8%
-異常耐性+9%
-[ffff64]異常耐性+10%[ffffff]
-Guard率+1%
-Guard率+2%
-[ffff64]Guard率+3%[ffffff]
-Guard力+1%
-Guard力+2%
-[ffff64]Guard力+3%[ffffff]
-Avoid率+1%
-Avoid率+2%
-[ffff64]Avoid率+3%[ffffff]
-物理耐性+1%
-物理耐性+2%
-物理耐性+3%
-物理耐性+4%
-物理耐性+5%
-物理耐性+6%
-物理耐性+7%
-物理耐性+8%
-物理耐性+9%
-[ffff64]物理耐性+10%[ffffff]
-魔法耐性+1%
-魔法耐性+2%
-魔法耐性+3%
-魔法耐性+4%
-魔法耐性+5%
-魔法耐性+6%
-魔法耐性+7%
-魔法耐性+8%
-魔法耐性+9%
-[ffff64]魔法耐性+10%[ffffff]
-物理貫通+1%
-物理貫通+2%
-物理貫通+3%
-物理貫通+4%
-物理貫通+5%
-物理貫通+6%
-物理貫通+7%
-物理貫通+8%
-物理貫通+9%
-[ffff64]物理貫通+10%[ffffff]
-魔法貫通+1%
-魔法貫通+2%
-魔法貫通+3%
-魔法貫通+4%
-魔法貫通+5%
-魔法貫通+6%
-魔法貫通+7%
-魔法貫通+8%
-魔法貫通+9%
-[ffff64]魔法貫通+10%[ffffff]
-火属性にﾀﾞﾒｰｼﾞ+1%
-火属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]火属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-水属性にﾀﾞﾒｰｼﾞ+1%
-水属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]水属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-風属性にﾀﾞﾒｰｼﾞ+1%
-風属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]風属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-地属性にﾀﾞﾒｰｼﾞ+1%
-地属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]地属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-光属性にﾀﾞﾒｰｼﾞ+1%
-光属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]光属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-闇属性にﾀﾞﾒｰｼﾞ+1%
-闇属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]闇属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-無属性にﾀﾞﾒｰｼﾞ+1%
-無属性にﾀﾞﾒｰｼﾞ+2%
-[ffff64]無属性にﾀﾞﾒｰｼﾞ+3%[ffffff]
-ヘイト+1%
-ヘイト+2%
-ヘイト+3%
-ヘイト+4%
-ヘイト+5%
-ヘイト+6%
-ヘイト+7%
-ヘイト+8%
-ヘイト+9%
-[ffff64]ヘイト+10%[ffffff]
-ヘイト-1%
-ヘイト-2%
-ヘイト-3%
-ヘイト-4%
-ヘイト-5%
-ヘイト-6%
-ヘイト-7%
-ヘイト-8%
-ヘイト-9%
-[ffff64]ヘイト-10%[ffffff]
-火耐性+1%
-火耐性+2%
-火耐性+3%
-火耐性+4%
-火耐性+5%
-火耐性+6%
-火耐性+7%
-火耐性+8%
-火耐性+9%
-[ffff64]火耐性+10%[ffffff]
-水耐性+1%
-水耐性+2%
-水耐性+3%
-水耐性+4%
-水耐性+5%
-水耐性+6%
-水耐性+7%
-水耐性+8%
-水耐性+9%
-[ffff64]水耐性+10%[ffffff]
-風耐性+1%
-風耐性+2%
-風耐性+3%
-風耐性+4%
-風耐性+5%
-風耐性+6%
-風耐性+7%
-風耐性+8%
-風耐性+9%
-[ffff64]風耐性+10%[ffffff]
-地耐性+1%
-地耐性+2%
-地耐性+3%
-地耐性+4%
-地耐性+5%
-地耐性+6%
-地耐性+7%
-地耐性+8%
-地耐性+9%
-[ffff64]地耐性+10%[ffffff]
-光耐性+1%
-光耐性+2%
-光耐性+3%
-光耐性+4%
-光耐性+5%
-光耐性+6%
-光耐性+7%
-光耐性+8%
-光耐性+9%
-[ffff64]光耐性+10%[ffffff]
-闇耐性+1%
-闇耐性+2%
-闇耐性+3%
-闇耐性+4%
-闇耐性+5%
-闇耐性+6%
-闇耐性+7%
-闇耐性+8%
-闇耐性+9%
-[ffff64]闇耐性+10%[ffffff]
-無耐性+1%
-無耐性+2%
-無耐性+3%
-無耐性+4%
-無耐性+5%
-無耐性+6%
-無耐性+7%
-無耐性+8%
-無耐性+9%
-[ffff64]無耐性+10%[ffffff]
-近距離の威力+1%
-近距離の威力+2%
-[ffff64]近距離の威力+3%[ffffff]
-遠距離の威力+1%
-遠距離の威力+2%
-[ffff64]遠距離の威力+3%[ffffff]
-先読み+1%
-先読み+2%
-[ffff64]先読み+3%[ffffff]
-防御崩し+1%
-防御崩し+2%
-[ffff64]防御崩し+3%[ffffff]
-物理追撃10%
-物理追撃20%
-物理追撃30%
-物理追撃40%
-[ffff64]物理追撃50%[ffffff]
-魔法追撃10%
-魔法追撃20%
-魔法追撃30%
-魔法追撃40%
-[ffff64]魔法追撃50%[ffffff]
-ダメージ反射5%
-ダメージ反射10%
-[ffff64]ダメージ反射15%[ffffff]
-物理バリア+100
-物理バリア+200
-物理バリア+300
-物理バリア+400
-物理バリア+500
-物理バリア+600
-物理バリア+700
-物理バリア+800
-物理バリア+900
-[ffff64]物理バリア+1000[ffffff]
-魔法バリア+100
-魔法バリア+200
-魔法バリア+300
-魔法バリア+400
-魔法バリア+500
-魔法バリア+600
-魔法バリア+700
-魔法バリア+800
-魔法バリア+900
-[ffff64]魔法バリア+1000[ffffff]
-割合バリア+1%
-割合バリア+2%
-割合バリア+3%
-割合バリア+4%
-割合バリア+5%
-割合バリア+6%
-割合バリア+7%
-割合バリア+8%
-割合バリア+9%
-[ffff64]割合バリア+10%[ffffff]
-バリア速度+3%
-バリア速度+6%
-バリア速度+9%
-バリア速度+12%
-[ffff64]バリア速度+15%[ffffff]"
-EquipPanelAbilityRateLabel	0	0	"0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.341%
-0.307%
-0.034%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%
-0.341%
-0.307%
-0.034%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.205%
-0.273%
-0.341%
-0.341%
-0.273%
-0.205%
-0.137%
-0.068%
-0.007%
-0.001%
-0.273%
-0.341%
-0.273%
-0.137%
-0.068%"
-EquipPanelAbilityLastLabel	0	0	"[ff6464]※同じ能力を再抽選しないため２個目以降は表示確率よりも抽選確率が増加する場合がございます[ffffff]
-[ff6464]※抽選確率には小数点第4位以下がある為、小数点第3位以下は四捨五入して小数点第3位までを表示してます。そのため、付与確率をすべて足しても100％にならない場合がございます[ffffff]"
+EquipPanelAbilityTopLabel	0	0	▼能力枠の抽選率\n１枠目：１００％\n２枠目：　５０％\n３枠目：　２５％\n[ff6464]※３枠目は２枠目の能力が付与\nされた場合にのみ抽選されます[ffffff]\n[ff6464]※同じ能力は複数個所に付与さ\nれません[ffffff]\n[ff6464]※強力な能力ほど付与され難く\nなります[ffffff]\n\n\n▼抽選される能力
+EquipPanelAbilityListLabel	0	0	STR+1\nSTR+2\nSTR+3\nSTR+4\nSTR+5\nSTR+6\nSTR+7\nSTR+8\nSTR+9\n[ffff64]STR+10[ffffff]\nINT+1\nINT+2\nINT+3\nINT+4\nINT+5\nINT+6\nINT+7\nINT+8\nINT+9\n[ffff64]INT+10[ffffff]\nVIT+1\nVIT+2\nVIT+3\nVIT+4\nVIT+5\nVIT+6\nVIT+7\nVIT+8\nVIT+9\n[ffff64]VIT+10[ffffff]\nAGI+1\nAGI+2\nAGI+3\nAGI+4\nAGI+5\nAGI+6\nAGI+7\nAGI+8\nAGI+9\n[ffff64]AGI+10[ffffff]\nDEX+1\nDEX+2\nDEX+3\nDEX+4\nDEX+5\nDEX+6\nDEX+7\nDEX+8\nDEX+9\n[ffff64]DEX+10[ffffff]\nSTR+1%\nSTR+2%\n[ffff64]STR+3%[ffffff]\nINT+1%\nINT+2%\n[ffff64]INT+3%[ffffff]\nVIT+1%\nVIT+2%\n[ffff64]VIT+3%[ffffff]\nAGI+1%\nAGI+2%\n[ffff64]AGI+3%[ffffff]\nDEX+1%\nDEX+2%\n[ffff64]DEX+3%[ffffff]\n最大HP+100\n最大HP+200\n最大HP+300\n最大HP+400\n最大HP+500\n最大HP+600\n最大HP+700\n最大HP+800\n最大HP+900\n[ffff64]最大HP+1000[ffffff]\n最大HP+5%\n最大HP+10%\n[ffff64]最大HP+15%[ffffff]\n最大MP+10\n最大MP+20\n最大MP+30\n最大MP+40\n最大MP+50\n最大MP+60\n最大MP+70\n最大MP+80\n最大MP+90\n[ffff64]最大MP+100[ffffff]\n武器ATK+3\n武器ATK+6\n武器ATK+9\n武器ATK+12\n武器ATK+15\n武器ATK+18\n武器ATK+21\n武器ATK+24\n武器ATK+27\n[ffff64]武器ATK+30[ffffff]\n武器ATK+1%\n武器ATK+2%\n[ffff64]武器ATK+3%[ffffff]\nATK+3\nATK+6\nATK+9\nATK+12\nATK+15\nATK+18\nATK+21\nATK+24\nATK+27\n[ffff64]ATK+30[ffffff]\nATK+1%\nATK+2%\n[ffff64]ATK+3%[ffffff]\nMATK+3\nMATK+6\nMATK+9\nMATK+12\nMATK+15\nMATK+18\nMATK+21\nMATK+24\nMATK+27\n[ffff64]MATK+30[ffffff]\nMATK+1%\nMATK+2%\n[ffff64]MATK+3%[ffffff]\n安定率+1%\n安定率+2%\n[ffff64]安定率+3%[ffffff]\n命中+3\n命中+6\n命中+9\n命中+12\n命中+15\n命中+18\n命中+21\n命中+24\n命中+27\n[ffff64]命中+30[ffffff]\n命中+1%\n命中+2%\n[ffff64]命中+3%[ffffff]\n回避+3\n回避+6\n回避+9\n回避+12\n回避+15\n回避+18\n回避+21\n回避+24\n回避+27\n[ffff64]回避+30[ffffff]\n回避+1%\n回避+2%\n[ffff64]回避+3%[ffffff]\nDEF+10\nDEF+20\nDEF+30\nDEF+40\nDEF+50\nDEF+60\nDEF+70\nDEF+80\nDEF+90\n[ffff64]DEF+100[ffffff]\nDEF+1%\nDEF+2%\nDEF+3%\nDEF+4%\n[ffff64]DEF+5%[ffffff]\nMDEF+10\nMDEF+20\nMDEF+30\nMDEF+40\nMDEF+50\nMDEF+60\nMDEF+70\nMDEF+80\nMDEF+90\n[ffff64]MDEF+100[ffffff]\nMDEF+1%\nMDEF+2%\nMDEF+3%\nMDEF+4%\n[ffff64]MDEF+5%[ffffff]\nASPD+10\nASPD+20\nASPD+30\nASPD+40\nASPD+50\nASPD+60\nASPD+70\nASPD+80\nASPD+90\n[ffff64]ASPD+100[ffffff]\nASPD+1%\nASPD+2%\nASPD+3%\nASPD+4%\nASPD+5%\nASPD+6%\nASPD+7%\nASPD+8%\nASPD+9%\n[ffff64]ASPD+10%[ffffff]\nCSPD+10\nCSPD+20\nCSPD+30\nCSPD+40\nCSPD+50\nCSPD+60\nCSPD+70\nCSPD+80\nCSPD+90\n[ffff64]CSPD+100[ffffff]\nCSPD+1%\nCSPD+2%\nCSPD+3%\nCSPD+4%\nCSPD+5%\nCSPD+6%\nCSPD+7%\nCSPD+8%\nCSPD+9%\n[ffff64]CSPD+10%[ffffff]\nHP自然回復+10\nHP自然回復+20\nHP自然回復+30\nHP自然回復+40\nHP自然回復+50\nHP自然回復+60\nHP自然回復+70\nHP自然回復+80\nHP自然回復+90\n[ffff64]HP自然回復+100[ffffff]\nHP自然回復+5%\nHP自然回復+10%\nHP自然回復+15%\nHP自然回復+20%\n[ffff64]HP自然回復+25%[ffffff]\nMP自然回復+1\nMP自然回復+2\nMP自然回復+3\nMP自然回復+4\nMP自然回復+5\nMP自然回復+6\nMP自然回復+7\nMP自然回復+8\nMP自然回復+9\n[ffff64]MP自然回復+10[ffffff]\nMP自然回復+5%\nMP自然回復+10%\nMP自然回復+15%\nMP自然回復+20%\n[ffff64]MP自然回復+25%[ffffff]\n攻撃MP回復+1\n攻撃MP回復+2\n攻撃MP回復+3\n攻撃MP回復+4\n攻撃MP回復+5\n攻撃MP回復+6\n攻撃MP回復+7\n攻撃MP回復+8\n攻撃MP回復+9\n[ffff64]攻撃MP回復+10[ffffff]\nクリティカル率+1\nクリティカル率+2\nクリティカル率+3\nクリティカル率+4\n[ffff64]クリティカル率+5[ffffff]\nクリティカル率+1%\nクリティカル率+2%\n[ffff64]クリティカル率+3%[ffffff]\nクリティカルダメージ+1\nクリティカルダメージ+2\nクリティカルダメージ+3\nクリティカルダメージ+4\n[ffff64]クリティカルダメージ+5[ffffff]\nクリティカルダメージ+1%\nクリティカルダメージ+2%\n[ffff64]クリティカルダメージ+3%[ffffff]\n異常耐性+1%\n異常耐性+2%\n異常耐性+3%\n異常耐性+4%\n異常耐性+5%\n異常耐性+6%\n異常耐性+7%\n異常耐性+8%\n異常耐性+9%\n[ffff64]異常耐性+10%[ffffff]\nGuard率+1%\nGuard率+2%\n[ffff64]Guard率+3%[ffffff]\nGuard力+1%\nGuard力+2%\n[ffff64]Guard力+3%[ffffff]\nAvoid率+1%\nAvoid率+2%\n[ffff64]Avoid率+3%[ffffff]\n物理耐性+1%\n物理耐性+2%\n物理耐性+3%\n物理耐性+4%\n物理耐性+5%\n物理耐性+6%\n物理耐性+7%\n物理耐性+8%\n物理耐性+9%\n[ffff64]物理耐性+10%[ffffff]\n魔法耐性+1%\n魔法耐性+2%\n魔法耐性+3%\n魔法耐性+4%\n魔法耐性+5%\n魔法耐性+6%\n魔法耐性+7%\n魔法耐性+8%\n魔法耐性+9%\n[ffff64]魔法耐性+10%[ffffff]\n物理貫通+1%\n物理貫通+2%\n物理貫通+3%\n物理貫通+4%\n物理貫通+5%\n物理貫通+6%\n物理貫通+7%\n物理貫通+8%\n物理貫通+9%\n[ffff64]物理貫通+10%[ffffff]\n魔法貫通+1%\n魔法貫通+2%\n魔法貫通+3%\n魔法貫通+4%\n魔法貫通+5%\n魔法貫通+6%\n魔法貫通+7%\n魔法貫通+8%\n魔法貫通+9%\n[ffff64]魔法貫通+10%[ffffff]\n火属性にﾀﾞﾒｰｼﾞ+1%\n火属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]火属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n水属性にﾀﾞﾒｰｼﾞ+1%\n水属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]水属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n風属性にﾀﾞﾒｰｼﾞ+1%\n風属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]風属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n地属性にﾀﾞﾒｰｼﾞ+1%\n地属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]地属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n光属性にﾀﾞﾒｰｼﾞ+1%\n光属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]光属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n闇属性にﾀﾞﾒｰｼﾞ+1%\n闇属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]闇属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\n無属性にﾀﾞﾒｰｼﾞ+1%\n無属性にﾀﾞﾒｰｼﾞ+2%\n[ffff64]無属性にﾀﾞﾒｰｼﾞ+3%[ffffff]\nヘイト+1%\nヘイト+2%\nヘイト+3%\nヘイト+4%\nヘイト+5%\nヘイト+6%\nヘイト+7%\nヘイト+8%\nヘイト+9%\n[ffff64]ヘイト+10%[ffffff]\nヘイト-1%\nヘイト-2%\nヘイト-3%\nヘイト-4%\nヘイト-5%\nヘイト-6%\nヘイト-7%\nヘイト-8%\nヘイト-9%\n[ffff64]ヘイト-10%[ffffff]\n火耐性+1%\n火耐性+2%\n火耐性+3%\n火耐性+4%\n火耐性+5%\n火耐性+6%\n火耐性+7%\n火耐性+8%\n火耐性+9%\n[ffff64]火耐性+10%[ffffff]\n水耐性+1%\n水耐性+2%\n水耐性+3%\n水耐性+4%\n水耐性+5%\n水耐性+6%\n水耐性+7%\n水耐性+8%\n水耐性+9%\n[ffff64]水耐性+10%[ffffff]\n風耐性+1%\n風耐性+2%\n風耐性+3%\n風耐性+4%\n風耐性+5%\n風耐性+6%\n風耐性+7%\n風耐性+8%\n風耐性+9%\n[ffff64]風耐性+10%[ffffff]\n地耐性+1%\n地耐性+2%\n地耐性+3%\n地耐性+4%\n地耐性+5%\n地耐性+6%\n地耐性+7%\n地耐性+8%\n地耐性+9%\n[ffff64]地耐性+10%[ffffff]\n光耐性+1%\n光耐性+2%\n光耐性+3%\n光耐性+4%\n光耐性+5%\n光耐性+6%\n光耐性+7%\n光耐性+8%\n光耐性+9%\n[ffff64]光耐性+10%[ffffff]\n闇耐性+1%\n闇耐性+2%\n闇耐性+3%\n闇耐性+4%\n闇耐性+5%\n闇耐性+6%\n闇耐性+7%\n闇耐性+8%\n闇耐性+9%\n[ffff64]闇耐性+10%[ffffff]\n無耐性+1%\n無耐性+2%\n無耐性+3%\n無耐性+4%\n無耐性+5%\n無耐性+6%\n無耐性+7%\n無耐性+8%\n無耐性+9%\n[ffff64]無耐性+10%[ffffff]\n近距離の威力+1%\n近距離の威力+2%\n[ffff64]近距離の威力+3%[ffffff]\n遠距離の威力+1%\n遠距離の威力+2%\n[ffff64]遠距離の威力+3%[ffffff]\n先読み+1%\n先読み+2%\n[ffff64]先読み+3%[ffffff]\n防御崩し+1%\n防御崩し+2%\n[ffff64]防御崩し+3%[ffffff]\n物理追撃10%\n物理追撃20%\n物理追撃30%\n物理追撃40%\n[ffff64]物理追撃50%[ffffff]\n魔法追撃10%\n魔法追撃20%\n魔法追撃30%\n魔法追撃40%\n[ffff64]魔法追撃50%[ffffff]\nダメージ反射5%\nダメージ反射10%\n[ffff64]ダメージ反射15%[ffffff]\n物理バリア+100\n物理バリア+200\n物理バリア+300\n物理バリア+400\n物理バリア+500\n物理バリア+600\n物理バリア+700\n物理バリア+800\n物理バリア+900\n[ffff64]物理バリア+1000[ffffff]\n魔法バリア+100\n魔法バリア+200\n魔法バリア+300\n魔法バリア+400\n魔法バリア+500\n魔法バリア+600\n魔法バリア+700\n魔法バリア+800\n魔法バリア+900\n[ffff64]魔法バリア+1000[ffffff]\n割合バリア+1%\n割合バリア+2%\n割合バリア+3%\n割合バリア+4%\n割合バリア+5%\n割合バリア+6%\n割合バリア+7%\n割合バリア+8%\n割合バリア+9%\n[ffff64]割合バリア+10%[ffffff]\nバリア速度+3%\nバリア速度+6%\nバリア速度+9%\nバリア速度+12%\n[ffff64]バリア速度+15%[ffffff]
+EquipPanelAbilityRateLabel	0	0	0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.341%\n0.307%\n0.034%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%\n0.341%\n0.307%\n0.034%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.205%\n0.273%\n0.341%\n0.341%\n0.273%\n0.205%\n0.137%\n0.068%\n0.007%\n0.001%\n0.273%\n0.341%\n0.273%\n0.137%\n0.068%
+EquipPanelAbilityLastLabel	0	0	[ff6464]※同じ能力を再抽選しないため２個目以降は表示確率よりも抽選確率が増加する場合がございます[ffffff]\n[ff6464]※抽選確率には小数点第4位以下がある為、小数点第3位以下は四捨五入して小数点第3位までを表示してます。そのため、付与確率をすべて足しても100％にならない場合がございます[ffffff]
 EquipPanelEnchantExExp	0	0	"[ffff64]""{0}""[ffffff]を使用して\nオシャレ装備の能力を抽出します！\n抽出した能力は最大10枠まで保存できます。\n保存した能力は、再付与で消費します。"
 EquipPanelEnchantRegrant	0	0	再付与
 EquipPanelEnchantExtract	0	0	能力抽出
@@ -6339,25 +4569,18 @@ RegistletPanelGemPowderNum	0	0	ジェムの粉末
 RegistletPanelHaveGemCartNum	0	0	所持ジェムカート
 RegistletPanelEquipButton	0	0	[ffff64]＋ジェムカートを装備する
 RegistletPanelAddSlotButton	0	0	粉末{0}を使って枠を増やす
-RegistletPanelGemCartGetMes	0	0	"ストゥディの実験で獲得できる
-ジェムカートを装備して自身を強化しよう！"
+RegistletPanelGemCartGetMes	0	0	ストゥディの実験で獲得できる\nジェムカートを装備して自身を強化しよう！
 RegistletPanelEditButton	0	0	ジェムカートの編集
 RegistletPanelEditButtonMes	0	0	合成して強化したり、砕いて粉末にできます
-RegistletPanelEditMes	0	0	"同じ、または異なるジェムカートを
-合成して[ffff64]強化[ffffff]できます
-不要であれば[ffff64]分解[ffffff]もできます"
-RegistletPanelNoHaveMes	0	0	"ジェムカートを所持していません
-
-エルスカーロで挑戦できる
-[ffff64]ストゥディの実験[ffffff]で入手しよう！"
+RegistletPanelEditMes	0	0	同じ、または異なるジェムカートを\n合成して[ffff64]強化[ffffff]できます\n不要であれば[ffff64]分解[ffffff]もできます
+RegistletPanelNoHaveMes	0	0	ジェムカートを所持していません\n\nエルスカーロで挑戦できる\n[ffff64]ストゥディの実験[ffffff]で入手しよう！
 RegistletPanelReinforceButton	0	0	強化
 RegistletPanelReinforceButtonMax	0	0	[ffff64]MAX[ffffff]
 RegistletPanelDetailButton	0	0	詳細
 RegistletPanelBreakButton	0	0	分解
 RegistletPanelAlreadyEquipButton	0	0	[ffff64]装備中[ffffff]
 RegistletPanelReinforceMes	0	0	[ffff64]このジェムカートを強化します[ffffff]
-RegistletPanelReinforceNoMaterialMes	0	0	"材料となるジェムカートを
-所持していません"
+RegistletPanelReinforceNoMaterialMes	0	0	材料となるジェムカートを\n所持していません
 RegistletPanelReinforceResultTitle	0	0	結果予測
 RegistletPanelReinforceNeedGemPowderNum	0	0	必要なジェムの粉末
 RegistletPanelReinforceDoButton	0	0	この強化を実行する
@@ -6373,8 +4596,7 @@ RegistletPanelBreakDoButton	0	0	分解する
 RegistletPanelBreakWait	0	0	このジェムカートを粉末にしています・・・
 RegistletPanelBreakCancel	0	0	キャンセル
 RegistletPanelBreakComplete	0	0	ジェムの粉末を獲得しました！
-RegistletPanelEquipNoGemCart	0	0	"装備できるジェムカートが
-ありません"
+RegistletPanelEquipNoGemCart	0	0	装備できるジェムカートが\nありません
 RegistletPanelEquipThisEquip	0	0	このジェムカートを装備
 RegistletPanelEquipThisChange	0	0	このジェムカートを変更
 RegistletPanelEquipRemove	0	0	はずす
@@ -6642,10 +4864,7 @@ QuestPanelItemMes	0	0	{0}({1}個)を収集
 QuestPanelKeyMes	0	0	"貴重品""{0}"""
 QuestPanelEnemySubdue	0	0	達成！
 QuestPanelHock	0	0	所持中
-QuestPanelDestroyLabel	0	0	"「{0}」
-
-このクエストを放棄します、宜しいですか？
-[888888]＊再度受けなおす事も可能です"
+QuestPanelDestroyLabel	0	0	「{0}」\n\nこのクエストを放棄します、宜しいですか？\n[888888]＊再度受けなおす事も可能です
 QuestPanelDestroyMissionLabel2	0	0	\nこのミッションを放棄すると進行状態が\n[FFFF88]{0}[ffffff]\nをクリアした状態になり、元の状態には戻せません
 QuestPanelDestroyButton	0	0	クエストを放棄する
 QuestPopUpConnectLabel	0	0	通信待ちです
@@ -6654,8 +4873,7 @@ QuestPopUpConnectfumbleText	0	0	通信に失敗しました再度挑戦します
 QuestPoPUpLabel	0	0	クエスト報酬
 QuestReceivedReWard	0	0	[AA5555]この報酬は既に受け取り済みです
 QuestPanelDestroyMissionLabel	0	0	ストーリーミッションは放棄できません
-JournalPopUpText	0	0	"{0}「{1}」
-{2} {3} / {4}　達成しました！"
+JournalPopUpText	0	0	{0}「{1}」\n{2} {3} / {4}　達成しました！
 Mission	0	0	ミッション
 Quest	0	0	クエスト
 JournalPopUpMobText	0	0	{0}{1}
@@ -6878,15 +5096,7 @@ EmotionPanelDisp	0	0	常に表示
 EmotionPanelFavorite	0	0	お気に入り設定
 EmotionPanelDetail	0	0	詳細表示
 EmotionPanelSimple	0	0	簡易表示
-EmotionPanelDescription	0	0	"[ffff64]お気に入り[ffffff]に登録すると
-エモーションバーから簡単に
-使用することが出来ます。
-
-
-お気に入りに登録したい
-エモーションをタップすると
-登録できます。
-[6495ed]※10件まで"
+EmotionPanelDescription	0	0	[ffff64]お気に入り[ffffff]に登録すると\nエモーションバーから簡単に\n使用することが出来ます。\n\n\nお気に入りに登録したい\nエモーションをタップすると\n登録できます。\n[6495ed]※10件まで
 EmotionPanelSettingComplete	0	0	設定完了
 EmotionPanelIconType0	0	0	A
 EmotionPanelIconType1	0	0	B
@@ -7529,17 +5739,9 @@ SkillComboTypeNoneText	0	0	設定しません
 SkillComboTypeStartText	0	0	開始
 SkillComboTypeRengekiText	0	0	コンボ数に応じて消費MPを軽減します\n同一コンボ中に連撃が発動するたび、\n威力が低下していきます
 SkillComboTypeThirdEyeText	0	0	特殊な状態を除いて最低限Grazeヒットになり、\nコンボ数に応じて確率で必中になります\n状態異常を付与する時、対象に耐性時間が\n残っていたらコンボを中断します
-SkillComboTypeFillingText	0	0	"MPを消費せずに保持してスキルを発動させ、
-威力が大きく低下します。
-後に続くスキルの威力もしばらく低下し続けます。
-保持したMPが余った場合、
-最終コンボの必要MPが増加します。"
-SkillComboTypeQuickText	0	0	"このスキルの動作が加速します。
-(一部のスキルには適応されない場合があります)"
-SkillComboTypeHardHitText	0	0	"このスキルの威力が増加して、
-次に設定するコンボの威力が低下します。
-次に続くコンボが無い場合は、
-このスキルの消費MPが増加します。"
+SkillComboTypeFillingText	0	0	MPを消費せずに保持してスキルを発動させ、\n威力が大きく低下します。\n後に続くスキルの威力もしばらく低下し続けます。\n保持したMPが余った場合、\n最終コンボの必要MPが増加します。
+SkillComboTypeQuickText	0	0	このスキルの動作が加速します。\n(一部のスキルには適応されない場合があります)
+SkillComboTypeHardHitText	0	0	このスキルの威力が増加して、\n次に設定するコンボの威力が低下します。\n次に続くコンボが無い場合は、\nこのスキルの消費MPが増加します。
 SkillComboTypeTenacityText	0	0	MPが足りなくてもHPを消費して\nスキルを発動させます
 SkillComboTypeInvincibleText	0	0	コンボ数に応じて確率で無敵を付与します\n同一コンボ中に複数無敵が存在する場合、\n1つ目しか確率が発生しません
 SkillComboTypeBloodSuckingText	0	0	コンボ数に応じてダメージからHPを回復する\n吸血を使用した後、10秒間はHPを消費して\nスキル威力を増加させる効果に変化する
@@ -8458,8 +6660,7 @@ OptionPanelAccountRebootTitle	0	0	アカウント設定を変更しました
 OptionPanelAccountRebootMessage	0	0	\n\n\n変更した内容を反映させるには\nトーラムオンラインを再起動してください。
 NameChangePanelTitle	0	0	キャラクターの名前を[ffff64]雫玉{0}個[ffffff]で変更できます。
 NameChangePanelTitleWraing1	0	0	[ff0000]※変更すると30日間、雫玉の必要数が増加します
-NameChangePanelTitleWraing3	0	0	"[ff0000]※1度変更すると30日間、雫玉の必要数が増加します
-※前回変更してから{0}日経過しました"
+NameChangePanelTitleWraing3	0	0	[ff0000]※1度変更すると30日間、雫玉の必要数が増加します\n※前回変更してから{0}日経過しました
 NameChangePanelTitleWraing2	0	0	[ffff64]※注意点※\n既に使用されているキャラクター名には変更できません。\nキャラクターの状態によって変更できない場合があります。
 NameChangePanelButton	0	0	名前を確定
 NameChangePanelWait	0	0	[ffff64]名前の変更を申請中です。\nゲージがいっぱいになると変更は完了します。
@@ -9063,10 +7264,7 @@ UserTargetPanelTradeMes2	0	0	\n{0}とトレードが出来ませんでした。\
 UserTargetPanelTradeMes3	0	0	\n対象がトレード中のため\n申請がキャンセルされました。
 UserTargetPaneTradelButton2	0	0	とじる
 UserTargetPanelPartyLabel	0	0	パーティ招待
-UserTargetPanelPartyMes	0	0	"{0}をパーティに招待しますか？
-
-一定時間、返事が無い場合、
-自動でキャンセルされます。"
+UserTargetPanelPartyMes	0	0	{0}をパーティに招待しますか？\n\n一定時間、返事が無い場合、\n自動でキャンセルされます。
 UserTargetPanelPartyButton	0	0	パーティに招待する
 UserTargetPanelPartyText	0	0	一緒に冒険しましょう！！
 UserTargetPanelPartyError	0	0	\nメンバー数が上限、\nまたは既にパーティメンバーです
@@ -9074,27 +7272,15 @@ UserTargetPanelPartyAuthorityError	0	0	権限がありません
 UserTargetPanelPartyAlreadyOtherPartyError	0	0	\n既に他のパーティに入っています
 UserTargetPanelPartyNotStateReceive	0	0	\n対象がログインしていないか、\n招待を受け取れない状態です
 UserTargetPanelGuildLabel	0	0	ギルド招待
-UserTargetPanelGuildMes	0	0	"{0}をギルドに招待しますか？
-
-一定期間、返事がない場合、
-自動でキャンセルされます。"
+UserTargetPanelGuildMes	0	0	{0}をギルドに招待しますか？\n\n一定期間、返事がない場合、\n自動でキャンセルされます。
 UserTargetPanelGuildText	0	0	ギルドに入ってみませんか？
-UserTargetPanelFriendMes	0	0	"{0}に、フレンド申請を行います。
-
-相手側が承諾してくれればフレンド状態になります。
-フレンドは300人まで登録できます。
-自分か相手が300人登録していると申請できません。"
-UserTargetPanelFriendLimitMes	0	0	"{0}に、フレンド申請を行います。
-
-相手側が承諾してくれればフレンド状態になります。
-フレンドは{1}人まで登録できます。
-自分か相手のフレンド登録数が最大だと申請できません。"
+UserTargetPanelFriendMes	0	0	{0}に、フレンド申請を行います。\n\n相手側が承諾してくれればフレンド状態になります。\nフレンドは300人まで登録できます。\n自分か相手が300人登録していると申請できません。
+UserTargetPanelFriendLimitMes	0	0	{0}に、フレンド申請を行います。\n\n相手側が承諾してくれればフレンド状態になります。\nフレンドは{1}人まで登録できます。\n自分か相手のフレンド登録数が最大だと申請できません。
 UserTargetPanelFriendText	0	0	よかったら、フレンドになりませんか？
 UserTargetPanelFriendSuccess	0	0	{0}にフレンド申請をしました
 UserTargetPanelFriendError	0	0	相手がフレンド申請を受け取れない状態です
 UserTargetPanelFriendAlreadyExist	0	0	フレンド数が上限、または既にフレンドになっています
-UserTargetPanelReportMes	0	0	"キャラクター『{0}』を
-不正・迷惑行為として通報しますか？"
+UserTargetPanelReportMes	0	0	キャラクター『{0}』を\n不正・迷惑行為として通報しますか？
 UserTargetPanelLabel3	0	0	応援する
 UserTargetPanelMes3	0	0	あと{0}回
 UserTargetPanelLabel4	0	0	トレード
@@ -9181,16 +7367,14 @@ ChannelType8	0	0	韓国(KR)\nワールド
 ChannelType11	0	0	タイ(TH)\nワールド
 ChannelType12	0	0	インドネシア(ID)
 ChannelAdmission	0	0	入場する
-ChannelAdmissionDuring	0	0	"入場中の
-チャンネル"
+ChannelAdmissionDuring	0	0	入場中の\nチャンネル
 ChannelFullHouse	0	0	満員です
 ChannelComfortable	0	0	快適
 ChannelCommon	0	0	普通
 ChannelCongestion	0	0	混雑
 ChannelOver	0	0	満員
 ChannelNum	0	0	チャンネル{0}
-WorldAdmissionDuring	0	0	"入場中の
-ワールド"
+WorldAdmissionDuring	0	0	入場中の\nワールド
 WorldFullHouse	0	0	満員です
 WorldMaintenance	0	0	[FF7777]メンテナンス\n実施中
 WorldClosed	0	0	[FF7777]利用できません
@@ -9222,18 +7406,15 @@ NewsPanelGuildNewsMes	0	0	ギルドのお知らせが更新されました
 NewsPanelShopSellout	0	0	露店完売
 NewsPanelShopSelloutMes	0	0	露店が完売しました
 NewsPanelBagMax	0	0	鞄がいっぱいになりました
-NewsPanelBagMaxMes	0	0	"鞄がいっぱいになりました
-減らさないとドロップしません"
+NewsPanelBagMaxMes	0	0	鞄がいっぱいになりました\n減らさないとドロップしません
 NewsPanelTrophy	0	0	達成した勲章があります
-NewsPanelTrophyMes	0	0	"報酬を受け取ることが出来る
-勲章があります"
+NewsPanelTrophyMes	0	0	報酬を受け取ることが出来る\n勲章があります
 NewsPanelTrade	0	0	トレード申請
 NewsPanelTradeMes	0	0	トレード申請があります
 NewsPanelAsobimoAccount	0	0	引き継ぎ登録
 NewsPanelAsobimoAccountMes	0	0	アソビモアカウントでログインして勲章を手に入れよう！！
 NewsPanelScenarioItemWarrantIn	0	0	貴重品があふれています
-NewsPanelScenarioItemWarrantInMes	0	0	"貴重品が保障領域にあります
-保障領域では達成になりません"
+NewsPanelScenarioItemWarrantInMes	0	0	貴重品が保障領域にあります\n保障領域では達成になりません
 NewsPanelStampReward	0	0	スタンプ景品があります
 NewsPanelStampRewardMes	0	0	スタンプ景品があります
 NewsPanelBeginnerItem	0	0	初心者アイテム発売中
@@ -9414,25 +7595,13 @@ SyntheticItemType21	0	0	追加装備
 SyntheticItemType22	0	0	特殊装備
 SyntheticItemType-1	0	0	すべて表示
 SyntheticMedicineBagAnyFullMessage	0	0	\nカバンの空きスペースが少ないため、\nアイテム合成が行えない場合があります。
-LibraryPanelWeaponSkill	0	0	"[ffff77]【スキル習得－武器スキル】
-[ffffff]　各武器に対応したバトルには欠かせないスキル。
-１種類に絞って強くするのがオススメ！"
-LibraryPanelBattleSkill	0	0	"[ffff77]【スキル習得－戦闘関連】
-[ffffff]  バトルに関わるスキルを購入できます。
-武器スキルは１つ絞るのがオススメ！"
-LibraryPanelStrongSkill	0	0	"[ffff77]【スキル習得－強化スキル】
-[ffffff]　よりバトルを有利に進める為のスキル。
-盾や、体防具などの性能を更にアップさせよう！"
-LibraryPanelBufSkill	0	0	"[ffff77]【スキル習得－補助スキル】
-[ffffff]　冒険をしていくうえで便利能力を持つスキル。
-スキルポイントが余ってるなら覚えてみよう！"
-LibraryPanelLifeSkill	0	0	"[ffff77]【スキル習得－生活関連】
-[ffffff]　露店や生産などのスキルを購入できます。
-慣れないうちは必要の無いスキルだよ！"
-LibraryPanelMessage	0	0	"{0}が現在所持しているスキルの種類：{1}つ
-スキルは[ff0000]沢山覚えるほど習得にかかる費用は増加します！"
-LibraryPanelUnlearned	0	0	"Lv{0}から
-習得できます"
+LibraryPanelWeaponSkill	0	0	[ffff77]【スキル習得－武器スキル】\n[ffffff]　各武器に対応したバトルには欠かせないスキル。\n１種類に絞って強くするのがオススメ！
+LibraryPanelBattleSkill	0	0	[ffff77]【スキル習得－戦闘関連】\n[ffffff]  バトルに関わるスキルを購入できます。\n武器スキルは１つ絞るのがオススメ！
+LibraryPanelStrongSkill	0	0	[ffff77]【スキル習得－強化スキル】\n[ffffff]　よりバトルを有利に進める為のスキル。\n盾や、体防具などの性能を更にアップさせよう！
+LibraryPanelBufSkill	0	0	[ffff77]【スキル習得－補助スキル】\n[ffffff]　冒険をしていくうえで便利能力を持つスキル。\nスキルポイントが余ってるなら覚えてみよう！
+LibraryPanelLifeSkill	0	0	[ffff77]【スキル習得－生活関連】\n[ffffff]　露店や生産などのスキルを購入できます。\n慣れないうちは必要の無いスキルだよ！
+LibraryPanelMessage	0	0	{0}が現在所持しているスキルの種類：{1}つ\nスキルは[ff0000]沢山覚えるほど習得にかかる費用は増加します！
+LibraryPanelUnlearned	0	0	Lv{0}から\n習得できます
 LibraryPanelPopWindowLabel	0	0	【{0}Lv{1}】を習得します
 LibraryPanelPopWindowText	0	0	【{0}】装備で使用できるスキルを習得します
 LibraryPanelPopWindowSellingPrice	0	0	習得費用：{0}s
@@ -9631,8 +7800,7 @@ GuildMemberListPost	0	0	役職
 GuildMemberListActionChange	0	0	役職変更
 GuildInformationTitle	0	0	ギルドからのお知らせ
 GuildInformationEdit	0	0	編集する
-GuildInformationDefault	0	0	"ギルドを立ち上げました！
-みんなで盛り上げていきましょう！"
+GuildInformationDefault	0	0	ギルドを立ち上げました！\nみんなで盛り上げていきましょう！
 GuildInformationLastUpdateTime	0	0	お知らせの更新日：{0}
 GuildInformationLastEditName	0	0	最後に編集した人：{0}
 GuildPanelState0	0	0	パーティ招待
@@ -10423,8 +8591,7 @@ FriendPanelStateButton3	0	0	フレンド解除
 FriendPanelApply	0	0	承認する
 FriendPanelRevert	0	0	拒否する
 FriendPanelListLabel0	0	0	フレンド一覧
-FriendPanelListText0	0	0	"登録しているフレンドの情報を
-表示します"
+FriendPanelListText0	0	0	登録しているフレンドの情報を\n表示します
 FriendPanelListLabel1	0	0	フレンドの申請があります
 FriendPanelListText1	0	0	フレンドの申請を確認できます
 FriendPanelListLabel2	0	0	フレンドの活動履歴
@@ -10500,28 +8667,17 @@ PartyPanelPartyStyle4	0	0	ボス討伐
 PartyPanelPartyStyle5	0	0	雑魚討伐
 PartyPanelPartyStyle6	0	0	レア狙い
 PartyPanelPartyCollectionWindowLabel	0	0	パーティ募集
-PartyPanelPartyCollectionWindowText	0	0	"自分の紹介文を設定して、他のプレイヤーからの
-[ffff77]パーティ招待を待ちます
-[ffffff]招待が来た場合は、
-[ffff77]メニューの「お知らせ」から確認してください"
+PartyPanelPartyCollectionWindowText	0	0	自分の紹介文を設定して、他のプレイヤーからの\n[ffff77]パーティ招待を待ちます\n[ffffff]招待が来た場合は、\n[ffff77]メニューの「お知らせ」から確認してください
 PartyPanelPartySearchWindowLabel	0	0	パーティ検索
-PartyPanelPartySearchWindowText	0	0	"[ffff77]メンバーを募集しているパーティを探します
-[ffffff]申請された順番で加入していくため
-申請が間に合わないこともありますので
-ご注意下さい"
+PartyPanelPartySearchWindowText	0	0	[ffff77]メンバーを募集しているパーティを探します\n[ffffff]申請された順番で加入していくため\n申請が間に合わないこともありますので\nご注意下さい
 PartyPanelPartySearchWindowLevel	0	0	パーティ平均レベル
 PartyPanelPartySearchWindowStyle	0	0	パーティのスタイル
 PartyPanelMemberSearchWindowLabel	0	0	メンバー検索
-PartyPanelMemberSearchWindowText	0	0	"パーティを探しているプレイヤーに対して
-[ffff77]パーティ招待を行うことができます[ffffff]
-招待しても相手の事情により、
-承諾されない場合もあります"
+PartyPanelMemberSearchWindowText	0	0	パーティを探しているプレイヤーに対して\n[ffff77]パーティ招待を行うことができます[ffffff]\n招待しても相手の事情により、\n承諾されない場合もあります
 PartyPanelMemberSearchWindowLevel	0	0	検索するレベル
 PartyPanelMemberSearchWindowOK	0	0	さっそく検索する
 PartyPanelMemberCollectionWindowLabel	0	0	メンバー募集
-PartyPanelMemberCollectionWindowText	0	0	"パーティを探している人[ffff77]が自由に参加できます
-参加申請に対して拒否は出来ません[ffffff]ので、
-利用の際は、ご注意ください"
+PartyPanelMemberCollectionWindowText	0	0	パーティを探している人[ffff77]が自由に参加できます\n参加申請に対して拒否は出来ません[ffffff]ので、\n利用の際は、ご注意ください
 NewsPanelParty	0	0	パーティ招待{0}件
 NewsPanelPartyMes	0	0	パーティ招待が{0}件たまっています
 SystemPartyMessageInvitation	0	0	[FF0000]パーティ招待：{0}をパーティに招待しました
@@ -10706,22 +8862,10 @@ SmithStrengthSupport	0	0	精錬補助アイテム
 SmithReconstructionTitle	0	0	防具改造（{0}）
 SmithReconstructionSelectItemGuide	0	0	以下の防具を改造します
 SmithReconstructionLightTitle	0	0	回避性能を上げる
-SmithReconstructionLightExplanation	0	0	"・回避率がアップ
-
-・攻撃速度がアップ
-
-[ff7777]・物理防御がダウン
-
-・魔法防御がダウン"
+SmithReconstructionLightExplanation	0	0	・回避率がアップ\n\n・攻撃速度がアップ\n\n[ff7777]・物理防御がダウン\n\n・魔法防御がダウン
 SmithReconstructionLightButton	0	0	軽量化する
 SmithReconstructionWeightTitle	0	0	防御性能を上げる
-SmithReconstructionWeightExplanation	0	0	"・物理防御がアップ
-
-・魔法防御がアップ
-
-[ff7777]・回避率がダウン
-
-・攻撃速度がダウン"
+SmithReconstructionWeightExplanation	0	0	・物理防御がアップ\n\n・魔法防御がアップ\n\n[ff7777]・回避率がダウン\n\n・攻撃速度がダウン
 SmithReconstructionWeightButton	0	0	重量化する
 SmithReconstructionCheckWindowTitle	0	0	防具改造を始めます
 SmithReconstructionCheckWindowTypeGuideLight	0	0	"以下の防具を""[ffff77]軽量化[ffffff]""します"
@@ -10737,17 +8881,12 @@ PopUpWindowComplete	0	0	完了
 SmithReconstructionCompleteWindowLabel2	0	0	物理防御がアップ
 SmithReconstructionCompleteWindowLabel3	0	0	魔法防御がアップ
 SmithReconstructionMissWindowTitle	0	0	改造できません...
-SmithReconstructionMissWindowLabel	0	0	"装備中の防具はすでに改造されている、
-または改造できない防具です。
-
-防具改造は、
-装備中の装備にしか行えません。"
+SmithReconstructionMissWindowLabel	0	0	装備中の防具はすでに改造されている、\nまたは改造できない防具です。\n\n防具改造は、\n装備中の装備にしか行えません。
 SmithGrantTitle	0	0	装備強化（{0}）
 SmithGrantInfoWindowTitle	0	0	強化レシピ
 SmithGrantInfoWindowList1Potential	0	0	潜在力 {0}
 SmithGrantInfoWindowList1GrantNum	0	0	あと [77ffff]{0}枠 [ffffff]強化可能
-SmithGrantInfoWindowList1MessageLabel	0	0	"[ffff77]強化を行う装備品を
-選択してください"
+SmithGrantInfoWindowList1MessageLabel	0	0	[ffff77]強化を行う装備品を\n選択してください
 SmithGrantInfoWindowList1StartButton	0	0	強化する
 SmithGrantInfoWinfowList2PotentialMessageLabel	0	0	[ffff77]残り値 [ffffff]/ 潜在力
 SmithGrantInfoWindowList2RequireMaterialMessageLabel	0	0	必要な材料
@@ -10755,20 +8894,14 @@ SmithGrantInfoWindowList2StartButton	0	0	強化を開始！
 SmithGrantInfoWindowList3ConsumptionPontentialMessageLabel	0	0	[ffff77]残り値 [ffffff]/ 潜在力 [808080](消費)
 SmithGrantInfoWindowSetWeaponEmpty	0	0	アイテムを装備していません
 PopUpWindowDecision	0	0	決定
-SmithGrantWarningWindowMessage	0	0	"潜在力が足りない強化な為
-すべての能力付与がされない
-可能性があります！
-
-場合によっては強化済みの能力が
-消えてしまうかも…"
+SmithGrantWarningWindowMessage	0	0	潜在力が足りない強化な為\nすべての能力付与がされない\n可能性があります！\n\n場合によっては強化済みの能力が\n消えてしまうかも…
 SmithGrantWarningWindowTitle	0	0	失敗の危険があります！
 SmithGrantWarningWindowStrikeRate	0	0	[ff7777]成功率{0}％
 SmithGrantInfoWindowCheckPotentialMessageLabel	0	0	--潜在力--
 SmithGrantInfoWindowCheckConsumptionMessageLabel	0	0	--消費する材料--
 SmithGrantInfoWindowPropertyTypeLabel	0	0	[ffff77]{0}[ffffff]を付与します
 SmithGrantCompleteWindowTitle	0	0	強化が終了しました！
-SmithGrantCompleteWindowMessage	0	0	"強化した結果、[ffff77]{0}
-[ffffff]になりました！"
+SmithGrantCompleteWindowMessage	0	0	強化した結果、[ffff77]{0}\n[ffffff]になりました！
 SmithGrantCompleteWindowResultSuccess	0	0	[ffff77]強化に成功しました！
 SmithGrantCompleteWindowResultFailure	0	0	[ffff77]強化に失敗しました...
 SmithProcessingPointLack	0	0	個数が足りません
@@ -10865,11 +8998,9 @@ SmithBonusPropertiesCategory8	0	0	クリティカル強化
 SmithBonusPropertiesCategory9	0	0	属性強化
 SmithBonusPropertiesCategory10	0	0	特殊強化
 SmithBonusPropertiesCategory11	0	0	属性覚醒
-SmithItemNotFound	0	0	"精錬に必要なアイテムを持っていません。
-(左上のボタンから戻れます。)"
+SmithItemNotFound	0	0	精錬に必要なアイテムを持っていません。\n(左上のボタンから戻れます。)
 NotUse	0	0	使用しない
-SmithManufactureSelectCategory	0	0	"[ffff77]製作するカテゴリを
-選択してください"
+SmithManufactureSelectCategory	0	0	[ffff77]製作するカテゴリを\n選択してください
 SmithGrantEmptySlot	0	0	[ffff77]能力を設定できます
 SmithGrantNotUsableSlot	0	0	[777777]この枠は利用できません
 SmithManufactureRecipeCannotCreate	0	0	[ff7777]熟練度が足りません\nTECまたはDEXでも補えます
@@ -11011,46 +9142,13 @@ RecreateExitMessage	0	0	キャラクター作成を中止して戻りますか�
 RecreateExitTitle	0	0	確認
 RecreateRecipeTypeBody	0	0	体
 EquipAdviceLabel	0	0	装備を変更してみよう！
-EquipAdviceText	0	0	"武器や防具は、持っているだけでは効果がありません。	
-[ffff64]装備して初めて、その能力を発揮します[ffffff]。	
-	
-新しい装備はモンスターを倒して手に入れたり、	
-鍛冶屋で製作することでも入手できます。	
-	
-見た目で装備を選ぶのも良いかもしれません。	
-	
-	
-▼さっそく装備を見てみる"
+EquipAdviceText	0	0	武器や防具は、持っているだけでは効果がありません。\t\n[ffff64]装備して初めて、その能力を発揮します[ffffff]。\t\n\t\n新しい装備はモンスターを倒して手に入れたり、\t\n鍛冶屋で製作することでも入手できます。\t\n\t\n見た目で装備を選ぶのも良いかもしれません。\t\n\t\n\t\n▼さっそく装備を見てみる
 StatusAdviceLabel	0	0	キャラを強くしよう！
-StatusAdviceText	0	0	"このポイントを使って、キャラクターを
-自分好みに成長させましょう！
-
-やり直すには[ffff64]「ステフリの書」[ffffff]が必要になりますので、
-よく考えて成長させましょう。
-
-
-
-▼さっそく成長させる"
+StatusAdviceText	0	0	このポイントを使って、キャラクターを\n自分好みに成長させましょう！\n\nやり直すには[ffff64]「ステフリの書」[ffffff]が必要になりますので、\nよく考えて成長させましょう。\n\n\n\n▼さっそく成長させる
 SkillAdviceLabel	0	0	スキルを覚えよう！
-SkillAdviceText	0	0	"レベルアップすると[ffff64]「スキルポイント」[ffffff]が貰えます。		
-このポイントを使って、新しいスキルを覚えたり、		
-スキルを強化することが出来ます。		
-		
-やり直すには[ffff64]「忘却の書」[ffffff]が必要になりますので、		
-よく考えて習得しましょう。		
-		
-		
-		
-▼さっそくスキルを覚える		
-"
+SkillAdviceText	0	0	レベルアップすると[ffff64]「スキルポイント」[ffffff]が貰えます。\t\t\nこのポイントを使って、新しいスキルを覚えたり、\t\t\nスキルを強化することが出来ます。\t\t\n\t\t\nやり直すには[ffff64]「忘却の書」[ffffff]が必要になりますので、\t\t\nよく考えて習得しましょう。\t\t\n\t\t\n\t\t\n\t\t\n▼さっそくスキルを覚える\t\t\n
 QuestAdviceLabel	0	0	クエストを報告！
-QuestAdviceText	0	0	"　現在達成済みのクエストが存在します。
-これを報告することによって報酬を得ることが出来ます。
-
-
-
-
-▼達成済みクエストの確認"
+QuestAdviceText	0	0	　現在達成済みのクエストが存在します。\nこれを報告することによって報酬を得ることが出来ます。\n\n\n\n\n▼達成済みクエストの確認
 FrendAdviceLabel	0	0	友達を増やそう！
 FrendAdviceText	0	0	目指せ友達１００人出来るかな
 PartyAdviceLabel	0	0	パーティで協力！
@@ -11058,170 +9156,49 @@ PartyAdviceText	0	0	パーティを組んで強力なモンスターを倒しに
 GuildAdviceLabel	0	0	ギルドって知ってる？
 GuildAdviceText	0	0	同士を求めてコミュニティに参加しよう
 CrowdedAdviceLabel	0	0	混雑して遊びにくい？
-CrowdedAdviceText	0	0	"周辺が混雑していて遊びにくい場合は、
-チャンネルを切り替えると快適になるかもしれません。
-
-
-チャンネル数は混雑してくると自動的に増えます。
-もし[ffff64]同じマップに居るのに友達に会えない場合は、
-違うチャンネルに居る[ffffff]かもしれません。
-
-
-▼さっそくチャンネルを変えてみる"
+CrowdedAdviceText	0	0	周辺が混雑していて遊びにくい場合は、\nチャンネルを切り替えると快適になるかもしれません。\n\n\nチャンネル数は混雑してくると自動的に増えます。\nもし[ffff64]同じマップに居るのに友達に会えない場合は、\n違うチャンネルに居る[ffffff]かもしれません。\n\n\n▼さっそくチャンネルを変えてみる
 GuildBarLabel	0	0	ギルド酒場に行こう
 GuildBarText	0	0	ギルド酒場に誰かいるかも知れないよ
 MyRoomLabel	0	0	自室に行ってみよう
-MyRoomText	0	0	"たまには部屋に帰って休まないと
-体力がもたないぞー"
+MyRoomText	0	0	たまには部屋に帰って休まないと\n体力がもたないぞー
 SaveDataLabel	0	0	データの保存は？
-SaveDataText	0	0	"プレイヤーのデータは自動で保存されています。
-データ破損を防ぐ為、なるべく「ログアウト」にて
-ゲームを終了して頂くと幸いです。
-
-
-ただしアプリを削除したり、機種の変更、紛失した場合に
-復旧できない可能性があります。
-設定メニューの[ffff64]「アカウント設定」[ffffff]を行っておくと
-機種の変更後なども引き続きプレイできます。"
+SaveDataText	0	0	プレイヤーのデータは自動で保存されています。\nデータ破損を防ぐ為、なるべく「ログアウト」にて\nゲームを終了して頂くと幸いです。\n\n\nただしアプリを削除したり、機種の変更、紛失した場合に\n復旧できない可能性があります。\n設定メニューの[ffff64]「アカウント設定」[ffffff]を行っておくと\n機種の変更後なども引き続きプレイできます。
 EmotionAdviceLabel	0	0	座ってみよう！
-EmotionAdviceText	0	0	"エモーションの[ffff64]「座る」[ffffff]をすると、
-HPとMPの回復速度が２倍になります！
-[64ffff]※「正座」でも同様の効果が得られます[ffffff]
-
-休憩する時は活用してみましょう。
-
-
-
-
-▼さっそく座ってみる"
+EmotionAdviceText	0	0	エモーションの[ffff64]「座る」[ffffff]をすると、\nHPとMPの回復速度が２倍になります！\n[64ffff]※「正座」でも同様の効果が得られます[ffffff]\n\n休憩する時は活用してみましょう。\n\n\n\n\n▼さっそく座ってみる
 AutoItemAdviceLabel	0	0	自動回復を設定しよう！
-AutoItemAdviceText	0	0	"回復アイテムを設定すると、HPが減ったときに
-自動でアイテムを使ってくれる便利な機能があります！
-[ffff64]リバイタなどのHP回復アイテムを設定可能です[ffffff]。
-
-デフォルト設定ではHPが25%以下になると、
-回復アイテムを使ってくれます。
-発動タイミングは好きな値に変更できます。
-
-
-▼さっそく設定してみる"
+AutoItemAdviceText	0	0	回復アイテムを設定すると、HPが減ったときに\n自動でアイテムを使ってくれる便利な機能があります！\n[ffff64]リバイタなどのHP回復アイテムを設定可能です[ffffff]。\n\nデフォルト設定ではHPが25%以下になると、\n回復アイテムを使ってくれます。\n発動タイミングは好きな値に変更できます。\n\n\n▼さっそく設定してみる
 TargetAdviceLabel	0	0	離れてる敵を優先できます
-TargetAdviceText	0	0	"弓や自動弓を使っていませんか？
-[ffff64]遠くにいる敵を優先して選択してくれる設定[ffffff]を行うと
-更に快適な戦闘ができるようになります！
-
-
-魔法攻撃で遠くを優先してもらいたい場合でも
-この設定をすると有利になるかもしれません。
-
-
-▼さっそく設定してみる"
+TargetAdviceText	0	0	弓や自動弓を使っていませんか？\n[ffff64]遠くにいる敵を優先して選択してくれる設定[ffffff]を行うと\n更に快適な戦闘ができるようになります！\n\n\n魔法攻撃で遠くを優先してもらいたい場合でも\nこの設定をすると有利になるかもしれません。\n\n\n▼さっそく設定してみる
 ControlAdviceLabel	0	0	操作感を調整してみよう！
-ControlAdviceText	0	0	"システム設定では、ショートカットの挙動や、
-カメラの操作反転、感度の強弱などが設定できます。
-
-ターゲット時のカメラ回転を停止させたり、
-遠くの敵を優先してターゲットすることも可能です。
-
-自分に合う操作感を探してみましょう。
-
-
-▼さっそく変更してみる"
+ControlAdviceText	0	0	システム設定では、ショートカットの挙動や、\nカメラの操作反転、感度の強弱などが設定できます。\n\nターゲット時のカメラ回転を停止させたり、\n遠くの敵を優先してターゲットすることも可能です。\n\n自分に合う操作感を探してみましょう。\n\n\n▼さっそく変更してみる
 CameraAdviceLabel	0	0	カメラの自動回転OFF
-CameraAdviceText	0	0	"ターゲット時、カメラが自動的に相手に振り向きますが、
-システム設定の[ffff64]「オートフォーカス」[ffffff]をOFFにすることで
-この動作を解除することが出来ます。
-
-
-勝手にカメラが動作することで
-プレイし辛い場合は、試してみてください。
-
-
-▼さっそく試してみる"
-CameraAdviceNewText	0	0	"ターゲット時、カメラが自動的に相手に振り向きますが、
-システム設定の[ffff64]「ターゲット時にカメラを向ける」[ffffff]を\nOFFにすることで\nこの動作を解除することが出来ます。
-
-勝手にカメラが動作することで
-プレイし辛い場合は、試してみてください。
-
-
-▼さっそく試してみる"
+CameraAdviceText	0	0	ターゲット時、カメラが自動的に相手に振り向きますが、\nシステム設定の[ffff64]「オートフォーカス」[ffffff]をOFFにすることで\nこの動作を解除することが出来ます。\n\n\n勝手にカメラが動作することで\nプレイし辛い場合は、試してみてください。\n\n\n▼さっそく試してみる
+CameraAdviceNewText	0	0	ターゲット時、カメラが自動的に相手に振り向きますが、\nシステム設定の[ffff64]「ターゲット時にカメラを向ける」[ffffff]を\nOFFにすることで\nこの動作を解除することが出来ます。\n\n勝手にカメラが動作することで\nプレイし辛い場合は、試してみてください。\n\n\n▼さっそく試してみる
 GraphicAdviceLabel	0	0	表示を減らして快適プレイ！
-GraphicAdviceText	0	0	"表示人数が多くて動作が重いと感じますか？	
-他のユーザーを[ffff64]非表示[ffffff]にすることで
-快適になる場合があります。
-	
-	
-パーティで遊んでる場合は、全ての設定をOFFにすると、	
-快適にプレイできるかもしれません。	
-	
-	
-▼さっそく試してみる"
+GraphicAdviceText	0	0	表示人数が多くて動作が重いと感じますか？\t\n他のユーザーを[ffff64]非表示[ffffff]にすることで\n快適になる場合があります。\n\t\n\t\nパーティで遊んでる場合は、全ての設定をOFFにすると、\t\n快適にプレイできるかもしれません。\t\n\t\n\t\n▼さっそく試してみる
 ComboAdviceLabel	0	0	コンボを手に入れよう！
-ComboAdviceText	0	0	"コンボが使えるようになると、
-より多くのスキルを簡単に扱うことが可能になります。
-
-・消費MPを減らせる　　　　
-・ダメージを増加させる　　
-・素早くスキルを使用させる
-など、コンボを利用することで、
-特別な能力を発揮させることも可能です。
-
-▼コンボが使えるようになるには？
-[ffff64]スキルを５種類おぼえると、
-コンボが利用できるようになります。[ffffff]"
+ComboAdviceText	0	0	コンボが使えるようになると、\nより多くのスキルを簡単に扱うことが可能になります。\n\n・消費MPを減らせる　　　　\n・ダメージを増加させる　　\n・素早くスキルを使用させる\nなど、コンボを利用することで、\n特別な能力を発揮させることも可能です。\n\n▼コンボが使えるようになるには？\n[ffff64]スキルを５種類おぼえると、\nコンボが利用できるようになります。[ffffff]
 PartnerAdviceLabel	0	0	パートナーを呼ぼう！
-PartnerAdviceText	0	0	"[ffff64]使用していないパラメータを[ffffff]
-[ffff64]パーティメンバーとして呼び出せます。[ffffff]
-
-
-パラメータ切り替えの画面で、同行させるかを
-設定できます。
-
-
-
-▼さっそく同行させる"
+PartnerAdviceText	0	0	[ffff64]使用していないパラメータを[ffffff]\n[ffff64]パーティメンバーとして呼び出せます。[ffffff]\n\n\nパラメータ切り替えの画面で、同行させるかを\n設定できます。\n\n\n\n▼さっそく同行させる
 HouseAddPartitionLabel	0	0	野良モンスターを阻止！
 HouseAddPartitionAdviceLabel	0	0	野良モンスターを阻止！
-HouseAddPartitionAdviceText	0	0	" [ffff64]土地の外周が全て室内に設定されています！[ffffff]
-
-この状態だと野良モンスターは
-あなたの土地に入ってこなくなります。
-
-野良モンスターをペットにしたい場合は
-１マスでいいので外周に繋がる庭を設定してください。"
+HouseAddPartitionAdviceText	0	0	 [ffff64]土地の外周が全て室内に設定されています！[ffffff]\n\nこの状態だと野良モンスターは\nあなたの土地に入ってこなくなります。\n\n野良モンスターをペットにしたい場合は\n１マスでいいので外周に繋がる庭を設定してください。
 HouseAddPartitionItem	0	0	 パーティション設定
 HouseSetGardenItemLabel	0	0	庭を飾ってみよう！
 HouseSetGardenItemAdviceLabel	0	0	庭を飾ってみよう！
-HouseSetGardenItemAdviceText	0	0	"   庭が寂しくないですか？
-[ffff64]庭用の装飾を作って配置してみましょう！[ffffff]
-
-[ffff64]初めて作る庭用の装飾は、必要な素材も多くなります[ffffff]が、
-２回目からは少ない材料で作ることが可能となります。
-"
+HouseSetGardenItemAdviceText	0	0	   庭が寂しくないですか？\n[ffff64]庭用の装飾を作って配置してみましょう！[ffffff]\n\n[ffff64]初めて作る庭用の装飾は、必要な素材も多くなります[ffffff]が、\n２回目からは少ない材料で作ることが可能となります。\n
 HouseSetGardenItem	0	0	 庭の管理
 HouseSetRoomItemLabel	0	0	家具を配置してみよう！
 HouseSetRoomItemAdviceLabel	0	0	家具を配置してみよう！
-HouseSetRoomItemAdviceText	0	0	" 室内が寂しくないですか？
-[ffff64]家具を作って配置してみましょう！[ffffff]
-
-[ffff64]初めて作る家具は、必要な素材も多くなります[ffffff]が、
-２回目からは少ない材料で作ることが可能となります。"
+HouseSetRoomItemAdviceText	0	0	 室内が寂しくないですか？\n[ffff64]家具を作って配置してみましょう！[ffffff]\n\n[ffff64]初めて作る家具は、必要な素材も多くなります[ffffff]が、\n２回目からは少ない材料で作ることが可能となります。
 HouseSetRoomItem	0	0	家具の管理  
 HouseCreateRoomLabel	0	0	家を建てよう！
 HouseCreateRoomAdviceLabel	0	0	家を建てよう！
-HouseCreateRoomAdviceText	0	0	" あなたの土地には庭しかありません！
-パーティション設定で[ffff64]室内と室外の設定[ffffff]をしましょう！
-
-室内の設定をしたら、忘れずにドアも付けてくださいね！"
+HouseCreateRoomAdviceText	0	0	 あなたの土地には庭しかありません！\nパーティション設定で[ffff64]室内と室外の設定[ffffff]をしましょう！\n\n室内の設定をしたら、忘れずにドアも付けてくださいね！
 HouseCreateRoom	0	0	 パーティション設定
 HouseCreateHouseLabel	0	0	家の見た目を変えてみよう！
 HouseCreateHouseAdviceLabel	0	0	家の見た目を変えてみよう！
-HouseCreateHouseAdviceText	0	0	" 家の見た目を変えてみませんか？
-もちろん室内の壁紙や床も変更できますよ！
-
-家具に比べると必要な素材が多くなりますが、
-１度作成すれば何度でも変更可能です。"
+HouseCreateHouseAdviceText	0	0	 家の見た目を変えてみませんか？\nもちろん室内の壁紙や床も変更できますよ！\n\n家具に比べると必要な素材が多くなりますが、\n１度作成すれば何度でも変更可能です。
 HouseCreateHouse	0	0	 家の改装
 StylistSeletStylist	0	0	{0}の変更
 StylistUseItemStorage	0	0	ー　アイテムの消費　－
@@ -11230,16 +9207,14 @@ StylistUseItemStorageShop	0	0	店負担
 StylistSeletStylistParts	0	0	ー　{0}を選択してください　－
 StylistUseItemList	0	0	消費予定アイテム
 StylistName	0	0	スタイリスト名
-StylistPossibleNum	0	0	"ヘアメイク可能回数
-　あと　{0}回　　来店数　{1}/{2}"
+StylistPossibleNum	0	0	ヘアメイク可能回数\n　あと　{0}回　　来店数　{1}/{2}
 StylistEnter	0	0	内容決定!!
 StylistNeedItem	0	0	必要アイテム
 StylistNeedItemNum	0	0	[000000]{0}個持っています
 StylistNeedItemCoin	0	0	[000000]{0}を１つ使って利用できます
 StylistNeedCoin	0	0	ご利用スピナ
 StylistCanNotItem	0	0	利用できません
-StylistCanNotItemMessage	0	0	"[ff0000]スタイリストが必要なアイテムを
-所持していないか,売り切れました"
+StylistCanNotItemMessage	0	0	[ff0000]スタイリストが必要なアイテムを\n所持していないか,売り切れました
 StylistHair	0	0	前髪
 StylistHead	0	0	後ろ髪
 StylistHairTail	0	0	尻尾髪
@@ -11257,20 +9232,17 @@ WarehouseButtonName	0	0	【アイテム倉庫{0}：{1}】
 WarehouseButtonNameLock	0	0	未解放
 WarehouseButtonNameDefault	0	0	フリーメッセージ
 WarehouseButtonMessageDefault	0	0	タップして倉庫を操作します
-WarehouseButtonMessageLock	0	0	"この倉庫の利用権を持っていません。
-タップして解放できます。"
+WarehouseButtonMessageLock	0	0	この倉庫の利用権を持っていません。\nタップして解放できます。
 WarehouseButtonSlot	0	0	収納数  {0}/{1}
 WarehouseInputNameLabel	0	0	▼倉庫名
 WarehouseInputNameText	0	0	倉庫名を入力してください
 WarehouseInputMessageLabel	0	0	▼この倉庫の説明
 WarehouseInputButton	0	0	更新する
 WarehouseSelectedPickUp	0	0	引き出す
-WarehouseSelectedPickUpMax	0	0	"引き出す
-所持品がいっぱいです！！"
+WarehouseSelectedPickUpMax	0	0	引き出す\n所持品がいっぱいです！！
 WarehouseSelectedCustom	0	0	編集
 WarehouseSelectedPutIn	0	0	預ける
-WarehouseSelectedPutInMax	0	0	"預ける
-倉庫がいっぱいです"
+WarehouseSelectedPutInMax	0	0	預ける\n倉庫がいっぱいです
 WarrantyItemBagErrLabel	0	0	警告
 WarrantyItemBagErrText	0	0	鞄に空きがありません
 ItemPanelPopUpUseLabel	0	0	アイテムの使用
@@ -11296,15 +9268,9 @@ ItemPanelChangePanel	0	0	切り替え
 ItemPanelLock	0	0	ロック
 ItemPanelUnLock	0	0	アンロック
 ItemPanelPopUpLockLabel	0	0	アイテムのロック
-ItemPanelPopUpLockMessage	0	0	"{0}をロックします
-解除されるまで
-削除・素材加工・販売
-することができません"
+ItemPanelPopUpLockMessage	0	0	{0}をロックします\n解除されるまで\n削除・素材加工・販売\nすることができません
 ItemPanelPopUpUnLockLabel	0	0	アイテムのアンロック
-ItemPanelPopUpUnLockMessage	0	0	"{0}をアンロックします
-解除しますと
-削除・素材加工・販売
-することができるようになります"
+ItemPanelPopUpUnLockMessage	0	0	{0}をアンロックします\n解除しますと\n削除・素材加工・販売\nすることができるようになります
 ItemPanelPopUpDeleteButton	0	0	捨てる
 ItemPanelPopUpDeleteRefineLabel	0	0	[ff3333]対象のアイテムは精錬値が {0} です。
 ItemPanelPopUpDeleteCristaLabel	0	0	[ff3333]{0}が装備されています。
@@ -11312,31 +9278,18 @@ ItemPanelPopUpDeleteEquipLabel	0	0	[C8C800]{0} [ffffff]を捨てます
 ItemPanelPopUpDeleteItemLabel	0	0	[C8C800]{0} {1}個 [ffffff]を捨てます
 ItemPanelPopUpDeleteTextLabel	0	0	捨てたアイテムは二度と戻ってきません！
 ItemPanelPopUpDeleteCristaSlotLabel	0	0	[ff3333]スロット{0}があります
-ItemPanelBattleChangeErrLabel	0	0	"戦闘中のため装備を\n
-変更することができませんでした"
+ItemPanelBattleChangeErrLabel	0	0	戦闘中のため装備を\n\n変更することができませんでした
 ItemPanelPopUpUnEquipLabel	0	0	装備の解除
 ItemPanelPopUpUnEquipText	0	0	{0}装備をはずしますか?
 BuyNewItemSlot	0	0	新規枠購入
 BuyNewItemSlotText	0	0	新規枠を購入しました
 BuyNewItemSlotTextErr	0	0	新規枠の購入に失敗しました
-BuyNewItemBagSlotText	0	0	"雫玉を{0}個消費します
-
-所持数：{1}
-
-[FFFF99]新規枠を１つ追加できます"
-BuyNewItemStorageSlotText	0	0	"雫玉を{0}個消費します
-
-所持数：{1}
-
-[FFFF99]新規枠を５つ追加できます"
+BuyNewItemBagSlotText	0	0	雫玉を{0}個消費します\n\n所持数：{1}\n\n[FFFF99]新規枠を１つ追加できます
+BuyNewItemStorageSlotText	0	0	雫玉を{0}個消費します\n\n所持数：{1}\n\n[FFFF99]新規枠を５つ追加できます
 BuyNewStorageText	0	0	新規倉庫を購入しました
 BuyNewStorageTextErr	0	0	新規倉庫の購入に失敗しました
 StoragePanelNewBuyPopUpTitle	0	0	新規倉庫購入
-StoragePanelNewBuyPopUp	0	0	"雫玉を{0}個消費します
-
-所持数：{1}
-
-[FFFF99]新規倉庫(10枠)を購入します"
+StoragePanelNewBuyPopUp	0	0	雫玉を{0}個消費します\n\n所持数：{1}\n\n[FFFF99]新規倉庫(10枠)を購入します
 StorageEditOverPopUpTitle	0	0	文字数オーバー
 StorageEditOverPopUpText	0	0	設定できる最大文字数を\nオーバーしています
 ItemPanelPopUpDeleteEquipMessage	0	0	装備中のアイテムは捨てることができません
@@ -11344,9 +9297,7 @@ ItemPanelPopUpDeleteIndefeasibleMessage	0	0	{0}は捨てることができませ
 ItemPanelPopUpDeleteLockMessage	0	0	{0}はロックされているため\n捨てることができません
 BagPanelAddSlotMaxText	0	0	\n\n最大数購入されているため\nこれ以上購入できません
 BagPanelAddSlotWindowButtonErr	0	0	[ff0000]これ以上購入できません
-EquipPanelRecycleGoldOverMessage	0	0	"スピナは21億までしか所持できません。
-リサイクルによりスピナが当選した場合、
-上限を超えた分は消滅してしまいます！"
+EquipPanelRecycleGoldOverMessage	0	0	スピナは21億までしか所持できません。\nリサイクルによりスピナが当選した場合、\n上限を超えた分は消滅してしまいます！
 ItemPanelNextButton	0	0	次のページ
 MapPanelRestItemAddBuyOrbNum	0	0	雫玉を作る
 ItemBagPanelOrbAddSlot	0	0	カバンの枠を追加する
@@ -11411,13 +9362,7 @@ UIItemScrollListNonFilterNumLabel0	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterNumLabel1	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterNumLabel2	0	0	{2}{0} / {1}
 UIItemScrollListNonFilterMessageLabel	0	0	[ffff00]レアアイテムのみ、上限を超えた場合は\n保障カバンに一時的に保管されます\n保障カバンが有効になっていると新規ドロップが発生しません
-BuyNewItemBagSlotNumText	0	0	"雫玉を{0}個消費します
-
-所持数：{1}
-
-[FFFF99]新規枠を１つ追加できます
-
-{2} → {3}"
+BuyNewItemBagSlotNumText	0	0	雫玉を{0}個消費します\n\n所持数：{1}\n\n[FFFF99]新規枠を１つ追加できます\n\n{2} → {3}
 ItemBagPanelFavoriteItem	0	0	お気に入り
 ItemBagPanelAutoDeleteOption	0	0	[aaaaaa]AUTO\n設定
 ItemBagPanelDisplayOption	0	0	カバンのまとめ表示
@@ -11453,11 +9398,7 @@ OrbServiceErrorText	0	0	\nサービスの購入に失敗しました。\n\n通�
 OrbShopConnectErrorTitle	0	0	通信エラー
 OrbShopConnectErrorText	0	0	通信を完了できませんでした。\n\n通信状況を確認してください。\n改善されない場合はお問い合わせください。
 OrbBuyPanelCreateOrbLabel	0	0	雫玉を作る
-OrbBuyPanelCreateOrbText	0	0	"雫玉の欠片を100個消費します
-
-所持数:{0}
-
-雫玉を1個生成します"
+OrbBuyPanelCreateOrbText	0	0	雫玉の欠片を100個消費します\n\n所持数:{0}\n\n雫玉を1個生成します
 OrbBuyPanelCreateOrbSuccessText	0	0	雫玉を1個生成しました
 OrbGachaItemNameText	0	0	{0} {1}個
 OrbLuckBagInfoText	0	0	{0}種
@@ -11468,11 +9409,7 @@ OrbShopPanelBuyCopyText	0	0	このデジタルアイテムを購入すること�
 OrbBuyPanelBuyCopyText	0	0	このデジタルアイテムを購入することはライセンスとなります。\n購入にすすむことで、利用規約に同意したことになります。\n
 OrbBuyPanelCreateTicketLabel	0	0	チケットに交換する
 OrbBuyPanelCreateTicketButton	0	0	ピースをチケットに交換する
-OrbBuyPanelCreateTicketText	0	0	"チケットピースを100個消費します
-
-所持数:{0}
-
-アバターチケット1個と交換します"
+OrbBuyPanelCreateTicketText	0	0	チケットピースを100個消費します\n\n所持数:{0}\n\nアバターチケット1個と交換します
 OrbBuyPanelCreateTicketSuccessText	0	0	アバターチケット1枚に交換しました
 OrbBuyPanelCreateTicketButton	0	0	アバターチケットに交換する
 OrbBuyPanelCreateTicketErrText	0	0	アバターチケットに交換することが\nできませんでした
@@ -11584,46 +9521,7 @@ EquipPanelPopUpAvatarRecycleText	0	0	[C8C800]{0} [ffffff]をリサイクルし�
 EquipPanelPopUpAvatarRecycleMessage	0	0	リサイクルしたアイテムは二度と戻ってきません！
 EquipPanelAvatarRecycleButton	0	0	リサイクル
 EquipPanelAvatarRecycleItemCheckText	0	0	下記のどれかに変換されます宜しいでしょうか？
-EquipPanelAvatarRecycleItemCheckText2	0	0	"              ・経験値
-              ・スピナ 1,000s
-              ・スピナ 2,000s
-              ・スピナ 3,000s
-              ・スピナ 4,000s
-              ・スピナ 5,000s
-              ・スピナ 6,000s
-              ・スピナ 7,000s
-              ・スピナ 8,000s
-              ・スピナ 9,000s
-              ・スピナ 10,000s
-              ・高純度鉄 x10
-              ・高純度ダマスカス x5
-              ・高純度ミスリル x3
-              ・高純度オリハルコン x1
-              ・破れたカタログ x3
-              ・破れたカタログ x6
-              ・破れたカタログ x9
-              ・ライトシャード x10
-              ・ライトシャード x30
-              ・ライトシャード x50
-              ・カラーシャード x10
-              ・カラーシャード x30
-              ・カラーシャード x50
-              ・[ffff64]保険チケット(100%)[ffffff] x1
-              ・[ffff64]精錬チケット(2倍)[ffffff] x1
-              ・[ffff64]精錬チケット(3倍)[ffffff] x1
-              ・[ffff64]スミスハンマー[ffffff] x1
-              ・[ffff64]インフィニティジェム[ffffff] x1
-              ・[ffff64]リザレクションジェム[ffffff] x1
-              ・[ffff64]レアアップジェム[ffffff] x1
-              ・[ffff64]スーパーレアジェム[ffffff] x1
-              ・[ffff64]レジェンダリジェム[ffffff] x1
-              ・[ffff64]アルティメットジェム[ffffff] x1
-
-※経験値は現在のパラメータLvによって
-　獲得量が変化します
-※経験値はEXPを獲得できない(Lv上限に達している)場合は
-　抽選されません
-※スピナは上限(21億)に達している場合は抽選されません"
+EquipPanelAvatarRecycleItemCheckText2	0	0	              ・経験値\n              ・スピナ 1,000s\n              ・スピナ 2,000s\n              ・スピナ 3,000s\n              ・スピナ 4,000s\n              ・スピナ 5,000s\n              ・スピナ 6,000s\n              ・スピナ 7,000s\n              ・スピナ 8,000s\n              ・スピナ 9,000s\n              ・スピナ 10,000s\n              ・高純度鉄 x10\n              ・高純度ダマスカス x5\n              ・高純度ミスリル x3\n              ・高純度オリハルコン x1\n              ・破れたカタログ x3\n              ・破れたカタログ x6\n              ・破れたカタログ x9\n              ・ライトシャード x10\n              ・ライトシャード x30\n              ・ライトシャード x50\n              ・カラーシャード x10\n              ・カラーシャード x30\n              ・カラーシャード x50\n              ・[ffff64]保険チケット(100%)[ffffff] x1\n              ・[ffff64]精錬チケット(2倍)[ffffff] x1\n              ・[ffff64]精錬チケット(3倍)[ffffff] x1\n              ・[ffff64]スミスハンマー[ffffff] x1\n              ・[ffff64]インフィニティジェム[ffffff] x1\n              ・[ffff64]リザレクションジェム[ffffff] x1\n              ・[ffff64]レアアップジェム[ffffff] x1\n              ・[ffff64]スーパーレアジェム[ffffff] x1\n              ・[ffff64]レジェンダリジェム[ffffff] x1\n              ・[ffff64]アルティメットジェム[ffffff] x1\n\n※経験値は現在のパラメータLvによって\n　獲得量が変化します\n※経験値はEXPを獲得できない(Lv上限に達している)場合は\n　抽選されません\n※スピナは上限(21億)に達している場合は抽選されません
 EquipPanelAvatarRecycleWaitText	0	0	リサイクルの準備中です\nしばらくお待ちください
 EquipPanelAvatarRecycleCancel	0	0	キャンセルされました
 EquipPanelAvatarRecycleErr	0	0	リサイクルに失敗しました
@@ -11663,41 +9561,15 @@ ReportTypeDefactMessage	0	0	不具合と思われる\nゲーム内動作に関�
 ReportTypeFraudButton	0	0	不正・迷惑行為
 ReportTypeFraudMessage	0	0	不正・迷惑行為の通報方法です。
 ReportFradProcedureTitle	0	0	不正・迷惑行為の通報方法
-ReportFradProcedureMessage	0	0	"ゲーム内で、不正・迷惑行為を確認した場合には、下記の方法で通報してください。
-
-▼画面内に対象キャラクターが表示されている場合
-1：対象のキャラクターをタップする。
-2：『次のページ』をタップする。
-3：『通報』をタップする。
-4：画面の指示に従い通報する。
-
-▼チャットログから通報する場合
-1：チャットログの部分を上フリックする。
-2：発言者の名前をタップする。
-3：『次のページ』をタップする。
-4：『通報』をタップする。
-5：画面の指示に従い通報する。
-
-▼手紙から通報する場合
-1：通報したい手紙を開く。
-2：『内容を確認する』をタップする。
-3：送信者の名前をタップする。
-4：『通報』をタップする。
-5：画面の指示に従い通報する。
-
-▼ゲーム外で行われた行為について
-トーラムオンラインのゲーム外である他社サイトで行われた行為は、弊社で対応することができません。他社サイトで確認した場合には、当該サイトの運営元に、直接お問い合わせください。"
+ReportFradProcedureMessage	0	0	ゲーム内で、不正・迷惑行為を確認した場合には、下記の方法で通報してください。\n\n▼画面内に対象キャラクターが表示されている場合\n1：対象のキャラクターをタップする。\n2：『次のページ』をタップする。\n3：『通報』をタップする。\n4：画面の指示に従い通報する。\n\n▼チャットログから通報する場合\n1：チャットログの部分を上フリックする。\n2：発言者の名前をタップする。\n3：『次のページ』をタップする。\n4：『通報』をタップする。\n5：画面の指示に従い通報する。\n\n▼手紙から通報する場合\n1：通報したい手紙を開く。\n2：『内容を確認する』をタップする。\n3：送信者の名前をタップする。\n4：『通報』をタップする。\n5：画面の指示に従い通報する。\n\n▼ゲーム外で行われた行為について\nトーラムオンラインのゲーム外である他社サイトで行われた行為は、弊社で対応することができません。他社サイトで確認した場合には、当該サイトの運営元に、直接お問い合わせください。
 ReportTypeOtherButton	0	0	その他
 ReportTypeOtherMessage	0	0	上記に該当しない\nお問い合わせをいただく窓口です。
 ReportMailAdress	0	0	- メールアドレス -\n例）toramonline@gmail.com
 ReportCharacterName	0	0	- ご自身のキャラクター名 -
 ReportTargetCharacterName	0	0	- 対象のキャラクター名 -
-ReportDay	0	0	"- 確認した日時 -
-例) YYYY年 MM月 DD日 HH時 MM分"
+ReportDay	0	0	- 確認した日時 -\n例) YYYY年 MM月 DD日 HH時 MM分
 ReportPrice	0	0	- 購入された雫玉の個数 / コース名 -
-ReportPurchaseNumber	0	0	"- Google注文番号 -
-例 (*の部分の17桁数字)
-GPA.****-****-****-*****"
+ReportPurchaseNumber	0	0	- Google注文番号 -\n例 (*の部分の17桁数字)\nGPA.****-****-****-*****
 ReportPhoneModel	0	0	- ご利用の機種名 / 型番 -
 ReportOS	0	0	- ご利用OSのバージョン -
 ReportIOS	0	0	- iOS のOSバージョン -
@@ -11707,8 +9579,7 @@ ReportProvider	0	0	- キャリア名 / Wi-Fiの場合はプロバイダ名 (ISP)
 ReportWorld	0	0	- 確認したワールド名 -
 ReportMap	0	0	- 確認した場所(MAP名) -
 ReportErrorMessage	0	0	- 表示されたエラーメッセージ内容 -
-ReportPurchaseDay	0	0	"- 購入された日時 -
-例) YYYY年 MM月 DD日 HH時 MM分"
+ReportPurchaseDay	0	0	- 購入された日時 -\n例) YYYY年 MM月 DD日 HH時 MM分
 ReportCharacterID	0	0	- パラメータ名 (パラメータID名) -
 ReportFreeMessage	0	0	- 内容 -（できるだけ具体的に）
 ReportSendButton	0	0	送信
@@ -11729,10 +9600,7 @@ ReportTypeUserDeleteButton	0	0	アカウント削除申請
 OrbGachaItemListAvatarButton	0	0	試着
 DailyDartsGameStartLabel	0	0	ボーナスゲームをはじめる
 DailyDartsGameStartPopUpTitle	0	0	ダーツゲームスタート
-DailyDartsGameStartPopUpText	0	0	"1日3投までのダーツを行えます
-
-[ff0000]*ボーナスゲーム中に通信が切れると
-景品が貰えない場合があります。"
+DailyDartsGameStartPopUpText	0	0	1日3投までのダーツを行えます\n\n[ff0000]*ボーナスゲーム中に通信が切れると\n景品が貰えない場合があります。
 DailyDartsGameHitOutPopUpText	0	0	外しました\n景品はありません
 DailyDartsGameHitPopUpButton1	0	0	投げなおす(あと{0}回まで)
 DailyDartsGameHitPopUpButton2	0	0	景品を決定する
@@ -11817,29 +9685,15 @@ OrbBuyPanelBonusNum	0	0	+{0}個
 OrbBuyPanelNew	0	0	New!
 OrbHistoryNonList	0	0	購入履歴がありません
 OrbBuyRefreshTitle	0	0	購入処理の完了
-OrbBuyRefreshMainMes	0	0	"雫玉及び月額コースの購入途中で
-エラーが発生した場合など、
-購入処理が中断されている場合は
-中断した処理を完了できます。"
+OrbBuyRefreshMainMes	0	0	雫玉及び月額コースの購入途中で\nエラーが発生した場合など、\n購入処理が中断されている場合は\n中断した処理を完了できます。
 OrbBuyRefreshButton	0	0	購入処理を完了する
 OrbBuyRefreshCheckMes	0	0	中断された購入処理を確認しています・・・
 OrbBuyRefreshButtonCancel	0	0	キャンセル
 OrbBuyRefreshSuccessMes	0	0	中断されていた購入処理を完了しました。
-OrbBuyRefreshNothingMes	0	0	"既に購入処理が完了している可能性があります。
-端末を再起動後に、雫玉の所持数を確認してください。"
+OrbBuyRefreshNothingMes	0	0	既に購入処理が完了している可能性があります。\n端末を再起動後に、雫玉の所持数を確認してください。
 OrbBuyRefreshButtonOk	0	0	OK
-OrbBuyRefreshSuccessMes2	0	0	"中断されていた購入処理がありました。
-反映処理を行いますので、1時間程お待ちください。
-
-1時間以上経過しても反映されない場合は、
-アプリ内『メニュー ＞ 雫玉ショップ ＞ お問い合わせ ＞ 雫玉の購入』から
-お問い合わせください。"
-OrbBuyRefreshNothingMes2	0	0	"既に購入処理が完了している可能性があります。
-端末を再起動後に、再度確認してください。
-
-購入された雫玉及び月額コースが反映されない場合は、
-アプリ内『メニュー ＞ 雫玉ショップ ＞ お問い合わせ ＞ 雫玉の購入』から
-お問い合わせください。"
+OrbBuyRefreshSuccessMes2	0	0	中断されていた購入処理がありました。\n反映処理を行いますので、1時間程お待ちください。\n\n1時間以上経過しても反映されない場合は、\nアプリ内『メニュー ＞ 雫玉ショップ ＞ お問い合わせ ＞ 雫玉の購入』から\nお問い合わせください。
+OrbBuyRefreshNothingMes2	0	0	既に購入処理が完了している可能性があります。\n端末を再起動後に、再度確認してください。\n\n購入された雫玉及び月額コースが反映されない場合は、\nアプリ内『メニュー ＞ 雫玉ショップ ＞ お問い合わせ ＞ 雫玉の購入』から\nお問い合わせください。
 OrbBuyRefreshInquiry	0	0	お問い合わせ
 AccountManagerCheckIdErrTitle	0	0	アカウント情報の更新に失敗しました
 AccountManagerCheckIdErrMessage	0	0	\n\n\nアカウント情報の更新に失敗しました\nトーラムオンラインを再起動します
@@ -11851,10 +9705,7 @@ OrbItemUsePanelSkillCompensationPopUpMessage	0	0	[ffff64]現在スキルツリ�
 OrbItemUsePanelStatusCompensationPopUpMessage	0	0	[ffff64]現在ステータスリセットは無料でできます。\n詳しくはお知らせをご確認してください。[ffffff]
 OrbItemUsePanelEntryErrPopUpText	0	0	このアイテムはすでに加入済みで使用できません
 OrbBuyContactTitle	0	0	雫玉の購入
-OrbBuyContactMes	0	0	"購入された雫玉及び月額コースが反映されない場合、
-以下の操作をお試しいただくと解決する場合があります。
-
-[ffc900]アプリ内『メニュー ＞ 雫玉ショップ ＞ 雫玉を増やす ＞ 購入処理の完了』にある\n『購入処理を完了する』をタップする。[ffffff]"
+OrbBuyContactMes	0	0	購入された雫玉及び月額コースが反映されない場合、\n以下の操作をお試しいただくと解決する場合があります。\n\n[ffc900]アプリ内『メニュー ＞ 雫玉ショップ ＞ 雫玉を増やす ＞ 購入処理の完了』にある\n『購入処理を完了する』をタップする。[ffffff]
 OrbBuyContactToRefreshButton	0	0	『購入処理の完了』を試す。
 OrbBuyContactToFormButton	0	0	お問い合わせフォームへ進む。
 ReportTypePrisonButton	0	0	不正行為
@@ -12039,8 +9890,7 @@ DungeonEnterPanelAreaLevelPopUpUserLabel	0	0	地下[ffff88]{0}[ffffff]から再�
 DungeonEnterPanelAreaLevelPopUpUserText	0	0	到達した最深部付近の階層から再開します
 DungeonEnterPanelAreaLevelPopUpUserErr	0	0	まだ探索に行っていません
 DungeonEnterPanelRecoverylPopUpTitle	0	0	{0}を使って回復
-DungeonEnterPanelRecoverylPopUpText	0	0	"{0}を1つ消費して
-転送魔力を全回復できます"
+DungeonEnterPanelRecoverylPopUpText	0	0	{0}を1つ消費して\n転送魔力を全回復できます
 DungeonEnterTitleMasoPoint	0	0	魔素pt
 DungeonEnterCoinHave	0	0	{0} 所持
 DungeonEnterCoinItemHave	0	0	{0}個 所持
@@ -12048,12 +9898,10 @@ DungeonEnterManaMaxCoinItem	0	0	マナポーション
 DungeonEnterMasoText	0	0	{0}% 回復させる\n[ffff88]消費魔素 {1}pt
 DungeonEnterMasoPoint	0	0	残り魔素　[ff0000]{0}pt
 DungeonDeadPopUpTitle	0	0	迷宮を脱出します
-DungeonDeadPopUpText	0	0	"迷宮を脱出します
-再入場できませんが宜しいでしょうか？"
+DungeonDeadPopUpText	0	0	迷宮を脱出します\n再入場できませんが宜しいでしょうか？
 DungeonEnterPanelLeaderSelect	0	0	入場する階層はリーダーが選択
 DungeonEnterPanelReadyTextWait	0	0	準備が完了していないユーザーがいます
-DungeonEnterPanelSubLabel	0	0	"ギルドメンバーが迷宮の探索を
-募集していません。"
+DungeonEnterPanelSubLabel	0	0	ギルドメンバーが迷宮の探索を\n募集していません。
 DungeonEnterPanelSubText	0	0	(リーダーがこのメニューを開くと募集状態になります)
 DungeonEventGetKeyMessage	0	0	鍵を手に入れた！
 DungeonEventAcitveTrap	0	0	{0}を踏んだ！
@@ -12062,8 +9910,7 @@ DungeonEnterPanelEnterLockLabel	0	0	現在迷宮に挑戦することができ�
 DungeonEnterPanelTimeOutLabel	0	0	現在魔力を回復することができません
 DungeonDeadWindowLabel	0	0	迷宮の中では復活することはできません
 DungeonEnterPopUpTitle	0	0	最終確認
-DungeonEnterPopUpMessage	0	0	"迷宮の{0}階に魔力{1}で入場します
-宜しいでしょうか？"
+DungeonEnterPopUpMessage	0	0	迷宮の{0}階に魔力{1}で入場します\n宜しいでしょうか？
 DungeonEnterMagicPower	0	0	魔力
 DungeonEnterPanelEnterNPCErrLabel	0	0	傭兵・パートナーなどを連れて\n迷宮に入ることはできません
 DungeonEnterPanelEnterNPCErrLabelEx	0	0	傭兵・パートナー・ペットなどを連れて\n迷宮に入ることはできません
@@ -12096,26 +9943,14 @@ BossTrophyBreaker	0	0	Breaker
 BossTrophysBreaker	0	0	ブレイカー
 BossTrophyAssister	0	0	Assister
 BossTrophysAssister	0	0	アシスター
-BossMenuBossStatus	0	0	"ボス情報
-
-HP  {0}
-EXP  {1}
-{2}
-{3}
-
-ドロップ情報
-
-全 {4}種
-部位破壊 {5} "
+BossMenuBossStatus	0	0	ボス情報\n\nHP  {0}\nEXP  {1}\n{2}\n{3}\n\nドロップ情報\n\n全 {4}種\n部位破壊 {5} 
 BossMenuBossPartsCount	0	0	{0} 箇所
 BossMenuBossPartsNot	0	0	なし
 BossMenuBattleLevel	0	0	推奨レベル : {0}
 BossMenuBossBattle	0	0	BOSS BATTLE
 BossMenuBossReady	0	0	準備が完了するとボス戦が始まります
 BossResultNoUser	0	0	対象者なし
-BossMenuGemErr	0	0	"使用可能な
-補助アイテムが
-ありません"
+BossMenuGemErr	0	0	使用可能な\n補助アイテムが\nありません
 BossMenuDifficulty	0	0	難易度
 BossMenuDifficultyEasyMode	0	0	Easy Mode.
 BossMenuDifficultyNormalMode	0	0	Normal Mode.
@@ -12124,17 +9959,7 @@ BossMenuDifficultyLunaticMode	0	0	Lunatic  Mode.
 BossMenuDifficultyUltimateMode	0	0	Ultimate  Mode.
 BossMenuNoUseItem	0	0	[64ffff]この難易度では利用不可
 BossMenuNoRecommendLevel	0	0	推奨レベルに達していません
-BossMenuBossDifficultyStatus	0	0	"ボス情報
-
-HP  {0}
-EXP  {1}
-{2}
-{3}
-
-ドロップ情報
-
-全 {4}種 {5}
-部位破壊 {6} "
+BossMenuBossDifficultyStatus	0	0	ボス情報\n\nHP  {0}\nEXP  {1}\n{2}\n{3}\n\nドロップ情報\n\n全 {4}種 {5}\n部位破壊 {6} 
 BossMenuNoRareItem	0	0	[64ffff]EASYではレアアイテムが抽選しません[ffffff]
 BossMenuColorWeapon	0	0	[ffff64]+ 染色武器[ffffff]
 BossMenuCantChangeLevel	0	0	[ff6464]このボス戦は難易度を変更できません
@@ -12422,12 +10247,8 @@ UIPCKeyconfigPopWarningLabel	0	0	[aaaa00]{0}\n上記のコマンドで使用さ�
 UIPCKeyconfigPopErrLabel	0	0	[aa0000]変更できない、または利用できないキーです
 UIPCKeyconfigPopKeyMouseRightButtonErrLabel	0	0	[aa0000]使用済みのキーのため変更出来ません
 UIPCKeyconfigPopKeyMouseRightButtonChangeErrLabel	0	0	[aa0000]使用済みのキーのため変更出来ません
-PCSteamReportPurchaseNumber	0	0	"- Steam 注文番号 -
-例 (*の部分の1～21桁数字)
-*********************"
-PCAsobimoReportPurchaseNumber	0	0	"- SB Payment 注文番号 -
-例 (*の部分の8桁文字列)
-****-****"
+PCSteamReportPurchaseNumber	0	0	- Steam 注文番号 -\n例 (*の部分の1～21桁数字)\n*********************
+PCAsobimoReportPurchaseNumber	0	0	- SB Payment 注文番号 -\n例 (*の部分の8桁文字列)\n****-****
 PCAsobimoReportTypeOrbButton	0	0	雫玉の購入
 PCAsobimoReportTypeOrbMessage	0	0	雫玉の購入に関する窓口です。
 PCSteamReportTypeOrbButton	0	0	雫玉の購入
@@ -12494,15 +10315,7 @@ UIPCKeyconfigCommandTopLabel	0	0	コマンド名
 UIPCKeyconfigMainKeyLabel	0	0	実行キー
 UIPCKeyconfigSubKeyLabel	0	0	サブキー
 UIPCMenuPanelChangePanelButton	0	0	切り替え
-EmotionPanelPCDescription	0	0	"[ffff64]お気に入り[ffffff]に登録すると
-エモーションリングから簡単に
-使用することが出来ます。
-[6495ed]※ホイール長押し[ffffff]
-
-お気に入りに登録したい
-エモーションをタップすると
-登録できます。
-[6495ed]※10件まで"
+EmotionPanelPCDescription	0	0	[ffff64]お気に入り[ffffff]に登録すると\nエモーションリングから簡単に\n使用することが出来ます。\n[6495ed]※ホイール長押し[ffffff]\n\nお気に入りに登録したい\nエモーションをタップすると\n登録できます。\n[6495ed]※10件まで
 UIPCOrbBuyPanelErrMessage	0	0	雫玉購入は準備中のため、\n現在ご利用いただけません
 PCAsobimoOrbShopPanelBuyWait	0	0	準備中
 PCTargetPanelSort0	0	0	イベント優先

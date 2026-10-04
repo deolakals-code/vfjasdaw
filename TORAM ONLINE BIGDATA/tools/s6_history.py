@@ -1,8 +1,8 @@
 """Stage 6: per-version table inventory of BynaryData (every cached/CDN version) -> readable/masters/_history.csv.
 Shows which master tables changed size/content between game data versions."""
 import csv, hashlib, json, os, time
-ROOT = r"D:\toram reverse data\TORAM ONLINE BIGDATA"
-man = json.load(open(ROOT + r"\data\decoded_manifest.json"))
+from common import ROOT
+man = json.load(open(os.path.join(ROOT, "data", "decoded_manifest.json")))
 vers = sorted((k.split("/")[1] for k in man if k.startswith("BynaryData/")), key=lambda v: os.path.getmtime(man["BynaryData/" + v]["src"]))
 rows, prev = [], {}
 for v in vers:
@@ -14,7 +14,7 @@ for v in vers:
         n = fn[:-4]
         rows.append([v, t, n, len(b), h, "" if n not in prev else ("same" if prev[n] == h else "changed")])
         prev[n] = h
-with open(ROOT + r"\readable\masters\_history.csv", "w", newline="", encoding="utf-8") as f:
+with open(os.path.join(ROOT, "readable", "masters", "_history.csv"), "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f); w.writerow(["version", "cached_date", "table", "bytes", "sha1_12", "vs_previous"]); w.writerows(rows)
 ch = {}
 for r in rows:
