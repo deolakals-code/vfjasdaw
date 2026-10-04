@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "toramre"
+version = "0.1.0"
+description = "Toram Online client-data reverse toolkit (offline static analysis only)"
+requires-python = ">=3.9"
+
+[project.scripts]
+toramre = "toramre.cli:main"
+
+[tool.setuptools]
+packages = ["toramre", "toramre.core", "toramre.watch"]
