@@ -111,6 +111,9 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
 .tabs button { border: 0; border-radius: 4px 4px 0 0; background: transparent; font: 700 13px var(--font-head); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 12px; }
 .tabs button[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); }
 .feat { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; margin-bottom: 8px; background: var(--panel); }
+.feat.locked { opacity: .5; border-style: dashed; }
+.lv { font: 700 11px var(--font-head); letter-spacing: .06em; text-transform: uppercase; background: var(--accent); color: var(--accent-ink); border-radius: 3px; padding: 2px 6px; }
+.feat.locked .lv { background: var(--muted); }
 .feat-h { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
 .feat-name { font: 700 16px var(--font-head); flex: 1 1 160px; }
 .feat-type { width: 110px; font-size: 12px; color: var(--muted); }
@@ -263,7 +266,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
 
 <script>
 (function () {
-  var KEY = "ottilie-rosenkranz-sheet-v3";
+  var KEY = "ottilie-rosenkranz-sheet-v4";
   var PEN = ["str", "dex", "cha"];
   var ABS = [["str","STR","Strength"],["dex","DEX","Dexterity"],["con","CON","Constitution"],["int","INT","Intelligence"],["wis","WIS","Wisdom"],["cha","CHA","Charisma"]];
   var SKILLS = [["Acrobatics","dex"],["Animal Handling","wis"],["Arcana","int"],["Athletics","str"],["Deception","cha"],["History","int"],["Insight","wis"],["Intimidation","cha"],["Investigation","int"],["Medicine","wis"],["Nature","int"],["Perception","wis"],["Performance","cha"],["Persuasion","cha"],["Religion","int"],["Sleight of Hand","dex"],["Stealth","dex"],["Survival","wis"]];
@@ -279,18 +282,18 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     features: [
       { kind: "P", name: "Dark Vision", type: "", desc: "มองเห็นในความมืดได้ระยะ 36 ม. และเห็นผ่านความมืดธรรมดาทุกชนิด (ความมืดเวทมนตร์ยังคงต้องใช้สกิล)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
       { kind: "P", name: "Dreamless", type: "", desc: "ทำสมาธิ 4 ชม. แทน Long Rest, ไม่ได้รับผลจากเวทมนตร์ Sleep, ทอยเซฟกันสถานะ Charm แบบ Advantage และเปิดประสาทสัมผัสเฝ้ายามได้ขณะทำสมาธิ (หากถูกขัดจังหวะต้องเริ่มทำสมาธิใหม่)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
-      { kind: "P", name: "Lunar Echo", type: "", desc: "ศัตรูที่ทอยเซฟเวทมนตร์ไม่ผ่าน การทอยเซฟครั้งถัดไปจะติด Disadvantage และหากทอยเซฟล้มเหลวซ้ำ จะได้รับ Psychic Damage เท่ากับ CHA Mod (เกิดผลได้ 1 ตัวต่อ 1 เทิร์น ไม่ซ้อนทับ)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
+      { kind: "P", name: "Lunar Echo", type: "", desc: "ศัตรูที่ทอยเซฟเวทมนตร์ไม่ผ่าน การทอยเซฟครั้งถัดไปจะติด Disadvantage และหากทอยเซฟล้มเหลวซ้ำ จะได้รับ Psychic Damage เท่ากับ CHA Mod (+5) (เกิดผลได้ 1 ตัวต่อ 1 เทิร์น ไม่ซ้อนทับ)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
       { kind: "P", name: "ปากกาสื่อเวท", type: "Item", desc: "เมื่อสวมใส่ ผู้ร่ายไม่ต้องสนใจการร่ายอีกต่อไป ยิงเวทได้เลย (ไม่ต้องใช้ท่าทาง คำพูด หรือวัตถุดิบ) เปลี่ยนรูปแบบของปากกาได้ตามใจนึก ให้ CHA / DEX / STR เป็น 24 ขั้นต่ำ และได้แต้มเพิ่ม +3 ต่อเลเวลสำหรับ CHA / DEX / STR (เลเวล 5 = 15 แต้ม ปรับที่แผง Pen ด้านซ้าย)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
       { kind: "A", name: "Pact of the Hat", type: "Pact", desc: "ใช้หมวกเป็น Spell Focus, ร่าย Prestidigitation ฟรี และล้วงหยิบของธรรมดามูลค่าไม่เกิน 5 gp จากหมวกได้ 1 ครั้ง/LR (เช่น เชือก, กระจก, ยา Healing เล็ก)", uses: { mode: "fixed", max: 1, rest: "LR", used: 0 } },
-      { kind: "A", name: "Eldritch Needle", type: "Cantrip", desc: "ทำดาเมจ Force 2d6 (เลเวล 5, สเกลต่อที่ 11/17) ระยะ 36 ม. ไม่ติด Half Cover และ Mark เป้าหมาย ส่งผลให้พันธมิตรที่โจมตีเป้าหมายที่ติด Mark ทำดาเมจเพิ่ม +1d4 (Mark ได้ทีละ 1 ตัว, +1d4 ได้ 1 ครั้ง/เทิร์น/คน)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
-      { kind: "A", name: "Yellow Stare", type: "Bonus Action", desc: "สั่งเป้าหมายทอยเซฟ WIS หากไม่ผ่าน Speed เป็น 0 และเสีย Reaction ในเทิร์นนั้น หากเป้าหมายถูก Mark อยู่ก่อนแล้ว การทอยเซฟจะติด Disadvantage (ใช้งานได้ตาม CHA Mod ต่อ LR)", uses: { mode: "cha", max: 5, rest: "LR", used: 0 } },
-      { kind: "A", name: "Hat's Whisper", type: "Reaction", desc: "บวก +1d4 ให้กับการทอยโจมตีหรือการทอยเซฟของพันธมิตร (ใช้ได้ตาม CHA Mod ต่อ SR, ใช้ได้ 1 ครั้งต่อ 1 ผลการทอย)", uses: { mode: "cha", max: 5, rest: "SR", used: 0 } },
-      { kind: "A", name: "Extra Attack", type: "Action", desc: "ในเทิร์นนั้น ทุกครั้งที่ทำ Attack action หรือยิง Eldritch Needle ให้โจมตีได้ 4 ครั้งแทน 1 ครั้ง ทุกครั้งใช้โมดิฟายเออร์ที่สูงที่สุดระหว่าง CHA / DEX / STR ทั้งทอยโจมตีและดาเมจ ทุกการโจมตีที่โดนจะ Mark เป้าหมายให้เอง และบวกดาเมจ +Prof เพิ่มต่อครั้งที่โดน (ใช้ได้ 1 ครั้ง/LR)", uses: { mode: "fixed", max: 1, rest: "LR", used: 0 } }
+      { kind: "A", name: "Eldritch Needle", type: "Cantrip", desc: "ทำดาเมจ Force d6 ระยะ 36 ม. ไม่ติด Half Cover (สเกลเลเวล 5/11/17) และ Mark เป้าหมาย ส่งผลให้พันธมิตรที่โจมตีเป้าหมายที่ติด Mark ทำดาเมจเพิ่ม +1d4 (Mark ได้ทีละ 1 ตัว, +1d4 ได้ 1 ครั้ง/เทิร์น/คน)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
+      { kind: "A", name: "Yellow Stare", type: "Bonus Action", desc: "สั่งเป้าหมายทอยเซฟ WIS หากไม่ผ่าน Speed เป็น 0 และเสีย Reaction ในเทิร์นนั้น หากเป้าหมายถูก Mark อยู่ก่อนแล้ว การทอยเซฟจะติด Disadvantage (ใช้งานได้ 5 ครั้ง/LR ตาม CHA Mod)", uses: { mode: "cha", max: 5, rest: "LR", used: 0 } },
+      { kind: "A", name: "Hat's Whisper", type: "Reaction", desc: "บวก +1d4 ให้กับการทอยโจมตีหรือการทอยเซฟของพันธมิตร (ใช้งานได้ 5 ครั้ง/SR ตาม CHA Mod, ใช้ได้ 1 ครั้งต่อ 1 ผลการทอย)", uses: { mode: "cha", max: 5, rest: "SR", used: 0 } },
+      { kind: "A", name: "Extra Attack", lvl: 5, type: "Action", desc: "ในเทิร์นนั้น ทุกครั้งที่ทำ Attack action หรือยิง Eldritch Needle ให้โจมตีได้ 4 ครั้งแทน 1 ครั้ง ทุกครั้งใช้โมดิฟายเออร์ที่สูงที่สุดระหว่าง CHA / DEX / STR ทั้งทอยโจมตีและดาเมจ ทุกการโจมตีที่โดนจะ Mark เป้าหมายให้เอง และบวกดาเมจ +Prof เพิ่มต่อครั้งที่โดน (ใช้ได้ 1 ครั้ง/LR)", uses: { mode: "fixed", max: 1, rest: "LR", used: 0 } }
 ,
-      { kind: "A", name: "Hat's Veil", type: "Reaction", desc: "ศัตรูที่ติด Mark ซ่อนตัวจากคุณไม่ได้ (รวมล่องหนและเงา) และไม่ได้ Advantage ในการโจมตีพันธมิตร เมื่อมันจะใช้ Sneak Attack หรือโจมตีพันธมิตรด้วย Advantage ให้ใช้ Reaction ยกเลิกทันที มันเสียการซ่อนตัวและต้องเปลี่ยนเป้าหมาย", uses: { mode: "cha", max: 10, rest: "LR", used: 0 } },
-      { kind: "A", name: "Lunar Hush", type: "Bonus Action", desc: "ศัตรูที่ติด Mark ทอยเซฟ WIS ถ้าไม่ผ่าน Rage จบทันที ได้ Resistance จากสกิลใดก็ไม่ได้ และเข้าใกล้พันธมิตรไม่ได้เป็นเวลา 1 นาที (ทอยเซฟซ้ำจบเทิร์น) ถ้าผ่านจะได้แค่ Disadvantage ในการโจมตีครั้งถัดไป", uses: { mode: "fixed", max: 5, rest: "LR", used: 0 } },
-      { kind: "A", name: "Hat Swallows the Spell", type: "Reaction", desc: "เมื่อศัตรูในระยะ 36 ม. ร่ายเวท ให้มันทอยเซฟ CHA ถ้าไม่ผ่านเวทหายเข้าหมวก ไม่มีผล และคุณเก็บเวทนั้นไว้ ปล่อยออกมาได้ฟรี 1 ครั้งในเทิร์นของคุณเองด้วย Spell DC ของคุณ พันธมิตร 1 คนได้ Temp HP เท่ากับเลเวลเวท × CHA Mod ถ้าผ่านเวทยังเกิดผล แต่ติด Disadvantage ตามกฎ Lunar Echo", uses: { mode: "fixed", max: 5, rest: "LR", used: 0 } },
-      { kind: "A", name: "Moonlit Boon", type: "Bonus Action", desc: "พันธมิตรทุกคนในระยะ 18 ม. ได้ Temp HP เท่ากับ Prof + CHA Mod ล้างสถานะ Charmed / Frightened / Stunned และทอยเซฟรอบถัดไปด้วย +1d4 ตามกฎ Hat's Whisper", uses: { mode: "fixed", max: 2, rest: "SR", used: 0 } }
+      { kind: "A", name: "Hat's Veil", lvl: 3, type: "Reaction", desc: "ศัตรูที่ติด Mark ซ่อนตัวจากคุณไม่ได้ (รวมล่องหนและเงา) และไม่ได้ Advantage ในการโจมตีพันธมิตร เมื่อมันจะใช้ Sneak Attack หรือโจมตีพันธมิตรด้วย Advantage ให้ใช้ Reaction ยกเลิกทันที มันเสียการซ่อนตัวและต้องเปลี่ยนเป้าหมาย", uses: { mode: "cha", max: 10, rest: "LR", used: 0 } },
+      { kind: "A", name: "Lunar Hush", lvl: 4, type: "Bonus Action", desc: "ศัตรูที่ติด Mark ทอยเซฟ WIS ถ้าไม่ผ่าน Rage จบทันที ได้ Resistance จากสกิลใดก็ไม่ได้ และเข้าใกล้พันธมิตรไม่ได้เป็นเวลา 1 นาที (ทอยเซฟซ้ำจบเทิร์น) ถ้าผ่านจะได้แค่ Disadvantage ในการโจมตีครั้งถัดไป", uses: { mode: "fixed", max: 5, rest: "LR", used: 0 } },
+      { kind: "A", name: "Hat Swallows the Spell", lvl: 5, type: "Reaction", desc: "เมื่อศัตรูในระยะ 36 ม. ร่ายเวท ให้มันทอยเซฟ CHA ถ้าไม่ผ่านเวทหายเข้าหมวก ไม่มีผล และคุณเก็บเวทนั้นไว้ ปล่อยออกมาได้ฟรี 1 ครั้งในเทิร์นของคุณเองด้วย Spell DC ของคุณ พันธมิตร 1 คนได้ Temp HP เท่ากับเลเวลเวท × CHA Mod ถ้าผ่านเวทยังเกิดผล แต่ติด Disadvantage ตามกฎ Lunar Echo", uses: { mode: "fixed", max: 5, rest: "LR", used: 0 } },
+      { kind: "A", name: "Moonlit Boon", lvl: 6, type: "Bonus Action", desc: "พันธมิตรทุกคนในระยะ 18 ม. ได้ Temp HP เท่ากับ Prof + CHA Mod ล้างสถานะ Charmed / Frightened / Stunned และทอยเซฟรอบถัดไปด้วย +1d4 ตามกฎ Hat's Whisper", uses: { mode: "fixed", max: 2, rest: "SR", used: 0 } }
     ],
     items: [
       { name: "ปากกาสื่อเวท", note: "CHA/DEX/STR 24 + ยิงเวทไม่ต้องร่าย" },
@@ -401,7 +404,8 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
       S.features.forEach(function (f, i) {
         if (f.kind !== tab) return;
         var p = "features." + i;
-        html += '<article class="feat"><div class="feat-h">' +
+        html += '<article class="feat" data-feat="' + i + '"><div class="feat-h">' +
+          '<span class="lv" data-lv="' + i + '"></span>' +
           '<input class="feat-name" id="fn-' + i + '" data-path="' + p + '.name" aria-label="ชื่อสกิล">' +
           '<input class="feat-type" id="ft-' + i + '" data-path="' + p + '.type" placeholder="ประเภท" aria-label="ประเภท">' +
           '<span class="pips" data-pips="' + i + '"></span>' +
@@ -411,6 +415,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
           '<label><span class="lbl">จำนวนครั้ง</span><select id="fm-' + i + '" data-path="' + p + '.uses.mode"><option value="none">ไม่จำกัด</option><option value="cha">ตาม CHA Mod</option><option value="fixed">กำหนดเอง</option></select></label>' +
           '<label><span class="lbl">ค่า</span><input type="number" min="0" max="20" id="fx-' + i + '" data-path="' + p + '.uses.max"></label>' +
           '<label><span class="lbl">ฟื้นคืน</span><select id="fr-' + i + '" data-path="' + p + '.uses.rest"><option value="SR">Short Rest</option><option value="LR">Long Rest</option></select></label>' +
+          '<label><span class="lbl">ได้ที่เลเวล</span><input type="number" min="1" max="20" id="fl-' + i + '" data-path="' + p + '.lvl"></label>' +
           '<label><span class="lbl">หมวด</span><select id="fk-' + i + '" data-path="' + p + '.kind"><option value="P">Passive</option><option value="A">Action</option></select></label>' +
           '</div></details></article>';
       });
@@ -478,6 +483,13 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     Array.prototype.forEach.call(document.querySelectorAll("[data-skill]"), function (el) { el.dataset.lvl = S.skills[el.dataset.skill] || 0; });
     Array.prototype.forEach.call(document.querySelectorAll("[data-save]"), function (el) { el.dataset.lvl = S.saves[el.dataset.save] ? 1 : 0; });
     Array.prototype.forEach.call(document.querySelectorAll("[data-pips]"), function (el) { el.innerHTML = pipsHtml(Number(el.dataset.pips)); });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-feat]"), function (el) {
+      var f = S.features[Number(el.dataset.feat)], need = Math.max(1, num(f.lvl) || 1), locked = need > num(S.level);
+      el.classList.toggle("locked", locked);
+      var b = el.querySelector("[data-lv]");
+      b.textContent = locked ? "ปลดล็อกที่เลเวล " + need : (need > 1 ? "Lv " + need : "");
+      b.hidden = !b.textContent;
+    });
     document.getElementById("pool").classList.toggle("zero", !S.pool);
   }
   function autosize(ta) { ta.style.height = "auto"; ta.style.height = ta.scrollHeight + 4 + "px"; }
