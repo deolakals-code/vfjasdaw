@@ -219,8 +219,9 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
         <label class="penrow"><input type="checkbox" id="pen-on" data-path="pen.on"> <span>สวมใส่อยู่</span></label>
         <div id="penrows"></div>
         <div class="penrow"><span class="lbl">+ต่อเลเวลอัพ</span><input type="number" id="pen-per" data-path="pen.perLevel" aria-label="โบนัสต่อเลเวลอัพ" style="width:48px">
-          <span class="lbl">เลเวลอัพหลังได้ปากกา</span><input type="number" min="0" id="pen-ups" data-path="pen.ups" aria-label="จำนวนเลเวลอัพ" style="width:48px"></div>
-        <div class="legend">โบนัสต่อเลเวลอัพใช้กับ STR / DEX / CHA ค่าฐานคือสแตทของตัวละครเอง โบนัสปากกาบวกทับ ปิดสวมใส่เพื่อดูค่าเดิม</div>
+          <span class="lbl">ได้ปากกาที่เลเวล</span><input type="number" min="1" id="pen-start" data-path="pen.startLevel" aria-label="เลเวลที่ได้ปากกา" style="width:48px">
+          <span class="lbl">เลเวลอัพแล้ว <b data-out="penups"></b> ครั้ง = STR / DEX / CHA +<b data-out="penplus"></b></span></div>
+        <div class="legend">เลเวลเพิ่มขึ้นทีละ 1 จะบวก +3 ให้ STR / DEX / CHA อัตโนมัติ นับจากเลเวลที่ได้ปากกา ค่าฐานคือสแตทของตัวละครเอง โบนัสปากกาบวกทับ ปิดสวมใส่เพื่อดูค่าเดิม</div>
       </section>
       <section class="panel">
         <h2>Saving Throws</h2>
@@ -261,7 +262,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
 
 <script>
 (function () {
-  var KEY = "ottilie-rosenkranz-sheet-v8";
+  var KEY = "ottilie-rosenkranz-sheet-v9";
   var PEN3 = ["str", "dex", "cha"];
   var ABS = [["str","STR","Strength"],["dex","DEX","Dexterity"],["con","CON","Constitution"],["int","INT","Intelligence"],["wis","WIS","Wisdom"],["cha","CHA","Charisma"]];
   var SKILLS = [["Acrobatics","dex"],["Animal Handling","wis"],["Arcana","int"],["Athletics","str"],["Deception","cha"],["History","int"],["Insight","wis"],["Intimidation","cha"],["Investigation","int"],["Medicine","wis"],["Nature","int"],["Perception","wis"],["Performance","cha"],["Persuasion","cha"],["Religion","int"],["Sleight of Hand","dex"],["Stealth","dex"],["Survival","wis"]];
@@ -270,7 +271,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     name: "ออตทิลี โรเซนครานซ์ (Ottilie Rosenkranz)", level: 5, race: "มูนบอร์น (แฟรี่)", cls: "วาลอค", age: 412,
     abilities: { str: 8, dex: 15, con: 4, int: 18, wis: 10, cha: 36 }, pool: 0,
     saves: { cha: 1 }, skills: {},
-    pen: { on: 1, perLevel: 3, ups: 0,
+    pen: { on: 1, perLevel: 3, startLevel: 5,
       bonus: { str: 15, dex: 10, con: 12, int: 31, wis: 24, cha: 12 },
       chain: { str: "+3 +2 +10", dex: "0 +10", con: "+2 +10", int: "+1 +10 +10 +10", wis: "-1 +15 +10", cha: "+2 +10" } },
     hp: { cur: 21, max: 21, temp: 0 }, speed: "9 ม.",
@@ -331,9 +332,10 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
   }
 
   function num(v) { v = Number(v); return isFinite(v) ? v : 0; }
+  function penUps() { return Math.max(0, num(S.level) - num(S.pen.startLevel)); }
   function penBonus(ab) {
     if (!S.pen || !S.pen.on) return 0;
-    return num(S.pen.bonus[ab]) + (PEN3.indexOf(ab) >= 0 ? num(S.pen.ups) * num(S.pen.perLevel) : 0);
+    return num(S.pen.bonus[ab]) + (PEN3.indexOf(ab) >= 0 ? penUps() * num(S.pen.perLevel) : 0);
   }
   function eff(ab) { return num(S.abilities[ab]) + penBonus(ab); }
   function mod(ab) { return Math.floor((eff(ab) - 10) / 2); }
@@ -438,6 +440,8 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
       case "atk": return fmt(prof() + mod("cha") + num(S.atkBonus));
       case "pool": return String(S.pool);
       case "mod": return fmt(mod(p[1]));
+      case "penups": return String(penUps());
+      case "penplus": return String(penUps() * num(S.pen.perLevel));
       case "eff": return penBonus(p[1]) ? "รวมปากกา " + eff(p[1]) : "\u00a0";
       case "penline": return "ฐาน " + num(S.abilities[p[1]]) + " + ปากกา " + penBonus(p[1]) + " = " + eff(p[1]);
       case "save": return fmt(mod(p[1]) + (S.saves[p[1]] ? prof() : 0));
