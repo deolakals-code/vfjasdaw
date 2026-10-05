@@ -1,0 +1,567 @@
+<title>Ottilie Rosenkranz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: D&D Beyond style sheet. Header, one stat strip, then abilities | skills | feature tabs. */
+:root {
+  --bg: #e6e8ec;
+  --panel: #ffffff;
+  --panel-2: #f3f4f6;
+  --ink: #1c1e22;
+  --muted: #646a74;
+  --line: #c4c8d0;
+  --accent: #c53131;
+  --accent-ink: #ffffff;
+  --good: #2f7d4f;
+  --font-head: "Roboto Condensed", "Noto Sans Thai", "Arial Narrow", sans-serif;
+  --font-body: "Roboto", "Noto Sans Thai", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131518; --panel: #1e2125; --panel-2: #272b30; --ink: #e9eaec; --muted: #9aa0aa;
+    --line: #3b4048; --accent: #e25555; --accent-ink: #14100f; --good: #5bbf84; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131518; --panel: #1e2125; --panel-2: #272b30; --ink: #e9eaec; --muted: #9aa0aa;
+  --line: #3b4048; --accent: #e25555; --accent-ink: #14100f; --good: #5bbf84; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 14px/1.45 var(--font-body); padding-inline: 16px; padding-block: 16px 40px; }
+.wrap { max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+h2, .lbl { font-family: var(--font-head); text-transform: uppercase; letter-spacing: .08em; }
+h2 { margin: 0; font-size: 13px; font-weight: 700; }
+input, select, textarea, button { font: inherit; color: inherit; }
+input, select, textarea {
+  background: var(--panel); border: 1px solid transparent; border-bottom-color: var(--line);
+  border-radius: 3px; padding: 3px 5px; min-width: 0;
+}
+input:hover, select:hover, textarea:hover { border-color: var(--line); }
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 1px;
+}
+button { cursor: pointer; border: 1px solid var(--line); background: var(--panel); border-radius: 4px; padding: 5px 10px; }
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px; min-width: 0; }
+.panel > h2 { padding-bottom: 8px; margin-bottom: 8px; border-bottom: 2px solid var(--accent); }
+.lbl { font-size: 11px; color: var(--muted); }
+input[type=number] { text-align: center; -moz-appearance: textfield; }
+input[type=number]::-webkit-inner-spin-button { display: none; }
+
+/* header */
+.head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: end; }
+.head .name { font: 700 28px/1.1 var(--font-head); width: 100%; border-bottom-color: var(--line); padding: 2px 4px; }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 6px; }
+.meta label { display: flex; align-items: baseline; gap: 6px; }
+.meta input { width: 130px; }
+.meta input[type=number] { width: 56px; }
+.tools { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+
+/* stat strip */
+.strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px 6px 10px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.box .big { font: 700 30px/1.1 var(--font-head); font-variant-numeric: tabular-nums; }
+.box .sub { font-size: 11px; color: var(--muted); }
+.box.hp { grid-column: span 2; min-width: 0; }
+.hp-row { display: flex; gap: 10px; align-items: end; justify-content: center; flex-wrap: wrap; }
+.hp-row > div { display: flex; flex-direction: column; align-items: center; }
+.hp-row input { width: 62px; font: 700 24px/1.1 var(--font-head); }
+.hp-row .temp input { width: 48px; font-size: 18px; }
+.hp-act { display: flex; gap: 6px; margin-top: 6px; align-items: center; }
+.hp-act input { width: 52px; }
+.hp-bar { width: 100%; height: 6px; border-radius: 3px; background: var(--panel-2); overflow: hidden; margin-top: 4px; }
+.hp-bar i { display: block; height: 100%; background: var(--accent); width: 0; }
+details.adj { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; }
+details.adj summary, .feat details summary { cursor: pointer; font-family: var(--font-head); text-transform: uppercase; letter-spacing: .06em; font-size: 12px; color: var(--muted); }
+.adj-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 8px; }
+.adj-grid label { display: flex; align-items: center; gap: 6px; }
+.adj-grid input { width: 64px; }
+.adj-grid input.wide { width: 80px; }
+
+/* three columns */
+.cols { display: grid; grid-template-columns: minmax(260px, 1fr) minmax(250px, .9fr) minmax(0, 1.7fr); gap: 12px; align-items: start; }
+.col { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.abilities { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.ab { border: 1px solid var(--line); border-radius: 6px; background: var(--panel-2); text-align: center; padding: 6px 4px 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.ab .mod { font: 700 32px/1 var(--font-head); font-variant-numeric: tabular-nums; }
+.ab .score { display: flex; align-items: center; gap: 2px; }
+.ab .score input { width: 44px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel); font-weight: 700; padding: 2px; }
+.ab .score button { padding: 0; width: 22px; height: 22px; line-height: 1; border-radius: 50%; }
+.pool { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 8px 10px; border-radius: 6px; background: var(--panel-2); border: 1px dashed var(--line); }
+.pool b { font: 700 20px var(--font-head); color: var(--accent); }
+.pool.zero b { color: var(--muted); }
+.row { display: flex; align-items: center; gap: 8px; padding: 4px 2px; border-bottom: 1px solid var(--line); }
+.row:last-child { border-bottom: 0; }
+.row .nm { flex: 1; min-width: 0; }
+.row .abv { width: 34px; font-size: 11px; color: var(--muted); text-transform: uppercase; }
+.row .val { width: 34px; text-align: right; font: 700 15px var(--font-head); font-variant-numeric: tabular-nums; }
+.dot { width: 16px; height: 16px; padding: 0; border-radius: 50%; border: 2px solid var(--muted); background: transparent; flex: none; }
+.dot[data-lvl="1"] { background: var(--accent); border-color: var(--accent); }
+.dot[data-lvl="2"] { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--accent); }
+.legend { font-size: 11px; color: var(--muted); margin-top: 6px; }
+.penrow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 4px 0; }
+.ab .sub { font-size: 11px; color: var(--accent); min-height: 1.2em; }
+.passive { display: flex; justify-content: space-between; padding: 3px 0; }
+.passive b { font: 700 15px var(--font-head); }
+
+/* tabs */
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 2px solid var(--accent); margin-bottom: 10px; }
+.tabs button { border: 0; border-radius: 4px 4px 0 0; background: transparent; font: 700 13px var(--font-head); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 12px; }
+.tabs button[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); }
+.feat { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; margin-bottom: 8px; background: var(--panel); }
+.feat-h { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.feat-name { font: 700 16px var(--font-head); flex: 1 1 160px; }
+.feat-type { width: 110px; font-size: 12px; color: var(--muted); }
+.pips { display: inline-flex; gap: 4px; align-items: center; }
+.pip { width: 18px; height: 18px; padding: 0; border-radius: 4px; border: 2px solid var(--accent); background: var(--accent); }
+.pip[data-used="1"] { background: transparent; }
+.pips small { color: var(--muted); font-size: 11px; margin-left: 2px; }
+.feat textarea { width: 100%; resize: vertical; margin-top: 6px; line-height: 1.5; overflow: hidden; }
+.feat details { margin-top: 4px; }
+.cfg { display: flex; flex-wrap: wrap; gap: 8px 16px; padding-top: 6px; }
+.cfg label { display: flex; align-items: center; gap: 6px; }
+.cfg input { width: 56px; }
+.icon { padding: 2px 8px; font-size: 16px; line-height: 1.2; color: var(--muted); }
+.add { width: 100%; border-style: dashed; padding: 8px; color: var(--muted); }
+.item { display: flex; gap: 8px; align-items: center; padding: 3px 0; border-bottom: 1px solid var(--line); }
+.item input:first-child { flex: 1 1 40%; font-weight: 500; }
+.item input:nth-child(2) { flex: 1 1 50%; }
+#notes { width: 100%; min-height: 240px; resize: vertical; line-height: 1.55; }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity .2s; max-width: 90vw; }
+.toast.on { opacity: 1; }
+.foot { font-size: 12px; color: var(--muted); }
+
+@media (max-width: 1020px) { .cols { grid-template-columns: 1fr 1fr; } .cols .col:last-child { grid-column: 1 / -1; } }
+@media (max-width: 640px) {
+  .cols { grid-template-columns: 1fr; }
+  .head { grid-template-columns: 1fr; }
+  .tools { justify-content: flex-start; }
+  .box.hp { grid-column: 1 / -1; }
+  .head .name { font-size: 22px; }
+  .item { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+</style>
+
+<div class="wrap">
+  <section class="panel head">
+    <div>
+      <input class="name" id="f-name" data-path="name" aria-label="ชื่อตัวละคร">
+      <div class="meta">
+        <label><span class="lbl">เลเวล</span><input type="number" min="1" max="20" id="f-level" data-path="level"></label>
+        <label><span class="lbl">เผ่า</span><input id="f-race" data-path="race"></label>
+        <label><span class="lbl">คลาส</span><input id="f-cls" data-path="cls"></label>
+        <label><span class="lbl">อายุ</span><input type="number" id="f-age" data-path="age"></label>
+      </div>
+    </div>
+    <div class="tools">
+      <button class="primary" data-act="short">Short Rest</button>
+      <button class="primary" data-act="long">Long Rest</button>
+      <button data-act="export" id="b-export">บันทึกไฟล์</button>
+      <button data-act="import">โหลดไฟล์</button>
+      <button data-act="reset" id="b-reset">รีเซ็ต</button>
+      <input type="file" id="file" accept=".json,application/json" hidden>
+    </div>
+  </section>
+
+  <section class="strip" aria-label="ค่าสถานะหลัก">
+    <div class="box"><span class="lbl">Proficiency</span><span class="big" data-out="prof"></span><span class="sub">ตามเลเวล</span></div>
+    <div class="box"><span class="lbl">Initiative</span><span class="big" data-out="init"></span><span class="sub">DEX</span></div>
+    <div class="box"><span class="lbl">AC</span><span class="big" data-out="ac"></span><span class="sub">เกราะ</span></div>
+    <div class="box"><span class="lbl">Speed</span><input id="f-speed" data-path="speed" style="width:80px;text-align:center;font:700 22px var(--font-head)" aria-label="Speed"><span class="sub">การเคลื่อนที่</span></div>
+    <div class="box hp">
+      <span class="lbl">Hit Points</span>
+      <div class="hp-row">
+        <div><input type="number" id="f-hp" data-path="hp.cur" aria-label="HP ปัจจุบัน"><span class="sub">ปัจจุบัน</span></div>
+        <div style="font:700 24px var(--font-head);padding-bottom:18px">/</div>
+        <div><input type="number" id="f-hpmax" data-path="hp.max" aria-label="HP สูงสุด"><span class="sub">สูงสุด</span></div>
+        <div class="temp"><input type="number" id="f-hptemp" data-path="hp.temp" aria-label="Temp HP"><span class="sub">Temp</span></div>
+      </div>
+      <div class="hp-bar"><i data-out="hpbar"></i></div>
+      <div class="hp-act">
+        <button data-act="dmg">โดนดาเมจ</button>
+        <input type="number" id="delta" min="0" value="1" aria-label="จำนวน">
+        <button data-act="heal">ฮีล</button>
+      </div>
+    </div>
+    <div class="box"><span class="lbl">Spell Save DC</span><span class="big" data-out="dc"></span><span class="sub">8 + Prof + CHA</span></div>
+    <div class="box"><span class="lbl">Spell Attack</span><span class="big" data-out="atk"></span><span class="sub">Prof + CHA</span></div>
+  </section>
+
+  <details class="adj">
+    <summary>ปรับตัวเลขเพิ่มเติม (AC, DC, โบนัสอื่น)</summary>
+    <div class="adj-grid">
+      <label><span class="lbl">AC ฐาน</span><input type="number" id="f-acbase" data-path="acBase"></label>
+      <label><span class="lbl">AC โบนัส</span><input type="number" id="f-acbonus" data-path="acBonus"></label>
+      <label><span class="lbl">DC โบนัส (เดรส)</span><input type="number" id="f-dcbonus" data-path="dcBonus"></label>
+      <label><span class="lbl">Attack โบนัส</span><input type="number" id="f-atkbonus" data-path="atkBonus"></label>
+      <label><span class="lbl">Initiative โบนัส</span><input type="number" id="f-initbonus" data-path="initBonus"></label>
+      <label><span class="lbl">Senses</span><input class="wide" id="f-senses" data-path="senses" style="width:220px"></label>
+    </div>
+  </details>
+
+  <div class="cols">
+    <div class="col">
+      <section class="panel">
+        <h2>Ability Scores</h2>
+        <div class="abilities" id="abilities"></div>
+        <div class="pool" id="pool"><span class="lbl">แต้มสแตทที่ยังไม่ได้ใช้</span>
+          <span style="display:flex;gap:6px;align-items:center">
+            <button data-act="pool-" aria-label="ลดแต้ม" style="padding:0 8px">−</button><b data-out="pool"></b><button data-act="pool+" aria-label="เพิ่มแต้ม" style="padding:0 8px">+</button>
+          </span>
+        </div>
+        <div class="legend">กด ▲ ▼ ที่สแตทเพื่อใช้หรือคืนแต้ม หรือพิมพ์ค่าเองได้</div>
+      </section>
+      <section class="panel">
+        <h2>ปากกาสื่อเวท (สแตทตอนสวมใส่)</h2>
+        <label class="penrow"><input type="checkbox" id="pen-on" data-path="pen.on"> <span>สวมใส่อยู่</span></label>
+        <div id="penrows"></div>
+        <div class="penrow"><span class="lbl">+ต่อเลเวล</span><input type="number" id="pen-per" data-path="pen.perLevel" aria-label="โบนัสต่อเลเวล" style="width:48px">
+          <span class="lbl">ตอนนี้ STR / DEX / CHA ได้ <b data-out="penplus"></b> จากปากกา (เลเวล × 3)</span></div>
+        <div class="legend">ปากกาให้ +3 ต่อเลเวลกับ STR / DEX / CHA เลเวล 8 = +24, เลเวล 9 = +27 ขึ้นเองตามเลเวลของตัวละคร ช่องด้านบนคือโบนัสอื่นเพิ่มเติม (เริ่มที่ 0) ค่าฐานคือสแตทของตัวละครเอง โบนัสปากกาบวกทับ ปิดสวมใส่เพื่อดูค่าเดิม</div>
+      </section>
+      <section class="panel">
+        <h2>Saving Throws</h2>
+        <div id="saves"></div>
+      </section>
+      <section class="panel">
+        <h2>Senses</h2>
+        <div class="passive"><span>Passive Perception</span><b data-out="pp"></b></div>
+        <div class="passive"><span>Passive Investigation</span><b data-out="pi"></b></div>
+        <div class="passive"><span>Passive Insight</span><b data-out="pins"></b></div>
+        <div class="legend" data-out="senses"></div>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="panel">
+        <h2>Skills</h2>
+        <div id="skills"></div>
+        <div class="legend">กดวงกลม: ไม่มี → Proficient → Expertise</div>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="panel">
+        <div class="tabs" role="tablist" id="tabs">
+          <button role="tab" data-tab="P">Passive [P]</button>
+          <button role="tab" data-tab="A">Actions [A]</button>
+          <button role="tab" data-tab="E">อุปกรณ์</button>
+          <button role="tab" data-tab="N">โน้ต</button>
+        </div>
+        <div id="tabbody"></div>
+      </section>
+    </div>
+  </div>
+  <p class="foot">ข้อมูลบันทึกในเบราว์เซอร์นี้อัตโนมัติ ใช้ "บันทึกไฟล์" เพื่อสำรองหรือย้ายเครื่อง และ "โหลดไฟล์" เพื่อนำกลับมา</p>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var KEY = "ottilie-rosenkranz-sheet-v11";
+  var PEN3 = ["str", "dex", "cha"];
+  var ABS = [["str","STR","Strength"],["dex","DEX","Dexterity"],["con","CON","Constitution"],["int","INT","Intelligence"],["wis","WIS","Wisdom"],["cha","CHA","Charisma"]];
+  var SKILLS = [["Acrobatics","dex"],["Animal Handling","wis"],["Arcana","int"],["Athletics","str"],["Deception","cha"],["History","int"],["Insight","wis"],["Intimidation","cha"],["Investigation","int"],["Medicine","wis"],["Nature","int"],["Perception","wis"],["Performance","cha"],["Persuasion","cha"],["Religion","int"],["Sleight of Hand","dex"],["Stealth","dex"],["Survival","wis"]];
+
+  var DEF = {
+    name: "ออตทิลี โรเซนครานซ์ (Ottilie Rosenkranz)", level: 8, race: "มูนบอร์น (แฟรี่)", cls: "วาลอค", age: 412,
+    abilities: { str: 8, dex: 15, con: 4, int: 18, wis: 10, cha: 36 }, pool: 0,
+    saves: { cha: 1 }, skills: {},
+    pen: { on: 1, perLevel: 3, bonus: { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 } },
+    hp: { cur: 27, max: 27, temp: 0 }, speed: "9 ม.",
+    acBase: 10, acBonus: 0, dcBonus: 1, atkBonus: 0, initBonus: 0,
+    senses: "Dark Vision 36 ม.",
+    features: [
+      { kind: "P", name: "Dark Vision", type: "", desc: "มองเห็นในความมืดได้ระยะ 36 ม. และเห็นผ่านความมืดธรรมดาทุกชนิด (ความมืดเวทมนตร์ยังคงต้องใช้สกิล)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
+      { kind: "P", name: "Dreamless", type: "", desc: "ทำสมาธิ 4 ชม. แทน Long Rest, ไม่ได้รับผลจากเวทมนตร์ Sleep, ทอยเซฟกันสถานะ Charm แบบ Advantage และเปิดประสาทสัมผัสเฝ้ายามได้ขณะทำสมาธิ (หากถูกขัดจังหวะต้องเริ่มทำสมาธิใหม่)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
+      { kind: "P", name: "Lunar Echo", type: "", desc: "ศัตรูที่ทอยเซฟเวทมนตร์ไม่ผ่าน การทอยเซฟครั้งถัดไปจะติด Disadvantage และหากทอยเซฟล้มเหลวซ้ำ จะได้รับ Psychic Damage เท่ากับ CHA Mod (+5) (เกิดผลได้ 1 ตัวต่อ 1 เทิร์น ไม่ซ้อนทับ)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
+      { kind: "P", name: "ปากกาสื่อเวท", type: "Item · รอ DM", desc: "บวก +CHA +DEX +STR 24\nเมื่อสวมใส่ผู้ร่ายจะไม่สนการร่ายอีกต่อไปสามารถยิงได้เลย\nปากกานี้สามารถเปลี่ยนแปลงรูปแบบได้ตามใจนึก\nความสามารถบวกตามเลเวลละ +CHA +DEX +STR 3\n\n(คู่มือสำหรับเรา: ตอนแปลงให้ประกาศ “ของอะไร + ครบชุดพร้อมใช้ + ถืออยู่มือไหน” เสมอ อย่าบอกแค่รูปทรง เพราะเคยพลาดเสกตะเกียงแล้วไม่มีน้ำมันกับไฟ ของที่ต้องมีเชื้อเพลิง แรง หรือส่วนเคลื่อนไหวให้พูดออกมาว่ามีครบ ขนาดและน้ำหนักตามของจริง ไม่ใช่ของเวท ไม่ใช่ของมีค่า และถ้าไม่แน่ใจให้ถาม DM ก่อน\n• แสง/สำรวจ: ตะเกียง = มีน้ำมันเต็ม ไส้ตะเกียง และจุดไฟติดแล้ว | คบเพลิง = ไม้ ผ้าชุบน้ำมัน ไฟติดแล้ว | เทียน + หินเหล็กไฟ + ฝอยจุดไฟ | เข็มทิศ แผนที่ กล้องส่องทางไกล\n• ปีน/เดินทาง: เชือก 15 ม. + ตะขอเกี่ยว | บันไดพับ 3 ม. | ชะแลง ค้อน พลั่ว เสาวัดระยะ 3 ม. | ร่ม เต็นท์เล็ก ผ้าห่ม\n• งานช่าง/ปลดล็อก: ชุดเครื่องมือโจร ครบทั้งกุญแจผีและคีมเล็ก | ตะไบ คีม ลวด\n• สังคม/Roleplay: ปากกาขนนก + หมึก + กระดาษจริงเขียนได้ | ตราประทับ + ขี้ผึ้งปิดผนึก | เครื่องดนตรี สายครบและตั้งเสียงแล้ว | พัด แก้วไวน์ + ไวน์ | ผ้าเช็ดหน้า น้ำหอม\n• ปฐมพยาบาล: ผ้าพันแผล เข็มกับด้ายเย็บ สมุนไพร ขวดน้ำสะอาด\n• ซ่อน/สื่อสาร: ชอล์ก ถ่าน พู่กัน หมึกสำหรับทำเครื่องหมาย | นกหวีด กระดิ่ง ธงสัญญาณ\n• Combat: เลือกชนิดอาวุธก่อนทอยและประกาศว่าใช้มือไหน | ดาบ เรเพียร์ มีดสั้น | ธนูหรือหน้าไม้ + กระสุนครบ | ทวนหรือไม้ยาว (ระยะ Reach) | โล่ | โซ่หรือกุญแจมือสำหรับมัดเป้า | ตาข่ายสำหรับเหวี่ยงจับ | มีดขว้าง ทุกอย่างเป็นของธรรมดา โจมตีและดาเมจใช้ค่าตามที่ DM ตกลงไว้)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
+      { kind: "A", name: "Pact of the Hat", type: "Pact", desc: "ใช้หมวกเป็น Spell Focus, ร่าย Prestidigitation ฟรี และล้วงหยิบของธรรมดามูลค่าไม่เกิน 5 gp จากหมวกได้ 1 ครั้ง/LR (เช่น เชือก, กระจก, ยา Healing เล็ก)", uses: { mode: "fixed", max: 1, rest: "LR", used: 0 } },
+      { kind: "A", name: "Eldritch Needle", type: "Cantrip", desc: "ทำดาเมจ Force d6 ระยะ 36 ม. ไม่ติด Half Cover (สเกลเลเวล 5/11/17) และ Mark เป้าหมาย ส่งผลให้พันธมิตรที่โจมตีเป้าหมายที่ติด Mark ทำดาเมจเพิ่ม +1d4 (Mark ได้ทีละ 1 ตัว, +1d4 ได้ 1 ครั้ง/เทิร์น/คน)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
+      { kind: "A", name: "Yellow Stare", type: "Bonus Action", desc: "สั่งเป้าหมายทอยเซฟ WIS หากไม่ผ่าน Speed เป็น 0 และเสีย Reaction ในเทิร์นนั้น หากเป้าหมายถูก Mark อยู่ก่อนแล้ว การทอยเซฟจะติด Disadvantage (ใช้งานได้ตาม CHA Mod ต่อ LR)", uses: { mode: "cha", max: 5, rest: "LR", used: 0 } },
+      { kind: "A", name: "Hat's Whisper", type: "Reaction", desc: "บวก +1d4 ให้กับการทอยโจมตีหรือการทอยเซฟของพันธมิตร (ใช้ได้ตาม CHA Mod ต่อ SR, ใช้ได้ 1 ครั้งต่อ 1 ผลการทอย)", uses: { mode: "cha", max: 5, rest: "SR", used: 0 } },
+      { kind: "A", name: "Extra Attack", type: "Action", desc: "ในเทิร์นนั้น ทุกครั้งที่ทำ Attack action หรือยิง Eldritch Needle ให้โจมตีได้ 4 ครั้งแทน 1 ครั้ง ทุกครั้งใช้โมดิฟายเออร์ที่สูงที่สุดระหว่าง CHA / DEX / STR ทั้งทอยโจมตีและดาเมจ ทุกการโจมตีที่โดนจะ Mark เป้าหมายให้เอง และบวกดาเมจ +Prof เพิ่มต่อครั้งที่โดน (ใช้ได้ 1 ครั้ง/LR)", uses: { mode: "fixed", max: 1, rest: "LR", used: 0 } }
+    ],
+    items: [
+      { name: "ปากกาสื่อเวท", note: "รอ DM อนุมัติ (ยังไม่นำค่าไปคำนวณ)" },
+      { name: "หมวกแม่มด + จี้ตะเกียง", note: "Spell Focus" },
+      { name: "เดรสขาวชายทอง", note: "DC +1 (รวมแล้ว)" },
+      { name: "ถุงมือยาวดำ", note: "" },
+      { name: "แว่นกันแดด", note: "" }
+    ],
+    notes: ""
+  };
+
+  var S, tab = "A", resetArmed = false;
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function load() {
+    var s = clone(DEF), raw = null;
+    try { raw = localStorage.getItem(KEY); } catch (e) {}
+    if (raw) { try { s = merge(s, JSON.parse(raw)); } catch (e) {} }
+    return s;
+  }
+  function merge(base, o) {
+    if (!o || typeof o !== "object") return base;
+    Object.keys(base).forEach(function (k) {
+      if (!(k in o)) return;
+      var b = base[k];
+      if (b && typeof b === "object" && !Array.isArray(b)) base[k] = Object.assign({}, b, o[k]);
+      else base[k] = o[k];
+    });
+    if (!Array.isArray(base.features)) base.features = clone(DEF.features);
+    if (!Array.isArray(base.items)) base.items = clone(DEF.items);
+    base.pen.bonus = Object.assign({}, DEF.pen.bonus, base.pen.bonus);
+    base.features.forEach(function (f) { f.uses = Object.assign({ mode: "none", max: 0, rest: "LR", used: 0 }, f.uses); });
+    return base;
+  }
+  var saveTimer;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }, 150);
+  }
+  function toast(msg) {
+    var t = document.getElementById("toast"); t.textContent = msg; t.classList.add("on");
+    clearTimeout(toast.t); toast.t = setTimeout(function () { t.classList.remove("on"); }, 2200);
+  }
+
+  function num(v) { v = Number(v); return isFinite(v) ? v : 0; }
+  function penLevelBonus(ab) { return PEN3.indexOf(ab) >= 0 ? Math.max(1, num(S.level)) * num(S.pen.perLevel) : 0; }
+  function penBonus(ab) {
+    if (!S.pen || !S.pen.on) return 0;
+    return num(S.pen.bonus[ab]) + penLevelBonus(ab);
+  }
+  function eff(ab) { return num(S.abilities[ab]) + penBonus(ab); }
+  function mod(ab) { return Math.floor((eff(ab) - 10) / 2); }
+  function fmt(n) { return n >= 0 ? "+" + n : "−" + Math.abs(n); }
+  function prof() { return Math.ceil(Math.max(1, num(S.level)) / 4) + 1; }
+  function skillMod(name) {
+    var def = SKILLS.filter(function (s) { return s[0] === name; })[0];
+    return mod(def[1]) + prof() * (S.skills[name] || 0);
+  }
+  function maxUses(f) {
+    var u = f.uses;
+    if (u.mode === "cha") return Math.max(1, mod("cha"));
+    if (u.mode === "fixed") return Math.max(0, Math.min(20, Math.round(num(u.max))));
+    return 0;
+  }
+  function getp(path) { return path.split(".").reduce(function (o, k) { return o == null ? o : o[k]; }, S); }
+  function setp(path, v) {
+    var ks = path.split("."), o = S;
+    for (var i = 0; i < ks.length - 1; i++) o = o[ks[i]];
+    o[ks[ks.length - 1]] = v;
+  }
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); }
+
+  /* static lists */
+  function buildStatic() {
+    document.getElementById("abilities").innerHTML = ABS.map(function (a) {
+      return '<div class="ab"><span class="lbl">' + a[2] + '</span><span class="mod" data-out="mod:' + a[0] + '"></span>' +
+        '<span class="score"><button data-act="dn:' + a[0] + '" aria-label="ลด ' + a[1] + '">▼</button>' +
+        '<input type="number" id="f-' + a[0] + '" data-path="abilities.' + a[0] + '" aria-label="' + a[1] + '">' +
+        '<button data-act="up:' + a[0] + '" aria-label="เพิ่ม ' + a[1] + '">▲</button></span>' +
+        '<span class="sub" data-out="eff:' + a[0] + '"></span></div>';
+    }).join("");
+    document.getElementById("penrows").innerHTML = ABS.map(function (a) {
+      return '<div class="row"><span class="abv">' + a[1] + '</span><span class="nm" style="font-size:12px;color:var(--muted)" data-out="penline:' + a[0] + '"></span>' +
+        '<input type="number" data-path="pen.bonus.' + a[0] + '" id="pen-' + a[0] + '" aria-label="โบนัสอื่น ' + a[1] + '" title="โบนัสอื่นเพิ่มเติม" style="width:52px"></div>';
+    }).join("");
+    document.getElementById("saves").innerHTML = ABS.map(function (a) {
+      return '<div class="row"><button class="dot" data-act="save:' + a[0] + '" data-save="' + a[0] + '" aria-label="Proficiency ' + a[1] + '"></button>' +
+        '<span class="abv">' + a[1] + '</span><span class="nm">' + a[2] + '</span><span class="val" data-out="save:' + a[0] + '"></span></div>';
+    }).join("");
+    document.getElementById("skills").innerHTML = SKILLS.map(function (s) {
+      return '<div class="row"><button class="dot" data-act="skill:' + s[0] + '" data-skill="' + s[0] + '" aria-label="Proficiency ' + s[0] + '"></button>' +
+        '<span class="abv">' + s[1] + '</span><span class="nm">' + s[0] + '</span><span class="val" data-out="skill:' + s[0] + '"></span></div>';
+    }).join("");
+  }
+
+  /* feature tabs */
+  function buildTab() {
+    var body = document.getElementById("tabbody"), html = "";
+    Array.prototype.forEach.call(document.querySelectorAll("#tabs button"), function (b) {
+      b.setAttribute("aria-selected", b.dataset.tab === tab ? "true" : "false");
+    });
+    if (tab === "P" || tab === "A") {
+      S.features.forEach(function (f, i) {
+        if (f.kind !== tab) return;
+        var p = "features." + i;
+        html += '<article class="feat"><div class="feat-h">' +
+          '<input class="feat-name" id="fn-' + i + '" data-path="' + p + '.name" aria-label="ชื่อสกิล">' +
+          '<input class="feat-type" id="ft-' + i + '" data-path="' + p + '.type" placeholder="ประเภท" aria-label="ประเภท">' +
+          '<span class="pips" data-pips="' + i + '"></span>' +
+          '<button class="icon" data-act="delf:' + i + '" aria-label="ลบสกิล">×</button></div>' +
+          '<textarea id="fd-' + i + '" data-path="' + p + '.desc" rows="2" aria-label="คำอธิบาย"></textarea>' +
+          '<details><summary>ตั้งค่า</summary><div class="cfg">' +
+          '<label><span class="lbl">จำนวนครั้ง</span><select id="fm-' + i + '" data-path="' + p + '.uses.mode"><option value="none">ไม่จำกัด</option><option value="cha">ตาม CHA Mod</option><option value="fixed">กำหนดเอง</option></select></label>' +
+          '<label><span class="lbl">ค่า</span><input type="number" min="0" max="20" id="fx-' + i + '" data-path="' + p + '.uses.max"></label>' +
+          '<label><span class="lbl">ฟื้นคืน</span><select id="fr-' + i + '" data-path="' + p + '.uses.rest"><option value="SR">Short Rest</option><option value="LR">Long Rest</option></select></label>' +
+          '<label><span class="lbl">หมวด</span><select id="fk-' + i + '" data-path="' + p + '.kind"><option value="P">Passive</option><option value="A">Action</option></select></label>' +
+          '</div></details></article>';
+      });
+      html += '<button class="add" data-act="addf">+ เพิ่มสกิล</button>';
+    } else if (tab === "E") {
+      S.items.forEach(function (it, i) {
+        html += '<div class="item"><input id="in-' + i + '" data-path="items.' + i + '.name" placeholder="ชื่อไอเทม" aria-label="ชื่อไอเทม">' +
+          '<input id="io-' + i + '" data-path="items.' + i + '.note" placeholder="หมายเหตุ" aria-label="หมายเหตุ">' +
+          '<button class="icon" data-act="deli:' + i + '" aria-label="ลบไอเทม">×</button></div>';
+      });
+      html += '<button class="add" data-act="addi" style="margin-top:8px">+ เพิ่มไอเทม</button>';
+    } else {
+      html = '<textarea id="notes" data-path="notes" placeholder="จดโน้ต ประวัติตัวละคร เป้าหมาย ฯลฯ" aria-label="โน้ต"></textarea>';
+    }
+    body.innerHTML = html;
+    refresh();
+  }
+
+  /* refresh computed values and sync inputs */
+  function pipsHtml(i) {
+    var f = S.features[i], max = maxUses(f), used = Math.min(num(f.uses.used), max), h = "";
+    if (!max) return "";
+    for (var n = 0; n < max; n++) {
+      h += '<button class="pip" data-act="pip:' + i + ":" + n + '" data-used="' + (n < used ? 1 : 0) + '" aria-label="ใช้งาน ' + (n + 1) + '"></button>';
+    }
+    return h + "<small>" + (max - used) + "/" + max + " · " + f.uses.rest + "</small>";
+  }
+  function out(key) {
+    var p = key.split(":");
+    switch (p[0]) {
+      case "prof": return fmt(prof());
+      case "init": return fmt(mod("dex") + num(S.initBonus));
+      case "ac": return String(num(S.acBase) + mod("dex") + num(S.acBonus));
+      case "dc": return String(8 + prof() + mod("cha") + num(S.dcBonus));
+      case "atk": return fmt(prof() + mod("cha") + num(S.atkBonus));
+      case "pool": return String(S.pool);
+      case "mod": return fmt(mod(p[1]));
+      case "penplus": return "+" + penLevelBonus("cha");
+      case "eff": return penBonus(p[1]) ? "รวมปากกา " + eff(p[1]) : "\u00a0";
+      case "penline": return "ฐาน " + num(S.abilities[p[1]]) + " + ปากกา " + penBonus(p[1]) + " = " + eff(p[1]);
+      case "save": return fmt(mod(p[1]) + (S.saves[p[1]] ? prof() : 0));
+      case "skill": return fmt(skillMod(p[1]));
+      case "pp": return String(10 + skillMod("Perception"));
+      case "pi": return String(10 + skillMod("Investigation"));
+      case "pins": return String(10 + skillMod("Insight"));
+      case "senses": return S.senses || "";
+    }
+    return "";
+  }
+  function refresh() {
+    var active = document.activeElement;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-path]"), function (el) {
+      if (el === active) return;
+      var v = getp(el.dataset.path);
+      if (el.type === "checkbox") { el.checked = !!v; return; }
+      el.value = v == null ? "" : v;
+      if (el.tagName === "TEXTAREA") autosize(el);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-out]"), function (el) {
+      if (el.dataset.out === "hpbar") {
+        var max = Math.max(1, num(S.hp.max));
+        el.style.width = Math.max(0, Math.min(100, num(S.hp.cur) / max * 100)) + "%";
+      } else el.textContent = out(el.dataset.out);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-skill]"), function (el) { el.dataset.lvl = S.skills[el.dataset.skill] || 0; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-save]"), function (el) { el.dataset.lvl = S.saves[el.dataset.save] ? 1 : 0; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-pips]"), function (el) { el.innerHTML = pipsHtml(Number(el.dataset.pips)); });
+    document.getElementById("pool").classList.toggle("zero", !S.pool);
+  }
+  function autosize(ta) { ta.style.height = "auto"; ta.style.height = ta.scrollHeight + 4 + "px"; }
+
+  /* input binding */
+  function onInput(e) {
+    var el = e.target;
+    if (!el.dataset || !el.dataset.path) return;
+    var v = el.value;
+    if (el.type === "number") v = el.value === "" ? 0 : Number(el.value);
+    if (el.type === "checkbox") v = el.checked ? 1 : 0;
+    setp(el.dataset.path, v);
+    if (el.tagName === "TEXTAREA") autosize(el);
+    if (e.type === "change" && /\.kind$/.test(el.dataset.path)) { buildTab(); }
+    save(); refreshSoft();
+  }
+  function refreshSoft() { refresh(); }
+
+  /* actions */
+  function restore(rest) {
+    S.features.forEach(function (f) { if (rest === "LR" || f.uses.rest === "SR") f.uses.used = 0; });
+  }
+  function act(a) {
+    var p = a.split(":"), k = p[0];
+    if (k === "short") { restore("SR"); toast("Short Rest: คืนสกิลที่ฟื้นตอน SR แล้ว"); }
+    else if (k === "long") { restore("LR"); S.hp.cur = num(S.hp.max); S.hp.temp = 0; toast("Long Rest: คืนสกิลและ HP ทั้งหมดแล้ว"); }
+    else if (k === "pip") {
+      var f = S.features[Number(p[1])], n = Number(p[2]);
+      f.uses.used = num(f.uses.used) > n ? n : n + 1;
+    }
+    else if (k === "skill") { S.skills[p[1]] = ((S.skills[p[1]] || 0) + 1) % 3; }
+    else if (k === "save") { S.saves[p[1]] = S.saves[p[1]] ? 0 : 1; }
+    else if (k === "up") { if (S.pool > 0) { S.pool--; S.abilities[p[1]] = num(S.abilities[p[1]]) + 1; } else toast("ไม่มีแต้มเหลือ กดปุ่ม + ที่แต้มเพื่อเพิ่ม"); }
+    else if (k === "dn") { S.abilities[p[1]] = num(S.abilities[p[1]]) - 1; S.pool++; }
+    else if (k === "pool+") S.pool++;
+    else if (k === "pool-") S.pool = Math.max(0, S.pool - 1);
+    else if (k === "dmg" || k === "heal") {
+      var d = Math.max(0, num(document.getElementById("delta").value));
+      if (k === "dmg") {
+        var t = Math.min(d, num(S.hp.temp)); S.hp.temp = num(S.hp.temp) - t; S.hp.cur = Math.max(0, num(S.hp.cur) - (d - t));
+      } else S.hp.cur = Math.min(num(S.hp.max), num(S.hp.cur) + d);
+    }
+    else if (k === "addf") { S.features.push({ kind: tab === "P" ? "P" : "A", name: "สกิลใหม่", type: "", desc: "", uses: { mode: "none", max: 0, rest: "LR", used: 0 } }); save(); buildTab(); return; }
+    else if (k === "delf") { S.features.splice(Number(p[1]), 1); save(); buildTab(); return; }
+    else if (k === "addi") { S.items.push({ name: "", note: "" }); save(); buildTab(); return; }
+    else if (k === "deli") { S.items.splice(Number(p[1]), 1); save(); buildTab(); return; }
+    else if (k === "export") { exportFile(); return; }
+    else if (k === "import") { document.getElementById("file").click(); return; }
+    else if (k === "reset") { doReset(); return; }
+    save(); refresh();
+  }
+  function doReset() {
+    var b = document.getElementById("b-reset");
+    if (!resetArmed) {
+      resetArmed = true; b.textContent = "กดอีกครั้งเพื่อยืนยัน";
+      setTimeout(function () { resetArmed = false; b.textContent = "รีเซ็ต"; }, 3500);
+      return;
+    }
+    resetArmed = false; b.textContent = "รีเซ็ต";
+    S = clone(DEF); save(); buildTab(); toast("รีเซ็ตเป็นค่าเริ่มต้นเลเวล 3 แล้ว");
+  }
+  function exportFile() {
+    var data = JSON.stringify(S, null, 2);
+    var fname = "ottilie-rosenkranz-lv" + S.level + ".json";
+    window.claude && window.claude.use ? window.claude.use("downloads").then(function (d) {
+      if (!d) { toast("เบราว์เซอร์นี้บันทึกไฟล์ไม่ได้ ข้อมูลยังเก็บอัตโนมัติอยู่"); return; }
+      return d.save({ filename: fname, data: data }).then(function () { toast("บันทึกไฟล์แล้ว"); }, function (err) {
+        if (err && err.code !== "declined") toast("บันทึกไฟล์ไม่สำเร็จ");
+      });
+    }) : toast("เบราว์เซอร์นี้บันทึกไฟล์ไม่ได้ ข้อมูลยังเก็บอัตโนมัติอยู่");
+  }
+  function importFile(file) {
+    var r = new FileReader();
+    r.onload = function () {
+      try { S = merge(clone(DEF), JSON.parse(r.result)); save(); buildTab(); toast("โหลดข้อมูลแล้ว"); }
+      catch (e) { toast("ไฟล์นี้อ่านไม่ได้ ต้องเป็นไฟล์ .json ที่บันทึกจากบอร์ดนี้"); }
+    };
+    r.readAsText(file);
+  }
+
+  function init() {
+    S = load();
+    buildStatic();
+    document.addEventListener("input", onInput);
+    document.addEventListener("change", onInput);
+    document.addEventListener("click", function (e) {
+      var t = e.target.closest("[data-act]");
+      if (t) { act(t.dataset.act); return; }
+      var tb = e.target.closest("[data-tab]");
+      if (tb) { tab = tb.dataset.tab; buildTab(); }
+    });
+    document.getElementById("file").addEventListener("change", function (e) {
+      if (e.target.files[0]) importFile(e.target.files[0]);
+      e.target.value = "";
+    });
+    buildTab();
+  }
+  init();
+})();
+</script>
