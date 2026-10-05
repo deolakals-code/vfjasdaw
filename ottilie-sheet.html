@@ -251,7 +251,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
 
 <script>
 (function () {
-  var KEY = "ottilie-rosenkranz-sheet-v5";
+  var KEY = "ottilie-rosenkranz-sheet-v6";
   var ABS = [["str","STR","Strength"],["dex","DEX","Dexterity"],["con","CON","Constitution"],["int","INT","Intelligence"],["wis","WIS","Wisdom"],["cha","CHA","Charisma"]];
   var SKILLS = [["Acrobatics","dex"],["Animal Handling","wis"],["Arcana","int"],["Athletics","str"],["Deception","cha"],["History","int"],["Insight","wis"],["Intimidation","cha"],["Investigation","int"],["Medicine","wis"],["Nature","int"],["Perception","wis"],["Performance","cha"],["Persuasion","cha"],["Religion","int"],["Sleight of Hand","dex"],["Stealth","dex"],["Survival","wis"]];
 
@@ -266,6 +266,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
       { kind: "P", name: "Dark Vision", type: "", desc: "มองเห็นในความมืดได้ระยะ 36 ม. และเห็นผ่านความมืดธรรมดาทุกชนิด (ความมืดเวทมนตร์ยังคงต้องใช้สกิล)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
       { kind: "P", name: "Dreamless", type: "", desc: "ทำสมาธิ 4 ชม. แทน Long Rest, ไม่ได้รับผลจากเวทมนตร์ Sleep, ทอยเซฟกันสถานะ Charm แบบ Advantage และเปิดประสาทสัมผัสเฝ้ายามได้ขณะทำสมาธิ (หากถูกขัดจังหวะต้องเริ่มทำสมาธิใหม่)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
       { kind: "P", name: "Lunar Echo", type: "", desc: "ศัตรูที่ทอยเซฟเวทมนตร์ไม่ผ่าน การทอยเซฟครั้งถัดไปจะติด Disadvantage และหากทอยเซฟล้มเหลวซ้ำ จะได้รับ Psychic Damage เท่ากับ CHA Mod (+5) (เกิดผลได้ 1 ตัวต่อ 1 เทิร์น ไม่ซ้อนทับ)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
+      { kind: "P", name: "ปากกาสื่อเวท", type: "Item · รอ DM", desc: "บวก +CHA +DEX +STR 24\nเมื่อสวมใส่ผู้ร่ายจะไม่สนการร่ายอีกต่อไปสามารถยิงได้เลย\nปากกานี้สามารถเปลี่ยนแปลงรูปแบบได้ตามใจนึก\nความสามารถบวกตามเลเวลละ +CHA +DEX +STR 3", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
       { kind: "A", name: "Pact of the Hat", type: "Pact", desc: "ใช้หมวกเป็น Spell Focus, ร่าย Prestidigitation ฟรี และล้วงหยิบของธรรมดามูลค่าไม่เกิน 5 gp จากหมวกได้ 1 ครั้ง/LR (เช่น เชือก, กระจก, ยา Healing เล็ก)", uses: { mode: "fixed", max: 1, rest: "LR", used: 0 } },
       { kind: "A", name: "Eldritch Needle", type: "Cantrip", desc: "ทำดาเมจ Force d6 ระยะ 36 ม. ไม่ติด Half Cover (สเกลเลเวล 5/11/17) และ Mark เป้าหมาย ส่งผลให้พันธมิตรที่โจมตีเป้าหมายที่ติด Mark ทำดาเมจเพิ่ม +1d4 (Mark ได้ทีละ 1 ตัว, +1d4 ได้ 1 ครั้ง/เทิร์น/คน)", uses: { mode: "none", max: 0, rest: "LR", used: 0 } },
       { kind: "A", name: "Yellow Stare", type: "Bonus Action", desc: "สั่งเป้าหมายทอยเซฟ WIS หากไม่ผ่าน Speed เป็น 0 และเสีย Reaction ในเทิร์นนั้น หากเป้าหมายถูก Mark อยู่ก่อนแล้ว การทอยเซฟจะติด Disadvantage (ใช้งานได้ตาม CHA Mod ต่อ LR)", uses: { mode: "cha", max: 5, rest: "LR", used: 0 } },
@@ -273,6 +274,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
       { kind: "A", name: "Extra Attack", type: "Action", desc: "ในเทิร์นนั้น ทุกครั้งที่ทำ Attack action หรือยิง Eldritch Needle ให้โจมตีได้ 4 ครั้งแทน 1 ครั้ง ทุกครั้งใช้โมดิฟายเออร์ที่สูงที่สุดระหว่าง CHA / DEX / STR ทั้งทอยโจมตีและดาเมจ ทุกการโจมตีที่โดนจะ Mark เป้าหมายให้เอง และบวกดาเมจ +Prof เพิ่มต่อครั้งที่โดน (ใช้ได้ 1 ครั้ง/LR)", uses: { mode: "fixed", max: 1, rest: "LR", used: 0 } }
     ],
     items: [
+      { name: "ปากกาสื่อเวท", note: "รอ DM อนุมัติ (ยังไม่นำค่าไปคำนวณ)" },
       { name: "หมวกแม่มด + จี้ตะเกียง", note: "Spell Focus" },
       { name: "เดรสขาวชายทอง", note: "DC +1 (รวมแล้ว)" },
       { name: "ถุงมือยาวดำ", note: "" },
