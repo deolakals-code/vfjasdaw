@@ -101,6 +101,8 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
 .dot[data-lvl="1"] { background: var(--accent); border-color: var(--accent); }
 .dot[data-lvl="2"] { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--accent); }
 .legend { font-size: 11px; color: var(--muted); margin-top: 6px; }
+.penrow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 4px 0; }
+.ab .sub { font-size: 11px; color: var(--accent); min-height: 1.2em; }
 .passive { display: flex; justify-content: space-between; padding: 3px 0; }
 .passive b { font: 700 15px var(--font-head); }
 
@@ -213,6 +215,14 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
         <div class="legend">กด ▲ ▼ ที่สแตทเพื่อใช้หรือคืนแต้ม หรือพิมพ์ค่าเองได้</div>
       </section>
       <section class="panel">
+        <h2>ปากกาสื่อเวท (สแตทตอนสวมใส่)</h2>
+        <label class="penrow"><input type="checkbox" id="pen-on" data-path="pen.on"> <span>สวมใส่อยู่</span></label>
+        <div id="penrows"></div>
+        <div class="penrow"><span class="lbl">+ต่อเลเวลอัพ</span><input type="number" id="pen-per" data-path="pen.perLevel" aria-label="โบนัสต่อเลเวลอัพ" style="width:48px">
+          <span class="lbl">เลเวลอัพหลังได้ปากกา</span><input type="number" min="0" id="pen-ups" data-path="pen.ups" aria-label="จำนวนเลเวลอัพ" style="width:48px"></div>
+        <div class="legend">โบนัสต่อเลเวลอัพใช้กับ STR / DEX / CHA ค่าฐานคือสแตทของตัวละครเอง โบนัสปากกาบวกทับ ปิดสวมใส่เพื่อดูค่าเดิม</div>
+      </section>
+      <section class="panel">
         <h2>Saving Throws</h2>
         <div id="saves"></div>
       </section>
@@ -251,7 +261,8 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
 
 <script>
 (function () {
-  var KEY = "ottilie-rosenkranz-sheet-v7";
+  var KEY = "ottilie-rosenkranz-sheet-v8";
+  var PEN3 = ["str", "dex", "cha"];
   var ABS = [["str","STR","Strength"],["dex","DEX","Dexterity"],["con","CON","Constitution"],["int","INT","Intelligence"],["wis","WIS","Wisdom"],["cha","CHA","Charisma"]];
   var SKILLS = [["Acrobatics","dex"],["Animal Handling","wis"],["Arcana","int"],["Athletics","str"],["Deception","cha"],["History","int"],["Insight","wis"],["Intimidation","cha"],["Investigation","int"],["Medicine","wis"],["Nature","int"],["Perception","wis"],["Performance","cha"],["Persuasion","cha"],["Religion","int"],["Sleight of Hand","dex"],["Stealth","dex"],["Survival","wis"]];
 
@@ -259,6 +270,9 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     name: "ออตทิลี โรเซนครานซ์ (Ottilie Rosenkranz)", level: 5, race: "มูนบอร์น (แฟรี่)", cls: "วาลอค", age: 412,
     abilities: { str: 8, dex: 15, con: 4, int: 18, wis: 10, cha: 36 }, pool: 0,
     saves: { cha: 1 }, skills: {},
+    pen: { on: 1, perLevel: 3, ups: 0,
+      bonus: { str: 15, dex: 10, con: 12, int: 31, wis: 24, cha: 12 },
+      chain: { str: "+3 +2 +10", dex: "0 +10", con: "+2 +10", int: "+1 +10 +10 +10", wis: "-1 +15 +10", cha: "+2 +10" } },
     hp: { cur: 21, max: 21, temp: 0 }, speed: "9 ม.",
     acBase: 10, acBonus: 0, dcBonus: 1, atkBonus: 0, initBonus: 0,
     senses: "Dark Vision 36 ม.",
@@ -301,6 +315,8 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     });
     if (!Array.isArray(base.features)) base.features = clone(DEF.features);
     if (!Array.isArray(base.items)) base.items = clone(DEF.items);
+    base.pen.bonus = Object.assign({}, DEF.pen.bonus, base.pen.bonus);
+    base.pen.chain = Object.assign({}, DEF.pen.chain, base.pen.chain);
     base.features.forEach(function (f) { f.uses = Object.assign({ mode: "none", max: 0, rest: "LR", used: 0 }, f.uses); });
     return base;
   }
@@ -315,7 +331,12 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
   }
 
   function num(v) { v = Number(v); return isFinite(v) ? v : 0; }
-  function mod(ab) { return Math.floor((num(S.abilities[ab]) - 10) / 2); }
+  function penBonus(ab) {
+    if (!S.pen || !S.pen.on) return 0;
+    return num(S.pen.bonus[ab]) + (PEN3.indexOf(ab) >= 0 ? num(S.pen.ups) * num(S.pen.perLevel) : 0);
+  }
+  function eff(ab) { return num(S.abilities[ab]) + penBonus(ab); }
+  function mod(ab) { return Math.floor((eff(ab) - 10) / 2); }
   function fmt(n) { return n >= 0 ? "+" + n : "−" + Math.abs(n); }
   function prof() { return Math.ceil(Math.max(1, num(S.level)) / 4) + 1; }
   function skillMod(name) {
@@ -342,7 +363,13 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
       return '<div class="ab"><span class="lbl">' + a[2] + '</span><span class="mod" data-out="mod:' + a[0] + '"></span>' +
         '<span class="score"><button data-act="dn:' + a[0] + '" aria-label="ลด ' + a[1] + '">▼</button>' +
         '<input type="number" id="f-' + a[0] + '" data-path="abilities.' + a[0] + '" aria-label="' + a[1] + '">' +
-        '<button data-act="up:' + a[0] + '" aria-label="เพิ่ม ' + a[1] + '">▲</button></span></div>';
+        '<button data-act="up:' + a[0] + '" aria-label="เพิ่ม ' + a[1] + '">▲</button></span>' +
+        '<span class="sub" data-out="eff:' + a[0] + '"></span></div>';
+    }).join("");
+    document.getElementById("penrows").innerHTML = ABS.map(function (a) {
+      return '<div class="row"><span class="abv">' + a[1] + '</span><span class="nm" style="font-size:12px;color:var(--muted)" data-out="penline:' + a[0] + '"></span>' +
+        '<input type="number" data-path="pen.bonus.' + a[0] + '" id="pen-' + a[0] + '" aria-label="โบนัสปากกา ' + a[1] + '" style="width:52px"></div>' +
+        '<div class="legend" style="margin:0 0 4px 40px">ที่มา: <span class="penchain" data-chain="' + a[0] + '"></span></div>';
     }).join("");
     document.getElementById("saves").innerHTML = ABS.map(function (a) {
       return '<div class="row"><button class="dot" data-act="save:' + a[0] + '" data-save="' + a[0] + '" aria-label="Proficiency ' + a[1] + '"></button>' +
@@ -411,6 +438,8 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
       case "atk": return fmt(prof() + mod("cha") + num(S.atkBonus));
       case "pool": return String(S.pool);
       case "mod": return fmt(mod(p[1]));
+      case "eff": return penBonus(p[1]) ? "รวมปากกา " + eff(p[1]) : "\u00a0";
+      case "penline": return "ฐาน " + num(S.abilities[p[1]]) + " + ปากกา " + penBonus(p[1]) + " = " + eff(p[1]);
       case "save": return fmt(mod(p[1]) + (S.saves[p[1]] ? prof() : 0));
       case "skill": return fmt(skillMod(p[1]));
       case "pp": return String(10 + skillMod("Perception"));
@@ -425,6 +454,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     Array.prototype.forEach.call(document.querySelectorAll("[data-path]"), function (el) {
       if (el === active) return;
       var v = getp(el.dataset.path);
+      if (el.type === "checkbox") { el.checked = !!v; return; }
       el.value = v == null ? "" : v;
       if (el.tagName === "TEXTAREA") autosize(el);
     });
@@ -437,6 +467,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     Array.prototype.forEach.call(document.querySelectorAll("[data-skill]"), function (el) { el.dataset.lvl = S.skills[el.dataset.skill] || 0; });
     Array.prototype.forEach.call(document.querySelectorAll("[data-save]"), function (el) { el.dataset.lvl = S.saves[el.dataset.save] ? 1 : 0; });
     Array.prototype.forEach.call(document.querySelectorAll("[data-pips]"), function (el) { el.innerHTML = pipsHtml(Number(el.dataset.pips)); });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-chain]"), function (el) { el.textContent = S.pen.chain[el.dataset.chain]; });
     document.getElementById("pool").classList.toggle("zero", !S.pool);
   }
   function autosize(ta) { ta.style.height = "auto"; ta.style.height = ta.scrollHeight + 4 + "px"; }
@@ -447,6 +478,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     if (!el.dataset || !el.dataset.path) return;
     var v = el.value;
     if (el.type === "number") v = el.value === "" ? 0 : Number(el.value);
+    if (el.type === "checkbox") v = el.checked ? 1 : 0;
     setp(el.dataset.path, v);
     if (el.tagName === "TEXTAREA") autosize(el);
     if (e.type === "change" && /\.kind$/.test(el.dataset.path)) { buildTab(); }
