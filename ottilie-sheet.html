@@ -218,10 +218,9 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
         <h2>ปากกาสื่อเวท (สแตทตอนสวมใส่)</h2>
         <label class="penrow"><input type="checkbox" id="pen-on" data-path="pen.on"> <span>สวมใส่อยู่</span></label>
         <div id="penrows"></div>
-        <div class="penrow"><span class="lbl">+ต่อเลเวลอัพ</span><input type="number" id="pen-per" data-path="pen.perLevel" aria-label="โบนัสต่อเลเวลอัพ" style="width:48px">
-          <span class="lbl">ได้ปากกาที่เลเวล</span><input type="number" min="1" id="pen-start" data-path="pen.startLevel" aria-label="เลเวลที่ได้ปากกา" style="width:48px">
-          <span class="lbl">เลเวลอัพแล้ว <b data-out="penups"></b> ครั้ง = STR / DEX / CHA +<b data-out="penplus"></b></span></div>
-        <div class="legend">เลเวลเพิ่มขึ้นทีละ 1 จะบวก +3 ให้ STR / DEX / CHA อัตโนมัติ นับจากเลเวลที่ได้ปากกา ค่าฐานคือสแตทของตัวละครเอง โบนัสปากกาบวกทับ ปิดสวมใส่เพื่อดูค่าเดิม</div>
+        <div class="penrow"><span class="lbl">+ต่อเลเวล</span><input type="number" id="pen-per" data-path="pen.perLevel" aria-label="โบนัสต่อเลเวล" style="width:48px">
+          <span class="lbl">ตอนนี้ STR / DEX / CHA ได้ <b data-out="penplus"></b> จากปากกา (เลเวล × 3)</span></div>
+        <div class="legend">ปากกาให้ +3 ต่อเลเวลกับ STR / DEX / CHA เลเวล 8 = +24, เลเวล 9 = +27 ขึ้นเองตามเลเวลของตัวละคร ช่องด้านบนคือโบนัสอื่นเพิ่มเติม (เริ่มที่ 0) ค่าฐานคือสแตทของตัวละครเอง โบนัสปากกาบวกทับ ปิดสวมใส่เพื่อดูค่าเดิม</div>
       </section>
       <section class="panel">
         <h2>Saving Throws</h2>
@@ -262,19 +261,17 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
 
 <script>
 (function () {
-  var KEY = "ottilie-rosenkranz-sheet-v9";
+  var KEY = "ottilie-rosenkranz-sheet-v11";
   var PEN3 = ["str", "dex", "cha"];
   var ABS = [["str","STR","Strength"],["dex","DEX","Dexterity"],["con","CON","Constitution"],["int","INT","Intelligence"],["wis","WIS","Wisdom"],["cha","CHA","Charisma"]];
   var SKILLS = [["Acrobatics","dex"],["Animal Handling","wis"],["Arcana","int"],["Athletics","str"],["Deception","cha"],["History","int"],["Insight","wis"],["Intimidation","cha"],["Investigation","int"],["Medicine","wis"],["Nature","int"],["Perception","wis"],["Performance","cha"],["Persuasion","cha"],["Religion","int"],["Sleight of Hand","dex"],["Stealth","dex"],["Survival","wis"]];
 
   var DEF = {
-    name: "ออตทิลี โรเซนครานซ์ (Ottilie Rosenkranz)", level: 5, race: "มูนบอร์น (แฟรี่)", cls: "วาลอค", age: 412,
+    name: "ออตทิลี โรเซนครานซ์ (Ottilie Rosenkranz)", level: 8, race: "มูนบอร์น (แฟรี่)", cls: "วาลอค", age: 412,
     abilities: { str: 8, dex: 15, con: 4, int: 18, wis: 10, cha: 36 }, pool: 0,
     saves: { cha: 1 }, skills: {},
-    pen: { on: 1, perLevel: 3, startLevel: 5,
-      bonus: { str: 15, dex: 10, con: 12, int: 31, wis: 24, cha: 12 },
-      chain: { str: "+3 +2 +10", dex: "0 +10", con: "+2 +10", int: "+1 +10 +10 +10", wis: "-1 +15 +10", cha: "+2 +10" } },
-    hp: { cur: 21, max: 21, temp: 0 }, speed: "9 ม.",
+    pen: { on: 1, perLevel: 3, bonus: { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 } },
+    hp: { cur: 27, max: 27, temp: 0 }, speed: "9 ม.",
     acBase: 10, acBonus: 0, dcBonus: 1, atkBonus: 0, initBonus: 0,
     senses: "Dark Vision 36 ม.",
     features: [
@@ -317,7 +314,6 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     if (!Array.isArray(base.features)) base.features = clone(DEF.features);
     if (!Array.isArray(base.items)) base.items = clone(DEF.items);
     base.pen.bonus = Object.assign({}, DEF.pen.bonus, base.pen.bonus);
-    base.pen.chain = Object.assign({}, DEF.pen.chain, base.pen.chain);
     base.features.forEach(function (f) { f.uses = Object.assign({ mode: "none", max: 0, rest: "LR", used: 0 }, f.uses); });
     return base;
   }
@@ -332,10 +328,10 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
   }
 
   function num(v) { v = Number(v); return isFinite(v) ? v : 0; }
-  function penUps() { return Math.max(0, num(S.level) - num(S.pen.startLevel)); }
+  function penLevelBonus(ab) { return PEN3.indexOf(ab) >= 0 ? Math.max(1, num(S.level)) * num(S.pen.perLevel) : 0; }
   function penBonus(ab) {
     if (!S.pen || !S.pen.on) return 0;
-    return num(S.pen.bonus[ab]) + (PEN3.indexOf(ab) >= 0 ? penUps() * num(S.pen.perLevel) : 0);
+    return num(S.pen.bonus[ab]) + penLevelBonus(ab);
   }
   function eff(ab) { return num(S.abilities[ab]) + penBonus(ab); }
   function mod(ab) { return Math.floor((eff(ab) - 10) / 2); }
@@ -370,8 +366,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     }).join("");
     document.getElementById("penrows").innerHTML = ABS.map(function (a) {
       return '<div class="row"><span class="abv">' + a[1] + '</span><span class="nm" style="font-size:12px;color:var(--muted)" data-out="penline:' + a[0] + '"></span>' +
-        '<input type="number" data-path="pen.bonus.' + a[0] + '" id="pen-' + a[0] + '" aria-label="โบนัสปากกา ' + a[1] + '" style="width:52px"></div>' +
-        '<div class="legend" style="margin:0 0 4px 40px">ที่มา: <span class="penchain" data-chain="' + a[0] + '"></span></div>';
+        '<input type="number" data-path="pen.bonus.' + a[0] + '" id="pen-' + a[0] + '" aria-label="โบนัสอื่น ' + a[1] + '" title="โบนัสอื่นเพิ่มเติม" style="width:52px"></div>';
     }).join("");
     document.getElementById("saves").innerHTML = ABS.map(function (a) {
       return '<div class="row"><button class="dot" data-act="save:' + a[0] + '" data-save="' + a[0] + '" aria-label="Proficiency ' + a[1] + '"></button>' +
@@ -440,8 +435,7 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
       case "atk": return fmt(prof() + mod("cha") + num(S.atkBonus));
       case "pool": return String(S.pool);
       case "mod": return fmt(mod(p[1]));
-      case "penups": return String(penUps());
-      case "penplus": return String(penUps() * num(S.pen.perLevel));
+      case "penplus": return "+" + penLevelBonus("cha");
       case "eff": return penBonus(p[1]) ? "รวมปากกา " + eff(p[1]) : "\u00a0";
       case "penline": return "ฐาน " + num(S.abilities[p[1]]) + " + ปากกา " + penBonus(p[1]) + " = " + eff(p[1]);
       case "save": return fmt(mod(p[1]) + (S.saves[p[1]] ? prof() : 0));
@@ -471,7 +465,6 @@ details.adj summary, .feat details summary { cursor: pointer; font-family: var(-
     Array.prototype.forEach.call(document.querySelectorAll("[data-skill]"), function (el) { el.dataset.lvl = S.skills[el.dataset.skill] || 0; });
     Array.prototype.forEach.call(document.querySelectorAll("[data-save]"), function (el) { el.dataset.lvl = S.saves[el.dataset.save] ? 1 : 0; });
     Array.prototype.forEach.call(document.querySelectorAll("[data-pips]"), function (el) { el.innerHTML = pipsHtml(Number(el.dataset.pips)); });
-    Array.prototype.forEach.call(document.querySelectorAll("[data-chain]"), function (el) { el.textContent = S.pen.chain[el.dataset.chain]; });
     document.getElementById("pool").classList.toggle("zero", !S.pool);
   }
   function autosize(ta) { ta.style.height = "auto"; ta.style.height = ta.scrollHeight + 4 + "px"; }
