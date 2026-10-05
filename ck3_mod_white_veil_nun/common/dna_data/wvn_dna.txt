@@ -1,0 +1,13 @@
+# UNVERIFIED skeleton. Color genes = { x1 y1 x2 y2 } (0-255): dominant x,y then recessive x,y.
+# Palette coordinates below are PLACEHOLDERS - tune in-game, then replace the whole block
+# with the DNA exported from the Ruler Designer / portrait editor.
+wvn_dna = {
+	portrait_info = {
+		genes = {
+			hair_color = { 20 10 20 10 }   # TODO: silver-white
+			skin_color = { 20 30 20 30 }   # TODO: pale
+			eye_color  = { 200 100 200 100 } # TODO: golden yellow
+		}
+	}
+	enabled = yes
+}
